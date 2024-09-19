@@ -3,10 +3,7 @@
 @import url('fonts.css');
 @import url('layout.css');
 @import url('content.css');
-@import url('business.css');
-@import url('priority.css');
-@import url('gold.css');
-@import url('eng.css');
+
 
 @import url('jquery-ui.css');
 
@@ -715,8 +712,8 @@ input[type="radio"]:focus+label, input[type="checkbox"]:focus+label {text-decora
 .formArea .inputGroup + .refList {margin-top:0;}
 .inputGroup.horizontal .formWrap label.sTxt {font-size:12px !important; color:#666}
 .inputGroup.horizontal .formWrap{vertical-align:middle}
-.phoneWrap.countryCode .formWrap{floa.:left; width:25%;}
-.phoneWrap.nationCode .formWrap{floa.:left; width:20%;}
+.phoneWrap.countryCode .formWrap{float:left; width:25%;}
+.phoneWrap.nationCode .formWrap{float:left; width:20%;}
 
 /*POP 금융기관선택 추가*/
 .inputGroup.horizontal.bankingList .formWrap{margin-right:0px;}
@@ -913,7 +910,7 @@ table.zebra th, table.zebra td{padding:16px 18px !important;}
 .tableX.zebra tbody>tr:nth-child(2n-1) th,
 .tableX.zebra tbody>tr:nth-child(2n-1) td {background: #fff;}
 /* data Table */
-.tableY {width:100%; font-size:14px; text-align:left; color:#333; font-family: Interstate_light, 'Malgun Gothic','맑은 고딕', sans-serif; border-top:1px solid #999; border-bottom:1px solid #999}
+.tableY {width:100%; font-size:14px; text-align:left; color:#333; font-family: 'Pretendard', 'Malgun Gothic','맑은 고딕', sans-serif; border-top:1px solid #999; border-bottom:1px solid #999}
 .tableY th, .tableY td {padding:16px 18px 12px 0; text-align:left;}
 .tableY thead tr > th, .tableY thead tr > td {border-bottom:1px solid #999;} 
 .tableY tbody tr > th, .tableY tbody tr > td {border-top:1px solid #d8d8d8;} 
@@ -926,7 +923,7 @@ table.layout td:first-child, table.layout td:nth-child(4) {font-weight:bold}
 .tableY.layout + .guideArea  {margin-top:50px}
 .tableY.zebra tr:nth-child(2n-1) td, .tableY.zebra tr:nth-child(2n-1) th{background:#fff;} 
 .tableY.zebra td:first-child {padding-left:18px}	
-.tableY.zebra th, .tableY.zebra td,{border-top:none;}
+.tableY.zebra th, .tableY.zebra td{border-top:none;}
 
 /* .txtList */
 .tableX td > .txtList:first-child,
@@ -1207,7 +1204,7 @@ td .bold + .dashList{margin-top:0}
 .msgArea.msgFail {background-image:url(../img/common/msg_fail.png);}
 .msgArea.msgError {background-image:url(../img/common/msg_error.png);}
 .msgArea.msgError500 .tit {font-size:38px}
-.msgArea.msgError500 {background-image:background:#fff url(../img/common/msg_error_505.png);}
+.msgArea.msgError500 {background:#fff url(../img/common/msg_error_505.png);}
 .msgArea.msgSmall {min-height:0; padding:40px; background-image:none !important;}
 .msgArea.msgSmall + .viewWrap {margin-top:35px;}
 .msgArea + .txtList + .txtList + .formArea.brdB {margin-top:25px;}
@@ -1229,9 +1226,9 @@ td .bold + .dashList{margin-top:0}
 .grayBox > li [class^=appCiti] {display:inline-block; margin-right:5px;}
 
 /* multiBox */
-.multiBoxWrap{postion:relative; width:100%; margin-top:50px; box-sizing:border-box}
+.multiBoxWrap{position:relative; width:100%; margin-top:50px; box-sizing:border-box}
 .multiBoxWrap .multiBoxInner{position:relative; margin-left:0; padding:20px 0; font-size:0; box-sizing:border-box; z-index:1}
-.multiBoxWrap .multiBoxInner:after{content""; display:block; clear:both}
+.multiBoxWrap .multiBoxInner:after{content:""; display:block; clear:both}
 .multiBoxWrap .multiBox{display:inline-block; border-top:1px solid #ccc; padding:20px 0;vertical-align:top; font-size:16px; box-sizing:border-box}
 .multiBoxWrap .multiBox .tit{font-size:19px;}
 .multiBoxWrap .multiBox .txt{margin-top:20px; }
@@ -2521,7 +2518,7 @@ body:not(.isMobile) .tipWrap:hover .help, .tipWrap .help:focus, .tipWrap.on .hel
 .innerTab.tab ul li.noLink span {color:#666; cursor:default}
 
 .tab + .innerTab {margin-top:-40px;/*margin-top:-10px; - 0125 디자인 가이드 수정*/ padding:5px 10px 25px; border-bottom:none;}
-.tab + .tabContents:not(:#mallAll) .btnArea {margin-top:-30px; padding-top:0}
+/*.tab + .tabContents:not(:#mallAll) .btnArea {margin-top:-30px; padding-top:0}*/
 .tab + .tabContents .viewWrap + .btnArea  {margin-top: 0}
 .tabContents .progIndicator {margin-top:30px;}
 .tabContents .viewWrap {margin-top:50px}
