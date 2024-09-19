@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "kwon_blog",
+			"path": "../.."
+		},
+		{
+			"name": "2024nh",
+			"path": "C:/Users/SINWOO/2024nh"
+		},
+		{
+			"name": "project",
+			"path": "C:/project"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "project"
+	}
+}
