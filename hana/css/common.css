@@ -3,23 +3,17 @@
 @import url('fonts.css');
 
 
-
-
-/*-------------------------------------------------------------------------------------------------------
-===============================				 [미디어쿼리]					=================================
---------------------------------------------------------------------------------------------------------*/
-@media (min-width:987px) and (max-width:1300px){
-
-}
-
-@media screen and (max-width:1200px){
-
-}
-
-/* 카드 상세 상단 비쥬얼 영역 */
-@media screen and (max-width:1024px){
-	
-}
+/* pc */
+.wrapper{position:relative; width:100%; height:100%;}
+.header{padding:8rem 10rem;}
+.header .h1{font-weight:100; font-size:5rem}
+.header .btn_menu{position:absolute; top:8rem; right:10rem; width:6rem; height:4.4rem;}
+.header .btn_menu::before{content:""; position:absolute; top:0; left:0; display:block; width:4.5rem; height:0.4rem; background-color:#000; z-index:1}
+.header .btn_menu::after{content:""; position:absolute; top:calc(100% - 0.4rem);  left:0; display:block; width:3.2rem; height:0.4rem; background-color:#000; z-index:1}
+.header .btn_menu > button{display:block; width:6rem; height:4.4rem;}
+.header .btn_menu > button::before{content:""; position:absolute; top:calc(50% - 0.2rem); left:0; display:block; display:block; width:6rem; height:0.4rem; background-color:#000; z-index:1}
+.header .btn_menu > button::after{content:""; position:absolute; top:calc(50% - 0.2rem); left:calc(50% - 0.2rem); width:0; height:0; border-radius:1rem; background:#ededed; transition:all 0.3s ease-in-out;  }
+.header .btn_menu > button:hover::after{top:-2rem; left:-1rem; width:8rem; height:8rem;}
 
 /* tablets & mobile */
 @media screen and (max-width:987px){
@@ -28,10 +22,12 @@
 }
 
 
+
 /* only tablets */
 @media screen and (min-width:768px) and (max-width:987px){
 	
 }
+
 
 
 /* only mobile */
@@ -48,27 +44,6 @@
 
 
 
-
-@media screen and (max-width:500px){
-
-	
-}
-
-
-
-
-
-@media screen and (max-width:425px){
-	
-	
-}
-
-
-/* 예외 */
-@media screen and (max-width:375px) {
-	
-}
-/* 예외 */
 @media screen and (max-width:320px){
 
 }
