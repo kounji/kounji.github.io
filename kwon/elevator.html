@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+    
+	<title>Kwon jiyeoun</title>
+	
+	<meta content="퍼블리셔 권지연" name="title">
+	<meta content="퍼블리셔, 웹퍼블리셔, 권지연" name="keywords">
+	<meta content="Copyright©2024 Citigroup Inc." name="copyright">
+	<!--
+	<link rel="Shortcut Icon" href="img/favicon.ico">
+	
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.12.1.min.js"></script>
+	-->
+<style>
+body{
+  height:400vh;
+}
+.space{
+/*   hight:100vh; */
+}
+body {
+  /* This affects the entire page */
+  background-color: #111;
+  color: #999;
+  font-family:AvenirNextLTPro-Regular;
+  max-width: 1088px;
+margin:auto;
+padding:10px;
+min-height:350vh;
+
+}
+.space{
+  
+  height: 100vh
+}
+.elevator-transition{
+ animation: repeat 1s forwards;
+  animation-delay: 1s;
+    
+}
+
+.elevator{
+margin:5em 0;
+  color: #fff;
+  font-family:AvenirNextLTPro-Bold;
+  font-size: 3em;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap:10px;
+
+}
+.elevatorL{
+  text-align: right;
+  left:5em;
+}
+.elevatorR{
+  left:10em;
+}
+@keyframes repeat{
+  100%{
+    filter: drop-shadow(0 1em 0 #fff) drop-shadow(0 1em 0 #fff) drop-shadow(0 1em 0 #fff) drop-shadow(0 1em 0 #fff) drop-shadow(0 1em 0 #fff) drop-shadow(0 1em 0 #fff);
+  }
+  
+}
+.elevatorL-transition{
+    animation: moveLeft .7s forwards;
+/*   animation-delay:2s; */
+      animation-play-state: paused ;
+  animation-delay:  calc(var(--scroll) * -1s);
+
+}
+.elevatorR-transition{
+    animation: moveRight .7s forwards;
+/*     animation-delay:2s; */
+      animation-play-state: paused ;
+  animation-delay:  calc(var(--scroll) * -1s);
+}
+
+@keyframes moveLeft {
+      0% {
+        transform: translateX(0px) rotate(0);
+  }
+  100%{
+      transform: translateX(-10em);
+  } 
+}
+@keyframes moveRight {
+      0% {
+        transform: translateX(0px) rotate(0);
+  }
+  100%{
+      transform: translateX(10em);
+  } 
+}
+</style>
+<script>
+window.addEventListener('scroll', () => {
+  document.body.style.setProperty('--scroll',window.pageYOffset / (document.body.offsetHeight - window.innerHeight));
+}, false);
+
+
+
+const elevator = document.querySelector('.elevator');
+const elevatorL = document.querySelector('.elevatorL');
+const elevatorR = document.querySelector('.elevatorR');
+
+
+
+// Create the observer, same as before:
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    
+    if (entry.isIntersecting) {
+      
+      elevator.classList.add('elevator-transition');
+            elevatorL.classList.add('elevatorL-transition');
+      elevatorR.classList.add('elevatorR-transition');
+
+      return;
+    }
+
+    elevator.classList.remove('elevator-transition');
+    elevatorL.classList.remove('elevatorL-transition');
+    elevatorR.classList.remove('elevatorR-transition');
+
+  });
+});
+
+// var observer = new IntersectionObserver(callback, options);
+// observer.observe(elevator);
+
+observer.observe(document.querySelector('.elevator'));
+observer.observe(document.querySelector('.elevatorL'));
+observer.observe(document.querySelector('.elevatorR'));
+
+
+</script>
+</head>
+
+<body>
+
+<!-- wrapper(s) -->
+<div class="wrapper">
+
+
+
+		<!--  based on https://coolcssanimation.com/how-to-trigger-a-css-animation-on-scroll/ -->
+<!-- <div class="space"></div> -->
+
+<div class="elevator">
+	<div class="elevatorL">GET ON THE</div> 
+	<div class="elevatorR"> ELEVATOR</div>
+</div>
+	<!-- Minos: Hello hello! We are glad to have you here! As you might know, you are expected to help us excavate an old NASA rocket and you may not leave until the job is over. 
+	
+	Your phone vibrate 
+	[[check phone]] -->
+
+
+
+
+	
+</div><!--// wrapper(e) -->
+
+</body>
+</html>
