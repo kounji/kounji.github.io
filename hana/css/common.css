@@ -30,6 +30,10 @@
 .full_menu .btn_close{position:absolute; display:block; top:10rem; right:10rem; width:4rem; height:4rem; z-index:102}
 .full_menu .btn_close::before{content:""; position:absolute; top:calc(50% - 0.2rem); left:0; display:block; width:4rem; height:0.2rem; border-radius:1rem; background-color:#fff; z-index:1; opacity:0; transition:all 1s;}
 .full_menu .btn_close::after{content:""; position:absolute; top:calc(50% - 0.2rem); left:0; display:block; width:4rem; height:0.2rem; border-radius:1rem; background:#fff;  z-index:1; opacity:0; transition:all 1s; }
+.full_menu .menu_list > li{line-height:28rem;}
+.full_menu .menu_list > li a{font-size:20rem; font-weight:100; color:#fff}
+.full_menu .menu_list > li a .point{font-weight:400;}
+
 .full_menu.active{display:block; top:0; right:0; width:100%; height:100%; border-radius:0; }
 .full_menu.active .menu_head .menu_tit{opacity:1}
 .full_menu.active .btn_close::before{top:calc(50% - 0.2rem); opacity:1; transform:rotate(-45deg);}
