@@ -45,7 +45,10 @@
 .visual_sec .profile p{font-size:4rem; font-weight:400; } 
 .visual_sec .profile + .slogan{margin-top:20rem;}
 .visual_sec .slogan .main_txt{font-size:20rem; font-weight:100; line-height:24rem;}
-.visual_sec .slogan .main_txt strong{display:inline-block; margin-left:10rem; font-weight:700;}
+.visual_sec .slogan .main_txt strong{display:inline-block; margin-left:8rem; font-weight:700;}
+
+.ani_box .item_ani01{background:url(../img/img_ani01.png) no-repeat 0 0; }
+
 
 .card_box{width:200px; height:200px; background:#ededed; border-radius:10px;transition:transform 0.8s; transform-style:preserve-3d;}
 .card_box:hover{transform: rotateY(180deg);}
@@ -64,8 +67,28 @@
         border-radius:30px;
     }
 }
-/* tablets & mobile */
-@media screen and (max-width:987px){
+
+
+/* only tablets */
+@media screen and (min-width:768px) and (max-width:1400px){
+	.header{padding:4rem 4rem;}
+    .header .btn_menu{top:5rem; right:4rem;}   
+
+    .full_menu .menu_list > li{line-height:14rem;}
+    .full_menu .menu_list > li a{font-size:10rem;}
+
+    .visual_sec{padding:4rem 4rem 10rem;}
+    .visual_sec .profile{display:block; text-align:right} 
+    .visual_sec .profile p{font-size:3rem;} 
+    .visual_sec .profile + .slogan{margin-top:10rem;}
+    .visual_sec .slogan .main_txt{font-size:10rem; line-height:12rem;}
+    .visual_sec .slogan .main_txt strong{margin-left:0;}
+}
+
+
+
+/* only mobile */
+@media screen and (max-width:767px){
     .header{padding:3rem 3rem;}
     .header .h1{font-size:3rem}
     .header .btn_menu{top:4rem; right:3rem; width:3rem; height:2.2rem; }   
@@ -81,22 +104,15 @@
     .full_menu .btn_close{top:4rem; right:3rem; width:3rem; height:3rem;}
     .full_menu .btn_close::before{width:3rem; height:0.2rem;}
     .full_menu .btn_close::after{width:3rem; height:0.2rem;}
+    .full_menu .menu_list > li{line-height:7rem;}
+    .full_menu .menu_list > li a{font-size:5rem;}
 
-
-}
-
-
-
-/* only tablets */
-@media screen and (min-width:768px) and (max-width:987px){
-	
-}
-
-
-
-/* only mobile */
-@media screen and (max-width:767px){
-
+    .visual_sec{padding:4rem 3rem 10rem;}
+    .visual_sec .profile{display:block; text-align:right} 
+    .visual_sec .profile p{font-size:1.5rem;}
+    .visual_sec .profile + .slogan{margin-top:5rem;}
+    .visual_sec .slogan .main_txt{font-size:5rem; line-height:7rem;}
+    .visual_sec .slogan .main_txt strong{margin-left:0;}
 }
 
 
@@ -109,5 +125,22 @@
 
 
 @media screen and (max-width:320px){
+
+}
+
+
+/* tablets & mobile */
+@media screen and (max-width:987px){
+    
+    
+   
+    
+   
+    
+
+    
+
+   
+
 
 }
