@@ -65,7 +65,7 @@ input, textarea {line-height: 1.2; /* 입력폼에서 춤추지 않는 최소 �
 .blind {position: absolute; overflow: hidden; margin: -1px; border: 0; padding: 0; width: 1px; height: 1px; clip: rect(0 0 0 0);}
 .tblfixed {table-layout:fixed;}
 html {font-size:62.5%; height:100%;}
-body {min-height: 100%; line-height: 1.5; font-family:'Pretendard Variable', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;}
+body {min-height: 100%; line-height: 1.5; font-family:'Pretendard Variable', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif; color:000;}
 input[placeholder], input[type=email], input[type=number],  input[type=password], input[type=search], input[type=tel], input[type=text],input[type=url], input[type=date], select {-webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; -o-appearance: none; appearance: none;}
 select::-ms-expand {display: none;}
 input[type=number]::-webkit-inner-spin-button, 

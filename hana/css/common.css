@@ -40,6 +40,13 @@
 .full_menu.active .btn_close::before{top:calc(50% - 0.2rem); opacity:1; transform:rotate(-45deg);}
 .full_menu.active .btn_close::after{top:calc(50% - 0.2rem); opacity:1; transform:rotate(45deg);}
 
+.visual_sec{padding:8rem 10rem 30rem;}
+.visual_sec .profile{position:relative; display:flex; justify-content:space-between;} 
+.visual_sec .profile p{font-size:4rem; font-weight:400; } 
+.visual_sec .profile + .slogan{margin-top:20rem;}
+.visual_sec .slogan .main_txt{font-size:20rem; font-weight:100; line-height:24rem;}
+.visual_sec .slogan .main_txt strong{display:inline-block; margin-left:10rem; font-weight:700;}
+
 .card_box{width:200px; height:200px; background:#ededed; border-radius:10px;transition:transform 0.8s; transform-style:preserve-3d;}
 .card_box:hover{transform: rotateY(180deg);}
  
