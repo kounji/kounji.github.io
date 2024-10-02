@@ -33,3 +33,55 @@ function getTextColorByBackgroundColor(hexColor) {
     return luma < 127.5 ? "white" : "black" // 글자색이
 }
     */
+$(document).ready(function(){
+    setTimeout(function() {
+      $(".loading").fadeOut();
+    }, 3500);
+  
+    //menu
+    $(".menu").click(function(){
+      $(".header").toggleClass("open");
+      $(".menu").toggleClass("open");
+      $(".nav-wrap").fadeToggle();
+  
+      if($(".header").is(".open")) {
+        $("a.footer-more").addClass("white")
+      } else {
+        $("a.footer-more").removeClass("white")
+      }
+    })
+  
+    $(".blank").click(function(e){
+      e.preventDefault();
+      $(".alert").addClass("on")
+  
+      $(".close").click(function(){
+        $(".alert").removeClass("on")
+      })
+    })
+  })
+  
+  $(document).mousemove(function(e) {
+    $(".cursor").eq(0).css({
+      left: e.pageX,
+      top: e.pageY,
+    });
+  
+    setTimeout(function() {
+      $(".cursor").eq(1).css({
+        left: e.pageX,
+        top: e.pageY,
+      });
+    }, 120);
+  
+    $("a:not('.work-box li a'), .menu").on({
+      mouseenter: function () { 
+        $(".cursor").addClass("big"); 
+      },
+      mouseleave: function () { 
+        $(".cursor").removeClass("big"); 
+      }
+    });
+  })
+  
+  
