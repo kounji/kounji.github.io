@@ -1,4 +1,11 @@
 @charset "utf-8";
+* {
+  cursor: auto;
+}
+
+a, .menu {
+  cursor: pointer;
+}
 
 .wrap-white {
   background: url("../img/line2.svg") 0 0 no-repeat;

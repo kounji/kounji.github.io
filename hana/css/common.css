@@ -110,6 +110,7 @@
   
   .wrap-white .cursor.second-cursor {
     border: 3px solid #ccc;
+    border-radius:10% 50% 50% 50%;
   }
   
   .wrap-white .cursor.first-cursor.big {
