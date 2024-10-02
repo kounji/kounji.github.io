@@ -1,6 +1,7 @@
 @charset "utf-8";
 * {
-  cursor: auto;
+  cursor: none;
+  user-select:none;
 }
 
 a, .menu {
