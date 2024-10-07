@@ -38,7 +38,14 @@ h1,h2,h3,h4,h5,h6 {color:inherit; font-weight: normal;}
 * {-webkit-text-size-adjust:none;}	/* 아이폰 가로모드시 글씨 커지는 문제 */
 
 /* 아이폰 input 박스선 없애기 */
-input[type="text"],input[type="password"],input[type="email"],input[type="search"],input[type="image"],input[type="tel"],input[type="number"], textarea{-webkit-appearance:none;-webkit-border-radius:0;}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+input[type="image"],
+input[type="tel"],
+input[type="number"],
+textarea{-webkit-appearance:none;-webkit-border-radius:0;}
 
 button{-webkit-appearance: button;cursor: pointer; overflow: visible; background-color: transparent; font-family:'Pretendard Variable', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;}
 img, fieldset {vertical-align: top;}
@@ -51,12 +58,12 @@ sub, sup{line-height: 0;}
 .t {border:1px solid red !important;}
 
 /* For modern browsers */
-.clfix:before,.clfix:after {content:""; display:table}
-.clfix:after {clear:both}
-* html .clfix {height:1%} /* Hides from IE-mac */
-.clfix {zoom:1}
+.clearfix:before,.clearfix:after {content:""; display:table}
+.clearfix:after {clear:both}
+* html .clearfix {height:1%} /* Hides from IE-mac */
+.clearfix {zoom:1}
 
-input, textarea {line-height: 1.2; /* 입력폼에서 춤추지 않는 최소 줄간 1.2 */ vertical-align: middle;/*가이드에 맞는걸로 padding 및 크기 설정*/}
+input, textarea {line-height: 1.2; /* 입력폼에서 춤추지 않는 최소 줄간 1.2 */ vertical-align: middle;}
 
 
 /*========================================== Basic ================================================*/

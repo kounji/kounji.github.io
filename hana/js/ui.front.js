@@ -27,7 +27,7 @@ function realTimeClock() {
     var today = new Date();
 
     var hours = ('0' + today.getHours()).slice(-2); 
-    var pmHours = ('0' + (hours - 12)).slice(-2);
+    var pmHours = ('0' + (today.getHours() - 12)).slice(-2);
     var minutes = ('0' + today.getMinutes()).slice(-2);
     var seconds = ('0' + today.getSeconds()).slice(-2); 
     
@@ -45,7 +45,7 @@ function realTimeClock() {
         $('.visual_sec .profile .clock .mid').text('오후');
         $('.visual_sec .profile .clock .date').text(dateString);
         //$('.visual_sec .profile .clock .time').text(pmTimeString);
-        $('.visual_sec .profile .clock .time .pmHours').text(pmHours)
+        $('.visual_sec .profile .clock .time .hours').text(pmHours)
         $('.visual_sec .profile .clock .time .minutes').text(minutes)
         $('.visual_sec .profile .clock .time .seconds').text(seconds)
     } else {
@@ -57,9 +57,9 @@ function realTimeClock() {
         $('.visual_sec .profile .clock .time .seconds').text(seconds)
     }	
     //real time
-    //colckAct();
+    //clockAct();
 }
-function colckAct() {
+function clockAct() {
   setInterval(realTimeClock, 1000);
 }
 
