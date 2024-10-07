@@ -72,7 +72,7 @@
 .visual_sec .profile .clock .time > span{min-width:4rem;}
 .visual_sec .profile .clock .date{margin-left:0.4rem}
 .visual_sec .profile + .slogan{margin-top:20rem;}
-.visual_sec .slogan .main_txt{font-size:18rem; font-weight:100; line-height:24rem;}
+.visual_sec .slogan .main_txt{font-size:16rem; font-weight:100; line-height:24rem;}
 .visual_sec .slogan .main_txt strong{display:inline-block; margin-left:8rem; font-weight:700;}
 
 .ani_box .item_ani01{background:url(../img/img_ani01.png) no-repeat 0 0; }
