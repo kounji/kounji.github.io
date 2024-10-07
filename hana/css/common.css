@@ -68,7 +68,9 @@
 .visual_sec{padding:8rem 10rem 30rem;}
 .visual_sec .profile{position:relative; display:flex; justify-content:space-between;} 
 .visual_sec .profile p{font-size:4rem; font-weight:400; } 
-.visual_sec .profile .clock .time > span{display:inline-block; min-width:4rem;}
+.visual_sec .profile .clock span{display:inline-block;}
+.visual_sec .profile .clock .time > span{min-width:4rem;}
+.visual_sec .profile .clock .date{margin-left:0.4rem}
 .visual_sec .profile + .slogan{margin-top:20rem;}
 .visual_sec .slogan .main_txt{font-size:20rem; font-weight:100; line-height:24rem;}
 .visual_sec .slogan .main_txt strong{display:inline-block; margin-left:8rem; font-weight:700;}
@@ -99,7 +101,7 @@
 /* only tablets */
 @media screen and (min-width:768px) and (max-width:1400px){
 	.header{padding:4rem 4rem;}
-    .header .btn_menu{top:5rem; right:4rem;}   
+    .header .btn_menu{top:5.5rem; right:4rem;}   
 
     .full_menu .menu_list > li{line-height:14rem;}
     .full_menu .menu_list > li a{font-size:10rem;}

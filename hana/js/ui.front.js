@@ -57,7 +57,7 @@ function realTimeClock() {
         $('.visual_sec .profile .clock .time .seconds').text(seconds)
     }	
     //real time
-    colckAct();
+    //colckAct();
 }
 function colckAct() {
   setInterval(realTimeClock, 1000);
