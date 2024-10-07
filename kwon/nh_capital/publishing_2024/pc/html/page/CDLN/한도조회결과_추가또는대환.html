@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+	<title>한도조회결과_추가또는대환 | NH농협캐피탈</title>
+
+	<!-- Publishing CSS -->
+	<link rel="stylesheet" href="../../../resource/css/ui_plugin.css">
+	<link rel="stylesheet" href="../../../resource/css/ui_style.css">
+
+	<!-- Plugin JS -->
+	<script src="../../../resource/js/jquery-3.6.0.min.js"></script>
+	<script src="../../../resource/js/jquery-ui-1.12.1.min.js"></script>
+
+	<!-- 개발 JS -->
+    <script type="text/javascript" src="https://www.nhcapital.co.kr/resource/common/js/common.js"></script>
+    <script type="text/javascript" src="https://www.nhcapital.co.kr/resource/common/js/commPop.js"></script>
+    <script type="text/javascript" src="https://www.nhcapital.co.kr/resource/common/js/commMsg.js"></script>
+    <script type="text/javascript" src="https://www.nhcapital.co.kr/resource/common/js/commMo.js"></script>
+
+	<!-- Publishing JS -->
+	<script src="../../../resource/js/ui_plugin.js"></script>
+	<script src="../../../resource/js/ui_common.js"></script>
+	<script src="../../../resource/js/ui_common_2024.js"></script><!-- 2024-09-04 2024고도화 : 2024고도화 전용 js -->
+</head>
+<body>
+
+
+<div class="layout temp">
+
+	<div class="header">
+		<div class="header_area">
+		</div>
+	</div>
+
+	<div class="container renewal_2024"><!-- 2024-09-06 2024고도화 : 고도화 전용 class .renewal_2024 추가 -->
+
+        <div class="subheader">
+            <div class="subheader_area">
+
+                <div class="breadcrumbs_part">
+                    <div class="breadcrumbs_pack">
+                        <ul>
+                            <li><a href="#" class="bcname" title="홈"></a></li>
+                            <li><a href="#" class="bcname">대출상품</a></li>
+                            <li><a href="#" class="bcname">한도조회결과</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step_part" role="img" aria-label="총 3단계 중 현재 1단계 한도조회">
+                    <div class="step_pack">
+                        <ol>
+                            <li class="active"><!-- 현재 스텝에 addClass="active" / 완료된 스텝인 경우 addClass="finish" -->
+                                <span class="num">1</span>
+                                <span class="txt">한도조회</span>
+                            </li>
+                            <li>
+                                <span class="num">2</span>
+                                <span class="txt">대출신청</span>
+                            </li>
+                            <li>
+                                <span class="num">3</span>
+                                <span class="txt">약정서 작성</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="page_title_part">
+                    <h2 class="ebtitle2">한도조회 결과</h2>
+                </div>
+
+                <div class="page_subtitle_part">
+                    <p>김농협님은 보유하고 있는 대출을 갈아타거나, 한도 내에서 추가 대출을 신청할 수 있어요</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="contents_zone has_step">
+
+            <!-- 여기부터 컨텐츠 -->
+            <div class="contents_area">
+                <div class="contents">
+
+                    <div class="radio_box_pack">
+						<div class="ebtitle_medium">신청하고 싶은 대출을 선택해 주세요</div><!-- 2024-09-24 2024고도화 : 마침표 삭제 -->
+
+                        <div class="radio_pack_list">
+                            <div class="radio_pack type_box">
+                                <input type="radio" class="ebradio" name="chk_loan" id="chk_loan_1" checked="checked">
+                                <label for="chk_loan_1" class="eblabel">
+                                    <div class="data_gray_box">
+                                        <div class="data_result_box">
+                                            <div class="top">
+                                                <div class="tit">기존 보유중인 신용대출을 더 좋은 조건의</div><!-- 2024-08-30 2024고도화 : 문구 변경됨 -->
+                                                <!-- <div class="tit">기존 신용대출을 더 좋은 조건의</div> -->
+                                                <div class="txt">대출로 갈아타기 (대환대출)</div>
+                                            </div>
+                                            <div class="left">
+                                                <div class="tit">대환가능한도</div>
+                                                <div class="cost"><span class="value">2억 7,000</span><span class="unit">만원</span></div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="tit">예상적용금리</div>
+                                                <div class="info"><span class="value">15.7</span><span class="unit">%</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+    
+                            <div class="radio_pack type_box">
+                                <input type="radio" class="ebradio" name="chk_loan" id="chk_loan_2">
+                                <label for="chk_loan_2" class="eblabel">
+                                    <div class="data_gray_box" role="button">
+                                        <div class="data_result_box">
+                                            <div class="top">
+                                                <div class="tit">한도가 남아있다면 대출가능 한도 내</div><!-- 2024-08-30 2024고도화 : 문구 변경됨 -->
+                                                <!-- <div class="tit">대출 가능 한도 내</div> -->
+                                                <div class="txt">추가로 대출 받기 (추가대출)</div>
+                                            </div>
+                                            <div class="left">
+                                                <div class="tit">추가대출한도</div>
+                                                <div class="cost"><span class="value">2억 7,000</span><span class="unit">만원</span></div>
+                                            </div>
+                                            <div class="right">
+                                                <div class="tit">예상적용금리</div>
+                                                <div class="info"><span class="value">15.7</span><span class="unit">%</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>						
+					</div>
+
+                    <div class="form_part">
+                        <div class="form_set">
+                            <div class="ebform_label">대출신청금액(만원단위)</div>
+                            <div class="form_pack">
+                                <div class="input_pack ty_word2">
+                                    <input type="tel" class="ebinput pr-40" title="대출신청금액" placeholder="대출신청금액 입력" />
+                                    <span class="unit">만원</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form_set">
+                            <div class="ebform_label">대출기간</div>
+                            <div class="form_pack">
+                                <div class="select_pack" data-ui="customSelect">
+                                    <select class="ebselect" name="loanMcnt" title="대출기간" data-placeholder="선택">
+                                        <option selected="selected">60개월</option>
+                                        <option>50개월</option>
+                                        <option>40개월</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form_set">
+                            <div class="ebform_label">월상환금액</div>
+                            <div class="form_pack">
+                                <div class="input_pack ty_word1 has_readonly pr-20">
+                                    <input type="text" class="ebinput" id="txtMrepyAmt" title="월상환금액" value="999,999" />
+                                    <span class="unit">원</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide_part">
+                        <div class="bullet_pack">
+                            <ul class="ebullet_circle">
+                                <li>신청 정보가 변경 되었어요. 아래 확인 버튼을 눌려주세요.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="contents_bottom_area">
+                        <button type="button" class="ebbtn btn_main ty_bg">대출 신청하기</button><!-- 2024-09-24 2024고도화 : 문구 수정 -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- //여기까지 컨텐츠 -->
+
+        </div>
+	</div>
+
+    <div class="footer">
+		<div class="footer_area"></div>
+	</div>
+</div>
+
+<!-- 2024-09-04 2024고도화 : 운영과 동일한 팝업영역 추가 -->
+<!-- <div id="layoutPopContent"></div> -->
+
+
+<script>
+// 비동기로 들어오는 컨텐츠가 있는 경우 함수 실행
+pageloadFunc();
+</script>
+
+
+</body>
+</html>

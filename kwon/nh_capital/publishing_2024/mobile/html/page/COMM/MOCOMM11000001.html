@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+
+
+	<title>서류제출 | NH농협캐피탈</title>
+
+	<!-- Plugin JS -->
+    <script src="../../../resource/js/jquery-3.6.0.min.js"></script>
+	<script src="../../../resource/js/jquery-ui-1.12.1.min.js"></script>
+
+    <!-- 개발 JS -->
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/common.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commPop.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commMsg.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commMo.js"></script>
+
+	<!-- Publishing CSS -->
+	<link rel="stylesheet" href="../../../resource/css/ui_plugin.css">
+	<link rel="stylesheet" href="../../../resource/css/ui_style.css">
+    
+	<!-- Publishing JS -->	
+	<script src="../../../resource/js/ui_plugin.js"></script>
+	<script src="../../../resource/js/ui_common.js"></script>
+	<script src="../../../resource/js/ui_common_2024.js"></script><!-- 2024고도화 전용 js -->
+</head>
+<body>
+
+
+<div id="layoutContent" class="layout"><!-- 2024-08-13 2024고도화 : 운영과 동일한 id추가 for 바텀시트 호출 -->
+
+	<div class="header" >
+		<div class="header_area">
+
+			<div class="header_back">
+				<a href="#" class="ebbtn btn_header_back" title="뒤로가기"></a>
+			</div>
+
+			<div class="header_title">
+				<h2 class="ebtitle2">서류 제출</h2>
+			</div>
+
+			<div class="header_menu">
+				<button type="button" class="ebbtn btn_header_menu" title="전체메뉴 열기"></button>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="container renewal_2024"><!-- 2024-08-13 2024고도화 : 고도화 전용 class .renewal_2024 추가 -->
+
+		<!-- 컨텐츠 상단 타이틀영역 -->
+		<div class="subheader">
+			<div class="subheader_area">
+				<div class="page_title_part">
+					<h2 class="ebtitle2">서류 제출</h2>
+				</div>
+
+				<!-- 2024-09-05 2024고도화 : sb현행화에따른 텍스트/마크업 수정 -->
+				<div class="page_subtitle_part">
+					<p>서류의 내용이 잘 보일 수 있도록 촬영 또는 앨범에서 선택하셔서 등록 후 제출 해주세요</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- 여기부터 컨텐츠 -->
+		<div class="contents_area">
+			<div class="contents">
+				<div class="btn_box mt30">
+					<button type="button" class="ebbtn btn_normal ty_bg w100per" >+ 서류추가</button><!-- 2024-09-05 2024고도화 : 5장 등록시 비활성 속성 추가 'disabled'-->
+				</div>
+				<ul class="ebullet_circle">
+					<li class="color01">사진 파일의 용량에 따라 업로드 속도가 다소 느려질 수 있습니다.</li>
+				</ul>
+
+				<!-- 2024-09-05 2024고도화 : 서류 이미지 목록 마크업 변경 -->
+				<div class="divider"></div>
+
+				<div class="docu_part">
+					<h3 class="hidden" id="docu_list_title">서류 목록</h3>
+					<ul class="docu_list" role="group" aria-labelledby="docu_list_title">
+						<li>
+							<div class="docu_added js_toggle active" role="button" aria-label="선택시 제출 서류에 추가"><!-- 선택된 case -->
+								<!-- 촬영된 서류 이미지 영역 -->
+								<div class="docu_img"><img src="../../../resource/image/temp/doc_sample_img.png" alt="" /></div><!-- 임시 이미지 -->
+								<!-- //촬영된 서류 이미지 영역 -->
+							</div>
+							<button type="button" class="ebbtn btn_docu_delete" title="목록에서 삭제"></button>
+						</li>
+						<li>
+							<div class="docu_added js_toggle" role="button" aria-label="선택시 제출 서류에 추가">
+								<!-- 촬영된 서류 이미지 영역 -->
+								<div class="docu_img"><img src="../../../resource/image/temp/doc_sample_img.png" alt="" /></div><!-- 임시 이미지 -->
+								<!-- //촬영된 서류 이미지 영역 -->
+							</div>
+							<button type="button" class="ebbtn btn_docu_delete" title="목록에서 삭제"></button>
+						</li>
+						<li>
+							<div class="docu_added js_toggle" role="button" aria-label="선택시 제출 서류에 추가">
+								<!-- 촬영된 서류 이미지 영역 -->
+								<div class="docu_img"><img src="../../../resource/image/temp/doc_sample_img.png" alt="" /></div><!-- 임시 이미지 -->
+								<!-- //촬영된 서류 이미지 영역 -->
+							</div>
+							<button type="button" class="ebbtn btn_docu_delete" title="목록에서 삭제"></button>
+						</li>
+						<li>
+							<div class="docu_added js_toggle" role="button" aria-label="선택시 제출 서류에 추가">
+								<!-- 촬영된 서류 이미지 영역 -->
+								<div class="docu_img"><img src="../../../resource/image/temp/doc_sample_img.png" alt="" /></div><!-- 임시 이미지 -->
+								<!-- //촬영된 서류 이미지 영역 -->
+							</div>
+							<button type="button" class="ebbtn btn_docu_delete" title="목록에서 삭제"></button>
+						</li>
+						<li>
+							<div class="docu_added js_toggle" role="button" aria-label="선택시 제출 서류에 추가">
+								<!-- 촬영된 서류 이미지 영역 -->
+								<div class="docu_img"><img src="../../../resource/image/temp/doc_sample_img.png" alt="" /></div><!-- 임시 이미지 -->
+								<!-- //촬영된 서류 이미지 영역 -->
+							</div>
+							<button type="button" class="ebbtn btn_docu_delete" title="목록에서 삭제"></button>
+						</li>
+					</ul>
+				</div>
+				<!-- // 2024-09-05 2024고도화 : 서류 이미지 목록 마크업 변경 -->
+
+
+			</div>
+		</div>
+		<!-- //여기까지 컨텐츠 -->
+
+		<!-- 컨텐츠 하단 버튼영역 -->
+		<div class="contents_bottom_area ty_fixed"><!-- 하단고정영역인 경우 addclass="ty_fixed" -->
+			<button type="button" class="ebbtn btn_main ty_bg"><span>총 <em>1</em>장 </span>제출하기</button><!-- 2024-09-05 2024고도화 : 사진 선택시 문구 추가됨 -->
+		</div>
+
+	</div> 
+</div>
+
+<!-- 2024-08-08 2024고도화 : 운영과 동일한 팝업영역 추가 for 바텀시트 호출 -->
+<div id="layoutPopContent" aria-hidden="true"></div>
+
+<script>
+</script>
+
+
+</body>
+</html>

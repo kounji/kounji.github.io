@@ -1,0 +1,1666 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="shortcut icon" href="z_eilab/favicon.png">
+	<title>[MO]퍼블리싱 현황판 - NH농협캐피탈(2024)</title>
+    <!-- 공통 library -->
+    <script type="text/javascript" src="guide/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="guide/js/jquery-ui-1.12.1.min.js"></script>
+    <!-- 2024 퍼블현황판 css -->
+    <link rel="stylesheet" href="guide/css/nhcapital_list_2024.css">
+</head>
+
+<body>
+    <div id="wrap" class="nav-active">
+        <div id="nav">
+            <h1 class="h1">NH농협캐피탈<br/> 디지털 채널 모바일 앱, 웹<br/> 개선 및 24x365</h1>
+            <button type="button" class="btn-nav-toggle" title="메뉴 닫기"></button>      
+            
+            <ul class="nav-menu">
+                <li class="nav-menu-item"><a href="index_2024.html" class="nav-menu-link active">MW/MA</a></li>
+                <li class="nav-menu-item"><a href="index_pc_2024.html" class="nav-menu-link">PC</a></li>
+                <li class="nav-menu-item"><a href="index_albk_2024.html" class="nav-menu-link">올원뱅크</a></li>
+                <li class="nav-menu-item"><a href="publishing_guide_2024.html" class="nav-menu-link">퍼블리싱 Guide</a></li>
+                <li class="nav-menu-item"><a href="index_legacy_2024.html" class="nav-menu-link">2022 퍼블리싱(삭제예정)</a></li><!-- 임시링크 : 산출물 제출시 삭제 예정 -->
+            </ul>
+        </div>
+        <!-- // #nav  -->
+
+        <div id="contents">
+            <div class="guide-header">
+                <h2 class="h2">Mobile MW/MA 작업 목록</h2>
+                <div class="status-area">
+                    <span class="status-item">전체 : <em class="num total">100</em>건 / 진행중 : <em class="num ing">10</em>건 / 완료 : <em class="num done">10</em>건 / 삭제 : <em class="num del">10</em>건</span>
+                    <span class="status-item">진척률 : <em class="num percent">10</em>%</span>
+                </div>
+            </div>
+            <div class="content">
+                <div class="page-list">
+                    <!-- 
+                        - data-pagepart="MA/MW" => "모앱/모웹"
+                        - data-pagenew="true"
+                        - data-status="진행/완료/삭제"
+                        - data-textonly="true"
+                    // -->
+                    <table class="page-list-table">
+                        <caption>NH농협캐피탈 모바일 작업 목록</caption>
+                        <colgroup>
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:10%">
+                            <col style="width:4%">
+                            <col>
+                            <col style="width:10%">
+                            <col style="width:5%">
+                            <col style="width:4%">
+                            <col style="width:5%">
+                            <col style="width:13%">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="th">depth1</th>
+                                <th class="th">depth2</th>
+                                <th class="th">depth3</th>
+                                <th class="th">depth4</th>
+                                <th class="th">구분</th>
+                                <th class="th">화면명</th>
+                                <th class="th">화면ID</th>
+                                <th class="th">담당</th>
+                                <th class="th">상태</th>
+                                <th class="th">완료일</th>
+                                <th class="th">비고</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="page-list-tr">
+                                <td class="td">공통</td>
+                                <td class="td">회원가입유도</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c">팝업</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true" data-textonly="">회원가입유도</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/encourage_signup.html" target="_blank" class="link-id">encourage_signup</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 타이틀 변경 및 logo 추가</p>
+                                    <p class="text-memo" data-date="0911">문구 삭제 및 변경</p>
+                                    <p class="text-memo" data-date="0924">띄어쓰기 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">로그인</td>
+                                <td class="td">간편로그인 등록시</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c">팝업</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true" data-textonly="">로그인(간편로그인 등록시)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/LOGN/MALOGN00000002.html" target="_blank" class="link-id">MALOGN00000002</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0906">화면 추가</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">메인</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">메인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHCM/MANHCM00000000.html" target="_blank" class="link-id">MANHCM00000000</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0820">[SB v0.72] 헤더, 상품영역 UI 추가/변경 및 문구/아이콘 변경</p>
+                                    <p class="text-memo" data-date="0827">[SB v0.9] 텍스트 변경, 자주찾는서비스 및 js 수정 등</p>
+                                    <p class="text-memo" data-date="0903">[SB v0.92] 자주찾는서비스, 바텀내비 case 추가</p>
+                                    <p class="text-memo" data-date="0906">[SB v0.93] 서비스명 & 아이콘 변경</p>
+                                    <p class="text-memo" data-date="0911">[SB v0.94] 문구 개선</p>
+                                    <p class="text-memo" data-date="0920">[SB v1.0] 이벤트 배너 추가</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 오타 및 줄바꿈 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">메인</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">메인(로그인후)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHCM/MANHCM00000000_01.html" target="_blank" class="link-id">MANHCM00000000_01</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0820">[SB v0.72] 헤더, 상품영역 UI 추가/변경 및 문구/아이콘 변경</p>
+                                    <p class="text-memo" data-date="0827">[SB v0.9] 텍스트 변경, 자주찾는서비스 및 js 수정 등</p>
+                                    <p class="text-memo" data-date="0903">[SB v0.92] 자주찾는서비스, 바텀내비 case 추가</p>
+                                    <p class="text-memo" data-date="0906">[SB v0.93] 서비스명 & 아이콘 변경</p>
+                                    <p class="text-memo" data-date="0911">[SB v0.94] 문구 개선</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 오타 및 줄바꿈 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">메인</td>
+                                <td class="td">원장보유</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">메인(원장보유)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHCM/MANHCM00000001.html" target="_blank" class="link-id">MANHCM00000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0820">[SB v0.72] 헤더, 진행상태알림, 보유상품 UI 추가/변경 및 문구/아이콘 변경</p>
+                                    <p class="text-memo" data-date="0827">[SB v0.9] 텍스트 변경, 자주찾는서비스 및 js 수정 등</p>
+                                    <p class="text-memo" data-date="0829">[SB v0.91] 심사거절 문구 변경됨</p>
+                                    <p class="text-memo" data-date="0903">파일명 변경(기존 화면ID)</p>
+                                    <p class="text-memo" data-date="0903">[SB v0.92] 자주찾는서비스, 바텀내비 case 추가</p>
+                                    <p class="text-memo" data-date="0906">[SB v0.93] 서비스명 & 아이콘 변경</p>
+                                    <p class="text-memo" data-date="0911">[SB v0.94] 문구 개선</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 오타 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">메인</td>
+                                <td class="td">간편홈</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">메인(간편홈)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHCM/MANHCM00000000_02.html" target="_blank" class="link-id">MANHCM00000000_02</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0903">[SB v0.92] 자주찾는서비스, 바텀내비 case 추가</p>
+                                    <p class="text-memo" data-date="0911">[SB v0.94] 문구 개선</p>
+                                    <p class="text-memo" data-date="0912">[SB v1.0] 문구 개선</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">메인</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MW" data-pagenew="">메인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHCM/MWNHCM00000000.html" target="_blank" class="link-id">MWNHCM00000000</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0906">[SB v0.93] 서비스명 & 아이콘 변경</p>
+                                    <p class="text-memo" data-date="0911">[SB v0.94] 문구 개선</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 오타 및 줄바꿈 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">전체 메뉴</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">전체 메뉴</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/layout/layout_common.html" target="_blank" class="link-id">layout_common</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72]</p>
+                                    <p class="text-memo" data-date="0829">검색영역 클릭시 이동으로 input삭제</p>
+                                    <p class="text-memo" data-date="0902">발급서비스, 회원정보관리 > 메뉴 변경</p>
+                                    <p class="text-memo" data-date="0903">[SB v0.73] 로그인/로그아웃 및 최근접속, 메뉴 타이틀 추가</p>
+                                    <p class="text-memo" data-date="0912">[SB v1.0] 4뎁스 메뉴 삭제</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.1] 스탁론 메뉴 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">전체 메뉴</td>
+                                <td class="td">전체메뉴검색</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">전체메뉴검색</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/전체메뉴검색.html" target="_blank" class="link-id">전체메뉴검색</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0827">[SB v0.72]</p>
+                                    <p class="text-memo" data-date="0904">[SB v0.73] 날짜 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">전체 메뉴</td>
+                                <td class="td">전체메뉴검색</td>
+                                <td class="td">검색결과</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">검색결과</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM29000001.html" target="_blank" class="link-id">MOCOMM29000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0827">[SB v0.72]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">전체 메뉴</td>
+                                <td class="td">전체메뉴검색</td>
+                                <td class="td">검색결과없음</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">검색결과없음</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM29000001_case1.html" target="_blank" class="link-id">MOCOMM29000001_case1</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0827">[SB v0.72]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">상품소개</td>
+                                <td class="td">신규대출</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">신용대출-신규대출</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01000001.html" target="_blank" class="link-id">MACDLN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0808">디자인 컴펌전 선작업중</p>
+                                    <p class="text-memo" data-date="0827">[SB v0.72] 페이지 구분클래스 credit_new</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">상품소개</td>
+                                <td class="td">추가대출</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">신용대출-추가대출</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01000004.html" target="_blank" class="link-id">MACDLN01000004</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0827">[SB v0.72] 페이지 구분클래스 credit_add</p>
+                                    <p class="text-memo" data-date="0901">임시페이지아이디 -> 기존 개발페이지아이디로 변경 </p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">랜딩페이지</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MW" data-pagenew="true">신용대출-랜딩페이지</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/landing.html" target="_blank" class="link-id">landing</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.95]임시이미지 추후 교체필요</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0]문구 및 마크업 변경됨</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0]문구 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">APP 설치 안내</td>
+                                <td class="td"></td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MW" data-pagenew="true">앱 다운로드 안내</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MOCOMM25000004.html" target="_blank" class="link-id">MOCOMM25000004</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.95]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">신용대출 이어하기</td>
+                                <td class="td"></td>
+                                <td class="td align-c">팝업</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">신용대출 이어하기</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010019.html" target="_blank" class="link-id">MACDLN01010019</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.96]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none;"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">약관동의</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">약관동의</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010003.html" target="_blank" class="link-id">MACDLN01010003</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none;"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">휴대폰 본인확인 서비스동의</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">휴대폰 본인확인 서비스동의</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM02000002.html" target="_blank" class="link-id">MOCOMM02000002</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">고객정보 입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/LOGN/MACDLN01010004.html" target="_blank" class="link-id">MACDLN01010004</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_직장명</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">정보입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000001.html" target="_blank" class="link-id">MOCOMM14000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0910">문구 개선</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0]문구 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_직장명</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">검색결과</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000002.html" target="_blank" class="link-id">MOCOMM14000002</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_사업자번호</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" page-textonly="true">정보입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000003.html" target="_blank" class="link-id">MOCOMM14000003</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_사업자번호</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">검색결과</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000004.html" target="_blank" class="link-id">MOCOMM14000004</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 일부 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_직장명+대표명</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">정보입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000005.html" target="_blank" class="link-id">MOCOMM14000005</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr" style="display:none"><!-- UI 변경 X -->
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색_직장명+대표명</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">검색결과</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000006.html" target="_blank" class="link-id">MOCOMM14000006</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="삭제"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">고객정보 입력</td>
+                                <td class="td">직장검색 직접입력</td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">직장검색 직접입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM14000007.html" target="_blank" class="link-id">MOCOMM14000007</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0910">문구 개선</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 중</td>
+                                <td class="td"></td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">한도조회 중</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM24000001.html" target="_blank" class="link-id">MOCOMM24000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0910">문구 개선</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 중</td>
+                                <td class="td">데이터 로딩바</td>
+                                <td class="td align-c">팝업(alert)</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">한도조회 중</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/data_loading.html" target="_blank" class="link-id">data_loading</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0808">js파일을 html로 만듬.디자인 요청함</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구변경</p>
+                                    <p class="text-memo" data-date="0923">로딩바 이미지 교체</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 결과(신용대출) - 성공</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">한도조회 결과(신용대출)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010007.html" target="_blank" class="link-id">MACDLN01010007</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.95]</p>
+                                    <p class="text-memo" data-date="0909">문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 결과(대환or추가 대상)</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">한도조회 결과(대환or추가 대상)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010023.html" target="_blank" class="link-id">MACDLN01010023</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 수정됨</p>
+                                    <p class="text-memo" data-date="0903">기획요청 : </p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경</p>
+                                    <p class="text-memo" data-date="0909">문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 결과(only 대환만)</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">한도조회 결과(only 대환만)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010022.html" target="_blank" class="link-id">MACDLN01010022</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 수정됨</p>
+                                    <p class="text-memo" data-date="0903">기획요청 : 문구 수정</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경</p>
+                                    <p class="text-memo" data-date="0909">문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">한도조회 결과(대출불가 한도없음)</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">한도조회 결과(대출불가 한도없음)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010008.html" target="_blank" class="link-id">MACDLN01010008</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0910">문구 개선</p>
+                                    <p class="text-memo" data-date="0911">'전화상담 신청' 버튼 삭제. 마크업 변경됨</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">대환대출 상품 안내</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">대환대출 상품 안내</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010028.html" target="_blank" class="link-id">MACDLN01010028</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구, 타이블 수정됨</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경, 일부 문구 삭제 및 수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">송금가능안내</td>
+                                <td class="td"></td>
+                                <td class="td align-c">바텀</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">송금가능안내</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010024.html" target="_blank" class="link-id">MACDLN01010024</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 수정 및 추가됨</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]뷸릿제거</p>
+                                    <p class="text-memo" data-date="0920">[기획요청]확인 필수 내용으로 '닫기' 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">기대출내역확인</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">기대출내역확인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010025.html" target="_blank" class="link-id">MACDLN01010025</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경, 마침표 제거</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]요청사항 적용, 기준일자 추가</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">실지급 예정액 확인</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">실지급 예정액 확인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010026.html" target="_blank" class="link-id">MACDLN01010026</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]툴팁 포함</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 수정됨</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경, 마침표 제거 및 문구수정</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]요청사항 적용</p>
+                                    <p class="text-memo" data-date="0913">문구 개선</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">동의여부 확인</td>
+                                <td class="td"></td>
+                                <td class="td align-c">바텀</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">동의여부 확인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010027.html" target="_blank" class="link-id">MACDLN01010027</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.9]</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.1]임시아이디 -> 페이지 아이디로 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">결제정보</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">결제정보</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010010.html" target="_blank" class="link-id">MACDLN01010010</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">[SB v0.96]</p>
+                                    <p class="text-memo" data-date="0830">[SB v1.0] 문구 추가</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">결제정보</td>
+                                <td class="td">인증코드 찾기</td>
+                                <td class="td align-c">팝업</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">인증코드 찾기</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/인증코드찾기.html" target="_blank" class="link-id">인증코드찾기</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0830">이미지 디자인 필요</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">공통 팝업(alert)</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="">공통 팝업(alert)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/pop_common_list.html" target="_blank" class="link-id">pop_common_list</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0823">알럿 모음</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">주소/연락처 정보</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">주소/연락처 정보</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010011.html" target="_blank" class="link-id">MACDLN01010011</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0830">[SB v1.0] '2024-08-30 2024고도화' 주석 참조</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">대출신청</td>
+                                <td class="td">대출신청완료</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="">대출신청완료</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MWSTLN01010013.html" target="_blank" class="link-id">MWSTLN01010013</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0826">[SB v0.96]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">전자약정</td>
+                                <td class="td">보이스피싱 예방하기</td>
+                                <td class="td"></td>
+                                <td class="td align-c">풀팝</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">보이스피싱 예방하기</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM28000002.html" target="_blank" class="link-id">MOCOMM28000002</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0807">jsp만 존재함(MOCOMM28000002)</p>
+                                    <p class="text-memo" data-date="0808">디자인에서 확인 해야할듯하여 html파일 만듬</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">점검중</td>
+                                <td class="td"></td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true" data-textonly="">점검중</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/점검중.html" target="_blank" class="link-id">점검중</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0826">[SB v0.96]</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">신용대출</td>
+                                <td class="td">전자약정</td>
+                                <td class="td">적합성·적정성 진단</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="" data-textonly="true">적합성·적정성 진단</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CDLN/MACDLN01010016.html" target="_blank" class="link-id">MACDLN01010016</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0910">기존 문구가 개선문구와 이미 동일</p>
+                                    <p class="text-memo" data-date="0911">span 태그 추가 및 문구개선</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">스탁론</td>
+                                <td class="td">상품소개</td>
+                                <td class="td">개인</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">스탁론 개인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/STLN/MASTLN01000001.html" target="_blank" class="link-id">MASTLN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 stock_loan</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">자동차금융</td>
+                                <td class="td">신차</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">신차 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/ATFN/MAATFN01000001.html" target="_blank" class="link-id">MAATFN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 car_new</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">자동차금융</td>
+                                <td class="td">자동차리스</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">자동차리스 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/ATFN/MAATFN03000001.html" target="_blank" class="link-id">MAATFN03000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 car_lease, 이미지(대체텍스트) 추가작업필요</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등, 이미지(대체텍스트) 추가작업필요</p>
+                                    <p class="text-memo" data-date="0926">이미지(대체텍스트) 작업</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">자동차금융</td>
+                                <td class="td">장기렌터카</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">장기렌터카 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/ATFN/MAATFN04000001.html" target="_blank" class="link-id">MAATFN04000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 car_rental</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">산업재금융</td>
+                                <td class="td">신산업재 할부</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">신산업재 할부 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CMFN/MACMFN01000001.html" target="_blank" class="link-id">MACMFN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 industry_installment</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">산업재금융</td>
+                                <td class="td">신산업재 론</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">신산업재 론 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CMFN/MACMFN02000001.html" target="_blank" class="link-id">MACMFN02000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 industry_loan</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">산업재금융</td>
+                                <td class="td">중고산업재 론</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">중고산업재 론 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/CMFN/MACMFN03000001.html" target="_blank" class="link-id">MACMFN03000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0828">[SB v0.72] 페이지 구분클래스 industry_used</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">주택금융</td>
+                                <td class="td">사업자 아파트담보대출</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">사업자 아파트담보대출 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/HSFN/MAHSFN01000001.html" target="_blank" class="link-id">MAHSFN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 apt_owner_loan</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">주택금융</td>
+                                <td class="td">임차보증금 대출</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">임차보증금 대출 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/HSFN/MAHSFN02000001.html" target="_blank" class="link-id">MAHSFN02000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 rental_deposit_loan</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.0] 문구 수정 등등</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">기업/투자금융</td>
+                                <td class="td">기업금융</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">기업금융 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/OTFN/MAOTFN01000001.html" target="_blank" class="link-id">MAOTFN01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 corporate_finance</p>
+                                    <p class="text-memo" data-date="0925">[SB v1.0] 문구 수정 등등(주석은 09-24)</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">기업/투자금융</td>
+                                <td class="td">투자금융</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">투자금융 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/OTFN/MAOTFN02000001.html" target="_blank" class="link-id">MAOTFN02000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 invest_finance</p>
+                                    <p class="text-memo" data-date="0925">[SB v1.0] 문구 수정 등등(주석은 09-24)</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">기업/투자금융</td>
+                                <td class="td">일반리스</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">일반리스 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/OTFN/MAOTFN03000001.html" target="_blank" class="link-id">MAOTFN03000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 regular_lease</p>
+                                    <p class="text-memo" data-date="0925">[SB v1.0] 문구 수정 등등(주석은 09-24)</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">NH임직원MALL</td>
+                                <td class="td">NH임직원 신용대출</td>
+                                <td class="td">상품소개</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">NH임직원 신용대출 상품소개</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/NHEM/MANHEM01000001.html" target="_blank" class="link-id">MANHEM01000001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">[SB v0.72] 페이지 구분클래스 employee_credit_loan</p>
+                                    <p class="text-memo" data-date="0925">[SB v1.0] 문구 수정 등등(주석은 09-24)</p>
+                                    <p class="text-memo" data-date="0930">금리 컬러 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">My Account</td>
+                                <td class="td">개인신용대출 진행 현황</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인신용대출 진행 현황</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/개인신용대출진행현황.html" target="_blank" class="link-id">개인신용대출진행현황</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.72]</p>
+                                    <p class="text-memo" data-date="0829">[SB v0.9] case별 안내문구</p>
+                                    <p class="text-memo" data-date="0906">타이틀명 변경 및 버튼 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">My Account</td>
+                                <td class="td">개인신용대출 진행 현황</td>
+                                <td class="td">(내역없음)</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인신용대출 진행 현황(내역없음)</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/개인신용대출진행현황_내역없음.html" target="_blank" class="link-id">개인신용대출진행현황_내역없음</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.72]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">결제 서비스</td>
+                                <td class="td">명세서수령방법 변경</td>
+                                <td class="td">수령방법 입력</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">수령방법 입력</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG02030302.html" target="_blank" class="link-id">MAMYPG02030302</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">'청구지 선택'항목 삭제</p>
+                                    <p class="text-memo" data-date="0905">'.renewal_2024' 클래스 추가</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">서류 조회 서비스</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03000000.html" target="_blank" class="link-id">MAMYPG03000000</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">화면추가</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0] 문구수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">거래내역확인서 신청</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">거래내역확인서 신청</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03020001.html" target="_blank" class="link-id">MAMYPG03020001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]상단문구, 유의사항 문구 변경</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]띄어쓰기수정</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">납입영수증 조회</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">납입영수증 조회</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03030001.html" target="_blank" class="link-id">MAMYPG03030001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]상단문구, 유의사항 문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">연체대금완납확인서 조회</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">연체대금완납확인서 조회</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03050001.html" target="_blank" class="link-id">MAMYPG03050001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]상단문구, 유의사항 문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">완납증명서 조회</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">완납증명서 조회</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03060001.html" target="_blank" class="link-id">MAMYPG03060001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]상단문구, 유의사항 문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">전자계산서 발급절차 안내</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">전자계산서 발급절차 안내</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03080001.html" target="_blank" class="link-id">MAMYPG03080001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]유의사항 문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">서류 조회 서비스</td>
+                                <td class="td">신용대출약정서 조회</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">신용대출약정서 조회</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03090001.html" target="_blank" class="link-id">MAMYPG03090001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0904">[SB v1.0]상단문구, 유의사항 문구 변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">step1. 발급상품 선택</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">step1. 발급상품 선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001.html" target="_blank" class="link-id">MAMYPG03100001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]라디오버튼에서 셀렉트로 UI 변경됨</p>
+                                    <p class="text-memo" data-date="0829">레이블 클래스 변경</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]</p>
+                                    <p class="text-memo" data-date="0904">상품선택 셀렉트 버튼형태로 수정</p>
+                                </td>
+                            </tr>  
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">step1. 발급상품 선택_상품선택</td>
+                                <td class="td align-c">바텀</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">step1. 발급상품 선택_상품선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001_bottom.html" target="_blank" class="link-id">MAMYPG03100001_bottom</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0905">[SB v1.0]</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">step2. 발급서류 선택</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">step2. 발급서류 선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001_02.html" target="_blank" class="link-id">MAMYPG03100001_02</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0813">디자인 필요</p>
+                                    <p class="text-memo" data-date="0822">[SB v0.74]</p>
+                                    <p class="text-memo" data-date="0829">[SB v0.91] 문구 추가 및 변경, 서류 순서 변경</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]요청사항 적용</p>
+                                    <p class="text-memo" data-date="0911">문서 택1 기능 > 클래스 추가 '.js_oneSelected'</p>
+                                    <p class="text-memo" data-date="0924">[SB v1.1] 종료확인서(오토리스, 렌트) 분리</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">step3. 발급정보 선택 </td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">step3. 발급정보 선택 </td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001_03.html" target="_blank" class="link-id">MAMYPG03100001_03</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]step2에서 금융거래확인서를 선택한 경우 화면</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]이메일 선택시 이메일 input 추가, 안내유의사항 추가</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]유의사항 변경, 카카오톡 -> 알림톡으로 문구수정</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]유의사항 문구 변경 [- )을 -> )를]로 변경</p>
+                                    <p class="text-memo" data-date="0906">[SB v1.0]유의사항 문구 변경 '조회를' -> '발급을'</p>
+                                    <p class="text-memo" data-date="0910">[SB v1.0]유의사항 문구 추가</p>
+                                </td>
+                            </tr>       
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">step3. 발급방법 선택 </td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">step3. 발급방법 선택 </td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001_04.html" target="_blank" class="link-id">MAMYPG03100001_04</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]step2에서 금융거래확인서 외 서류를 선택한 경우 화면</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]이메일 선택시 이메일 input 추가</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]카카오톡 -> 알림톡으로 문구수정</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]오타수정</p>
+                                </td>
+                            </tr>                          
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">비대면 서류 발급</td>
+                                <td class="td">신청완료</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">신청완료</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03100001_05.html" target="_blank" class="link-id">MAMYPG03100001_05</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]문구수정</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]문구변경</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.0]문구변경</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]띄어쓰기수정</p>
+                                </td>
+                            </tr>                             
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">신청서 발급</td>
+                                <td class="td">step1. 신청서 선택</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">step1. 신청서 선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03110001.html" target="_blank" class="link-id">MAMYPG03110001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0813">디자인 필요</p>
+                                    <p class="text-memo" data-date="0822">[SB v0.74]</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]순서 변경</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]문구변경</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">신청서 발급</td>
+                                <td class="td">step2. 발급방법 선택</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">step2. 발급방법 선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03110001_02.html" target="_blank" class="link-id">MAMYPG03110001_02</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]이메일 선택시 이메일 input 추가</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]카카오톡 -> 알림톡으로 문구수정</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">신청서 발급</td>
+                                <td class="td">신청완료</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">신청완료</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03110001_03.html" target="_blank" class="link-id">MAMYPG03110001_03</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0822">[SB v0.74]</p>
+                                    <p class="text-memo" data-date="0826">[SB v0.90]문구수정</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]문구수정</p>
+                                    <p class="text-memo" data-date="0904">[SB v1.0]문구변경</p>
+                                    <p class="text-memo" data-date="0909">[기획요청]띄어쓰기수정</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">발급서비스</td>
+                                <td class="td">발급내역 조회</td>
+                                <td class="td"></td>
+                                <td class="td align-c">탭</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="true">발급내역조회</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG03120001.html" target="_blank" class="link-id">MAMYPG03120001</a></td>
+                                <td class="td align-c">권지연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0813">비대면서류, 신청서 탭 한페이지안에 있음</p>
+                                    <p class="text-memo" data-date="0822">[SB v0.75] 홈으로 이동 버튼 삭제</p>
+                                    <p class="text-memo" data-date="0830">더보기 ui 추가</p>
+                                    <p class="text-memo" data-date="0903">[SB v1.0]구조 및 문구변경</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">비대면 서류제출 서비스</td>
+                                <td class="td">제출 서류 관리</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">제출 서류 관리</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG04000002.html" target="_blank" class="link-id">MAMYPG04000002</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0905">[SB v0.5]</p>
+                                    <p class="text-memo" data-date="0913">[SB v1.0] 레이블 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">비대면 서류제출 서비스</td>
+                                <td class="td">서류 제출</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">서류 제출</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM11000001.html" target="_blank" class="link-id">MOCOMM11000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0905">[SB v0.5]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">비대면 서류제출 서비스</td>
+                                <td class="td">서류 등록 방법 선택</td>
+                                <td class="td"></td>
+                                <td class="td align-c">바텀</td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">서류 등록 방법 선택</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/COMM/MOCOMM11000001_bottom.html" target="_blank" class="link-id">MOCOMM11000001_bottom</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0905">[SB v0.5]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">비대면 서류제출 서비스</td>
+                                <td class="td">서류 제출 완료</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="MA" data-pagenew="">서류 제출 완료</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG04010003.html" target="_blank" class="link-id">MAMYPG04010003</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0905">[SB v0.5]</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">가입정보 확인</td>
+                                <td class="td"></td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="">가입정보 확인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG05000001.html" target="_blank" class="link-id">MAMYPG05000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <!-- <p class="text-memo" data-date="0701">내용</p> -->
+                                </td>
+                            </tr>                                                                                    
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 확인</td>
+                                <td class="td">개인</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">내정보확인_개인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000001.html" target="_blank" class="link-id">MAMYPG07000001</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">캡션 타이틀 삭제</p>
+                                    <p class="text-memo" data-date="0905">[SB v1.0] 버튼명 변경</p>
+                                </td>
+                            </tr>                            
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 변경</td>
+                                <td class="td">개인</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">내정보변경_개인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000002.html" target="_blank" class="link-id">MAMYPG07000002</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0821">[SB v0.74] '집 주소와 동일' 항목 삭제 및 상세주소 마크업 위치 변경, 캡션 추가</p>
+                                    <p class="text-memo" data-date="0905">[SB v1.0] 통신사 항목 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 확인</td>
+                                <td class="td">개인 및 개인사업자</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인 및 개인사업자 정보 확인-개인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000001_01.html" target="_blank" class="link-id">MAMYPG07000001_01</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0821">[SB v0.74]탭 구조(탭, 컨텐츠)에서 셀렉트로 UI 변경됨. 개인/개인사업자 페이지 분리함</p>
+                                    <p class="text-memo" data-date="0905">[SB v1.0] 버튼명 변경</p>
+                                </td>
+                            </tr> 
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 확인</td>
+                                <td class="td">개인 및 개인사업자</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인 및 개인사업자 정보 확인-개인사업자</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000001_02.html" target="_blank" class="link-id">MAMYPG07000001_02</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행//삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0821">[SB v0.74]탭 구조(탭, 컨텐츠)에서 셀렉트로 UI 변경됨. 개인/개인사업자 페이지 분리함</p>
+                                    <p class="text-memo" data-date="0905">[SB v1.0] 버튼명 변경</p>
+                                </td>
+                            </tr>                           
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 변경</td>
+                                <td class="td">개인 및 개인사업자</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인 및 개인사업자 정보 변경-개인</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000002_01.html" target="_blank" class="link-id">MAMYPG07000002_01</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0821">[SB v0.74] '집 주소와 동일' 항목 삭제 및 상세주소 마크업 위치 변경</p>
+                                    <p class="text-memo" data-date="0909">[SB v1.0] 통신사 항목 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 변경</td>
+                                <td class="td">개인 및 개인사업자</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">개인 및 개인사업자 정보 변경-개인사업자</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000002_02.html" target="_blank" class="link-id">MAMYPG07000002_02</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0821">[SB v0.74] '집 주소와 동일' 항목 삭제 및 상세주소 마크업 위치 변경</p>
+                                    <p class="text-memo" data-date="0909">[SB v1.0] 통신사 항목 삭제</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">내 정보관리</td>
+                                <td class="td">내 정보 변경</td>
+                                <td class="td">내 정보 변경 완료</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">내 정보 변경 완료</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG07000003.html" target="_blank" class="link-id">MAMYPG07000003</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">화면추가</p>
+                                    <p class="text-memo" data-date="0906">문구 변경</p>
+                                    <p class="text-memo" data-date="0913">문구 개선</p>
+                                </td>
+                            </tr>
+                            <tr class="page-list-tr">
+                                <td class="td">마이페이지</td>
+                                <td class="td">My Account</td>
+                                <td class="td">전체대출내역 조회</td>
+                                <td class="td">계좌상세</td>
+                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
+                                <td class="td" data-pagepart="" data-pagenew="true">계좌상세</td><!-- pagepart:MA/MW, pagenew:true, textonly:true-->
+                                <td class="td align-c"><a href="mobile/html/page/MYPG/MAMYPG01010001_01.html" target="_blank" class="link-id">MAMYPG01010001_01</a></td>
+                                <td class="td align-c">송재연</td>
+                                <td class="td align-c" data-status="완료"></td><!-- 진행/완료/삭제 -->
+                                <td class="td align-c"></td>
+                                <td class="td">
+                                    <p class="text-memo" data-date="0829">대상아님. 상단 아이콘만 변경</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <button type="button" class="btn-top">Top</button>
+
+            <!-- 미리보기 -->
+            <button type="button" class="btn-preview-toggle" title="미리보기 열기"></button>
+            <iframe src="mobile/html/page/NHCM/MANHCM00000000.html" name="preview" class="preview"></iframe>
+
+            <div class="hidden-area">
+                <a href="ui_test/uiTestList.html" target="_blank" class="btn-test-list">테스트목록</a>
+            </div>
+        </div>
+        <!-- // #contents -->
+    </div>
+    <!-- // #wrap -->
+
+    <!-- 2024 퍼블현황판 js -->
+    <script type="text/javascript" src="guide/js/nhcapital_list_2024.js"></script>
+    <script>
+        $(function(){
+            // nav
+            $('.btn-nav-toggle').on('click', function(){
+                $(this).closest('#wrap').toggleClass('nav-active');
+
+                if($(this).closest('#wrap').hasClass('nav-active')){
+                    $(this).attr('title', '메뉴 닫기');
+                } else {
+                    $(this).attr('title', '메뉴 열기');
+                }
+            });
+
+            // status
+            var del = $('[data-status="삭제"]').length;
+            var ing = $('[data-status="진행"]').length;
+            var done = $('[data-status="완료"]').length;
+            var total = $('.page-list-tr').length  - del;    
+
+            // console.log('전체 : ', total)
+            // console.log('진행 : ', ing)
+            // console.log('완료 : ', done)
+            // console.log('삭제 : ', del)
+            $('.status-item .total').text(total);
+            $('.status-item .ing').text(ing);
+            $('.status-item .done').text(done);
+            $('.status-item .del').text(del);
+            $('.status-item .percent').text(Math.floor((done/total)*100));
+
+            $('[data-status="삭제"]').each(function(){
+                $(this).closest('tr').addClass('del-tr');
+            });
+
+            // preview
+            $('.btn-preview-toggle').on('click', function(){
+                $(this).closest('#wrap').toggleClass('prev-active');
+
+                if($(this).closest('#wrap').hasClass('prev-active')){
+                    $(this).attr('title', '미리보기 닫기');
+                } else {
+                    $(this).attr('title', '미리보기 열기');
+                }
+            });
+
+            $('.link-id').each(function(){
+                $(this).on('mouseover', function(){
+                    var url = $(this).attr('href');
+                    $('.preview').attr('src', url);
+                }).on('click', function(){
+                    $('.link-id').css('color', '');
+                    $(this).css('color', '#0765e5');
+                });
+            });
+
+
+            // scrollTop
+            $('.btn-top').on('click', function(){
+                $('html').animate({scrollTop:0}, 300);
+            });
+        });
+    </script>
+</body>
+</html>

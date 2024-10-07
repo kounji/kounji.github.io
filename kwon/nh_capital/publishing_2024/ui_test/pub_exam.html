@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<title>publishing exam</title>
+
+	<!-- Plugin JS -->
+    <script src="../mobile/resource/js/jquery-3.6.0.min.js"></script>
+	<script src="../mobile/resource/js/jquery-ui-1.12.1.min.js"></script>
+
+    <!-- 개발 JS -->
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/common.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commPop.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commMsg.js"></script>
+    <script type="text/javascript" src="https://m.nhcapital.co.kr/resource/common/js/commMo.js"></script>
+
+	<!-- Publishing CSS -->
+	<link rel="stylesheet" href="../mobile/resource/css/ui_plugin.css">
+	<link rel="stylesheet" href="../mobile/resource/css/ui_style.css">
+    
+	<!-- Publishing JS -->	
+	<script src="../mobile/resource/js/ui_plugin.js"></script>
+	<script src="../mobile/resource/js/ui_common.js"></script>
+	<script src="../mobile/resource/js/ui_common_2024.js"></script><!-- 2024고도화 전용 js -->
+
+	<style>
+		.b_title{margin:10px -25px; padding:10px 25px; font-weight:bold; color:#fff; background:#0765e5;}
+		.b_title:first-child{margin-top:0}
+		.s_title{margin-top:30px; font-size:14px; color:#0093e1}
+		.btn_box{margin-top:20px;}
+	</style>
+</head>
+<body id="layoutBody">
+<div id="layoutContent" class="layout">
+	<div class="container renewal_2024"><!-- 2024-08-05 2024고도화 : 고도화 전용 class .renewal_2024 추가 -->
+		<!-- 여기부터 컨텐츠 -->
+		<div class="contents">
+			<p class="b_title">타이틀,텍스트</p>
+			<div class="page_title_part">
+				<h2 class="ebtitle2">ebtitle2</h2>
+				<p class="ebtitle3">ebtitle3</p>
+				<p class="ebtitle4">ebtitle4</p>
+			</div>
+			<p class="ebtitle_normal">ebtitle_normal</p>
+			<p class="subtitle">subtitle</p>
+			<p class="subtitle ty_line"><span class="title">subtitle ty_line????</span></p>
+			<p class="ebtitle_medium">ebtitle_medium</p>
+			<p class="ebtitle_small">ebtitle_small</p>
+
+			<p class="s_title">인포텍스트(new)</p>
+			<p class="icon_info">여신금융협회 심의필 제 2022-L1h-03905호<br>(2022.05.19 ~ 2023.05.18)</p>
+
+			<p class="s_title">뷸릿텍스트</p>
+			<ul class="ebullet_circle">
+				<li>금리, 한도, 기간 등 대출조건은 고객의 신용평점(대출) 금액 등에 따라 차등 적용됩니다.</li>
+				<li>우수고객 대상자는 한도조회 시 별도 안내됩니다.</li>
+			</ul>
+
+			<p class="s_title">기준일텍스트</p>
+			<p class="base_date">2022년 05년 13일 기준</p>
+
+			<!--===============================================================================================================-->
+			<p class="b_title">툴팁 (as-is는 사용안하는듯 확인 불가)</p>
+
+			<p class="s_title">2024 고도화 툴팁 type_02 추가</p>
+			<button type="button" class="ebbtn icon_tooltip type_02">툴팁열기</button>
+			<div class="tooltip_msg_part">
+				<div class="tooltip_msg_pack">
+					<div class="tooltip_msg">
+						<div class="ttl">중도상환수수료 산식</div>
+						<div class="desc_txt">
+							<dl>
+								<dt><b>약정만기 1년이상</b></dt>
+								<dd>
+									상환원금 X 1% + 상환원금 X (중도상환수수료율 - 1%) X 잔존기간* / (대출기간-30일)
+								</dd>
+							</dl>
+						</div>
+						<div class="desc_txt">
+							<dl>
+								<dt><b>약정만기 1년미만</b></dt>
+								<dd>
+									상환원금 X (중도상환수수료율) X 잔존기간* / (대출기간 -30일)
+								</dd>
+								<dd>* 30일 미만 상환 시 대출 사용기간을 30일로 간주합니다.</dd>
+							</dl>
+						</div>
+						<div class="notice_txt">단, 대출계약이 성립한 날부터 3년 이후 상환 시 중도상환수수료 면제 (할부/리스 제외)</div>
+					</div>
+					<button type="button" class="ebbtn btn_tooltip_close">툴팁닫기</button>
+				</div>
+			</div>
+
+			<p class="s_title">기존 툴팁 (사용하지 않는듯 툴팁 레이어배경컬러가 없어 흰배경 추가함)</p>
+			<span>
+				<button type="button" class="ebbtn icon_tooltip">툴팁열기</button>
+				<div class="tooltip_msg_part">
+					<div class="tooltip_msg_pack">
+						<div class="tooltip_msg">
+							<div class="exptxt">
+								<ul class="ebullet_circle">
+									<li>중도상환수수료 산식</li>
+								</ul>
+								약정만기 1년이상 : 상환원금 X 1% + 상환원금 X (중도상환수수료율 - 1%) X 잔존기간* / (대출기간-30일)<br>											
+								약정만기 1년미만 : 상환원금 X 중도상환수수료율 X 잔존기간* / (대출기간 -30일)<br>
+								<span class="color05"> 
+									* 총 대출(약정) 기간 - 대출사용기간 (30일 미만 사용 시 대출사용기간을 30일로 간주)</span><br>
+								<span class="color01"> 
+									단, 대출계약이 성립한 날부터 3년 이후 상환 시 중도상환수수료 면제 (할부/리스 제외)
+								</span>
+							</div>
+						</div>
+						<button type="button" class="ebbtn btn_tooltip_close">툴팁닫기</button>
+					</div>
+				</div>
+			</span>
+
+			<!--===============================================================================================================-->
+			<p class="b_title">토글버튼(role="radio")</p>
+
+			<div class="toggle_pack ty_linebreak">
+				<ul>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">요약</button>
+					</li>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">전체</button>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div class="toggle_pack ty_linebreak">
+				<ul>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">가계자금</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">사업자금</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">주택자금</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">타기관 대출금상환</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">자동차구입</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">임차보증금</button>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div class="toggle_pack ty_linebreak divide3">
+				<ul>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">1억</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">2억</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">3억</button>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div class="toggle_pack ty_linebreak divide3">
+				<ul>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">1일</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">5일</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">10일</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">15일</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">20일</button>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div class="toggle_pack ty_linebreak">
+				<ul>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">금융거래확인서</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">완납증명서</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">종료확인서(일반)</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">종료확인서<br>(오토리스,렌트)</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_toggle">종료확인서(리스)</button>
+					</li>
+				</ul>
+			</div>
+			<br>
+			<div class="toggle_boxing_pack ty_divide2">
+				<ul>
+					<li class=""><!-- 선택시 addclass="active" -->
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">내장탑</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">냉·온탑</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">믹서트럭</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">윙바디</span>
+							</span>
+						</button>
+					</li>
+					<li class="active">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">집게차</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">카고트럭</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle">
+							<span class="model_box">
+								<span class="text">터널용고소<br>작업차</span>
+							</span>
+						</button>
+					</li>
+					<li class="">
+						<button type="button" class="ebbtn btn_toggle" disabled="disabled">
+							<span class="model_box">
+								<span class="text">트랙터</span>
+							</span>
+						</button>
+					</li>
+				</ul>
+			</div>
+			<!--===============================================================================================================-->
+
+			<p class="b_title">폼요소</p>
+			<p class="s_title">인풋 (인증번호 input type text 였는데 number로 교체함)</p>
+			<div class="form_part ty_ani">
+				<div class="form_set show"><!-- 입력폼 활성화시 addclass="show" -->
+					<div class="ebform_label">인증번호(6자리)</div>
+					<div class="form_pack">
+						<div class="input_pack ty_wordtime">
+							<input type="number" class="ebinput" placeholder="" value="" title="인증번호">
+							<button type="button" class="ebbtn btn_input_clear" title="문구삭제"></button>
+							<span class="time">3:00</span>
+						</div>
+					</div>
+
+					<div class="form_multi_box">
+						<button type="button" class="ebbtn btn_multi">인증번호 재전송</button>
+					</div>
+
+					<div class="form_next_box show"><!-- 버튼 활성화시 addclass="show" -->
+						<button type="button" class="ebbtn btn_arrow"><span>다음</span></button>
+					</div>
+				</div>
+			</div>
+			
+			<p class="s_title">이메일 선택시 show/hide</p>
+			<div class="smalltitle_part">
+				<div class="ebform_label">발급방법 선택</div>
+				<div class="toggle_pack ty_linebreak">
+					<ul>
+						<li class="active">
+							<button type="button" class="ebbtn btn_toggle ">이메일</button>
+						</li>
+						<li>
+							<button type="button" class="ebbtn btn_toggle">알림톡</button>
+						</li>
+					</ul>
+				</div>
+				<div class="form_part email_input">
+					<div class="form_pack">
+						<div class="input_pack">
+							<input type="email" class="ebinput" title="이메일" placeholder="이메일 입력" value="Hongabc@bac.cp.kr">
+							<button type="button" class="ebbtn btn_input_clear" title="문구삭제"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<p class="s_title">체크박스</p>
+			<div>
+				<input type="checkbox" class="ebcheckbox" title="라벨명">
+				<input type="checkbox" class="ebcheckbox" title="라벨명" checked="checked">
+				<input type="checkbox" class="ebcheckbox" title="라벨명" disabled="disabled">
+				<input type="checkbox" class="ebcheckbox" title="라벨명" checked="checked" disabled="disabled">
+			</div>
+			<div class="checkbox_pack">
+				<input type="checkbox" class="ebcheckbox" id="chk1_1">
+				<label for="chk1_1" class="eblabel">체크박스</label>
+			</div>
+			<div class="checkbox_pack">
+				<input type="checkbox" class="ebcheckbox" id="chk1_2" checked="checked">
+				<label for="chk1_2" class="eblabel">체크박스<br>체크박스</label>
+			</div>
+			<div class="checkbox_pack">
+				<input type="checkbox" class="ebcheckbox" id="chk1_3" disabled="disabled">
+				<label for="chk1_3" class="eblabel">체크박스</label>
+			</div>
+			<div class="checkbox_pack">
+				<input type="checkbox" class="ebcheckbox" id="chk1_4" checked="checked" disabled="disabled">
+				<label for="chk1_4" class="eblabel">체크박스</label>
+			</div>
+			<div class="form_part">
+				<div class="form_set">
+					<div class="checkbox_pack ty_02">
+						<input type="checkbox" class="ebcheckbox" id="chk1_0" title="전자서명 작성확인">
+						<label for="chk1_0" class="eblabel">
+							전자서명 [1단계 성명기재] <b>제 3자가 알아볼 수 있도록 성과 이름을 정자체</b>로 작성했나요?<br>
+							성명 확인이 불가한 경우 <b>대출진행의 불가</b> 또는 <b>전자약정 재진행</b>이 될 수 있습니다.
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<p class="s_title">라디오</p>
+			<div>
+				<input type="radio" class="ebradio" title="라벨명" name="rad0">
+				<input type="radio" class="ebradio" title="라벨명" name="rad0" checked="checked">
+				<input type="radio" class="ebradio" title="라벨명" name="rad1" disabled="disabled">
+				<input type="radio" class="ebradio" title="라벨명" name="rad1" checked="checked" disabled="disabled">
+			</div>
+
+			<div class="radio_pack">
+				<input type="radio" class="ebradio" name="rad3" id="rad3_1">
+				<label for="rad3_1" class="eblabel">라디오</label>
+			</div>
+			<div class="radio_pack">
+				<input type="radio" class="ebradio" name="rad3" id="rad3_2" checked="checked">
+				<label for="rad3_2" class="eblabel">라디오<br>라디오</label>
+			</div>
+			<div class="radio_pack">
+				<input type="radio" class="ebradio" name="rad4" id="rad4_1" disabled="disabled">
+				<label for="rad4_1" class="eblabel">라디오</label>
+			</div>
+			<div class="radio_pack">
+				<input type="radio" class="ebradio" name="rad4" id="rad4_2" checked="checked" disabled="disabled">
+				<label for="rad4_2" class="eblabel">라디오</label>
+			</div>
+
+			<p class="s_title">셀렉트</p>
+			<div class="form_set">
+				<div class="ebform_label">상품 선택</div>
+				<div class="form_pack">
+					<div class="select_pack" data-ui="customSelect"><!-- 바텀시트 -->
+						<select class="ebselect" data-placeholder="상품을 선택해 주세요." title="상품 선택">
+							<option value="11">자동이체계좌에서 출금</option>
+							<option value="22">다른계좌에서 출금</option>
+							<option value="33">가상계좌에 입금</option>
+						</select>
+					</div>
+
+					<div class="select_pack"><!-- 팝업호출 -->
+						<button type="button" class="ebbtn btn_select" title="상품 선택">상품을 선택해 주세요</button>
+					</div>
+				</div>
+			</div>
+
+			<p class="s_title">스위치</p>
+			<div class="divide_pack">
+				<div class="cell">
+					<span class="title">푸시 알림 수신</span>
+				</div>
+				<div class="cell">
+					<div class="switch_pack">
+						<input type="checkbox" class="ebcheckbox" id="chk1_1" checked="checked" >
+						<label for="chk1_1" class="eblabel"></label>
+					</div>
+				</div>
+			</div>
+			<div class="divide_pack">
+				<div class="cell">
+					<span class="title">일주일전</span>
+				</div>
+				<div class="cell">
+					<div class="switch_pack">
+						<input type="checkbox" class="ebcheckbox" id="chk2_1" checked="checked">
+						<label for="chk2_1" class="eblabel"></label>
+					</div>
+				</div>
+			</div>
+
+			<div class="switch_pack">
+				<input type="checkbox" class="ebcheckbox" id="chk1_2">
+				<label for="chk1_2" class="eblabel"></label>
+			</div>
+			
+			<!--===============================================================================================================-->
+			<p class="b_title">탭</p>
+			<p class="s_title">일반탭</p>
+			<div class="tab_pack ty_normal" data-module-id="tab1">
+				<ul class="ebtab">
+					<li class="active">
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+				</ul>
+			</div>
+			<div class="tabcontent_pack" data-module-for="tab1">
+				<ul class="ebtab_content">
+					<li class="active">
+						탭컨텐츠1
+					</li>
+					<li>
+						탭컨텐츠2
+					</li>
+					<li>
+						탭컨텐츠3
+					</li>
+				</ul>
+			</div>
+
+			<p class="s_title">일반탭-스크롤</p>
+			<div class="tab_pack ty_normal" data-module-id="tab2">
+				<div class="tab_scroll">
+					<ul class="ebtab">
+						<li class="">
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+						<li class="">
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+						<li class="active">
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="tabcontent_pack" data-module-for="tab2">
+				<ul class="ebtab_content">
+					<li class="active">
+						탭컨텐츠1
+					</li>
+					<li>
+						탭컨텐츠2
+					</li>
+					<li>
+						탭컨텐츠3
+					</li>
+				</ul>
+			</div>
+
+			<p class="s_title">라운드탭 - 스크롤</p>
+			<div class="tab_pack ty_round" data-module-id="tab3">
+				<div class="tab_scroll">
+					<ul class="ebtab">
+						<li class="active">
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+						<li>
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+						<li>
+							<button type="button" class="ebbtn btn_tab">탭목록</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="tabcontent_pack" data-module-for="tab3">
+				<ul class="ebtab_content">
+					<li class="active">
+						탭컨텐츠1
+					</li>
+					<li>
+						탭컨텐츠2
+					</li>
+					<li>
+						탭컨텐츠3
+					</li>
+				</ul>
+			</div>
+
+			<p class="s_title">라인탭</p>
+			<div class="tab_pack ty_line" data-module-id="tab4">
+				<ul class="ebtab">
+					<li class="active">
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+					<li>
+						<button type="button" class="ebbtn btn_tab">탭목록</button>
+					</li>
+				</ul>
+			</div>
+			<div class="tabcontent_pack" data-module-for="tab4">
+				<ul class="ebtab_content">
+					<li class="active">
+						탭컨텐츠1
+					</li>
+					<li>
+						탭컨텐츠2
+					</li>
+					<li>
+						탭컨텐츠3
+					</li>
+				</ul>
+			</div>
+
+			<!--===============================================================================================================-->
+			<p class="b_title">아코디언</p>
+			<div class="accordion_pack ty_boxing active">
+				<div class="accordion_title" data-function="accordion" tabindex="0">
+					<div class="title">타이틀</div>
+					<div class="control">
+						<button type="button" class="ebbtn btn_accordion" title="아코디언열기"></button>
+					</div>
+				</div>
+				<div class="accordion_content" style="display: block;">
+					내용<br>
+					내용
+				</div>
+			</div>
+			<div class="accordion_pack ty_boxing">
+				<div class="accordion_title" data-function="accordion" tabindex="0">
+					<div class="title">타이틀</div>
+					<div class="control">
+						<button type="button" class="ebbtn btn_accordion" title="아코디언열기"></button>
+					</div>
+				</div>
+				<div class="accordion_content">
+					내용
+				</div>
+			</div>
+
+			<p class="s_title">2024 고도화 new 아코디언 추가</p>
+			<div class="detail_part">
+				<div class="detail_data_box">
+					<div class="acco_box">
+						<div class="detail_acco_tit">개인신용다이렉트</div>
+						<div class="detail_data_list">
+							<ul>
+								<li>
+									<div class="title">대출일</div>
+									<div class="conts">YYYY.MM.DD</div>
+								</li>
+								<li>
+									<div class="title">대출만기일</div>
+									<div class="conts">YYYY.MM.DD</div>
+								</li>
+								<li>
+									<div class="title">대출금액</div>
+									<div class="conts">100,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">대출금리</div>
+									<div class="conts">연 15%</div>
+								</li>
+							</ul>
+							<ul class="acco_cont">
+								<li>
+									<div class="title">원리금</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">상환원금</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">경과이자</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+							</ul>
+						</div>
+						<div class="control">
+							<button type="button" class="ebbtn btn_acco">
+								<span class="txt">더보기</span>
+							</button>
+						</div>
+					</div>
+					<div class="detail_total">
+						<div class="title">대환예정금액</div>
+						<div class="conts">7,800만원</div>
+					</div>
+				</div>
+
+				<div class="detail_data_box">
+					<div class="acco_box">
+						<div class="detail_acco_tit">개인신용다이렉트(추가)</div>
+						<div class="detail_data_list">
+							<ul>
+								<li>
+									<div class="title">대출일</div>
+									<div class="conts">YYYY.MM.DD</div>
+								</li>
+								<li>
+									<div class="title">대출만기일</div>
+									<div class="conts">YYYY.MM.DD</div>
+								</li>
+								<li>
+									<div class="title">대출금액</div>
+									<div class="conts">100,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">대출금리</div>
+									<div class="conts">연 15%</div>
+								</li>
+							</ul>
+							<ul class="acco_cont">
+								<li>
+									<div class="title">원리금</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">상환원금</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+								<li>
+									<div class="title">경과이자</div>
+									<div class="conts">10,000,000 원</div>
+								</li>
+							</ul>
+						</div>
+						<div class="control">
+							<button type="button" class="ebbtn btn_acco">
+								<span class="txt">더보기</span>
+							</button>
+						</div>
+					</div>
+					<div class="detail_total">
+						<div class="title">대환예정금액</div>
+						<div class="conts">7,800만원</div>
+					</div>
+				</div>
+
+			</div>
+
+
+			<!--===============================================================================================================-->
+			<p class="b_title">step</p>
+			<div class="step_part" role="img" aria-label="총 3단계 중 현재 1단계 한도조회">
+				<div class="step_pack">
+					<ol>
+						<li class="active"><!-- 현재 스텝에 addClass="active" / 완료된 스텝인 경우 addClass="finish" -->
+							<span class="num">1</span>
+							<span class="txt">한도조회</span>
+						</li>
+						<li>
+							<span class="num">2</span>
+							<span class="txt">대출신청</span>
+						</li>
+						<li>
+							<span class="num">3</span>
+							<span class="txt">약정서 작성</span>
+						</li>
+					</ol>
+				</div>
+				<div class="progress_pack">
+					<ul>
+						<li class="active"></li><!-- 현재 스텝에 addClass="active" -->
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+			</div>
+
+			
+			<!--===============================================================================================================-->
+			<p class="b_title">버튼</p>
+
+			<p class="s_title">메인버튼</p>				
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_main ty_bg">.ebbtn .btn_main .ty_bg</button>
+			</div>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_main ty_light">.ebbtn .btn_main .ty_light</button>
+			</div>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_sub">.ebbtn .btn_sub</button>
+			</div>
+
+			<p class="s_title">일반버튼</p>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_normal ty_bg">.ebbtn .btn_normal .ty_bg</button>
+				<button id="" type="button" class="ebbtn btn_normal ty_bg" disabled>.ebbtn .btn_normal .ty_bg :disabled</button>
+				<button id="" type="button" class="ebbtn btn_normal ty_bg checked"><span>ebbtn btn_normal ty_bg checked</span></button>
+			</div>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_normal ty_line">.ebbtn .btn_normal .ty_line</button>
+				<button id="" type="button" class="ebbtn btn_normal ty_line" disabled>.ebbtn .btn_normal .ty_line :disabled</button>
+				<button id="" type="button" class="ebbtn btn_normal ty_line w100per">ebbtn btn_normal ty_line w100per</button>
+			</div>
+
+			<p class="s_title">다용도버튼</p>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_multi">.ebbtn .btn_multi</button>
+				<button id="" type="button" class="ebbtn btn_multi">한글은 어케 나오남</button>
+				<button id="" type="button" class="ebbtn btn_multi" disabled>.ebbtn .btn_multi :disabled</button>
+			</div>
+
+			<p class="s_title">버튼 안에 아이콘</p>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_arrow">.ebbtn .btn_arrow</button>
+				<button id="" type="button" class="ebbtn btn_arrow" disabled>.ebbtn .btn_arrow :disabled</button>
+			</div>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_reset"><span>새로고침</span></button>
+				<button id="" type="button" class="ebbtn btn_reset" disabled><span>새로고침</span></button>
+			</div>
+			<div class="btn_box">
+				<a id="" href="#none" class="ebbtn btn_round" role="button">.ebbtn .btn_round</a>
+				<a id="" href="#none" class="ebbtn btn_round" role="button">a태그 접근성 role</a>
+			</div>
+			<div class="btn_box">
+				<button id="" type="button" class="ebbtn btn_boxing_golink"><span>ebbtn btn_boxing_golink</span></button>
+			</div>
+			<div class="btn_box">
+				<a id="appStore" href="javascript:void(0);" class="ebbtn btn_normal ty_line" role="button">
+					<span class="icon_pack">
+						<span class="ebicon icon_appstore"><img src="../mobile/resource/image/icon/icon_appstore.png" alt=""></span>
+						<span class="text">App store</span>
+					</span>
+			  	</a>
+			</div>
+
+			<p class="s_title">텍스트버튼</p>
+			<div class="btn_box">
+				<a id="" href="#none" class="ebbtn btn_txt_arrow">.ebbtn .btn_txt_arrow</a>
+			</div>
+			<div class="btn_box">
+				<a id="" href="#none" class="ebbtn btn_arrow02">.ebbtn .btn_arrow02</a>
+			</div>
+
+			<!--===============================================================================================================-->
+			<p class="b_title">아이콘</p>
+
+			<p class="s_title">완료아이콘</p>
+
+			<div class="process_end_part">
+				<div class="icon_box">
+					<span class="ebicon icon_complete"></span>
+				</div>
+				<div class="title_box">
+					<h2 class="ebtitle2">대출 신청 완료</h2>
+				</div>
+			</div>
+
+			<!--===============================================================================================================-->
+			<p class="b_title">하단 알려드립니다 영역</p>
+
+			<div class="notice_area">
+				<p class="notice_tit">알려드립니다.</p>
+				<ul class="notice_list">
+					<li>중도 반납 시에는, 반납 이후 차량진단 평가 후 원상회복비용, 가치감가비용 및 초과운행수수료에 대한 추가 비용 징수가 있을 수 있습니다.</li>
+					<li>차세는 직전 차세 납부일 ~ 기준일자 일할 계산분이며, 승계인 경우 명의 이전일까지의 일할 차세가 추가로 발생됩니다.</li>
+					<li>중도해지 매입 시에는 이전비용(취득세, 공채 등) 추가 발생됩니다.</li>
+					<li>계산 내역 기준일(실제 마감일), 이전 회차 렌탈료 완납 여부에 따라 계산 내역이 달라질 수 있습니다.</li>
+					<li>궁금하신 사항은 대표번호 <span class="color03">1644-3700</span>으로 문의해주세요. (업무시간: 평일 09:00 ~ 18:00)</li>
+				</ul>
+			</div>
+
+			<div class="radius_box">
+				<div class="cont"></div>
+			</div>
+		</div>
+		<!-- //여기까지 컨텐츠 -->
+	</div>
+</div>
+<style>
+	.radius_box{position:fixed; top:-120px; right:-120px; width:240px; height:240px; border-radius:120px; overflow:hidden;}
+	.radius_box .cont{position:absolute; bottom:0; left:0; width:120px; height:120px; background:#ddd; overflow:hidden;}
+</style>
+</body>
+</html>
