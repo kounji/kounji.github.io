@@ -9,7 +9,7 @@ function fullMenu(){
         if(!$(this).hasClass('active')){
             $(this).addClass('active');
             $('.full_menu').addClass('active');
-            $('body').addClass('overflow');
+           // $('body').addClass('overflow');
             $('.header').addClass('blendMode');
         }
     });
@@ -17,7 +17,7 @@ function fullMenu(){
     $('.full_menu').find('.btn_close').on('click',function(){
         $('.header .btn_menu').removeClass('active');
         $('.full_menu').removeClass('active');
-        $('body').removeClass('overflow');
+        //$('body').removeClass('overflow');
         $('.header').removeClass('blendMode');
     });
 
