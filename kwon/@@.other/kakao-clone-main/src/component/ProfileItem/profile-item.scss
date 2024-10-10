@@ -1,0 +1,46 @@
+.profile-item {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  & > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .profile-info {
+    margin-left: 10px;
+    width: calc(100% - 55px);
+
+    h2 {
+      position: relative;
+      font-size: 15px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .date {
+      position: absolute;
+      right: 0;
+      top: 4px;
+      font-size: 12px;
+      color: #666;
+    }
+  }
+
+  .profile.large ~ .profile-info {
+    width: calc(100% - 70px);
+  }
+
+  .profile.medium ~ .profile-info {
+    width: calc(100% - 67px);
+  }
+}
