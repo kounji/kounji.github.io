@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+    
+	<title>Kwon jiyeoun</title>
+	
+	<meta content="퍼블리셔 권지연" name="title">
+	<meta content="퍼블리셔, 웹퍼블리셔, 권지연" name="keywords">
+	<meta content="Copyright©2024 Citigroup Inc." name="copyright">
+	<!--
+	<link rel="Shortcut Icon" href="img/favicon.ico">
+	
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.12.1.min.js"></script>
+	-->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
+
+<style>
+/* reset */
+.wrap { width: 100%; margin: 0 auto; background-color: #eee; }
+li { list-style: none; }
+
+#header,
+#body { width: 50vw; margin: 0 auto; text-align: center; }
+#header { position: sticky; top: 0; left: 0; height: 5vw;  margin-bottom: 20vw; line-height: 5vw;  background-color: #ccc; z-index: 999; }
+#body .scroll { margin: 20vw auto; border-radius: 50%; }
+#body .scroll,
+#body .delayScale .delayList { width: 15vw; height: 15vw; line-height: 15vw;}
+#body .delayScale ul { display: flex; align-items: center; justify-content: space-between; padding-left: 0; }
+#body .delayScale ul.on .delayList { animation: scale 1s 1 forwards; background-color: #ff8181; opacity: 0; }
+
+/* background color */
+#body .scroll.scrollUp { background-color: #81d1ff; }
+#body .scroll.scrollDown { background-color: #ff81a7; }
+#body .scroll.scrollLeft { background-color: #fff281; }
+#body .scroll.scrollRight { background-color: #ff8181; }
+
+/* scroll */
+.scroll { opacity: 0; transition: 0.8s; }
+.scrollRight { transform: translate(-20vw, 0); }
+.scrollLeft { transform: translate(20vw, 0); }
+.scrollUp { transform: translate(0, 10vw); }
+.scrollDown { transform: translate(0, -10vw); }
+.scrollAction { opacity: 1; transform: translate(0); }
+
+/* animation */
+@keyframes opacity {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+@keyframes scale {
+    0% { opacity: 0; transform: scale(0); }
+    100% { opacity: 1; transform: scale(1); }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- wrapper(s) -->
+<div class="wrapper">
+
+
+    <div class="wrap">
+        <!--헤더-->
+        <header id="header">Header</header>
+        <!--바디-->
+        <div id="body">
+            <div class="scroll scrollRight">Right</div>
+            <div class="scroll scrollLeft">Left</div>
+            <div class="scroll scrollUp">Up</div>
+            <div class="scroll scrollDown">Down</div>
+            <div class="delayScale">
+                <ul>
+                    <li class="delayList">1</li>
+                    <li class="delayList">2</li>
+                    <li class="delayList">3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+	
+</div><!--// wrapper(e) -->
+<script type="text/javascript">
+// Header 포함 높이 계산
+const windowHeightWithHeader = window.innerHeight + document.querySelector("#header").offsetHeight;
+
+// 스크롤 이벤트 핸들러
+function scrollAction() {
+  const scrollElements = document.querySelectorAll(".scroll");
+
+  if (!scrollElements) {
+    return;
+  }
+
+  scrollElements.forEach((scrollElement) => {
+    const scrollHeight = scrollElement.getBoundingClientRect().top + 200;
+    scrollElement.classList.toggle("scrollAction", windowHeightWithHeader > scrollHeight);
+  });
+}
+
+// 애니메이션 이벤트 핸들러
+function scaleEvent(selector) {
+  const imgWrap = document.querySelector(selector);
+  const imgWrapHeight = imgWrap && imgWrap.getBoundingClientRect().top;
+  if (imgWrap && imgWrapHeight) {
+    imgWrap.classList.toggle("on", windowHeightWithHeader > imgWrapHeight);
+  }
+}
+
+// 애니메이션 delay 설정
+function aniDelay(elements, delay) {
+  elements.forEach((element, index) => {
+    element.style.animationDelay = delay * index + "s";
+  });
+}
+
+// 실행
+const delayList = document.querySelectorAll('.delayList');
+
+document.addEventListener("scroll", function () {
+  scrollAction();
+  scaleEvent('.delayScale ul');
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  aniDelay(delayList, 0.3);
+});
+</script>
+</body>
+</html>
