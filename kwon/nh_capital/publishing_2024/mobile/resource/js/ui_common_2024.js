@@ -81,9 +81,10 @@ function toogleBtnIput(){
 }
 
 // 메인 swiper - 보유 상품
+var myProductSwiperNew; // 2024-10-10 2024고도화 : update 테스트용
 function myProductsSwiper(){
     var slideLength = $('.section_content.my_product .swiper-slide').length;
-    var myProductSwiperNew = new Swiper('.section_content.my_product .swiper-container', {
+    myProductSwiperNew = new Swiper('.section_content.my_product .swiper-container', {
         speed: 400,
         slidesPerView: 1,
         pagination: {
@@ -255,7 +256,8 @@ function dargBottomSheet(){
 
     // init
 	$bs.height(bsh);
-	$('.container.renewal_2024').css('height','100%');
+    $bs.addClass('ready');
+
 
     //아코디언 항목 전체 열림상태 setting
     $bs.find('.accordion_pack.ty_boxing').addClass('active');
@@ -278,7 +280,7 @@ function dargBottomSheet(){
             $('.intro_fixed_part').addClass('show');
 
             $('body').css('overflow', 'hidden');
-            $('body').addClass('bg_blue');
+            //$('body').addClass('bg_blue');
         }
     });
     
@@ -301,7 +303,7 @@ function dargBottomSheet(){
                 $bs.height(bsIngH);
             }
             $('body').css('overflow', 'hidden');
-            $('body').addClass('bg_blue');
+            //$('body').addClass('bg_blue');
         });
 
         $handle.on('touchend', function(e){
@@ -347,7 +349,7 @@ function dargBottomSheet(){
                 $('.intro_fixed_part').addClass('show');
             }
             $('body').css('overflow', 'hidden');
-            $('body').addClass('bg_blue');
+            //$('body').addClass('bg_blue');
         });
     }
 }
