@@ -97,3 +97,82 @@ body {
 	  font-size: 1rem;
 	}
   }
+
+.loading{position:absolute; top:0;}
+.loading .circle_box{position:relative; width:200px; height:200px; background:#66B1F1}
+.loading .circle_box .circle1{animation:circle_move1 1.5s linear infinite; position:absolute; top:0; left:0; width:56px; height:56px; border-radius:100%; background:#FFBB37}
+.loading .circle_box .circle2{animation:circle_move2 1.5s linear infinite; position:absolute; top:12px; left:60px; width:32px; height:32px; border-radius:100%; background:#273D56}
+@keyframes circle_move1 {
+	0% {
+		top:12px;
+		left:0;
+		width:32px;
+		height:32px;
+		z-index:1;
+	}
+	25% {
+		top:0;
+		left:30px;
+		width:56px;
+		height:56px;
+		z-index:1;
+	}
+	50% {
+		top:12px;
+		left:60px;
+		width:32px;
+		height:32px;
+		z-index:0;
+	}
+	75% {
+		top:15px;
+		left:30px;
+		width:26px;
+		height:26px;
+		z-index:0;
+	}
+	100% {
+		top:12px;
+		left:0;
+		width:32px;
+		height:32px;
+		z-index:0;
+	}
+}
+@keyframes circle_move2 {
+	0% {
+		top:12px;
+		left:60px;
+		width:32px;
+		height:32px;
+		z-index:0;
+	}
+	25% {
+		top:15px;
+		left:30px;
+		width:26px;
+		height:26px;
+		z-index:0;
+	}
+	50% {
+		top:12px;
+		left:0;
+		width:32px;
+		height:32px;
+		z-index:0;
+	}
+	75% {
+		top:0;
+		left:30px;
+		width:56px;
+		height:56px;
+		z-index:1;
+	}
+	100% {
+		top:12px;
+		left:60px;
+		width:32px;
+		height:32px;
+		z-index:1;
+	}
+}
