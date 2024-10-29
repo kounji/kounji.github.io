@@ -97,7 +97,7 @@ $(".blank").click(function(e){
     e.preventDefault();
     $(".alert").addClass("on")
 
-    $(".close").click(function(){
+    $(".pop_close").click(function(){
         $(".alert").removeClass("on")
     })
     })
