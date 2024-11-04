@@ -18,7 +18,7 @@
     --prevSize:392px;
     --prevMinusSize:-392px;
     /* color */
-    --primaryColor:#0765e5;
+    --primaryColor:#238789;
     --fontBasicColor:#303030;
 }
 
@@ -55,8 +55,8 @@ em {font-style:normal;}
 .nav-active .btn-nav-toggle:after {top:22px;left:8px;transform:rotate(45deg);}
 .nav-menu {margin:50px 15px 0;}
 .nav-menu-item + .nav-menu-item {margin-top:5px;}
-.nav-menu-link {display:block;padding:10px;font-size:14px;font-weight:normal;background-color:#2b7ff6;}
-.nav-menu-link:hover {background-color:#3e8eff;}
+.nav-menu-link {display:block;padding:10px;font-size:14px;font-weight:normal; border:1px solid var(--primaryColor); background-color:#2A9DA0;}
+.nav-menu-link:hover {background-color:var(--primaryColor); border:1px solid rgba(255,255,255, 0.4)}
 .nav-menu-link.active {border:1px solid rgba(255,255,255, 0.4)}
 .sub-nav-links {margin-top:20px;}
 .sub-nav-item {padding-left:10px;}
@@ -87,6 +87,7 @@ em {font-style:normal;}
 .page-list-table .td {border-bottom:1px solid #ddd;}
 .page-list-table .th {padding:10px 3px;background-color:#eee;}
 .page-list-table .td {padding:5px 3px;}
+/*
 [data-pagepart="MW"]:before,
 [data-pagepart="MA"]:before {display:inline-block;margin-right:3px;padding:0 3px;min-width:20px;text-align:center;font-size:11px;color:#fff;border-radius:3px;}
 [data-pagepart="MW"]:before {content:'MW';background-color:#005a42;}
@@ -95,6 +96,7 @@ em {font-style:normal;}
 [data-textonly="true"]:after {display:inline-block;margin-left:3px;min-width:13px;height:13px;line-height:13px;font-size:9px;text-align:center;color:#fff;font-weight:bold;}
 [data-pagenew="true"]:after {content:'N';background-color:rgba(255, 0, 0, 0.615);border-radius:3px;}
 [data-textonly="true"]:after {content:'문구';padding-left:3px;padding-right:3px;background-color:#7000ff9e;border-radius:3px;}
+*/
 .text-memo + .text-memo {margin-top:5px;}
 .text-memo {line-height:1.2;color:#777;font-size:12px;}
 .text-memo:before {content:attr(data-date);margin-right:2px;font-size:11px;font-weight:bold;color:var(--primaryColor);}
