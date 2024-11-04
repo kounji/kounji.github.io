@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="shortcut icon" href="guide/image/favicon_cok.png">
+	<title>2024 콕 마이데이터</title>
+
+    <!-- 퍼블현황판 css -->
+    <link rel="stylesheet" href="guide/css/swiper-4.5.1.min.css">
+    <link rel="stylesheet" href="guide/css/cok_mydata_guide.css">
+
+    <!-- 공통 library -->
+    <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/jquery-ui-1.14.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/swiper-4.5.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/ui_common.js"></script>
+</head>
+<body id="layoutBody">
+<div id="layoutContent" class="layout">
+    <div id="headerLay" class="header">
+        <div id="btnHeaderlogo" class="header_logo headerMain">
+            2024 콕 마이데이터
+        </div>
+    </div>
+	<div class="container">
+		<!-- 여기부터 컨텐츠 -->
+		<div class="contents_area product-intro"><!-- 상품소개 구분 class -->
+			<div class="contents">				
+				<div class="section desc-area">
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                    <p>내용</p>
+                </div>
+				<div class="section dragging-bs">
+                    <div class="drag-handle">
+						<button type="button" class="btn-handle"></button>
+					</div>
+					<ul class="product-intro-list">
+						<li class="product-intro-item">이거는요</li>
+						<li class="product-intro-item">이거는요</li>
+						<li class="product-intro-item">이거는요</li>
+						<li class="product-intro-item">이거는요</li>
+					</ul>
+                </div>
+			</div>
+		</div>
+		<!-- //여기까지 컨텐츠 -->
+	</div>
+</div>
+<script>
+	$(function(){
+
+
+    /*********************
+        draggable 바텀시트     
+    **********************/    
+        var $bs = $('.dragging-bs');
+        var $handle = $('.drag-handle');
+        var wh = $(window).height();        
+        var hh = $('#headerLay').outerHeight();
+        var conh = $('.desc-area').outerHeight();
+        var bsh = wh - (hh + conh);
+        var bsMaxH = wh - hh;
+        var touchStart;
+        var touchLast;
+        
+        // init
+        $bs.height(bsh);
+
+        // 초기 터치
+        $handle.on('touchstart', function(e){
+            touchStart = e.touches[0].pageY;
+            touchLast = 0;// touchmove시 저장된 값 초기화
+        });
+
+        //핸들을 터치한 경우 => 바텀시트 up
+        $handle.on('touchmove', function(e){
+            touchLast = e.touches[0].pageY;            
+            var gap = touchLast - touchStart;
+            var bsIngH = bsh + (-gap);
+            // console.log('마지막터치 : ', touchLast);            
+
+            if($bs.hasClass('active')) return;// 바텀시트 펼침 상태시 패스
+            if(gap < 0 && bsIngH < bsMaxH){// gap이 마이너스 값임 && 드래그시 bsMaxH까지 높이 적용
+                $bs.height(bsIngH);
+            }
+            $('body').css('overflow', 'hidden');
+        });
+    
+        $handle.on('touchend', function(e){
+            if((touchStart - touchLast) > 0 && touchLast != 0){// up
+                $bs.animate({
+                    'height' : bsMaxH
+                }, 200, "swing");
+
+                $('.dragging-bs').addClass('active');
+            }else if((touchStart - touchLast) < 0 && touchLast != 0){// down
+                $bs.animate({
+                    'height' : bsh
+                }, 300, "swing");
+
+                $('.dragging-bs').removeClass('active');
+            }       
+        });
+
+        // 드래그 테스트
+        // $('body').on("touchstart", function (e) {
+        // 	console.log('touchstart : ',  e.touches[0].pageY)
+        // })
+
+        // $('body').on("touchmove", function (e) {
+        // 	console.log('touchmove : ',  e.touches[0].pageY)
+        // })
+
+        // $('body').on("touchend", function (e) {
+        // 	console.log('touchend : ')
+        // })
+
+
+
+});
+</script>
+</body>
+</html>

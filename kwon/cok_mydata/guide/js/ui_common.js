@@ -3299,10 +3299,11 @@ function dargBottomSheet(){
         });
 
         //click event도 추가
-        dargBottomSheetPC();
+        //dargBottomSheetPC();
     }
 
     //상품소개 PC
+	/*
     function dargBottomSheetPC(){
         $handle.on('click', function(e){
             if($('.dragging_bs').hasClass('active')){
@@ -3326,6 +3327,7 @@ function dargBottomSheet(){
             //$('body').addClass('bg_blue');
         });
     }
+	*/
 }
 
 // 비대면 서류 발급 - 페이지내 라디오 중 택 1
