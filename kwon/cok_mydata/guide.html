@@ -7,17 +7,38 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="shortcut icon" href="guide/image/favicon_cok.png">
 	<title>2024 콕 마이데이터</title>
+
+    <!-- 퍼블현황판 css -->
+    <link rel="stylesheet" href="guide/css/swiper-4.5.1.min.css">
+    <link rel="stylesheet" href="guide/css/cok_mydata_guide.css">
+
     <!-- 공통 library -->
     <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="guide/js/jquery-ui-1.14.1.min.js"></script>
-    <!-- 퍼블현황판 css -->
-    <link rel="stylesheet" href="guide/css/cok_mydata_guide.css">
+    <script type="text/javascript" src="guide/js/swiper-4.5.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/ui_common.js"></script>
 </head>
 
 <body>
 <div clkass="wrap">
     <h1 class="h1">2024 콕 마이데이터</h1>
     <div class="content">
+
+        <ul class="prod_nav_list">
+            <li class="prod_nav_item"><a href="#product_01" class="prod_nav_link">1</a></li>
+            <li class="prod_nav_item"><a href="#product_02" class="prod_nav_link">2</a></li>
+            <li class="prod_nav_item"><a href="#product_03" class="prod_nav_link">3</a></li>
+            <li class="prod_nav_item"><a href="#product_04" class="prod_nav_link">4</a></li>
+            <li class="prod_nav_item"><a href="#product_05" class="prod_nav_link">5</a></li>
+        </ul>
+        <div class="main_part products_area">
+            <div id="product_01" class="products_unit">1 내용</div>
+            <div id="product_02" class="products_unit">2 내용</div>
+            <div id="product_03" class="products_unit">3 내용</div>
+            <div id="product_04" class="products_unit">4 내용</div>
+            <div id="product_05" class="products_unit">5 내용</div>
+        </div>
+
         <h2 class="h2">table</h2>
         <div class="ui_table">
             <table>
@@ -58,7 +79,7 @@
                 <table>
                     <caption>테이블 캡션입니다</caption>
                     <colgroup>
-                        <col style="width:30%">
+                        <col style="width:110px">
                         <col>
                     </colgroup>
                     <thead>
@@ -89,7 +110,74 @@
         
         <hr class="devide">
 
+        <h2 class="h2">swiper</h2>
+
+        <!-- Slider main container -->
+        <div class="test_swiper swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide" style="height:200px; background:lemonchiffon">Slide 1</div>
+                <div class="swiper-slide" style="height:200px; background:aquamarine">Slide 2</div>
+                <div class="swiper-slide" style="height:200px; background:burlywood">Slide 3</div>
+
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+        
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        
+            <!-- If we need scrollbar 
+            <div class="swiper-scrollbar"></div>-->
+
+            <button type="button" class="swiper-toggle-button" aria-label="정지"></button>
+        </div>
     </div>
 </div>
+<script>
+$(window).on('load',function(){
+	testSwiper();
+});
+function testSwiper(){
+    var testSwiper = new Swiper('.test_swiper.swiper-container', {
+        speed: 400,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+            clickable: true,
+            el:".swiper-pagination",
+            renderBullet: function (index, className) {
+                return '<button type="button" class="' + className + '">' + (index + 1) + "</button>";
+            },
+            //type: 'fraction', ex)1/10
+        },
+        //scrollbar: {
+        //    el: '.swiper-scrollbar',
+        //    hide: true,
+        //},
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,// 수동으로 스와이프 후 자동 재생
+        },
+    });
+    $('.test_swiper .swiper-toggle-button').on('click', function(){
+        $(this).toggleClass('on');
+        if($(this).hasClass('on')){
+            testSwiper.autoplay.stop();
+            $(this).attr('aria-label', '재생');
+        }else{
+            testSwiper.autoplay.start();
+            $(this).attr('aria-label', '정지');
+        }
+    });
+}
+</script>
 </body>
 </html>

@@ -10,164 +10,243 @@
     <!-- 공통 library -->
     <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="guide/js/jquery-ui-1.14.1.min.js"></script>
+    <!--<script type="text/javascript" src="https://demo.riamore.net/HTML5demo/chart/LicenseKey/rMateChartH5License.js"></script>
+    <script type="text/javascript" src="https://demo.riamore.net/HTML5demo/chart/rMateChartH5/JS/rMateChartH5.js"></script>
+    -->
+    
     <!-- 퍼블현황판 css -->
-    <link rel="stylesheet" href="guide/css/cok_mydata_list.css">
+    <!-- <link rel="stylesheet" href="https://demo.riamore.net/HTML5demo/chart/rMateChartH5/Assets/Css/rMateChartH5.css"> -->
+    <link rel="stylesheet" href="guide/css/cok_mydata_guide.css">
 </head>
 
 <body>
-    <div id="wrap" class="nav-active">
-        <div id="nav">
-            <h1 class="h1">2024 CoK Mydata</h1>
-            <button type="button" class="btn-nav-toggle" title="메뉴 닫기"></button>      
-            
-            <ul class="nav-menu">
-                <li class="nav-menu-item"><a href="guide.html" class="nav-menu-link active">guide</a></li>
-                <li class="nav-menu-item"><a href="guide.html" class="nav-menu-link">nav1</a></li>
-                <li class="nav-menu-item"><a href="guide.html" class="nav-menu-link">nav2</a></li>
-                
-            </ul>
+<div clkass="wrap">
+    <h1 class="h1">2024 콕 마이데이터</h1>
+    <div class="content">
+        <h2 class="h2">line chart</h2>
+        <div id="chartHolder" style="width:100%; height:400px;">
         </div>
-        <!-- // #nav  -->
+        <hr class="line">
 
-        <div id="contents">
-            <div class="guide-header">
-                <h2 class="h2">콕뱅크 마이데이터4.0 작업 목록</h2>
-                <div class="status-area">
-                    <span class="status-item">전체 : <em class="num total">100</em>건 / 진행중 : <em class="num ing">10</em>건 / 완료 : <em class="num done">10</em>건 / 삭제 : <em class="num del">10</em>건</span>
-                    <span class="status-item">진척률 : <em class="num percent">10</em>%</span>
-                </div>
-            </div>
-            <div class="content">
-                <div class="page-list">
-                    <!-- 
-                        - data-status="진행/완료/삭제"
-                    // -->
-                    <table class="page-list-table">
-                        <caption>콕뱅크 마이데이타2.0 작업 목록</caption>
-                        <colgroup>
-                            <col style="width:10%">
-                            <col style="width:10%">
-                            <col style="width:10%">
-                            <col style="width:10%">
-                            <col style="width:4%">
-                            <col>
-                            <col style="width:10%">
-                            <col style="width:5%">
-                            <col style="width:4%">
-                            <col style="width:5%">
-                            <col style="width:13%">
-                        </colgroup>
-                        <thead>
-                            <tr>
-                                <th class="th">depth1</th>
-                                <th class="th">depth2</th>
-                                <th class="th">depth3</th>
-                                <th class="th">depth4</th>
-                                <th class="th">구분</th>
-                                <th class="th">화면명</th>
-                                <th class="th">화면ID</th>
-                                <th class="th">담당</th>
-                                <th class="th">상태</th>
-                                <th class="th">완료일</th>
-                                <th class="th">비고</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="page-list-tr">
-                                <td class="td">공통</td>
-                                <td class="td"></td>
-                                <td class="td"></td>
-                                <td class="td"></td>
-                                <td class="td align-c"></td><!-- 풀팝/팝업/바텀/탭 -->
-                                <td class="td"></td>
-                                <td class="td align-c"><a href=".html" target="_blank" class="link-id"></a></td>
-                                <td class="td align-c"></td>
-                                <td class="td align-c" data-status=""></td><!-- 진행/완료/삭제 -->
-                                <td class="td align-c"></td>
-                                <td class="td">
-                                    <!-- <p class="text-memo" data-date="1101"></p> -->
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <button type="button" class="btn-top">Top</button>
+        <h2 class="h2">column 3D chart</h2>
+        <div id="chartHolder2" style="width:100%; height:400px;"></div>
 
-            <!-- 미리보기 -->
-            <button type="button" class="btn-preview-toggle" title="미리보기 열기"></button>
-            <iframe src=".html" name="preview" class="preview"></iframe>
-
-            <div class="hidden-area">
-                <a href="ui_test/uiTestList.html" target="_blank" class="btn-test-list">테스트목록</a>
-            </div>
-        </div>
-        <!-- // #contents -->
+        
     </div>
-    <!-- // #wrap -->
+</div>
+<script>
+// -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+ 
+ // 스트링 형식으로 레이아웃 정의.
+ var layoutStr =
+     '<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+         +'<Options>'
+             +'<Caption text="Global Temperature" paddingBottom="45"/>'
+             +'<Legend defaultMouseOverAction="true" useVisibleCheck="true" />'
+         +'</Options>'
+         +'<NumberFormatter id="nft" precision="2"/>'
+         +'<Line2DChart seriesMouseOverAction="series" showDataTips="true" dataTipFormatter="{nft}" paddingBottom="25">'
+             +'<horizontalAxis>'
+                 +'<CategoryAxis id="hAxis" categoryField="Year"/>'
+             +'</horizontalAxis>'
+             +'<verticalAxis>'
+                 +'<LinearAxis id="vAxis" title="Temperature Anomaly (℃)"/>'
+             +'</verticalAxis>'
+             +'<series>'
+                 +'<Line2DSeries yField="Annual" displayName="Annual Mean">'
+                     +'<showDataEffect>'
+                         + '<SeriesClip2 offset="-900" elementOffset="300"/>'
+                     +'</showDataEffect>'
+                 +'</Line2DSeries>'
+                 +'<Line2DSeries yField="Five" displayName="5 Year Mean">'
+                     +'<showDataEffect>'
+                         + '<SeriesClip2 offset="300" elementOffset="300"/>'
+                     +'</showDataEffect>'
+                 +'</Line2DSeries>'
+             +'</series>'
+         +'</Line2DChart>'
+     +'</rMateChart>';
+  
+ // 차트 데이터
+ var chartData = [
+     {"Year":"2024", "Annual":-0.19, "Five":null},
+     {"Year":"2025", "Annual":-0.35, "Five":-0.22},
+     {"Year":"2026", "Annual":-0.08, "Five":-0.18},
+     {"Year":"2027", "Annual":-0.42, "Five":-0.42},
+     {"Year":"2028", "Annual":-0.25, "Five":-0.24},
+     {"Year":"2029", "Annual":-0.13, "Five":-0.18},
+     {"Year":"2030", "Annual":0.09, "Five":0.06},
+     {"Year":"2031", "Annual":-0.18, "Five":-0.08},
+     {"Year":"2032", "Annual":-0.03, "Five":0.03},
+     {"Year":"2033", "Annual":0.03, "Five":-0.01},
+     {"Year":"2034", "Annual":0.28, "Five":0.19},
+     {"Year":"2035", "Annual":0.44, "Five":0.35},
+     {"Year":"2036", "Annual":0.42, "Five":0.53},
+     {"Year":"2037", "Annual":0.72, "Five":0.62},
+     {"Year":"2038", "Annual":0.87, "Five":null}
+ ];
+  
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart1", {
+     "setLayout" : layoutStr,
+     "setData" : chartData
+ });
+  
+ /**
+  * rMateChartH5 3.0에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+  * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+  *
+  * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - old
+  * -------------------------------------------------
+  *
+  * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+  */
+ rMateChartH5.registerTheme(rMateChartH5.themes);
+  
+ /**
+  * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+  * 접근하는 차트 객체의 테마를 변경합니다.
+  * 파라메터로 넘어오는 값
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - old
+  * - default
+  *
+  * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+  * old : rMateChartH5 2.5 이하 버전의 형태를 출력합니다.
+  */
+ function rMateChartH5ChangeTheme(theme){
+     document.getElementById("chart1").setTheme(theme);
+ }
+  
+ // -----------------------차트 설정 끝 -----------------------
+ 
 
-    <!-- 2024 퍼블현황판 js -->
-    <script type="text/javascript" src="guide/js/nhcapital_list_2024.js"></script>
-    <script>
-        $(function(){
-            // nav
-            $('.btn-nav-toggle').on('click', function(){
-                $(this).closest('#wrap').toggleClass('nav-active');
 
-                if($(this).closest('#wrap').hasClass('nav-active')){
-                    $(this).attr('title', '메뉴 닫기');
-                } else {
-                    $(this).attr('title', '메뉴 열기');
-                }
-            });
-
-            // status
-            var del = $('[data-status="삭제"]').length;
-            var ing = $('[data-status="진행"]').length;
-            var done = $('[data-status="완료"]').length;
-            var total = $('.page-list-tr').length  - del;    
-
-            // console.log('전체 : ', total)
-            // console.log('진행 : ', ing)
-            // console.log('완료 : ', done)
-            // console.log('삭제 : ', del)
-            $('.status-item .total').text(total);
-            $('.status-item .ing').text(ing);
-            $('.status-item .done').text(done);
-            $('.status-item .del').text(del);
-            $('.status-item .percent').text(Math.floor((done/total)*100));
-
-            $('[data-status="삭제"]').each(function(){
-                $(this).closest('tr').addClass('del-tr');
-            });
-
-            // preview
-            $('.btn-preview-toggle').on('click', function(){
-                $(this).closest('#wrap').toggleClass('prev-active');
-
-                if($(this).closest('#wrap').hasClass('prev-active')){
-                    $(this).attr('title', '미리보기 닫기');
-                } else {
-                    $(this).attr('title', '미리보기 열기');
-                }
-            });
-
-            $('.link-id').each(function(){
-                $(this).on('mouseover', function(){
-                    var url = $(this).attr('href');
-                    $('.preview').attr('src', url);
-                }).on('click', function(){
-                    $('.link-id').css('color', '');
-                    $(this).css('color', '#0765e5');
-                });
-            });
-
-
-            // scrollTop
-            $('.btn-top').on('click', function(){
-                $('html').animate({scrollTop:0}, 300);
-            });
-        });
-    </script>
+ // -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart2", "chartHolder2", "", "100%", "100%");
+ 
+ // 스트링 형식으로 레이아웃 정의.
+ var layoutStr2 =
+                 '<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+                     +'<Options>'
+                         +'<Caption text="World Top 10 - Fastest Growing Economies (2024)" />'
+                         +'<SubCaption text="GDP Growth (In %)" textAlign="center" paddingBottom="35"/>'
+                     +'</Options>'
+                     +'<SeriesInterpolate id="ss"/>'
+                     +'<Column2DChart showDataTips="true" selectionMode="multiple" columnWidthRatio="0.48">'
+                         +'<horizontalAxis>'
+                             +'<CategoryAxis categoryField="Country"/>'
+                         +'</horizontalAxis>'
+                         +'<verticalAxis>'
+                             +'<LinearAxis maximum="100" interval="10"/>'
+                         +'</verticalAxis>'
+                         +'<series>'
+                             +'<Column2DSeries labelPosition="outside" yField="GDP" displayName="GDP Growth (In %)" showDataEffect="{ss}" showValueLabels="[4]" strokeJsFunction="strokeFunction"/>'
+                         +'</series>'
+                     +'</Column2DChart>'
+                 +'</rMateChart>';
+  
+ // 차트 데이터
+ var chartData2 = [{"Country":"South Sudan", "GDP":20},
+                 {"Country":"Libya", "GDP":30},
+                 {"Country":"Sierra Leone", "GDP":51.2},
+                 {"Country":"Mongolia", "GDP":44.5},
+                 {"Country":"Paraguay", "GDP":62.35},
+                 {"Country":"Timor Leste", "GDP":84.46},
+                 {"Country":"Iraq", "GDP":48.9},
+                 {"Country":"Panama", "GDP":38},
+                 {"Country":"Gambia", "GDP":60.5},
+                 {"Country":"Mozam-bique", "GDP":40.1}];
+  
+ function strokeFunction(id, index, data, values){
+     if(values[0] == "Paraguay")
+         return {
+             color : "#000",
+             weight : 2
+         };
+ }
+  
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart2", {
+     "setLayout" : layoutStr2,
+     "setData" : chartData2
+ });
+  
+ /**
+  * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+  * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+  *
+  * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * -------------------------------------------------
+  *
+  * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+  */
+ rMateChartH5.registerTheme(rMateChartH5.themes);
+  
+ /**
+  * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+  * 접근하는 차트 객체의 테마를 변경합니다.
+  * 파라메터로 넘어오는 값
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - default
+  *
+  * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+  */
+ function rMateChartH5ChangeTheme(theme){
+     document.getElementById("chart2").setTheme(theme);
+ }
+  
+ // -----------------------차트 설정 끝 -----------------------
+</script>
 </body>
 </html>
