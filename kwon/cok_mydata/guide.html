@@ -169,30 +169,23 @@
         <h2 class="h2">scroll tab</h2>
         <div class="section">
             <div class="tab-list-wrap">
-                <div class="tab-list-inner type-more">
-                    <div class="tab-list-box">
+                <div class="tab-list-inner">
+                    <div class="tab-list-box swiper-container">
                         <ul class="swiper-wrapper">
-                            <li class="swiper-slide"><a href="javascript:void(0);" data-nation="ko" aria-selected="false"><span>한국</span></a></li>
-                            <li class="swiper-slide"><a href="javascript:void(0);" data-nation="am" aria-selected="false"><span>미국</span></a></li>
-                            <li class="swiper-slide active"><a href="javascript:void(0);" data-nation="ch" aria-selected="true"><span>중국</span></a></li>
-                            <li class="swiper-slide"><a href="javascript:void(0);" data-nation="eu" aria-selected="false"><span>유럽</span></a></li>
-                            <li class="swiper-slide"><a href="javascript:void(0);" data-nation="ho" aria-selected="false"><span>홍콩</span></a></li>
-                            <li class="swiper-slide"><a href="javascript:void(0);" data-nation="vi" aria-selected="false"><span>베트남</span></a></li>
+                            <li class="swiper-slide active"><a href="javascript:void(0);" aria-selected="false"><span>메뉴1메뉴1메뉴1메뉴1메뉴1</span></a></li>
+                            <li class="swiper-slide"><a href="javascript:void(0);" aria-selected="false"><span>메뉴2메뉴2메뉴2메뉴2</span></a></li>
+                            <li class="swiper-slide"><a href="javascript:void(0);" aria-selected="true"><span>메뉴3메뉴3메뉴3</span></a></li>
+                            <li class="swiper-slide"><a href="javascript:void(0);" aria-selected="false"><span>메뉴4메뉴4메뉴4메뉴4메뉴4메뉴4메뉴4</span></a></li>
                         </ul>
+                        <div class="swiper-scrollbar"></div>
                     </div>
-                    <button type="button" class="btn-tab-more" aria-expanded="false"><em class="offscreen">탭 더보기</em></button>
-                    <div class="tab-list-more" aria-hidden="true">
-                        <ul id="nationList">
-                            <li class=""><a href="javascript:void(0);" data-nation="ko" aria-selected="true"><span>한국</span></a></li>
-                            <li class=""><a href="javascript:void(0);" data-nation="am" aria-selected="false"><span>미국</span></a></li>
-                            <li class="active"><a href="javascript:void(0);" data-nation="ch" aria-selected="false"><span>중국</span></a></li>
-                            <li class=""><a href="javascript:void(0);" data-nation="eu" aria-selected="false"><span>유럽</span></a></li>
-                            <li class=""><a href="javascript:void(0);" data-nation="ho" aria-selected="false"><span>홍콩</span></a></li>
-                            <li class=""><a href="javascript:void(0);" data-nation="vi" aria-selected="false"><span>베트남</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="shadow-left" aria-hidden="true" style="display: none;"></div>
-                    <div class="shadow-right" aria-hidden="true" style="display: block;"></div>
+                    <div class="shadow-left" aria-hidden="true"></div>
+                    <div class="shadow-right" aria-hidden="true"></div>
+                </div>
+            </div>
+            <div class="tab-panel-wrap">
+                <div class="tab-content on" aria-hidden="false">
+                    rrrrrr
                 </div>
             </div>
         </div>
@@ -200,22 +193,106 @@
         <hr class="devide">
 
         <h2 class="h2">loading</h2>
-        <div class="loading">
-            <div class="circle_box">
-                <span class="circle1"></span>
-                <span class="circle2"></span>
+        <div class="section">
+            <div class="loading">
+                <div class="circle_box">
+                    <span class="circle1"></span>
+                    <span class="circle2"></span>
+                </div>
             </div>
         </div>
+        
     </div>
 </div>
 <script>
 $(window).on('load',function(){
 	testSwiper();
     stickyNav();
+    tabScrollInit();
 });
 
 function tabScrollInit(){
+    $('.tab-list-wrap .tab-list-box a').on('click', function() {
+		var $this = $(this);
+		var $idx = $this.parent().index();
+		var $txt = $('span', $this).text();
+		var $tabListWrap = $this.closest('.tab-list-wrap');
+		var $tabListBox = $('.tab-list-box', $tabListWrap);
+		var $tabItemBox = $('> ul > li', $tabListBox);
+        var $tabPanelBox = $tabListWrap.next('.tab-panel-wrap');
+		var $tabContBox = $('> .tab-content', $tabPanelBox);	
+		var $swiperLib = $tabListWrap.data('swiper-lib');
+        var $tabIdx = $('> ul > li.active', $tabListBox).index();
 
+        
+
+        if(!$this.hasClass('active')) {
+            $tabItemBox.removeClass('active').find('a').attr('aria-selected', 'false');
+            $this.attr('aria-selected', 'true').parent().addClass('active');
+            if($tabContBox.length > 1) {
+                $tabContBox.attr('aria-hidden', 'true').hide().eq($idx).attr('aria-hidden', 'false').show();
+            }else if($tabContBox.length == 1) {
+                $tabContBox.find('.offscreen').text($txt);
+            }
+        }
+        var $leftShadow = $('.shadow-left', $tabListWrap);
+		var $rightShadow = $('.shadow-right', $tabListWrap);
+        /*
+        var $shadowFn = function(lib) {
+			var $posX = Math.abs(lib.translate);
+			var $lastPos = lib.virtualSize - lib.$el.outerWidth();
+
+			if($posX <= 0) {
+				$leftShadow.hide();
+				$rightShadow.show();
+			}else if($posX > 0 && $posX < $lastPos) {
+				$leftShadow.show();
+				$rightShadow.show();
+			}else{
+				$leftShadow.show();
+				$rightShadow.hide();
+			}
+		}
+        $swiperLib = new Swiper($tabListBox, {
+            observer: true,
+            observeParents: true,
+            initialSlide : $tabIdx,
+            freeMode : true,
+            slidesPerView : 'auto',
+            on : {
+                init :function() {
+                    $shadowFn(this);
+                },
+                sliderMove : function() {
+                    $shadowFn(this);
+                },
+                transitionEnd : function() {
+                    $shadowFn(this);
+                }
+            }
+        });
+        $tabListWrap.data('swiper-lib', $swiperLib);
+        */
+        
+	});
+    var tabSwiper = new Swiper('.tab-list-wrap .tab-list-box.swiper-container', {
+            slidesPerView: 'auto',
+            spaceBetween: 0,
+            //freeMode: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            a11y: {
+                prevSlideMessage: '이전 슬라이드',
+                nextSlideMessage: '다음 슬라이드',
+            },
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                hide: true,
+            },
+        });
+    
 }
 
 

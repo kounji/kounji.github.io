@@ -310,16 +310,9 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 /* scrollable tab */
 .offscreen {display:block; overflow:hidden; position:absolute; left:0; top:0; width:0; height:0; margin:0; padding:0; font-size:1px; line-height:0; color:transparent;}
 .section{position:relative; width:100%;}
-.tab-list-wrap {margin:0 -20px; min-height: 48px;}
-.tab-list-wrap .tab-list-inner.fixed {position: fixed; top: 0; left: 0; right: 0; padding: 56px 0 0;transition: top .7s ease; z-index: 50;background-color: #fff;}
-.tab-list-wrap .tab-list-inner.fixed.t0 {top: -57px; transition: top .7s ease;}
-.tab-list-wrap .tab-list-inner.type-more {position: relative;margin: 0 48px 0 0;}
-.tab-list-wrap .tab-list-inner.type-more.open-more {  z-index: 50;}
-.tab-list-wrap .tab-list-inner.type-more .tab-list-more {  right: -48px;}
-.tab-list-wrap .tab-list-inner.type-more .btn-tab-more { right: -48px;}
-.tab-list-wrap .tab-list-inner.type-more.fixed {  position: fixed;}
-.tab-list-wrap .tab-list-inner.type-more.fixed .btn-tab-more {  height: 48px;  top: auto;  bottom: 0;}
-.tab-list-wrap .tab-list-box {  border-top: 1px solid #c2c2c2;  border-bottom: 1px solid #c2c2c2;}
+.tab-list-wrap {position:relative; margin:0 -20px; min-height: 48px;}
+.tab-list-wrap .tab-list-inner{}
+.tab-list-wrap .tab-list-box {  border-top: 1px solid #c2c2c2;  border-bottom: 1px solid #c2c2c2; overflow:hidden;}
 .tab-list-wrap .tab-list-box ul {  display: -webkit-flex;  display: flex;  margin: -1px;}
 .tab-list-wrap .tab-list-box ul li {  -webkit-flex: 1; flex: 1; min-height: 48px; border-top: 1px solid #c2c2c2; border-bottom: 1px solid #c2c2c2; background-color: #fff;}
 .tab-list-wrap .tab-list-box ul li a { display: -webkit-flex; display: flex; width: 100%; height: 100%; -webkit-align-items: center; align-items: center;}
@@ -327,21 +320,11 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 .tab-list-wrap .tab-list-box ul li.active {border-top: 1px solid #1e75d6; border-bottom: 1px solid #1e75d6; background-color: #1e75d6;}
 .tab-list-wrap .tab-list-box ul li.active a span {color: #fff;}
 .tab-list-wrap .tab-list-box ul.swiper-wrapper li.swiper-slide { height: 48px;}
-.tab-list-wrap .tab-list-box ul.swiper-wrapper li.swiper-slide a { padding: 0 15px;}
-.tab-list-wrap .tab-list-box ul.swiper-wrapper li.swiper-slide a span { white-space: nowrap;}
-.tab-list-wrap .tab-list-more {display: none;position: absolute;top: 100%;left: 0;right: 0;padding: 20px;border: 1px solid #c2c2c2;border-top: none;box-shadow: 2px 0 5px rgba(7, 7, 7, 0.12); background-color: #fff;}
-.tab-list-wrap .tab-list-more > ul {display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap;flex-wrap: wrap;-webkit-justify-content: space-between;justify-content: space-between; margin: -8px 0 0;}
-.tab-list-wrap .tab-list-more > ul > li {width: calc(50% - 4px);min-height: 40px;margin: 8px 0 0;}
-.tab-list-wrap .tab-list-more > ul > li a {display: -webkit-flex; display: flex; height: 100%; border: 1px solid transparent; background-color: #f7f7f7; -webkit-align-items: center; align-items: center;}
-.tab-list-wrap .tab-list-more > ul > li a span {display: block; width: 100%; padding: 1px;line-height: 18px;color: #777;text-align: center;}
-.tab-list-wrap .tab-list-more > ul > li.active a {border: 1px solid #1e75d6;background-color: #edf4fc;}
-.tab-list-wrap .tab-list-more > ul > li.active a span {color: #1e75d6;}
-.tab-list-wrap .btn-tab-more {display: block;position: absolute;right: 0;top: 0;width: 48px;height: 100%;border: 1px solid #c2c2c2;background: #fff url("../image/btn-tab-arrow.png") no-repeat center;background-size: 16px auto; z-index: 3;}
-.tab-list-wrap .btn-tab-more.active { -webkit-transform: rotate(-180deg);transform: rotate(-180deg);}
+.tab-list-wrap .tab-list-box ul.swiper-wrapper li.swiper-slide a span {padding:0 15px; white-space: nowrap;}
 .tab-list-wrap .shadow-left {
   display: none;
   position: absolute;
-  left: -5px;
+  left: 0;
   top: 1px;
   bottom: 1px;
   width: 20px;
@@ -355,7 +338,7 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 .tab-list-wrap .shadow-right {
   display: none;
   position: absolute;
-  right: -5px;
+  right: 0;
   top: 1px;
   bottom: 1px;
   width: 20px;
