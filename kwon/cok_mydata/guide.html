@@ -137,16 +137,29 @@
             <button type="button" class="swiper-toggle-button" aria-label="정지"></button>
         </div>
 
+        <hr class="devide">
+
+        <h2 class="h2">lotto drawing</h2>
+
+        <div>
+            <button type="button" class="lotto_btn" onclick="createNumbers();">추첨</button>
+        </div>
+        <div class="lotto_result">추첨 번호</div>
+
 
         <hr class="devide">
 
         <h2 class="h2">box list</h2>
 
         <div class="box_list">
-            <div class="box_item">
-                <div></div>
-                <div></div>
-            </div>
+            <a href="#none" class="box_item" role="button">
+                <span class="cont"><strong>농협</strong><span>go</span></span>
+                <span class="cont line"><span>블라블라</span><span>블라블라</span></span>
+            </a>
+            <a href="#none" class="box_item" role="button">
+                <span class="cont"><strong>국민</strong><span>go</span></span>
+                <span class="cont line"><span>블라블라</span><span>블라블라</span></span>
+            </a>
         </div>
 
     </div>
@@ -254,6 +267,49 @@ function stickyNav(){
     scrollTopCheck();//init
 
 }
+
+
+// 주어진 정수의 값에 따라서 다른 색깔을 반환하자
+function getColor(number){
+    let color = "orange"; // 10 미만
+    if(number >=10 && number < 20){
+        color = "green"
+    }else if(number >=20 && number < 30){
+        color = "blue"
+    }else if(number >=30 && number < 40){
+        color = "red"
+    }else if(number >=40 && number < 50){
+        color = "purple"
+    }
+    return color;
+}
+// 숫자 여섯개 당구공을 생성하여 문서에 뿌려준다!
+function displayNumbers(lotto){
+    // 원래 보이던 당구공들은 제거하고 시작!
+    $(".lotto_result").empty();
+    for(let i =0; i < 6; i++){
+        const div = $("<div></div>") // 제이쿼리판 createElement
+        $(div).text(`${lotto[i]}`)
+        $(div).hide(); // 안 보이는 상태에서 추가하기
+        $(div).css("background-color", getColor(lotto[i]))
+        $(".lotto_result").append(div)
+    }
+    $(".lotto_result > div").fadeIn(1000); // 1초 동안 스르륵 등장!
+}
+// 1부터 45 사이의 숫자 중 여섯개로 골라줘라!(무작위로)
+function createNumbers(){
+    const lottoNumbers = []
+    // 로또번호 여섯개가 다 안뽑혔다면 게속해라!
+    while(lottoNumbers.length < 6){
+        const randomNumber = Math.floor(Math.random() *45) + 1
+       // 배열.indexOf(x) : x가 배열의 몇번 인덱스에 있는지 알려준다! 단, 없다면 -1을 반환
+        if(lottoNumbers.indexOf(randomNumber) === -1){ 
+            lottoNumbers.push(randomNumber)
+        }
+    }
+    displayNumbers(lottoNumbers)
+}
+
 </script>
 </body>
 </html>
