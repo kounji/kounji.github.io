@@ -23,7 +23,7 @@ ol, ul {list-style:none;}
 em {font-style:normal;}
 
 /* common */
-.h1 {position:fixed; top:0; left:0; display:block; width:100%; padding:10px 20px;font-size:18px; font-weight:normal; background:#fff;}
+.h1 {position:fixed; top:0; left:0; display:block; width:100%; padding:10px 20px;font-size:18px; font-weight:normal; background:#fff; z-index:900}
 .h2 {position:relative; margin-bottom:10px; font-size:20px;font-weight:normal;}
 .h2:before {content:'';display:inline-block; margin-right:7px; width:4px;height:13px;background-color:var(--primaryColor);border-radius:1px;}
 .align_c {text-align:center;}
