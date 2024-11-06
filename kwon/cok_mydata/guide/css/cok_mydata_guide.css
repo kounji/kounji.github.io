@@ -75,15 +75,8 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 
 /* swiper */
 
-.swiper-container {
-    width: 100%;
-    height: 100%;
-  }
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-
+.swiper-container {width: 100%;height: 100%;}
+.swiper-slide {text-align: center;font-size: 18px;background: #fff;
     /* Center slide text vertically 
     display: -webkit-box;
     display: -ms-flexbox;
@@ -98,24 +91,11 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
     -webkit-align-items: center;
     align-items: center;
     */
-  }
-  .swiper-pagination-bullet {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    line-height: 20px;
-    font-size: 12px;
-    color:#000;
-    opacity: 1;
-    background: rgba(0,0,0,0.2);
-  }
-  .swiper-pagination-bullet-active {
-    color:#fff;
-    background: #007aff;
-  }
-  .swiper-toggle-button{position:absolute; bottom:20px; right:0; width:20px; height:20px; background:#007aff; z-index: 11;}
-  .swiper-toggle-button.on{background:#238789}
-
+}
+.swiper-pagination-bullet {width:20px;height:20px;text-align:center;line-height:20px;font-size:12px;color:#000;opacity:1;background: rgba(0,0,0,0.2);}
+.swiper-pagination-bullet-active {color:#fff;background: #007aff;}
+.swiper-toggle-button{position:absolute; bottom:20px; right:0; width:20px; height:20px; background:#007aff; z-index: 11;}
+.swiper-toggle-button.on{background:#238789}
 
 /* dragging bottom-sheet */
 .contents_area.product-intro,
@@ -145,7 +125,7 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 
 /* sticky nav */
 .et-hero-tabs,
-  .et-slide {
+.et-slide {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -155,7 +135,7 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 	background: #eee;
 	text-align: center;
 	padding: 0 2em;
-  }
+}
   .et-hero-tabs h1,
   .et-slide h1 {
 	font-size: 2rem;
@@ -311,7 +291,6 @@ hr.devide{margin:10px -20px; border:4px solid #ededed}
 .offscreen {display:block; overflow:hidden; position:absolute; left:0; top:0; width:0; height:0; margin:0; padding:0; font-size:1px; line-height:0; color:transparent;}
 .section{position:relative; width:100%;}
 .tab-list-wrap {position:relative; margin:0 -20px; min-height: 48px;}
-.tab-list-wrap .tab-list-inner{}
 .tab-list-wrap .tab-list-box {  border-top: 1px solid #c2c2c2;  border-bottom: 1px solid #c2c2c2; overflow:hidden;}
 .tab-list-wrap .tab-list-box ul {  display: -webkit-flex;  display: flex;  margin: -1px;}
 .tab-list-wrap .tab-list-box ul li {  -webkit-flex: 1; flex: 1; min-height: 48px; border-top: 1px solid #c2c2c2; border-bottom: 1px solid #c2c2c2; background-color: #fff;}
