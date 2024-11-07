@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="shortcut icon" href="guide/image/favicon_cok.png">
+	<title>2024 콕 마이데이터</title>
+
+    <!-- 퍼블현황판 css -->
+    <link rel="stylesheet" href="guide/css/swiper-4.5.1.min.css">
+    <!--<link rel="stylesheet" href="guide/css/swiper-11.1.14.css"> -->
+    <link rel="stylesheet" href="guide/css/cok_mydata_guide.css">
+
+    <!-- 공통 library -->
+    <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/jquery-ui-1.14.1.min.js"></script>
+    <script type="text/javascript" src="guide/js/swiper-4.5.1.min.js"></script>
+    <!--<script type="text/javascript" src="guide/js/swiper-11.1.14.js"></script> -->
+    <script type="text/javascript" src="guide/js/ui_common.js"></script>
+    <!-- <script type="text/javascript" src="guide/js/ui_share.js"></script> -->
+</head>
+
+<body>
+<div clkass="wrap">
+    <h1 class="h1">2024 CoK mydata</h1>
+    <div class="content">
+
+        <h2 class="h2">event swiper</h2>
+
+        
+        <div class="event_swiper">
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <div class="swiper-slide" style="background:lemonchiffon">Slide 1</div>
+                    <div class="swiper-slide" style="background:aquamarine">Slide 2</div>
+                    <div class="swiper-slide" style="background:burlywood">Slide 3</div>
+                    <div class="swiper-slide" style="background:grey">Slide 4</div>
+                    <div class="swiper-slide" style="background:thistle">Slide 5</div>
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+            
+                <!-- If we need navigation buttons
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div> -->
+            
+                <!-- If we need scrollbar 
+                <div class="swiper-scrollbar"></div>-->
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+<script>
+$(window).on('load',function(){
+	eventSwiper();
+});
+function eventSwiper(){
+    var testSwiper = new Swiper('.event_swiper .swiper-container', {
+        speed: 400,
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        spaceBetween: 20,
+        coverflowEffect: {
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows : false,
+        },
+        pagination: {
+            clickable: true,
+            el:".swiper-pagination",
+            renderBullet: function (index, className) {
+                return '<button type="button" class="' + className + '"><span class="offscreen">' + (index + 1) + "</span></button>";
+            },
+            //type: 'fraction', ex)1/10
+        },
+        //scrollbar: {
+        //    el: '.swiper-scrollbar',
+        //    hide: true,
+        //},
+      
+    });
+   
+}
+</script>
+</body>
+</html>
