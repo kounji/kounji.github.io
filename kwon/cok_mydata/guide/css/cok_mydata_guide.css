@@ -509,7 +509,7 @@ input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus
     position: absolute;
     top: 0;
     right: 0;
-    background: url(/Images/2013/Icon/ico_search_zoom.png) 50% 50% no-repeat;
+    
     background-size: 50%
 }
 
