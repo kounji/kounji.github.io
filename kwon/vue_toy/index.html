@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue toy</title>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="js/vue-2.7.16.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+    <!--
+    <template id="test_swiper">
+        <swiper
+            :slides-per-view="3"
+            :space-between="50"
+            @swiper="onSwiper"
+            @slideChange="onSlideChange"
+        >
+            <swiper-slide>Slide 1</swiper-slide>
+            <swiper-slide>Slide 2</swiper-slide>
+            <swiper-slide>Slide 3</swiper-slide>
+        </swiper>
+    </template>
+    -->
+</body>
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        message: '안녕하세요 Vue!'
+    }
+})
+/*
+var test_swiper = new Vue(
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+// Import Swiper styles
+import 'swiper/css';
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = () => {
+      console.log('slide change');
+    };
+    return {
+      onSwiper,
+      onSlideChange,
+    };
+  },
+};
+)
+*/
+</script>
+</html>
