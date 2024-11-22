@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<meta name="htmllisher" content="[SEPTEM] UI Dev Team">
+	<title>UI가이드 - 2023 NH콕뱅크 차세대</title>
+	<!-- css -->
+	<link rel="stylesheet" href="css/lib/colorbox.css">
+	<link rel="stylesheet" href="css/lib/datatables.min.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/septem_pub_base.css">
+	<link rel="stylesheet" href="css/septem_pub_com.css">
+	<link rel="stylesheet" href="css/septem_pub_guide.css">
+	<!-- javascript -->
+	<script src="js/jquery-3.7.1.min.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<link rel="shortcut icon" href="img/favicon.png">
+
+</head>
+
+<body>
+	<div class="skipNav">
+		<a href="#main">본문 바로가기</a>
+		<a href="#gnb">메뉴 바로가기</a>
+	</div>
+
+	<header>
+		<div class="title">
+			<div class="subject">
+				<img src="img/guide_logo_nh.svg" alt="NH Bank, NH 농협" class="nhLogo">
+				<em class="projectName">NH콕뱅크 <span class="sub">UI가이드</span></em>
+				<!-- <div class="total"><em>진행률 </em><span></span></div>	 -->
+			</div>
+			<div class="menu">
+				<ul>
+					<li><a href="index.html">퍼블리스트</a></li>
+					<li><a href="index_gl.html">글로벌모드</a></li>
+					<li><a href="pubGuide.html" title="선택됨" class="active">UI가이드</a></li>
+				</ul>
+			</div>
+		</div>
+		<nav class="gnb">
+			<ul>
+				<!-- gnb는 depth1로 자동생성됩니다. -->
+				<li><span class="active">전체보기</span></li>
+			</ul>
+		</nav>
+
+	</header>
+	<main id="main" class="pubGuide">
+		<div class="content">
+			<div class="notice">
+				<ul>
+					<li><strong>Template :</strong> template.html 파일 사용</li>
+					<li><strong>Header :</strong> header.html 파일에서 해당 header 선택후, title필요시 작성<br>* header에 tooltip있는경우 include 파일 inline으로 작성</li>
+				</ul>
+			</div>
+
+			<table class="display compact">
+				<caption>Layout Component</caption>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>이름</th>
+						<th>링크</th>
+						<th>비고</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>레이아웃 template</td>
+						<td class="path"><a href="./pub/sample/template.html" target="_blank">template.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>레이아웃 bgcolor template</td>
+						<td class="path"><a href="./pub/sample/template_bg.html" target="_blank">template_bg.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>레이아웃 full bgcolor template</td>
+						<td class="path"><a href="./pub/sample/template_full_bg.html" target="_blank">template_full_bg.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>레이아웃 Layout</td>
+						<td class="path"><a href="./pub/sample/layout.html" target="_blank">layout.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>레이아웃 푸터 포함 Layout (with footer)</td>
+						<td class="path"><a href="./pub/sample/layout_with_footer.html" target="_blank">layout_with_footer.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>헤더 Header</td>
+						<td class="path"><a href="./pub/sample/header.html" target="_blank">header.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>센터팝업 메시지 Message(center popup)</td>
+						<td class="path"><a href="./pub/sample/message_popup.html" target="_blank">message_popup.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>바닥 메시지 Message(Page)</td>
+						<td class="path"><a href="./pub/sample/message_page.html" target="_blank">message_page.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>팝업 Popop</td>
+						<td class="path"><a href="./pub/sample/popup.html" target="_blank">popup.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>약관 Terms</td>
+						<td class="path"><a href="./pub/sample/terms.html" target="_blank">terms.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>도움말(도움말) Tooltip</td>
+						<td class="path"><a href="./pub/sample/tooltip.html" target="_blank">tooltip.html</a>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>토스트 Toast</td>
+						<td class="path"><a href="./pub/sample/toast.html" target="_blank">toast.html</a></td>
+						<td></td>
+					</tr>
+                    <tr>
+						<td>캘린더 calendar </td>
+						<td class="path"><a href="./pub/sample/calendar.html" target="_blank">calendar.html</a></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="display compact">
+				<caption>UI Component</caption>
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>이름</th>
+						<th>링크</th>
+						<th>비고</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>컬러 Color</td>
+						<td class="path"><a href="./pub/sample/color.html" target="_blank">color.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>타이틀 Title</td>
+						<td class="path"><a href="./pub/sample/title.html" target="_blank">title.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>텍스트 Text</td>
+						<td class="path"><a href="./pub/sample/text.html" target="_blank">text.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>표 테이블 Table</td>
+						<td class="path"><a href="./pub/sample/table.html" target="_blank">table.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>뱃지 Badge</td>
+						<td class="path"><a href="./pub/sample/badge.html" target="_blank">badge.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>이미지 Img</td>
+						<td class="path"><a href="./pub/sample/img.html" target="_blank">img.html</a></td>
+						<td></td>
+					</tr>
+					<!-- //정리완료 -->
+
+					<tr>
+						<td>리스트 List</td>
+						<td class="path"><a href="./pub/sample/list.html" target="_blank">list.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>버튼 Button</td>
+						<td class="path"><a href="./pub/sample/btn.html" target="_blank">btn.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>폼 Form</td>
+						<td class="path"><a href="./pub/sample/form.html" target="_blank">form.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>옵션 Option</td>
+						<td class="path"><a href="./pub/sample/option.html" target="_blank">option.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>검색 Search</td>
+						<td class="path"><a href="./pub/sample/search.html" target="_blank">search.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>어카운트 Account</td>
+						<td class="path"><a href="./pub/sample/account.html" target="_blank">account.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>어카운트 테이블 Account table</td>
+						<td class="path"><a href="./pub/sample/account_table.html" target="_blank">account_table.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>아코디언 Accordion</td>
+						<td class="path"><a href="./pub/sample/accordion.html" target="_blank">accordion.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>카드 Card</td>
+						<td class="path"><a href="./pub/sample/card.html" target="_blank">card.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>아이콘 Icon</td>
+						<td class="path"><a href="./pub/sample/icon.html" target="_blank">icon.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>로고 logo</td>
+						<td class="path"><a href="./pub/sample/logo.html" target="_blank">logo.html</a></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td>차트 Chart</td>
+						<td class="path"><a href="./pub/sample/chart.html" target="_blank">chart.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>스텝 Step</td>
+						<td class="path"><a href="./pub/sample/step.html" target="_blank">step.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>스크롤스파이 Scrollspy</td>
+						<td class="path"><a href="./pub/sample/scrollspy.html" target="_blank">scrollspy.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>스와이퍼 Swiper</td>
+						<td class="path"><a href="./pub/sample/swiper.html" target="_blank">swiper.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>탭 Tab</td>
+						<td class="path"><a href="./pub/sample/tab.html" target="_blank">tab.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>폴드 Fold</td>
+						<td class="path"><a href="./pub/sample/fold.html" target="_blank">fold.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>토글스위치 버튼 Toggle</td>
+						<td class="path"><a href="./pub/sample/toggle.html" target="_blank">toggle.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>드래그 엔 드롭 drag</td>
+						<td class="path"><a href="./pub/sample/drag.html" target="_blank">drag.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>지도</td>
+						<td class="path"><a href="./pub/sample/map.html" target="_blank">map.html</a></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>애니메이션</td>
+						<td class="path"><a href="./pub/sample/lottie.html" target="_blank">lottie.html</a></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="side"></div>
+	</main>
+
+	<footer>
+		<button title="상단으로" class="top"></button>
+		<address>Copyright © NH Bank. All Rights Reserved.</address>
+	</footer>
+	<!-- javascript -->
+<script src="js/datatables.min.js"></script>
+<script src="js/jquery.colorbox-min.js"></script>
+<script src="js/septem_pub_com.js"></script>
+
+</body>
+
+</html>

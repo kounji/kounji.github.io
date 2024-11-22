@@ -9,10 +9,9 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
+    <swiper-slide>Slide 12</swiper-slide>
+    <swiper-slide>Slide 22</swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
-    ...
   </swiper>
 </template>
 <script>
@@ -49,3 +48,7 @@
     },
   };
 </script>
+
+<style>
+.swiper-container{width:100%; height:100%;}
+</style>
