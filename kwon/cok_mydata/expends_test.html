@@ -121,10 +121,10 @@ function toastSwiper(){
     // console.log(scrollTop, targetOffset)
         if(scrollTop > 200){
             $('.toast_swiper').addClass('hide')
-            testSwiper.paused;
+            testSwiper.autoplay.stop();
         }else{
             $('.toast_swiper').removeClass('hide');
-            testSwiper.running
+            testSwiper.autoplay.start();
         }
     })
     
