@@ -21,11 +21,8 @@
 <link rel="stylesheet" href="css/common.css">
 <link rel="stylesheet" href="css/content.css">
 <link rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/septem_pub_com.css">
 <!-- javascript -->
 <script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/swiper.min.js"></script>
-
 <script src="js/sortable.js"></script>
 <script src="js/swiper.min.js"></script>
 <script src="js/lottie.min-5.11.0.js"></script>
@@ -50,6 +47,18 @@
 	<!-- container -->
 	<div class="container">
 		<div class="content">
+			<button type="submit" onclick="lottieToggle()">SUBMIT</button>
+
+			<div id="lottie-pop"></div>
+
+
+
+
+
+
+
+
+
 			<!-- <div class="lottie listen-voice" data-path="/content/json/motion_obj_tra_02.json"></div>
 			<hr aria-hidden="true">
 			<lottie-player id="clickInteraction" src="/content/json/test/lf20_ioxyd2gs.json"></lottie-player> -->
@@ -59,11 +68,14 @@
 				<span class="lottie pollen" data-path="js/lottie/motion_obj_pollen_common.json"></span>
 			</div>
 			<hr aria-hidden="true">
-			<span class="lottie mureok nodata" data-path="/content/json/motion_obj_com_02.json"></span>
+			<span class="lottie mureok nodata" data-path="js/lottie/rocket_Failed.json"></span>
 			<hr aria-hidden="true">
 			<span class="lottie dot" data-path="/content/json/motion_obj_nodata.json"></span>
 			<hr aria-hidden="true">
 			<span class="lottie cirle-check" data-path="/content/json/motion_obj_complete.json" data-loop="false"></span>
+
+			<hr aria-hidden="true">
+			
 		</div>
 	</div>
 	<!-- // container -->
@@ -80,6 +92,18 @@
 </html>
 
 <script>
+var lottieAni = bodymovin.loadAnimation({
+  container: document.getElementById('lottie-pop'), // 필수, 애니메이션 들어가는 곳 
+  path: 'https://lottie.host/c6c9e3c1-eeeb-4b92-9784-f699db00429e/lO0ia2LI4R.json', // 필수(url 또는 json파일 다운로드 경로)
+  renderer: 'svg', // 필수
+  loop: false, // 반복재생
+  autoplay: false // 자동재생
+});
+
+function lottieToggle(){
+	lottieAni.stop();
+	lottieAni.play();
+}
 // LottieInteractivity.create({
 // 	player:'#clickInteraction',
 // 	mode:"chain",
