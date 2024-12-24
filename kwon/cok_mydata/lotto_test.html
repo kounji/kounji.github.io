@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="shortcut icon" href="guide/image/favicon_cok.png">
+	<title>lotto test</title>
+    <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
+    <style>
+        .lotto_btn{margin-bottom:10px; padding:10px 20px; border:0; background:#238789; color:#fff; border-radius:4px;}
+        .clear_btn{margin-bottom:10px; padding:10px 20px; border:0; background:#ddd; color:#333; border-radius:4px;}
+        .result {display:flex;justify-content:center;align-items:center;margin-top:5px; padding:5px 0;border:1px solid #238789;border-radius:4px;}
+        .number {display: inline-block;margin:5px; width:30px; height:30px; line-height:30px; text-align:center; font-size:18px; color:#fff; border-radius:50%;}
+      </style>
+</head>
+
+<body>
+<div clkass="wrap">
+    <div class="content">
+        <h2 class="h2">lotto test</h2>
+        <div class="btn_area">
+            <button type="button" id="draw" class="lotto_btn">추첨</button>
+            <button type="button" id="clear" class="clear_btn">모든 데이터 삭제</button>
+        </div>
+       
+        <div id="results"></div>
+
+    </div>
+</div>
+<!--
+<script>
+    const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+
+    function saveToLocalStorage() {
+      localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+    }
+
+    function loadExistingResults() {
+      $("#results").empty();
+      allPreviousSets.forEach((set, index) => {
+        addSetToDOM(set, index);
+      });
+    }
+
+    function addSetToDOM(set, index) {
+      const $resultDiv = $("<div>").addClass("result").attr("data-index", index);
+      set.forEach(num => {
+        const $number = $("<div>").addClass("number").text(num);
+        $resultDiv.append($number);
+      });
+      const $deleteBtn = $("<button>")
+        .addClass("delete-btn")
+        .text("삭제")
+        .click(function () {
+          deleteSet(index);
+        });
+      $resultDiv.append($deleteBtn);
+      $("#results").append($resultDiv);
+    }
+
+    function deleteSet(index) {
+      allPreviousSets.splice(index, 1); // 배열에서 삭제
+      saveToLocalStorage(); // 로컬 스토리지 갱신
+      loadExistingResults(); // 화면 갱신
+    }
+
+    function generateLottoNumbers() {
+      const numbers = [];
+      while (numbers.length < 6) {
+        const randNum = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(randNum)) {
+          numbers.push(randNum);
+        }
+      }
+      return numbers.sort((a, b) => a - b);
+    }
+
+    $(document).ready(function () {
+      loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+
+      $("#draw").click(function () {
+        const newSet = generateLottoNumbers();
+
+        allPreviousSets.push(newSet);
+        saveToLocalStorage(); // 로컬 스토리지에 저장
+        addSetToDOM(newSet, allPreviousSets.length - 1); // 화면에 추가
+      });
+
+      $("#clear-all").click(function () {
+        if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+          localStorage.removeItem('lottoNumbers');
+          allPreviousSets.length = 0; // 배열 초기화
+          $("#results").empty();
+          alert("모든 데이터가 삭제되었습니다.");
+        }
+      });
+    });
+  </script>
+
+
+<script>
+    const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+    let drawCount = 0; // 추첨 횟수 제한
+
+    // 기존 로컬스토리지 데이터를 화면에 출력
+    function loadExistingResults() {
+      allPreviousSets.forEach(set => {
+        const $resultDiv = $("<div>").addClass("result");
+        set.forEach(num => {
+          const $number = $("<div>").addClass("number").text(num);
+          $resultDiv.append($number);
+        });
+        $("#results").append($resultDiv);
+      });
+    }
+
+    function generateLottoNumbers() {
+      const numbers = [];
+      while (numbers.length < 6) {
+        const randNum = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(randNum)) {
+          numbers.push(randNum);
+        }
+      }
+      return numbers.sort((a, b) => a - b);
+    }
+
+    function isValidSet(newSet, allSets) {
+      for (const set of allSets) {
+        const commonNumbers = set.filter(num => newSet.includes(num));
+        if (commonNumbers.length > 5) {
+          return false; // 기존 세트와 6개 이상 중복되면 실패
+        }
+      }
+      return true;
+    }
+
+    function generateNextSet(allSets) {
+      const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+      let newSet;
+
+      do {
+        newSet = generateLottoNumbers();
+      } while (!isValidSet(newSet, allSets));
+
+      return newSet;
+    }
+
+    $(document).ready(function () {
+      loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+
+      $("#draw").click(function () {
+        if (drawCount < 5) {
+          const newSet = generateNextSet(allPreviousSets);
+
+          // 화면에 출력
+          const $resultDiv = $("<div>").addClass("result");
+          newSet.forEach(num => {
+            const $number = $("<div>").addClass("number").text(num);
+            $resultDiv.append($number);
+          });
+          $("#results").append($resultDiv);
+
+          // 로컬 스토리지에 저장
+          allPreviousSets.push(newSet);
+          localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+
+          drawCount++;
+        } else {
+          alert("추첨은 최대 5번까지만 가능합니다!");
+        }
+      });
+
+      $("#clear").click(function () {
+        if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+          localStorage.removeItem('lottoNumbers');
+          $("#results").empty();
+          drawCount = 0;
+          alert("로컬 스토리지 데이터가 삭제되었습니다.");
+        }
+      });
+    });
+  </script>
+  -->
+
+  <script>
+    function getColor(number){
+        let color = "orange"; // 10 미만
+        if(number >=10 && number < 20){
+            color = "green"
+        }else if(number >=20 && number < 30){
+            color = "blue"
+        }else if(number >=30 && number < 40){
+            color = "red"
+        }else if(number >=40 && number < 50){
+            color = "purple"
+        }
+        return color;
+    }
+
+    const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+    let drawCount = 0; // 추첨 횟수 제한
+
+    // 기존 로컬스토리지 데이터를 화면에 출력
+    function loadExistingResults() {
+      allPreviousSets.forEach(set => {
+        const $resultDiv = $("<div>").addClass("result");
+            
+        set.forEach(num => {
+
+       
+     
+
+          const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));
+
+           
+
+          $resultDiv.append($number);
+        });
+        $("#results").append($resultDiv);
+      });
+    }
+
+    function generateLottoNumbers() {
+      const numbers = [];
+      while (numbers.length < 6) {
+        const randNum = Math.floor(Math.random() * 45) + 1;
+        if (!numbers.includes(randNum)) {
+          numbers.push(randNum);
+        }
+      }
+      return numbers.sort((a, b) => a - b);
+    }
+
+    function isValidSet(newSet, allSets) {
+      for (const set of allSets) {
+        const commonNumbers = set.filter(num => newSet.includes(num));
+        if (commonNumbers.length > 5) {
+          return false; // 기존 세트와 6개 이상 중복되면 실패
+        }
+      }
+      return true;
+    }
+
+    function generateNextSet(allSets) {
+      const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+      let newSet;
+
+      do {
+        newSet = generateLottoNumbers();
+      } while (!isValidSet(newSet, allSets));
+
+      return newSet;
+    }
+
+    $(document).ready(function () {
+      loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+
+      $("#draw").click(function () {
+        if (drawCount < 5) {
+          const newSet = generateNextSet(allPreviousSets);
+
+          // 화면에 출력
+          const $resultDiv = $("<div>").addClass("result");
+          newSet.forEach(num => {
+            const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));;
+            $resultDiv.append($number);
+          });
+          $("#results").append($resultDiv);
+
+          // 로컬 스토리지에 저장
+          allPreviousSets.push(newSet);
+          localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+
+          drawCount++;
+        } else {
+          alert("추첨은 최대 5번까지만 가능합니다!");
+        }
+      });
+
+      $("#clear").click(function () {
+        if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+          localStorage.removeItem('lottoNumbers');
+          $("#results").empty();
+          drawCount = 0;
+          alert("로컬 스토리지 데이터가 삭제되었습니다.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
