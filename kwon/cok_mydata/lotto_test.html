@@ -276,16 +276,16 @@
 
           drawCount++;
         } else {
-          alert("추첨은 최대 5번까지만 가능합니다!");
+          alert("5번까지만!");
         }
       });
 
       $("#clear").click(function () {
-        if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+        if (confirm("다 삭제?")) {
           localStorage.removeItem('lottoNumbers');
           $("#results").empty();
           drawCount = 0;
-          alert("로컬 스토리지 데이터가 삭제되었습니다.");
+          alert("오케 다 삭제함");
         }
       });
     });
