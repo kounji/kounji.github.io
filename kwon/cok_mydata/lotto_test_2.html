@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 번호 추출기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>로또 번호 추출기</h1>
+    <button id="generate">번호 생성</button>
+    <button id="clear">모두 삭제</button>
+    <div id="results"></div>
+
+    <script>
+        $(document).ready(function () {
+    // 로또 번호 생성 함수
+    function generateSet(existingSets, maxOverlap) {
+        while (true) {
+            let newSet = Array.from({ length: 6 }, () => Math.floor(Math.random() * 46) + 1);
+            newSet = [...new Set(newSet)].sort((a, b) => a - b); // 중복 제거 및 정렬
+
+            if (existingSets.every(set => {
+                const overlap = newSet.filter(num => set.includes(num)).length;
+                return overlap <= maxOverlap;
+            })) {
+                return newSet;
+            }
+        }
+    }
+
+    function generateGameSets(previousGameSets) {
+        let gameSets = [];
+        for (let i = 0; i < 5; i++) {
+            gameSets.push(generateSet([...gameSets, ...previousGameSets], 5));
+        }
+        return gameSets;
+    }
+
+    function resetStorageAtMidnight() {
+        const now = new Date();
+        const midnight = new Date();
+        midnight.setHours(24, 0, 0, 0); // 자정 시간
+        const timeUntilMidnight = midnight - now;
+
+        setTimeout(() => {
+            localStorage.clear();
+            location.reload(); // 페이지 새로고침
+        }, timeUntilMidnight);
+    }
+
+    // 저장된 데이터 로드
+    function loadStoredData() {
+        const today = new Date().toISOString().split('T')[0];
+        const data = JSON.parse(localStorage.getItem(today)) || [];
+
+        if (data.length > 0) {
+            $('#results').html('');
+            data.forEach((gameSets, index) => {
+                gameSets.forEach((set, setIndex) => {
+                    $('#results').append(`<p>저장된 세트 ${index + 1}-${setIndex + 1}: ${set.join(', ')}</p>`);
+                });
+            });
+        }
+    }
+
+    // 번호 생성 버튼
+    $('#generate').click(function () {
+        const today = new Date().toISOString().split('T')[0];
+        const data = JSON.parse(localStorage.getItem(today)) || [];
+        
+        if (data.length >= 1) {
+            alert("오늘은 더 이상 세트를 생성할 수 없습니다. 하루 최대 5번만 가능합니다.");
+            return;
+        }
+
+        const previousGames = data.flat(); // 기존 데이터 평탄화
+        const newGameSets = generateGameSets(previousGames);
+
+        // 로컬 스토리지 저장
+        data.push(newGameSets);
+        localStorage.setItem(today, JSON.stringify(data));
+
+        // 결과 출력
+        $('#results').html('');
+        data.forEach((gameSets, index) => {
+            gameSets.forEach((set, setIndex) => {
+                $('#results').append(`<p>세트 ${index + 1}-${setIndex + 1}: ${set.join(', ')}</p>`);
+            });
+        });
+    });
+
+    // 모두 삭제 버튼
+    $('#clear').click(function () {
+        if (confirm("모든 데이터를 삭제하시겠습니까?")) {
+            localStorage.clear();
+            $('#results').html('<p>모든 데이터가 삭제되었습니다.</p>');
+        }
+    });
+
+    resetStorageAtMidnight(); // 자정 초기화 설정
+    loadStoredData(); // 저장된 데이터 불러오기
+});
+    </script>
+</body>
+</html>
