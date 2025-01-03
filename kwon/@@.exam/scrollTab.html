@@ -17,8 +17,12 @@
       background: #333;
       color: #fff;
       z-index: 10;
-      overflow-x: auto;
-      white-space: nowrap;
+      overflow-x: auto; /* 가로 스크롤 허용 */
+      white-space: nowrap; /* 탭이 한 줄로 정렬되도록 설정 */
+      scrollbar-width: none; /* 스크롤바 숨기기 (Firefox) */
+    }
+    .tab-container::-webkit-scrollbar {
+      display: none; /* 스크롤바 숨기기 (Chrome, Edge, Safari) */
     }
     .tab-container ul {
       display: inline-flex;
@@ -114,14 +118,6 @@
             centerActiveTab($activeTab);
           }
         });
-      });
-
-      // 좌우 스크롤 가능하도록 스크롤 동작 처리
-      $tabContainer.on("wheel", function (e) {
-        if (e.originalEvent.deltaY !== 0) {
-          e.preventDefault();
-          $(this).scrollLeft($(this).scrollLeft() + e.originalEvent.deltaY);
-        }
       });
 
       // 활성화된 탭을 중앙에 배치하는 함수
