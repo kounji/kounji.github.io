@@ -27,19 +27,32 @@
     <h1 class="h1">2024 CoK mydata</h1>
     <div class="content">
         <h2 class="h2">sticky nav</h2>
-        <ul class="prod_nav_list">
-            <li class="prod_nav_item"><a href="#product_01" class="prod_nav_link">1 메뉴</a></li>
-            <li class="prod_nav_item"><a href="#product_02" class="prod_nav_link">2 메뉴</a></li>
-            <li class="prod_nav_item"><a href="#product_03" class="prod_nav_link">3 메뉴</a></li>
-            <li class="prod_nav_item"><a href="#product_04" class="prod_nav_link">4 메뉴</a></li>
-            <li class="prod_nav_item"><a href="#product_05" class="prod_nav_link">5 메뉴</a></li>
-        </ul>
+        <div class="prod_nav_list">
+            <ul class="scroll">
+                <li class="prod_nav_item"><a href="#product_01" class="prod_nav_link">1 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_02" class="prod_nav_link">2 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_03" class="prod_nav_link">3 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_04" class="prod_nav_link">4 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_05" class="prod_nav_link">5 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_06" class="prod_nav_link">6 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_07" class="prod_nav_link">7 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_08" class="prod_nav_link">8 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_09" class="prod_nav_link">9 메뉴</a></li>
+                <li class="prod_nav_item"><a href="#product_10" class="prod_nav_link">10 메뉴</a></li>
+            </ul>
+        </div>
+        
         <div class="main_part products_area">
             <div id="product_01" class="products_unit">1 내용</div>
             <div id="product_02" class="products_unit">2 내용</div>
             <div id="product_03" class="products_unit">3 내용</div>
             <div id="product_04" class="products_unit">4 내용</div>
             <div id="product_05" class="products_unit">5 내용</div>
+            <div id="product_06" class="products_unit">6 내용</div>
+            <div id="product_07" class="products_unit">7 내용</div>
+            <div id="product_08" class="products_unit">8 내용</div>
+            <div id="product_09" class="products_unit">9 내용</div>
+            <div id="product_10" class="products_unit">10 내용</div>
         </div>
 
         <hr class="devide">
@@ -396,7 +409,7 @@ function tabScrollInit(){
 		var $tabContBox = $('> .tab-content', $tabPanelBox);	
 		var $swiperLib = $tabListWrap.data('swiper-lib');
         var $tabIdx = $('> ul > li.active', $tabListBox).index();
-
+        
         
 
         if(!$this.hasClass('active')) {
@@ -517,10 +530,13 @@ function testSwiper(){
 function stickyNav(){
     $(document).on('click', '.prod_nav_link', function(e){
         var $target = $($(this).attr('href'));
-
+        //console.log($target.offset().left)
+        console.log($('.prod_nav_list').outerWidth())
         $('html').animate({
             //scrollTop: $target.offset().top - ($('#headerLay').height() + $('.prod_nav_list').height() + 20)
-            scrollTop: $target.offset().top - ($('.prod_nav_list').height() + 20 + 26)
+            scrollTop: $target.offset().top - ($('.prod_nav_list').height() + 20 + 26),
+            //scrollLeft: $target.offset().left - ($('.prod_nav_list').height() + 20 + 26)
+            //scrollLeft: $target.offset().left
         },600);
         e.preventDefault();        
     });
@@ -537,6 +553,15 @@ function stickyNav(){
                 $('.prod_nav_list').find('[href="#' + $(this).attr('id') + '"').addClass('active');
             }
         });
+
+        //var left = $('.prod_nav_list .prod_nav_link.active').offset().left;
+        //on이 부여된 li 의 위치 (스크롤된 상태 기준으로 계산됨)
+        //var curLeft = $('.prod_nav_list').scrollLeft();
+        //현재 스크롤 위치
+        //console.log(left, curLeft)
+        
+        //$('.prod_nav_list').animate({scrollLeft : curLeft+left}, 200);
+        //400ms 동안 scrollLeft의 위치를 (curLeft + left) 로 변경함 
 
         // if((nowScroll > lastScroll)){
         //     console.log('아래로')
