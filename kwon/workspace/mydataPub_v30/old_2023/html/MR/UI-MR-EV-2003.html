@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>이벤트 응모 정보입력</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1></h1>
+			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<div class="enter_event_info">
+					<strong class="titH1">응모 정보를 입력해 주세요</strong>
+					<p class="desc">당첨 결과 조회 시 입력한 이름, 휴대전화번호로 확인 하실 수 있습니다.</p>
+
+					<div class="com_inputarea_type01">
+						<div class="com_input_type01">
+							<input type="text" id="com_input01" class="" name="" value="김농협" required="" placeholder="" title="이름" readonly><div class="lineEF"></div>
+							<label for="com_input01"><span class="txt_label_x">이름</span></label>
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2" role="button" style="display: none;"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+					</div>
+
+					<div class="event_tel">
+						<p class="title">휴대전화번호</p>
+						<div class="custom_box custom_box6">
+							<!-- 휴대폰 번호 앞자리 -->
+							<div class="com_inputarea_type07">
+								<div class="com_btnselectbox_type01">
+									<button type="button" class="com_btnselect_type01" title="휴대폰 번호 앞자리를 입력하세요">
+										선택
+										<!-- <span>010</span> -->
+									</button>
+								</div>
+							</div>
+							<!--// 휴대폰 번호 앞자리 -->
+							<div class="com_input_type01 com_word1 ipt_tel_left">
+								<input type="tel" id="com_input03" value="" required="" placeholder="‘-’없이 입력" title="휴대폰 번호를 입력하세요" maxlength="8"><div class="lineEF"></div>
+								<!-- <label for="com_input03">
+									<span class="txt_label_x">휴대폰 번호 뒷자리</span>
+								</label> -->
+							</div>
+							<!--// 휴대폰 번호 box -->
+						</div>
+					</div>
+				</div>
+				
+		
+				<div class="enter_event_terms">
+					<strong class="titH3">이벤트 응모를 위한 약관 동의</strong>
+
+					<div class="com_box_type01">
+						<strong class="terms_tit">개인정보 수집·이용 동의서 [필수]</strong>
+						<strong class="terms_sub_tit">[ NH콕마이데이터 「웰컴백 이벤트」 ]</strong>
+						<div class="terms_txt">
+							농업협동조합중앙회(이하 “농협중앙회” ) 귀중<br>
+							농협중앙회와의 NH콕마이데이터 「웰컴백 이벤트」(이하 “이벤트”라 합니다)와 관련하여 본회가 본인의 개인정보를 수집·이용하고자 하는 경우에는 「개인정보 보호법」 등 관계 법령에 따라 본인의 동의가 필요합니다.
+						</div>
+						<dl>
+							<dt>개인정보의 수집&middot;이용에 관한 사항</dt>
+							<dd>
+								<ul class="bl_dot_list">
+									<li>
+										<strong>수집&middot;이용 목적</strong>
+										<p class="sub_box">이벤트 참여자 접수, 당첨자 선정, 경품 지급</p>
+									</li>
+									<li>
+										<strong>보유 및 이용기간</strong>
+										<p class="sub_box">
+											수집&middot;이용 동의일로부터 경품 발송 완료 후 1개월까지 보유&middot;이용되며, 수집 및 이용 목적이 달성된 후에는 해당 정보를 파기합니다. 단, 당첨자 선정 후 미당첨자의 개인정보는 즉시 파기됩니다.<br>
+											* 보유 및 이용기간 종료일 후에는 법령상 의무 이행이 필요한 경우 「개인정보 보호법」 제21조제3항에 따라 다른 개인정보와 분리하여 저장·관리될 수 있습니다.
+										</p>
+									</li>
+									<li>
+										<strong>거부 권리 및 불이익</strong>
+										<p class="sub_box">귀하는 동의를 거부하실 수 있습니다. 다만, 위 개인정보 수집·이용에 관한 동의는 이벤트 참여를 위한 필수적 사항이므로 위 사항에 동의하셔야만 이벤트 참여 및 경품지급이 가능합니다.</p>
+									</li>
+									<li>
+										<strong>수집&middot;이용 항목</strong>
+										<p class="sub_box">성명, 휴대전화번호, 이벤트 기간 내 NH콕마이데이터 접속 횟수</p>
+									</li>
+								</ul>
+							</dd>
+						</dl>
+					</div>
+
+					<div class="custom_terms error"><!-- 필수입력 미체크시 class error -->
+						<div class="new_check_all">
+							<span class="btn_check">
+								<input type="checkbox" name="allagree" id="checkall">
+								<label for="checkall">
+									<span>[필수] 개인정보 수집&middot;이용 동의</span>
+								</label>
+							</span>
+	
+							<div class="error_message">
+								<em class="blind">개인(신용)정보 수집 이용 동의 약관</em>
+								<p>체크해 주세요</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+			
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<!-- 10/19 jlee disabled를 사용하는 경우 .btn_off 와 aria-disabled="true" 필수 -->
+				<a href="#nolink" class="btn btn_mint btn_off" disabled="disabled" aria-disabled="true" role="button">응모하기</a>
+			</div>
+			<div class="btn_full_box">
+				<!-- 10/19 jlee disabled를 사용하지 않는 경우 .btn_off를 삭제 하고 aria-disabled="false"로 하거나 aria-disabled를 삭제 -->
+				<a href="#nolink" class="btn btn_mint" role="button">응모하기</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

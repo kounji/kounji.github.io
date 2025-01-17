@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>나의 자산 메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script type="text/javascript">
+
+        // -----------------------차트 설정 시작-----------------------
+        
+        // rMateChart 를 생성합니다.
+        // 파라메터 (순서대로)
+        //  1. 차트의 id ( 임의로 지정하십시오. )
+        //  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+        //  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+        //  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+        //  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+        rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+        
+        // 스트링 형식으로 레이아웃 정의.
+        var layoutStr =
+                        '<rMateChart backgroundColor="transparent" borderStyle="none">'
+                            
+                            +'<Pie2DChart innerRadius="0.55" showDataTips="true" selectionMode="single">'
+                        /*
+                        Doughnut2D 차트 생성시에 필요한 Pie2DChart 정의합니다
+                        showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다.
+                        innerRadius : PieChart 가운데에 빈 공간을 만듭니다. 유효값 0.1 ~ 0.9 0은 PieChart 1은 차트 사라짐
+                        */
+                                +'<series>'
+                                    +'<Pie2DSeries nameField="Month" field="Profit" startAngle="20" renderDirection="clockwise" color="#ffffff">'
+                                        +'<fills>'
+                                            +'<SolidColor color="#0b9ba0"/>'
+                                            +'<SolidColor color="#74d2c8"/>'
+                                            +'<SolidColor color="#78a9ff"/>'
+                                        +'</fills>'
+                                    /* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+                                        +'<showDataEffect>'
+                                        /* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+                                            +'<SeriesZoom duration="1000"/>'
+                        /*
+                        SeriesZoom 효과는 시리즈 데이터가 데이터로 표시될 때 특정 지점에서 점점 확대되어지며 나타나는 효과를 적용합니다
+                        - 공통속성 -
+                        elementOffset : effect를 지연시키는 시간을 지정합니다 default:20
+                        minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0
+                                     이 값보다 짧은 시간에 effect가 실행되지 않습니다
+                        offset : effect개시의 지연시간을 설정합니다 default:0
+                        perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다
+                        - SeriesZoom속성 -
+                        relativeTo : 이펙트의 기준을 어디로 잡을지에 대한 속성입니다. 유효값 : chart, series
+                        horizontalFocus : relativeTo를 기준으로 수평선 방향의 기준을 정합니다. 유효값 : left, center, right
+                        verticalFocus : relativeTo를 기준으로 수직선 방향의 기준을 정합니다. 유효값 : top, middle, bottom
+                        */
+                                        +'</showDataEffect>'
+                                    +'</Pie2DSeries>'
+                                +'</series>'
+                                +'<backgroundElements>'
+                                    +'<CanvasElement>'
+                                        
+                                        
+                                    +'</CanvasElement>'
+                                +'</backgroundElements>'
+                            +'</Pie2DChart>'
+                        +'</rMateChart>';
+        
+        // 차트 데이터 
+        var chartData = [{"Month":"Jan", "Profit":900},
+                        {"Month":"Feb", "Profit":2400},
+                        {"Month":"Mar", "Profit":1900}];
+        
+        // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+        //
+        // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+        // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+        // 
+        // 아래 내용은 
+        // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+        // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+        rMateChartH5.calls("chart1", {
+            "setLayout" : layoutStr, 
+            "setData" : chartData
+        });
+        
+        /**
+         * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+         * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+         *
+         * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+         * - simple
+         * - cyber
+         * - modern
+         * - lovely
+         * - pastel
+         * -------------------------------------------------
+         *
+         * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+         */
+        rMateChartH5.registerTheme(rMateChartH5.themes);
+        
+        /**
+         * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+         * 접근하는 차트 객체의 테마를 변경합니다.
+         * 파라메터로 넘어오는 값
+         * - simple
+         * - cyber
+         * - modern
+         * - lovely
+         * - pastel
+         * - default
+         *
+         * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+         */
+        function rMateChartH5ChangeTheme(theme){
+            document.getElementById("chart1").setTheme(theme);
+        }
+        
+        // -----------------------차트 설정 끝 -----------------------
+        
+        </script>
+        <script type="text/javascript">
+
+            // -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로) 
+//  1. 차트의 id ( 임의로 지정하십시오. ) 
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart2", "chartHolder2", "", "100%", "80rem"); 
+ 
+ // 스트링 형식으로 레이아웃 정의.
+ var layoutStr2 = 
+  '<rMateChart>'
+         
+      +'<CurrencyFormatter id="cft" currencySymbol="%" precision="0" alignSymbol="right"/>'
+      /**
+       * showDataTip : 툴팁 출력 설정
+         * minimum : 게이지 최소 값
+         * maximum : 게이지 최대 값
+         * startAngle : 시작 각도
+         * minimumAngle : 게이지 최소 각도
+       * maximumAngle : 게이지 최대 각도
+       * gaugeWidth : 게이지 가로 크기
+         * gaugeHeight : 게이지 세로 크기
+        * innerRatio : 안쪽 영역 비율 값, 유효 값 0 ~ 1
+        * outerRatio : 바깥쪽 영역 비율 값, 유효 값 0 ~ 1
+       * circleOffset : 값이 여러개일 경우 원 형태 간의 여백을 설정합니다.
+       * horizontalOriginRatio : 게이지 출력 수평위치를 설정합니다.
+        * verticalOriginRatio : 게이지 출력 수직위치를 설정합니다.
+          * valueChangeFunction : 데이터가 변경 될 경우 호출될 사용자 정의 함수를 설정합니다
+        * fillJsFunction : 데이터의 값에 따른 색상 값을 설정하는 사용자 정의 함수를 설정합니다.
+       * duration : 이펙트 출력시간을 설정합니다. default 800
+        * bounceAnimating : 튕김 이펙트를 설정합니다. deafult true
+          * showValueLabel : 수치 라벨을 출력할지 설정합니다. default true
+       * valueField : 여러 데이터를 출력 할 경우 차트 데이터의 필드 명을 설정합니다.
+          * nameField : 여러 데이터 출력 시 해당 데이터에 대한 이름을 출력할 필드 명을 설정합니다.
+        * backgroundColors : 게이지가 출력되는 영역의 배경 색상을 설정합니다. default [#e2eaf3]
+       * backgroundStrokes : 게이지가 출력되는 영역의 배경 테두리 색상을 설정합니다. 
+       * foregroundColors : 게이지가 출력되는 영역의 색상을 설정합니다. default [#51c0ee]
+          * foregroundStrokes : 게이지가 출력되는 영역의 테두리 색상을 설정합니다.
+       */
+       /* 20210831 한별 수정 foregroundColors="[#23a0a5]" */
+      +'<Gauge height="150" formatter="{cft}" innerRatio="0.7" labelJsFunction="valueLabelFunc" foregroundColors="[#23a0a5]" backgroundColors="[#f4f4f4]" minimum="0" maximum="1000" startAngle="-90" minimumAngle="0" maximumAngle="180" color="#333333" fontSize="18" verticalOriginRatio="0.7" valueChangeFunction="changeFunction" labelYOffset="-10" labelClickJsFunction="labelClickFunc">'
+      /* 20211001 한별 수정 backgroundColors="[#f4f4f4]" */
+            +'<backgroundElements>'
+            //     +'<CanvasElement>'
+            //          +'<CanvasLabel fontSize="13" height="17" color="#000" horizontalCenter="0" verticalCenter="65" text="HALF SIMPLE GAUGE"/>'
+            //   +'</CanvasElement>'
+            +'</backgroundElements>'
+       +'</Gauge>'
+    +'</rMateChart>';
+  
+ // 게이지 데이터
+ var chartData2 = [910];
+  
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart2", {
+    "setLayout" : layoutStr2,
+     "setData" : chartData2
+ });
+  
+ // 라벨 클릭 함수
+ function labelClickFunc(value){
+   alert(value);
+ }
+  
+ //게이지 값 랜덤 변경 함수
+ function changeValue()
+ {
+    // 게이지의 값을 변경할려면 setData 함수를 사용하세요.
+  document.getElementById("chart1").setData([parseInt(Math.random()*200)]);
+ }
+  
+ // 게이지 값 보관.
+ var gaugeValue;
+  
+ // 게이지 value change 이벤트 핸들러 함수.
+ function changeFunction(value)
+ {
+  gaugeValue = value;
+ }
+  
+ // 확인
+ function commitValue()
+ {
+     alert(gaugeValue);
+ }
+  
+ function valueLabelFunc(value){
+   return value.toFixed(0) + "점";
+ }
+  
+ function labelFunc(value)
+ {
+    return '<font size="30">' + value + "\n%</font>";
+ }
+    
+  
+ // -----------------------차트 설정 끝 -----------------------
+            
+            </script>
+        
+    <style>
+     
+    </style>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+        <!-- header S --> 
+        <header id="header">
+			<h1>나의 자산</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>		
+			<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+			<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		</header>
+		<!--// header E -->
+        <!-- content-view S -->
+        <div class="content-view">
+            <div class="com_tabmenu_type01 menunum04">
+                <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+				<ul role="tablist">
+					<li><a href="#nolink">전체</a></li>
+					<li><a href="#nolink">자산</a></li>
+					<li><a href="#nolink">부채</a></li>
+					<li class="on"><a href="#nolink">진단</a></li>
+				</ul>
+				<!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+            </div>
+            <!-- content S -->
+            <div id="content" class="com_sub_type02"style="display: block;">
+                <!--   20210625 한별 상단 수정건 적용 S -->
+                <div class="com_submainbox_type01 com_submainbox_type01-02">
+                    
+                        <div class="select_date">
+                            <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 S -->
+                            <button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+                            <a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+                            <button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+                            <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 E -->
+                        </div>
+                    
+                    <div class="text_sm">
+                        매월 1일 오전 8시에 지난달 자산보고서가 <br>업데이트 됩니다.
+                    </div>
+                    <div class="text">
+                        <b>매우 건강</b>하게 자산을 관리하고 계시네요.
+                    </div>
+                    <div class="card_wrap">
+                        <div class="row">
+                            <div class="card">
+                                <div class="title">자산 </div>
+                                <div class="content"><span class="num">45,000,000</span><em class="won">원</em></div>
+                            </div>
+                            <div class="card">
+                                <div class="title">대출 </div>
+                                <div class="content"><span class="num">2,800,000</span><em class="won">원</em></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card spend">
+                                <div class="title">지출 </div>
+                                <div class="content"><span class="num">153,540</span><em class="won">원</em></div>
+                            </div>
+                            <div class="card">
+                                <div class="title">신용 </div>
+                                <div class="content"><span class="num">1</span>등급</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="com_sub_radius">
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">금융스타일</strong>
+                        <a href="#nolink" class="com_btn_view"><span>자세히보기</span></a><!-- 20211022 한별 텍스트 자세히보기 숨기기 --> 
+                        <div class="horizon_chart_wrap">
+                            <p>계좌 <span class="num bold">38,610,000</span><em class="won">원</em></p>
+                            <div class="horizon_chart">
+                                <div class="hori_chart">
+                                    <div class="bar bar01" style="width:90%"></div>
+                                    <div class="bar bar02" style="width:30%"></div>
+                                </div>
+                            </div>
+                            <p>대출 <span class="num bold">18,610,000</span><em class="won">원</em> <span class="gray">(담보제외)</span></p>
+                        </div>
+                        <div class="com_box_type02 mt20">
+                            <strong class="com_box_tit">보유계좌</strong>
+                            <!-- <a href="#nolink" class="com_btn_view"><span class="gray"></span></a> -->
+                            <div class="chart_wrap">
+                                <!-- 차트가 삽입될 DIV -->
+                                <!-- 20211108 한별 접근성 추가  S -->
+                                <div id="chartHolder" aria-hidden="true"></div>
+                                <!-- 20211108 한별 접근성 추가  E -->
+                            </div>
+                            <div class="submain_list_wrap">
+                                <div class="list case01">
+                                    <div class="title">저축 <span class="num">52.2%</span></div>
+                                    <div class="content"><span class="num">2,060,000</span><em class="won">원</em></div>
+                                </div>
+                                <div class="list case02">
+                                    <div class="title">미래 <span class="num">36.7%</span></div>
+                                    <div class="content"><span class="num">10,424,700</span><em class="won">원</em></div>
+                                </div>
+                                <div class="list case03">
+                                    <div class="title">투자 <span class="num">12.1%</span></div>
+                                    <div class="content"><span class="num">8,494,200</span><em class="won">원</em></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="com_box_type03 mt15 bg01">
+                            <div class="text">
+                                김길동님은<br> <a href="#" class="color underline">미래지향</a> 스타일<br> 입니다.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">나의 신용정보</strong>
+                        <a href="#nolink" class="com_btn_view"><span>자세히보기</span></a><!-- 20211022 한별 텍스트 자세히보기 숨기기 --> 
+                        <div class="h_donut_wrap">
+                            <div class="h_donut">
+                                <!-- 차트가 삽입될 DIV -->
+                                <!-- 20211111 한별 접근성 추가 차트 내 점수 읽어주는 시스템 필요, aria-label="신용점수 000점" 에 신용점수가 입력되어야 한다고 합니다 S -->
+                                <div id="chartHolder2" aria-hidden="true">
+                                    <img class="transBG" src="../../../../src/assets_v40/images/icon/chart_transBG.png" role="img" aria-label="신용점수 000점">
+                                </div>
+                                <!-- 20211111 한별 접근성 추가 차트 내 점수 읽어주는 시스템 필요, aria-label="신용점수 000점" 에 신용점수가 입력되어야 한다고 합니다 E -->
+                                
+                            </div>
+                            <div class="chart_txt">김길동님의<br>
+                                신용점수는<br>
+                                <b>상위5%</b> 입니다.</div>
+                        </div>
+                    </div>
+
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">입출금</strong>
+                        <div class="txt">4월은 <span class="num"><b>523,700</b>원</span>의 <b>여유</b>가 있었네요.</div>
+                        <div class="compare_chart_wrap">
+                            <div class="chart">
+                                <div class="bg">
+                                    <!-- 20211111 한별 접근성 추가  S -->
+                                    <div class="area top">
+                                        <span class="text_over">입금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <div class="area mid">
+                                        <span class="text_over">차액</span>
+                                        <div><span class="num">523,700</span><em class="won">원</em></div>
+                                    </div>
+                                    <div class="area bottom">
+                                        <span class="text_over">출금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <!-- 20211111 한별 접근성 추가 E -->
+                                </div>
+                                <div class="bar_wrap">
+                                    <div class="bars">
+                                        <div class="bar bar01"></div>
+                                        <div class="bar bar02"></div>
+                                    </div>
+                                    <div class="label">
+                                        <span>입금</span>
+                                        <span>출금</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="com_box_type02 mt20">
+                            매월 평균 500,000원 이상의 여유자금이 
+    생기는 김농협님을 위해 <a href="#" class="color underline">e금리우대적금</a>을 
+    추천드려요.
+                        </div>
+                    </div> <!-- 입금 > 출금 금액 경우 -->
+
+                    <div class="com_box_type01 case_diff">
+                        <strong class="com_box_tit">입출금</strong>
+                        <div class="txt">4월은 <span class="num"><b>523,700</b>원</span>이 <b>부족</b>했어요.</div>
+                        <div class="compare_chart_wrap">
+                            <div class="chart">
+                                <div class="bg">
+                                    <!-- 20211111 한별 접근성 추가  S -->
+                                    <div class="area top">
+                                        <span class="text_over">출금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <div class="area mid">
+                                        <span class="text_over">차액 금액</span>
+                                        <div><span class="num">523,700</span><em class="won">원</em></div>
+                                    </div>
+                                    <div class="area bottom">
+                                        <span class="text_over">입금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <!-- 20211111 한별 접근성 추가 E -->
+                                </div>
+                                <div class="bar_wrap">
+                                    <div class="bars">
+                                        <div class="bar bar01"></div>
+                                        <div class="bar bar02"></div>
+                                    </div>
+                                    <div class="label">
+                                        <span>입금</span>
+                                        <span>출금</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="com_box_type02 mt20">
+                            매월 평균 500,000원 이상의 여유자금이 
+    생기는 김농협님을 위해 <a href="#" class="color underline">e금리우대적금</a>을 
+    추천드려요.
+                        </div>
+                    </div> <!-- 입금 < 출금 금액 경우 -->
+
+                    <div class="com_box_type01 case_equal">
+                        <strong class="com_box_tit">입출금</strong>
+                        <div class="txt">4월은 <span class="num"><b>입출금</b></span> <b>금액</b>이 같아요.</div>
+                        <div class="compare_chart_wrap">
+                            <div class="chart">
+                                <div class="bg">
+                                    <!-- 20211111 한별 접근성 추가  S -->
+                                    <div class="area top">
+                                        <span class="text_over">입금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <div class="area mid">
+                                        <span class="text_over">차액 금액</span>
+                                        <div><span class="num">523,700</span><em class="won">원</em></div>
+                                    </div>
+                                    <div class="area bottom">
+                                        <span class="text_over">출금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <!-- 20211111 한별 접근성 추가 E -->
+                                </div>
+                                <div class="bar_wrap">
+                                    <div class="bars">
+                                        <div class="bar bar01"></div>
+                                        <div class="bar bar02"></div>
+                                    </div>
+                                    <div class="label">
+                                        <span>입금</span>
+                                        <span>출금</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="com_box_type02 mt20">
+                            매월 평균 500,000원 이상의 여유자금이 
+    생기는 김농협님을 위해 <a href="#" class="color underline">e금리우대적금</a>을 
+    추천드려요.
+                        </div>
+                    </div> <!-- 입금 출금 금액 같을 경우 -->
+
+                    <div class="com_box_type01 case_zero">
+                        <strong class="com_box_tit">입출금</strong>
+                        <div class="txt">4월은 <span class="num"><b>입출금 거래</b></span>가 <b>아직</b>없어요.</div>
+                        <div class="compare_chart_wrap">
+                            <div class="chart">
+                                <div class="bg">
+                                    <!-- 20211111 한별 접근성 추가 S -->
+                                    <div class="area top">
+                                        <span class="text_over">입금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em></div>
+                                    <div class="area mid">
+                                        <span class="text_over">차액 금액</span>
+                                        <div><span class="num">523,700</span><em class="won">원</em></div>
+                                    </div>
+                                    <div class="area bottom">
+                                        <span class="text_over">출금 금액</span>
+                                        <span class="num">21,350,200</span><em class="won">원</em>
+                                    </div>
+                                    <!-- 20211111 한별 접근성 추가 E -->
+                                </div>
+                                <div class="bar_wrap">
+                                    <div class="bars">
+                                        <div class="bar bar01"></div>
+                                        <div class="bar bar02"></div>
+                                    </div>
+                                    <div class="label">
+                                        <span>입금</span>
+                                        <span>출금</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="com_box_type02 mt20">
+                            매월 평균 500,000원 이상의 여유자금이 
+    생기는 김농협님을 위해 <a href="#" class="color underline">e금리우대적금</a>을 
+    추천드려요.
+                        </div>
+                    </div> <!-- 입금 출금 0원 일때 -->
+                </div>
+                <!--   20210714 한별 위치이동 수정 적용 S -->
+                <div class="new_add_register"><a href="#nolink"><span>더 연결할 자산이 있으신가요?</span></a></div>
+                <!--//   20210714 한별 위치이동 수정 적용 E -->
+            </div>
+            <div id="content" class="nodata_etc">
+                <!--20211028 노데이터 추가 S--->
+                <div class="com_submainbox_type01 com_submainbox_type01-02">
+                    <button class="select_date">
+                        <span class="num">2021</span>년 <span class="num">4</span>월 <span class="caret"></span>
+                    </button>
+                    <div class="text_sm">
+                        매월 1일 오전 8시에 지난달 자산보고서가 <br>업데이트 됩니다.
+                    </div>
+                    
+                    <div class="card_wrap">
+                        <div class="com_box_type01 mt25">
+                            <div class="ip_nodata_top">
+                            <p>고객님은 이번달에<br>
+                                마이데이터 서비스에 가입하셨습니다.
+                                </p>
+                                <div class="imageico"></div>
+                            <strong class="com_box_tit">고객님의 첫 금융진단 보고서는<br> 
+                                <span class="com_point_darkblue">다음달 1일에 업데이트</span> 됩니다.
+                            </strong>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="com_sub_radius">
+                    <div class="new_add_register"><a href="#nolink"><span>더 연결할 자산이 있으신가요?</span></a></div>
+                </div>
+                <!--20211028 노데이터 추가 E--->        
+            </div>
+            <!--// content E -->
+
+           
+        </div>
+        <!--// content-view E -->
+        <script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

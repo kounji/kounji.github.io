@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>지출</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+		<div id="view-wrap">
+			<!-- header -->
+			<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+				<h1>지출</h1>
+				<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+			</header>
+			<!-- content-view S -->
+			<div class="content-view mydata2023">
+				<div class="com_tabmenu_type01 menunum03">
+					<ul role="tablist">
+						<li class="on"><a href="#nolink">금융달력</a></li>
+						<li><a href="#nolink">지출내역</a></li>
+						<li><a href="#nolink">지출분석</a></li>
+					</ul>
+				</div>
+				<!--// header E -->
+				<!-- content S -->
+				<div id="content" class="com_sub_type02">
+					<div class="calendar_wrap newCalendarType2023">
+						<section class="radius"><!-- class="calendar_box" -->
+							<div class="com_inner">
+								<div class="select_dual_wrap">
+									<div class="select_dual">
+										<div class="area">
+											<div class="select_date">
+												<!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
+												<button class="cal_btn cal_prev disabled" aria-label="한달 전 이동" disabled title="선택불가"></button>
+												<a class="year_month" href="javascript:console.log('월');" title="년월선택"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+												<button class="cal_btn cal_next" aria-label="한달 후 이동"></button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- 1011 UI 변경 -->
+								<div class="in_out_cate02 gray_box_2023">
+									<dl class="in">
+										<dt>수입</dt>
+										<dd><a href="#nolink" class="link_arrow"><span><em class="num">123,456,789</em>원</span></a></dd>
+									</dl>
+									<dl class="out">
+										<dt>지출</dt>
+										<dd><a href="#nolink" class="link_arrow"><span><em class="num">123,456,789</em>원</span></a></dd>
+									</dl>
+								</div>
+								<!-- //1011 UI 변경 -->
+
+								<!-- <div class="in_out_cate">
+									<a href="#nolink">수입</a>
+									<a href="#nolink">지출</a> -->
+									<!--a href="#nolink">이체</a--><!-- 8/16 jlee 설계변경으로 삭제 -->
+								<!-- </div> -->
+								
+								<table class="cal_tb">
+									<caption>가계부 메인 달력에서 해당 요일 및 날짜에 대한 지출내용을 제공합니다.</caption>
+									<colgroup>
+										<col style="width:15%">
+										<col style="width:14%">
+										<col style="width:14%">
+										<col style="width:14%">
+										<col style="width:14%">
+										<col style="width:14%">
+										<col style="width:15%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col" class="sun">일</th>
+											<th scope="col">월</th>
+											<th scope="col">화</th>
+											<th scope="col">수</th>
+											<th scope="col">목</th>
+											<th scope="col">금</th>
+											<th scope="col" class="sat">토</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<tr>
+											<td class="pre">
+												<a href="#nolink" role="button">
+													<span class="date">30</span>
+												</a>
+
+											</td>
+											<td class="pre">
+												<a href="#nolink" role="button">
+													<span class="date">31</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">1</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">2</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">3</span>
+												</a>
+											</td>
+											<td class="today" >
+												<a href="#nolink" title="오늘 날짜 선택됨">
+													<span class="date">4</span>
+													<div class="event_mark">
+														<p class="num com_point_red">-6,000</p>
+														<p class="num com_point_blue">10,000</p>
+													</div>
+												</a>
+												
+											</td>
+											<td class="sat">
+												<a href="#nolink" role="button">
+													<span class="date">5</span>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td class="sun">
+												<a href="#nolink" role="button">
+													<span class="date">6</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">7</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">8</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">9</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">10</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">11</span>
+												</a>
+											</td>
+											<td class="sat">
+												<a href="#nolink" role="button">
+													<span class="date">12</span>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td class="sun">
+												<a href="#nolink" role="button">
+													<span class="date">13</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">14</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">15</span>
+													<div class="event_mark">
+														<p class="num com_point_red">-54,000</p>
+													</div>
+												</a>
+												
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">16</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">17</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">18</span>
+													<div class="event_mark">
+														<p class="num com_point_red">-60,000</p>
+													</div>
+												</a>
+											</td>
+											<td class="sat">
+												<a href="#nolink" role="button">
+													<span class="date">19</span>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td class="sun">
+												<a href="#nolink" role="button">
+													<span class="date">20</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">21</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">22</span>
+													<div class="event_mark">
+														<p class="num com_point_red">-100,000</p>
+													</div>
+												</a>
+												
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">23</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">24</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">25</span>
+												</a>
+											</td>
+											<td class="sat">
+												<a href="#nolink" role="button">
+													<span class="date">26</span>
+												</a>
+											</td>
+										</tr>
+										<tr>
+											<td class="sun">
+												<a href="#nolink" role="button">
+													<span class="date">27</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">28</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">29</span>
+												</a>
+											</td>
+											<td>
+												<a href="#nolink" role="button">
+													<span class="date">30</span>
+												</a>
+											</td>
+											<td class="disable">
+												<a href="#nolink" role="button">
+													<span class="date">31</span>
+												</a>
+											</td>
+											<td class="disable">
+												<a href="#nolink" role="button">
+													<span class="date">1</span>
+												</a>
+											</td>
+											<td class="disable">
+												<a href="#nolink" role="button">
+													<span class="date">2</span>
+												</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="com_space_type01"></div>
+							<div class="calendar_detail">
+								<div class="calendar_notice_box">
+									<div class="inner_wrap">
+										<div class="com_inner">
+											<div class="new_tit_area">
+												<div class="tit"><em>15</em><span>일(수)</span></div>
+											</div>
+											<ul class="list_type_01">
+												<li>
+													<a href="#nolink">
+														<dl>
+															<dt>
+																<div>
+																	<i class="ico_hospital"><span class="blind">의원</span></i>
+																	<em>김안과 의원</em>
+																	<span>
+																		<span>KT-현대카드 M Edition3 (라이트할부형)</span>
+																		<span>의료/건강</span>
+																	</span>
+																</div>
+															</dt>
+															<dd>
+																<span class="com_point_red">
+																	<em class="num">-20,000</em><em class="unit">원</em>
+																</span>
+															</dd>
+														</dl>
+													</a>
+												</li>
+												<li>
+													<a href="#nolink">
+														<dl>
+															<dt>
+																<div>
+																	<i class="ico_food"><span class="blind">음식</span></i>
+																	<em>명동찌개마을</em>
+																	<span>
+																		<span>KT-현대카드 M Edition3 (라이트할부형)</span>
+																		<!-- <span class="common_bar"></span> -->
+																		<span>할부(2개월)</span>
+																	</span>
+																</div>
+															</dt>
+															<dd>
+																<span class="com_point_red">
+																	<em class="num">-20,000</em><em class="unit">원</em>
+																</span>
+															</dd>
+														</dl>
+													</a>
+												</li>
+												<li>
+													<a href="#nolink">
+														<dl>
+															<dt>
+																<div>
+																	<i class="ico_exp"><span class="blind">농협</span></i>
+																	<em>김농협</em>
+																	<span>농협협</span>
+																</div>
+															</dt>
+															<dd>
+																<span class="com_point_red">
+																	<em class="num cancelLine">-20,000</em><em class="unit">원</em><!-- 09/11 jlee 취소선 .cancelLine 추가 -->
+																</span>
+															</dd>
+														</dl>
+													</a>
+												</li>
+												<li>
+													<a href="#nolink">
+														<dl>
+															<dt>
+																<div>
+																	<i class="ico_exp"><span class="blind">농협</span></i>
+																	<em>김농협</em>
+																	<span>농협협</span>
+																</div>
+															</dt>
+															<dd>
+																<span class="com_point_blue">
+																	<em class="num ">50,000</em><em class="unit">원</em>
+																</span>
+															</dd>
+														</dl>
+													</a>
+												</li>
+											</ul>
+										</div>
+
+										<!-- 조회내역이 없을경우 S -->
+										<div class="no_data_box grayExclamationType">
+											<div class="no_data_list">
+												<p>조회된  정보가 없습니다.</p>
+											</div>
+										</div>
+										<!--// 조회내역이 없을경우 E -->
+
+										<div class="com_space_type01"></div>
+										<div class="com_inner">
+											<!-- 리스트 S -->
+											<div class="new_tit_area">
+												<div class="tit"><em>4</em><span>월의 할부</span></div>
+												<div class="total_price">
+													<span>합계</span>
+													<em class="num">465,000</em>
+													<span>원</span>
+												</div>
+											</div>
+											<ul class="list_type_02">
+												<li>
+													<dl>
+														<dt>
+															<div>
+																<em>NH카드인터넷</em>
+															</div>
+															<span>NH농협카드 (1/10)</span>
+														</dt>
+														<dd>
+															<span class="com_price">
+																<em class="num ">10,000</em><em class="unit">원</em>
+															</span>
+														</dd>
+													</dl>
+												</li>
+												<li>
+													<dl>
+														<dt>
+															<div>
+																<em>CJmall</em>
+															</div>
+															<span>KB국민카드 (1/3)</span>
+														</dt>
+														<dd>
+															<span class="com_price">
+																<em class="num cancelLine">10,000</em><em class="unit">원</em><!-- 09/11 jlee 취소선 .cancelLine 추가 -->
+															</span>
+														</dd>
+													</dl>
+												</li>
+											</ul>
+											<!--// 리스트 E -->	
+										</div>
+										<div class="com_inner com_notice_type01">
+											<p class="dot_msg">할부 결제 예정 내역은 청구 데이터가 집계될 시점에 알 수 있으므로 집계 전에는 나오지 않을 수 있습니다.</p>
+										</div>
+										
+										<!-- 조회내역이 없을경우 S -->
+										<div class="no_data_box grayExclamationType">
+											<div class="no_data_list">
+												<p>조회된 정보가 없습니다.</p>
+											</div>
+										</div>
+										<!--// 조회내역이 없을경우 E -->
+
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<!--// content E -->
+				<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+			</div>
+			<!--// content-view E -->
+		</div>
+		<div class="cmm-layer-area"></div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- float S -->
+	<div class="dimmed" ></div>
+	<div class="toggle-box sticky">
+		<div data-ui-toggle="sticky">
+			<button type="button" class="btn_float" aria-expanded="false">
+				<span class="tit">수입,지출 추가 메뉴</span><!-- 1004 접근성 반영 -->
+				<em class="open">열기</em><em class="close">닫기</em>
+			</button>
+			<div class="view_box p0">
+				<button type="button" class="btn_01"><span>수입 추가</span></button>
+				<button type="button" class="btn_02"><span>지출 추가</span></button>
+			</div>
+		</div>
+	</div>
+	<!--// float E -->
+
+	<script>
+		//0927 접근성 반영
+		$(document).ready(function(){
+			$(document).on('click', '*[data-ui-toggle] *[aria-expanded],*[data-toggle-target] a', function(){
+				if($(this).attr('aria-expanded') == 'false'){
+					$('.view_box').css('display','none');
+				} else {
+					$('.view_box').css('display','block');
+				}		
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>전송요구 완료 및 금융상품 선택 &lt; 한번에 연결 &lt; 금융자산 &lt; 자산연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function() {
+			//전체선택
+			jQuery('.btn_check input[name=allagree]').prop("checked",true);//전체선택 체크
+			var _btn = jQuery('.btn_check3.checkAll input[type=checkbox]'),
+					_checkAll = jQuery('.btn_check input[name=allagree]'),
+					_checkAllCnt =_checkAll.length;//전체 체크박스 갯수
+			_btn.on('click',function(){
+				if(jQuery(this).prop("checked")){
+					jQuery(this).next().text('선택해제');
+					jQuery('.btn_check input[name=allagree]').prop("checked",true);
+				}else{
+					jQuery(this).next().text('전체선택');
+					jQuery('.btn_check input[name=allagree]').prop("checked",false);
+				};
+			});
+			
+			//항목선택
+			_checkAll.on('click',function(){
+				_checkedCnt =jQuery('.btn_check input[name=allagree]:checked').length;//선택된 체크박스 갯수
+				//console.log(_checkAllCnt + " == " + _checkedCnt);
+				if(_checkAllCnt == _checkedCnt){
+					_btn.prop("checked",true);
+					_btn.next().text('선택해제');
+				}else{
+					_btn.prop("checked",false);
+					_btn.next().text('전체선택');
+				};
+			});
+		});
+	//-->
+	</script>
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>자산연결</h1>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner progress_wrap">
+				<strong class="titH1">관리할 자산(공공)정보를<br>자산을 선택해 주세요</strong>
+				<span class="progress_num"><em class="pointColor green">4</em>/5</span>
+			</div>
+			<div class="com_inner">
+				<div class="custom_box flex_new_tit_area mt0">
+
+					<div class="list_type_box">
+						<div class="new_tit_area">
+							<div class="tit"><span>연결 요청 완료 <em class="pointColor green">12</em>개</span></div>
+						</div>
+					</div>
+
+					<div class="btn_check btn_check3 checkAll">
+						<input type="checkbox" name="allagreeChek" id="checkall01" checked="checked">
+						<label for="checkall01">전체해제</label>
+					</div>
+				</div>
+
+				<!-- 농협은행 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="I1AAAZ0000"><span class="blind">농협</span></i>
+									<span>농협중앙회 <em class="num">(2/2)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall02">
+									<label for="checkall02">
+										<span>
+											<strong class="bank_name">NH주거래우대통장</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall03">
+									<label for="checkall03">
+										<span>
+											<strong class="bank_name">NH주거래우대통장</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// 농협은행 -->
+				
+				<!-- BC카드 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="ZVAAFQ0000"><span class="blind">BC카드</span></i>
+									<span>BC카드 <em class="num">(1/1)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall04">
+									<label for="checkall04">
+										<span>
+											<strong class="bank_name">로스트아크 카드</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+					<ul class="view_cont list_type_04">
+						<li>
+							<div class="custom_terms custom_box_checktype02">
+								<span class="btn_check btn_check3">
+									<input type="checkbox" name="allagree" id="checkall05">
+									<label for="checkall05">
+										<span>
+											<strong>포인트</strong>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="custom_terms custom_box_checktype02">
+								<span class="btn_check btn_check3">
+									<input type="checkbox" name="allagree" id="checkall06">
+									<label for="checkall06">
+										<span>
+											<strong>청구&middot;결제&middot;리볼빙</strong>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="custom_terms custom_box_checktype02">
+								<span class="btn_check btn_check3">
+									<input type="checkbox" name="allagree" id="checkall07">
+									<label for="checkall07">
+										<span>
+											<strong>카드대출</strong>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// BC카드 -->
+
+				<!-- NH투자증권 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="C1AACQ0000"><span class="blind">NH투자증권</span></i>
+									<span>NH투자증권 <em class="num">(1/1)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall08">
+									<label for="checkall08">
+										<span>
+											<strong class="bank_name">종합매매</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// NH투자증권 -->
+
+				<!-- DB손해보험 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="B2AAEN0000"><span class="blind">DB손해보험</span></i>
+									<span>DB손해보험 <em class="num">(1/1)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall09">
+									<label for="checkall09">
+										<span>
+											<strong class="bank_name">참 좋은 손해보험</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// DB손해보험 -->
+
+				<!-- 이베이코리아 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<!-- <i class="E1AAGP0000"><span class="blind">이베이코리아</span></i> -->
+									<i class="com_no_img"><span class="blind">이베이코리아</span></i>
+									<span>이베이코리아 <em class="num">(4/4)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall10">
+									<label for="checkall10">
+										<span>
+											<strong class="bank_name">스마일캐시</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall11">
+									<label for="checkall11">
+										<span>
+											<strong class="bank_name">G마켓 yong12**</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall12">
+									<label for="checkall12">
+										<span>
+											<strong class="bank_name">옥션 yong12**</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// 이베이코리아 -->
+				
+				
+				<!-- 농협캐피탈 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="D3AAOB0000"><span class="blind">농협캐피탈</span></i>
+									<span>농협캐피탈 <em class="num">(1/1)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall13">
+									<label for="checkall13">
+										<span>
+											<strong class="bank_name">아파트론</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// 농협캐피탈 -->
+
+				<!-- 서울보증보험 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+					<!-- 
+						열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+						닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+					-->
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area new_tit_area02">
+								<div class="tit">
+									<i class="B4AADL0000"><span class="blind">서울보증보험</span></i>
+									<span>서울보증보험 <em class="num">(1/1)</em></span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<div class="custom_terms">
+								<span class="btn_check btn_check2">
+									<input type="checkbox" name="allagree" id="checkall14">
+									<label for="checkall14">
+										<span>
+											<strong class="bank_name">전세금보장 신용보험</strong>
+											<em class="bank_num num">13246534325</em>
+										</span>
+									</label>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// 서울보증보험 -->
+			</div>
+			<hr class="hr02">
+			<div class="com_inner">
+				<div class="custom_box">
+					<div class="new_tit_area flex_new_tit_area mt0">
+						<strong class="tit"><span>연결 요청 실패 <em class="pointColor green">3</em>개</span></strong>
+						<!-- 연결 재시도 -->
+						<button type="button" class="stdBtn innerType01">연결 재시도</button>
+						<!--// 연결 재시도 -->
+					</div>
+				</div>
+				<div class="custom_list com_box_type01 mt8 noBorder">
+					<div class="list_type_custom">
+						<div class="list_item">
+							<i class="ZVAAEM0000"></i>
+							<strong class="tit">우리은행</strong>
+							<span class="ico_result fail_tip">실패
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info">
+											<em class="com_icon_info3"><span class="blind">툴팁열기</span></em>
+										</a>
+									</div>
+									<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+										<div>
+											해당 기관에 보유한 자산이 없습니다.<br>
+											(오류코드 <em>40403</em>)
+											<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+										</div> 
+									</div>
+								</div>
+							</span>
+						</div>
+						<div class="list_item">
+							<i class="C1AABR0000"></i>
+							<strong class="tit">키움증권</strong>
+							<span class="ico_result fail_tip">실패
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info">
+											<em class="com_icon_info3"><span class="blind">툴팁열기</span></em>
+										</a>
+									</div>
+									<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+										<div>
+											해당 기관에 보유한 자산이 없습니다.<br>
+											(오류코드 <em>40403</em>)
+											<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+										</div> 
+									</div>
+								</div>
+							</span>
+						</div>
+						<div class="list_item">
+							<i class="C1AABR0000"></i>
+							<strong class="tit">키움증권</strong>
+							<span class="ico_result fail_tip">실패
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info">
+											<em class="com_icon_info3"><span class="blind">툴팁열기</span></em>
+										</a>
+									</div>
+									<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+										<div>
+											해당 기관에 보유한 자산이 없습니다.<br>
+											(오류코드 <em>40403</em>)
+											<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+										</div> 
+									</div>
+								</div>
+							</span>
+						</div>
+					</div>
+				</div>
+				<p class="stdMsg star mt-6">재연결이 가능한 기관에 한하여 연결을 재시도 합니다.</p>
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" role="button" class="btn btn_mint btn_off" aria-disabled="true">15개 연결하기</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>연금절세 메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>나의 연금/절세</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
+                <section class="pension_main">
+                    <!--배너-->
+                    <p class="top_banner">
+                        <a href="#nolink">연말정산으로<br>공제받을 수 있는 금액은?</a>
+                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
+                    </p>
+
+                    <!--update-->
+                    <div class="update">
+                        <span>조금전</span>
+                        <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+                    </div>
+
+                    <!--개요-->
+                    <!--연결된 연금이 있는 경우-->
+                    <div class="outline">
+                        <h2>노후준비를 위해 모은 돈</h2>
+                        
+                        <div class="toggle_money">
+                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <label for="sum_view_01" class="btns">
+                                <span class="show">보기</span>
+                                <span class="hide">숨김</span>
+                            </label>
+                            <div class="sum">
+                                <span class="show">쉿! 비밀이에요</span>
+                                <span class="hide">1,952,692,372원</span>
+                            </div>
+                        </div>
+
+                        <p class="txt">지난 달보다 <em>4,250원</em> 늘었어요</p>
+                    </div>
+                    <!--//연결된 연금이 있는 경우-->
+
+                    <!--분류별 개요-->
+                    <div class="board_box pension_outline">
+                        <div class="chart">
+                            <div class="word_bubble">
+                                <p>공적연금 <em>30%</em></p>
+                            </div>
+                            <canvas id="cate_outline_chart"></canvas>
+                        </div>
+                    
+                        <ul role="tablist" class="inner_tab">
+                            <li class="on"><button type="button" role="tab" aria-selected="true">공적연금</button></li>
+                            <li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+                            <li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+                        </ul>
+                        
+                        <script>
+                            var canvas  = document.getElementById("cate_outline_chart");
+                            var chart = canvas.getContext("2d");
+    
+                            const colors =[
+                                [
+                                    [
+                                        [0,'#FF929D'],
+                                        [0.5,'#FFB67C'],
+                                        [1,'#FF7459']
+                                    ],   
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                    ],
+                                ],
+    
+                                [
+                                    [
+                                        [0,'transparent'],
+                                        [1,'transparent']
+                                    ],   
+                                    [
+                                        [1, '#72c8ff'],
+                                        [0, '#4579FF']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                    ],
+                                ],
+    
+                                [
+                                    [
+                                        [0,'transparent'],
+                                        [1,'transparent']
+                                    ],   
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0.7, '#6D64F1'],
+                                        [0, '#7B96FF'],
+                                    ],
+                                ]
+                            ]
+                        
+                            const data = {
+                                numberOfParts: 3,
+                                parts:{"pt": [30 , 30 , 40]},//percentage of each parts 
+                                colors:{"cs": null }//color of each part
+                            };
+                        
+                            var drawDount = new drawdountChart(chart);
+    
+                            drawDount.set(150, 140, 132, false, Math.PI, 0, 15, "#f7f8fa", 1);
+                            drawDount.bgdraw();
+    
+                            $(document).off('click.inner_tab').on('click.inner_tab', '.inner_tab button', function(e){                           
+                                var _now = $(this).parent().index();
+                                chart.clearRect(0, 0, 300, 300);
+                                data.colors.cs = colors[_now];
+                                drawDount.draw(data);
+                            });
+    
+                            $("button", $('.inner_tab li').eq(0)).trigger('click');
+                        </script>
+                        
+                        <!--공적연금-->
+                        <div class="details">
+                            <ul>
+                                <li>공적연금<em>1</em><span class="total"><em>30,000,000</em>원</span></li>
+                                <li>
+                                    <a href="#nolink">
+                                        <i class="ico_bank PBAAVM0000"></i>
+                                        <span class="org">국민연금공단국민연금공단국민연금공단</span>
+                                        <span class="total"><em>총 가입기간 350개월</em></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--개인연금 
+                        <div class="details">
+                            <ul>
+                                <li>개인연금<em>2</em><span class="total"><em>40,000,000</em>원</span></li>
+                                <li>
+                                    <a href="#nolink">
+                                        <i class="ico_bank PBAAVM0000"></i>
+                                        <span class="org">국민연금공단국민연금공단국민연금공단</span>
+                                        <span class="total"><em>500,000,000</em>원</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <i class="ico_bank PBAAVM0000"></i>
+                                        <span class="org">국민연금공단국민연금공단국민연금공단</span>
+                                        <span class="total"><em>500,000</em>원</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                       -->
+
+                        <!--퇴직연금
+                        <div class="details">
+                            <ul>
+                                <li>퇴직연금<em>2</em><span class="total"><em>40,000,000</em>원</span></li>
+                                <li>
+                                    <a href="#nolink">
+                                        <i class="ico_bank PBAAVM0000"></i>
+                                        <span class="org">국민연금공단국민연금공단국민연금공단</span>
+                                        <span class="total"><em>500,000,000</em>원</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <i class="ico_bank PBAAVM0000"></i>
+                                        <span class="org">국민연금공단국민연금공단국민연금공단</span>
+                                        <span class="total"><em>500,000</em>원</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        -->
+
+                        <div class="bottom">
+                            <button type="button" class="btn_connect">연금자산 연결하기</button>
+                        </div>
+                    </div>
+
+
+                    <!--금융지식-->
+                    <div class="finlit">
+                        <h2 class="h_tit01">금융지식</h2>
+                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+
+                        <div class="scroller">
+                            <ul>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="" />
+                                        <strong>절세형 보험 상품 활용하기</strong>
+                                        <span class="hash">#60대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_50.png" alt="" />
+                                        <strong>IRP와 연금저축 활용팁</strong>
+                                        <span class="hash">#50대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_40.png" alt="" />
+                                        <strong>연금저축 및 IRP 가입하고 노후 자금 준비</strong>
+                                        <span class="hash">#40대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_30.png" alt="" />
+                                        <strong>맞벌이 부부를 위한 세금 절약 노하우</strong>
+                                        <span class="hash">#30대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_20.png" alt="" />
+                                        <strong>첫 직장 생활에서의 소득공제 활용법</strong>
+                                        <span class="hash">#20대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_10.png" alt="" />
+                                        <strong>첫 직장 생활에서의 소득공제 활용법</strong>
+                                        <span class="hash">#10대</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--여러가지-->
+                    <div class="move_banner">
+                        <a href="#nolink" class="board_box rect old">
+                            <em>나의 노후준비</em>
+                            안정적인 은퇴를 준비하세요
+                        </a>
+
+                        <a href="#nolink" class="board_box rect tax">
+                            <em>세금납부 확인</em>
+                            내가 낸 세금, 쉽게 확인하세요
+                        </a>
+
+                        <a href="#nolink" class="board_box rect insure">
+                            <em>건강보험 가입내역</em>
+                            내 건강보험 가입내역을 확인하세요.
+                        </a>
+                    </div>
+
+                    <!--slick-->
+                    <div class="slick_banner">
+                        <div class="inner">
+                            <a href="#nolink">
+                                <dl class="deposit purple">
+                                    <dt>
+                                        <span class="target">은퇴준비 추천상품</span>
+                                        <strong>주머니금리쇼핑예금</strong>
+                                    </dt>
+                                    <dd class="type">(복리식정기예탁금)</dd>
+                                    <dd class="txt">가입금액을 가입금액단위별(주머니)로 구분가입,<br>주머니별 해지 가능</dd>
+                                    <dd class="tag">
+                                        <span># 또래 인기상품</span>
+                                        <span># 가입금액별 금리조정</span>
+                                    </dd>
+                                    <dd class="rate">최고 연<em>4.5</em>%</dd>
+                                </dl>
+                            </a>
+                            <a href="#nolink">
+                                <dl class="deposit blue">
+                                    <dt>
+                                        <span class="target">안락한 노후를 위한 추천상품</span>
+                                        <strong>주머니(money)정기적금</strong>
+                                    </dt>
+                                    <dd class="type">(오픈뱅깅 이용시 우대금리)</dd>
+                                    <dd class="txt">중도해지 걱정없이 목돈 만들기!<br>오픈뱅킹 이용하면 0.7%p 우대금리는 덤~</dd>
+                                    <dd class="tag">
+                                        <span># 목돈만들기</span>
+                                        <span># 0.7%p 우대금리</span>
+                                        <span># 1만원부터</span>
+                                    </dd>
+                                    <dd class="rate">최고 연<em>4.2</em>%</dd>
+                                </dl>
+                            </a>
+                            <a href="#nolink">
+                                <dl class="deposit green">
+                                    <dt>
+                                        <span class="target">안락한 노후를 위한 추천상품</span>
+                                        <strong>삼성생명 행복연금보험</strong>
+                                    </dt>
+                                    <dd class="type">(무배당)</dd>
+                                    <dd class="txt">가입 후 5년 확정이율 적용</dd>
+                                    <dd class="tag">
+                                        <span># 일시납</span>
+                                        <span># 확정이율</span>
+                                    </dd>
+                                    <dd class="rate">확정 이율<em>3.3</em>%</dd>
+                                </dl>
+                            </a>
+                            <a href="#nolink">
+                                <dl class="deposit brown">
+                                    <dt>
+                                        <span class="target">안락한 노후를 위한 추천상품</span>
+                                        <strong>IBK e연금보험</strong>
+                                    </dt>
+                                    <dd class="type">노후준비와 비과세를 동시에 준비</dd>
+                                    <dd class="tag">
+                                        <span># 노후준비</span>
+                                        <span># 비과세</span>
+                                    </dd>
+                                    <dd class="rate">공시 이율<em>2.68</em>%</dd>
+                                </dl>
+                            </a>
+                        </div>
+
+                        <div class="controls">
+                            <p class="paging"></p>
+                            <button type="button" class="prev"><span class="blind">이전</span></button>
+                            <button type="button" class="next"><span class="blind">다음</span></button>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(function() {
+                            slick (); //슬릭
+                        });
+                
+                        function slick () {
+                            var $banner =  $('.slick_banner');
+                
+                            $(".inner", $banner).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+                                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+                                    $(".paging", $banner).html('<em>'+i + '</em> / ' + slick.slideCount)
+                
+                            });
+                
+                            $(".inner", $banner).slick({
+                                speed : 300,
+                                dots : false,
+                                adaptiveHeight: true,
+                                infinite: true,
+                                draggable: true,
+                                accessibility:true,
+                                arrows : true,
+                                cssEase:'linear',
+                                prevArrow:$(".controls .prev", $banner),
+                                nextArrow:$(".controls .next", $banner),
+                            });
+                        }
+                    </script>
+                    <!--//slick-->
+
+                    <div class="board_box_wrap banner">
+                        <a href="#nolink" class="board_box calc1">
+                            <em>대출이자 계산기</em>
+                            쉽고 빠른<br>대출금 계산하기
+                        </a>
+                        <a href="#nolink" class="board_box calc2">
+                            <em>대출한도 계산기</em>
+                            DSR계산하고 대출<br>가능금액 확인하기
+                        </a>
+                    </div>
+                   
+                </section>
+
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	
+	</script>
+</body>
+</html>

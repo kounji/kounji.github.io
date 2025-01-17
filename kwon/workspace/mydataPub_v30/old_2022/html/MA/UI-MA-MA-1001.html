@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>상호금융 개인자산관리</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	
+	<script type="text/javascript">
+		/* 2022-10-27 : commonChart.js 에서 메인 페이지로 이동 */
+		// 도너츠형 차트
+		function chartReadyHandler1(id) {
+			document.getElementById(id).setLayout(layoutDoughnut);
+			document.getElementById(id).setData(doughnutData);
+		}
+
+		// 도너츠형 차트
+		var layoutDoughnut = 
+		'<rMateChart backgroundColor="#FFFFFF" horizontalAlign="center" borderStyle="none"  width="100%">'
+			+'<Options>'
+				+'<Caption text=""/>'
+				// +'<Legend useVisibleCheck="true" />'
+				+'<Legend position="right" direction="vertical" useVisibleCheck="true" borderStyle="none" />'// 범례 속성
+			+'</Options>'
+			+'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right" />'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+			+'<Pie2DChart innerRadius="0.5" showDataTips="false" displayCompleteCallFunction="removeTabindex">'
+			/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+			/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+				+'<series>'
+					+'<Pie2DSeries nameField="name" field="value" startAngle="80" labelPosition="inside" color="#ffffff" perWedgeExplodeRadius="[0.02,0.02,0.02,0.02]" formatter="{numFmt}">'
+						+'<fills>'
+							// 2022-10-26 : 접근성관련 수정
+							+'<SolidColor color="#57c9af" />' // 부동산
+							+'<SolidColor color="#668ee3" />' // 투자
+							+'<SolidColor color="#f76896" />' // 예금
+							+'<SolidColor color="#fdba69" />' // 자동차
+							+'<SolidColor color="#ffa270" />' // 포인트
+							+'<SolidColor color="#ca7ae8" />' // 기타자산
+						+'</fills>'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<showDataEffect>'
+								/* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+								+'<SeriesZoom duration="1000"/>'
+								+'<SeriesInterpolate duration="1200" elementOffset="60" easingFunction="EaseOutElastic"/>'
+							/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+								/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+								/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+										/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+								/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+								/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+								/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+				+'</series>'
+			+'</Pie2DChart>'
+		+'</rMateChart>';
+		/* //2022-10-27 : commonChart.js 에서 메인 페이지로 이동 */
+
+		// 도너츠형 차트 데이터
+		// 2022-10-24 : 클래스 변경
+		// 2022-10-26 : 접근성관련 수정
+		var doughnutData = [
+			{"name":"부동산 <span class='num'>52%</span>","value":52},
+			{"name":"투자 <span class='num'>15%</span>","value":15},
+			{"name":"예금 <span class='num'>25%</span>","value":25},
+			{"name":"자동차 <span class='num'>8%</span>","value":8},
+			{"name":"포인트 <span class='num'>10%</span>","value":10},
+			{"name":"기타자산 <span class='num'>20%</span>","value":20},
+		];
+		
+		// 도너츠형 차트
+		rMateChartH5.create("chart1", "ID_Doughnut", "", "100%", "100%");
+	
+		// 도너츠형 차트
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutDoughnut, // 레이아웃
+			"setData" : doughnutData // 데이터
+		});
+
+
+		// 매인 > 금융생활 halfCircle 그래프
+		function halcircleClickFn ( counter ) {
+			var tabList = $(".main .subMenu .subMenuList button[type='button']");
+			var circlePink = $('.main .graphAreaBox .circlePink'); // 채워지는 데이터(핑크)
+			var needle = $('.main .graphAreaBox .needle'); // 바늘
+
+			$('.mainScroll .slideBox').on('swipe',function(){
+				if( $('.main .slick-slide.slide03').hasClass('slick-active') ) {
+					halfCircleFn( counter ); // 매인 > 금융생활 halfCircle 그래프
+					circle01 ();
+				} else {
+					halfCircleFn( 0 ); // 값 0으로 초기화
+					circle02 ();
+				}
+			});
+
+			tabList.each(function(i){
+				tabList.eq(i).on('click', function() {
+					if( i===2 ){
+						halfCircleFn( counter ); // 매인 > 금융생활 halfCircle 그래프
+						circle01 ();
+					} else {
+						halfCircleFn( 0 ); // 값 0으로 초기화
+						circle02 ();
+					}
+				});
+			});
+
+			// 매인 > 금융생활 halfCircle 그래프
+			function halfCircleFn( counter ){
+				var smailCircle = $('.main .graphAreaBox .smailCircle'); // 회색 배경
+				needle.css( 'transform', 'rotateZ(' +(1.8*counter+(-90)) + 'deg)');
+				circlePink.css( 'transform', 'rotateZ(' + (1.8*counter) + 'deg)' );
+				smailCircle.html( '<span><span class="num">'+ counter + '</span>%</span>');
+			}
+
+			// 0 ~ 100 시작
+			function circle01 () {
+				circlePink.css('transition', 'all .6s');
+				needle.css('transition', 'all .6s');
+			}
+
+			// 100 ~ 0 종료
+			function circle02 () {
+				circlePink.css('transition', 'all 1.5s');
+				needle.css('transition', 'all 1.5s');
+			}
+		}
+	</script>
+</head>
+
+<body>
+<!-- wrap -->
+	<div id="wrap">
+		<!-- main -->
+		<div class="main">
+			<!-- 메인탑/헤더 영역 -->
+			<div class="mainHeader">
+				<div class="topMenu">
+					<!-- 
+						[ 2022-10-31 ]
+						1__ 이전화면 추가 및 전체 메뉴
+						2__ 새알림 태그 위치 수정
+					-->
+					<a href="javascript:void(0);" class="btn_back" role="button"><span class="blind">이전화면</span></a>
+					<ul class="top_menu">
+						<li class="alram">
+							<a href="javascript:console.log('GNB알림');" class="active" role="button"><span class="text_over">새알림</span></a>
+
+							<!-- 
+								새알림이 아닐 때 아래 태그 사용
+								<a href="javascript:console.log('GNB알림');" role="button"><span class="text_over">알림</span></a> 
+							-->
+						</li>
+						<li class="menu">
+							<a href="javascript:console.log('GNB전체메뉴');" role="button"><span class="text_over">전체메뉴</span></a>
+						</li>
+					</ul>
+					<div class="top_content">
+						<div class="top_content_header">
+							<span class="user_name">김농협</span>님 총자산
+							<a href="javascript:console.log('자산추가');" class="ico_main_insert">
+								<span class="blind">자산추가</span>
+							</a>
+							<a href="javascript:console.log('편집');" class="ico_main_edit">
+								<span class="blind">편집</span>
+							</a>
+						</div>
+						<div class="my_asserts_area">
+							<span class="counter">121,000,000</span><em>원</em>
+							<a href="javascript:console.log('내 보유 자산');"  data-popup="slide_popup_01" class="btn03"><!-- 220727 링크수정 -->
+								<span class="blind">내 보유 자산</span>
+							</a>
+						</div>
+						<p class="change_asserts">
+							<span class="timer">2022.5.30 08:30</span>
+							<a href="javascript:console.log('새로고침');" class="ico_refresh_black" role="button">
+								<span class="blind">새로고침</span>
+							</a>
+						</p>
+					</div>
+				</div>
+				<div class="subMenu">
+					<div class="comTabmenuType01">
+						<div class="waveMove">
+							<i class="waveAni01"></i>
+						</div>
+						<!-- 2022-10-26 : 웹접근성 관련 속성 추가 -->
+						<div class="subMenuList slider" role="tablist">
+							<button id="menu00" type="button" class="is-active" role="tab" aria-controls="tab_01" aria-selected="true">
+								<span>자산</span>
+							</button>
+							<button id="menu01" type="button" role="tab" aria-controls="tab_02" aria-selected="false">
+								<span>지출</span>
+							</button>
+							<button id="menu02" type="button" role="tab" aria-controls="tab_03" aria-selected="false">
+								<span>금융생활</span>
+							</button>
+							<button id="menu03" type="button" role="tab" aria-controls="tab_04" aria-selected="false">
+								<span>제휴서비스</span>
+							</button>
+						</div>
+						<!--// 2022-10-26 : 웹접근성 관련 속성 추가 -->
+					</div>
+				</div>
+			</div>
+			<!--// 메인탑/헤더 부분 -->
+			<!-- 메인 컨텐츠 영역 -->
+			<div class="mainContentView">
+				<div class="mainScroll">
+					<!-- slider 영역 -->
+					<div class="slider slideBox">
+						<!-- slide 1 -->
+						<!-- 2022-10-26 : 웹접근성 관련 속성 추가 -->
+						<div id="tab_01" role="tabpanel" class="slide slide01">
+							<div class="container">
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+								<div class="box boxTop">
+									<!-- graph -->
+									<ul class="graph">
+										<li>
+											<!-- 2022-10-19 : Data 있을 때 -->
+											<div class="title">
+												<!-- Case1 기본 -->
+												<span><strong>부동산</strong>이 가장 많아요!</span>
+	
+												<!-- Case2 농축협 예금만 보유 -->
+												<!-- <span><strong>농축협</strong>예금만 있어요</span> -->
+	
+												<!-- Case3 예금 자산만 있고 총자산이 마이너스인 경우 -->
+												<!-- <span><strong>마이너스 통장</strong>비중이 높아요</span> -->
+	
+												<!-- Case4 농축협&타기관 예금/투자/포인트 모두 0원인 경우 -->
+												<!-- <span><strong>보유</strong>자산이 없어요</span> -->
+	
+												<!-- 마크업 변경 : 2022-07-07 (목) -->
+												<a href="javascript:void(0);">전체자산</a>
+											</div>
+											<!-- 2022-10-26 : 접근성관련 수정 -->
+											<div id="ID_Doughnut" class="doughnutChart" aria-label="나의 자산비률은 부동산 52%, 투자 15%, 예금 25%, 자동차 8%, 포인트 10%, 기타자산 20%로 구성" role="img"></div>
+											<!--// 2022-10-26 : 접근성관련 수정 -->
+											<!--// 2022-10-19 : Data 있을 때 -->
+
+
+											<!-- 2022-10-18 : 마크업 추가 : no Data -->
+											<div class="title">
+												<span><strong>보유자산</strong>이 없어요!</span>
+											</div>
+											<div class="chartBox">
+												<div class="doughnutChart nodata"></div>
+												<div class="txt">
+													<p>자산을 추가하고<br>관리 받으세요</p>
+													<button type='button' role="button" class="btn bg_plus">자산추가</b>
+												</div>
+											</div>
+											<!--// 2022-10-18 : 마크업 추가 : no Data -->
+
+
+											<!-- 나의 금융자산 진단 -->
+											<div class="myMoneyAdminWrap">
+												<!-- 2022-10-20 : 웹접근성 관련 role="button" 삽입 -->
+												<a role="button" href="javascript:void(0);" class="myMoneyAdmin"><!-- 220727 링크수정 -->
+													<span class="title">나의 금융자산 진단</span>
+													
+													<p class="titleInfo">또래보다<strong>123,000,000</strong>원 적어요</p>
+
+													<!-- 나>또래 -->
+													<!-- <p class="titleInfo">또래보다<strong>123,000,000</strong>원 많아요</p> -->
+
+													<!-- 나=또래 -->
+													<!-- <p class="titleInfo">또래 평균과 같아요</p> -->
+
+													<p class="moneyStyle">
+														<span class="txtStyle">금융스타일 </span>아직은 <em class="green">금융초보</em>
+													</p>
+
+													<!-- 2022-08-19 추가 : 서비스 가입 당일의 경우 -->
+													<!-- <p class="moneyStyle">
+														<span class="txtStyle">내일부터</span><em class="green">금융자산을 진단</em>해 드려요
+													</p> -->
+												</a>
+											</div>
+										</li>	
+									</ul>
+									<!--// graph -->
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+								<div class="box boxBottom">
+									<!-- credit -->
+									<div class="credit">
+										<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+											<span class="title">신용점수</span>
+											<span class="total"><strong>940</strong>점</span>
+										</a>
+									</div>
+									<!--// credit -->
+
+									<!-- moneyTotal -->
+									<div class="moneyTotal">
+										<a href="javascript:void(0);">
+											<span class="title">
+												<!-- 2022-09-21 : 문구수정 -->
+												계좌 예상 잔액을 확인하세요
+											</span>
+										</a>
+									</div>
+									<!--// moneyTotal -->
+
+									<!-- infoBox 20220728 : 마크업 추가 -->
+									<div class="infoBox">
+										<!-- 20220728 : 자동차 관련 -->
+										<div class="innerBox list01">
+											
+											<!-- <a href="javascript:void(0);">
+												<strong class="title">자동차</strong>
+												<span class="conTxt01">벤츠 E클래스<br>
+													<strong>7</strong>천<strong>5,558</strong>만원
+												</span>
+											</a> -->
+											
+
+											<!-- 복수의 자동차가 등록된 경우 swipe -->
+											<!-- <div class="left_car">
+												<div class="slider_wrap">
+													<div class="tab_cont auto_play">
+														<div role="tabpanel" class="cmm-tab-panel">
+															<div class="slide">
+																<a href="javascript:void(0);">
+																	<strong class="title">자동차</strong>
+																	<span class="conTxt01">벤츠 E클래스<br>
+																		<strong>7</strong>천<strong>5,558</strong>만원
+																	</span>
+																</a>
+															</div>
+														</div>
+														<div role="tabpanel" class="cmm-tab-panel">
+															<div class="slide">
+																<a href="javascript:void(0);">
+																	<strong class="title">자동차</strong>
+																	<span class="conTxt01">BMX Z3<br>
+																		<strong>5</strong>천<strong>3,457</strong>만원
+																	</span>
+																</a>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> -->
+											
+
+
+											<!-- 자동차 미등록 상태인 경우 -->
+											<!-- 2022-10-18 : no Data -->
+											<div class="notCompleted">
+												<a href="javascript:void(0);">
+													<strong class="title">내 차</strong>
+													<strong class="conTxt01">시세 알아보기</strong>
+												</a>
+											</div> 
+											<!--// 2022-10-18 : no Data -->
+
+
+										</div> 
+										<!--// 20220728 : 자동차 관련 -->
+										<!-- 2022-10-18 : list02 추가 -->
+										<div class="innerBox list02">
+
+											<!-- 등록한 전체 부동산에 시세 정보가 있는 경우 -->
+											<!-- <a href="javascript:void(0);">
+												<strong class="title">부동산</strong>
+												<span class="conTxt01">시세가 올랐어요<br>총 <strong>8</strong>억<strong>7,550</strong>만원</span>
+											</a> -->
+
+
+
+											<!-- 부동산 미등록 상태인 경우 -->
+											<!-- 2022-10-18 : no Data -->
+											<div class="notCompleted">
+												<a href="javascript:void(0);">
+													<strong class="title">부동산</strong>
+													<span class="conTxt01">시세 알아보기</span>
+												</a>
+											</div>  
+											<!--// 2022-10-18 : no Data -->
+
+
+
+										</div> 
+										<!--// 부동산 관련 -->
+									</div>
+									<!--// infoBox 20220728 : 마크업 추가 -->
+
+									<!-- iconList -->
+									<div class="iconList">
+										<ul>
+											<li class="iconSub01">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>상품추천</em>
+												</a>
+											</li>
+											<li class="iconSub02">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕마이카</em>
+												</a>
+											</li>
+											<li class="iconSub03">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕부동산</em><!-- 220727 : 글자수정 -->
+												</a>
+											</li>
+											<li class="iconSub04">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>금융브리핑</em>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<!--// iconList -->
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+							</div>
+						</div>
+						<!--// slide 1 -->
+
+						<!-- slide 2 -->
+						<!-- 2022-10-26 : 웹접근성 관련 속성 추가 -->
+						<div id="tab_02" role="tabpanel" class="slide slide02">
+							<div class="container">
+								<!-- graph -->
+								<!-- 20220707 : 마크업 변경 -->
+
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+								<div class="box boxTop">
+									<ul class="graph">
+									<li>
+										<div class="title">											
+											<span>
+												<strong>
+													<!-- case 1 -->
+													지난달 보다 더 쓰고 있어요!
+													
+													<!-- case 2 -->
+													<!-- 지난달 보다 더 쓰고 있어요! -->
+													
+													<!-- case 3 -->
+													<!-- 지난달과 같아요 -->
+													
+													<!-- case 4 -->
+													<!-- 지난달부터 지출이 없어요 -->
+												</strong>
+											</span>
+											<a href="javascript:void(0);">지출현황</a><!-- 220727 링크수정 -->
+										</div>
+										
+										<!-- column grap -->
+										<div class="stick_gh_box car">								
+
+											<div class="gray_box car">
+												<div class="grapTitBox">
+													<p class="tit">5월의 지출</p><p class="txt_sub"><em class="num">2,234,678</em><em class="unit">원</em></p>
+												</div>
+
+												<!-- 막대그래프 S -->
+												<div class="vertical_graph">
+													<div class="vertical_graph_box">
+														<div class="vertical_graph_line" style="top:5.4rem;"></div>
+														<div class="vertical_graph_line" style="top:9.5rem;"></div>
+														<ul>
+															<!-- 2022-10-27 : 색상별 클래스 삽입 -->
+															<li class="grap_color_green">
+																<em class="name">카드</em>
+																<div>
+																	<!-- 당월 -->
+																	<span class="graph" style="height:100%;">
+																		<span class="tit"><em class="num">52</em>%</span>
+																	</span>
+																	<!-- 전월 -->
+																	<span class="graph graph_1_1" style="height:52%;"></span>
+																</div>
+															</li>
+															<!-- 2022-10-27 : 색상별 클래스 삽입 -->
+															<li class="grap_color_yellow">
+																<em class="name">페이</em>
+																<div>
+																	<span class="graph" style="height:15%;">
+																		<span class="tit"><em class="num">15</em>%</span>
+																	</span>
+																	<span class="graph graph_1_1" style="height:15%;"></span>
+																</div>
+															</li>
+															<!-- 2022-10-27 : 색상별 클래스 삽입 -->
+															<li class="grap_color_blue">
+																<em class="name">선불</em>
+																<div>
+																	<span class="graph" style="height:15%;">
+																		<span class="tit"><em class="num">15</em>%</span>
+																	</span>
+																	<span class="graph graph_1_1" style="height:15%;"></span>
+																</div>
+															</li>
+															<!-- 2022-10-27 : 색상별 클래스 삽입 -->
+															<li class="grap_color_purple">
+																<em class="name">기타</em>
+																<div>
+																	<span class="graph" style="height:8%;">
+																		<span class="tit"><em class="num">8</em>%</span>
+																	</span>
+																	<span class="graph graph_1_1" style="height:8%;"></span>
+																</div>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<!--// 막대그래프 E -->
+											</div>
+
+											<!-- 2022-08-08 : 링크로 변경 -->
+											<a href="javascript:void(0);"class="bankTarget">
+												5월 예산이 <em class="num">740,564</em>원 남았어요.
+											</a>
+										</div>
+
+										<!-- 나의 소비 분석 -->
+										<div class="myMoneyAdminWrap">
+											<!-- 2022-10-20 : 웹접근성 관련 role="button" 삽입 -->
+											<a role="button" href="javascript:void(0);" class="myMoneyAdmin"><!-- 220727 : 링크수정 -->
+												<span class="title">나의 소비 분석</span>
+												<p class="titleInfo">또래보다<strong>123,000,000</strong>원 적어요</p>
+												<p class="moneyStyle">
+													<span class="txtStyle">소비스타일</span>은
+													<em class="pink">생활비 집중형</em>
+												</p>
+											</a>
+										</div>
+									</li>	
+									</ul>
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+
+								<!--// 20220707 : 마크업 변경 -->
+								<!--// graph -->
+									
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+								<div class="box boxBottom">
+									<!-- 이달의 가계부 -->
+									<div class="householdBook">
+										<a href="javascript:;" class="title">이달의 가계부</a>
+										<div class="cal_pop_info_wrap">
+											<div class="car_pop_bar_area">
+												<div class="com_box_type01 goal_warp no-stroke no-shadow">
+													<div class="goal_box m0">
+														<div class="progressBar_wrapper">
+															<div class="progressBar">
+																<div class="bar PBColor7" style="width:80%">
+																</div>
+															</div>
+															<div class="date">
+																<div class="st">
+																	<span class="unit-tit">수입</span><em class="num">2,222,500,000</em><span class="unit">원</span>
+																</div>
+																<div class="ed">
+																	<span class="unit-tit">지출</span><em class="num">2,222,500,000</em><span class="unit">원</span>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>	
+											</div>
+										</div>
+										<!-- 
+											2022-09-21 : 
+											1_ 문구 수정 및 추가 : 다가올 정기지출
+											2_ 마크업 수정 : 
+										-->
+										<!-- 다가올 정기지출 -->
+										<div class="aptArim">
+											<!-- 2022-09-23 : 마크업 변경 -->
+											<a href="javascript:;" class="title">다가올 정기지출</a>
+											<div class="regularEx">
+												<p>
+													<span class="num">17일</span>
+													<span class="lifeValue">아파트 관리비 아파트 관리비아파트 관리비 아파트 관리비</span>
+													<em class="aptAdmin">210,000<span class="unit">원</span></em>
+												</p>
+												<p>
+													<span class="num">17일</span>
+													<span class="lifeValue">아파트 관리비 아파트 관리비</span>
+													<em class="aptAdmin">210,000<span class="unit">원</span></em>
+												</p>
+												<p>
+													<span class="num">17일</span>
+													<span class="lifeValue">농협My-122</span>
+													<em class="aptAdmin">5,420,000<span class="unit">원</span></em>
+												</p>
+											</div>
+										</div>
+									</div>
+									<!-- 2022-09-21 : 삭제 ( moneyTotal mainReport ) -->
+									<!-- moneyTotal -->
+									<!-- 
+										<div class="moneyTotal mainReport">
+										<a href="javascript:void(0);">
+											<span class="title">
+												세금&middot;공과금 납부 리포트
+											</span>
+										</a>
+									</div> 
+									-->
+									<!--// moneyTotal -->
+									<!--// 2022-09-21 : 삭제 ( moneyTotal mainReport ) -->
+
+															
+									<!-- iconList -->
+									<div class="iconList">
+										<ul>
+											<li class="iconSub01">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>상품추천</em>
+												</a>
+											</li>
+											<li class="iconSub02">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕마이카</em>
+												</a>
+											</li>
+											<li class="iconSub03">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕부동산</em><!-- 220727 : 글자수정 -->
+												</a>
+											</li>
+											<li class="iconSub04">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>금융브리핑</em>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<!--// iconList -->
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+							</div>
+						</div>
+						<!--// slide 2 -->
+
+						<!-- slide 3 -->
+						<!-- 2022-10-26 : 웹접근성 관련 속성 추가 -->
+						<div id="tab_03" role="tabpanel" class="slide slide03">
+							<div class="container">
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+								<div class="box boxTop">
+									<ul class="graph">
+										<li>
+											<!-- 나만을 위한 금융 브리핑 -->
+											<div class="title">
+												<span><strong>나만을 위한 금융 브리핑</strong></span>
+												<a href="javascript:void(0);">바로가기</a><!-- 220727 : 링크수정 -->
+											</div>
+											
+											<div class="welcomInfo">
+												<p class="welcomInfoTxt">
+													다가올 금융 일정과<br>
+													맞춤 금융 정보를 알려 드려요
+												</p>
+											</div>
+
+											<!-- 2022-10-19 : 등록한 모으기 목표가 없는 경우 -->
+											<!-- 3개의 저축 목표 도전 -->
+											<div class="grapBoxWrap">
+												<div class="grapTitBox">
+													<a href="javascript:void(0);" class="tit"><!-- 220727 : 링크수정 -->
+														<em class="num">3</em>개의 저축 목표 도전
+													</a>
+												</div>
+
+												<!-- 그래프 S -->
+												<!-- 그래프(추후 재작업) -->
+												<div class="graphArea">
+													<!-- half_circle -->
+													<div class="graphAreaBox">
+														<div class="fixedBox">
+															<div class="graphAreaInner">
+																<div class="circleSilver">
+																	<div class="circlePink"></div>
+																	<div class="needle"></div>
+																	<div class="smailCircle">
+																		<span>
+																			<span class="num">
+																				<script type="text/javascript">
+																					$(function() {
+																						halcircleClickFn (50); // 매인 > 금융생활 halfCircle 그래프
+																					});
+																				</script>
+																			</span>%
+																		</span>
+																	</div>
+																</div>
+															</div>
+															<div class="txt_count count_min">
+																<span class="num">0</span>%
+															</div>
+															<div class="txt_count count_max">
+																<span class="num">100</span>%
+															</div>
+														</div>
+													</div>
+													<!--// half_circle -->
+												</div>
+												<!--// 그래프 E -->
+
+												<div class="date">
+													<div class="st">
+														<span class="unit-tit">전체목표</span><strong class="num">2,222,500,000</strong><span class="unit">원</span>
+													</div>
+													<div class="ed">
+														<span class="unit-tit">달성금액</span><strong class="num">2,222,500,000</strong><span class="unit">원</span>
+													</div>
+												</div>
+												<div class="bankTarget">
+													계좌 연결이 필요한 목표가 있어요
+												</div>
+											</div>
+
+											<!-- 2022-10-18 : 등록한 모으기 목표가 없는 경우 -->
+											<div class="grapBoxWrap noData">
+												<p class="txt01">
+													<span>목표를 정하고 도전하세요!</span>
+													<a href="javascript:void(0);" class="arrow">
+														도전목표 정하기
+													</a>
+												</p>
+											</div>
+											<!--// 2022-10-18 : 등록한 모으기 목표가 없는 경우 -->
+
+											
+										</li>
+									</ul>	
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+								<div class="box boxBottom">
+									<!-- 2022-09-21 : 문구변경 -->
+									<!-- 나의 노후 준비는 어떤가요? -->
+									<!-- 2줄 일 때 : <div class="householdBook"> -->
+									<div class="householdBook">
+										<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+											<strong class="title">나의 노후 준비는 어떤가요?</strong>
+											<div class="cal_pop_info_wrap">
+												은퇴 진단하고 대비하세요
+											</div>
+										</a>
+									</div>
+									<!--// 나의 노후 준비는 어떤가요? -->
+									<!--// 2022-09-21 : 문구변경 -->
+									
+									<!-- 노후 준비가 더 필요해요! -->
+									<!-- 3줄 일 때 : <div class="householdBook textLine3"> -->
+									<!-- 
+									<div class="householdBook textLine3">
+										<a href="javascript:;">
+											<strong class="title">노후 준비가 더 필요해요!</strong>
+											<div class="cal_pop_info_wrap">
+												예상연금 65세부터 매월 115만원
+												예상연금 65세부터 매월 115만원
+											</div>
+										</a>
+									</div> 
+									-->
+									<!--// 노후 준비가 더 필요해요! -->
+
+									<!-- 2022-09-21 : 문구변경 -->
+									<!-- 내 대출 한도와 예상 금리는? -->
+									<div class="moneyTotal">
+										<a href="javascript:void(0);" tabindex="0"><!-- 220727 : 링크수정 -->
+											<span class="title">
+												내 대출 한도와 예상 금리는?
+											</span>
+										</a>
+									</div>
+									<!--// 2022-09-21 : 문구변경 -->
+											
+									<!-- infoBox -->
+									<div class="infoBox">
+										<div class="innerBox">
+											<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+												<strong class="title">상품추천</strong>
+												<span class="conTxt01">
+													꼭 맞는 상품을<br>찾아드려요
+												</span>
+											</a>
+										</div>
+										<div class="innerBox">
+											<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+												<strong class="title">연말정산</strong>
+												<span class="conTxt01">
+													미리 챙기는<br>13월의 급여 준비
+												</span>
+											</a>
+										</div>
+									</div>
+									<!--// infoBox -->
+
+									<!-- iconList -->
+									<div class="iconList">
+										<ul>
+											<li class="iconSub01">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>자산진단</em>
+												</a>
+											</li>
+											<li class="iconSub02">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>지출분석</em>
+												</a>
+											</li>
+											<li class="iconSub03">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕마이카</em>
+												</a>
+											</li>
+											<li class="iconSub04">
+												<a href="javascript:void(0);"><!-- 220727 : 링크수정 -->
+													<span></span>
+													<em>NH콕부동산</em><!-- 220727 : 글자수정 -->
+												</a>
+											</li>
+										</ul>
+									</div>
+									<!--// iconList -->
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+							</div>
+						</div>
+						<!--// slide 3 -->
+
+						<!-- slide 4 -->
+						<!-- 2022-10-26 : 웹접근성 관련 속성 추가 -->
+						<div id="tab_04" role="tabpanel" class="slide slide04">
+							<div class="container">
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+								<div class="box boxTop">
+									<ul class="graph">
+										<li>
+											<!-- 자동차의 모든 것 NH콕마이카 -->
+											<div class="title">
+												<span><strong>자동차의 모든 것 NH콕마이카</strong></span>
+											</div>
+											
+											<!-- 차량 매매, 관리는 물론 차계부 까지 -->
+											<div class="welcomInfo">
+												<p class="welcomInfoTxt">
+													차량 매매, 관리는 물론 차계부 까지
+												</p>
+												<p class="bottom">
+												<a href="javascript:void(0);">신차&middot;중고차</a><!-- 220727 : 링크수정 -->
+													<a href="javascript:void(0);">내차관리</a>
+												</p>
+											</div>
+
+											<!-- 부자로 가는 부동산 자산관리 -->
+											<div class="myMoneyAdminWrap">
+												<div class="title">
+													<span>부자로 가는 <strong>부동산 자산관리</strong></span>
+												</div>
+												<!-- 2022-10-20 : 웹접근성 관련 role="button" 삽입 -->
+												<a role="button" href="javascript:void(0);" class="myMoneyAdmin"><!-- 220727 : 링크수정 -->
+													<!-- 2022-09-21 : 문구변경 -->
+													<p class="titleInfo">
+														내 자산과 부동산 시세 분석을<br>
+														통한 맞춤형 부동산 자산관리
+													</p>
+													<span href="javascript:void(0);" class="title">NH콕부동산 자세히보기</span>
+													<!--// 2022-09-21 : 문구변경 -->
+												</a>
+											</div>
+										</li>
+									</ul>		
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxTop)-->
+								<!-- 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+								<div class="box boxBottom">
+									<!-- 꿈에 그리는 귀농귀촌 라이프 -->
+									<div class="householdBook">
+										<a href="javascript:void(0);" class="title">꿈에 그리는 <strong>귀농귀촌 라이프</strong></a><!-- 220727 링크수정 -->
+										<div class="cal_pop_info_wrap">
+											농지&middot;주거 지역 찾아보고 맞춤<br>
+											상품 및 지원 정보도 알아 보세요
+										</div>
+									</div>
+
+									<!-- 슬기로운 영농생활 -->
+									<div class="householdBookWrap">
+										<div class="householdBook householdBook2">
+											<p class="title">슬기로운 <strong>영농생활</strong></p>
+											<div class="cal_pop_info_wrap">
+												<ul>
+													<li><a href="javascript:void(0);">이달의 영농달력</a></li><!-- 220727 : 링크수정 -->
+													<li><a href="javascript:void(0);">영농 자금일지</a></li><!-- 220727 : 링크수정 -->
+													<li><a href="javascript:void(0);">손익현황 한눈에</a></li><!-- 220727 : 링크수정 -->
+													<li><a href="javascript:void(0);">맞춤 정책자금</a></li><!-- 220727 : 링크수정 -->
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--// 2022-10-14 : 마크업 div 추가 (클래스 box boxBottom)-->
+							</div>
+						</div>
+						<!--// slide 4 -->
+					</div>
+					<!--// slider 영역 -->
+				</div>
+			</div>
+			<!--// 메인 컨텐츠 영역 -->
+			<!-- 푸터버튼/전체메뉴 영역 -->
+			<script src="../../worklist/@pub_include/footer.js"></script>
+			<!--// 푸터버튼/전체메뉴 영역 -->
+		</div>
+		<!--// main -->
+	</div>
+	<!--// wrap -->
+
+	<!-- 20220724 : 마크업 추가 (팝업)-->
+	<!-- Layer popup -->
+	<div>
+		<div class="dimmed"></div>
+		<!-- 팝업 : 내 보유 자산 -->
+		<div class="popup_box renewal">
+			<div aria-hidden="false" class="slide_popup" id="slide_popup_01">
+				<div class="popup_header">
+					<h1>내 보유 자산</h1>
+				</div>
+				<div class="popup_content">
+					<div class="com_txt_type07">
+						<div class="list">
+							<ul class="itemList">
+								<li>금융자산 <em class="num">123,500,000<em class="unit">원</em></em></li>
+								<li>실물자산 <em class="num">543,500,000<em class="unit">원</em></em></li>
+								<li>기타자산 <em class="num">543,500,000<em class="unit">원</em></em></li>
+								<li>보유부채 <em class="num">-123,500,000<em class="unit">원</em></em></li>
+							</ul>
+						</div>
+					</div>						
+				</div>
+				<a href="javascript:void(0);" class="btn_close"><span class="">닫기</span></a>
+			</div>
+		</div>
+		<!--// 팝업 : 내 보유 자산 -->
+
+
+		
+	</div>
+	<!--// Layer popup -->
+	<!--// 20220724 : 마크업 추가 (팝업)-->
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+			// 메인관련 JS 변수
+			var objMainSubFooter = {
+				newMainInit() {
+					this.mainHeaderFn ();
+					// this.mainFooterFn (); 2022-08-11 : 수정
+				},
+				mainHeaderFn : function () {
+					mainScrollTopHeaderFn (); // 메인 스크롤(맨 위) - header
+					mainScrollAnimationFn (); // 메인 scroll
+				},
+				mainFooterFn : function () {
+					//pageLoadFn (); // 메인 페이지 로드 - footer block
+				}
+			}
+
+			// 메인 스크롤 (맨 위) - header
+			function mainScrollTopHeaderFn () {
+				$('.mainScroll').on('scroll', function(e) {
+					var scrollTop = $(this).scrollTop();
+					if ( scrollTop <= 0 ) {
+						$('.topMenu').removeClass('topMenuHide');
+					} else {
+						$('.topMenu').addClass('topMenuHide');
+					}
+				});
+			}
+			
+			// 메인 스크롤 (내리는 중 / 올리는 중 판단)
+			function mainScrollAnimationFn () {
+				var lastScrollTop = 0;
+				$('.mainScroll').on('scroll', function(e) {
+					var scrollTop = $(this).scrollTop();
+					if ( scrollTop > lastScrollTop ) {
+						$('.main').addClass('responsive');
+					} else {
+						$('.main').removeClass('responsive');
+					}
+					lastScrollTop = scrollTop; // 스크롤 올리는 부분 감지 js
+				});
+
+
+				// 스크롤 (맨 아래)
+				$('.mainScroll').scroll( function() {
+					var mainScroll 		= $('.mainScroll').scrollTop();
+					var innerHeight 	= $(this).innerHeight(); // 현재 보이는 영역의 높이(스크롤로 감춰진 곳은 계산 x)
+					var scrollHeight 	= $(this).prop('scrollHeight'); // 스크롤 포함 영역의 높이(스크롤로 감춰진 곳 계산 0)
+					if( mainScroll + innerHeight >= scrollHeight-1 ) {
+						$('#wrap .main').addClass('responsive');
+					}
+				});
+			}
+			
+			// 메인 페이지 로드 - footer block
+			function pageLoadFn () {
+				$(window).load(function () {
+					var lastScrollTop = 0;
+					var footer = $('.mainFooter');
+					footer.addClass('block');
+					$('.mainScroll').on('scroll', function(e) {
+						var scrollTop = $(this).scrollTop();
+						if ( scrollTop > lastScrollTop ) {
+							footer.removeClass('block');
+							adminPop.addClass('block');
+						} else {
+							footer.addClass('block');
+						}
+						lastScrollTop = scrollTop; // 스크롤 올리는 부분 감지 js
+					});
+				});
+			}
+			
+			
+			objMainSubFooter.newMainInit(); // 메인관련 JS
+
+		});
+		
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+	</script>
+</body>
+</html>

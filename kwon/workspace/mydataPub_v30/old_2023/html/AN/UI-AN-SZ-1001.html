@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>제휴서비스 | 마이농가 | 영농달력</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<!-- 수입 추가 - 현금 case -->
+			<h1>마이농가 수입 등록</h1>
+			<!-- //수입 추가 - 현금 case -->
+			<!-- 지출 추가 - 현금 case -->
+			<!-- <h1>마이농가 지출 등록</h1> -->
+			<!-- //지출 추가 - 현금 case -->
+			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<div class="com_inputarea_type07">
+					<!-- 수입 추가 - 현금 case -->
+					<div class="com_input_type01 com_word2" role="button" aria-label="수입일자 2022년 10월 17일, 수입일자 선택" ><!-- 22-10-20 접근성 aria 추가-->
+						<input type="text" id="com_input03" readonly class="input_cal_date com_txtright_type01 tar" name="" value="" required="" placeholder="날짜 선택" title="날짜를 선택하세요." aria-hidden="true">
+						<label for="com_input03">
+							<span class="txt_label_x">수입일자</span>
+						</label>
+					</div>
+					<!-- //수입 추가 - 현금 case -->
+					<!-- 지출 추가 - 현금 case -->
+					<div class="com_input_type01 com_word2" role="button" aria-label="날짜 2022년 10월 17일, 날짜 선택" ><!-- 22-10-20 접근성 aria 추가-->
+						<input type="text" id="com_input03" readonly class="input_cal_date com_txtright_type01 tar" name="" value="" required="" placeholder="날짜 선택" title="날짜를 선택하세요." aria-hidden="true">
+						<label for="com_input03">
+							<span class="txt_label_x">날짜</span>
+						</label>
+					</div>
+					<!-- //지출 추가 - 현금 case -->
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01 com_iconstar" title="카테고리 선택"><em class="blind">필수입력</em><span>카테고리를 선택하세요.</span></button>
+					</div>
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01 com_iconstar" title="품목 선택"><em class="blind">필수입력</em><span>품목을 선택하세요.</span></button>
+					</div>
+					<ul class="com_radio_chk">
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check11" checked="checked">
+								<label for="com_check11">
+									<span>현금</span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check12">
+								<label for="com_check12">
+									<span>수입 내역</span>   
+								</label>
+							</span>
+						</li>
+					</ul>
+					<!-- 현금 / 지출내역 -->
+					<div>
+						<div class="com_input_type01 com_word1">
+							<input type="number" id="com_input01" value="300,000"  required="" placeholder="금액 입력" title="금액을 입력하세요.">
+							<label for="com_input01">
+								<em><span class="blind">필수입력</span></em>
+								<span class="txt_label_x">금액</span>
+							</label>
+							<div class="del_txt">
+								<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">원</span>
+							</div>
+							<p class="com_sum">4조 2,345억 6,789만원</p>
+							<div class="btn_price_group">
+								<button type="button" class="btn_price">+<strong>5</strong>만</button>
+								<button type="button" class="btn_price">+<strong>10</strong>만</button>
+								<button type="button" class="btn_price">+<strong>100</strong>만</button>
+								<button type="button" class="btn_price">+<strong>1000</strong>만</button>
+							</div>
+						</div>
+						<div class="com_input_type01">
+							<input type="text" id="com_input02" value=""  required="" placeholder="거래처 입력" title="거래처를 입력하세요.">
+							<label for="com_input02">
+								<em><span class="blind">필수입력</span></em>
+								<span class="txt_label_x">거래처</span>
+							</label>
+							<div class="del_txt">
+								<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div class="com_textarea_type01 com_no_iconstar">
+							<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="메모를 입력하세요."></textarea>
+							<label for="txt00"><span class="txt_label_x">메모</span></label>
+						</div>
+					</div>
+					<!-- //현금 / 지출내역 -->
+					<!-- 2022-08-29 수입내역 추가 -->
+					<div>
+						<div class="com_btnselectbox_type01 ani-active">
+							<button type="button" class="com_btnselect_type01 com_iconstar" title="수입항목 선택">
+								<span>수입 항목 노출</span>
+							</button>
+						</div>
+					</div>
+					<!-- //2022-08-29 수입내역 추가 -->
+				</div>
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="com_btnhalfbox_type02">
+				<a href="#nolink" role="button" class="btn btn_mint_gray">취소</a>
+				<a href="#nolink" role="button" class="btn btn_mint">저장</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

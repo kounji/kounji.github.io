@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지출분석 &lt; 지출</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script>
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>지출</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<!-- content-view S -->
+		<!-- 2022-08-26 : 클래스 hasLNB 삭제 -->
+		<div class="content-view">
+		<!--// 2022-08-26 : 클래스 hasLNB 삭제 -->
+			<div class="com_tabmenu_type01 menunum03">
+				<ul role="tablist">
+					<li><a href="javascript:void(0);">금융달력</a></li>
+					<li><a href="javascript:void(0);">지출내역</a></li>
+					<li class="on"><a href="javascript:void(0);">지출분석</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<!-- 2022-08-26 : 클래스명 변경 -->
+			<div id="content" class="sub_main renewal">
+			<!--// 2022-08-26 : 클래스명 변경 -->
+				<div>
+					<div class="com_submainbox_type01 com_submainbox_type01-02 custom_box custom_box8 custom_box12">
+						<!-- 2022-10-26 클래스명 변경 -->
+						<div class="custom_box_fiexd_round01">
+							<div class="select_date">
+								<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+								<a title="년월선택" class="year_month" href="javascript:console.log('월');">
+									<span class="num year">2022</span>년<span class="num month">9</span>월
+								</a>
+								<button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled title="한달 후 이동"></button>
+							</div>
+						</div>
+						<!-- 2022-10-13 : 기획 변경으로 인한 신규 추가 -->
+						<div class="custom_box_linst01 arrow">
+							<a href="#">지난달 지출 비교</a>
+						</div>
+						<!--// 2022-10-13 : 기획 변경으로 인한 신규 추가 -->
+						<div class="text txt02">
+							지난달보다 <strong class="num">1,080,450</strong>원 늘었어요
+							<!-- 2022-11-01 : 툴팁삽입 -->
+							<div class="custom_tooltip">
+								<div class="com_tooltip_type02 com_tooltip_type03">
+									<a href="javascript:void(0);" class="com_btn_info">
+										<!-- 2022-11-02 : question 삽입 ( 디자인 수정 됨 ) -->
+										<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+										<span class="arrow" style="display:none"></span>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+									</a>
+								</div>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										자산 진단은 전일자에 연결된 자산을 기준으로 분석한 결과입니다.
+										<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> <!-- 말풍선영역 -->
+								</div>
+							</div>
+						</div>
+						<div class="com_box_type01 com_box_type07 custom_box_com_box_type08 custom_box_box_shadowno custom_box_grap01">
+							<div class="compare_chart_wrap">
+								<div class="chart" aria-hidden="true">
+									<div class="bg">
+										<div class="bar_wrap">
+											<!-- 
+												<div class="bars big"> : 
+													1___ big 클래스 사용시 
+														이번달 커짐
+														지난달 작아짐
+
+												<div class="bars small"> : 
+													2___ small 클래스 사용시 
+														지난달 작아짐
+														이번달 커짐
+
+												<div class="bars">
+													3___ big / small 둘다 미사용시
+														둘다 높이 100%
+											 -->
+											<div class="bars big">
+												<div class="bar bar01">
+													<span class="tit">지난달</span>
+													<strong class="sub_bar top" style="height: 30%;">
+														<span class="num"><span class="blind">지난달</span>30%</span>
+													</strong>
+													<strong class="sub_bar bottom" style="height: 70%;">
+														<span class="num"><span class="blind">이번달</span>70%</span>
+													</strong>
+												</div>
+												<div class="bar bar02">
+													<span class="tit">이번달</span>
+													<strong class="sub_bar top" style="height: 40%;">
+														<span class="num"><span class="blind">지난달</span>40%</span>
+													</strong>
+													<strong class="sub_bar bottom" style="height: 60%;">
+														<span class="num"><span class="blind">이번달</span>60%</span>
+													</strong>
+												</div>
+											</div>
+											<div class="list_box">
+												<p class="list01">
+													<span>
+														<i class="bl_dot_list"></i>총지출</span>
+													<strong>
+														<em class="num">552,222,500,000</em>
+														<em class="unit">원</em>
+													</strong>
+												</p>
+												<p class="list02">
+													<span>
+														<i class="bl_dot_list"></i>정기지출
+													</span>
+													<strong>
+														<em class="num">2,222,500,000</em>
+														<em class="unit">원</em>
+													</strong>
+												</p>
+												<p class="list03">
+													<span>
+														<i class="bl_dot_list"></i>변동지출
+													</span>
+													<strong>
+														<em class="num">2,222,500,000</em>
+														<em class="unit">원</em>
+													</strong>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="txt_c">
+							<p class="info_txt01">
+								이번달 지출이 <strong class="num com_point_darkblue">5</strong>건 <strong class="num com_point_darkblue">20,000,000</strong>원 남았어요.
+							</p>
+						</div>
+						<div class="custom_box custom_list">
+							<ul class="custom_list01">
+								<li><a class="custom_link custom_line01" href="javascript:void(0);">변동지출 현황</a></li>
+								<li><a class="custom_link custom_line02" href="javascript:void(0);">정기지출 리포트</a></li>
+							</ul>
+						</div>
+					</div>            
+					<div class="com_inner">
+						<!-- 목표대비 지출 -->
+						<div class="householdBook pt15">
+							<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 custom_box13 mb0">
+								<div class="new_tit_area custom_box12">
+									<a href="javascript:void(0);">
+										<strong class="com_box_tit arrow">목표대비 지출</strong>
+									</a>
+								</div>
+								<p class="info_txt01">
+									예산이 <strong class="num">123,000,000</strong>원 남았어요.
+								</p>
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="progressBar mt5">
+													<div class="bar" style="width:40%">
+													</div>
+												</div>
+												<!-- 2022-10-11 : 글자위치 변경 -->
+												<div class="date">
+													<div class="ed">
+														<span class="unit-tit">지출</span>
+														<p>
+															<em class="num">2,222,500,000</em>
+															<span class="unit">원</span>
+														</p>
+													</div>
+													<div class="st">
+														<span class="unit-tit">목표</span>
+														<p>
+															<em class="num">2,222,500,000</em>
+															<span class="unit">원</span>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<!--// 목표대비 지출 -->
+
+						<!-- 2022-10-11 : 마크업 추가 -->
+						<!-- 지출목표 등록이 안된 경우 -->
+						<div class="householdBook pt15">
+							<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 custom_box13 mb0 txt_c">
+								<p class="custom_box_link01">
+									<a href="javascript:void(0);">한 달 지출 계획하고 관리해 보세요</a>
+								</p>
+							</div>
+						</div>
+						<!--// 지출목표 등록이 안된 경우 -->
+						<!--// 2022-10-11 : 마크업 추가 -->
+
+						<!-- 지출 수단 -->
+						<div class="com_sub_radius custom_box com_submainbox_type01-03 custom_box14">
+							<div class="com_box_type01">
+								<div class="titbox_type01">
+									<strong>지출 수단</strong>
+								</div>
+								<div class="com_box_type02">
+									<strong class="blind">지출 수단</strong>
+									<div class="com_box_type01">
+										<div class="txt ty2">
+											<!-- 증가 -->
+											<p class="in_txt">
+												지난달 보다 카드 지출이 
+												<span><strong class="num">123,000,000</strong>원 늘었어요</span>
+											</p>
+											<!-- 감소 -->
+											<!-- <p class="in_txt">
+												지난달 보다 카드 지출이 
+												<span><strong class="num">123,000,000</strong>원 줄었어요</span>
+											</p> -->
+											<!-- 동일 -->
+											<!-- <p class="in_txt">
+												지난달 보다 카드 지출이 
+												<span><strong class="num">123,000,000</strong>원 같아요</span>
+											</p> -->
+										</div>
+										
+										<div class="duel_Pie_chart">
+											<div class="chart_box">
+												<div class="graph_box">
+													<div id="chartHolder" class="chartHolder" aria-hidden="true"></div>
+													<div class="block_list">
+														<ul class="list">
+															<li class="bl_lightcyan">
+																<!-- 2022-10-28 : 접근성 / 클래스 추가 -->
+																<a href="javascript:void(0);" class="arrow" title="카드 지출 금액 상세보기">
+																	<span class="pie_tit">카드<strong class="num">56.7%</strong></span>
+																	<strong class="pie_p num">19,691,100원</strong>
+																</a>
+															</li>
+															<li class="bl_orange">
+																<!-- 2022-10-28 : 접근성 / 클래스 추가 -->
+																<a href="javascript:void(0);" class="arrow" title="페이 지출 금액 상세보기">
+																	<span class="pie_tit">페이<strong class="num">32.2%</strong></span>
+																	<strong class="pie_p num">10,424,700원</strong>
+																</a>
+															</li>
+															<li class="bl_red">
+																<!-- 2022-10-28 : 접근성 / 클래스 추가 -->
+																<a href="javascript:void(0);" class="arrow" title="선불 지출 금액 상세보기">
+																	<span class="pie_tit">선불<strong class="num">10.1%</strong></span>
+																	<strong class="pie_p num">8,494,200원</strong>
+																</a>
+															</li>
+															<li class="bl_blue">
+																<!-- 2022-10-28 : 접근성 / 클래스 추가 -->
+																<a href="javascript:void(0);" class="arrow" title="기타 지출 금액 상세보기">
+																	<span class="pie_tit">기타<strong class="num">2%</strong></span>
+																	<strong class="pie_p num">8,494,200원</strong>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 지출 수단 -->
+
+						<!-- img01 ~ img17 : 이미지 추후 작업 예정 -->
+						<div class="custom_box_info_wrap img01">
+							<p class="top_txt">김농협님의 소비스타일은?</p>
+							<p class="bottom_txt"><strong class="com_point_darkblue">생활비 집중</strong>형입니다.</p>
+						</div>
+
+						<div class="custom_box_ranking_list mb0">
+							<ol>
+								<li>
+									<div class="nemo_list rank01">
+										<span class="ranking"><em class="blind">1위</em></span>
+										<strong class="tit">카페&middot;베이커리</strong>
+										<strong class="num percent">60%</strong>
+										<strong class="num">45,000,000<em class="unit">원</em></strong>
+									</div>
+								</li>
+								<li>
+									<div class="nemo_list rank02">
+										<span class="ranking"><em class="blind">2위</em></span>
+										<strong class="tit">외식</strong>
+										<strong class="num percent">34%</strong>
+										<strong class="num">2,200,000<em class="unit">원</em></strong>
+									</div>
+								</li>
+								<li>
+									<div class="nemo_list rank03">
+										<span class="ranking"><em class="blind">3위</em></span>
+										<strong class="tit">생활&middot;마트</strong>
+										<strong class="num percent">22%</strong>
+										<strong class="num">1,500,000<em class="unit">원</em></strong>
+									</div>
+								</li>
+								<li>
+									<!-- 2022-11-04 : 데이터 있을 경우 -->
+									<!-- 
+									<div class="nemo_list rank04">
+										<span class="ranking"><em class="blind">4위</em></span>
+										<strong class="tit">의료&middot;건강</strong>
+										<strong class="num percent">17%</strong>
+										<strong class="num">220,000<em class="unit">원</em></strong>
+									</div>
+									-->
+									
+									<!-- 2022-11-04 : 데이타 없을 경우 -> 클래스 nodata 추가 -->
+									<div class="nemo_list rank04 nodata">
+										<span class="ranking"><em class="blind">4위</em></span>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<!-- 카테고리별 지출 상세 -->
+						<divv class="com_btn_area custom_box_com_btn_area mt15">
+							<a href="javascript:void(0);" role="button" class="com_btn_round"><span class="btn_plus black">카테고리별 지출 상세 </span></a>
+						</divv>
+						<!--// 카테고리별 지출 상세 -->
+
+						<!-- 또래와의 지출비교 -->
+						<div class="householdBook householdBook02">
+							<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 custom_box13">
+								<div class="new_tit_area custom_box12">
+									<strong class="com_box_tit">또래와의 지출비교</strong>
+								</div>
+								<div class="custom_box_com_box_list01">
+									<div class="new_tit_area">
+										<a href="javascript:void(0);">
+											<em class="unit txt02">#30대 후반</em>
+											<em class="unit txt03">#급여소득자 김농협의 금융생활</em>
+										</a>
+									</div>
+								</div>
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="progressBar mt5">
+													<div class="bar" style="width:55%">
+														<div class="ed">
+															<strong class="unit-tit">또래 지출</strong>
+															<p>
+																<strong class="num">5,222,500,000</strong>
+																<span class="unit">원</span>
+															</p>
+														</div>
+													</div>
+													<div class="st">
+														<strong class="unit-tit">내 지출</strong>
+														<p>
+															<em class="num">222,500,000</em>
+															<span class="unit">원</span>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+								<!-- 2022-10-11 : 글자수정 -->
+								<div class="custom_box_linst01 arrow">
+									<a href="#">또래 엿보기</a>
+								</div>
+							</div>
+						</div>
+						<!--// 또래와의 지출비교 -->
+
+						<!-- 많은 금액을 지출한 곳 -->
+						<div class="custom_box_ranking_list02_wrap">
+							<div class="new_tit_area custom_box12 custom_box_ranking_list02">
+								<a href="javascript:void(0);"><strong class="com_box_tit arrow">많은 금액을 지출한 곳</strong></a>
+							</div>
+							<div class="custom_box_ranking_list custom_box_ranking_list02">
+								<div class="box">
+									<div class="nemo_list rank01">
+										<span class="ranking"><em class="blind">1위</em></span>
+										<strong class="tit">산드로</strong>
+										<strong class="num">345,000,000<em class="unit">원</em></strong>
+									</div>
+								</div>
+								<div class="box">
+									<div class="nemo_list rank02">
+										<span class="ranking"><em class="blind">2위</em></span>
+										<strong class="tit">에르메스</strong>
+										<strong class="num">9,200,000<em class="unit">원</em></strong>
+									</div>
+									<!-- 2022-11-04 : 데이터 있을 경우 -->
+									<!-- 
+									<div class="nemo_list rank03">
+										<span class="ranking"><em class="blind">3위</em></span>
+										<strong class="tit">딥디크</strong>
+										<strong class="num">1,500,000<em class="unit">원</em></strong>
+									</div>
+									 -->
+
+									<!-- 2022-11-04 : 데이타 없을 경우 -> 클래스 nodata 추가 -->
+									<div class="nemo_list rank03 nodata">
+										<span class="ranking"><em class="blind">3위</em></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 많은 금액을 지출한 곳 -->
+
+						<!-- 자주 이용하는 곳 -->
+						<div class="custom_box_ranking_list02_wrap">
+							<div class="new_tit_area custom_box12 custom_box_ranking_list03">
+								<a href="javascript:void(0);"><strong class="com_box_tit arrow">자주 이용하는 곳</strong></a>
+							</div>
+							<div class="custom_box_ranking_list custom_box_ranking_list03">
+								<div class="box">
+									<div class="nemo_list rank01">
+										<span class="ranking"><em class="blind">1위</em></span>
+										<strong class="tit">신세계 하남<br>스타필드</strong>
+										<strong class="num">345,000,000<em class="unit">원</em></strong>
+									</div>
+								</div>				
+								<div class="box">
+									<div class="nemo_list rank02">
+										<span class="ranking"><em class="blind">2위</em></span>
+										<strong class="tit">박승철헤어</strong>
+										<strong class="num">2,200,000<em class="unit">원</em></strong>
+									</div>
+									<!-- 2022-11-04 : 데이터 있을 경우 -->
+									<!--
+										<div class="nemo_list rank03">
+											<span class="ranking"><em class="blind">3위</em></span>
+											<strong class="tit">스타벅스</strong>
+											<strong class="num">500,000<em class="unit">원</em></strong>
+										</div>
+									-->
+
+									<!-- 2022-11-04 : 데이타 없을 경우 -> 클래스 nodata 추가 -->
+									<div class="nemo_list rank03 nodata">
+										<span class="ranking"><em class="blind">3위</em></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 자주 이용하는 곳 -->
+					</div>
+				</div>
+				<div class="complete">
+					<div class="secede_box">
+						<p class="txt">
+							합리적인 소비를 하고 있나요?<br>
+							지출 분석을 위해 데이터가 필요해요.
+						</p>
+					</div>
+					<div class="new_add_register custom_box">
+					<a href="javascript:void(0);"><span>자산을 연결하고 관리해 보세요</span></a>
+				</div>
+				</div>
+				<!--// content -->
+
+			</div>
+			<!--// content-view S -->
+		</div>
+		<script type="text/javascript">
+			// -----------------------차트 설정 시작-----------------------
+			
+			// rMateChart 를 생성합니다.
+			// 파라메터 (순서대로)
+			//  1. 차트의 id ( 임의로 지정하십시오. )
+			//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+			//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+			//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+			//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+			rMateChartH5.create("chart1", "chartHolder", "", "100%", "130px");
+
+			var layoutStr =
+				'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+					// +'<Options>'
+					// +'<Caption text="Web Browser Market Share"/>'
+					// +'<Legend useVisibleCheck="true"/>'
+					// +'</Options>'
+					// +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+					/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+					+'<Pie2DChart showDataTips="true" innerRadius="0.5" displayCompleteCallFunction="removeTabindex">'
+					/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+					/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+						+'<series>'
+							+'<Pie2DSeries nameField="browser" field="share" color="#ffffff" >'
+							/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+								+'<fills>'
+									+'<SolidColor color="#57c9ae"/>'/* 카드 */
+									+'<SolidColor color="#fdbb68"/>'/*페이*/
+									+'<SolidColor color="#fa7288"/>'/*선불*/
+									+'<SolidColor color="#668ee2"/>'/*기타*/
+								+'</fills>'
+								+'<showDataEffect>'
+								/* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+									+'<SeriesSlide  duration="1000"/>'
+									/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+									/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+									/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+									/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+									/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+									/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+									/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+								+'</showDataEffect>'
+							+'</Pie2DSeries>'
+						+'</series>'
+						+'<annotationElements>'
+							+'<CanvasElement>'
+								+'<CanvasLabel horizontalCenter="0" height="24" fontSize="14" fontWeight="bold" verticalCenter="0" text="" color="#333333"/>'
+							+'</CanvasElement>'
+						+'</annotationElements>'
+					+'</Pie2DChart>'
+					
+				+'</rMateChart>';
+			
+			// 차트 데이터
+			var chartData =
+				[
+					{"browser":"카드",	"share":	56.7},
+					{"browser":"페이", 	"share":	32.2},
+					{"browser":"선불", 	"share":	10.1},
+					{"browser":"기타",	"share":	2}
+				];
+				// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+				//
+				// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+				// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+				// 
+				// 아래 내용은 
+				// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+				// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+			
+			rMateChartH5.calls("chart1", {
+				"setLayout" : layoutStr,
+				"setData" : chartData,
+			});
+			
+			/**
+			 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+			 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+			 *
+			 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+			 * - simple
+			 * - cyber
+			 * - modern
+			 * - lovely
+			 * - pastel
+			 * -------------------------------------------------
+			 *
+			 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+			 */
+			rMateChartH5.registerTheme(rMateChartH5.themes);
+			
+			/**
+			 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+			 * 접근하는 차트 객체의 테마를 변경합니다.
+			 * 파라메터로 넘어오는 값
+			 * - simple
+			 * - cyber
+			 * - modern
+			 * - lovely
+			 * - pastel
+			 * - default
+			 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+			 */
+			function rMateChartH5ChangeTheme(theme){
+				document.getElementById("chart1").setTheme(theme);
+			}
+			// -----------------------차트 설정 끝 -----------------------
+
+			/* 22-10-26 접근성 추가 */
+			function removeTabindex(seriesId){
+				$('#'+seriesId).find('div').removeAttr('tabindex');
+			};
+	</script>
+</body>
+</html>

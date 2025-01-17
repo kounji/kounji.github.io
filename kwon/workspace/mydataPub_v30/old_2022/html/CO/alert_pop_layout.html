@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>layout sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="alert_popup">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- alert pupop S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<div class="alert_popup renewal" id="alert_popup" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<p class="txt_normal">알림메시지 영역<br>
+				최대 2줄까지 표시</p>
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="javascript:void(0);" class="btn btn_mint_gray">아니오</a>
+				<a href="javascript:void(0);" class="btn btn_mint">예</a>
+			</div>
+		</div>
+	</div>
+	<!--// alert popup E -->
+</body>
+</html>

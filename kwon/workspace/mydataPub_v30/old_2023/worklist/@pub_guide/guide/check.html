@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>CheckBox Sample</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns" id="styleGuide">
+	<h1>CheckBox</h1>
+	<article class="guide_group">
+		<h2>Check Box</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. 일반형</h3>
+				<section class="source">
+					<br>
+					<span class="btn_checkbox">
+						<input type="checkbox" name="check01" id="check01">
+						<label for="check01">
+							<span>오늘하루 닫기</span>
+						</label>
+					</span>
+					<br>
+					<br>
+					<br>
+					<span class="btn_checkbox02">
+						<input type="checkbox" name="check02" id="check02">
+						<label for="check02">
+							<span>오늘하루 닫기</span>
+						</label>
+					</span>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>02. 링크 표시형</h3>
+				<section class="source">
+					<br>
+					<span class="btn_check">
+						<input type="checkbox" name="check03" id="check03">
+						<label for="check03">
+							<span>오늘하루 닫기</span>
+						</label>
+					</span>
+					<br>
+					<br>
+					<br>
+					<ul class="new_agree_list">
+						<li>
+							<span class="btn_check">
+								<input type="checkbox" name="check04" id="check04">
+								<label for="check04">
+									<span>전세대출도 필요 하신가요?</span>
+								</label>
+							</span>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>03. 박스형 + 링크버튼</h3>
+				<section class="source">
+					<ul class="new_agree_list agree_list_box">
+						<li>
+							<span class="btn_check">
+								<input type="checkbox" name="check11" id="check11">
+								<label for="check11">
+									<span>[필수]개인(신용)정보 조회 동의</span>
+								</label>
+							</span>
+							<button type="button" class="btn_move"><span class="blind">팝업이동</span></button>
+						</li>
+						<li>
+							<span class="btn_check">
+								<input type="checkbox" name="check12" id="check12">
+								<label for="check12">
+									<span>전세대출도 필요 하신가요?</span>
+								</label>
+							</span>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>04. slide checkbox(좌,우 대칭)</h3>
+				<section class="source">
+					<div class="com_inner com_line_type01">
+						<dl class="com_setlist_type02">
+							<dt><strong class="com_pop_tit01">수입에 반영</strong></dt>
+							<dd>
+								<span class="com_btn_switch">
+									<input type="checkbox" name="check05" id="check05">
+									<label for="check05" aria-hidden="true">
+										<span class="txt">선택</span>
+										<span role="img" class="on">선택</span>
+										<span role="img" class="off">해제</span>
+									</label>
+								</span>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	
+	<article class="guide_group">
+		<h2>Radio</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. 일반형</h3>
+				<section class="source">
+					<ul class="com_radio02_type01">
+						<li>
+							<span class="btn_radio02">
+								<input type="radio" name="agree" id="agree01" checked aria-hidden="true">
+								<label for="agree01" role="radio" aria-checked="false">
+									<span>동의</span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_radio02">
+								<input type="radio" name="agree" id="agree02" aria-hidden="true">
+								<label for="agree02" role="radio" aria-checked="false">
+									<span>동의하지않음</span>
+								</label>
+							</span>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
+			
+			<!-- item -->
+			<div class="item">
+				<h3>02. 체크박스형 리스트</h3>
+				<section class="source">
+					<div class="radio_list noLine">
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-1" checked>
+							<label for="radio3-1"><em>124</em>만원으로 절약하며 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-2">
+							<label for="radio3-2"><em>177</em>만원으로 안정적인 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-3">
+							<label for="radio3-3"><em>220</em>만원으로 여유로운 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-4">
+							<label for="radio3-4"><em>300</em>만원으로 풍요로운 생활</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			
+			<!-- item -->
+			<div class="item">
+				<h3>03. 체크박스형(border) 리스트</h3>
+				<section class="source">
+					<div class="radio_list">
+						<div class="btn_radio">
+							<input type="radio" name="radio01" id="radio1-1" checked>
+							<label for="radio1-1"><em>124</em>만원으로 절약하며 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio01" id="radio1-2">
+							<label for="radio1-2"><em>177</em>만원으로 안정적인 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio01" id="radio1-3">
+							<label for="radio1-3"><em>220</em>만원으로 여유로운 생활</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio01" id="radio1-4">
+							<label for="radio1-4"><em>300</em>만원으로 풍요로운 생활</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>한번에 등록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+ 
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>한번에 등록</h1>
+		</div>
+			
+		<div class="popup_content com_bg_type00">
+            <div class="com_inner com_line_type01 com_top_type03">
+				<strong class="com_pop_tit01">인증서를 선택 하세요</strong>
+				<!---20210802 한별수정 이병철 S-->
+				<p class="com_txt_sub01"><span class="com_point_darkblue">공동인증서</span>로만 인증하실 수 있습니다. </p>
+				<!---20210802 한별수정 이병철 E-->
+				<!-- <strong class="com_cont_tit01">
+					인증서를 선택 하세요<span>보유하신 인증서 중 <em class="com_point_darkblue">통합인증서</em>로 사용 가능한<br>인증서 입니다.</span>
+				</strong> -->
+			</div> 
+			<div class="com_inner cfc_list_box">
+				<ul class="list">
+					<li>
+						<span class="cmm_radio">
+							<input type="radio" name="cfc_chk" id="cfc_01">
+							<label for="cfc_01">
+								<dl>
+									<dt class="name">김길동1</dt>
+									<dd>
+										<ul>
+											<li>
+												<em>은행개인</em>
+												<span>금융결제원</span>
+											</li>
+											<li>
+												<em>만료일</em>
+												<span class="roboto">2021.06.11</span>
+											</li>
+										</ul>
+									</dd>
+								</dl>
+							</label>
+						</span>
+					</li>
+					<li>
+						<span class="cmm_radio">
+							<input type="radio" name="cfc_chk" id="cfc_02">
+							<label for="cfc_02">
+								<dl>
+									<dt class="name">김길동2</dt>
+									<dd>
+										<ul>
+											<li>
+												<em>은행개인</em>
+												<span>금융결제원</span>
+											</li>
+											<li>
+												<em>만료일</em>
+												<span>2021.06.11</span>
+											</li>
+										</ul>
+									</dd>
+								</dl>
+							</label>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">다음</a>
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+		
+	</div>
+	<!--// full popup E -->
+
+	<!-- alert pupop S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<div class="alert_popup" id="alert_popup" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<!-- 공동인증서가 아닌 경우 -->
+			<p class="txt_normal">공동인증서만 사용 가능합니다.</p>
+			<!-- 만료된 인증서인 경우 -->
+			<!-- <p class="txt_normal">만료된 인증서 입니다</p> -->
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="javascript:void(0);" class="btn btn_mint btn_no">확인</a>
+			</div>
+		</div>
+	</div>
+	<!--// alert popup E -->
+</body>
+</html>

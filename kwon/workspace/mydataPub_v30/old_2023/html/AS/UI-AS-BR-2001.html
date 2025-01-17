@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산 | 빌린돈</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header" class=" mydata2023">
+			<h1>자산</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view hasLNB mydata2023">
+			<div class="com_tabmenu_type01 menunum04">
+				<ul role="tablist">
+					<li><a href="#nolink">전체자산</a></li>
+					<li><a href="#nolink">자산현황</a></li>
+					<li class="on"><a href="#nolink">부채관리</a></li>
+					<li><a href="#nolink">자산진단</a></li>
+				</ul>
+			</div>
+			<div class="lnb">
+				<ul role="tablist">
+					<li><a href="#nolink">카드</a></li>
+					<li><a href="#nolink">대출</a></li>
+					<li><a href="#nolink">할부금융</a></li>
+					<li><a href="#nolink">자동차할부</a></li>
+					<li><a href="#nolink">리스</a></li>
+					<li class="on"><a href="#nolink">빌린돈</a></li>
+				</ul>
+			</div>
+
+			<div id="content" class="renewal">
+				<div class="com_inner">
+					<div class="new_sub_info">
+						<div class="title">
+							<div class="text">
+								빌린 돈<br>
+								<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<hr class="hr02">
+
+				<div class="com_inner">
+					<div class="asset_link_box">
+						<ul class="list_type_01">
+							<li>
+								<a href="#nolink">
+									<dl class="borrowed_money">
+										<dt class="name">쌀집아저씨</dt>
+										<dt class="date">빌린 날 <em class="num">2021.03.29</em></dt>
+										<dd class="price"><em class="num">50,000</em>원</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<dl class="borrowed_money">
+										<dt class="name">김농협</dt>
+										<dt class="date">빌린 날 <em class="num">2021.03.29</em></dt>
+										<dd class="price"><em class="num">50,000</em>원</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="new_add_register"><a href="#nolink" role="button"><span>추가할 빌린돈이 있으신가요?</span></a></div>
+			</div>
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function(){
+			jQuery('.lnb [role=tablist] > li').each(function(){
+				// var lnb = jQuery('.lnb').not('.is_open');
+				// console.log(jQuery(this));
+				jQuery(this).on('click', function(){
+					// console.log(jQuery(this));
+					var scrollTo = jQuery(this).position().left - 100;
+					jQuery(this).parents(jQuery('.lnb').not('.is_open')).animate({'scrollLeft':scrollTo},500);
+					console.log(scrollTo);
+				});		
+			});
+		});
+	</script>
+</body>
+</html>

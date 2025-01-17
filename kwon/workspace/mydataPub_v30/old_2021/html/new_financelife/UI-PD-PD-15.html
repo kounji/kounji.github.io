@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>의료비(연간)</h1>          
+			</div>
+			<div class="popup_content">
+                <div class="com_txt_type02">
+                    <ul class="com_radio_type01 style02">
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio01">
+                                <label for="radio01">
+                                    <span>최소 생활비</span>
+                                    <strong>300<em>만원</em></strong>
+                                </label>	
+                            </div>	
+                        </li>
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio02">
+                                <label for="radio02">
+                                    <span>적정 생활비</span>	
+                                    <strong>490<em>만원</em></strong>					
+                                </label>	
+                            </div>	
+                        </li>
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio03">
+                                <label for="radio03">
+                                    <span>여유 생활비</span>			
+                                    <strong>600<em>만원</em></strong>			
+                                </label>	
+                            </div>	
+                        </li>
+                    </ul>
+                    <!-- 20211112 한별 (title=""추가) S-->
+                    <div class="com_input_type01 com_word2-2 mt15 new_mb15">
+                        <label for="com_input01"><span class="txt_label">직접 입력</span></label>
+                        <input type="tel" id="com_input01" class="com_txtleft_type04" name="" value="" required="" placeholder="" title="금액입력">
+
+                        <a href="javascript:void(0);" class="com_btnround_type05"><span>확인</span></a>
+    
+                        <div class="del_txt">
+                            <a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+                            <span class="com_inputtxtright2 type04 style01">만원</span>
+                        </div>
+                    </div>
+                    <!--// 20211112 한별 (title=""추가) E-->
+                    <p class="com_txtinfo_type01">생명보험협회 1인 연간 평균 진료비 기준</p>
+                </div>
+			</div>
+			
+			<a href="javascript:void(0);" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

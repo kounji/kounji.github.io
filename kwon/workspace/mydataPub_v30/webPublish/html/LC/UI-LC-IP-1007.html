@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>또래 지출 비교</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "130px");
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "130px");
+		
+		var layoutStr =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+				// +'<Options>'
+				// 	+'<Caption text="Web Browser Market Share"/>'
+				// 	+'<Legend useVisibleCheck="true"/>'
+				// +'</Options>'
+				// +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+				/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+				+'<Pie2DChart showDataTips="true" innerRadius="0.5" displayCompleteCallFunction="removeTabindex">'
+			/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+			/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+					+'<series>'
+						+'<Pie2DSeries nameField="browser" field="share" color="#ffffff" >'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<fills>'
+								+'<SolidColor color="#57c9ae"/>'/* 카드 */
+								+'<SolidColor color="#fdbb68"/>'/*페이머니*/
+								+'<SolidColor color="#fa7288"/>'/*선불카드*/
+								+'<SolidColor color="#668ee2"/>'/*기타*/
+							+'</fills>'
+							+'<showDataEffect>'
+							/* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+								+'<SeriesSlide  duration="1000"/>'
+			/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+			/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+			/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+							/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+			/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+			/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+			/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+					+'</series>'
+					+'<annotationElements>'
+						+'<CanvasElement>'
+							+'<CanvasLabel horizontalCenter="0" height="24" fontSize="14" fontWeight="bold" verticalCenter="0" text="또래" color="#333333"/>'
+						+'</CanvasElement>'
+					+'</annotationElements>'
+				+'</Pie2DChart>'
+				
+			+'</rMateChart>',
+		layoutStr2 =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+				// +'<Options>'
+				// 	+'<Caption text="Web Browser Market Share"/>'
+				// 	+'<Legend useVisibleCheck="true"/>'
+				// +'</Options>'
+				// +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+				+'<Pie2DChart showDataTips="true" innerRadius="0.5">'
+			/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+			/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+					+'<series>'
+						+'<Pie2DSeries nameField="browser" field="share" color="#ffffff" >'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<fills>'
+								+'<SolidColor color="#57c9ae"/>'/* 카드 */
+								+'<SolidColor color="#fa7288"/>'/*선불카드*/
+								+'<SolidColor color="#668ee2"/>'/*기타*/
+								+'<SolidColor color="#fdbb68"/>'/*페이머니*/
+							+'</fills>'
+							+'<showDataEffect>'
+							/* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+								+'<SeriesSlide  duration="1000"/>'
+			/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+			/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+			/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+							/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+			/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+			/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+			/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+					+'</series>'
+					+'<annotationElements>'
+						+'<CanvasElement>'
+							+'<CanvasLabel horizontalCenter="0" height="24" fontSize="14" fontWeight="bold" verticalCenter="0" text="나" color="#333333"/>'
+						+'</CanvasElement>'
+					+'</annotationElements>'
+				+'</Pie2DChart>'
+				
+			+'</rMateChart>';
+		
+		// 차트 데이터
+		var chartData =
+				[{"browser":"카드", "share":40},
+				{"browser":"페이머니", "share":21},
+				{"browser":"선불카드", "share":19},
+				{"browser":"기타", "share":20}],
+			chartData2 =
+				[{"browser":"카드", "share":30},
+				{"browser":"페이머니", "share":45},
+				{"browser":"선불카드", "share":10},
+				{"browser":"기타", "share":15}];
+			
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData,
+		});
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr2,
+			"setData" : chartData2
+		});
+		
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		// -----------------------차트 설정 끝 -----------------------
+		
+		</script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>남들과 지출 비교</h1>
+		</div> 
+		<div class="popup_content com_no_bottom">
+			<div class="com_inner">
+				<!-- btn box -->
+				<div class="custom_box_com_box_list01 mt10">
+					<div class="new_tit_area">
+						<a href="#nolink" class="">
+							<span class="unit txt01">또래</span>
+							<em class="unit txt02">#30대 후반</em>
+							<em class="unit txt03">#급여소득</em>
+						</a>
+					</div>
+				</div>
+				<!--// btn box -->
+				<!-- 총 지출 금액 비교 -->
+				<div class="householdBook mb50">
+					<div class="new_tit_area pb15 pt30 bdb0">
+						<strong class="com_pop_tit05">총 지출 금액 비교</strong>
+					</div>
+					<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08">
+						<div class="car_pop_bar_area">
+							<div class="com_box_type01 goal_warp no-stroke no-shadow">
+								<div class="goal_box m0">
+									<div class="progressBar_wrapper">
+										<div class="progressBar mt5">
+											<div class="bar" style="width:40%">
+											</div>
+										</div>
+										<div class="date">
+											<div class="st">
+												<span class="unit-tit">또래</span>
+												<p>
+													<em class="num">2,222,500,000</em>
+													<span class="unit">원</span>
+												</p>
+											</div>
+											<div class="ed">
+												<span class="unit-tit">나</span><em class="num">2,222,500,000</em><span class="unit">원</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>
+				</div>
+				<!--// 총 지출 금액 비교 -->
+				<div class="new_tit_area pb15 bdb0">
+					<strong class="com_pop_tit05">또래와의 결제수단 비교</strong>
+					
+				</div>
+				<div class="com_box_type01">
+					<div class="txt ty2">
+						카드 지출이 <em>50</em>%로 가장 많고 
+						<p class="in_txt">
+							페이머니 지출이 또래보다 <strong class="com_point_mint"><em>34</em>% 더 많아요.</strong>
+						</p>
+					</div>
+					
+					<div class="duel_Pie_chart">
+						<div class="chart_box">
+							<div class="graph_box">
+								<!-- 22-10-26 role / aria-label 추가 -->
+								<div id="chartHolder" role="img" aria-label="또래"></div>
+								<div class="block_list">
+									<ul class="list">
+										<li class="bl_lightcyan">
+											<span class="pie_tit">카드</span>
+											<span class="pie_p num">20%</span>
+										</li>
+										<li class="bl_orange">
+											<span class="pie_tit">페이머니</span>
+											<span class="pie_p num">20%</span>
+										</li>
+										<li class="bl_red">
+											<span class="pie_tit">선불카드</span>
+											<span class="pie_p num">20%</span>
+										</li>
+										<li class="bl_blue">
+											<span class="pie_tit">기타</span>
+											<span class="pie_p num">20%</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="chart_box">
+							<div class="graph_box">
+								<!-- 22-10-26 role / aria-label 추가 -->
+								<div id="chartHolder2" role="img" aria-label="나"></div>
+								<div class="block_list">
+									<ul class="list">
+										<li class="bl_lightcyan">
+											<span class="pie_tit">카드</span>
+											<span class="pie_p num">50%</span>
+										</li>
+										<li class="bl_red">
+											<span class="pie_tit">선불카드</span>
+											<span class="pie_p num">25%</span>
+										</li>
+										<li class="bl_blue">
+											<span class="pie_tit">기타</span>
+											<span class="pie_p num">20%</span>
+										</li>
+										<li class="bl_orange">
+											<span class="pie_tit">페이머니</span>
+											<span class="pie_p num">5%</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				 <!-- 카테고리별 지출 비교 -->
+				<div class="new_tit_area pb15 bdb0 mt50">
+					<strong class="com_pop_tit05">카테고리별 지출 비교</strong>
+				</div>
+				<div class="com_box_type01 com_box_type07 custom_box_com_box_type09">
+					<div class="txt ty2">
+						또래 보다 쇼핑 비중이 가장 높아요
+					</div>
+					<div class="date">
+						<div class="st">
+							<span class="unit-tit">또래</span>
+						</div>
+						<div class="ed">
+							<span class="unit-tit">나</span>
+						</div>
+					</div>
+					<div class="chart">
+						<div class="bars case01">
+							<div class="bar_txt_tit">
+								<span>카페<br>베이커리</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:95%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">15.6%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="bar bar02">
+								<div class="side_chart">
+									<div style="width:82.2%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="bars case01">
+							<div class="bar_txt_tit">
+								<span>쇼핑</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:95%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">15.6%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+							<div class="bar bar02">
+								<span class="blind">나</span>
+								<div class="side_chart">
+									<div style="width:82.2%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="bars case01">
+							<div class="bar_txt_tit">
+								<span>가구<br>침구</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:95%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">15.6%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="bar bar02">
+								<span class="blind">나</span>
+								<div class="side_chart">
+									<div style="width:82.2%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="bars case01">
+							<div class="bar_txt_tit">
+								<span>교육</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:95%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">15.6%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="bar bar02">
+								<span class="blind">나</span>
+								<div class="side_chart">
+									<div style="width:82.2%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="bars case01">
+							<div class="bar_txt_tit">
+								<span>교육</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:95%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">15.6%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						
+							<div class="bar bar02">
+								<span class="blind">나</span>
+								<div class="side_chart">
+									<div style="width:82.2%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="bars case02">
+							<div class="bar_txt_tit">
+								<span>교육</span>
+							</div>
+							<div class="bar bar01">
+								<span class="blind">또래</span>
+								<div class="side_chart">
+									<div style="width:92.3%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+							
+							<div class="bar bar02">
+								<span class="blind">나</span>
+								<div class="side_chart">
+									<div style="width:5.6%"></div>
+								</div>
+								<div>
+									<strong class="sub_bar num_p">
+										<em class="num">18.0%</em>
+									</strong>
+									<span class="sub_bar gray_txt">
+										<em class="num">134,123,456</em>
+										<span class="unit">원</span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="com_btn_area02">
+						<a href="#nolink" role="button" class="com_btn_more"><span>전체보기</span></a>
+					</div>
+				</div>
+				<!--// 카테고리별 지출 비교 -->
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>금융생활 | 목표관리 | 나의목표 | 목록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<style>
+		.mydata2023 .progressBar {background:#dedede;border-radius:0.4rem;height:0.8rem;width:100%;position:relative;overflow: hidden;}
+		.mydata2023 .progressBar .bar {background-color:#0a9ba0;border-radius:0.4rem;height:100%;}
+		.mydata2023 .progressBar .bar.over {background-color:#ea4956;}
+		.mydata2023 .progressBar_wrapper {position:relative;}
+		.mydata2023 .progressBar_wrapper .popover_wrap {display:inline-block;position:absolute;top:-3.7rem;transform:translateX(-55%);}
+		.mydata2023 .progressBar_wrapper .popover_wrap.zero {transform:translateX(0);margin-left:0;}
+		.mydata2023 .progressBar_wrapper .popover_wrap.full {transform:translateX(-100%);}
+		.mydata2023 .progressBar_wrapper .popover_wrap .popover {background:rgb(48, 55, 77, 0.96);border-radius:0.3rem;color:#fff;display:inline-flex;align-items:center;font-size:1.2rem;font-weight:500;height:2.7rem;padding:0.5rem 1rem;position:relative;white-space:nowrap;}
+		.mydata2023 .progressBar_wrapper .popover_wrap .popover .arrow {border-top:0.6rem solid #383f54;border-left:0.6rem solid transparent;border-right:0.6rem solid transparent;position:absolute;bottom:-0.5rem;left:50%;transform:translateX(-50%);}
+		.mydata2023 .progressBar_wrapper .popover_wrap.zero .popover .arrow {border-left:0.6rem solid #383f54;border-bottom:0.6rem solid transparent;border-right:0.6rem solid transparent;position:absolute;bottom:-0.5rem;left:0;transform:translateX(0);}
+		.mydata2023 .progressBar_wrapper .popover_wrap.full .popover .arrow {border-right:0.6rem solid #383f54;border-bottom:0.6rem solid transparent;border-left:0.6rem solid transparent;position:absolute;bottom:-0.5rem;right:0;transform:translateX(0);}
+		.mydata2023 .progressBar_wrapper .popover_wrap .popover.bg_white {background:#fff;border: 0.1rem solid #e2e2e2;box-shadow:0 0.2rem 0.8rem 0 rgba(0,0,0,0.1);color:#333;padding:0.5rem 0.6rem;}
+		.mydata2023 .progressBar_wrapper .popover_wrap.zero .popover.bg_white {border-bottom-left-radius:0;}
+		.mydata2023 .progressBar_wrapper .popover_wrap.full .popover.bg_white {border-bottom-right-radius:0;}
+		.mydata2023 .progressBar_wrapper .popover_wrap .popover.bg_white .arrow {background:url('../../../../src/assets_v30/images/img/popover_white_arrow_2023.png') no-repeat center / 1rem;border:0;width:1rem;height:0.6rem;bottom:-0.6rem;}
+		.mydata2023 .progressBar_wrapper .popover_wrap.zero .popover.bg_white .arrow {background:url('../../../../src/assets_v30/images/img/popover_white_arrow_zero_2023.png') no-repeat center / 0.65rem;width:0.65rem;height:0.65rem;bottom:-0.6rem;left:-0.1rem;}
+		.mydata2023 .progressBar_wrapper .popover_wrap.full .popover.bg_white .arrow {background:url('../../../../src/assets_v30/images/img/popover_white_arrow_full_2023.png') no-repeat center / 0.65rem;width:0.65rem;height:0.65rem;bottom:-0.6rem;left:inherit;right:-0.1rem;}
+
+	</style>
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<h1>금융생활</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view movLNB mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<div class="com_tabmenu_type01 menunum04">
+					<ul role="tablist">
+						<li class="on"><a href="#nolink">나의목표</a></li>
+						<li><a href="#nolink">상품추천</a></li>
+						<li><a href="#nolink">금융통통</a></li>
+						<li><a href="#nolink">자동차관리</a></li>
+					</ul>
+			</div>
+
+			<div class="lnb_box">
+				<div class="choice_wrap">
+					<div class="choice_option">
+						<button type="button" title="선택안됨" >버킷리스트 <em class="num">2</em></button>
+						<button type="button" title="선택됨"class="active">금융목표 <em class="num">1</em></button>
+					</div>
+				</div>
+			</div>
+		
+			<div id="content" class="sub_main renewal">
+				<!-- 0803 위치 이동, .com_inner로 감싸주세요 -->
+				<div class="com_inner">
+					<div class="box_border_link iconType01 mt20">
+						<a role="button" href="#nolink"><span class="arrow"><em class="num">4</em>개의 목표에 계좌 연결이 필요해요</span></a>
+					</div>
+				</div>
+				<!-- //0803 위치 이동, .com_inner로 감싸주세요 -->
+
+				<div class="goal_box_wrap com_inner">
+					<!-- 6월 지출목표 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">6월 지출목표<span class="mint_badge">D-28</span></p>
+								<p class="mytitle"><em class="num">12,345,678</em>원</p>
+								<p class="sub_title"><em class="num">1,234,567</em>원 더 쓰고 있어요</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">121</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="budget">
+								<dt>목표예산</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- //6월 지출목표 -->
+
+					<!-- 6월 지출목표 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">6월 지출목표<span class="mint_badge">D-28</span></p>
+								<p class="mytitle"><em class="num">12,345,678</em>원</p>
+								<p class="sub_title"><em class="num">1,234,567</em>원 덜 쓰고 있어요</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">1</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="budget">
+								<dt>목표예산</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- //6월 지출목표 -->
+
+					<!-- 돈모으기 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">돈모으기<span class="mint_badge">D-234</span></p>
+								<p class="mytitle">5천만원 모으기</p>
+								<p class="sub_title">#부자 되는 첫 걸음</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">41</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="save_money">
+								<dt>모은돈</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- //돈모으기 -->
+
+					<!-- 돈모으기 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">돈모으기<span class="mint_badge">D-234</span></p>
+								<p class="mytitle">5천만원 모으기</p>
+								<p class="sub_title">#부자 되는 첫 걸음</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">0</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="save_money">
+								<dt>모은돈</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- //돈모으기 -->
+
+					<!-- 투자목표 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">투자목표<span class="mint_badge">D-234</span></p>
+								<p class="mytitle">시드머니 1억 만들기</p>
+								<p class="sub_title">#꿈꾸던 미래를 위한 시작</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">20</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="save_money">
+								<dt>모은돈</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- 투자목표 -->
+
+					<!-- 투자목표 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink">
+							<div class="head">
+								<p class="goal_title">투자목표<span class="mint_badge">달성</span></p>
+								<p class="mytitle">시드머니 1억 만들기</p>
+								<p class="sub_title">#꿈꾸던 미래를 위한 시작</p>
+							</div>
+
+							<div class="progressBar_wrapper">
+								<div class="popover_wrap">
+									<span class="popover bg_white">
+										<em class="num">20</em>%
+										<span class="arrow"></span>
+									</span>
+								</div>
+								
+								<div class="progressBar">
+									<div class="bar"></div>
+								</div>
+							</div>
+
+							<dl class="save_money">
+								<dt>모은돈</dt>
+								<dd><em class="num">12,345,678</em>원</dd>
+							</dl>
+						</a>
+					</div>
+					<!-- //투자목표 -->
+
+					<!-- 새로운 금융목표 만들기 -->
+					<div class="mygoal_cont_box">
+						<a href="#nolink" class="make_new_goal">
+							<p>새로운 금융목표 만들기</p>
+						</a>
+					</div>
+					<!-- //새로운 금융목표 만들기 -->
+				</div>
+				
+				<!-- 목표등록 페이지로 이동 버튼 -->
+				<div class="com_btn_area fixed_right">
+					<a href="#nolink" role="button" class="mygoal_link_btn"><span class="blind">목표등록 페이지로 이동</span></a>
+				</div>
+				<!-- //목표등록 페이지로 이동 버튼 -->
+			</div>
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+	<script>
+
+			var contHeight = jQuery('.mygoal_cont_box').height();
+			var contHeight02 = contHeight * 2;
+			var currentNum = jQuery('.mygoal_cont_box').length - 1;
+			var progressBar = jQuery('.progressBar .bar');
+			var popoverWrap01 = jQuery('.progressBar_wrapper').eq(0).children('.popover_wrap');
+			var progressNum01 = jQuery('.progressBar_wrapper').eq(0).children().find('.popover .num').text();
+			var n = 0;
+			
+		function progressBarAni() {
+			if(progressNum01 >= 100) {
+				progressNum01 = 100;
+				progressBar.eq(0).addClass('over');
+				popoverWrap01.animate({
+					left: progressNum01 + "%"
+				},1000,function(){
+					popoverWrap01.addClass('full');
+				}).css('transform','translateX(-100%)');// 230721 -100%로 수정
+			} else if(progressNum01 == 0) {
+				popoverWrap01.addClass('zero');
+			} else {
+				popoverWrap01.animate({
+					left: progressNum01 +'%'
+				},1000);
+			}
+
+			progressBar.css('width','0');
+			popoverWrap01.css('left','0');
+			progressBar.eq(0).animate({
+				width: progressNum01 + '%',
+			},1000);
+		}
+
+		function scrollProgressAni() {
+			jQuery('#content').scroll(function(){
+
+				if(n <= currentNum) {
+					var contTop = jQuery('.mygoal_cont_box').eq(n).position().top - contHeight02;
+				// console.log(contTop);
+					var progressNum = jQuery('.progressBar_wrapper').eq(n).children().find('.popover .num').text();
+					var popoverWrap = jQuery('.progressBar_wrapper').eq(n).children('.popover_wrap');
+
+					if(jQuery(this).scrollTop() > contTop) {
+						if(progressNum >= 100) {
+							progressNum = 100;
+							progressBar.eq(n).addClass('over');
+							popoverWrap.animate({
+								left: progressNum + "%"
+							},1000,function(){
+								popoverWrap.addClass('full');
+							}).css('transform','translateX(-100%)');// 230721 -100%로 수정
+						} else if(progressNum == 0) {
+							popoverWrap.addClass('zero');
+						} else {
+							popoverWrap.animate({
+								left: progressNum +'%'
+							},1000);
+						}
+
+						progressBar.eq(n).animate({
+							width: progressNum + '%'
+						},1000);
+						n = n + 1;
+					} 
+				}
+				// console.log(jQuery(this).scrollTop());
+			});
+	}
+
+	jQuery(document).ready(function(){
+		progressBarAni();
+		scrollProgressAni();
+		});
+	</script>
+</body>
+</html>

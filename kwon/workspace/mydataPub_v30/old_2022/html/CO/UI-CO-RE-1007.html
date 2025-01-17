@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>부동산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>부동산</h1>
+		</div>
+		
+		<div class="popup_content "><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner com_line_type01 com_top_type02">
+				<strong class="com_pop_tit01">산본동 한양아파트</strong>
+				<p class="detail_size">
+					<span>면적</span>
+					<em>154.3m2</em>
+				</p>
+				<!-- 전세 -->
+				<p class="com_txt_sub01">
+					<strong class="bold_txt">
+						<span class="normal_txt">매매 시세 </span>
+						<span class="com_point_darkblue">15</span>억 <span class="com_point_darkblue">1,000</span>만원
+					</strong>
+					<span class="txt_gray">
+						한국부동산원
+					</span>
+				</p>
+				<p class="com_txtinfo_type01 color_ty">최근 전세 실거래가 <strong class="num">14</strong>억 <strong class="num">5,760</strong>만원</p>
+				<!-- //전세 -->
+			</div>
+			<div class="com_inner">
+				<div class="com_input_type01 com_word2">
+					<input type="number" id="com_input01" value="300,000"  required="" placeholder="보증금 입력" title="보증금을 입력하세요">
+					<label for="com_input01">
+						<em><span class="blind">필수입력</span></em>
+						<span class="txt_label_x">보증금</span>
+					</label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">만원</span>
+					</div>
+					<p class="com_sum">4조 2,345억 6,789만원</p>
+					<div class="btn_price_group">
+						<button type="button" class="btn_price">+<strong>10</strong>만</button>
+						<button type="button" class="btn_price">+<strong>100</strong>만</button>
+						<button type="button" class="btn_price">+<strong>1000</strong>만</button>
+						<button type="button" class="btn_price">+<strong>1</strong>억</button>
+					</div>
+				</div>
+				<!-- 월세 -->
+				<div class="com_input_type01 com_word2">
+					<input type="number" id="com_input01" value="300,000"  required="" placeholder="월세 입력" title="월세을 입력하세요">
+					<label for="com_input01">
+						<em><span class="blind">필수입력</span></em>
+						<span class="txt_label_x">월세</span>
+					</label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">만원</span>
+					</div>
+					<p class="com_sum">4조 2,345억 6,789만원</p>
+					<div class="btn_price_group">
+						<button type="button" class="btn_price">+<strong>1</strong>만</button>
+						<button type="button" class="btn_price">+<strong>10</strong>만</button>
+						<button type="button" class="btn_price">+<strong>50</strong>만</button>						
+						<button type="button" class="btn_price">+<strong>100</strong>만</button>
+					</div>
+				</div>
+				<!-- //월세 -->
+
+				<div class="com_input_type01 com_word2" role="button" aria-label="필수입력, 계약일 2022년 10월 17일, 계약일 선택" ><!-- 22-10-20 접근성 aria 추가-->
+					<input type="text" id="com_input03" class="input_cal_date com_txtright_type01 tar" name="" value="" required="" placeholder="계약일자 선택" title="계약일자를 선택하세요." aria-hidden="true" readonly>
+					<label for="com_input03">
+						<em><span class="blind">필수입력</span></em>
+						<span class="txt_label_x">계약일</span>
+					</label>
+				</div>
+
+				<div class="com_input_type01 com_word2 mb0" role="button" aria-label="필수입력, 만기일 2022년 10월 17일, 만기일 선택" ><!-- 22-10-20 접근성 aria 추가-->
+					<input type="text" id="com_input03" class="input_cal_date com_txtright_type01 tar" name="" value="" required="" placeholder="만기일자 선택" title="만기일자를 선택하세요." aria-hidden="true" readonly>
+					<label for="com_input03">
+						<em><span class="blind">필수입력</span></em>
+						<span class="txt_label_x">만기일</span>
+					</label>
+				</div>
+				<div class="switch_list_wrap">
+					<div class="custom_list com_box_type01">
+						<div class="new_tit_area">
+							<div class="tit"><span class="normal_font">대출이 있어요</span></div>
+							<span class="cmm-switch custom-switch fr">
+								<input type="checkbox" id="check04" checked role="switch"><!-- 22-10-21 role 추가 -->
+								<label for="check04"><em class="blind">대출이 있어요 체크</em></label>
+							</span>
+						</div>
+						<div class="switch_sub_box">
+							<div class="com_txt_type02">
+								<ul class="list_type_01 chk_list_type_01">
+									<li>
+										<span class="btn_chk">
+											<input type="checkbox" disabled id="com_check03">
+											<label for="com_check03">
+												<dl>
+													<dt>
+														<div>
+															<i class="bank_01"><span class="blind">농협</span></i>
+															<em>카카오뱅크 모바일대출</em>
+															<span>123412312313</span>
+														</div>
+													</dt>
+													<dd>
+														<span class="com_price">
+															<em class="num">200,000,000</em><em class="unit">원</em>
+														</span>
+													</dd>
+												</dl>
+											</label>
+										</span>
+									</li>
+									<li>
+										<span class="btn_chk">
+											<input type="checkbox" disabled id="com_check04">
+											<label for="com_check04">
+												<dl>
+													<dt>
+														<div>
+															<i class="bank_02"><span class="blind">신한</span></i>
+															<em>카카오뱅크 모바일대출</em>
+															<span>123412312313</span>
+														</div>
+													</dt>
+													<dd>
+														<span class="com_price">
+															<em class="num">200,000,000</em><em class="unit">원</em>
+														</span>
+													</dd>
+												</dl>
+											</label>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<div class="com_btn_area">
+								<a href="javascript:void(0);" role="button" class="com_btn_round"><span class="btn_go">부동산대출 다시 선택</span></a>
+							</div>
+						</div>
+					</div>
+					<p class="dot_msg">해당사항이 없으시면 선택하지 않으셔도 됩니다.</p><!-- 2022-09-01 class 수정 -->
+				</div>
+			</div>
+
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" role="button" class="btn btn_off" aria-disabled="true">등록</a><!-- 비활성화 btn_off / 활성화 btn_mint -->
+				<!--22-10-20 btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
+
+	</div>
+	<!--// full popup E -->
+	
+	<script type="text/javascript">
+
+	/*
+		영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+		입력 후 x 버튼 클릭시 글자 삭제
+	*/
+	$(function() {
+		var _inputBox = $('.inputClear'); // Input Box
+		var _clearBtn = $('.com_btn_delete'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('btnDeleteShow');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('btnDeleteShow');
+				_inputBox.val(''); 
+			});
+		});
+
+	});
+	</script>
+</body>
+</html>

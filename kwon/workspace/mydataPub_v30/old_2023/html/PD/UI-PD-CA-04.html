@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>부품 별 교체주기 설정 | 금융과생활</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+ 
+<body>
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제-->
+		<div class="popup_header">    
+			<h1>부품 별 교체주기 설정</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+        <div class="popup_content com_bg_type00">
+			<div class="com_inner com_space_type01 com_inputarea_type07 pb30">
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input01"><span class="txt_label">현 주행거리</span></label>
+                    <input type="tel" id="com_input01" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input02"><span class="txt_label">엔진오일/오일필터</span></label>
+                    <input type="tel" id="com_input02" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input03"><span class="txt_label">에어컨 필터</span></label>
+                    <input type="tel" id="com_input03" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input04"><span class="txt_label">에어크리너</span></label>
+                    <input type="tel" id="com_input04" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input05"><span class="txt_label">브레이크오일</span></label>
+                    <input type="tel" id="com_input05" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input06"><span class="txt_label">배터리</span></label>
+                    <input type="tel" id="com_input06" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+				<div class="com_input_type01 com_word1">
+                    <label for="com_input07"><span class="txt_label">타이어</span></label>
+                    <input type="tel" id="com_input07" class="" name="" value="0" readonly placeholder="">
+                    <div class="del_txt">
+                        <span class="com_inputtxtright2">㎞</span>
+                    </div>
+                </div>
+			</div>
+
+			<div class="com_inner">
+				<strong class="com_box_tit style01">교체기준 주행거리를 직접 설정 할 수 있어요.</strong>
+				<div class="com_box_type01 com_box_list change_parts_box">
+					<div class="new_tit_area">
+						<div class="tit"><span>소모품 교체주기 기본값 예시</span></div>
+					</div>
+					<div class="cont_area">
+						<strong>(교체주기 설정값 - 교체주기 제외한 거리) ÷ 월 평균 주행거리</strong>
+						<div class="com_box_type02">
+							<p class="com_txtinfo_type01 style01">
+								교체주기 제외한 거리란?<br>
+								<span>소모품을 주기마다 교체 완료한 거리에서 제외된 주행거리<br>단, 최초 교체 예정일 전이라면 ‘현 주행거리’ 로 계산</span>
+							</p>
+						</div>
+					</div>
+					<div>
+						<strong>1. 김농협 운전자 정보</strong>
+						<ul class="bl_dot_list">
+							<li>현 주행거리: 58,000km</li>
+							<li>연 평균 주행거리: 20,000km</li>
+						</ul>
+
+						<strong>2. 엔진오일 및 에이컨 필터</strong>
+						<ul class="bl_dot_list">
+							<li>(10,000-(58,000-50,000))÷(20,000÷12) ≒ 1.2개월</li>
+							<li>당월을 포함한 익월 교체 예정일</li>
+						</ul>
+
+						<strong>3. 에어크리너</strong>
+						<ul class="bl_dot_list">
+							<li>(40,000-(58,000-40,000))÷(20,000÷12) ≒ 13.2개월</li>
+							<li>당월을 포함한 내년 익월 교체 예정일</li>
+						</ul>
+
+						<strong>4. 브레이크오일</strong>
+						<ul class="bl_dot_list">
+							<li>(50,000-(58,000-50,000))÷(20,000÷12) ≒ 25.2개월</li>
+						</ul>
+
+						<strong>5. 배터리 및 타이어</strong>
+						<ul class="bl_dot_list">
+							<li>(60,000-58,000)÷(20,000÷12) ≒ 1.2개월</li>
+							<li>당월을 포함한 익월 교체 예정일</li>
+						</ul>
+					</div>
+					<div class="com_box_type02">
+						<p class="com_txtinfo_type01">
+							해당 월 일자에 상관없이 월 기준으로 계산하며 현재월은 포함합니다.</span>
+						</p>
+					</div>
+				</div>
+			</div>
+
+        </div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint">저장</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+</body>
+</html>

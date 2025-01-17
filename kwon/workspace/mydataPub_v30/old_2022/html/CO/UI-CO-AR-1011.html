@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>더보기 | 연결 기관 관리 | 연결 변경</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box renewal">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_content com_btn_bottom pop_not_close"><!-- 2022-08-17 pop_not_close 추가 -->
+				<strong class="com_pop_tit01"><em>2개</em> 기관에 요청한 연결 재시도<br>
+					결과를 확인해 주세요
+				</strong>
+				<div class="custom_list com_box_type01 mt15"><!-- 2022-09-01 class 수정 -->
+					<div class="list_type_custom">
+						<div class="list_item">
+							<i class="B1AABF0000"></i>
+							<strong class="tit">신한은행</strong>
+							<span class="ico_result suc">연결성공</span>
+						</div>
+						<div class="list_item">
+							<i class="B1AABF0000"></i>
+							<strong class="tit">신한은행</strong>
+							<span class="ico_result fail_tip">실패
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="javascript:void(0);" role="button" class="com_btn_info">
+											<em class="com_icon_info3"><span class="blind">툴팁열기</span></em>
+											<span class="arrow" style="display:none"></span>
+										</a>
+									</div>
+									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+										<div>
+											해당 기관에 보유한 자산이 없습니다.<br>
+											(오류코드 <em>40403</em>)
+											<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+										</div> 
+									</div>
+								</div>
+							</span>
+						</div>
+					</div>
+				</div>
+				<!-- <p class="dot_msg mt-5">보유 자산이 없는 기관은 연결에 제외 됩니다.</p> 2022-10-13 삭제 --><!-- 2022-09-01 class 수정 -->
+			</div>
+			<div class="popup_footer">
+				<div class="btn_box">
+					<a href="javascript:void(0);" class="btn btn_mint">확인</a>
+				</div>
+			</div>
+			
+			<!-- <a href="javascript:void(0);" role="button" class="btn_close"><span class="">닫기</span></a> -->
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

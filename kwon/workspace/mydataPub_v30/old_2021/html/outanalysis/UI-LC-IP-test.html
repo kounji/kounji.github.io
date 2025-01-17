@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>가계부리포트</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script type="text/javascript">
+
+        // -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "500rem");
+ 
+ // 스트링 형식으로 레이아웃 정의.
+ var layoutStr =
+ '<rMateChart backgroundColor="#FFFFFF" paddingTop="40" borderStyle="none">'
+    +'<Options>'
+        +'<Caption text="Life Expectancy vs. GDP per Capita" />'
+        +'<Legend useVisibleCheck="true"/>'
+    +'</Options>'
+  +'<NumberFormatter id="numFmt" precision="0" useThousandsSeparator="true"/>'
+   +'<Bubble3DChart showDataTips="true" minRadius="5" maxRadius="50" dataTipJsFunction="dataTipFunc" >'
+       +'<verticalAxis>'
+          +'<LinearAxis id="vAxis" minimum="30" maximum="100" title=""/>'
+         +'</verticalAxis>'
+         +'<verticalAxisRenderers>'
+             +'<Axis3DRenderer axis="{vAxis}" axisTitleStyleName="title" showLine="true"/>'
+         +'</verticalAxisRenderers>'
+        +'<horizontalAxis>'
+            +'<LinearAxis id="hAxis" labelJsFunction="axisLabelFunc" title=""/>'
+         +'</horizontalAxis>'
+       +'<horizontalAxisRenderers>'
+           +'<Axis3DRenderer axis="{hAxis}" axisTitleStyleName="title" showLine="true" />'
+        +'</horizontalAxisRenderers>'
+      +'<series>'
+            +'<Bubble3DSeries id="AF" xField="AF_GDP" yField="AF_Life" radiusField="AF_Population" displayName="입출금">'
+              +'<fill>'
+                  +'<SolidColor color="#f00" alpha="0.5"/>'
+               +'</fill>'
+                 +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+           +'</Bubble3DSeries>'
+           +'<Bubble3DSeries id="EA" xField="EA_GDP" yField="EA_Life" radiusField="EA_Population" displayName="예금">'
+               +'<fill>'
+                  +'<SolidColor color="#ff0" alpha="0.5"/>'
+               +'</fill>'
+                 +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+           +'</Bubble3DSeries>'
+           +'<Bubble3DSeries id="SA" xField="SA_GDP" yField="SA_Life" radiusField="SA_Population" displayName="적금">'
+              +'<fill>'
+                  +'<SolidColor color="#f0f" alpha="0.5"/>'
+               +'</fill>'
+                 +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+           +'</Bubble3DSeries>'
+           +'<Bubble3DSeries id="ME" xField="ME_GDP" yField="ME_Life" radiusField="ME_Population" displayName="외화">'
+                 +'<fill>'
+                  +'<SolidColor color="#ccc" alpha="0.5"/>'
+               +'</fill>'
+                 +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+           +'</Bubble3DSeries>'
+           +'<Bubble3DSeries id="EU" xField="EU_GDP" yField="EU_Life" radiusField="EU_Population" displayName="청약">'
+              +'<fill>'
+                  +'<SolidColor color="#000" alpha="0.5"/>'
+               +'</fill>'
+                 +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+           +'</Bubble3DSeries>'
+       +'</series>'
+       +'<backgroundElements>'
+            +'<GridLines horizontalShowOrigin="false" verticalShowOrigin="false"/>'
+        +'</backgroundElements>'
+       +'<annotationElements>'
+            +'<CrossRangeZoomer zoomType="both" verticalLabelFormatter="{numFmt}" horizontalLabelFormatter="{numFmt}"/>'
+       +'</annotationElements>'
+   +'</Bubble3DChart>'
+    +'<Style>.title{color:0x4691E1; fontSize:14; fontWeight:bold;}'
+    +'</Style>'
+ +'</rMateChart>';
+  
+ // 차트 데이터
+ var chartData =
+ [{"AF_GDP":800, "AF_Life":60, "AF_Population":30, "AF_Country":"Congo",
+ "EA_GDP":2330, "EA_Life":77, "EA_Population":1, "EA_Country":"China",
+ "SA_GDP":590, "SA_Life":67, "SA_Population":10, "SA_Country":"India",
+ "ME_GDP":110, "ME_Life":71, "ME_Population":9, "ME_Country":"Egypt",
+ "EU_GDP":20, "EU_Life":73, "EU_Population":14, "EU_Country":"Russia"}
+
+ ];
+  
+  
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart1", {
+  "setLayout" : layoutStr,
+     "setData" : chartData
+ });
+  
+//  function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values) {
+//   if (seriesId == "AF")
+//         return data["AF_Country"] + "
+//  GDP/Capita : $" + insertComma(data["AF_GDP"]) + "
+//  Life Expectancy : " + data["AF_Life"] + "
+//  Population : " + insertComma(data["AF_Population"]) + " M";
+//      else if (seriesId == "EA")
+//        return data["EA_Country"] + "
+//  GDP/Capita : $" + insertComma(data["EA_GDP"]) + "
+//  Life Expectancy : " + data["EA_Life"] + "
+//  Population : " + insertComma(data["EA_Population"]) + " M";
+//      else if (seriesId == "SA")
+//        return data["SA_Country"] + "
+//  GDP/Capita : $" + insertComma(data["SA_GDP"]) + "
+//  Life Expectancy : " + data["SA_Life"] + "
+//  Population : " + insertComma(data["SA_Population"]) + " M";
+//      else if (seriesId == "ME")
+//        return data["ME_Country"] + "
+//  GDP/Capita : $" + insertComma(data["ME_GDP"]) + "
+//  Life Expectancy : " + data["ME_Life"] + "
+//  Population : " + insertComma(data["ME_Population"]) + " M";
+//      else if (seriesId == "EU")
+//        return data["EU_Country"] + "
+//  GDP/Capita : $" + insertComma(data["EU_GDP"]) + "
+//  Life Expectancy : " + data["EU_Life"] + "
+//  Population : " + insertComma(data["EU_Population"]) + " M";
+//      else if (seriesId == "AM")
+//        return data["AM_Country"] + "
+//  GDP/Capita : $" + insertComma(data["AM_GDP"]) + "
+//  Life Expectancy : " + data["AM_Life"] + "
+//  Population : " + insertComma(data["AM_Population"]) + " M";
+//  }
+  
+ function axisLabelFunc(id, value) {
+     return  "$" + insertComma(value);
+ }
+  
+ function insertComma(n) {
+  var reg = /(^[+-]?\d+)(\d{3})/; // Regular expression
+    n += "";
+     while (reg.test(n))
+      n = n.replace(reg, '$1' + "," + '$2');
+   return n;
+ }
+  
+ /**
+  * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+  * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+  *
+  * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * -------------------------------------------------
+  *
+  * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+  */
+ rMateChartH5.registerTheme(rMateChartH5.themes);
+  
+ /**
+  * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+  * 접근하는 차트 객체의 테마를 변경합니다.
+  * 파라메터로 넘어오는 값
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - default
+  *
+  * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+  */
+ function rMateChartH5ChangeTheme(theme){
+   document.getElementById("chart1").setTheme(theme);
+ }
+  
+ // -----------------------차트 설정 끝 -----------------------
+        
+    </script>
+</head>
+
+<body>
+    <div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>고정지출 현황</h1>			
+		</div>
+        <div class="popup_content com_space_bottom com_bg_type00"><!-- 20210701 한별 클래스 com_space_bottom 수정  -->
+            <div class="top_graph_info com_line_type01">
+                <div class="top_info_box">
+                    <div class="graph_box">
+                        <div class="graph_wrap_donut">
+                            <!-- 차트가 삽입될 DIV -->
+			                <div id="chartHolder"></div>
+                        </div>
+                        
+                    </div>  
+                </div>
+            </div> 
+        </div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+    
+</body>
+</html> 

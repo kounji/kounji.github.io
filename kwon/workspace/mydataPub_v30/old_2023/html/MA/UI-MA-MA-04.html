@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+    <div class="popup_box">
+        <div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+            <div class="popup_header">
+                <h1>나의 자산 합계 편집</h1>          
+            </div>
+            <div class="popup_content com_btn_bottom ppb30">
+                <div class="com_box_type02 mt25 pr20 pl20">
+                    <div class="df sb">
+                        <!-- 20210902 한별 클래스명 수정 S -->
+                        <strong class="txttotal">총자산</strong>
+                        <strong class="com_mumbertotal"><span class="num blue f24 lsp0">5,000,000,000</span><span class="f19">원</span></strong>
+                        <!--// 20210902 한별 클래스명 수정 E -->
+                    </div>
+                </div>
+                <div class="list_area pt0">
+                    <ul class="view_box view_link_list2 chkbox_list">
+                        <li>
+                            <dl class="ptb25"><!-- [개발자 전달] 첫번째 항목은 레이아웃이 다릅니다 -->
+                                <dt class="wPc30"><em class="f16">금융자산</em></dt>
+                                <dd>
+                                    <span>
+                                        <strong class="date num mr0 dark1 lsp0 lh24">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span> 
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">부채</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check01" checked>
+                                        <label for="check01"><em class="blind">부채선택</em></label>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">현금</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check02">
+                                        <label for="check02"><em class="blind">현금선택</em></label>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">부동산</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check03" checked>
+                                        <label for="check03"><em class="blind">부동산선택</em></label>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>					
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">자동차</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check04">
+                                        <label for="check04"><em class="blind">자동차선택</em></label>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>					
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">금(gold)</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check05" checked>
+                                        <label for="check05"><em class="blind">금(gold)선택</em></label>
+                                    </span>
+                                </dd>
+                            </dl>
+                        </li>					
+                        <li>
+                            <dl class="ptb20">
+                                <dt class="wPc30"><em class="f16">기타</em></dt>
+                                <dd>
+                                    <span class="mr10">
+                                        <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                    </span>                                        
+                                    <span class="cmm-switch sm">
+                                        <input type="checkbox" id="check06">
+                                        <label for="check06"><em class="blind">기타선택</em></label>
+                                    </span>                                 
+                                </dd>
+                            </dl>
+                        </li>					
+                    </ul>
+                </div>                    
+            </div>
+            <div class="popup_footer">
+                <div class="btn_full_box">
+                    <a href="javascript:console.log('저장');" class="btn btn_mint">저장</a>
+                </div>
+            </div>                
+            <a href="javascript:console.log('슬라이드 팝업 닫기');" class="btn_close"><span>닫기</span=></a>
+        </div>
+    </div>
+	<!--// slide popup E -->
+</body>
+</html>

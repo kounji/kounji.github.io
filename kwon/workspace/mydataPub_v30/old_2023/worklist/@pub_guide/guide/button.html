@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Button</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns" id="styleGuide">
+	<h1>Button</h1>
+
+	<article class="guide_group">
+		<h2>Button</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>Bottom Button</h3>
+				<section class="source">
+					<p style="font-size:1.2rem;">Normal</p>
+					<div class="btn_group">
+						<a href="#nolink" class="btn btn_mint">확인</a>
+					</div>
+					<br>
+					<p style="font-size:1.2rem;">Disabled</p>
+					<div class="btn_group">
+						<a href="#nolink" role="button" class="btn btn_mint btn_off" aria-disabled="true">확인</a>
+						<!-- 비활성화 btn_off / 활성화 btn_mint -->
+						<!-- btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Bottom Button (5:5) - Positive</h3>
+				<section class="source">
+					<p style="font-size:1.2rem;">Normal</p>
+					<div class="btn_group -half">
+						<a href="#nolink" role="button" class="btn btn_lingtmint">자산추가</a>
+						<a href="#nolink" role="button" class="btn btn_mint">확인</a>
+						<!-- btn_off 제거시 활성화 -->
+						<!--22-10-20 btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+					</div>
+					<br>
+					<p style="font-size:1.2rem;">Disabled</p>
+					<div class="btn_group -half">
+						<a href="#nolink" role="button" class="btn btn_lingtmint btn_off">자산추가</a>
+						<a href="#nolink" role="button" class="btn btn_mint btn_off">확인</a>
+						<!-- btn_off 제거시 활성화 -->
+						<!--22-10-20 btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Bottom Button (5:5) - Nagative</h3>
+				<section class="source">
+					<p style="font-size:1.2rem;">Normal</p>
+					<div class="btn_group -half">
+						<a href="#nolink" class="btn btn_gray">취소</a>
+						<a href="#nolink" class="btn btn_mint">확인</a>
+						<!-- btn_off 제거시 활성화 -->
+					</div>
+					<br>
+					<p style="font-size:1.2rem;">Disabled</p>
+					<div class="btn_group -half">
+						<a href="#nolink" class="btn btn_gray btn_off">취소</a>
+						<a href="#nolink" class="btn btn_mint btn_off">확인</a>
+						<!-- btn_off 제거시 활성화 -->
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Bottom Button - 기존 페이지(신규페이지 사용 안함)</h3>
+				<section class="source">
+					<div class="btn_half_box">
+						<a href="#nolink" class="btn btn_grey">취소</a>
+						<a href="#nolink" class="btn btn_mint">확인</a>
+					</div>
+					<br>
+					<div class="com_btnhalfbox_type02">
+						<a href="#nolink" class="btn btn_grey" role="button">취소</a>
+						<a href="#nolink" class="btn btn_mint" role="button">서비스탈퇴</a>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>CTA Button_01</h3>
+				<section class="source">
+					<div class="com_btn_area">
+						<a href="#nolink" class="com_btnround_type02" role="button"><span class="btn_plus">카드등록</span></a>
+					</div>
+					<div class="btn_half_box2 com_btn_area">
+						<a href="#nolink" class="btn btn_gray_line" role="button">삭제</a>
+						<a href="#nolink" class="btn btn_mint_line" role="button">대출변경</a>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Text Button</h3>
+				<section class="source">
+					<a href="#nolink" class="com_btn_more">더보기</a>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Floating Button</h3>
+				<section class="source">
+					<!-- float S -->
+					<div class="dimmed"></div>
+					<div class="toggle-box sticky">
+							<div data-ui-toggle="sticky">
+									<button type="button" class="btn_float" aria-expanded="false">
+											<span class="tit">더보기 메뉴</span>
+											<!-- <em class="open">열기</em><em class="close">닫기</em> 20211108 한별 접근성 삭제-->
+									</button>
+									<div class="view_box p0">
+											<button type="button" class="btn_01"><span>수입 추가</span></button>
+											<button type="button" class="btn_02"><span>지출 추가</span></button>
+									</div>
+							</div>
+					</div>
+					<!--// float E -->
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>Floating Button(버튼기능)</h3>
+				<section class="source">
+					<!-- 목표등록 페이지로 이동 버튼 -->
+					<div class="com_btn_area fixed_right" style="right:10rem;">
+						<a href="#nolink" role="button" class="mygoal_link_btn"><span class="blind">목표등록 페이지로 이동</span></a>
+					</div>
+					<!-- //목표등록 페이지로 이동 버튼 -->
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+</script>
+</body>
+
+</html>

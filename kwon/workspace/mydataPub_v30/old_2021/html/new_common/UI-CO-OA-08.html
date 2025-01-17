@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>빌린돈</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script>
+		$(function(){
+			$('.com_input_type01 input').focus(function() {
+				$('.popup_content').animate({scrollTop: $(this).offset().top + $(this).outerHeight()}, 500);
+				return false;
+			});
+		});
+
+
+
+	</script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>빌린돈</h1>
+		</div>
+		<!-- 20210804 한별 수정 S -->
+		<div class="popup_content com_bg_type00">
+			<div class="com_inner com_line_type01 com_top_type02">
+				<strong class="com_pop_tit01">누구에게 얼마를 빌렸나요?</strong>
+			</div>
+			<div class="com_inner com_inputarea_type07">
+				<div class="com_input_type01">
+					<input type="text" id="com_input01" class="" name="" value="" required="" placeholder="누구에게 빌렸나요?" title="누구에게 빌렸나요?"><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input01"><em><span class="blind">필수입력</span></em><span class="txt_label_x">빌린사람</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+				</div>
+				<div class="com_input_type01 ani-active">
+					<input type="tel" id="com_input02" class="input_left" name="" value="" maxlength="13" required="" placeholder="휴대전화번호 (선택)" title="휴대전화번호 (선택)"><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input02"><span class="blind">필수입력</span><span class="txt_label_x">휴대전화번호</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+				</div>
+				<div class="com_input_type01 ani-active com_word1 new_mb60">
+					<input type="tel" id="com_input03" class="input_right com_txtright_type01" name="" value="" required="" placeholder="얼마를 빌렸나요?" title="얼마를 빌렸나요?"><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input03"><em><span class="blind">필수입력</span></em><span class="txt_label_x">빌린돈</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2 style01">원</span>
+					</div>
+					<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+				</div>
+				 <!-- 20211015 한별 수정 S -->
+				<div class="com_input_type01 ani-active com_word1" role="button"><!--  20211202 한별 접근성 추가 (role="button") -->
+					<input type="text" id="com_input04" class="input_cal_date input_cal_date_tit com_txtright_type01" name="" value="" required="" placeholder="언제 빌렸나요?" title="언제 빌렸나요?"  aria-hidden="true"><!--  20211202 한별 접근성 추가 (aria-hidden="true") -->
+					<label for="com_input04"><em><span class="blind">필수입력</span></em><span class="txt_label_x">빌린날</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+				</div>
+				<div class="com_input_type01 ani-active com_word1" role="button"><!--  20211202 한별 접근성 추가 (role="button") -->
+					<input type="text" id="com_input05" data-popup="alert_popup" class="input_cal_date input_cal_date_tit com_txtright_type01" name="" value="" required="" placeholder="언제까지 갚을 건가요?(선택)" title="언제까지 갚을 건가요?(선택)" aria-hidden="true"><!--  20211202 한별 접근성 추가 (aria-hidden="true") -->
+					<label for="com_input05"><span class="txt_label_x">빌린날</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+				</div>
+				<!--// 20211015 한별 수정 E -->
+				<div class="com_input_type01 ani-active com_word1">
+					<input type="tel" id="com_input06" class="com_txtright_type01" name="" value="" required="" placeholder="연 이자율(선택)" title="연 이자율(선택)"><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input06"><span class="txt_label_x">연 이자율</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">%</span>
+					</div>
+				</div>
+				<div class="com_input_type01 ani-active com_word1">
+					<input type="tel" id="com_input07" class="com_txtright_type01" name="" value="" required="" placeholder="매월 이자지급일(선택)" title="매월 이자지급일(선택)"><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input07"><span class="txt_label_x">매월 이자지급일</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">일</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<!--// 20210804 한별 수정 E -->
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">등록</a>
+			</div>
+		</div> 
+		
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+		
+	</div>
+	<!--// full popup E -->
+
+	 <!-- 20211015 한별 추가 S -->
+	<!-- 달력 pupop S -->
+	<div class="dimmed" aria-hidden="false" style="display:none;"></div><!-- 개발시 style="display:block;" 제거 -->	
+	<div class="alert_popup cal_date_popup" id="alert_popup" aria-hidden="false" style="display:none;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="calendar_wrap">
+			<div class="popup_content">
+				<div class="com_inner">
+					<div class="select_dual_wrap hasNav">
+						<div class="select_dual">
+							<div class="area">
+								<div class="select_date">
+									<!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
+									<!-- 20211105 한별 접근성 추가  S -->
+									<button class="cal_btn cal_prev" aria-label="일년 전 이동"></button>
+									<a class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년</a>
+									<button class="cal_btn cal_next disabled" aria-label="일년 후 이동" disabled="disabled" title="선택불가"></button>
+									
+								</div>
+							</div>
+							<div class="area">
+								<div class="select_date">
+									<!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
+									<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+									<a class="year_month" href="javascript:console.log('월');"><span class="num">4</span>월</a>
+									<button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled="disabled" title="선택불가"></button>
+									<!--//  20211105 한별 접근성 추가 E -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="cal_tb">
+					<caption>가계부 메인 달력에서 해당 요일 및 날짜에 대한 지출내용을 제공합니다.</caption>
+					<colgroup>
+						<col style="width:15%">
+						<col style="width:14%">
+						<col style="width:14%">
+						<col style="width:14%">
+						<col style="width:14%">
+						<col style="width:14%">
+						<col style="width:15%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">일</th>
+							<th scope="col">월</th>
+							<th scope="col">화</th>
+							<th scope="col">수</th>
+							<th scope="col">목</th>
+							<th scope="col">금</th>
+							<th scope="col">토</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="pre">
+								<a href="#;">
+									<span class="date">30</span>
+								</a>
+	
+							</td>
+							<td class="pre">
+								<a href="#;">
+									<span class="date">31</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">1</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">2</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">3</span>
+								</a>
+							</td>
+							<!-- 20211105 한별 접근성 추가  S -->
+							<td class="today">
+								<a href="#;" title="오늘 날짜 선택됨">
+									<span class="date">4</span>
+								</a>
+							</td>
+							<!--//  20211105 한별 접근성 추가 E -->
+							<td class="sat">
+								<a href="#;">
+									<span class="date">5</span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="sun">
+								<a href="#;">
+									<span class="date">6</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">7</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">8</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">9</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">10</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">11</span>
+								</a>
+							</td>
+							<td class="sat">
+								<a href="#;">
+									<span class="date">12</span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="sun">
+								<a href="#;">
+									<span class="date">13</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">14</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">15</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">16</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">17</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">18</span>
+								</a>
+							</td>
+							<td class="sat">
+								<a href="#;">
+									<span class="date">19</span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="sun">
+								<a href="#;">
+									<span class="date">20</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">21</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">22</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">23</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">24</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">25</span>
+								</a>
+							</td>
+							<td class="sat">
+								<a href="#;">
+									<span class="date">26</span>
+								</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="sun">
+								<a href="#;">
+									<span class="date">27</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">28</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">29</span>
+								</a>
+							</td>
+							<td>
+								<a href="#;">
+									<span class="date">30</span>
+								</a>
+							</td>
+							<td class="disable">
+								<a href="#;">
+									<span class="date">31</span>
+								</a>
+							</td>
+							<td class="disable">
+								<a href="#;">
+									<span class="date">1</span>
+								</a>
+							</td>
+							<td class="disable">
+								<a href="#;">
+									<span class="date">2</span>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--// 달력 popup E -->
+	<!--// 20211015 한별 추가 E -->
+</body>
+</html>

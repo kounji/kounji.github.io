@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display:block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display:block;">
+			<div class="popup_header">
+				<h1>빌린돈 상세</h1>          
+			</div>
+			<div class="popup_content com_btn_bottom">
+				<div class="com_txt_type01">
+					<dl>
+						<dt>빌린사람</dt>
+						<dd>
+							<span class="com_txt01">쌀집아저씨</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>휴대폰</dt>
+						<dd>
+							<span class="com_number01">010-1234-****</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>빌린돈</dt>
+						<dd>
+							<span class="com_number01">100,000,000</span>
+							<em>원</em>
+						</dd>
+					</dl>
+					<dl>
+						<dt>빌린날</dt>
+						<dd>
+							<span class="com_number01">2021.07.06</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>갚을날</dt>
+						<dd>
+							<span class="com_number01">2021.07.21</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>이자율</dt>
+						<dd>
+							<span class="com_number01">5.00</span><span class="com_txt01">%</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>이자지급일(매월)</dt>
+						<dd>
+							<span class="com_number01">15</span><em>일</em>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="popup_footer">
+                <div class="com_btnhalfbox_type02">
+                    <a href="#nolink" class="btn btn_grey">삭제</a>
+                    <a href="#nolink" class="btn btn_mint">수정</a>
+                    <!-- btn_off 제거시 활성화 -->
+                </div>
+			</div>
+			<a href="#nolink" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>개별등록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>개별등록</h1>
+		</div>
+		
+		<div class="com_tabmenu_type02">
+			<div>
+				<ul>
+					<li class="on"><a href="javascript:void(0);">은행</a></li>
+					<li><a href="javascript:void(0);">증권</a></li>
+					<li><a href="javascript:void(0);">카드</a></li>
+					<li><a href="javascript:void(0);">보험</a></li>
+					<li><a href="javascript:void(0);">전자금융</a></li>
+					<li><a href="javascript:void(0);">할부금융</a></li>
+					<li><a href="javascript:void(0);">보증보험</a></li>
+					<li><a href="javascript:void(0);">통신</a></li>
+					<!-- 20211020 한별 추가(P2P금융,채권,대부) S -->
+					<li><a href="javascript:void(0);">P2P금융</a></li>
+					<li><a href="javascript:void(0);">대부</a></li>
+					<li><a href="javascript:void(0);">채권</a></li>
+					<!--// 20211020 한별 추가(P2P금융,채권,대부) E -->
+				</ul>
+			</div>
+		</div>
+
+		<div class="popup_content tab_cont com_no_bottom com_bg_type00"> <!-- com_bg_type02(대상기관이 없을경우)  -->
+            <div class="com_inner">
+				<div class="tab_content on">
+					<!-- 대상기관이 없을경우 S -->
+					<div class="no_data_box">
+						<div class="no_data_list">
+							<p>서비스 대상 기관 확대를 위해<br>준비중입니다.</p>
+						</div>
+					</div>
+					<!--// 대상기관이 없을경우 E -->
+					<!-- 20210630 한별 수정 S -->
+					<ul class="com_slide_check_type03 mydatalist"><!-- 20211122 아이콘크기변경(강현차장요청) -->
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_01" id="bank_01">
+								<label for="bank_01">
+									<i class="A1AAAD0000"><span class="blind">NH농협</span></i>
+									<span><span>NH농협</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_02" id="bank_02">
+								<label for="bank_02">
+									<i class="D1AAAF0000"><span class="blind">신한</span></i>
+									<span><span>신한</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_03" id="bank_03">
+								<label for="bank_03">
+									<i class="A1AAAK0000"><span class="blind">SC은행</span></i>
+									<span><span>SC은행</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_04" id="bank_04">
+								<label for="bank_04">
+									<i class="B1AAKA0000"><span class="blind">우리</span></i>
+									<span><span>우리</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_05" id="bank_05">
+								<label for="bank_05">
+									<i class="B1AAKA0000"><span class="blind">KEB하나</span></i>
+									<span><span>KEB하나</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_06" id="bank_06">
+								<label for="bank_06">
+									<i class="A1AAIM0000"><span class="blind">IBK기업</span></i>
+									<span><span>IBK기업</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_07" id="bank_07">
+								<label for="bank_07">
+									<i class="A1AAIM0000"><span class="blind">씨티</span></i>
+									<span><span>씨티</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_08" id="bank_08">
+								<label for="bank_08">
+									<i class="A1AAHP0000"><span class="blind">새마을</span></i>
+									<span><span>새마을</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_09" id="bank_09">
+								<label for="bank_09">
+									<i class="A1AAHX0000"><span class="blind">부산</span></i>
+									<span><span>부산</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_10" id="bank_10">
+								<label for="bank_10">
+									<i class="A1AAHJ0000"><span class="blind">경남</span></i>
+									<span><span>경남</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_11" id="bank_11">
+								<label for="bank_11">
+									<i class="bank_11"><span class="blind">대구</span></i>
+									<span><span>대구</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_12" id="bank_12">
+								<label for="bank_12">
+									<i class="A1AAKA0000"><span class="blind">전북</span></i>
+									<span><span>전북</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_13" id="bank_13">
+								<label for="bank_13">
+									<i class="A1AAAD0000"><span class="blind">KDB산업</span></i>
+									<span><span>KDB산업</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_14" id="bank_14">
+								<label for="bank_14">
+									<i class="A1AAHX0000"><span class="blind">Sh수협</span></i>
+									<span><span>Sh수협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_15" id="bank_15">
+								<label for="bank_15">
+									<i class="bank_15"><span class="blind">SC제일</span></i>
+									<span><span>SC제일</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_16" id="bank_16">
+								<label for="bank_16">
+									<i class="bank_16"><span class="blind">광주</span></i>
+									<span><span>광주</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_17" id="bank_17">
+								<label for="bank_17">
+									<i class="bank_17"><span class="blind">뱅크오브 아메리카</span></i>
+									<span><span>뱅크오브<br>아메리카</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_18" id="bank_18">
+								<label for="bank_18">
+									<i class="bank_18"><span class="blind">신협</span></i>
+									<span><span>신협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_19" id="bank_19">
+								<label for="bank_19">
+									<i class="bank_19"><span class="blind">우체국</span></i>
+									<span><span>우체국</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_20" id="bank_20">
+								<label for="bank_20">
+									<i class="bank_20"><span class="blind">K뱅크</span></i>
+									<span><span>K뱅크</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_20" id="bank_21">
+								<label for="bank_21">
+									<i class="com_no_img"><span class="blind">K뱅크</span></i>
+									<span><span>K뱅크</span></span>	
+								</label>	
+							</div>	
+						</li>
+					</ul>
+					<!--// 20210630 한별 수정 E -->
+				</div>
+
+				<div class="tab_content">
+					<!-- 대상기관이 없을경우 S -->
+					<div class="no_data_box">
+						<div class="no_data_list">
+							<p>서비스 대상 기관 확대를 위해<br>준비중입니다.</p>
+						</div>
+					</div>
+					<!--// 대상기관이 없을경우 E -->
+					<!-- 20210630 한별 수정 S -->
+					<ul class="com_slide_check_type03 mydatalist"><!-- 20211122 아이콘크기변경(강현차장요청) -->
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_01" id="bank_01">
+								<label for="bank_01">
+									<i class="bank_01"><span class="blind">NH농협</span></i>
+									<span><span>NH농협</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_02" id="bank_02">
+								<label for="bank_02">
+									<i class="bank_02"><span class="blind">신한</span></i>
+									<span><span>신한</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_03" id="bank_03">
+								<label for="bank_03">
+									<i class="bank_03"><span class="blind">KB국민</span></i>
+									<span><span>KB국민</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_04" id="bank_04">
+								<label for="bank_04">
+									<i class="bank_04"><span class="blind">우리</span></i>
+									<span><span>우리</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_05" id="bank_05">
+								<label for="bank_05">
+									<i class="bank_05"><span class="blind">KEB하나</span></i>
+									<span><span>KEB하나</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_06" id="bank_06">
+								<label for="bank_06">
+									<i class="bank_06"><span class="blind">IBK기업</span></i>
+									<span><span>IBK기업</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_07" id="bank_07">
+								<label for="bank_07">
+									<i class="bank_07"><span class="blind">씨티</span></i>
+									<span><span>씨티</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_08" id="bank_08">
+								<label for="bank_08">
+									<i class="bank_08"><span class="blind">새마을</span></i>
+									<span><span>새마을</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_09" id="bank_09">
+								<label for="bank_09">
+									<i class="bank_09"><span class="blind">부산</span></i>
+									<span><span>부산</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_10" id="bank_10">
+								<label for="bank_10">
+									<i class="bank_10"><span class="blind">경남</span></i>
+									<span><span>경남</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_11" id="bank_11">
+								<label for="bank_11">
+									<i class="bank_11"><span class="blind">대구</span></i>
+									<span><span>대구</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_12" id="bank_12">
+								<label for="bank_12">
+									<i class="bank_12"><span class="blind">전북</span></i>
+									<span><span>전북</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_13" id="bank_13">
+								<label for="bank_13">
+									<i class="bank_13"><span class="blind">KDB산업</span></i>
+									<span><span>KDB산업</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_14" id="bank_14">
+								<label for="bank_14">
+									<i class="bank_14"><span class="blind">Sh수협</span></i>
+									<span><span>Sh수협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_15" id="bank_15">
+								<label for="bank_15">
+									<i class="bank_15"><span class="blind">SC제일</span></i>
+									<span><span>SC제일</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_16" id="bank_16">
+								<label for="bank_16">
+									<i class="bank_16"><span class="blind">광주</span></i>
+									<span><span>광주</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_17" id="bank_17">
+								<label for="bank_17">
+									<i class="bank_17"><span class="blind">뱅크오브 아메리카</span></i>
+									<span><span>뱅크오브<br>아메리카</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_18" id="bank_18">
+								<label for="bank_18">
+									<i class="bank_18"><span class="blind">신협</span></i>
+									<span><span>신협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_19" id="bank_19">
+								<label for="bank_19">
+									<i class="bank_19"><span class="blind">우체국</span></i>
+									<span><span>우체국</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_20" id="bank_20">
+								<label for="bank_20">
+									<i class="bank_20"><span class="blind">K뱅크</span></i>
+									<span><span>K뱅크</span></span>	
+								</label>	
+							</div>	
+						</li>
+					</ul>
+					<!--// 20210630 한별 수정 E -->
+				</div>
+
+				<div class="tab_content">
+					<!-- 대상기관이 없을경우 S -->
+					<div class="no_data_box">
+						<div class="no_data_list">
+							<p>서비스 대상 기관 확대를 위해<br>준비중입니다.</p>
+						</div>
+					</div>
+					<!--// 대상기관이 없을경우 E -->
+					<!-- 20210630 한별 수정 S -->
+					<ul class="com_slide_check_type03 mydatalist"><!-- 20211122 아이콘크기변경(강현차장요청) -->
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_01" id="bank_01">
+								<label for="bank_01">
+									<i class="D1AAAK0000"><span class="blind">한국스탠다드차타드</span></i>
+									<span><span>SC은행</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_02" id="bank_02">
+								<label for="bank_02">
+									<i class="D1AAAF0000"><span class="blind">국민카드</span></i>
+									<span><span>국민카드</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_03" id="bank_03">
+								<label for="bank_03">
+									<i class="D1AAAH0000"><span class="blind">우리카드</span></i>
+									<span><span>우리카드</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_04" id="bank_04">
+								<label for="bank_04">
+									<i class="D1AABJ0000"><span class="blind">하나카드</span></i>
+									<span><span>하나카드</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_05" id="bank_05">
+								<label for="bank_05">
+									<i class="D1AADO0000"><span class="blind">롯데카드</span></i>
+									<span><span>롯데카드</span></span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_06" id="bank_06">
+								<label for="bank_06">
+									<i class="D1AAEX0000"><span class="blind">신한카드</span></i>
+									<span><span>신한카드</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_07" id="bank_07">
+								<label for="bank_07">
+									<i class="D1AAQE0000"><span class="blind">한국씨티은행</span></i>
+									<span><span>한국씨티은행</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_08" id="bank_08">
+								<label for="bank_08">
+									<i class="D1AAPA0000"><span class="blind">새마을금고중앙회</span></i>
+									<span><span>새마을</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_09" id="bank_09">
+								<label for="bank_09">
+									<i class="D1AAII0000"><span class="blind">부산은행</span></i>
+									<span><span>부산</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_10" id="bank_10">
+								<label for="bank_10">
+									<i class="D1AAII0000"><span class="blind">부산은행</span></i>
+									<span><span>경남</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_11" id="bank_11">
+								<label for="bank_11">
+									<i class="D1AAHS0000"><span class="blind">대구은행</span></i>
+									<span><span>대구</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_12" id="bank_12">
+								<label for="bank_12">
+									<i class="D1AAHP0000"><span class="blind">㈜전북은행</span></i>
+									<span><span>전북</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_13" id="bank_13">
+								<label for="bank_13">
+									<i class="D1AAAD0000"><span class="blind">한국산업은행</span></i>
+									<span><span>KDB산업</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_14" id="bank_14">
+								<label for="bank_14">
+									<i class="D2AAHX0000"><span class="blind">수협은행</span></i>
+									<span><span>Sh수협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_15" id="bank_15">
+								<label for="bank_15">
+									<i class="D1AAFQ0000"><span class="blind">비씨카드</span></i>
+									<span><span>비씨카드</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_16" id="bank_16">
+								<label for="bank_16">
+									<i class="D1AAMW0000"><span class="blind">광주은행</span></i>
+									<span><span>광주</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_17" id="bank_17">
+								<label for="bank_17">
+									<i class="D1AABG0000"><span class="blind">농협카드</span></i>
+									<span><span>농협카드</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_18" id="bank_18">
+								<label for="bank_18">
+									<i class="D1AAKM0000"><span class="blind">신용협동조합</span></i>
+									<span><span>신협</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_19" id="bank_19">
+								<label for="bank_19">
+									<i class="D1AAKA0000"><span class="blind">우정사업본부</span></i>
+									<span><span>우체국</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_20" id="bank_20">
+								<label for="bank_20">
+									<i class="D1AAJB0000"><span class="blind">케이뱅크은행</span></i>
+									<span><span>K뱅크</span></span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="checkbox" name="bank_20" id="bank_21">
+								<label for="bank_21">
+									<i class="no_icon_card"><span class="blind">아이콘없음</span></i>
+									<span><span>아이콘없음</span></span>	
+								</label>	
+							</div>	
+						</li>
+					</ul>
+					<!--// 20210630 한별 수정 E -->
+				</div>
+
+			</div>  
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>

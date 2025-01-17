@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Tab Sample</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns" id="styleGuide">
+	<h1>Tab</h1>
+	<article class="guide_group">
+		<h2>Depth type</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. 1Depth</h3>
+				<section class="source">
+					<div class="com_tabmenu_type01 menunum04" style="position:absolute;"><!-- position:absolute;은 가이드용 style -->
+						<ul role="tablist">
+							<li><a href="#nolink">전체자산</a></li>
+							<li class="on"><a href="#nolink">자산현황</a></li>
+							<li><a href="#nolink">부채관리</a></li>
+							<li><a href="#nolink">자산진단</a></li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>02. 2Depth</h3>
+				<section class="source">
+					<div class="lnb" style="position:absolute;"><!-- position:absolute;은 가이드용 style -->
+						<ul role="tablist">
+							<li class="on"><a href="#nolink">예금</a></li>
+							<li><a href="#nolink">투자</a></li>
+							<li><a href="#nolink">연금</a></li>
+							<li><a href="#nolink">포인트</a></li>
+							<li><a href="#nolink">보험</a></li>
+							<li><a href="#nolink">부동산</a></li>
+							<li><a href="#nolink">자동차</a></li>
+							<li><a href="#nolink">기타</a></li>
+						</ul>
+					</div>
+						</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>03. 3Depth</h3>
+				<section class="source">
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01 readonly" title="정기적 전송여부 선택"><span>주1회</span></button>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	<article class="guide_group">
+		<h2>Slide type</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. Slide Type</h3>
+				<section class="source">
+					<div class="renewal">
+						<div class="com_inner">
+							<div class="lnb lnb_filter" style="width:360px;"><!-- width:360px;은 가이드용 style -->
+								<div class="tablistBox">
+									<ul role="tablist">
+										<li class="on"><a href="#nolink">은행 <em class="num">2</em></a></li>
+										<li><a href="#nolink">카드 <em class="num">8</em></a></li>
+										<li><a href="#nolink">증권</a></li>
+										<li><a href="#nolink">보험</a></li>
+										<li><a href="#nolink">페이</a></li>
+										<li><a href="#nolink">할부</a></li>
+										<li><a href="#nolink">통신</a></li>
+										<li><a href="#nolink">대부</a></li>
+										<li><a href="#nolink">P2P</a></li>
+										<li><a href="#nolink">공공</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	<article class="guide_group">
+		<h2>Switch type</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. Switch Type</h3>
+				<section class="source">
+					<br>
+					<br>
+					<br>
+					<div class="com_tabmenu_type03 switchType btn2">
+						<ul role="tablist">
+							<li class="on" role="presentation" aria-controls="tab_01"><a href="#nolink" role="tab"><span>연결 기관</span></a></li>
+							<li role="presentation" aria-controls="tab_02"><a href="#nolink" role="tab"><span>만료&middot;해제 기관</span></a></li>
+						</ul>
+					</div>
+					<br>
+					<br>
+					<br>
+					<div class="com_tabmenu_type03 switchType btn3">
+						<ul role="tablist">
+							<li class="on" role="presentation" aria-controls="tab_01"><a href="#nolink" role="tab"><span>지출현황</span></a></li>
+							<li role="presentation" aria-controls="tab_02"><a href="#nolink" role="tab"><span>전월비교</span></a></li>
+							<li role="presentation" aria-controls="tab_03"><a href="#nolink" role="tab"><span>지출패턴</span></a></li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	<article class="guide_group">
+		<h2>Box type</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. box Type</h3>
+				<section class="source">
+					<div class="com_tabmenu_type03 custom_tab">
+						<ul role="tablist">
+							<li role="presentation" aria-controls="tab_01" class="on"><a href="#nolink" ><span>차트보기</span></a></li>
+							<li role="presentation" aria-controls="tab_02"><a href="#nolink"><span>표로 보기</span></a></li>
+						</ul>
+					</div>
+					<div id="tab_01" role="tabpanel" class="cmm-tab-panel on">tab01</div>
+					<div id="tab_02" role="tabpanel" class="cmm-tab-panel">tab02</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+	/*
+		영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+		입력 후 x 버튼 클릭시 글자 삭제
+	*/
+	$(function() {
+		var _inputBox = $('.inputClear'); // Input Box
+		var _clearBtn = $('.com_btn_delete'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('btnDeleteShow');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('btnDeleteShow');
+				_inputBox.val(''); 
+			});
+		});
+	});
+	/*lnb-filter 버튼 클릭이벤트*/
+	$(document).ready(function(){
+		$('.lnb.lnb_filter').append('<button class="btn_lnb"><span class="blind">카테고리 펼치기</span></button>')
+		$('.btn_lnb').on('click', function(){
+			$(this).parent().toggleClass('is_open');
+			$(this).toggleClass('open');
+			if($(this).hasClass('open')){
+				$(this).children().text('카테고리 접기');
+			} else {
+				$(this).children().text('카테고리 펼치기');
+			}
+		});	
+	});
+</script>
+</body>
+
+</html>

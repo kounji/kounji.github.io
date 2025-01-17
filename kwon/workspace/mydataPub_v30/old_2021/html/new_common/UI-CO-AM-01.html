@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산기관관리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>자산기관관리</h1>
+		</div>
+		 <!-- 20211108 한별 접근성 role="tablist",role="tab",aria-selected="false",aria-selected="true" 추가 S -->
+		<div class="com_tabmenu_type04">
+			<ul role="tablist">
+				<li class="on"><a href="javascript:void(0);" role="tab" aria-selected="true"><em>은행<span>7</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>투자<span>0</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>카드<span>3 <strong><span class="blind">알림</span></strong></span></em></a></li><!-- <span class="blind">알림</span> 한별추가 20211125 -->
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>보험<span>1</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>전자금융<span>3</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>할부금융<span>1</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>보증보험<span>35</span></em></a></li>
+				<li><a href="javascript:void(0);" role="tab" aria-selected="false"><em>기타<span>3</span></em></a></li>
+			</ul>
+		</div>
+		<!--// 20211108 한별 접근성 role="tablist",role="tab",aria-selected="false",aria-selected="true" 추가 E -->
+
+		<div class="popup_content asset_cont com_sub_type03"><!-- 20210930 한별 com_no_bottom com_bg_type00 삭제 pb0 클래스 추가 -->
+			<!-- 20211108 한별 접근성 role="button" 추가 S -->
+			<div class="tab_content com_bg_type00 on">
+
+				<!-- 자산이 없을경우 S -->
+				<div class="no_div_cont">
+					<div class="secede_box">
+						<p class="txt">등록한 자산이 없습니다.<br>자산을 연결하고 관리해 보세요!</p>
+						<div class="com_btn_area00 mt50">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">한번에 추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">개별 추가</span></a>
+						</div>
+					</div>
+				</div>
+				<!--// 자산이 없을경우 E -->
+
+				<!-- 자산이 있을경우 S -->
+				<div class="com_inner com_boxarea_type01" style="display:none;"><!-- 자산이 있을경우 style="display:block;" -->
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>NH농협은행NH농협은행NH농협은행</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>신한은행</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_box_type01 toggle_list_box4 collection_end"><!-- 수집철회,만료시 collection_end클래스 추가-->
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>하나은행</span><span class="icon_grey">수집철회</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>아니오</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+				<!--// 자산이 있을경우 E -->
+			</div> <!-- 은행 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="com_box_type01 toggle_list_box4 collection_end"><!-- 수집철회,만료시 collection_end클래스 추가-->
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>하나은행</span><span class="icon_grey">수집만료</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>아니오</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 투자 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<!-- 20211013 한별 card클래스 추가 (카드일경우) S -->
+						<div class="top_box card">
+							<i class="D1AAEX0000"><span class="blind">신한카드</span></i>
+							<em><span>신한카드</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<!--// 20211013 한별 card클래스 추가 (카드일경우)  E -->
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 카드 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>신한은행</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 보험 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>신한은행</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 전자금융 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>신한은행</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 할부금융 -->
+
+			<div class="tab_content com_bg_type00">
+				<div class="com_inner com_boxarea_type01">
+					<div class="box_section">
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>신한은행</span><span class="icon_red">만료예정</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area active">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+							<li>
+								<em>신한 종합통장 저축예금</em>
+								<span>1234678156458</span>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 보증보험 -->
+
+			<div class="tab_content com_bg_type00">
+
+				<!-- 20211115 한별 추가 자산이 없을경우 수정 S -->
+				<div class="no_div_cont com_bg_type00">
+					<div class="secede_box secede_box_etc">
+						<p class="txt">등록한 자산이 있나요?<br><span class="com_point_darkblue">자산을 연결</span>하고 관리해 보세요!</p>
+						<ul>
+							<li>
+								<strong>통신사</strong>
+								<div class="com_btn_area00">
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">한번에 추가</span></a>
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">개별 추가</span></a>
+								</div>
+							</li>
+							<li>
+								<strong>P2P</strong>
+								<div class="com_btn_area00">
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">한번에 추가</span></a>
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">개별 추가</span></a>
+								</div>
+							</li>
+							<li>
+								<strong>채권</strong>
+								<div class="com_btn_area00">
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">한번에 추가</span></a>
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">개별 추가</span></a>
+								</div>
+							</li>
+							<li>
+								<strong>대부</strong>
+								<div class="com_btn_area00">
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">한번에 추가</span></a>
+									<a href="javascript:void(0);" role="button" class="com_btnround_type02"><span class="btn_plus">개별 추가</span></a>
+								</div>
+							</li>
+						</ul>
+						
+					</div>
+				</div>
+				<!--// 20211115 한별 추가 자산이 없을경우 수정 E -->
+
+				<div class="com_inner com_boxarea_type01" style="display:none">
+					<div class="box_section">
+						<strong class="com_pop_tit01">통신사</strong>
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4 new_mb40">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">에스케이텔레콤㈜</span></i>
+							<em><span>에스케이텔레콤㈜</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>집전화</em>
+								<span>032-****-0808</span>
+							</li>
+							<li>
+								<em>휴대폰</em>
+								<span>032-****-0808</span>
+							</li>
+						</ul>
+					</div>
+					<!-- 20211020 한별 추가(P2P금융,채권,대부) S -->
+					<div class="box_section">
+						<strong class="com_pop_tit01">P2P금융</strong>
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4 new_mb40">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>에스케이텔레콤㈜</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>어음·매출채권 담보대출</em>
+								<span>1234654657496</span>
+							</li>
+							<li>
+								<em>어음·매출채권 담보대출</em>
+								<span>1234654657496</span>
+							</li>
+						</ul>
+					</div>
+					<div class="box_section">
+						<strong class="com_pop_tit01">채권</strong>
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4 new_mb40">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>에스케이텔레콤㈜</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>채권번호 or 차주번호</em>
+								<span>1234654657496</span>
+							</li>
+							<li>
+								<em>채권번호 or 차주번호</em>
+								<span>1234654657496</span>
+							</li>
+						</ul>
+					</div>
+					<div class="box_section">
+						<strong class="com_pop_tit01">대부</strong>
+						<div class="add_link">
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>한번에추가</span></a>
+							<a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>개별추가</span></a>
+						</div>
+					</div>
+					<div class="com_box_type01 toggle_list_box4 new_mb40">
+						<div class="top_box">
+							<i class="bank_01"><span class="blind">농협</span></i>
+							<em><span>에스케이텔레콤㈜</span></em>
+							<div class="write_del">
+								<a href="javascript:void(0);" role="button" class="btn_write"><span class="blind">팝업 열기</span></a>
+								<a href="javascript:void(0);" role="button" class="btn_delete"><span class="blind">삭제</span></a>
+							</div>
+						</div>
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<dl>
+									<dt>수집요청일자</dt>
+									<dd>2021.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정보수집기간</dt>
+									<dd>2021.10.15 ~ 2022.10.15</dd>
+								</dl>
+								<dl>
+									<dt>정기전송여부</dt>
+									<dd>예(주1회)</dd>
+								</dl>
+								<dl>
+									<dt>정기전송목적</dt>
+									<dd>통합자산관리</dd>
+								</dl>
+								<!-- <em class="open">열기</em>
+								<em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+							</button>
+						</div>
+						<ul class="view_cont dot_list_cont">
+							<li>
+								<em>매입사관리번호</em>
+								<span>1234654657496</span>
+							</li>
+							<li>
+								<em>매입사관리번호</em>
+								<span>1234654657496</span>
+							</li>
+						</ul>
+					</div>
+					<!--// 20211020 한별 추가(P2P금융,채권,대부) E -->
+					<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>수집된 신용정보 모두 삭제</span></a></div>
+				</div>
+			</div> <!-- 기타 -->
+			<!--// 20211108 한별 접근성 role="button" 추가 E -->
+		</div>
+		<!-- 20211108 한별 접근성 role="button" 추가 S -->
+		<a href="javascript:void(0);" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		<!--// 20211108 한별 접근성 role="button" 추가 E -->			
+		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>자동차할부/대출 선택</h1><!-- 20211018 한별 수정 S -->          
+			</div>
+			<div class="popup_content com_btn_bottom">
+                <div class="com_inner com_txt_type02">
+                    <!-- 20211109 한별 접근성 수정 S -->
+					<ul class="list_type_01 chk_list_type_01">
+						<li>
+							<span class="btn_chk">
+								<input type="checkbox" name="com_check01" id="com_check01">
+								<label for="com_check01">
+									<dl>
+										<dt>
+											<div>
+												<i class="bank_01"><span class="blind">농협</span></i>
+												<em>카카오뱅크 모바일대출</em>
+												<span>123412312313</span>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">200,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_chk">
+								<input type="checkbox" name="com_check02" id="com_check02">
+								<label for="com_check02">
+									<dl>
+										<dt>
+											<div>
+												<i class="bank_02"><span class="blind">신한</span></i>
+												<em>카카오뱅크 모바일대출</em>
+												<span>123412312313</span>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">200,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</label>
+							</span>
+						</li>
+					</ul>
+					<!--// 20211109 한별 접근성 수정 E -->
+                </div>
+			</div>
+			<div class="popup_footer">
+				<div class="btn_full_box">
+					<a href="javascript:void(0);" class="btn btn_mint">선택완료</a><!-- 20211018 한별 수정 S -->
+				</div>
+			</div>
+			<a href="javascript:void(0);" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

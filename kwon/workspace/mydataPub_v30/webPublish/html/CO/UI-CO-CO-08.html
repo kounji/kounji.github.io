@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>기간설정</h1>          
+			</div>
+			<div class="popup_content com_btn_bottom">
+				<div class="com_txt_type03"><!-- 20211013 한별 수정 -->
+                    <ul class="com_radio_type05">
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio01">
+                                <label for="radio01">
+                                    <span>1개월</span>			
+                                </label>	
+                            </div>	
+                        </li>
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio02">
+                                <label for="radio02">
+                                    <span>3개월</span>							
+                                </label>	
+                            </div>	
+                        </li>
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio03">
+                                <label for="radio03">
+                                    <span>6개월</span>							
+                                </label>	
+                            </div>	
+                        </li>
+                        <li>
+                            <div class="btn_radio">
+                                <input type="radio" name="house" id="radio04">
+                                <label for="radio04">
+                                    <span>12개월</span>			
+                                </label>	
+                            </div>	
+                        </li>
+                    </ul>
+                    <!-- 20211013 한별 수정 S -->
+                    <div class="com_inputarea_type06">
+                        <div class="com_inputnum2 input_date">
+                            <div class="com_input_type01">
+                                <input type="date" id="com_input01" class="" name="" value="" required="" data-placeholder="년월일 8자리숫자" title="년월일 8자리숫자"><!--  20211112 한별 접근성 추가 (title="") -->
+                                <label for="com_input01"></label>
+                            </div>
+                            <div class="com_input_type01">
+                                <input type="date" id="com_input02" class="" name="" value="" required="" data-placeholder="년월일 8자리숫자" title="년월일 8자리숫자"><!--  20211112 한별 접근성 추가 (title="") -->
+                                <label for="com_input02"></label>
+                            </div>
+                        </div>
+                        <!--// 20211013 한별 수정 E -->
+                    </div>
+                </div>
+			</div>
+            <div class="popup_footer">
+				<div class="btn_full_box">
+					<a href="#nolink" class="btn btn_mint">확인</a>
+				</div>
+			</div>
+			
+			<a href="#nolink" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

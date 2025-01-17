@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>카테고리별 지출</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "170rem"); 
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+					'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+						+'<Stroke id="stroke" color="#cbcdd6" weight="1"/>'
+						+'<Options>'
+							+'<Caption text="GDP Growth of the BRICS Countries"/>'
+							+'<Legend defaultMouseOverAction="false" />'
+						+'</Options>'
+						/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+						+'<Column2DChart gutterLeft="0" showDataTips="true" columnWidthRatio="0.55" selectionMode="single" dataTipJsFunction="tipTxt" displayCompleteCallFunction="removeTabindex">'
+							+'<horizontalAxis>'
+								+'<CategoryAxis categoryField="name"/>'
+							+'</horizontalAxis>'
+							+'<verticalAxis>'
+								+'<LinearAxis maximum="10"/>'
+							+'</verticalAxis>'
+							+'<series>'
+								+'<Column2DSeries labelPosition="outside" yField="prev" displayName="지난달" showValueLabels="[]">'
+									+'<showDataEffect>'
+										+'<SeriesInterpolate/>'
+									+'</showDataEffect>'
+									+'<fills>'
+										/*컬러 변경*/
+										+'<SolidColor color="#abababa"/>'
+									+'</fills>'
+								+'</Column2DSeries>'
+								+'<Column2DSeries labelPosition="outside" yField="next" displayName="이번달" showValueLabels="[]">'
+									+'<showDataEffect>'
+										+'<SeriesInterpolate/>'
+									+'</showDataEffect>'
+									+'<fills>'
+										+'<SolidColor color="#57c9ae"/>'
+									+'</fills>'
+								+'</Column2DSeries>'
+							+'</series>'
+							+'<backgroundElements>'
+								//+'<GridLines/>'
+								+'<AxisMarker>'
+								+'<lines>'
+								+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke}"/>'
+								+'</lines> '
+								+'</AxisMarker>'
+							+'</backgroundElements>'
+							+'<horizontalAxis>'
+								+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="name"/>'
+								/* Scroll_Line_2D챠트 생성시엔 horizontalAxis에 CategoryLinearAxis를 정의해야합니다 */
+							+'</horizontalAxis>'
+							+'<horizontalAxisRenderers>'
+								+'<ScrollableAxisRenderer axis="{hAxis}" scrollPosition="0" visibleItemSize="4"/>'
+								/*
+								Scroll_Line_2D챠트 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+								visibleItemSize : 스크롤 차트가 한번에 표시할 데이터의 개수입니다
+								*/
+							+'</horizontalAxisRenderers>'
+						+'</Column2DChart>'
+					+'</rMateChart>';
+		
+		// 차트 데이터
+		var chartData = [{"name":"쇼핑", "prev":2.4, "next":3.1},
+			{"name":"외식", "prev":3.8, "next":4.6},
+			{"name":"교통", "prev":8.1, "next":9},
+			{"name":"생활·마트", "prev":5.1, "next":4},
+			{"name":"자동차", "prev":2.1, "next":3.9}];
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		function tipTxt(seriesId, seriesName, index, xName, yName, data, values) {
+			return seriesName +' : '+ values[1]+'만원';
+		}
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		// -----------------------차트 설정 끝 -----------------------
+		
+		</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>카테고리별 지출</h1>
+		</div>
+		<div class="popup_content com_no_bottom">
+			<div class="com_inner">
+				<div class="com_tabmenu_type03 custom_tab">
+					<ul role="tablist">
+						<li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="javascript:void(0);"><span>업종별 지출 비교</span></a></li>
+						<li role="tab" aria-selected="false" aria-controls="tab_02"><a href="javascript:void(0);"><span>지출 상세 내역</span></a></li>
+					</ul>
+				</div>
+				<div id="tab_01" role="tabpanel" class="cmm-tab-panel on">
+					<div class="choice_option">
+						<button type="button" title="선택됨" class="active">높은 금액순</button>
+						<button type="button" title="선택안됨">많은 증가순</button>
+					</div>
+					<div class="com_line_type01 com_top_type02 full_inner_wrap">
+						<div class="chart_box">
+							<div class="new_tit_area chart_tit">
+								<div class="tit ">
+									<span class="com_point_darkblue mr0">쇼핑</span>에 가장 많이 썼어요!
+								</div>
+								<p class="chart_sub_txt">[단위: 만원]</p>
+							</div>
+							<!-- 22-10-26 role / aria-label 추가 -->
+							<div id="chartHolder" role="img" aria-label="카테고리별 지출 - 쇼핑 지난달 000 / 이번달 000, 외식 지난달 000 / 이번달 000, 교통 지난달 000 / 이번달 000, 생활마트 지난달 000 / 이번달 000 입니다."></div>
+						</div>
+					</div>
+					<ul class="spend_list">
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="spend_item">
+									<strong class="spend_name">쇼핑</strong>
+									<span class="spend_price"><em>1,100,250,500</em>원</span>
+									<span class="price_sub_txt raise" role="text"><span class="blind">상승</span><em>1,250,500</em>원</span><!-- 22-10-20 접근성 추가 -->
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="spend_item">
+									<strong class="spend_name">외식</strong>
+									<span class="spend_price"><em>100,250,500</em>원</span>
+									<span class="price_sub_txt decrease" role="text"><span class="blind">하락</span><em>10,250,500</em>원</span><!-- 22-10-20 접근성 추가 -->
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="spend_item">
+									<strong class="spend_name">쇼핑</strong>
+									<span class="spend_price"><em>112,250,500</em>원</span>
+									<span class="price_sub_txt" role="text"><span class="blind">유지</span><em>1,250,500</em>원</span><!-- 22-10-20 접근성 추가 -->
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="spend_item">
+									<strong class="spend_name">외식</strong>
+									<span class="spend_price"><em>1,250,500</em>원</span>
+									<span class="price_sub_txt" role="text"><span class="blind">유지</span><em>1,250,500</em>원</span><!-- 22-10-20 접근성 추가 -->
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="spend_item">
+									<strong class="spend_name">쇼핑</strong>
+									<span class="spend_price"><em>1,250,500</em>원</span>
+									<span class="price_sub_txt" role="text"><span class="blind">유지</span><em>1,250,500</em>원</span><!-- 22-10-20 접근성 추가 -->
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="com_btn_area02">
+						<a href="javascript:void(0);" role="button" class="com_btn_more"><span>전체보기</span></a>
+					</div>
+				</div>
+				<div id="tab_02" role="tabpanel" class="cmm-tab-panel"></div>
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+	
+</body>
+</html> 

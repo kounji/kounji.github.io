@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>권유직원 찾기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01">
+		 
+		<div class="popup_header">    
+			<h1>권유직원 찾기</h1>
+		</div>
+
+		<div class="popup_content">
+            <ul role="tablist" class="tablist">
+                <li><button type="button" role="tab" aria-selected="false">직원명</button></li>
+                <li class="on"><button type="button" role="tab" aria-selected="true">개인번호</button></li>
+            </ul>
+
+            <section class="find_staff flex_cont">
+
+                <div class="formItem">
+                    <div class="input">
+                        <input type="text" name="" title="개인번호" value="123456" placeholder="개인번호를 입력해주세요."/>
+                        <button type="button" class="btn_search"><span class="blind">검색</span></button>
+                    </div>
+                </div>
+
+                <!--검색결과-->
+                <div class="scroller">
+                    <!--결과 있음-->
+                    <div class="search_result">
+						<p class="sum">검색 결과 <em>24</em>건</p>
+
+						<ul>
+							<li>
+                                <input type="radio" name="staff" id="staff0" />
+                                <label for="staff0">
+                                    <span class="name">김*협<em class="num">(37****25)</em></span>
+                                    <span class="branch">북아현지점</span>
+                                    <span>서울특별시 서대문구 북아현로 20</span>
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" name="staff" id="staff1" />
+                                <label for="staff1">
+                                    <span class="name">김*협<em class="num">(32****26)</em></span>
+                                    <span class="branch">북아현지점</span>
+                                    <span>서울특별시 서대문구 북아현로 20</span>
+                                </label>
+                            </li>
+						</ul>
+
+                        <!--<button type="button" class="btn_more_txt">더보기</button> -->
+                    </div>
+
+                    <!--결과 없음-->
+                    <div class="no_result"><p class="text">검색 결과가 없습니다.</div>
+                </div>
+                <!--//검색결과-->                
+            </section>
+		</div>
+
+        <div class="popup_footer fixed">
+            <div class="btn_full_box">
+				<button type="button" class="btns lg primary">확인</button>
+            </div>
+        </div>
+        
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>

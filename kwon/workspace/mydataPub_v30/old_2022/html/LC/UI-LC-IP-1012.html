@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>정기지출 리포트</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>정기지출 리포트</h1>
+			
+		</div>
+			
+		<div class="popup_content">
+			<div>
+				<div class="select_date tac bottom_line">
+					<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+					<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+					<button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled></button>
+				</div>
+			</div>
+			<div class="no_data_box mt50">
+				<div class="no_data_list">
+					<p>예상 정기지출을<br>발견하지 못했어요</p>
+					<span class="txt_sub">결제 계좌나 카드를 연결하여<br>매월 정기지출 관리를 받으세요</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" role="button" class="btn btn_mint">자산연결</a>
+			</div>
+		</div>
+		
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

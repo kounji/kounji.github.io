@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>layout sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>내용년수 선택</h1>
+		</div>
+			
+		<div class="popup_content com_bg_type00 com_no_bottom">
+            <div class="com_inner">
+
+
+			</div>
+			<div class="top_weather">
+				<div class="title">사과</div>
+				<div class="sub_title">경기도 파주시 당하동</div>
+				<div class="info_wrap">
+					<div class="txt_weather">
+						<div class="com_tooltip_type01">
+							<!-- 20211115 한별 수정 S -->
+							<p>
+								<span>날씨정보</span>
+								<a href="javascript:void(0);" class="com_btn_info">
+									<em class="com_icon_info2"><span class="blind">툴팁열기</span></em>                  
+								</a>  
+							</p>       
+							<div class="com_ballon_type01" style="display:none;">       
+								<div>
+									현지사정이나 수신 상태에 의해 차이가 발생할 수 있습니다.<br>
+									(제공: K-weather)
+									<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+								</div> <!-- 말풍선영역 -->
+							</div>
+							<!--// 20211115 한별 수정 E -->       
+						</div>                                      
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">선택</a>
+			</div>
+		</div>
+		
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>	<!-- X 버튼 -->
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

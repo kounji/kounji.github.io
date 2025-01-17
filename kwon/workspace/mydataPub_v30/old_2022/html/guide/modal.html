@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<!-- 공통 meta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>하나은행</title>
+<!-- 공통 css -->
+<link rel="stylesheet" href="../../resource/css/common.css" type="text/css">
+<link rel="stylesheet" href="../../resource/css/components.css" type="text/css">
+<link rel="stylesheet" href="../../resource/css/style.css" type="text/css">
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../resource/js/ui-common/pualugin.js"></script>
+<script src="../../resource/js/ui-common/asSwitch.js"></script>
+<script src="../../resource/js/ui-common/common-ui.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+	
+<body>
+<div id="wrap">
+<div class="guide contetns" id="styleGuide">
+	<h1>Layer</h1>
+	<article class="guide_group">
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="btn-wrap">
+	<button type="button" class="btn-secondary btn-default" data-element="modal__open" data-target="#modalSlide">슬라이드</button>
+</div> 
+<!-- 모달은 body 에 -->		
+<div id="modalSlide" class="modal modal-slide" data-element="modal__element">
+	<div class="modal-container" data-element="modal__element-container">
+		<div class="modal-header">
+			<h1 class="header-tit">슬라이드 팝업 제목</h1>
+			<button class="modal-btn-close" type="button" data-element="modal__close" title="닫기"></button>
+		</div>
+		<div class="modal-contents">
+			내용<br>
+			내용<br>
+			내용<br>
+			내용<br>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="btn-wrap">
+	<button type="button" class="btn-secondary btn-default" data-element="modal__open" data-target="#modalSlide2">하단버튼 O</button>
+</div>
+
+<!-- 모달은 body 에 -->
+<div id="modalSlide2" class="modal modal-slide" data-element="modal__element">
+	<div class="modal-container fixed-footer" data-element="modal__element-container">
+		<div class="modal-header">
+			<h1 class="header-tit">슬라이드 팝업 제목</h1>
+			<button class="modal-btn-close" type="button" data-element="modal__close" title="닫기"></button>
+		</div>
+		<div class="modal-contents">
+			내용<br>								내용<br>
+			내용<br>
+			내용<br>
+		</div>
+		<div class="modal-footer">
+			<div class="btn-wrap">
+				<button type="button" class="btn-primary btn-default" title="확인" data-element="modal__close">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="btn-wrap">
+	<button type="button" class="btn-secondary btn-default" data-element="modal__open" data-target="#modalSlide3">헤더 X 하단버튼 O</button>
+</div>
+
+<!-- 모달은 body 에 -->
+<div id="modalSlide3" class="modal modal-slide" data-element="modal__element">
+	<div class="modal-container fixed-footer" data-element="modal__element-container">
+		<div class="modal-contents">
+			내용<br>								내용<br>
+			내용<br>
+			내용<br>
+		</div>
+		<div class="modal-footer">
+			<div class="btn-wrap">
+				<button type="button" class="btn-primary btn-default" title="확인" data-element="modal__close">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="input-wrap">
+	<div class="input-inner">
+		<button type="button" class="select-button" title="" id="select-style" name="select-style" data-element="modal__open" data-target="#selectList">셀렉트스타일</button>
+	</div>
+</div>
+
+<!-- 모달은 body 에 -->
+<div id="selectList" class="modal modal-slide" data-element="modal__element">
+	<div class="modal-container" data-element="modal__element-container">
+		<div class="modal-header">
+			<h1 class="header-tit">셀렉트스타일</h1>
+			<button class="modal-btn-close" type="button" data-element="modal__close" title="닫기"></button>
+		</div>
+		<div class="modal-contents w-full">
+			<ul class="select-list">
+				<li class="list-item">
+					<button type="button" class="select-option" id="" name="" data-element="select__option" data-target="#select-style" value="옵션1">옵션 1</button>
+				</li>
+				<li class="list-item">
+					<button type="button" class="select-option" id="" name="" data-element="select__option" data-target="#select-style" value="옵션2">옵션 2</button>
+				</li>
+				<li class="list-item">
+					<button type="button" class="select-option" id="" name="" data-element="select__option" data-target="#select-style" value="옵션3">옵션 3</button>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		
+		
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="btn-wrap">
+	<button type="button" class="btn-secondary btn-default" data-element="modal__open" data-target="#modalSlide4">스크롤</button>
+</div>
+
+<!-- 모달은 body 에 -->
+<div id="modalSlide4" class="modal modal-slide" data-element="modal__element">
+	<div class="modal-container" data-element="modal__element-container">
+		<div class="modal-header">
+			<h1 class="header-tit">슬라이드 팝업 제목</h1>
+			<button class="modal-btn-close" type="button" data-element="modal__close" title="닫기"></button>
+		</div>
+		<div class="modal-contents">
+			내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>내용<br>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+<div class="btn-wrap">
+	<button type="button" class="btn-secondary btn-default" data-element="modal__open" data-target="#modalAlert">Alert</button>
+</div>
+
+<!-- 모달은 body 에 -->
+<div id="modalAlert" class="modal modal-alert" data-element="modal__element">
+	<div class="modal-container" data-element="modal__element-container">
+		<div class="modal-contents">
+			내용
+		</div>
+		<div class="modal-footer">
+			<div class="btn-wrap">
+				<button type="button" class="btn-primary btn-default" title="확인" data-element="modal__close">확인</button>
+			</div>
+		</div>
+	</div>
+</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+		
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<section class="source">
+//열기
+$('body').data('plugin_modal').open('#modalSlide');
+
+//닫기
+$('body').data('plugin_modal').close('#modalSlide');
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+</script>
+</body>
+
+
+</html>

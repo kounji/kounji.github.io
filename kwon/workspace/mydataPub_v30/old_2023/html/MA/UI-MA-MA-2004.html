@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>메인화면 설정</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function(){
+			// 추천 서비스 순서변경
+			jQuery('.service_list').sortable({
+				items: 'li:not(.dis)',
+				//cancel:'.service_item.dis',
+				delay:100
+			});
+			
+			//활성,비활성 클릭
+			jQuery('.service_list .btn_config').on('click',function(){
+				var _list = jQuery('.service_list'),
+						_this = jQuery(this).parent().parent();
+						_cnt = _list.find('li:not(.dis)').length;
+						//console.log(_cnt);
+				if(_cnt > 3 || (_this.hasClass('dis') && _cnt == 3)){
+					_this.toggleClass('dis');
+				}else{
+					alert('추천 서비스는 최소 3개 이상 선택해 주세요.');
+				};
+			});
+		});
+	//-->
+	</script>
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">메인 화면 편집</h1>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<strong class="titH1">내가 자주보는 정보를<br>원하는 순서대로 바꿀 수 있어요</strong>
+				<div class="sortable_list">
+					<div class="list_item asset">
+						<span class="list_item_tit">자산</span>
+						<button type="button" class="btn_sortable">순서변경</button>
+					</div>
+					<div class="list_item expen">
+						<span class="list_item_tit">지출</span>
+						<button type="button" class="btn_sortable not">순서변경</button>
+					</div>
+					<div class="list_item target">
+						<span class="list_item_tit">목표</span>
+						<button type="button" class="btn_sortable">순서변경</button>
+					</div>
+				</div>
+				<strong class="com_pop_tit01">추천 서비스</strong>
+				<ul class="service_list">
+					<li>
+						<div class="service_item">
+							<span class="service_item_tit">연금진단</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+					<li>
+						<div class="service_item">
+							<span class="service_item_tit">상품추천</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+					<li>
+						<div class="service_item">
+							<span class="service_item_tit">신용점수</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+					<li>
+						<div class="service_item">
+							<span class="service_item_tit">세금현황</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+					<li class="dis">
+						<div class="service_item">
+							<span class="service_item_tit">콕부동산</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+					<li class="dis">
+						<div class="service_item">
+							<span class="service_item_tit">콕마이카</span>
+							<button type="button" class="btn_config"></button>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint">저장</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

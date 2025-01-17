@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>결제예정금액</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+
+	<script>
+		rMateChartH5.create("chart1", "chartHolder", "useContextMenu=false", "100%", "170rem");//useContextMenu=false 차트메뉴 숨김
+		//  평균선 값
+		var baseValue = 224;
+					
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+			'<rMateChart backgroundColor="transparent" borderStyle="none" >'
+				+'<Stroke id="stroke1" color="#cbcdd6" weight="1"/>'
+				/* 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+						+'<Column2DChart gutterLeft="0" maximum="11000" showDataTips="true" columnWidthRatio="0.55" displayCompleteCallFunction="removeTabindex">' 
+						+'<horizontalAxis>'
+							+'<CategoryAxis id="hAxis" categoryField="Month"/>'
+						+'</horizontalAxis>'
+						/* max 설정 */
+						+'<verticalAxis>'
+							+'<LinearAxis id="vAxis"/>'
+							// +'<LinearAxis maximum="10000"/>'
+						+'</verticalAxis>'
+						/* //max 설정 */
+						+'<verticalAxisRenderers>'
+							+'<Axis2DRenderer axis="{vAxis}" visible="false"/>'
+						+'</verticalAxisRenderers>'
+						+'<horizontalAxisRenderers>'
+								/* style로 정의한 axisLabel을 styleName으로 설정 합니다. */
+							+'<Axis2DRenderer axis="{hAxis}" styleName="axisLabel"/>'
+						+'</horizontalAxisRenderers>'
+						+'<series>'
+							//그래프 숫자 노출
+							//+'<Column2DSeries yField="Profit" labelPosition="outside"  fontSize="12" color="#333"> '
+							//그래프 숫자 노출제거
+							+'<Column2DSeries yField="Profit" displayName="Profit" itemRenderer="SemiCircleColumnItemRenderer">'
+							+'<fills>'
+							/* Series안에 색을 채울 때(여러색) fills에 주목 */
+								/* color:색깔 */
+								+'<SolidColor color="#668ee2"/>'
+							+'</fills>'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate/>'
+							+'</showDataEffect>'
+							+'</Column2DSeries>'
+						+'</series>'
+						// 평균선 추가
+						+'<backgroundElements>'
+						//+'<GridLines/>'
+							+'<AxisMarker>'
+								+'<lines>'
+									+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke1}"/>'
+								+'</lines>'
+							+'</AxisMarker>'
+							+'<AxisMarker>'
+								+'<lines>'
+									+'<AxisLine value="'+baseValue+'" lineStyle="dashLine">'
+									// +'<AxisLine value="'+baseValue+'" lineStyle="dashLine" label="40대남성 평균선 테스트">'
+										+'<stroke>'
+											+'<Stroke color="#cbcdd6" weight="1"/>'
+										+'</stroke>'
+									+'</AxisLine>'
+								+'</lines>'
+							+'</AxisMarker>'
+						+'</backgroundElements>'
+					+'</Column2DChart>'
+					+'<Style>'
+						+'.axisLabel{fontSize:1.2rem;color:#333333;}'
+					+'</Style>'
+				+'</rMateChart>';
+			
+		// 차트 데이터
+		var chartData = [
+			{"Month":"6월","Profit":250},
+			{"Month":"5월","Profit":90},
+			{"Month":"4월","Profit":400},
+			{"Month":"3월","Profit":215},
+			{"Month":"2월","Profit":90},
+			{"Month":"1월","Profit":150},
+		]
+			
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+	</script>
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>결제예정금액</h1>
+		</div>	
+		<div class="popup_content com_space_bottom com_bg_type00">
+				
+			<div class="asset_info_box">
+				<div class="com_inner">
+					<div class="asset_info_wrap">
+						<div class="asset_info">
+							<dl>
+								<dt>현대카드</dt>
+							</dl>
+							<div class="bank_icon">
+								<i class="A1AABG0000"><span class="blind">현대카드</span></i>
+							</div>
+						</div>
+
+						<div class="asset_price_wrap card">
+							<div class="amount">결제예정일 : 3월 22일<span class="mint_badge">+2</span></div>
+							<div class="asset_price"><!-- 09/08 counter 삭제 -->
+								<span class="num">1,000,000</span>원
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: block;">
+											<div>
+												결제예정금액은 본인 명의 카드 외에 가족카드는 포함되지 않습니다.
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="asset_price_list">
+								<span>일시불</span>
+								<span class="price"><em class="num">950,000</em>원</span>
+							</div>
+							<div class="asset_price_list">
+								<span>할부</span>
+								<span class="price"><em class="num">50,000</em>원</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="asset_detail">
+						<ul class="list_type_2023">
+							<li>
+								<dl>
+									<dt>단기대출</dt>
+									<dd class="num"><em class="num">200,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>리볼빙</dt>
+									<dd class="num"><em class="num">50,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>리볼빙 이월잔액</dt>
+									<dd class="num"><em class="num">50,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>리볼빙 이력</dt>
+									<dd><a href="#nolink" class="link_arrow">2건</a></dd>
+								</dl>
+								<dl>
+									<dt>장기대출</dt>
+									<dd class="num"><em class="num">100,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>연회비 및 기타</dt>
+									<dd class="num"><em class="num">100,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>결제은행</dt>
+									<dd>NH농협은행</dd>
+								</dl>	
+								<dl>
+									<dt>결제계좌번호</dt>
+									<dd class="num">1111-****-1111</dd>
+								</dl>	
+								<dl>
+									<dt>발급일자</dt>
+									<dd class="num">2010.02.16</dd>
+								</dl>	
+								<dl>
+									<dt>결제일</dt>
+									<dd><em class="num">14</em>일</dd>
+								</dl>	
+								<dl>
+									<dt>포인트명/잔여포인트</dt>
+									<dd>하나포인트/<em class="num">100</em>P</dd>
+								</dl>	
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<button type="button" class="btn_view_detail">더보기</button><!-- 230720 상세보기에서 더보기로 수정 -->
+			</div>
+
+			<div class="com_inner payment_amount">
+
+				<div class="chart_box">
+					<div id="chartHolder" role="img" aria-label="결제예정금액 - 12월 812, 1월 785, 2월 785, 3월 10,000 입니다."></div>
+					<div class="chart_tooltip_text">
+						<span class="chart_text">40대 초반 평균 <em class="num">2,234,678</em>원</span>
+					</div>
+				</div>
+
+				<div class="inner_banner">
+					<a href="javascript:void(0)">
+						<img src="../../../../src/assets_v40/images/banner/img_benner_09.png" alt="카드값을 줄일 수 있는 카드는? NH카드를 찾아보세요.">
+					</a>
+				</div>
+
+				<div class="asset_more_list no_line">
+					<strong class="titH3">월별 청구금액 <span class="pointColor green">3</span></strong>
+					<ul class="line_type">
+						<li>
+							<div class="list_month">2022년2월</div>
+							<a href="#nolink" class="link_arrow">
+								<dl>
+									<dt>결제일 : 2월 22일</dt>
+									<dd><em class="num">2,345,456</em>원</dd>
+								</dl>
+							</a>
+							<a href="#nolink" class="link_arrow">
+								<dl>
+									<dt>결제일 : 2월 15일</dt>
+									<dd><em class="num">2,345,456</em>원</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+							<div class="list_month">2022년1월</div>
+							<a href="#nolink" class="link_arrow">
+								<dl>
+									<dt>결제일 : 1월 21일</dt>
+									<dd><em class="num">2,345,456</em>원</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+							<div class="list_month">2021년12월</div>
+							<a href="#nolink" class="link_arrow">
+								<dl>
+									<dt>결제일 : 12월 23일</dt>
+									<dd><em class="num">2,345,456</em>원</dd>
+								</dl>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<a href="#nolink;" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// 전체 팝업 종료 -->
+	
+	<script>
+		jQuery(document).ready(function(){
+			jQuery('.btn_view_detail').on('click',function(){
+				jQuery(this).siblings().children('.asset_detail').toggleClass('open');
+				jQuery(this).toggleClass('close');
+				if(jQuery('.asset_detail').hasClass('open')) {
+					jQuery('.asset_detail').slideDown('slow');
+					jQuery('.btn_view_detail').text('접기');//230720 상세접기에서 접기로 수정
+				}else {
+					jQuery('.asset_detail').slideUp('slow');
+					jQuery('.btn_view_detail').text('더보기');//230720 상세보기에서 더보기로 수정
+				}
+			});
+		});
+	</script>
+</body>
+</html>

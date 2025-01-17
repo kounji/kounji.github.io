@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>제3자 제공 동의내역 통합조회</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>제3자 제공 동의내역 통합조회</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023 other_mydata" id="full_popup_01" style="display:block;"><!-- 2024-11 : 타기관마이데이터 other_mydata 추가 -->
+		<div class="popup_header"> 
+			<h1>조회설정</h1>
+		</div>
+
+		<div class="popup_content search_set">
+			<div class="com_inner">
+				<strong class="com_box_tit">조회 기간</strong>
+				
+				<div class="com_inputarea_type06">
+					<div class="com_inputnum2 input_date">
+						<div class="com_input_type01" role="button">
+							<input type="type" id="startDate_1" class="input_cal_date com_txtright_type01" name="startDate" value="" required="" placeholder="년월일 8자리숫자" title="시작일 년월일 8자리숫자">
+							<label for="startDate_1"></label>
+						</div>
+						<div class="com_input_type01" role="button">
+							<input type="type" id="endDate_1" class="input_cal_date com_txtright_type01" name="endDate" value="" required="" placeholder="년월일 8자리숫자" title="종료일 년월일 8자리숫자">
+							<label for="endDate_1"></label>
+						</div>
+					</div>
+				</div>			
+			</div>
+
+			<div class="com_inner">
+				<strong class="com_box_tit">검색구분</strong>
+				<div class="com_txt_type02">
+					<ul class="com_radio_type02">
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check01" checked="checked">
+								<label for="com_check01">
+									<span>전체</span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check02">
+								<label for="com_check02">
+									<span>제공하는 기관</span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check03">
+								<label for="com_check03">
+									<span>제공받는 기관</span>
+								</label>
+							</span>
+						</li>
+						<li>
+							<span class="btn_radio">
+								<input type="radio" name="com_check" id="com_check04">
+								<label for="com_check04">
+									<span>제공 항목</span>
+								</label>
+							</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="com_inner">
+				<strong class="com_box_tit">검색어</strong>
+				<div class="com_input_type01 mt0">
+					<label for="txt01"></label>
+					<input type="text" id="txt01" class="com_txtright_type01" name="" value="" placeholder="검색어 입력" title="검색어 입력">
+					<div class="del_txt type01">
+						<a href="#nolink" class="com_btn_delete2 blur" style="display: none;"><span class="blind">삭제</span></a>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey" role="button">초기화</a>
+				<a href="javascript:void(0);" class="btn btn_mint" role="button">적용</a>
+				<!-- btn_off 제거시 활성화 -->
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>	
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

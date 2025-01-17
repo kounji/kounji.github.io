@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>카드 지출내역 | 가계부</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- full popup S -->
+	<div class="full_popup sticky-scroll" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>카드 지출내역</h1>
+		</div>
+		<div class="popup_content com_space_bottom list_top_info_area com_bg_type00">
+			<div class="com_inner">
+				<div class="top_info_box_wrap">
+					<div class="top_btn"><p class="depth"></p><a href="#">NH올원 파이카드</a></div>
+					<div class="shadow"></div>
+					<div class="top_info_box type02 noBG hasdetail">
+						<!--card01~ 추후 카드사별 클래스로 컨트롤-->
+						<div class="card_img card01"><span class="blind">NH올원 파이카드 이미지</span></div>
+						<div class="select_date_wrap">
+							<div class="date_inner">
+								<div class="select_date">
+									<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+									<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+									<button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled></button>
+								</div>
+								<div class="bill"><!-- 0908 counter 삭제 -->
+									<span class="num">230,000</span>원
+								</div>
+							</div>
+						</div>
+
+						<div class="box_toggle_wrap">
+							<div class="box_toggle">
+								<div class="toggle-box">
+									<div data-ui-toggle="box">									
+										<div class="view-box">
+											<div class="info">
+												<div class="title">카드 번호</div>
+												<div class="num">3565-****-****-1234</div>
+											</div>
+											<div class="info">
+												<div class="title">카드 구분</div>
+												<div class="text">신용</div>
+											</div>
+											<div class="info">
+												<div class="title">교통 기능</div>
+												<div class="text">Y</div>
+											</div>
+											<div class="info">
+												<div class="title">현금카드 기능</div>
+												<div class="text">Y</div>
+											</div>
+											<div class="info">
+												<div class="title">결제은행</div>
+												<div class="text">NH농협은행</div>
+											</div>
+											<div class="info">
+												<div class="title">국제브랜드</div>
+												<div class="text">MASTER</div>
+											</div>
+											<div class="info">
+												<div class="title">연회비</div>
+												<div class="text">보유</div>
+											</div>
+											<div class="info">
+												<div class="title">발급일자</div>
+												<div class="num">2017.03.25</div>
+											</div>
+										</div>
+										<button type="button" class="view-btn" aria-expanded="true">
+											<em class="open">열기</em><em class="close">닫기</em>
+										</button>
+									</div>
+								</div>
+							</div> 
+						</div>  
+					</div>
+				</div>
+			</div>
+
+			<!-- 230727 전체 필터 추가 -->
+			<div class="com_inner">
+				<div class="all_filter">
+					<a href="#nolink" role="button">전체</a>
+				</div>	
+			</div>
+			<!-- //230727 전체 필터 추가 -->
+			
+			<ul class="list_more_box">
+				<li>
+					<div class="com_inner">
+						<div class="new_tit_area">
+							<div class="tit"><em>15</em><span>일(수)</span></div>
+						</div>
+						<ul class="list_type_01">
+							<li>
+								<a href="#nolink">
+									<dl>
+										<dt>
+											<div>
+												<i class="ico_hospital"><span class="blind">의원</span></i>
+												<em>김안과 의원</em>
+												<span>KT-현대카드 M Edition3 (라이트할부형)</span>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">20,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<dl>
+										<dt>
+											<div>
+												<i class="ico_food"><span class="blind">음식</span></i>
+												<em>명동찌개마을</em>
+												<span>
+													<span>KT-현대카드M Edition3 (라이트할부형)</span>
+													<!-- <span class="common_bar"></span> -->
+													<span>할부(2개월)</span>
+												</span>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">20,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="com_space_type01"></div>
+				</li>
+				<li>
+					<div class="com_inner">
+						<div class="new_tit_area">
+							<div class="tit"><em>3</em><span>일(토)</span></div>
+						</div>
+						<ul class="list_type_01">
+							<li>
+								<a href="#nolink">
+									<dl>
+										<dt>
+											<div>
+												<i class="ico_apt"><span class="blind">아파트</span></i>
+												<em>아파트관리비</em>
+												<span><em>NH올원 파이카드</em></span>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">20,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+						<div class="com_space_type01"></div>
+					</div>
+					<div class="com_space_type01"></div>
+				</li>
+			</ul>
+
+			<div class="com_inner">
+				<div class="com_btn_area"><a href="#nolink" class="com_btn_more"><span>더보기</span></a></div><!-- 200727 .com_btn_area로 수정 -->
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

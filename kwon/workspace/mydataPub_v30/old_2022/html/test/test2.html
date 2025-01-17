@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>상호금융 개인자산관리</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script>
+	<style>
+		*{padding:0;margin:0;box-sizing: border-box;}
+		.box_wrapper {
+			position:relative;margin: 50px auto;width: 200px;height:100px;background:#fff;
+		}
+		.box_wrapper_inner {position: relative;
+    width: 100%;height: 100%;overflow: hidden;}
+		.count {position: absolute;bottom:0;font-size: 1.2rem;color:#666;}
+		.count > span {font-size: 1.4rem;}
+		.start_min {bottom: 1rem;left:-2.7rem;font-size: 1.2rem;font-weight: 500;color:#666;}
+		.end_max {bottom: 1rem;right:-3.9rem;font-size: 1.2rem;font-weight: 500;color:#666;}
+		.box {
+			position: absolute;left:0;z-index: 1;
+			width: 100%;height: 200%;
+			background: url('../../../../src/assets/images/bg/img_cicle_silver.png') no-repeat center top;
+			background-size: 100% auto;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-content: center;
+			justify-content: center;
+			align-items: center;
+			border-radius: 100%;
+		}
+		.center_small_cicle {position: absolute;top: 50%;left:50%;transform: translate(-50%, -50%);width: 100px;height: 100px;background:#fff;border-radius: 50%;box-shadow: 0 .4rem 1.1rem rgba(0, 25, 28, 0.12);text-align: center;}
+
+		.center_small_cicle_inner {
+			position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
+			margin-top: -10px;width: 50%;height: 50%;line-height: 50px;border-radius: 50%;
+			font-size: 1.6rem;font-weight: bold;color:#666;background: #fff;text-align: center;
+		}
+		.center_small_cicle_inner span {font-size: 2.4rem;color:#333;}
+		hr {
+			/* margin: 20px 0 0 0; */
+			display: inline-block;
+			width: 10px;height: 150px;
+			/* border-radius: 20px; */
+    		/* background: #c0c2cb; */
+			/* border-bottom-color: #fff;border-right-color: #fff; */
+			/* box-shadow: 0 .3rem .4rem rgba(0, 25, 28, 0.12); */
+			
+			/* background: url('../../../../src/assets/images/bg/img_cicle_line.png') repeat-x center top;background-size: 100% auto; */
+			background-image: url('../../../../src/assets/images/bg/img_cicle_line.png');
+			background-size: 100% auto;
+			transform: rotate(-90deg);
+			animation-delay: 2s;
+			animation-timing-function: linear;
+			animation-fill-mode: forwards;
+			transition: all .5s;
+		}
+		.pink_loader{
+			position: absolute;z-index: 2;
+			transform: rotate(180deg);
+			width: 100%;height: 200%;
+			background: url('../../../../src/assets/images/bg/img_cicle_pink.png') no-repeat center top;background-size: 100% auto;
+			/* animation: spin 2s linear 1 forwards; */
+			animation-delay: 2s;
+			animation-timing-function: linear;
+			animation-fill-mode: forwards;
+			transition: all .5s;
+		}
+
+		/* 차트 컨트롤 ( 여기서 deg 앞의 숫자를 컨트롤 하세요 ) */
+		@keyframes spin {
+			from {transform : rotate(180deg);}
+			to {transform : rotate(360deg);}
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="box_wrapper">
+		<div class="box_wrapper_inner">
+			<div class="box">
+				<hr />
+				<div class="center_small_cicle">
+					<div class="center_small_cicle_inner">
+						<span>25</span>%
+					</div>
+				</div>
+			</div>
+			<div class="pink_loader"></div>
+		</div>
+		<span class="count start_min num"><span>0</span>%</span>
+		<span class="count end_max num"><span>100</span>%</span>
+
+	</div>
+	<script>
+		// $(function(){
+		// 	$('.pink_loader').animate({
+					
+		// 	}, 2000);
+			
+		// });
+
+
+		// 해당 함수에 숫자만 넣으시면 됩니다.
+		$(function(){
+
+			// 바늘
+			function ani2(now) {
+				$('hr').css( {transform: 'rotate(' + now + 'deg)' })
+			}
+
+			// 핑크색 데이터
+			function ani(now) {
+				$('.pink_loader').css( {transform: 'rotate(' + (now+180) + 'deg)' })
+			}
+			ani(120);
+			// ani2(120);
+		});
+</script>
+</body>
+</html>

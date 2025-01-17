@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>대출 한도 계산기 | 연금절세</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>대출 한도 계산기</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view">
+			<!-- content -->
+			<div id="content">
+				<div class="com_inner">
+					<p class="titH1">대출계획이 있으시다면, 대출한도를 간편하게 확인해보세요</p>
+					<ul class="bl_dot_list">
+						<li>본 대출한도(DSR) 계산기는 고객님의 자금운영을 돕기 위한 모의 계산서비스로, 사용 사실이 고객님의 신용정보에 영향을 주지 않으니 안심하시고 사용하셔도 됩니다.</li>
+						<li>정확한 대출 가능여부 및 한도 확인은 농축협 영업점과 NH콕뱅크에서 실제 대출심사를 통해 확인하실 수 있습니다.</li>
+					</ul>
+					<div>
+						<p>DSR이란?</p>
+						<div class="custom_tooltip up">
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info" role="button">
+									<em class="com_icon_info"><span class="blind">DSR이란? 툴팁열기</span></em>
+								</a>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										<ul class="bl_dot_list">
+											<li>DSR이란 연소득 대비 연간 부담해야 할 총 부채의 원리금 비율을 뜻합니다.</li>
+											<li>2022년 7월부터 총 대출이 1억원을 초과하는 경우 개인별 DSR 40%이내에서 대출이 가능합니다. </li>
+											<li>DSR 계산식<br>((신규 신청 대출의 연간 원리금 상환액) + (기존 모든 대출의 연간 원리금 상환액)) / 연소득 * 100</li>
+										</ul>
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div>
+						<p>신규 대출 신청시 DSR 적용 제외 대출 안내</p>
+						<div class="custom_tooltip up">
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info" role="button">
+									<em class="com_icon_info"><span class="blind">신규 대출 신청시 DSR 적용 제외 대출 안내 툴팁열기</span></em>
+								</a>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										<p>아래에 해당하는 대출은 DSR 계산시 고려되지 않습니다</p>
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> 
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="com_inner">
+					<p>DSR 계산을 위한 소득 및 대출정보가 필요합니다.</p>
+					<div class="com_input_type01 com_word2">
+						<input type="number" id="com_input01" class="" name="" value="" required="" placeholder="보유금액을 입력해주세요" title="보유금액입력">
+						<label for="com_input01"><span class="txt_label_x">희망대출금액</span></label>
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">만원</span>
+						</div>
+						<p class="com_sum">1조 1억 1,000만원</p>
+					</div>
+
+					<div class="com_input_type01 com_word2">
+						<input type="number" id="com_input01" value="" required="" placeholder="주택 공시가격을 입력하세요 " title="주택 공시가격을 입력하세요 ">
+						<label for="com_input01">
+							<span class="txt_label_x">희망대출금액</span>
+						</label>
+						
+						<div class="del_txt">
+							<a href="#nolink" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">만원</span>
+						</div>
+						<p class="com_sum">1조 1억 1,000만원</p>
+						<div class="btn_price_group">
+							<button type="button" class="btn_price">+<strong>100</strong>만</button>
+							<button type="button" class="btn_price">+<strong>500</strong>만</button>
+							<button type="button" class="btn_price">+<strong>1000</strong>만</button>
+							<button type="button" class="btn_price">+<strong>1</strong>억</button>
+							<button type="button" class="btn_price">지우기</button>
+						</div>
+	
+					</div>
+				</div>
+
+				<div class="com_inner">
+					<div class="layoutBox between">
+						<div class="left">
+							<strong class="titH3">보유대출 목록</strong>
+						</div>
+						<div class="right">
+							<button type="button" class="stdBtn innerType01">보유대출 등록하기</button>
+						</div>
+					</div>
+					<div>
+						<ul class="list_type_2023 list_type_line">
+							<li>
+								<dl>
+									<dt>상품명</dt>
+									<dd class="bank_icon"><i class="ZVAAER0000"></i>신한은행 퇴직연금 펀드(DC형)</dd>
+								</dl>
+								<dl>
+									<dt>상품가입번호</dt>
+									<dd class="num">1111111111</dd>
+								</dl>	
+								<dl>
+									<dt>평가금액</dt>
+									<dd><span class="pointColor Blue num">2,350,000원</span></dd>
+								</dl>	
+								<dl>
+									<dt>투자원금</dt>
+									<dd class="num">2,000,000원</dd>
+								</dl>	
+								<dl>
+									<dt>상품유형</dt>
+									<dd>원리금 보장</dd>
+								</dl>	
+								<dl>
+									<dt>보유좌수</dt>
+									<dd>2</dd>
+								</dl>	
+								<dl>
+									<dt>신규일</dt>
+									<dd class="num">YYYY.MM.DD</dd>
+								</dl>	
+								<dl>
+									<dt>만기일</dt>
+									<dd class="num">YYYY.MM.DD</dd>
+								</dl>	
+								<dl>
+									<dt>약정이자율</dt>
+									<dd class="num">0.23%</dd>
+								</dl>	
+							</li>
+							<li>
+								<dl>
+									<dt>상품명</dt>
+									<dd class="bank_icon"><i class="ZVAAER0000"></i>신한은행 퇴직연금 펀드(DC형)</dd>
+								</dl>
+								<dl>
+									<dt>상품가입번호</dt>
+									<dd class="num">1111111111</dd>
+								</dl>	
+								<dl>
+									<dt>평가금액</dt>
+									<dd><span class="pointColor Blue num">2,350,000원</span></dd>
+								</dl>	
+								<dl>
+									<dt>투자원금</dt>
+									<dd class="num">2,000,000원</dd>
+								</dl>	
+								<dl>
+									<dt>상품유형</dt>
+									<dd>원리금 보장</dd>
+								</dl>	
+								<dl>
+									<dt>보유좌수</dt>
+									<dd>2</dd>
+								</dl>	
+								<dl>
+									<dt>신규일</dt>
+									<dd class="num">2022.01.12</dd>
+								</dl>	
+								<dl>
+									<dt>만기일</dt>
+									<dd class="num">2023.05.31</dd>
+								</dl>	
+								<dl>
+									<dt>약정이자율</dt>
+									<dd class="num">0.23%</dd>
+								</dl>	
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+	</div>
+</body>
+</html>
+

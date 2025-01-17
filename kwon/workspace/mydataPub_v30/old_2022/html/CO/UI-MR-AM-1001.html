@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>연결 기관 관리 &lt; 더보기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>연결 기관 관리</h1><!-- 수정 : 2022-08-01 -->
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<!-- content-view S -->
+		<div class="content-view hasLNB">
+			<div class="com_tabmenu_type04 com_tabmenu_type05">
+				<ul role="tablist">
+					<!-- 2022-09-14 : a 태그 숫자 표시되는 <span></span> 삭제 -->
+					<li class="on"><a href="javascript:void(0);">은행</a></li>
+					<li><a href="javascript:void(0);">카드</a></li>
+					<li class="new"><a href="javascript:void(0);">증권</a></li>
+					<li><a href="javascript:void(0);">보험</a></li>
+					<li><a href="javascript:void(0);">페이</a></li>
+					<li><a href="javascript:void(0);">할부금융</a></li>
+					<li><a href="javascript:void(0);">보증보험</a></li>
+					<li><a href="javascript:void(0);">기타</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+				<div class="com_inner">
+					<!-- 만료예정 | 만료/해제 -->
+					<div class="custom_box">
+						<ul class="custom_list01">
+							<li><a class="custom_link custom_line01" href="javascript:void(0);">만료예정 <em class="num">1</em>개</a></li>
+							<li><a class="custom_link custom_line02" href="javascript:void(0);">만료/해제 <em class="num">1</em>개</a></li>
+						</ul>
+					</div>
+					<!--// 만료예정 | 만료/해제 -->
+
+					<!-- 은행 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>은행</span> <span class="com_icon_num custom">9</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 은행 -->
+					<!-- 농협중앙회 체크 박스 없는것 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5">
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<div class="new_tit_area new_tit_area02">
+									<div class="tit">
+										<!-- 2022-08-12 : 글자변경 -->
+										<i class="I1AAAZ0000"><span class="blind">농협중앙회</span></i>
+										<span>농협중앙회</span>
+									</div>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<ul class="view_cont list_type_01">
+							<li>
+								<dl>
+									<dt>
+										<em>콕 <em class="num">BASIC</em>통장</em>
+									</dt>
+									<dd>
+										<em class="num">13246534325</em>
+									</dd>
+								</dl>
+								<span class="cmm-switch custom-switch">
+									<input type="checkbox" id="check01" checked="" role="switch"><!-- 22-10-21 role 추가 -->
+									<label for="check01"><em class="blind">부채선택</em></label>
+								</span>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<!-- 2022-10-28 : 2줄 케이스 추가 -->
+										<em>(가계일반)농업인멤버쉽대출-조합자 최저리자금</em>
+									</dt>
+									<dd>
+										<em class="num">13246534325</em>
+									</dd>
+								</dl>
+								<span class="cmm-switch custom-switch">
+									<input type="checkbox" id="check02" checked="" role="switch"><!-- 22-10-21 role 추가 -->
+									<label for="check02"><em class="blind">부채선택</em></label>
+								</span>
+							</li>
+						</ul>
+					</div>
+					<!--// 농협중앙회 체크 박스 없는것 -->
+					<!-- NH농협은행 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 글자변경 -->
+								<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
+								<div class="custom_terms">
+									<span class="btn_check btn_check2">
+										<input type="checkbox" name="allagree" id="checkall01">
+										<label for="checkall01"><span><em class="num">NH</em>농협은행</span></label>
+									</span>
+								</div>
+								<span class="txtFinish">만료예정</span>
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2022.07.10</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+								<li>
+									<em><em class="num">NH</em>페이연금 저축베스트파워 세테크연금공제 큰사랑안심모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// NH농협은행 -->
+
+					<!-- 카드 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>카드</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 카드 -->
+					<!-- NH농협카드 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 클래스명 변경, 글자변경 -->
+								<i class="A1AABG0000"><span class="blind">NH농협카드</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall02">
+											<label for="checkall02">
+												<span><em class="num">NH</em>농협카드</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2022.06.10</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// NH농협카드 -->
+					
+					<!-- 보험 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>보험</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 보험 -->
+					<!-- DB손해보험 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 클래스명 변경 / 이름변경 -->
+								<i class="B2AAEN0000"><span class="blind">DB손해보험</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall03">
+											<label for="checkall03">
+												<span><em class="num">DB</em>손해보험</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// DB손해보험 -->
+
+					<!-- 보증보험 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>보증보험</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 보증보험 -->
+					<!-- 자산을 연결하고 관리해 보세요 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6 toggle_list_box8">
+						<a href="javascript:void(0);" class="btn_link">
+							<span class="btn_plus_black">자산을 연결하고 관리해 보세요</span>
+						</a>
+					</div>
+					<!--// 자산을 연결하고 관리해 보세요 -->
+
+					<!-- 페이 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>페이</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 페이 -->
+					<!-- 카카오페이 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 클래스명 변경 / 이름변경 -->
+								<i class="E1AAIA0000"><span class="blind">카카오페이</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall04">
+											<label for="checkall04">
+												<span>카카오페이</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// 카카오페이 -->
+
+					<!-- 할부금융 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>할부금융</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 할부금융 -->
+					<!-- NH농협캐피탈 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 클래스명 변경 / 이름변경 -->
+								<i class="A1AABG0000"><span class="blind">NH농협캐피탈</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall05">
+											<label for="checkall05">
+												<span><em class="num">NH</em>농협캐피탈</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// NH농협캐피탈 -->
+
+					<!-- 통신 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>통신</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 통신 -->
+					<!-- LG유플러스 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 클래스명 변경 / 이름변경 -->
+								<i class="F1AAGI0000"><span class="blind">LG유플러스</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall06">
+											<label for="checkall06">
+												<span><em class="num">LG</em>유플러스</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// LG유플러스 -->
+
+					<!-- 대부 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>대부</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 대부 -->
+					<!-- 한신에셋대부 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-12 : 이름변경 -->
+								<i class="I1AAAZ0000"><span class="blind">한신에셋대부</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall07">
+											<label for="checkall07">
+												<span>한신에셋대부</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// 한신에셋대부 -->
+
+					<!-- 인수채권 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>인수채권</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 인수채권 -->
+					<!-- 한국자산관리공사 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-09 : 수정 -->
+								<i class="com_no_img"><span class="blind">한국자산관리공사</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall08">
+											<label for="checkall08">
+												<span>한국자산관리공사</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// 한국자산관리공사 -->
+
+					<!-- P2P -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span class="num">P2P</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// P2P -->
+					<!-- 프리스닥 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<!-- 2022-08-09 : 수정 -->
+								<i class="com_no_img"><span class="blind">프리스닥</span></i>
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall09">
+											<label for="checkall09">
+												<span>프리스닥</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<ul class="view_cont list_type_01">
+									<li>
+										<p>
+											<span>전송유효기간</span>
+											<em class="num">2023.10.15</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>장기전송여부</span>
+											<em>주 <em class="num">1</em>회</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>적요/거래메모</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>가맹점/사업자등록번호</span>
+											<em>동의</em>
+										</p>
+									</li>
+									<li>
+										<p>
+											<span>상품구매 카테고리</span>
+											<em>미동의</em>
+										</p>
+									</li>
+								</ul>
+								
+							</button>
+							<ul class="view_cont dot_list_cont">
+								<li>
+									<em><em class="num">NH</em>페이모아통장(비대면실명확인)</em>
+									<span class="num">13246534325</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// 프리스닥 -->
+
+					<!-- 국민연금공단 -->
+					<div class="custom_box">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>국민연금공단</span> <span class="com_icon_num custom">1</span></div>
+							</div>
+						</div>
+					</div>
+					<!--// 국민연금공단 -->
+					<!-- 연금산정용 가입내역확인서 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list toggle_list_box5 toggle_list_box6 toggle_list_box7">
+						<div class="new_tit_area new_tit_area02">
+							<div class="tit">
+								<div class="custom_terms">
+									<div class="new_check_all">
+										<span class="btn_check btn_check2">
+											<input type="checkbox" name="allagree" id="checkall10">
+											<label for="checkall10">
+												<span>연금산정용 가입내역확인서</span>
+											</label>
+										</span>
+									</div>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+						</div>
+						<!-- 
+							열림상태 : <div data-ui-toggle="box" class="toggle_box_area">
+							닫힘상태 : <div data-ui-toggle="box" class="toggle_box_area open">
+						-->
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<ul class="view_cont list_type_01">
+								<li>
+									<p>
+										<span>전송유효기간</span>
+										<em class="num">2022.07.10</em>
+									</p>
+								</li>
+								<li>
+									<p>
+										<span>정기전송여부</span>
+										<em>주 <em class="num">1</em>회</em>
+									</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!--// 연금산정용 가입내역확인서 -->
+
+					<!-- 공공 정보 연결하고 -->
+					<div class="inner_banner">
+						<a href="javascript:void(0);" role="button">
+							<div class="com_box_type03 bg20">
+								<div class="text">
+									공공 정보 연결하고<br>
+									<span><em>생활의 편의를 누리세요</em></span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<!--// 공공 정보 연결하고 -->
+
+					<!-- btn -->
+					<div class="com_btnhalfbox_type02">
+						<a href="javascript:void(0);" class="btn btn_mint_gray">2개 해제</a>
+						<a href="javascript:void(0);" class="btn btn_mint">2개 변경</a>
+
+						<!--
+							선택한 기관이 없는 경우 : 아래버튼 사용하세요 
+							(위의 버튼과 디자인은 동일하나 글자만 변경됨) 
+						-->
+						<!-- 
+						<a href="javascript:void(0);" class="btn btn_mint_gray">연결 해제</a>
+						<a href="javascript:void(0);" class="btn btn_mint">연결 변경</a>
+						 -->
+					</div>
+					<!--// btn -->
+				</div>
+			</div>
+			<!--// content -->
+
+			<script src="../../worklist/@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+
+		</div>
+		<!--// content-view S -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>계좌 잔액 예측 리포트 &lt; 예금 &lt; 자산현황 &lt; 자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>계좌 잔액 예측 리포트</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner com_line_type01 com_line_round custom_box11">
+				<!-- case 1 : 부족자금 발생시 -->
+				<div class="custom_box_chart01 case01 custom_box_box_shadowno p0 custom_box10">
+					<div class="txt">
+						<div>
+							김농협님 <span class="num">8</span>월 <span class="num">14</span>일 예상 잔액 합계는<br>
+							<span><strong class="num">-1,080,450</strong>원 입니다.</span>
+							<div class="custom_tooltip">
+								<div class="com_tooltip_type02 com_tooltip_type03">
+									<a href="javascript:void(0);" class="com_btn_info">
+										<!-- 2022-11-02 : question 삽입 ( 디자인 수정 됨 ) -->
+										<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+										<span class="arrow" style="display:none"></span>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+									</a>
+								</div>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										예상 지출 금액에는 카드결제예정금액과 입출금계좌에서 정기적으로 이체되는 적금, 적립식 펀드, 보험료, 원리금상환, 공과금 등이 포함되며, 조회 일자 별로 변동될 수 있습니다.
+										<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> <!-- 말풍선영역 -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 차트 -->
+					<div class="compare_chart_wrap">
+						<div class="chart">
+							<div class="bg">
+								<div class="area mid">
+									<div class="box">
+										<span class="infoTxt">
+											부족자금
+											<p><strong class="num">-1,080,450</strong><em class="won">원</em></p>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="bar_wrap">
+								<div class="bars">
+									<div class="bar bar01"></div>
+									<div class="bar bar02"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--// 차트 -->
+					<div class="date">
+						<div class="st">
+							<span class="unit-tit">현재 통장 총 잔액</span>
+							<p>
+								<strong class="num">20,823,500</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+						<div class="ed">
+							<span class="unit-tit">8월 14일까지 예상지출</span>
+							<p>
+								<strong class="num">-123,456,789</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+					</div>
+				</div> 
+				<!--// case 1 : 부족자금 발생시 -->
+				<div class="com_box_type01 no_data_wrapc custom_box9 custom_box10">
+					<div class="custom_flex01">
+						<p class="com_txtinfo_type01 color_ty"><strong>계좌 잔액이 부족해요</strong></p>
+					</div>
+					<div class="no_data_list">
+						<div class="com_txt2">
+							계좌별 예상잔액을 확인하신 후,<br>
+							잔액을 채워 연체를 예방하세요.
+						</div>
+					</div>
+					<div class="btn_option"><button type="button" class="btn_round_new btn_mid_round line_gray" title="여유돈 찾기">여유돈 찾기</button></div>
+				</div>
+
+
+				<!-- case 2 : 여유자금 발생시 -->
+				<div class="custom_box_chart01 case02 custom_box_box_shadowno p0 custom_box10">
+					<div class="txt">
+						<div>
+							김농협님 <span class="num">8</span>월 <span class="num">14</span>일 예상 잔액 합계는<br>
+							<span><strong class="num">123,456</strong>원 입니다.</span>
+							<div class="custom_tooltip">
+								<div class="com_tooltip_type02 com_tooltip_type03">
+									<a href="javascript:void(0);" class="com_btn_info">
+										<!-- 2022-11-02 : question 삽입 ( 디자인 수정 됨 ) -->
+										<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+										<span class="arrow" style="display:none"></span>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+									</a>
+								</div>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										예상 지출 금액에는 카드결제예정금액과 입출금계좌에서 정기적으로 이체되는 적금, 적립식 펀드, 보험료, 원리금상환, 공과금 등이 포함되며, 조회 일자 별로 변동될 수 있습니다.
+										<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> <!-- 말풍선영역 -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 차트 -->
+					<div class="compare_chart_wrap">
+						<div class="chart">
+							<div class="bg">
+								<div class="area mid">
+									<div class="box">
+										<span class="infoTxt">
+											여유자금
+											<p><strong class="num">1,080,450</strong><em class="won">원</em></p>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="bar_wrap">
+								<div class="bars">
+									<div class="bar bar01"></div>
+									<div class="bar bar02"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--// 차트 -->
+					<div class="date">
+						<div class="st">
+							<span class="unit-tit">현재 통장 총 잔액</span>
+							<p>
+								<strong class="num">20,823,500</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+						<div class="ed">
+							<span class="unit-tit">8월 14일까지 예상지출</span>
+							<p>
+								<strong class="num">-123,456,789</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+					</div>
+				</div> 
+				<!--// case 2 : 여유자금 발생시 -->
+				<div class="com_box_type01 no_data_wrapc custom_box9 custom_box10">
+					<div class="custom_flex01">
+						<p class="com_txtinfo_type01 color_ty"><strong>여유자금이 생겼어요</strong></p>
+					</div>
+					<div class="no_data_list">
+						<div class="com_txt2">
+							노는 돈 모아 종자돈 만들어 보세요.
+						</div>
+					</div>
+					<div class="btn_option"><button type="button" class="btn_round_new btn_mid_round line_gray" title="저축하기">저축하기</button></div>
+				</div>
+
+
+				<!-- Case 3 여유자금 0원일시 -->
+				<div class="custom_box_chart01 case03 custom_box_box_shadowno p0 custom_box10">
+					<div class="txt">
+						<div>
+							김농협님 <span class="num">8</span>월 <span class="num">14</span>일 예상 잔액 합계는<br>
+							<span><strong class="num">0</strong>원 입니다.</span>
+							<div class="custom_tooltip">
+								<div class="com_tooltip_type02 com_tooltip_type03">
+									<a href="javascript:void(0);" class="com_btn_info">
+										<!-- 2022-11-02 : question 삽입 ( 디자인 수정 됨 ) -->
+										<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+										<span class="arrow" style="display:none"></span>
+										<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+											, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+									</a>
+								</div>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										
+										예상 지출 금액에는 카드결제예정금액과 입출금계좌에서 정기적으로 이체되는 적금, 적립식 펀드, 보험료, 원리금상환, 공과금 등이 포함되며, 조회 일자 별로 변동될 수 있습니다.
+
+										<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> <!-- 말풍선영역 -->
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 차트 -->
+					<div class="compare_chart_wrap">
+						<div class="chart">
+							<div class="bg">
+								<div class="area mid">
+									<div class="box">
+										<span class="infoTxt">
+											여유자금
+											<p><strong class="num">0</strong><em class="won">원</em></p>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="bar_wrap">
+								<div class="bars">
+									<div class="bar bar01"></div>
+									<div class="bar bar02"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--// 차트 -->
+					<div class="date">
+						<div class="st">
+							<span class="unit-tit">현재 통장 총 잔액</span>
+							<p>
+								<strong class="num">20,823,500</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+						<div class="ed">
+							<span class="unit-tit">8월 14일까지 예상지출</span>
+							<p>
+								<strong class="num">-123,456,789</strong>
+								<span class="unit">원</span>
+							</p>
+						</div>
+					</div>
+				</div> 
+				<!--// Case 3 여유자금 0원일시 -->
+			</div>
+			<div class="com_inner">
+				<!-- 
+					open : 펼쳐짐 
+					open -> 삭제시 닫힘
+				-->
+				<div class="com_box_type01 toggle_list_box2 custom_list custom_box_list08">
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area">
+								<div class="tit"><span>계좌별 8월14일 예상 잔액</span></div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_01">
+						<li>
+							<a href="javascript:void(0);" role="button">
+								<dl>
+									<dt>
+										<div>
+											<i class="I1AAAZ0000"><span class="blind">NH농협</span></i>
+											<em>NH입출금통장</em><span class="icon_mint icon_red red">잔액부족</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<span class="custom_box_right_bar txt_gray">현재</span><em class="num txt_gray">2,750,000<em class="unit  txt_gray">원</em></em>
+										</span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" role="button">
+								<dl>
+									<dt>
+										<div>
+											<i class="shinhan01"><span class="blind">신한</span></i>
+											<em>U드림 저축예금</em><span class="icon_mint icon_blue blue">잔액여유</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<span class="custom_box_right_bar txt_gray">현재</span><em class="num txt_gray">150,000<em class="unit txt_gray">원</em></em>
+										</span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" role="button">
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAHJ0000"><span class="blind">카카오뱅크</span></i>
+											<em>카카오뱅크 입출금통장</em><span class="icon_mint icon_grey2 grey2">변동없음</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<span class="custom_box_right_bar txt_gray">현재</span><em class="num txt_gray">900,000<em class="unit txt_gray">원</em></em>
+										</span>
+									</dd>
+								</dl>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+
+
+				<div class="com_box_type01 custom_list">
+					<div class="new_tit_area inshadow">
+						<div class="tit"><span>다가올 지출</span>
+						</div>
+						<span class="total_price">
+							<em class="unit">합계</em><em class="num com_point_darkblue">850,000</em><em class="unit">원</em>
+						</span>
+					</div>
+					<div class="list_multi">
+						<div class="new_tit_area">
+							<div class="tit"><em>14</em><span>일 수요일</span></div>
+						</div>
+						<ul class="list_type_01 line_color">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="AS20000013"></i>
+											<em class="disb">삼성화재해상보험㈜</em>											
+										</div>
+										<div>
+											<span>
+												<span>NH페이모아통장</span>											
+											</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">20,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>							
+						</ul>
+					</div>
+					<div class="list_multi">
+						<div class="new_tit_area">
+							<div class="tit"><em>15</em><span>일 목요일</span></div>
+						</div>
+						<ul class="list_type_01 line_color">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="AS20000013"></i><!--common 3449줄 카테고리 명 참조-->
+											<em class="disb">삼성화재해상보험㈜</em>											
+										</div>
+										<div>
+											<span>
+												<span>NH페이모아통장</span>											
+											</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">20,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>							
+						</ul>
+					</div>
+					<div class="list_multi">
+						<div class="new_tit_area">
+							<div class="tit"><em>15</em><span>일 금요일</span></div>
+						</div>
+						<ul class="list_type_01 line_color">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="AS20000005"></i><!--common 3449줄 카테고리 명 참조-->
+											<em class="disb">넷플릭스</em>											
+										</div>
+										<div>
+											<span>
+												<span>NH페이모아통장</span>											
+											</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">20,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>				
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="SZ20000005"></i><!--common 3449줄 카테고리 명 참조-->
+											<em class="disb">현대카드</em>
+										</div>
+										<div>
+											<span>
+												<span>U드림저축예금</span>												
+											</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">20,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>					
+				</div>
+				<!-- Case 4 예정된 정기지출이 없을 시 발생시  -->
+				<div class="com_box_type01 custom_list">
+					<div class="new_tit_area inshadow">
+						<div class="tit"><span>다가올 지출</span>
+						</div>
+						<span class="total_price">
+							<em class="unit">합계</em><em class="num com_point_darkblue">850,000</em><em class="unit">원</em>
+						</span>
+					</div>					
+					<p class="custom_box_info01">
+						<span class="btn_plus_black">예정된 지출이 없습니다.</span>
+					</p>					
+				</div>
+				<!--// Case 4 예정된 정기지출이 없을 시 발생시  -->	
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" role="button" class="btn btn_mint">자산 연결</a>
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+</body>
+</html>

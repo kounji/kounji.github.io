@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>제휴서비스 | NH콕마이카 | 차계부 | 차계부 지출내역</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+<script>
+	rMateChartH5.create("chart1", "chartHolder1", "", "100%", "180rem"); 
+
+	var layoutStr =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'			
+			+'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex"*/
+			+'<HalfPie2DChart showDataTips="true" paddingBottom="40" explodable="false" displayCompleteCallFunction="removeTabindex">'
+		/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+		/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+		/* labelPosition="inside" 데이터 없을때 삭제 */
+				+'<series>'
+					+'<HalfPie2DSeries nameField="name" field="Profit" outerRadius="1" labelPosition="inside" color="#fff" labelField="Profit" alwaysShowInsideLabel="true" textOverflowEllipsis="true" zeroValueEnable="true">'
+						+'<fills>'
+							+'<SolidColor color="#cccccc"/>'
+							//+'<SolidColor color="#668ee2"/>'
+							//+'<SolidColor color="#57c9ae"/>'
+							
+						+'</fills>'
+					/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+						+'<showDataEffect>'
+						/* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+							+'<SeriesInterpolate duration="1000"/>'
+							/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+							/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+							/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+											/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+							/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+							/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+							/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+						+'</showDataEffect>'
+					+'</HalfPie2DSeries>'
+				+'</series>'				
+				+'<annotationElements>'
+					+'<CanvasElement>'
+						+'<CanvasLabel horizontalCenter="0" height="24" fontSize="19" verticalCenter="86" text="2019" color="#333333"/>'
+						+'<CanvasLabel horizontalCenter="0" height="19" fontSize="14" verticalCenter="106" text="Annual Report" color="#666666"/>'
+					+'</CanvasElement>'
+				+'</annotationElements>'
+			+'</HalfPie2DChart>'
+		+'</rMateChart>';
+
+		// 차트 데이터
+		var chartData = [
+						{"name":"데이터 없음","Profit":100},
+						//{"name":"총 차량 유지비","Profit":75},
+						//{"name":"총 주유/충전비","Profit":25}
+						];
+
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}	
+	// 반원차트.
+
+	var layoutStr2 =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+			+'<Stroke id="stroke2" color="#cbcdd6" weight="1"/>'
+			+'<Options>'
+				+'<Caption text="차트"/>'
+				// +'<SubCaption text="From 2011 To 2013 (Annual %)" textAlign="center" />'
+				+'<Legend defaultMouseOverAction="false" />'
+			+'</Options>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex"*/
+			+'<Column2DChart gutterLeft="65" showDataTips="true" columnWidthRatio="0.55" selectionMode="single" displayCompleteCallFunction="removeTabindex">'
+				/*천단위 , 표시*/
+				+'<NumberFormatter id="numfmt2" useThousandsSeparator="true" />'
+				+'<horizontalAxis>'
+					+'<CategoryAxis categoryField="Month"/>'
+				+'</horizontalAxis>'
+				/*천단위 , 표시*/
+				+'<verticalAxis>'
+					+'<LinearAxis formatter="{numfmt2}" />'
+				+'</verticalAxis>'
+				/*//천단위 , 표시*/
+				+'<series>'
+					+'<Column2DSeries  itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="price1" displayName="차량유지비" showValueLabels="[]">'
+						+'<fill>'
+							+'<SolidColor color="#668ee2"/>'
+						+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+					+'</Column2DSeries>'
+					+'<Column2DSeries itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="price2" displayName="주유/충전비" showValueLabels="[]">'
+						+'<fill>'
+							+'<SolidColor color="#57c9ae"/>'
+						+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+					+'</Column2DSeries>'
+				+'</series>'
+				+'<backgroundElements>'
+					//+'<GridLines/>'
+					+'<AxisMarker>'
+					+'<lines>'
+					+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke2}"/>'           
+					+'</lines> '               
+					+'</AxisMarker>'
+				+'</backgroundElements>'
+				+'<verticalAxisRenderers>'
+						// +'<Axis2DRenderer axis="{vAxis1}" showLine="false"/>'
+						// +'<Axis2DRenderer axis="{vAxis2}" showLine="false"/>'
+					+'</verticalAxisRenderers>'
+					+'<horizontalAxis>'
+						+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="City"/>'
+						/* Scroll_Line_2D챠트 생성시엔 horizontalAxis에 CategoryLinearAxis를 정의해야합니다 */
+					+'</horizontalAxis>'
+				+'<horizontalAxisRenderers>'
+						+'<ScrollableAxisRenderer axis="{hAxis}" scrollPosition="2" visibleItemSize="6"/>'
+						/*
+						Scroll_Line_2D챠트 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+						visibleItemSize : 스크롤 차트가 한번에 표시할 데이터의 개수입니다
+						*/
+					+'</horizontalAxisRenderers>'
+			+'</Column2DChart>'
+		+'</rMateChart>';
+		// selectionMode = multiple => single
+		// 막대차트
+		// gutterLeft="0" left text 삭제
+		var layoutStr3 =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+			+'<Stroke id="stroke3" color="#cbcdd6" weight="1"/>'
+			+'<Options>'
+				+'<Caption text="차트" />'
+			+'</Options>'
+			+'<SeriesInterpolate id="ss"/>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex"*/
+			+'<Column2DChart gutterLeft="65" showDataTips="true" selectionMode="single" columnWidthRatio="0.48" displayCompleteCallFunction="removeTabindex">' /* gutterLeft="0"  삭제 */
+				/*천단위 , 표시*/
+				+'<NumberFormatter id="numfmt3" useThousandsSeparator="true" />'
+				+'<horizontalAxis>'
+					+'<CategoryAxis categoryField="Country"/>'
+				+'</horizontalAxis>'
+				/*천단위 , 표시*/
+				+'<verticalAxis>'
+					+'<LinearAxis formatter="{numfmt3}"/>'
+				+'</verticalAxis>'
+				/*//천단위 , 표시*/
+				+'<series>'
+					+'<Column2DSeries itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="price1">'
+						+'<fills>'
+							+'<SolidColor color="#fa7288"/>'
+							+'<SolidColor color="#f76896"/>'
+						+'</fills>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+					+'</Column2DSeries>'
+				+'</series>'
+				+'<backgroundElements>'
+					//+'<GridLines/>'
+					+'<AxisMarker>'
+					+'<lines>'
+					+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke3}"/>'           
+					+'</lines> '               
+					+'</AxisMarker>'
+				+'</backgroundElements>'
+
+				+'<horizontalAxis>'
+					+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="City"/>'
+					/* Scroll_Line_2D챠트 생성시엔 horizontalAxis에 CategoryLinearAxis를 정의해야합니다 */
+				+'</horizontalAxis>'
+				+'<horizontalAxisRenderers>'
+					+'<ScrollableAxisRenderer axis="{hAxis}" scrollPosition="1" visibleItemSize="6"/>'
+					/*
+					Scroll_Line_2D챠트 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+					visibleItemSize : 스크롤 차트가 한번에 표시할 데이터의 개수입니다
+					*/
+				+'</horizontalAxisRenderers>'
+			+'</Column2DChart>'
+		+'</rMateChart>';
+
+		var layoutStr4 =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+			+'<Stroke id="stroke4" color="#cbcdd6" weight="1"/>'
+			+'<Options>'
+				+'<Caption text="차트" />'
+			+'</Options>'
+			+'<SeriesInterpolate id="ss"/>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex"*/
+			+'<Column2DChart gutterLeft="65" showDataTips="true" selectionMode="single" columnWidthRatio="0.48" displayCompleteCallFunction="removeTabindex">' /* gutterLeft="0"  삭제 */
+				/*천단위 , 표시*/
+				+'<NumberFormatter id="numfmt4" useThousandsSeparator="true" />'
+				+'<horizontalAxis>'
+					+'<CategoryAxis categoryField="Country"/>'
+				+'</horizontalAxis>'
+				/*천단위 , 표시*/
+				+'<verticalAxis>'
+					+'<LinearAxis formatter="{numfmt4}"/>'
+				+'</verticalAxis>'
+				/*//천단위 , 표시*/
+				+'<series>'
+					+'<Column2DSeries itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="price1">'
+						+'<fills>'
+							+'<SolidColor color="#fdbb68"/>'
+							+'<SolidColor color="#ffa270"/>'
+						+'</fills>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+					+'</Column2DSeries>'
+				+'</series>'
+				+'<backgroundElements>'
+					//+'<GridLines/>'
+					+'<AxisMarker>'
+					+'<lines>'
+					+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke4}"/>'           
+					+'</lines> '               
+					+'</AxisMarker>'
+				+'</backgroundElements>'				
+				+'<horizontalAxis>'
+					+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="City"/>'
+					/* Scroll_Line_2D챠트 생성시엔 horizontalAxis에 CategoryLinearAxis를 정의해야합니다 */
+				+'</horizontalAxis>'
+				+'<horizontalAxisRenderers>'
+					+'<ScrollableAxisRenderer axis="{hAxis}" scrollPosition="1" visibleItemSize="6"/>'
+					/*
+					Scroll_Line_2D챠트 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+					visibleItemSize : 스크롤 차트가 한번에 표시할 데이터의 개수입니다
+					*/
+				+'</horizontalAxisRenderers>'
+			+'</Column2DChart>'
+		+'</rMateChart>';
+		
+		var layoutStr5 =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+			+'<Stroke id="stroke5" color="#cbcdd6" weight="1"/>'
+			+'<Options>'
+				+'<Caption text="차트" />'
+			+'</Options>'
+			+'<SeriesInterpolate id="ss"/>'
+			// 22-10-25 selectionMode="single" 수정
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex"*/
+			+'<Column2DChart gutterLeft="65" showDataTips="true" selectionMode="single" columnWidthRatio="0.48" displayCompleteCallFunction="removeTabindex">'/* gutterLeft="0"  삭제 */
+				/*천단위 , 표시*/
+				+'<NumberFormatter id="numfmt5" useThousandsSeparator="true" />'
+				+'<horizontalAxis>'
+					+'<CategoryAxis categoryField="Country"/>'
+				+'</horizontalAxis>'
+				/*천단위 , 표시*/
+				+'<verticalAxis>'
+					+'<LinearAxis formatter="{numfmt5}"/>'
+				+'</verticalAxis>'
+				/*//천단위 , 표시*/
+				+'<series>'
+					+'<Column2DSeries itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="price1">'
+						+'<fills>'
+							+'<SolidColor color="#84b0fc"/>'
+							+'<SolidColor color="#668ee2"/>'
+						+'</fills>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+					+'</Column2DSeries>'
+				+'</series>'
+				+'<backgroundElements>'
+					//+'<GridLines/>'
+					+'<AxisMarker>'
+					+'<lines>'
+					+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke5}"/>'           
+					+'</lines> '               
+					+'</AxisMarker>'
+				+'</backgroundElements>'				
+				+'<horizontalAxis>'
+					+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="City"/>'
+					/* Scroll_Line_2D챠트 생성시엔 horizontalAxis에 CategoryLinearAxis를 정의해야합니다 */
+				+'</horizontalAxis>'
+				+'<horizontalAxisRenderers>'
+					+'<ScrollableAxisRenderer axis="{hAxis}" scrollPosition="1" visibleItemSize="6"/>'
+					/*
+					Scroll_Line_2D챠트 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+					visibleItemSize : 스크롤 차트가 한번에 표시할 데이터의 개수입니다
+					*/
+				+'</horizontalAxisRenderers>'
+			+'</Column2DChart>'
+		+'</rMateChart>';
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "220rem");
+		rMateChartH5.create("chart3", "chartHolder3", "", "100%", "220rem"); 
+		rMateChartH5.create("chart4", "chartHolder4", "", "100%", "220rem"); 
+		rMateChartH5.create("chart5", "chartHolder5", "", "100%", "220rem"); 
+		 // 차트 데이터
+		 // 쵀대치 1,000,000
+		var chartData2 = [{"City":"5월", "price1":820002, "price2":925122},
+			{"City":"6월", "price1":8200002, "price2":925122},
+			{"City":"7월", "price1":12000, "price2":300000},
+			{"City":"8월", "price1":10000, "price2":30000},
+			{"City":"9월", "price1":820002, "price2":925122},
+			{"City":"10월", "price1":820002, "price2":925122},
+			{"City":"11월", "price1":820002, "price2":925122},];
+		// 쵀대치 600
+		var chartData3 = [{"City":"6월", "price1":2.4},
+			{"City":"8월", "price1":600},
+			{"City":"8월", "price1":4.2},
+			{"City":"9월", "price1":4.2},
+			{"City":"10월", "price1":4.2},
+			{"City":"11월", "price1":4.2}];
+		// 쵀대치 24000
+		var chartData4 = [{"City":"6월", "price1":2.4},
+			{"City":"8월", "price1":24000},
+			{"City":"8월", "price1":4.2},
+			{"City":"9월", "price1":4.2},
+			{"City":"10월", "price1":4.2},
+			{"City":"11월", "price1":4.2}];
+		// 쵀대치 30
+		var chartData5 = [{"City":"6월", "price1":2.4},
+			{"City":"8월", "price1":20},
+			{"City":"8월", "price1":4.2},
+			{"City":"9월", "price1":4.2},
+			{"City":"10월", "price1":4.2},
+			{"City":"11월", "price1":4.2}];
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr2,
+			"setData" : chartData2
+		});
+		
+		rMateChartH5.calls("chart3", {
+			"setLayout" : layoutStr3,
+			"setData" : chartData3
+		});
+
+		rMateChartH5.calls("chart4", {
+			"setLayout" : layoutStr4,
+			"setData" : chartData4
+		});
+
+		rMateChartH5.calls("chart5", {
+			"setLayout" : layoutStr5,
+			"setData" : chartData5
+		});
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+
+	
+</script>
+
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">내차 소비 리포트</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner com_line_type01 com_top_type02">
+				<div class="select_date tac">
+					<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+					<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+					<button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+				</div>
+				<a href="javascript:void(0);" data-popup="slide_popup_01" class="com_box_type01 custom_box_type01">
+					<div>
+						<div class="com_pop_tit01 ">쉐보레(대우) 더 뉴 트랙스<br>1.4터보 블레이드</div>
+						<!-- <span class="car_num">
+							<span>123나 1234</span>
+						</span> 2022-09-01 삭제 -->
+						<span class="label_bor"><em>123</em><span>나</span> <em>1234</em></span><!-- 2022-09-01 마크업 수정 --> 
+					</div>
+				</a>
+				<div class="chart_box">
+					<div class="chart_total_price">
+						<span>총 지출</span>
+						<strong><em>2,500,000</em><span>원</span></strong>
+					</div>
+					<!-- 22-10-26 role 추가 -->
+					<div id="chartHolder1" role="img"></div>
+					<div>
+						<div class="chart_txt">
+							<i style="background:#668ee2"></i>
+							<span>총 차량 유지비</span>
+							<!-- <span><em>75%</em></span> -->
+							<span class="right"><em>150,000,000</em><span class="won">원</span></span>
+						</div>
+						<div class="chart_txt">
+							<i style="background:#57c9ae"></i>
+							<span>총 주유/충전비</span>
+							<!-- <span><em>25%</em></span> -->
+							<span class="right"><em>150,000,000</em><span class="won">원</span></span>
+						</div>
+					</div>
+				</div>
+				<div class="bg_diary_cell">
+					<div class="cell">
+						<span>총 주유량</span>
+						<strong>12,000L</strong>
+					</div>
+					<div class="cell">
+						<span>총 주행거리</span>
+						<strong>125,000km</strong>
+					</div>
+					<div class="cell">
+						<span>평균연비</span>
+						<strong>12.500km</strong>
+					</div>
+				</div>
+			</div>
+			<div class="com_inner">
+				<div class="com_tabmenu_type03 custom_tab">
+					<!-- 2022-07-19 li role / aria aria-selected 삭제 -->
+					<ul role="tablist">
+						<li role="presentation" aria-controls="tab_01" class="on"><a href="javascript:void(0);" ><span>차트보기</span></a></li>
+						<li role="presentation" aria-controls="tab_02"><a href="javascript:void(0);"><span>표로 보기</span></a></li>
+					</ul>
+				</div>
+				<div id="tab_01" role="tabpanel" class="cmm-tab-panel on">
+					<div class="chart_list">
+						<div class="top_bar">
+							<div class="new_tit_area">
+								<div class="tit">
+									<span>월별 지출</span>
+								</div>
+								<p class="chart_sub_txt">[단위: 원]</p><!-- 2022-09-23 단위 수정 -->
+							</div>
+							<!-- 22-10-26 role / aria-label 추가 -->
+							<div id="chartHolder2" role="img" aria-label="월별 지출 - 6월 000, 7월 000, 8월 000, 9월 000, 10월 000, 11월 000 입니다." class="ui_chart chart_left_bor"></div>
+						</div>
+
+						<div class="top_bar">
+							<div class="new_tit_area">
+								<div class="tit">
+									<span>월별 주유/충전량  <em class="txt_gray">(L/kWh)</em></span>
+								</div>
+							</div>
+							<!-- 22-10-26 role / aria-label 추가 -->
+							<div id="chartHolder3" role="img" aria-label="월별 주유/충전량(L/kWh) - 6월 000, 7월 000, 8월 000, 9월 000, 10월 000, 11월 000 입니다." class="ui_chart chart_left_bor"></div>
+						</div>
+
+						<div class="top_bar">
+							<div class="new_tit_area">
+								<div class="tit">
+									<span>월별 주행거리 <em class="txt_gray">(km)</em></span>
+								</div>
+							</div>
+							<!-- 22-10-26 role / aria-label 추가 -->
+							<div id="chartHolder4" role="img" aria-label="월별 주행거리(km) - 6월 000, 7월 000, 8월 000, 9월 000, 10월 000, 11월 000 입니다." class="ui_chart chart_left_bor"></div>
+						</div>
+
+						<div class="top_bar">
+							<div class="new_tit_area">
+								<div class="tit">
+									<span>월별 평균연비 <em class="txt_gray">(km/ℓ)</em></span>
+								</div>
+							</div>
+							<!-- 22-10-26 role / aria-label 추가 -->
+							<div id="chartHolder5" role="img" aria-label="월별 평균연비(km/ℓ) - 6월 000, 7월 000, 8월 000, 9월 000, 10월 000, 11월 000 입니다." class="ui_chart chart_left_bor"></div>
+						</div>
+					</div>
+					<!-- 데이터 없을때 -->
+					<div class="no_data_box">
+						<div class="no_data_list">
+							<p>조회된 정보가 없습니다</p>
+						</div>
+					</div>
+					<!-- //데이터 없을때 -->
+				</div>
+				<div id="tab_02" role="tabpanel" class="cmm-tab-panel">
+					<div class="re_detail_list">
+						<div class="new_tit_area">
+							<div class="tit">
+								<span>월별 지출</span>
+							</div>
+						</div>
+						<ul>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">12월</strong>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+								</div>
+								<div class="re_flex">
+									<div class="text_info">
+										<em>차량 유지비</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>주유/충전비</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+								</div>
+							</li>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">11월</strong>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+								</div>
+								<div class="re_flex">
+									<div class="text_info">
+										<em>차량 유지비</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>주유/충전비</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="re_detail_list">
+						<div class="new_tit_area">
+							<div class="tit">
+								<span>월별 주유/충전량 <em class="txt_gray">(L/kWh)</em></span><!-- 2022-09-22 문구 수정 -->
+							</div>
+						</div>
+						<ul>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">12월</strong>
+									<span class="list_price">
+										<em>100,000L</em>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">11월</strong>
+									<span class="list_price">
+										<em>100,000L</em>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="re_detail_list">
+						<div class="new_tit_area">
+							<div class="tit">
+								<span>월별 주행거리 <em class="txt_gray">(km)</em></span>
+							</div>
+						</div>
+						<ul>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">12월</strong>
+									<span class="list_price">
+										<em>100,000km</em>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">11월</strong>
+									<span class="list_price">
+										<em>100,000km</em>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="re_detail_list">
+						<div class="new_tit_area">
+							<div class="tit">
+								<span>월별 평균연비 <em class="txt_gray">(km/ℓ)</em></span>
+							</div>
+						</div>
+						<ul>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">12월</strong>
+									<span class="list_price">
+										<em>100,000km/ℓ</em>
+									</span>
+								</div>
+							</li>
+							<li>
+								<div class="re_flex total">
+									<strong class="text_info">11월</strong>
+									<span class="list_price">
+										<em>100,000km/ℓ</em>
+									</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- 데이터 없을때 -->
+					<div class="no_data_box">
+						<div class="no_data_list">
+							<p>조회된 정보가 없습니다</p>
+						</div>
+					</div>
+					<!-- //데이터 없을때 -->
+				</div>
+			</div>
+		</div>
+
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+
+	<div>
+		<!-- slide popup S -->
+		<div class="dimmed"></div>
+		<div class="popup_box renewal">
+			<div aria-hidden="false" class="slide_popup" id="slide_popup_01">
+				<div class="popup_header">
+					<h1>내차 선택</h1>
+					<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+				</div>
+				<div class="popup_content">
+					<div class="com_txt_type02">
+						<ul class="com_radio_type01">
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check01" checked="checked">
+									<label for="com_check01">
+										<span>전체</span>
+									</label>
+								</span>
+							</li>
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check02">
+									<label for="com_check02">
+										<span>345우 9876</span>
+									</label>
+								</span>
+							</li>
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check03">
+									<label for="com_check03">
+										<span>345우 9876</span>
+									</label>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<a href="javascript:void(0);" class="btn_close"><span class="">팝업닫기</span></a>
+			</div>
+		</div>
+		<!--// slide popup E -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>제휴서비스 | NH콕마이카 | 차계부</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+
+
+	<script>
+		// -----------------------차트 설정 시작-----------------------
+	
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "170rem");
+	
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+				+'<SeriesInterpolate id="ss"/>'
+				/*
+				Combination3D 차트 생성시에 필요한 Combination3DChart 정의합니다
+				showHorizontalAxisDataTip : 가로축에 대한 데이터 팁 보여주기 여부를 설정합니다.
+				showVerticalAxisDataTip : 세로축에 대한 데이터 팁 보여주기 여부를 설정합니다.
+				axisDataTipJsFunction : 데이터 팁의 내용을 작성하는 자바스크립트 함수명을 지정
+				*/
+				// 22-10-25 selectionMode="single" 수정
+				/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+				+'<Column2DChart showDataTips="true" selectionMode="single" columnWidthRatio="0.48" showHorizontalAxisDataTip="true" showVerticalAxisDataTip="true" axisDataTipJsFunction="axisDataTipFunc" displayCompleteCallFunction="removeTabindex">'
+					/*천단위 , 표시*/
+					+'<NumberFormatter id="numfmt" useThousandsSeparator="true" />'
+					+'<horizontalAxis>'
+						+'<CategoryAxis categoryField="Month"/>'
+					+'</horizontalAxis>'
+					/*천단위 , 표시*/
+					+'<verticalAxis>'
+						+'<LinearAxis formatter="{numfmt}" />'
+					+'</verticalAxis>'
+					/*//천단위 , 표시*/
+					+'<series>'
+						+'<Column2DSeries itemRenderer="SemiCircleColumnItemRenderer" labelPosition="outside" yField="지출 금액" displayName="지출 금액" showDataEffect="{ss}" showValueLabels="[]">'
+							+'<fills>'
+							/* Series안에 색을 채울 때(여러색) fills에 주목 */
+								+'<SolidColor color="#23a0a5"/>'
+								/* color:색깔 */
+								+'<SolidColor color="#57c9ae"/>'
+								+'<SolidColor color="#84b0fc"/>'
+								+'<SolidColor color="#668ee2"/>'
+							+'</fills>'
+						+'</Column2DSeries>'
+					+'</series>'
+				+'</Column2DChart>'
+			+'</rMateChart>';
+	
+		// 차트 데이터
+		var chartData = [
+			{"Month":"12월","지출 금액":12},
+			{"Month":"1월","지출 금액":10000000},
+			{"Month":"2월","지출 금액":785},
+			{"Month":"3월","지출 금액":546},
+			{"Month":"4월","지출 금액":1235},
+			{"Month":"5월","지출 금액":1152},
+			{"Month":"6월","지출 금액":2485}
+		]
+	
+		function axisDataTipFunc(id, text){
+			return "Month : " + text;
+		}
+	
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+	
+		/**
+		* rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		* 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		*
+		* -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* -------------------------------------------------
+		*
+		* rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		*/
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+	
+		/**
+		* 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		* 접근하는 차트 객체의 테마를 변경합니다.
+		* 파라메터로 넘어오는 값
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* - default
+		*
+		* default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		*/
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+			
+		}
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		
+	</script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">차계부 지출내역</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		<!-- 2022-09-13 class com_no_bottom 삭제 -->
+		<div class="popup_content "><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner com_line_type01 com_top_type02">
+				<div class="select_date tac">
+					<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+					<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+					<button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+				</div>
+				<a href="javascript:void(0);" data-popup="slide_popup_01" class="com_box_type01 custom_box_type01">
+					<div>
+						<div class="com_pop_tit01 ">쉐보레(대우) 더 뉴 트랙스<br>1.4터보 블레이드</div>
+						<!-- <span class="car_num">
+							<span>123나 1234</span>
+						</span> 2022-09-01 삭제 -->
+						<span class="label_bor"><em>123</em><span>나</span> <em>1234</em></span><!-- 2022-09-01 마크업 수정 --> 
+					</div>
+				</a>
+				<div class="chart_box">
+					<p class="chart_sub_txt">[단위: 원]</p><!-- 2022-09-23 단위 수정 -->
+					<!-- 22-10-26 role img 추가 -->
+					<div id="chartHolder" role="img" aria-label="월 평균 지출 - 12월 812, 1월 785, 2월 785, 3월 10,000 입니다."></div>
+					<div class="re_flex">
+						<div class="text_info gray">
+							월 평균 지출
+							<em class="ml6">1,500,000</em>원
+						</div>
+						<a href="javascript:void(0);" class="com_btnround_type10">
+							<span>내차 소비 리포트</span>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="com_inner "><!--  버튼 플루팅일때 pd_fixed_bottom -->
+				<div class="tab_radius">
+					<ul role="">
+						<li>
+							<a href="javascript:void(0);" data-tab-tooltip="tooltip01" role="button" class="active">전체</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" data-tab-tooltip="tooltip02" role="button">차량유지비</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" data-tab-tooltip="tooltip03" role="button">주유/충전비</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tab_tooltip_wrap">
+					<div id="tooltip01" class="tab_tooltip">
+						<div class="re_detail_list">
+							<i class="AS20000006"></i>
+							<div class="re_flex">
+								<strong class="text_info list_name">농협주유소</strong>
+								<span class="list_price">
+									<em>100,000</em>원
+								</span>
+							</div>
+						</div>
+						<div class="re_detail_list">
+							<i class="AS20000006"></i>
+							<div class="re_flex">
+								<strong class="text_info list_name">차량유지비</strong>
+								<span class="list_price">
+									<em>100,000</em>원
+								</span>
+							</div>
+						</div>
+						<span class="arrow"></span>
+					</div>
+					<div id="tooltip02" class="tab_tooltip">
+						<div class="re_detail_list">
+							<i class="AS20000006"></i>
+							<div class="re_flex">
+								<strong class="text_info list_name">차량유지비</strong>
+								<span class="list_price">
+									<em>100,000</em>원
+								</span>
+							</div>
+						</div>
+						<span class="arrow"></span>
+					</div>
+					<div id="tooltip03" class="tab_tooltip">
+						<div class="re_detail_list">
+							<i class="AS20000006"></i>
+							<div class="re_flex">
+								<strong class="text_info list_name">주유/충전비</strong>
+								<span class="list_price">
+									<em>100,000</em>원
+								</span>
+							</div>
+						</div>
+						<span class="arrow"></span>
+					</div>
+				</div>
+
+				<!-- 2022-11-18 추가 -->
+				<div class="com_box_type01 toggle_list_box2 custom_list re_detail_list">
+					<div data-ui-toggle="box" class="toggle_box_area open">
+						<button type="button" class="view_btn" aria-expanded="true">
+							<div class="new_tit_area">
+								<div class="tit"><span class="com_txtinfo_type01">미등록 주유/충전비 2건</span></div>
+								
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont">
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="re_flex">
+									<strong class="text_info">
+										주식회사 노송유업
+									</strong>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>3일</em>
+										<em>신한 Deep oil</em>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0)" role="button">
+								<div class="re_flex">
+									<strong class="text_info">
+										주식회사 노송유업
+									</strong>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>3일</em>
+										<em>신한 Deep oil</em>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<p class="dot_msg mt15">내역을 선택해 주유비와 주행거리를 등록하세요!</p>
+				<!-- //2022-11-18 추가 -->
+
+				<div class="re_detail_list ico_posi">
+					<div class="new_tit_area">
+						<div class="tit">
+							<span>11일(월)</span>
+						</div>
+					</div>
+					<ul>
+						<li>
+							<i class="AS20000006"></i>
+							<a href="javascript:void(0);" role="button">
+								<strong class="list_name">농협주유소</strong>
+								<div class="re_flex">
+									<div class="text_info">
+										<em>KT-현대카드 M Edition3</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>(라이트할부형)</em>
+										<em>할부 3개월</em>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<i class="AS20000006"></i>
+							<a href="javascript:void(0);" role="button">
+								<strong class="list_name">농협주유소</strong>
+								<div class="re_flex">
+									<div class="text_info">
+										<em>KT-현대카드 M Edition3</em>
+									</div>
+									<span class="list_price">
+										<em>100,000</em>원
+									</span>
+									<div class="text_info">
+										<em>(라이트할부형)</em>
+										<em>할부 3개월</em>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- 버튼삭제 / ai-is 버튼적용필요 기획서 참고필요 -->
+			</div>
+			<!-- 2022-09-13 추가 -->
+			<div class="com_btn_area fixed">
+				<a href="javascript:void(0);" role="button" class="com_btn_round">
+					<span class="btn_plus black">지출추가</span>
+				</a>
+			</div>
+			<!-- //2022-09-13 추가 -->
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+
+	<div>
+		<!-- slide popup S -->
+		<div class="dimmed"></div>
+		<div class="popup_box renewal">
+			<div aria-hidden="false" class="slide_popup" id="slide_popup_01">
+				<div class="popup_header">
+					<h1>내차 선택</h1>
+					<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+				</div>
+				<div class="popup_content">
+					<div class="com_txt_type02">
+						<ul class="com_radio_type01">
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check01" checked="checked">
+									<label for="com_check01">
+										<span>전체</span>
+									</label>
+								</span>
+							</li>
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check02">
+									<label for="com_check02">
+										<span>345우 9876</span>
+									</label>
+								</span>
+							</li>
+							<li>
+								<span class="btn_radio">
+									<input type="radio" name="com_check" id="com_check03">
+									<label for="com_check03">
+										<span>345우 9876</span>
+									</label>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<a href="javascript:void(0);" class="btn_close"><span class="">닫기</span></a>
+			</div>
+		</div>
+		<!--// slide popup E -->
+	</div>
+	<!-- float S -->
+	<div class="dimmed dimmed_1000 dim_soft"></div><!-- 2022-08-02 class dim_soft 추가 -->
+	<div class="toggle-box sticky dimmed_1000 popup_float"><!-- 2022-08-02 class popup_float 추가 -->
+		<div data-ui-toggle="sticky">
+			<button type="button" class="btn_float" aria-expanded="false">
+				<span class="tit">더보기 메뉴</span>
+				<em class="open">열기</em><em class="close">닫기</em>
+			</button>
+			<div class="view_box p0">
+				<button type="button" class="btn_01"><span>직접 입력</span></button>
+				<button type="button" class="btn_02"><span>지출 추가</span></button>
+			</div>
+		</div>
+	</div>
+		<!--// float E -->
+</body>
+</html>

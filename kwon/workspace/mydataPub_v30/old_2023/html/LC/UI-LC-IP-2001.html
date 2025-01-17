@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지출분석 &lt; 지출</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function(){
+			//막대그래프 값세팅
+			var bar = jQuery('.inPopTypeChart .pension_bar_chart');
+			bar.find('.pension_bar').each(function(){
+				jQuery(this).css({'width':jQuery(this).find('em').text()+'%'});
+			});
+			var cnt = bar.find('.pension_bar.blind').length, //0인 항목 갯수
+					bleq = bar.find('.pension_bar.blind').index(); //0인 항목 위치
+			//console.log("갯수 == "+cnt+", blind위치 == "+bleq);
+			if(cnt == 1){//0인 항목이 한개인 경우
+				switch(bleq){
+					case 0://0인 항목이 왼쪽인 경우
+						bar.find(".pension_bar:eq(1)").addClass('leftBR');
+					break;
+					case 2://0인 항목이 오른쪽인 경우
+						bar.find(".pension_bar:eq(1)").addClass('rightBR');
+					break;
+				};
+			}else if(cnt == 2){//최대값만 보이는 경우
+				bar.find('.pension_bar.pop').addClass('allBR');
+			};
+			//예산 그래프
+			var progressBar = jQuery('.progressBar .bar');
+			
+			progressBar.each(function(){
+				var progressNum = jQuery(this).children().find('.popover .num').text();
+				var popoverWrap = jQuery(this).children('.popover_wrap');
+				var popoverWidth = jQuery(this).children().find('.popover').outerWidth();
+				
+				// console.log(popoverWidth);
+
+				if(progressNum >= 100) {
+					progressNum = 100;
+					jQuery(this).addClass('over');
+					popoverWrap.css('transform','translateX(-100%)');
+					popoverWrap.animate({
+						left: progressNum + "%"
+					},2000,function(){
+						popoverWrap.addClass('full');
+					});
+				} else if(progressNum == 0) {
+					popoverWrap.addClass('zero');
+				} else {
+					popoverWrap.animate({
+						left: progressNum +'%'
+					},2000);
+				}
+
+				progressBar.css('width','0');
+				popoverWrap.css('left','0');
+				jQuery(this).animate({
+					width: progressNum + '%',
+				},2000);
+				
+			});
+			//더보기
+			jQuery('button.bottomBtn').on('click',function(){
+				var _this = jQuery(this);
+				_this.toggleClass('up').prev().toggleClass('open');
+				if(_this.hasClass('up')){
+					_this.text('접기');
+				}else{
+					_this.text('더보기');
+				}
+			});
+
+		});
+	//-->
+	</script>
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header" class="mydata2023">
+			<h1>지출</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<!-- content-view S -->
+		<div class="content-view mydata2023 subMainWrap">
+			<div class="com_tabmenu_type01 menunum03">
+				<ul role="tablist">
+					<li><a href="#nolink">금융달력</a></li>
+					<li><a href="#nolink">지출내역</a></li>
+					<li class="on"><a href="#nolink">지출분석</a></li>
+				</ul>
+			</div>
+			<!-- content -->
+			<div id="content" class="renewal expenDecom">
+				<div class="com_inner">
+					<!-- 월지출 -->
+					<div class="com_box_type01 custom_box_chart expen">
+						<div class="top_my_data">
+							<div class="top_my_detail">
+								<p class="txt"><em>6</em>월 총 지출</p>
+								<strong class="txt_number">
+									<em>532,456,789</em>
+									<span>원</span>
+								</strong>
+								<div class="amountBox">
+									지난달 보다<span class="amount up">123,456,789원</span>
+								</div>
+							</div>
+						</div>
+						<!-- 차트 -->
+						<div class="compare_chart_wrap" role="img" aria-label="ㅇ월 지출은 000원, ㅇ월 지출은 000원, ㅇ월 지출은 000원, ㅇ월 지출은 000원이고 최근 3개월 평균 지출은 000원 입니다.."><!-- 10/05 jlee 대체텍스트 문구 수정 -->
+							<div class="chart">
+								<div class="bg"></div>
+								<div class="bar_wrap">
+									<div class="bars abg">
+										<div class="bar" style="height:50%;">
+											<div class="chart_tooltip_wrap">
+												<span class="chart_tooltip"><em class="num">23,456,789</em>원</span>
+											</div>
+										</div>
+										<div class="title">3개월 평균</div>
+									</div>
+									<div class="bars">
+										<div class="bar" style="height:45%;"></div>
+										<div class="title">3월</div>
+									</div>
+									<div class="bars">
+										<div class="bar" style="height:65%;"></div>
+										<div class="title">4월</div>
+									</div>
+									<div class="bars">
+										<div class="bar" style="height:55%;"></div>
+										<div class="title">5월</div>
+									</div>
+									<div class="bars now">
+										<div class="bar" style="height:75%;"></div>
+										<div class="title">6월</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 차트 -->
+						<hr>
+						<strong class="titH5">카드 지출이 제일 많고<br>지난달 보다 <em>123,456,789</em>원 더 썼어요</strong>
+						<div class="inPopTypeChart"><!-- 1010 접근성 삭제 -->
+							<div class="pension_bar_chart">
+								<div class="pension_bar card blind">
+									<span><em>0</em>%</span><!-- 09/11 jlee 값이 0인 경우 .blind 추가 -->
+								</div>
+								<div class="pension_bar pay">
+									<span><em>20</em>%</span>
+								</div>
+								<div class="pension_bar cash pop"><!-- .pop 최대값에만 사용 -->
+									<span><em>80</em>%</span>
+								</div>
+							</div>
+						</div>
+						<div class="barChartInfo">
+							<div class="chart_txt">
+								<a href="#nolink">
+									<i style="background:#de7cc1"></i>
+									<span>카드</span>
+									<span class="right"><em>150,000,000</em><span class="won">원</span></span>
+								</a>
+							</div>
+							<div class="chart_txt">
+								<a href="#nolink">
+									<i style="background:#e33596"></i>
+									<span>페이</span>
+									<span class="right"><em>150,000,000</em><span class="won">원</span></span>
+								</a>
+							</div>
+							<div class="chart_txt">
+								<a href="#nolink">
+									<i style="background:#edb0db"></i>
+									<span>현금</span>
+									<span class="right"><em>150,000,000</em><span class="won">원</span></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!--// 월지출 -->
+					<!-- 소비스타일 -->
+					<div class="com_box_type01 bottomBtnType">
+						<div class="consumStyle">
+							<p class="com_txt_sub"><em>김농협</em>님의 소비스타일은?</p>
+							<strong class="titH3">
+								<b>생활/마트</b> 소비가 많은<br><b>생활집중형</b><!-- jlee 08/22 em태그 b태그 수정 -->
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+											<div>
+												<p>소비스타일 분석에 미분류 지출은 포함되지 않아요</p>
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</strong>
+							<div class="keyword">
+								<em class="unit">#주말오전</em>
+								<em class="unit">#온라인결제</em>
+							</div>
+						</div>
+						<!-- 소비스타일 목록 -->
+						<ul class="expenListBox LRdivType">
+							<li class="expenList">
+								<span class="expIcon AS20000005"></span>
+								<div class="left">
+									<strong class="expName">생활/마트</strong>
+									<span class="expTarget">28%</span>
+								</div>
+								<div class="right">
+									<em class="expAmt">234,567원</em>
+									<span class="amount up">123,456,789원</span>
+								</div>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000003"></span>
+								<div class="left">
+									<strong class="expName">외식</strong>
+									<span class="expTarget">20%</span>
+								</div>
+								<div class="right">
+									<em class="expAmt">234,567원</em>
+									<span class="amount down">123,456,789원</span>
+								</div>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<div class="left">
+									<strong class="expName">쇼핑</strong>
+									<span class="expTarget">28%</span>
+								</div>
+								<div class="right">
+									<em class="expAmt">234,567원</em>
+									<span class="amount up">123,456,789원</span>
+								</div>
+							</li>
+						</ul>
+						<!--// 소비스타일 목록 -->
+						<a href="#nolink" class="bottomBtn link">전체보기</a>
+					</div>
+					<!--// 소비스타일 -->
+					<!-- 정기 지출 -->
+					<div class="com_box_type01">
+						<ul class="layoutBox wAuto rBtn">
+							<li class="left">
+								<strong class="titH3">다가올 지출 <em>5</em>건</strong>
+							</li>
+							<li class="right">
+								<a href="#nolink" class="btnLink"><span>123,456,789원</span><span class="blind">정기지출</span></a>
+							</li>
+						</ul>
+						<!-- 다가올 지출 목록 -->
+						<ul class="expenListBox">
+							<li class="expenList">
+								<span class="expIcon AS20000014"></span>
+								<strong class="expName">도시가스 6월</strong>
+								<span class="expTarget"><i>06.15</i>주거래 우대통장</span>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000013"></span>
+								<strong class="expName">NH손해보험</strong>
+								<span class="expTarget"><i>06.19</i>주거래 우대통장</span>
+								<em class="expAmt">33,000원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000009"></span>
+								<strong class="expName">넷플릭스</strong>
+								<span class="expTarget"><i>06.22</i>Deep Dream</span>
+								<em class="expAmt">5,900원</em>
+							</li>
+						</ul>
+						<!--// 다가올 지출 목록 -->
+					</div>
+					<!--// 정기 지출 -->
+					<!-- 정기 지출 정보가 없는 경우 -->
+					<div class="com_box_type01">
+						<div class="expenListBox noData">
+							<p class="com_txt_sub addExplan">매달 나가는 돈을 확인해 보세요</p>
+							<strong class="com_txt_sub">다가올 정기지출</strong>
+						</div>
+					</div>
+					<!--// 정기 지출 정보가 없는 경우 -->
+					<!-- 월예산 목표 -->
+					<div class="com_box_type01">
+						<ul class="layoutBox wAuto rBtn"><!-- 09/07 jlee rTxt 삭제 -->
+							<li class="left">
+								<strong class="titH3"><em>6</em>월 예산</strong>
+							</li>
+							<li class="right">
+								<button class="btnLink"><span class="blind">지출목표상세 연결</span></button><!-- 09/07 jlee 버튼 추가 -->
+							</li>
+						</ul>
+						<div class="myTargetBox">
+							<span class="myTarget">목표예산</span>
+							<span class="myTargetName"><b>3,456,789</b>원</span><!-- 09/07 jlee p태그 span태그로 변경 -->
+							<span class="myTargetDay">D-<em>234</em></span><!-- 09/07 jlee 위치 이동 -->
+						</div>
+						<ul class="layoutBox half gray_box_m">
+							<li class="left">
+								<p class="myTargetMoneyName">남은돈</p>
+								<strong class="myTargetMoney">456,789원</strong>
+							</li>
+							<li class="right">
+								<div class="progressBar">
+									<div class="bar">
+										<div class="popover_wrap">
+											<span class="popover">
+												<em class="num">45.5</em>%
+												<span class="arrow"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--// 월예산 목표 -->
+					<!-- 월예산 목표가 없는 경우 -->
+					<div class="com_box_type01">
+						<ul class="layoutBox wAuto rBtn rTxt">
+							<li class="left">
+								<strong class="titH3"><em>6</em>월 예산</strong>
+							</li>
+							<li class="right"></li>
+						</ul>
+						<div class="myTargetBox noData">
+							<p>예산을 설정하고<br>계획적으로 관리하세요</p>
+						</div>
+						<button type="button" class="stdBtn full">예산 설정하기</button>
+					</div>
+					<!--// 월예산 목표가 없는 경우 -->
+					<!-- 또래 비교 -->
+					<div class="com_box_type01 old_age">
+						<ul class="layoutBox wAuto rBtn">
+							<li class="left">
+								<strong class="titH3">또래 보다 많이 쓰고 있어요</strong>
+							</li>
+							<li class="right">
+								<button class="btnLink"><span class="blind">자산진단 연결</span></button>
+							</li>
+						</ul>
+						<div class="keyword">
+							<em class="unit">#30세 후반</em>
+							<em class="unit">#급여소득</em>
+						</div>
+						<div class="chart_wrap"><!-- 1010 접근성 삭제 -->
+							<div class="pension_bar_chart">
+								<div class="pension_bar dd" style="width:30%"></div>
+								<div class="pension_bar me" style="width:70%"></div>
+							</div>
+							<div class="pension_item_list">
+								<dl class="item dd">
+									<dt>또래</dt>
+									<dd><em class="num">456,789</em>원</dd>
+								</dl>
+								<dl class="item me">
+									<dt>나</dt>
+									<dd><em class="num">123,456,789</em>원</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<!--// 또래 비교 -->
+					<!-- 많이 쓴 금액 -->
+					<div class="com_box_type01 bottomBtnType">
+						<strong class="titH3"><b>하이마트</b>에서 제일 많이 썼어요</strong>
+						<ul class="expenListBox botmBtn">
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">하이마트</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">현대백화점</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">우리소 한우</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">하이마트</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">현대백화점</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">우리소 한우</strong>
+								<em class="expAmt">234,567원</em>
+							</li>
+						</ul>
+						<button class="bottomBtn">더보기</button>
+					</div>
+					<!--// 많이 쓴 금액 -->
+					<!-- 많이 쓴 건수 -->
+					<div class="com_box_type01">
+						<ul class="layoutBox wAuto rBtn">
+							<li class="left">
+								<strong class="titH3">주로 여기서 자주 썼어요</strong>
+							</li>
+							<li class="right">
+								<button class="btnLink"><span class="blind">자주 이용하는 가맹점</span></button>
+							</li>
+						</ul>
+						<ul class="expenListBox">
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">우리홈마트</strong>
+								<em class="expAmt">21건</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">GS25***점</strong>
+								<em class="expAmt">11건</em>
+							</li>
+							<li class="expenList">
+								<span class="expIcon AS20000001"></span>
+								<strong class="expName">스타벅스코리아</strong>
+								<em class="expAmt">9건</em>
+							</li>
+						</ul>
+					</div>
+					<!--// 많이 쓴 건수 -->
+					<!-- 최근 2개월 지출내역이 없는 경우 -->
+					<div class="com_box_type01">
+						<div class="no_data_box no_data_box01">
+							<div class="no_data_list">
+								<p class="titH1">최근 소비 활동이 없어요</p>
+								<span class="txt_sub mt10">현명한 지출 관리를 위해 사용하고 있는<br>계좌나 카드를 연결해 주세요</span>
+							</div>
+						</div>
+						<button type="button" class="stdBtn full">연결하기</button>
+					</div>
+					<!--// 최근 2개월 지출내역이 없는 경우 -->
+				</div>
+			</div>
+			<!--// content -->
+
+		</div>
+		<!--// content-view S -->
+	</div>
+</body>
+</html>

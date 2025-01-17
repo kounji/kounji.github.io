@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>계좌연동 설정 | 마이농가</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+        <div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+    <!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>계좌연동 설정</h1>
+		</div>
+			
+		<div class="popup_content com_bg_type00">
+            <div class="com_inner com_top_type01">
+                <div class="com_tabmenu_type03">
+                    <ul role="tablist">
+                        <li class="on" aria-controls="tab_01"><a href="javascript:void(0);" role="tab"><span>등록된 계좌</span></a></li>
+                        <li aria-controls="tab_02"><a href="javascript:void(0);" role="tab"><span>계좌등록 하기</span></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div role="tabpanel" id="tab_01" class="cmm-tab-panel on">
+                <div class="com_inner">
+                    <strong class="com_box_tit02">등록된 계좌 편집</strong>
+
+                    <div class="no_data_box">
+                        <div class="no_data_list">
+                            <p>등록된 계좌가 없습니다.<br>계좌등록하기에서 계좌를 등록해 주세요</p>
+                        </div>
+                    </div>
+
+                    <!-- 2021109 한별 접근성 수정 S -->
+                    <ul class="list_type_01 chk_list_type_02">
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check_01" id="com_check01">
+                                <label for="com_check01">
+                                    <div>
+                                        <i class="bank_01"><span class="blind">농협</span></i>
+                                        <em>카카오뱅크 모바일통장</em>
+                                        <span>7762-****-****-4480</span>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check_02" id="com_check02">
+                                <label for="com_check02">
+                                    <div>
+                                        <i class="bank_02"><span class="blind">신한</span></i>
+                                        <em>카카오뱅크 모바일통장</em>
+                                        <span>7762-****-****-4480</span>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check_03" id="com_check03">
+                                <label for="com_check03">
+                                    <div>
+                                        <i class="bank_02"><span class="blind">신한</span></i>
+                                        <em>기업드림 저축예금</em>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                    <!--// 2021109 한별 접근성 수정 E -->
+                </div>
+            </div>
+
+            <div role="tabpanel" id="tab_02" class="cmm-tab-panel">
+                <div class="com_inner">
+                    <strong class="com_box_tit02">등록 가능한 계좌</strong>
+                    <div class="no_data_box">
+                        <div class="no_data_list">
+                            <p>등록 가능한 계좌가 없습니다.</p>
+                        </div>
+                    </div><!-- 목록에 계좌가 없을 시 -->
+                    <!-- 2021109 한별 접근성 수정 S -->
+                    <ul class="list_type_01 chk_list_type_02">
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check11" id="com_check11">
+                                <label for="com_check11">
+                                    <div>
+                                        <i class="bank_01"><span class="blind">농협</span></i>
+                                        <em>카카오뱅크 모바일통장</em>
+                                        <span>7762-****-****-4480</span>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check12" id="com_check12">
+                                <label for="com_check12">
+                                    <div>
+                                        <i class="bank_02"><span class="blind">신한</span></i>
+                                        <em>카카오뱅크 모바일통장</em>
+                                        <span>7762-****-****-4480</span>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_chk">
+                                <input type="checkbox" name="com_check13" id="com_check13">
+                                <label for="com_check13">
+                                    <div>
+                                        <i class="bank_02"><span class="blind">신한</span></i>
+                                        <em>기업드림 저축예금</em>
+                                    </div>
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                    <!--// 2021109 한별 접근성 수정 E -->
+                </div>
+            </div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey">취소</a>
+				<a href="javascript:void(0);" class="btn btn_mint">삭제</a>
+			</div>
+		</div>
+		
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>

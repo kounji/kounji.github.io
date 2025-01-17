@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>부동산 등록/수정</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<!-- [v4.0] 텍스트 수정, 이전버튼 추가 -->
+			<!--<h1>부동산</h1>-->
+			<h1>부동산 등록/수정</h1>
+			<a href="#nolink" class="btn_back" role="button"><span class="blind">이전화면</span></a>
+			<!-- //[v4.0] 텍스트 수정, 이전버튼 추가 -->
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+
+			<!-- [v4.0] 구조 전체 변경 -->
+			<!--
+			<div class="com_inner">
+				<strong class="com_pop_tit01">부동산 종류를 선택하세요.</strong>
+				<div class="com_tabmenu_type03 custom_tab">
+					!-- 2022-07-19 li role / aria aria-selected 삭제 --
+					<ul role="tablist">
+						<li class="on"><a href="#nolink"><span>아파트</span></a></li>!-- 10/06 jlee 접근성 반영 role="presentation" 삭제 --
+						<li><a href="#nolink"><span>직접입력</span></a></li>!-- 10/06 jlee 접근성 반영 role="presentation" 삭제 --
+					</ul>
+				</div>
+				<div class="tab_wrap02">
+					<div class="com_input_type02">
+						<input type="search" id="txt01" class="inputClear" name="" value="" aria-hidden="false" placeholder="동/단지 명으로 아파트 찾기" title="아파트 찾기"><!-- 10/06 jlee 접근성 반영 aria-hidden는 반드시 false로 해주세요 
+						<a href="#nolink" role="button" class="com_btn_delete"><span class="blind">삭제</span></a>
+						<a href="#nolink" role="button" class="com_btn_search"><span class="blind">검색</span></a>
+					</div>
+				</div>
+			</div>
+			<div class="com_inner">
+				<div class="com_btnselectbox_type01">
+					<button type="button" class="com_btnselect_type01" title="면적 선택">
+						<span>면적 선택하세요.</span>
+					</button>
+				</div>
+
+				<div class="com_btnselectbox_type01">
+					<button type="button" class="com_btnselect_type01" title="주거형태 선택">
+						<span>주거형태 선택하세요.</span>
+					</button>
+				</div>
+			</div>
+			-->
+
+			<div class="com_inner">
+			
+				<ul class="real_estate_chk">
+					<li>
+						<label for="estate_1" class="ico_real_estate_apt">
+							<input type="radio" name="estate" id="estate_1">
+							<span class="txt">아파트</span>
+						</label>
+					</li>
+					<li>
+						<label for="estate_2" class="ico_real_estate_house">
+							<input type="radio" name="estate" id="estate_2">
+							<span class="txt">(단독/다세대)<br>주택</span>	
+						</label>
+					</li>
+					<li>
+						<label for="estate_3" class="ico_real_estate_officetel">
+							<input type="radio" name="estate" id="estate_3">
+							<span class="txt">오피스텔</span>
+						</label>
+					</li>
+					<li>
+						<label for="estate_4" class="ico_real_estate_farm">
+							<input type="radio" name="estate" id="estate_4">
+							<span class="txt">토지/농가</span>
+						</label>
+					</li>
+					<li>
+						<label for="estate_5" class="ico_real_estate_downtown">
+							<input type="radio" name="estate" id="estate_5">
+							<span class="txt">상가</span>
+						</label>
+					</li>
+					<li>
+						<label for="estate_6" class="ico_real_estate_etc">
+							<input type="radio" name="estate" id="estate_6">
+							<span class="txt">기타</span>
+						</label>
+					</li>
+				</ul>
+
+			
+				<div class="com_input_type01">
+					<input type="text" id="com_input01" class="" name="" value="나의 아파트" required="" placeholder="">
+					<label for="com_input01"><span class="txt_label_x">부동산 별칭(선택)</span></label>
+				</div>
+
+				<!-- case.1 아파트 외 선택시 노출 -->
+				<div class="com_btnselectbox_type01">
+					<button type="button" class="com_btnselect_type01" title="부동산 소재지(선택)">
+						<span>부동산 소재지를 선택하세요.</span>
+					</button>
+				</div>
+				<!-- //case.1 아파트 외 선택시 노출 -->
+			</div>
+			<!-- //[v4.0] 구조 전체 변경 -->
+
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint">확인</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+
+	</div>
+	<!--// full popup E -->
+
+	<script type="text/javascript">
+
+	/*
+		영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+		입력 후 x 버튼 클릭시 글자 삭제
+	*/
+	$(function() {
+		var _inputBox = $('.inputClear'); // Input Box
+		var _clearBtn = $('.com_btn_delete'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('btnDeleteShow');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('btnDeleteShow');
+				_inputBox.val(''); 
+			});
+		});
+
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>버블차트</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="../../static/css/mydata.css">
+    <!-- 알메이트 차트에서 사용하는 CSS 스타일 파일 -->
+    <!-- 알메이트 차트에서 사용하는 CSS 스타일 파일 -->
+    <link rel="stylesheet" href="../../static/css/rMateChartH5.css">
+    <script type="text/javascript" src="../../static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../../static/js/common-ui.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.ui.touch-punch.js"></script>
+    <script type="text/javascript" src="../../static/js/hammer.min.js"></script>
+    <script type="text/javascript" src="../../static/js/hammer.fakemultitouch.js"></script>
+    <script type="text/javascript" src="../../static/js/drum.js"></script>
+    <!-- 알메이트 차트 라이센스 파일 -->
+    <script type="text/javascript" src="../../static/js/rMateChartH5License.js"></script>
+    <!-- 알메이트 자바스크립트 차팅 라이브러리 -->
+    <script type="text/javascript" src="../../static/js/rMateChartH5.js"></script>
+    <script type="text/javascript">
+
+        // -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+ 
+ // 스트링 형식으로 레이아웃 정의.
+ var layoutStr =
+'<rMateChart backgroundColor="#FFFFFF" paddingTop="40" borderStyle="none">'
+    +'<Options>'
+        +'<Caption text="Life Expectancy vs. GDP per Capita" />'
+        +'<Legend useVisibleCheck="true"/>'
+    +'</Options>'
++'<NumberFormatter id="numFmt" precision="0" useThousandsSeparator="true"/>'
++'<Bubble3DChart showDataTips="true" minRadius="5" maxRadius="50" dataTipJsFunction="dataTipFunc" >'
+    +'<verticalAxis>'
+        +'<LinearAxis id="vAxis" minimum="-10" maximum="80" title=""/>'
+        +'</verticalAxis>'
+        +'<verticalAxisRenderers>'
+            +'<Axis3DRenderer axis="{vAxis}" axisTitleStyleName="title" showLine="false"/>'
+        +'</verticalAxisRenderers>'
+        +'<horizontalAxis>'
+            +'<LinearAxis id="hAxis"  minimum="0" maximum="12000" labelJsFunction="axisLabelFunc" title=""/>'
+        +'</horizontalAxis>'
+    +'<horizontalAxisRenderers>'
+        +'<Axis3DRenderer axis="{hAxis}" axisTitleStyleName="title" showLine="false" />'
+        +'</horizontalAxisRenderers>'
+    +'<series>'
+            +'<Bubble3DSeries id="AF" xField="입출금" yField="AF_Life" radiusField="AF_Population" displayName="입출금">'
+            +'<fill>'
+                +'<SolidColor color="#23a0a5" alpha="0.5"/>'
+            +'</fill>'
+                +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+        +'</Bubble3DSeries>'
+        +'<Bubble3DSeries id="EA" xField="예금" yField="EA_Life" radiusField="EA_Population" displayName="예금">'
+            +'<fill>'
+                +'<SolidColor color="#fa8094" alpha="0.5"/>'
+            +'</fill>'
+                +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+        +'</Bubble3DSeries>'
+        +'<Bubble3DSeries id="SA" xField="적금" yField="SA_Life" radiusField="SA_Population" displayName="적금">'
+            +'<fill>'
+                +'<SolidColor color="#84b0fc" alpha="0.5"/>'
+            +'</fill>'
+                +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+        +'</Bubble3DSeries>'
+        +'<Bubble3DSeries id="ME" xField="외화" yField="ME_Life" radiusField="ME_Population" displayName="외화">'
+                +'<fill>'
+                +'<SolidColor color="#fdc277" alpha="0.5"/>'
+            +'</fill>'
+                +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+        +'</Bubble3DSeries>'
+        +'<Bubble3DSeries id="EU" xField="청약" yField="EU_Life" radiusField="EU_Population" displayName="청약">'
+            +'<fill>'
+                +'<SolidColor color="#67ceb6" alpha="0.5"/>'
+            +'</fill>'
+                +'<showDataEffect>'
+                    +'<SeriesInterpolate/>'
+                +'</showDataEffect>'
+        +'</Bubble3DSeries>'
+    +'</series>'
+    +'<backgroundElements>'
+            +'<GridLines horizontalShowOrigin="false" verticalShowOrigin="false"/>'
+        +'</backgroundElements>'
+    +'<annotationElements>'
+            +'<CrossRangeZoomer zoomType="both" verticalLabelFormatter="{numFmt}" horizontalLabelFormatter="{numFmt}"/>'
+    +'</annotationElements>'
++'</Bubble3DChart>'
+    +'<Style>.title{color:0x4691E1; fontSize:14; fontWeight:bold;}'
+    +'</Style>'
++'</rMateChart>';
+  
+// 차트 데이터 // 범례+자산구간+고객비율(소수점절삭) + 고객수 입력순서
+var chartData =
+[{"입출금":100, "AF_Life":30, "AF_Population":1362,"AF_Country":"자산구간 : 100",     /* 초록 */
+"예금":100, "EA_Life":63, "EA_Population":2866,"EA_Country":"자산구간 : 100",           /* 분홍 */
+"적금":100, "SA_Life":62, "SA_Population":12323,"SA_Country":"자산구간 : 100",          /* 파랑 */
+"외화":100, "ME_Life":59, "ME_Population":1843,"ME_Country":"자산구간 : 100",           /* 노랑 */
+"청약":100, "EU_Life":21, "EU_Population":8581,"EU_Country":"자산구간 : 100"},          /* 민트 */
+{"입출금":800, "AF_Life":71, "AF_Population":8681,"AF_Country":"자산구간 : 800",      /* 초록 */
+"예금":800, "EA_Life":57, "EA_Population":7773,"EA_Country":"자산구간 : 800",           /* 분홍 */
+"적금":800, "SA_Life":62, "SA_Population":24567,"SA_Country":"자산구간 : 800",          /* 파랑 */
+"외화":800, "ME_Life":62, "ME_Population":4018,"ME_Country":"자산구간 : 800",           /* 노랑 */
+"청약":800, "EU_Life":77, "EU_Population":1089,"EU_Country":"자산구간 : 800"},          /* 민트 */
+{"입출금":2000, "AF_Life":71, "AF_Population":8598,"AF_Country":"자산구간 : 2000",    /* 초록 */
+"예금":2000, "EA_Life":71, "EA_Population":9759,"EA_Country":"자산구간 : 2000",         /* 분홍 */
+"적금":2000, "SA_Life":72, "SA_Population":32345,"SA_Country":"자산구간 : 2000",        /* 파랑 */
+"외화":2000, "ME_Life":80, "ME_Population":622,"ME_Country":"자산구간 : 2000",          /* 노랑 */
+"청약":2000, "EU_Life":67, "EU_Population":7343,"EU_Country":"자산구간 : 2000"},        /* 민트 */
+{"입출금":3300, "AF_Life":71, "AF_Population":8694,"AF_Country":"자산구간 : 3300",    /* 초록 */
+"예금":3300, "EA_Life":66, "EA_Population":7365,"EA_Country":"자산구간 : 3300",         /* 분홍 */
+"적금":3300, "SA_Life":88, "SA_Population":76541,"SA_Country":"자산구간 : 3300",        /* 파랑 */
+"외화":3300, "ME_Life":68, "ME_Population":5803,"ME_Country":"자산구간 : 3300",         /* 노랑 */
+"청약":3300, "EU_Life":67, "EU_Population":5133,"EU_Country":"자산구간 : 3300"},        /* 민트 */
+{"입출금":5400, "AF_Life":61, "AF_Population":2517,"AF_Country":"자산구간 : 5400",    /* 초록 */
+"예금":5400, "EA_Life":70, "EA_Population":5883,"EA_Country":"자산구간 : 5400",         /* 분홍 */ 
+"적금":5400, "SA_Life":30, "SA_Population":48233,"SA_Country":"자산구간 : 5400",        /* 파랑 */
+"외화":5400, "ME_Life":50, "ME_Population":4364,"ME_Country":"자산구간 : 5400",         /* 노랑 */
+"청약":5400, "EU_Life":40, "EU_Population":5244,"EU_Country":"자산구간 : 5400"},        /* 민트 */
+{"입출금":10000, "AF_Life":71, "AF_Population":3710,"AF_Country":"자산구간 : 10000",  /* 초록 */
+"예금":10000, "EA_Life":71, "EA_Population":4502,"EA_Country":"자산구간 : 10000",       /* 분홍 */
+"적금":10000, "SA_Life":72, "SA_Population":4343,"SA_Country":"자산구간 : 10000",       /* 파랑 */
+"외화":10000, "ME_Life":80, "ME_Population":7341,"ME_Country":"자산구간 : 10000",       /* 노랑 */
+"청약":10000, "EU_Life":67, "EU_Population":9108,"EU_Country":"자산구간 : 10000"},      /* 민트 */
+{"입출금":20000, "AF_Life":18, "AF_Population":7435,"AF_Country":"자산구간 : 20000",  /* 초록 */
+"예금":20000, "EA_Life":16, "EA_Population":7164,"EA_Country":"자산구간 : 20000",       /* 분홍 */
+"적금":20000, "SA_Life":1, "SA_Population":213,"SA_Country":"자산구간 : 20000",         /* 파랑 */
+"외화":20000, "ME_Life":24, "ME_Population":7378,"ME_Country":"자산구간 : 20000",       /* 노랑 */
+"청약":20000, "EU_Life":10, "EU_Population":4296,"EU_Country":"자산구간 : 20000"}       /* 민트 */
+];
+  
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart1", {
+  "setLayout" : layoutStr,
+     "setData" : chartData
+ });
+  
+ function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values) {
+    if (seriesId == "AF")
+        return data["AF_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["AF_Life"]) + "%" + "<br>" + "고객수 : " + insertComma(data["AF_Population"]) + "명";
+    else if (seriesId == "EA")
+       return data["EA_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["EA_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["EA_Population"]) + "명";
+    else if (seriesId == "SA")
+       return data["SA_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["SA_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["SA_Population"]) + "명";
+    else if (seriesId == "ME")
+       return data["ME_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["ME_Life"]) + "%"+  "<br>" + "고객수 : " + insertComma(data["ME_Population"]) + "명";
+    else if (seriesId == "EU")
+       return data["EU_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["EU_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["EU_Population"]) + "명";
+    else if (seriesId == "AM")
+       return data["AM_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["AM_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["AM_Population"]) + "명";}
+  
+function axisLabelFunc(id, value) {
+    return  insertComma(value) + "만원";
+}
+  
+ function insertComma(n) {
+  var reg = /(^[+-]?\d+)(\d{3})/; // Regular expression
+    n += "";
+     while (reg.test(n))
+      n = n.replace(reg, '$1' + "," + '$2');
+   return n;
+ }
+  
+ /**
+  * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+  * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+  *
+  * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * -------------------------------------------------
+  *
+  * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+  */
+ rMateChartH5.registerTheme(rMateChartH5.themes);
+  
+ /**
+  * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+  * 접근하는 차트 객체의 테마를 변경합니다.
+  * 파라메터로 넘어오는 값
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - default
+  *
+  * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+  */
+ function rMateChartH5ChangeTheme(theme){
+   document.getElementById("chart1").setTheme(theme);
+ }
+  
+ // -----------------------차트 설정 끝 -----------------------
+        
+    </script>
+    <style>
+        .rMateH5__Legend{border:none;left:3rem !important;}
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>버블차트</h1>			
+		</div>
+        <div class="popup_content com_space_bottom com_bg_type00"><!-- 20210701 한별 클래스 com_space_bottom 수정  -->
+            <div class="top_graph_info com_line_type01">
+                <div class="top_info_box">
+                    <div class="graph_box">
+                        <div class="graph_wrap_bubble">
+                            <!-- 차트가 삽입될 DIV -->
+                            <!-- 20211108 한별 접근성 추가  S -->
+			                <div id="chartHolder" aria-hidden="true"></div>
+                            <!-- 20211108 한별 접근성 추가  E -->
+                        </div>
+                        
+                    </div>  
+                </div>
+            </div> 
+        </div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+    
+</body>
+</html> 

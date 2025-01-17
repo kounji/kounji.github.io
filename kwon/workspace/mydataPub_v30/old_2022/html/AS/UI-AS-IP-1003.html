@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>또래 자산 비교 &lt; 자산진단 &lt; 자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>또래 자산 비교</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		<div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+                <!-- btn box -->
+                <div class="custom_box_com_box_list01 mt10">
+                    <div class="new_tit_area">
+                        <a href="javascript:void(0);">
+                            <span class="unit txt01">또래</span>
+                            <em class="unit txt02">#30대 후반</em>
+                            <em class="unit txt03">#급여소득</em>
+                        </a>
+					</div>
+				</div>
+                <!--// btn box -->
+
+                <!-- 차트 -->
+                <div class="com_box_type01 com_box_type07 custom_box_com_box_type08 mb0 mt15">
+                    <div class="custom_box_txt01 txt">
+                        김농협님은<br>
+                        또래에 비해 <span class="com_point_mint">투자자산 비율이 적어요.</span>
+                    </div>
+                            
+                    <!-- 나의 금융스타일 -->
+                    <div class="duel_Pie_chart mt26">
+                        <div class="chart_box">
+                            <div class="graph_box">
+                                <div id="chartHolder" class="" aria-hidden="true"></div>
+                                <div class="block_list">
+                                    <span class="blind">또래</span><!--221026 접근성추가-->
+                                    <ul class="list">
+                                        <!-- 2022-10-14 : 리스트 수정 ( 클래스 수정 및 li 리스트 1개 지움 ) -->
+                                        <li class="bl_red">
+                                            <span class="pie_tit">예금</span>
+                                            <span class="pie_p num">20%</span>
+                                        </li>
+                                        <li class="bl_green">
+                                            <span class="pie_tit">투자</span>
+                                            <span class="pie_p num">20%</span>
+                                        </li>
+                                        <li class="bl_blue">
+                                            <span class="pie_tit">포인트 </span>
+                                            <span class="pie_p num">20%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chart_box">
+                            <div class="graph_box">
+                                <div id="chartHolder2" class="" aria-hidden="true"></div>
+                                <div class="block_list">
+                                    <span class="blind">나</span><!--221026 접근성추가-->
+                                    <ul class="list">
+                                        <!-- 2022-10-14 : 리스트 수정 ( 클래스 수정 및 li 리스트 1개 지움 ) -->
+                                        <li class="bl_red">
+                                            <span class="pie_tit">예금</span>
+                                            <span class="pie_p num">50%</span>
+                                        </li>
+                                        <li class="bl_green">
+                                            <span class="pie_tit">투자</span>
+                                            <span class="pie_p num">25%</span>
+                                        </li>
+                                        <li class="bl_blue">
+                                            <span class="pie_tit">포인트</span>
+                                            <span class="pie_p num">20%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--// 나의 금융스타일 -->
+                </div>
+                <!--// 차트 -->
+
+                <!-- 금액별 자산 비교 -->
+                <div class="new_tit_area pb16 pt30 bdb0">
+                    <!-- 2022-10-05 : 글자 수정 -->
+                    <strong class="com_pop_tit05">금액별 자산 비교</strong>
+                    <!--// 2022-10-05 : 글자 수정 -->
+                </div>
+                <div class="com_box_type01 com_box_type07 custom_box_com_box_type09">
+                    <div class="date" aria-hidden="true"><!--221026 접근성추가-->
+                        <div class="st">
+                            <span class="unit-tit">또래</span>
+                        </div>
+                        <div class="ed">
+                            <span class="unit-tit">나</span>
+                        </div>
+                    </div>
+                    <div class="chart">                        
+                        <div class="bars case01">
+                            <div class="bar_txt_tit">
+                                <span>예금</span>
+                            </div>
+                            <div class="bar bar01">
+                                <span class="blind">또래</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:95%"></div>
+                                </div>
+                                <div class="price">
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">134,123,456</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bar bar02">
+                                <span class="blind">나</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:82.2%"></div>
+                                </div>
+                                <div>
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">8,256,780</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bars case02">
+                            <div class="bar_txt_tit">
+                                <span>투자</span>
+                            </div>
+                            <div class="bar bar01">
+                                <span class="blind">또래</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:92.3%"></div>
+                                </div>
+                                <div>
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">923,680</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bar bar02">
+                                <span class="blind">나</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:5.6%"></div>
+                                </div>
+                                <div>
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">56,780</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bars case03">
+                            <div class="bar_txt_tit">
+                                <span>포인트</span>
+                            </div>
+                            <div class="bar bar01">
+                                <span class="blind">또래</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:42.3%"></div>
+                                </div>
+                                <div>
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">423,680</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="bar bar02">
+                                <span class="blind">나</span><!--221026 접근성추가-->
+                                <div class="side_chart">
+                                    <div style="width:25.6%"></div>
+                                </div>
+                                <div>
+                                    <p class="sub_bar num bar_01">
+                                        <span class="num">256,780</span>
+                                        <span class="unit">원</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!--// 금액별 자산 비교 -->
+
+                 <!-- 또래가 많이 가입한 상품 -->
+                <div class="com_box_type01 custom_box_list01 custom_box_list02 custom_box_list06 custom_border_bottom01 mt50">
+                    <strong class="com_pop_tit05">또래가 많이 가입한 상품</strong>
+                    <!-- 2022-10-27 : 태그 교체 (김현철 부장님 요청)-->
+                    <!-- active 삽입시 버튼 활성화 -->
+                    <div class="choice_option custom_box_choice_option custom_box_v1">
+                        <button type="button" title="선택안됨" class=""><em>예금</em></button>
+                        <button type="button" title="선택안됨" class=""><em>대출</em></button>
+                        <button type="button" title="선택안됨" class=""><em>투자</em></button>
+                        <button type="button" title="선택됨" class="on"><em>카드</em></button>
+                    </div>
+                    <div class="custom_sub_box01">
+                        <div class="submain_list_wrap type17">
+                            <div class="list case01">
+                                <div class="title">
+                                    <span class="blind">1위</span>
+                                    <i class="I1AAAZ0000">
+                                        <span class="blind">농협</span>
+                                    </i>
+                                    <strong class="unit">콕 BASIC통장</strong>
+                                </div>
+                            </div>
+                            <div class="list case02">
+                                <div class="title">
+                                    <span class="blind">2위</span>
+                                    <i class="I1AAAZ0000">
+                                        <span class="blind">농협</span>
+                                    </i>
+                                    <strong class="unit">주머니(money)정기적금</strong>
+                                </div>
+                            </div>
+                            <div class="list case03">
+                                <div class="title">
+                                    <span class="blind">3위</span>
+                                    <i class="shinhan01">
+                                        <span class="blind">신한</span>
+                                    </i>
+                                    <strong class="unit">신한세배드림적금</strong>
+                                </div>
+                            </div>
+                            <div class="list case04">
+                                <div class="title">
+                                    <span class="blind">4위</span>
+                                    <i class="D3AAHJ0000">
+                                        <span class="blind">카카오뱅크</span>
+                                    </i>
+                                    <strong class="unit">카카오뱅크 예금</strong>
+                                </div>
+                            </div>
+                            <div class="list case05">
+                                <div class="title">
+                                    <span class="blind">5위</span>
+                                    <i class="shinhan01">
+                                        <span class="blind">신한</span>
+                                    </i>
+                                    <strong class="unit">복리식정기예금</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--// 또래가 많이 가입한 상품 -->
+
+                <!-- 맞춤상품추천 -->
+                <div class="custom_box_product03">
+                    <div class="com_btn_area01">
+                        <a href="javascript:void(0);" class="btn_arrow">맞춤상품추천</a>
+                    </div>
+                    <!--// 맞춤상품추천 -->
+                    <!-- 농축협 상품 제외 -->
+                    <div class="custom_box_toggle_side fr">
+                        <span>
+                            <em class="unit">농축협 상품 제외</em>
+                        </span>
+                        <span class="cmm-switch custom-switch ml8">
+                            <!-- 활성화 : checked -->
+                            <input type="checkbox" id="check01" role="switch"><!-- 22-10-21 role 추가 -->
+                            <label for="check01"><em class="blind">농축협 상품 제외</em></label>
+                        </span>
+                        <!--// 농축협 상품 제외 -->
+                    </div>
+                </div>
+                <!--// 맞춤상품추천 -->
+
+                <!-- 또래가 많이 구입한 자동차 -->
+                <div class="com_box_type01 custom_box_list01 custom_box_list02 custom_box_list06 custom_box_carList01 mt40">
+                    <strong class="com_pop_tit05">또래가 많이 구입한 자동차</strong>
+                    <div class="goods_wrap">
+                        <div class="goods_list_slide mt0">
+                            <div class="item">
+                                <a href="javascript:void(0);" role="button" class="goods_item">
+                                    <span class="ico_ranking ranking01">1</span>
+                                    <p>
+                                        <span class="img">
+                                            <!-- 이미지 없을 경우 : no img 사용하세요. -->
+                                            <img src="../../../../src/assets/images/newmain/img/img_slide_img02.png" alt="자동차 이미지 없음">
+                                        </span>
+                                        <span class="name">
+                                            <strong>현대 뉴 그랜저 IG</strong>
+                                            <span class="subTit">스마트트림 2.5 캘리그래피</span>
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="javascript:void(0);" role="button" class="goods_item">
+                                    <span class="ico_ranking ranking02">2</span>
+                                    <p>
+                                        <span class="img">
+                                            <img src="../../../../src/assets/images/icon/car_new04.png" alt="자동차 이미지">
+                                        </span>
+                                        <span class="name">
+                                            <strong>현대 뉴 그랜저 IG</strong>
+                                            <span class="subTit">스마트트림 2.5 캘리그래피</span>
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="javascript:void(0);" role="button" class="goods_item">
+                                    <span class="ico_ranking ranking03">3</span>
+                                    <p>
+                                        <span class="img">
+                                            <img src="../../../../src/assets/images/icon/car_new04.png" alt="자동차 이미지">
+                                        </span>
+                                        <span class="name">
+                                            <strong>현대 뉴 그랜저 IG</strong>
+                                            <span class="subTit">스마트트림 2.5 캘리그래피</span>
+                                        </span>
+                                    </p>
+                                </a>
+                            </div>
+                            <div class="item last">
+                                <button type="button" class="goods_item goods_item_more" title="종합 자동차 서비스 NH콕마이카">
+                                    <span>종합 자동차 서비스 NH콕마이카</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--// 또래가 많이 구입한 자동차 -->
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+    <script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "130px");
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "130px");
+		
+		var layoutStr =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+				// +'<Options>'
+				// 	+'<Caption text="Web Browser Market Share"/>'
+				// 	+'<Legend useVisibleCheck="true"/>'
+				// +'</Options>'
+				// +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+                /* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+                +'<Pie2DChart showDataTips="true" innerRadius="0.5" displayCompleteCallFunction="removeTabindex">'
+                /* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+                /* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+					+'<series>'
+						+'<Pie2DSeries nameField="browser" field="share" color="#ffffff" >'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<fills>'
+                                // 2022-10-14 : 색상 / 글자 수정 및 SolidColor 1개 지움
+                                +'<SolidColor color="#cccccc"/>' /* 221107  데이터가 없을때 */
+								//+'<SolidColor color="#fa7288"/>'/* 예금 2022-10-14 */
+								//+'<SolidColor color="#57c9af"/>'/*투자*/
+								//+'<SolidColor color="#668ee2"/>'/*포인트*/
+							+'</fills>'
+							+'<showDataEffect>'
+							/* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+								+'<SeriesSlide  duration="1000"/>'
+			/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+			/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+			/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+							/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+			/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+			/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+			/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+					+'</series>'
+					+'<annotationElements>'
+						+'<CanvasElement>'
+							+'<CanvasLabel horizontalCenter="0" height="24" fontSize="14" fontWeight="bold" verticalCenter="0" text="또래" color="#333333"/>'
+						+'</CanvasElement>'
+					+'</annotationElements>'
+				+'</Pie2DChart>'
+				
+			+'</rMateChart>',
+		layoutStr2 =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+				// +'<Options>'
+				// 	+'<Caption text="Web Browser Market Share"/>'
+				// 	+'<Legend useVisibleCheck="true"/>'
+				// +'</Options>'
+				// +'<CurrencyFormatter id="numFmt" currencySymbol="%" alignSymbol="right"/>'
+                /* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+                +'<Pie2DChart showDataTips="true" innerRadius="0.5" displayCompleteCallFunction="removeTabindex">'
+                /* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+                /* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+					+'<series>'
+						+'<Pie2DSeries nameField="browser" field="share" color="#ffffff" >'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<fills>'
+                                // 2022-10-14 : 색상 / 글자 수정 및 SolidColor 1개 지움
+								+'<SolidColor color="#fa7288"/>'/* 예금 */
+								+'<SolidColor color="#57c9af"/>'/*투자*/
+								+'<SolidColor color="#668ee2"/>'/*포인트*/
+							+'</fills>'
+							+'<showDataEffect>'
+							/* 차트 생성시에 Effect를 주고 싶을 때 showDataEffect정의합니다 */
+								+'<SeriesSlide  duration="1000"/>'
+			/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+			/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+			/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+							/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+			/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+			/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+			/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+					+'</series>'
+					+'<annotationElements>'
+						+'<CanvasElement>'
+							+'<CanvasLabel horizontalCenter="0" height="24" fontSize="14" fontWeight="bold" verticalCenter="0" text="나" color="#333333"/>'
+						+'</CanvasElement>'
+					+'</annotationElements>'
+				+'</Pie2DChart>'
+				
+			+'</rMateChart>';
+		
+		// 차트 데이터
+		var chartData =
+				[
+                    {"browser":"데이터 없음","share":100} /* 221107 데이터가 없을때 */
+                   // {"browser":"예금", "share":40},
+				   // {"browser":"투자", "share":21},
+				   // {"browser":"포인트", "share":19}
+                ]
+        var chartData2 =
+				[
+                    {"browser":"예금", "share":30},
+				    {"browser":"투자", "share":45},
+				    {"browser":"포인트", "share":10}
+                ]
+			
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData,
+		});
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr2,
+			"setData" : chartData2
+		});
+		
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		// -----------------------차트 설정 끝 -----------------------
+		
+        /* 22-10-26 접근성 추가 */
+        function removeTabindex(seriesId){
+            $('#'+seriesId).find('div').removeAttr('tabindex');
+        };
+    	</script>
+
+	
+</body>
+</html>

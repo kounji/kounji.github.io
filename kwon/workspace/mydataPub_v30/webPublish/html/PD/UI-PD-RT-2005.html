@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>금융통통 | 노후준비</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script>
+		jQuery(document).ready(function() {
+			//더보기 클릭
+			jQuery('.bottomBtnType .bottomBtn').on('click',function(){
+				var _this = jQuery(this),
+						_par = _this.parent();
+				if(_par.hasClass('open')){
+					_par.find('.slideBox').slideUp(300);
+					_par.removeClass('open');
+					_par.find('.bottomBtn').text('더보기');
+				}else{
+					_par.find('.slideBox').slideDown(300);
+					_par.addClass('open');
+					_par.find('.bottomBtn').text('접기');
+				};
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<h1>금융생활</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view hasLNB mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<div class="com_tabmenu_type01 menunum04">
+				<ul role="tablist">
+					<li><a href="#nolink">나의목표</a></li>
+					<li><a href="#nolink">상품추천</a></li>
+					<li class="on"><a href="#nolink">금융통통</a></li>
+					<li><a href="#nolink">금융브리핑</a></li>
+				</ul>
+			</div>
+			<div class="lnb">
+				<ul role="tablist">
+					<li class="on"><a href="#nolink">노후준비</a></li>
+					<li><a href="#nolink">연말정산</a></li>
+					<li><a href="#nolink">세금현황</a></li>
+					<li><a href="#nolink">사회보험</a></li>
+				</ul>
+			</div>
+
+			<div id="content" class="renewal old_age">
+				<div class="com_inner">
+					<!-- 국민연금에 연결이 안된경우 -->
+					<div class="top_area nonConnect">
+						<strong class="titH1">국민연금 연결이 필요해요.</strong>
+						<p class="tag_wrap imgBg">받을 수 있는 연금을 알아보고<br>필요 자금도 계산해 보세요.</p><!-- 08/08 imgBg 추가 -->
+						<p class="com_txtinfo_type01">가지고 있는 연금을 모두 연결해 주세요.</p>
+					</div>
+					<div class="com_btn_area">
+						<a href="#nolink" class="com_btnround_type02" role="button"><span class="btn_plus">연금 추가하기</span></a>
+					</div>
+					<!--// 국민연금에 연결이 안된경우 -->
+				</div>
+
+				<hr class="hr03">
+
+				<div class="com_inner">
+					<strong class="titH3">김농협님의 모은 연금 <span class="num">123,456,789</span>원</strong>
+					<div class="chart_wrap">
+						<div class="pension_bar_chart">
+							<div class="pension_bar national blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar retirement" style="width:80%"></div>
+							<div class="pension_bar personal" style="width:20%"></div>
+						</div>
+
+						<!-- 09/04 pension_bar_chart 케이스 추가 -->
+						<div class="pension_bar_chart">
+							<div class="pension_bar national" style="width:100%"></div>
+							<div class="pension_bar retirement blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar personal blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+						</div>
+
+						<div class="pension_bar_chart">
+							<div class="pension_bar national blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar retirement" style="width:100%"></div>
+							<div class="pension_bar personal blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+						</div>
+
+						<div class="pension_bar_chart">
+							<div class="pension_bar national blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar retirement blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar personal" style="width:100%"></div>
+						</div>
+
+						<div class="pension_bar_chart">							
+							<div class="pension_bar national" style="width:80%"></div>							
+							<div class="pension_bar retirement blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+							<div class="pension_bar personal" style="width:20%"></div>
+						</div>
+
+						<div class="pension_bar_chart">			
+							<div class="pension_bar national" style="width:20%"></div>				
+							<div class="pension_bar retirement" style="width:80%"></div>				
+							<div class="pension_bar personal blind" style="width:0"></div><!-- 09/04 데이터 0일때 .blind 클래스 추가 -->
+						</div>
+						<!-- //09/04 pension_bar_chart 케이스 추가 -->
+				
+						<div class="pension_item_list">
+							<dl class="item national">
+								<dt>국민</dt>
+								<dd><em class="num">0</em>%</dd>
+							</dl>
+							<dl class="item retirement">
+								<dt>퇴직</dt>
+								<dd><em class="num">80</em>%</dd>
+							</dl>
+							<dl class="item personal">
+								<dt>개인</dt>
+								<dd><em class="num">20</em>%</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+
+				<div class="com_inner mt30">
+					<!-- 국민연금 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<div class="new_tit_area">
+									<div class="tit"><span>국민연금</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<ul class="view_cont list_toggle">
+							<li>
+								<dl>
+									<dt>가입기간</dt>
+									<dd>295개월</dd>
+								</dl>
+
+								<a href="#nolink" class="link_arrow txt_r">연금가입내역</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //국민연금 -->
+
+					<!-- 퇴직연금 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<div class="new_tit_area">
+									<div class="tit"><span>퇴직연금</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<ul class="view_cont list_type_01">
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<em class="prod_name">개인형IPR</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">123,456,789</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="H1AAPL0000"><span class="blind">농협</span></i>
+											<em class="prod_name">NH 퇴직연금 DC형</em>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">123,456,789</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<!-- //퇴직연금 -->
+
+					<!-- 개인연금 -->
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<div class="new_tit_area">
+									<div class="tit"><span>개인연금</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<ul class="view_cont list_type_01">
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="H1AAPL0000"><span class="blind">농협</span></i>
+												<em class="prod_name">신한 미래설계 연금저축</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">5,250,000</em><em class="unit">원</em>
+											</span>
+										</dd> 
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<em class="prod_name">연금저축신탁</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">25,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<em class="prod_name">삼성생명 연금보험</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">5,250,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<!-- //개인연금 -->
+				</div>
+				<!-- 08/08 jlee 삭제
+				<hr class="hr03">
+
+				<div class="com_inner">
+					<strong class="titH3">노후 연금 시뮬레이션</strong>
+					<div class="simulation_text">
+						<p>
+							월 생활비 <a href="#nolink" class="select_btn" role="button" title="노후 월 생활비 목표 선택">177만원</a> 을<br> 
+						</p>
+						<p>연금으로 받아 노후를 보내려면?</p>
+					</div>
+					<div class="gray_box_2023 iconLinkType">
+						<strong>60세까지 <em>월 646,150</em>원<br>추가 저축이 필요해요</strong>
+						<div class="graybox_link">
+							<a href="#nolink">꼭 맞는 상품을 추천해 드려요</a>
+						</div>
+					</div>
+				</div>
+				-->
+				<hr class="hr03">
+
+				<div class="com_inner">
+					<!-- 부가 서비스 배너 -->
+					<div class="subSvcBannerArea fixType">
+						<div class="com_box_type01 bannerCard ret">
+							<a href="#nolink">
+								<p>부족한 금액 ?만원</p><!-- 08/08 em태그 삭제 -->
+								<strong>나의 은퇴 준비 진단</strong>
+							</a>
+						</div>
+						<div class="com_box_type01 bannerCard taxf">
+							<a href="#nolink">
+								<p>내가 받을 수 있는</p>
+								<strong>세액공제액은 얼마?</strong>
+							</a>
+						</div>
+					</div>
+					<!--// 부가 서비스 배너 -->
+				</div>
+
+				<div class="new_add_register"><a href="#nolink" role="button"><span>연금이 더 있나요?</span></a></div>
+				
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+	</div>  
+	<script>
+		jQuery(document).ready(function(){
+			jQuery('.lnb [role=tablist] > li').each(function(){
+				// var lnb = jQuery('.lnb').not('.is_open');
+				// console.log(jQuery(this));
+				jQuery(this).on('click', function(){
+					// console.log(jQuery(this));
+					var scrollTo = jQuery(this).position().left - 100;
+					jQuery(this).parents(jQuery('.lnb').not('.is_open')).animate({'scrollLeft':scrollTo},500);
+					console.log(scrollTo);
+				});		
+			});
+		});
+	</script> 
+</body>
+</html>

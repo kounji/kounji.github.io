@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>유형별 지출</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "useContextMenu=false", "100%", "170rem");//useContextMenu=false 차트메뉴 숨김
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+					'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+						+'<Stroke id="stroke" color="#cbcdd6" weight="1"/>'
+						+'<Options>'
+							//+'<Caption text="GDP Growth of the BRICS Countries"/>'
+							+'<Legend defaultMouseOverAction="false" />'
+						+'</Options>'
+						/* displayCompleteCallFunction="removeTabindex" */
+						+'<Column2DChart gutterLeft="0" showDataTips="true" columnWidthRatio=".6" selectionMode="single" dataTipJsFunction="tipTxt" displayCompleteCallFunction="removeTabindex">'
+							+'<horizontalAxis>'
+								+'<CategoryAxis categoryField="name"/>'
+							+'</horizontalAxis>'
+							+'<verticalAxis>'
+								+'<LinearAxis maximum="10"/>'
+							+'</verticalAxis>'
+							+'<series>'
+								/*그래프 둥글게 옵션 SemiCircleColumnItemRenderer */
+								+'<Column2DSeries labelPosition="outside" yField="prev" displayName="지난달" itemRenderer="SemiCircleColumnItemRenderer" showValueLabels="[]">'
+									+'<showDataEffect>'
+										+'<SeriesInterpolate/>'
+									+'</showDataEffect>'
+									+'<fills>'
+										/*컬러 변경*/
+										+'<SolidColor color="#eee"/>'
+									+'</fills>'
+								+'</Column2DSeries>'
+								+'<Column2DSeries labelPosition="outside" yField="next" displayName="이번달" itemRenderer="SemiCircleColumnItemRenderer" showValueLabels="[]">'
+									+'<showDataEffect>'
+										+'<SeriesInterpolate/>'
+									+'</showDataEffect>'
+									+'<fills>'
+										+'<SolidColor color="#19b9be"/>'
+									+'</fills>'
+								+'</Column2DSeries>'
+							+'</series>'
+							+'<backgroundElements>'
+								//+'<GridLines/>'
+								+'<AxisMarker>'
+									+'<lines>'
+										+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke}"/>'
+										+'<AxisLine value="4" lineStyle="dashLine">'
+											+'<stroke>'
+												+'<Stroke color="#ced0d9" weight="1"/>'
+											+'</stroke>'
+										+'</AxisLine>'
+										+'<AxisLine value="8" lineStyle="dashLine">'
+											+'<stroke>'
+												+'<Stroke color="#ced0d9" weight="1"/>'
+											+'</stroke>'
+										+'</AxisLine>'
+									+'</lines> '
+								+'</AxisMarker>'
+							+'</backgroundElements>'
+							+'<horizontalAxis>'
+								+'<CategoryLinearAxis id="hAxis" padding="0.5" categoryField="name"/>'
+							+'</horizontalAxis>'
+							+'<horizontalAxisRenderers>'
+								+'<Axis2DRenderer axis="{hAxis}" styleName="axisLabel"/>'
+							+'</horizontalAxisRenderers>'
+						+'</Column2DChart>'
+						+'<Style>'
+							+'.axisLabel{fontSize:1.2rem;color:#333333;}'
+						+'</Style>'
+					+'</rMateChart>';
+		
+		// 차트 데이터
+		var chartData = 
+			[
+				{"name":"생활/마트", "prev":5.1, "next":4},
+				{"name":"외식", "prev":3.8, "next":4.6},
+				{"name":"쇼핑", "prev":2.4, "next":3.1},
+				{"name":"자동차", "prev":2.1, "next":3.9},
+				{"name":"교통", "prev":8.1, "next":9},
+				{"name":"그 외 5개", "prev":1.8, "next":2},
+			];
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		function tipTxt(seriesId, seriesName, index, xName, yName, data, values) {
+			return seriesName +' : '+ values[1]+'만원';
+		}
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		// -----------------------차트 설정 끝 -----------------------
+		
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>유형별 지출</h1>
+		</div>
+		<div class="popup_content com_no_bottom expenDecom"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_tabmenu_type03 switchType btn2 mt20">
+				<ul role="tablist">
+					<li role="presentation" aria-controls="tab_01"><a href="#nolink" role="tab"><span>지출현황</span></a></li>
+					<li class="on" role="presentation" aria-controls="tab_02"><a href="#nolink" role="tab"><span>전월비교</span></a></li>
+					<li role="presentation" aria-controls="tab_03"><a href="#nolink" role="tab"><span>지출패턴</span></a></li>
+				</ul>
+			</div>
+
+			<div id="tab_01" role="tabpanel" class="cmm-tab-panel">
+			</div>
+
+			<div id="tab_02" role="tabpanel" class="cmm-tab-panel on">
+				<div class="com_inner">
+					<strong class="titH1">지난달 보다 <em>생활/마트</em>에<br>지출이 가장 많이 늘었어요</strong>
+					<!-- 차트영역 -->
+					<div id="chartHolder" class="monComp"></div><!-- 1010 접근성 삭제 -->
+					<!--// 차트영역 -->
+				</div>
+
+				<hr class="hr02">
+
+				<div class="com_inner">
+					<ul class="expenListBox LRdivType">
+						<li class="expenList">
+							<span class="expIcon AS20000005"></span>
+							<div class="left">
+								<strong class="expName">생활/마트</strong>
+								<span class="expTarget">+28%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount up">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000003"></span>
+							<div class="left">
+								<strong class="expName">외식</strong>
+								<span class="expTarget">-20%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount down">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000001"></span>
+							<div class="left">
+								<strong class="expName">쇼핑</strong>
+								<span class="expTarget">+28%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount up">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000006"></span>
+							<div class="left">
+								<strong class="expName">자동차</strong>
+								<span class="expTarget">+28%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount up">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000007"></span>
+							<div class="left">
+								<strong class="expName">교통</strong>
+								<span class="expTarget">-20%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount down">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000004"></span>
+							<div class="left">
+								<strong class="expName">카페/베이커리</strong>
+								<span class="expTarget">+28%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount up">123,456,789원</span>
+							</div>
+						</li>
+						<li class="expenList">
+							<span class="expIcon AS20000014"></span>
+							<div class="left">
+								<strong class="expName">주거통신</strong>
+								<span class="expTarget">0%</span>
+							</div>
+							<div class="right">
+								<em class="expAmt">234,567원</em>
+								<span class="amount">123,456,789원</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div id="tab_03" role="tabpanel" class="cmm-tab-panel">
+			</div>
+		</div>
+		
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

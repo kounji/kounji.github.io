@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>변동지출 현황</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "250rem");
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+		'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+			// +'<Options>'
+			//     +'<Caption text="Annual Report"/>'
+			//     +'<Legend useVisibleCheck="true"/>'
+			// +'</Options>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+			+'<Pie2DChart innerRadius="0.55" showDataTips="true" selectionMode="single" displayCompleteCallFunction="removeTabindex">'
+			/*
+			Doughnut2D 차트 생성시에 필요한 Pie2DChart 정의합니다
+			showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다.
+			innerRadius : PieChart 가운데에 빈 공간을 만듭니다. 유효값 0.1 ~ 0.9 0은 PieChart 1은 차트 사라짐
+			*/
+				+'<series>'
+					+'<Pie2DSeries nameField="expenditure" field="Profit" startAngle="-90" renderDirection="clockwise" color="#fff" >'/*labelPosition="inside"*/
+						+'<fills>'
+							+'<SolidColor color="#57c9ae"/>' /* 생활 */
+							+'<SolidColor color="#668ee2"/>' /* 금융 */
+							+'<SolidColor color="#19b9be"/>' /* 보험 */
+							+'<SolidColor color="#94e39b"/>' /* 구독 */
+							+'<SolidColor color="#ca7ae8"/>' /* 기타 */
+						+'</fills>'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+						+'<showDataEffect>'
+						/* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+							+'<SeriesZoom duration="1000" relativeTo="chart" horizontalFocus="right" />'
+							/*
+							SeriesZoom 효과는 시리즈 데이터가 데이터로 표시될 때 특정 지점에서 점점 확대되어지며 나타나는 효과를 적용합니다
+							- 공통속성 -
+							elementOffset : effect를 지연시키는 시간을 지정합니다 default:20
+							minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0
+										이 값보다 짧은 시간에 effect가 실행되지 않습니다
+							offset : effect개시의 지연시간을 설정합니다 default:0
+							perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다
+							- SeriesZoom속성 -
+							relativeTo : 이펙트의 기준을 어디로 잡을지에 대한 속성입니다. 유효값 : chart, series
+							horizontalFocus : relativeTo를 기준으로 수평선 방향의 기준을 정합니다. 유효값 : left, center, right
+							verticalFocus : relativeTo를 기준으로 수직선 방향의 기준을 정합니다. 유효값 : top, middle, bottom
+							*/
+						+'</showDataEffect>'
+					+'</Pie2DSeries>'
+				+'</series>'
+				+'<backgroundElements>'
+
+				+'</backgroundElements>'
+			+'</Pie2DChart>'
+		+'</rMateChart>';
+
+		// 차트 데이터
+		var chartData = [{"expenditure":"온라인쇼핑", "Profit":20},
+						{"expenditure":"자동차", "Profit":25},
+						{"expenditure":"식비", "Profit":15},
+						{"expenditure":"생활·마트", "Profit":10},
+						{"expenditure":"미분류", "Profit":7}];
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		// -----------------------차트 설정 끝 -----------------------
+		
+	</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>변동지출 현황</h1>
+		</div>
+		<div class="popup_content com_no_bottom">
+			<div>
+				<div class="select_date tac bottom_line">
+					<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+					<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+					<button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled></button>
+				</div>
+			</div>
+			<div class="com_inner com_line_type01 com_top_type02">
+				<div class="wrap_item_box lcip">
+					<div class="graph_box_wrap">
+						<div class="top_info_box">
+							<p class="subtxt">9월에는</p>
+							<div class="bill">
+								<span class="num counter" data-count="5600000">5,600,000</span><span class="fs22 bold">원을 썼어요.</span>
+							</div>
+						</div>
+						<!-- 22-10-26  role / arai-label 추가 -->
+						<div class="graph_box" role="img" aria-label="변동지출 현황 - 온라인쇼핑 30%, 자동차 10%, 식비 10%, 생활마트 10%, 미분류 10% 입니다.">
+							<div id="chartHolder"></div>
+							<div class="list_center">
+								<ul class="list">
+									<li class="bl_lightcyan">
+										<span class="pie_tit">온라인쇼핑</span>
+									</li>
+									<li class="bl_blue">
+										<span class="pie_tit">자동차</span>
+									</li>
+									<li class="bl_lightcyan2">
+										<span class="pie_tit">식비</span>
+									</li>
+									<li class="bl_aqua2">
+										<span class="pie_tit">생활·마트</span>
+									</li>
+									<li class="bl_purple2">
+										<span class="pie_tit">미분류</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<ul class="list_more_box custom">
+				<li>
+					<div class="com_inner">
+						<div class="new_tit_area">
+							<div class="tit"><span>온라인쇼핑</span></div>
+							<div class="total_price">
+								<span>합계</span><em class="num">560,000</em><em class="unit">원</em>
+							</div>
+						</div>
+						<ul class="list_type_02">
+							<li>
+								<dl>
+									<dt>
+										<strong>6일</strong>
+										<div>
+											<em>삼성화재해상보험㈜</em>
+										</div>
+										<span><em>신한카드 Deep Oil</em></span>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">320,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<strong>9일</strong>
+										<div>
+											<em>삼성화재해상보험㈜</em>
+										</div>
+										<span><em>신한카드 Deep Oil</em></span>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">320,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li>
+					<div class="com_inner">
+						<div class="new_tit_area">
+							<div class="tit"><span>자동차</span></div>
+							<div class="total_price">
+								<span>합계</span><em class="num">560,000</em><em class="unit">원</em>
+							</div>
+						</div>
+						<ul class="list_type_02">
+							<li>
+								<dl>
+									<dt>
+										<strong>3일</strong>
+										<div>
+											<em>아파트관리비</em>
+										</div>
+										<span>
+											<span>올라운드카드</span>
+										</span>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">320,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<strong>6일</strong>
+										<div>
+											<em>삼천리도시가스</em>
+										</div>
+										<span>
+											<span>롯데하이마트 프리미엄 DC카드</span>
+										</span>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">320,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			<!-- <div class="com_inner">
+				<div class="com_btn_area02"><a href="javascript:void(0);" class="com_btn_more"><span>더보기</span></a></div>
+			</div> -->
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+	
+</body>
+</html> 

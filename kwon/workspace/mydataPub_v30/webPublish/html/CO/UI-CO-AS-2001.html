@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>서비스 소개</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function(){
+			jQuery('.info_slider01').slick({
+				dots:true,
+				arrows:false,
+				slidesToShow: 1,
+				infinite: false,
+				customPaging:function(slider,i){
+					return '<button type="button">총'+slider.$slides.length+'개의 슬라이드중 '+ (i+1) +'번째 슬라이드</button>';
+				}
+			});
+
+			jQuery('.info_slider02').slick({
+				dots:false,
+				arrows:false,
+				slidesToShow: 1,
+				infinite: true,
+				//autoplaySpeed:3000,
+				customPaging:function(slider,i){
+					return '<button type="button">총'+slider.$slides.length+'개의 슬라이드중 '+ (i+1) +'번째 슬라이드</button>';
+				}
+			});
+
+			jQuery('.info_slider03').slick({
+				// centerMode:true,
+				dots : false,
+				arrows : false,
+				infinite: true,
+				//autoplaySpeed:3000,
+				customPaging:function(slider,i){
+					return '<button type="button">총'+slider.$slides.length+'개의 슬라이드중 '+ (i+1) +'번째 슬라이드</button>';
+				}
+			});
+
+			// 인트로 인터렉션 08/22 추가
+			jQuery('.intro .tit').css('opacity','0');
+			jQuery('.intro .desc').css('opacity','0');
+			jQuery('.ani_img .img01').css('opacity','0');
+			jQuery('.ani_img .img02').css('opacity','0');
+			jQuery('.ani_img .img03').css('opacity','0');
+			jQuery('.ani_img .img04').css('opacity','0');
+			jQuery('.ani_img .img05').css('opacity','0');
+			setTimeout(function(){jQuery('.intro .tit').animate({opacity: '1'},500)},500);
+			setTimeout(function(){jQuery('.intro .desc').animate({opacity: '1'},500)},1000);
+			setTimeout(function(){jQuery('.ani_img .img01').animate({opacity: '1'},500)},1200);
+			setTimeout(function(){jQuery('.ani_img .img02').animate({opacity: '1'},500)},1500);
+			setTimeout(function(){jQuery('.ani_img .img03').animate({opacity: '1'},500)},1800);
+			setTimeout(function(){jQuery('.ani_img .img04').animate({opacity: '1'},500)},2100);
+			setTimeout(function(){jQuery('.ani_img .img05').animate({opacity: '1'},500)},2400);
+			
+
+			//페이지 인터렉션
+			jQuery('.text_info_area .mint_badge').css('opacity','0');
+			jQuery('.text_info_area .tit').css('opacity','0');
+			jQuery('.text_info_area .desc').css('opacity','0');
+			
+			var n = 0;
+			var badge = jQuery("[class*='page_'] .mint_badge");
+			var tit = jQuery("[class*='page_'] .tit");
+			var desc = jQuery("[class*='page_'] .desc");
+			var currentNum = jQuery('[class*="page_"]').length;
+
+			//console.log(currentNum);
+
+			jQuery('.popup_content').scroll(function(){
+				if(n < currentNum) {
+					var pageTop = jQuery('[class*="page_"]').eq(n).position().top - 600;
+					//console.log('pageTop=='+pageTop+" === "+jQuery(this).scrollTop());
+				
+					if(jQuery(this).scrollTop() > pageTop){
+						//console.log('cnt0 == '+n+" === "+jQuery(this).scrollTop());
+						setTimeout(function(){badge.eq(n-1).animate({opacity:'1'},500)},500);
+						//console.log('cnt1 == '+n);
+						setTimeout(function(){tit.eq(n-1).animate({opacity:'1'},500)},800);
+						//console.log('cnt2 == '+n);
+						setTimeout(function(){desc.eq(n-1).animate({opacity:'1'},500)},1100);
+						//console.log('cnt3 == '+n);
+						n = n + 1;
+						jQuery('.info_slider0'+n).slick('slickPlay');
+					};
+				};
+				// if(jQuery(this).scrollTop() > pageTop.eq(2)) {
+					
+				// }
+			});
+		});
+		
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<!-- <h1>자산연결</h1> -->
+			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="new_info">
+				<div class="intro">
+					<strong class="tit">
+						새로워진<br>
+						NH콕마이데이터
+					</strong>
+					<p class="desc">
+						보다 전문적인 자산진단<br>
+						공공 정보까지 담은 폭 넓은 정보<br>
+						더 다양하고 정교해진 목표관리
+					</p>
+
+					<div class="img_wrap">
+						<img src="../../../../src/assets_v30/images/img/new_intro_2023.png" alt="">
+						<!-- 인트로 인터렉션 08/22 추가 -->
+						<div class="ani_img">
+							<span class="img01"></span>
+							<span class="img02"></span>
+							<span class="img03"></span>
+							<span class="img04"></span>
+							<span class="img05"></span>
+						</div>
+						<!-- 인트로 인터렉션 08/22 추가 -->
+					</div>
+
+					<div class="btn_dwon_wrap">
+						<div class="btn_down" role="button">아래로 스크롤<span class="down_arrow"></span></div>
+					</div>
+				</div>
+
+				<div class="page_01">
+					<div class="text_info_area">
+						<span class="mint_badge">보다 전문적인</span>
+						<strong class="tit">나만을 위한 자산진단 서비스!</strong>
+						<p class="desc">전문 재무진단은 물론 소비 분석까지</p>
+					</div>
+
+					<div class="info_slider_wrap">
+						<div class="info_slider01">
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_info01_2023.png" alt="">
+							</div>
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_info02_2023.png" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page_02">
+					<div class="text_info_area">
+						<span class="mint_badge">보다 폭 넓은</span>
+						<strong class="tit">흩어진 공공 정보를 한 눈에!</strong>
+						<p class="desc">연금, 세금, 사회보험 납부내역 모아보기</p>
+					</div>
+
+					<div class="info_slider_wrap">
+						<div class="info_slider02">
+							<div>
+								<div>
+									<img src="../../../../src/assets_v30/images/img/new_info03_2023.png" alt="">
+									<p class="slider_title">나의 노후 준비 진단</p>
+								</div>
+							</div>
+							<div>
+								<div>
+									<img src="../../../../src/assets_v30/images/img/new_info04_2023.png" alt="">
+									<p class="slider_title">세금 납부 현황 확인</p>
+								</div>
+							</div>
+							<div>
+								<div>
+								<img src="../../../../src/assets_v30/images/img/new_info05_2023.png" alt="">
+								<p class="slider_title">사회보험 정보 확인</p>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="page_03">
+					<div class="text_info_area">
+						<span class="mint_badge">보다 다양한</span>
+						<strong class="tit">계획적인 저축/소비 습관 기르기!</strong>
+						<p class="desc">목적에 맞게 모으고, 예산에 맞춰 쓰기</p>
+					</div>
+
+					<div class="bg_img"></div>
+
+					<div class="info_slider_wrap">
+						<div class="info_slider03">
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_infoCard01_2023.png" alt="">
+							</div>
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_infoCard02_2023.png" alt="">
+							</div>
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_infoCard03_2023.png" alt="">
+							</div>
+							<div>
+								<img src="../../../../src/assets_v30/images/img/new_infoCard04_2023.png" alt="">
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="bottom_box com_bg_type00">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint" role="button">마이데이터 가입하기</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+
+</body>
+</html>
+

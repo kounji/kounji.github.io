@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<!-- 2022-07-27 : 제목 변경 -->
+	<title>PASS 인증 | 한번에 연결 | 금융자산 | 자산연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>PASS인증</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<!-- 2022-11-10 : 디자인팀 요청으로 인해 클래스( mt-16 ) 삽입 -->
+				<div class="custom_box custom_box_shadow border_no border_top_none custom_box_tit01 mt-16"><!-- 2022.08-12 : 클래스추가 custom_box_tit01 -->
+					<strong class="com_pop_tit01 custom">
+						<em class="num">PASS</em> 인증서 사용을 위해<br>
+						인증해 주세요
+					</strong>
+				</div>
+				<div class="custom_box">
+					<!-- 이름 -->
+					<div class="com_input_type01 com_word1">
+						<input type="text" id="com_input01" value="" required="" placeholder="이름을 입력하세요" title="이름을 입력하세요">
+						<label for="com_input01">
+							<span class="txt_label_x">이름</span>
+						</label>
+					</div>
+					<!--// 이름 -->
+				</div>
+				<div class="custom_box">
+					<!-- 통신사 -->
+					<div class="custom_check_list">
+						<div class="tab_radio">
+							<div class="btn_radio">
+								<!-- 
+									선택 필요시 checked 삽입
+									[ 예시 ]
+									선택 전 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입">
+									선택 후 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입" checked>
+								-->
+								<input type="radio" name="radio01" id="radio1-1">
+								<label for="radio1-1">
+									<span>SKT</span>
+								</label>
+							</div>
+							<div class="btn_radio">
+								<!-- 
+									선택 필요시 checked 삽입
+									[ 예시 ]
+									선택 전 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입">
+									선택 후 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입" checked>
+								-->
+								<input type="radio" name="radio01" id="radio1-2">
+								<label for="radio1-2">
+									<span>KT</span>
+								</label>
+							</div>
+							<div class="btn_radio">
+								<!-- 
+									선택 필요시 checked 삽입
+									[ 예시 ]
+									선택 전 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입">
+									선택 후 : ex : <input type="radio" name="radio01" id="필요한 아이디 삽입" checked>
+								-->
+								<input type="radio" name="radio01" id="radio1-3">
+								<label for="radio1-3">
+									<span>LGU+</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<!--// 통신사 -->
+				</div>
+				<div class="custom_box custom_box6">
+					<!-- 휴대폰 번호 앞자리 -->
+					<div class="com_inputarea_type07">
+						<div class="com_btnselectbox_type01">
+							<button type="button" class="com_btnselect_type01 com_iconstar" title="휴대폰 번호 앞자리를 입력하세요"><span>010</span></button>
+						</div>
+					</div>
+					<!--// 휴대폰 번호 앞자리 -->
+					<!-- 휴대폰 번호 box -->
+					<div class="com_input_type01 com_word1 ipt_tel_left">
+						<input type="tel" id="com_input03" value=""  required="" placeholder="휴대폰 번호 뒷자리를 입력하세요" title="휴대폰 번호를 입력하세요" maxlength="8">
+						<!-- <label for="com_input03">
+							<span class="txt_label_x">휴대폰 번호 뒷자리</span>
+						</label> -->
+					</div>
+					<!--// 휴대폰 번호 box -->
+				</div>
+				<div class="custom_box">
+					<!-- 안내문구 -->
+					<p class="txt01 mt11">PASS 인증서 발급/재발급 등의 관리는 PASS 앱을 통해서 가능합니다.</p>
+					<!--// 안내문구 -->
+				</div>
+				<div class="custom_box">
+					<!-- PASS 인증서 이용안내 -->
+					<div class="new_view_wrap">
+						<a href="#nolink" class="view">
+							<em class="num">PASS</em> 인증서 이용안내<span class="ico_rightbar"></span>
+						</a>
+					</div>
+					<!--// PASS 인증서 이용안내 -->
+				</div>
+			</div>
+			<div class="popup_footer fixed">
+				<!-- 활성화 버튼
+				<div class="btn_full_box">
+					<a href="#nolink" role="button" class="btn btn_mint">인증 요청</a>
+				</div>
+				-->
+				<!-- 비활성화 버튼 -->
+				<div class="btn_full_box">
+					<!-- btn_off 제거시 활성화 -->
+					<!--22-10-20 btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+					<a href="#nolink" role="button" class="btn btn_mint btn_off" aria-disabled="true">인증 요청</a>
+				</div>
+			</div>
+			<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+		</div>
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

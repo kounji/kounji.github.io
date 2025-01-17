@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>alert 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- popup S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<!-- 선택 기관이 50개 초과한 경우  -->
+	<div class="alert_popup renewal" id="alert_popup2" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<p class="txt_normal">안전하고 신속한 자산 연결을 위해<br>최대 50개까지 선택 가능합니다.</p>
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="#nolink" class="btn btn_mint">확인</a>
+			</div>
+		</div>
+	</div>
+	<!-- //선택 기관이 50개 초과한 경우  -->
+	<!-- Alert 호출 case -->
+	<div class="alert_popup renewal" id="alert_popup3" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<p class="txt_normal">기관명을 입력하세요.</p>
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="#nolink" class="btn btn_mint_gray">취소</a>
+				<a href="#nolink" class="btn btn_mint">확인</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="alert_popup renewal" id="alert_popup4" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<p class="txt_normal">검색 결과가 없습니다.</p>
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="#nolink" class="btn btn_mint_gray">취소</a>
+				<a href="#nolink" class="btn btn_mint">확인</a>
+			</div>
+		</div>
+	</div>
+	<!-- //Alert 호출 case -->
+	<!--// popup E -->
+</body>
+</html>

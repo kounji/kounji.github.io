@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>조건검색_카드</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box renewal mydata2023">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>조건 검색</h1>
+				<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+			</div>
+			<div class="popup_content com_btn_bottom">
+				<!--[v4.0] 조회기간 추가-->
+				<div class="btn_radio_wrap mt0">
+					<div class="custom_tooltip_wrap">
+						<strong class="titH5">조회 기간</strong>
+						<div class="custom_tooltip">
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info" role="button">
+									<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+								</a>
+								<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+									<div>
+										<p>최근 1년 이내 최대 3개월까지 조회가 가능합니다.</p>
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> 
+								</div>
+							</div>
+						</div>
+					</div>
+
+                    <div class="com_inputnum2 input_date">
+                        <div class="com_input_type01" role="button">
+                            <input type="text" id="startDate_1" class="input_cal_date" name="startDate" value="2024-12-01" required="" readonly placeholder="년월일 8자리숫자" title="기간 시작일">
+                        </div>
+                        <div class="com_input_type01" role="button">
+                            <input type="text" id="endDate_1" class="input_cal_date" name="endDate" value="2024-12-23" required="" readonly placeholder="년월일 8자리숫자" title="기간 종료일">
+                        </div>
+                    </div>
+				</div>
+				<!--//[v4.0] 조회기간 추가-->
+
+				<!--[v4.0] 가맹점 타이틀 / wrapping  추가-->
+				<div class="btn_radio_wrap">
+					<strong class="titH5">가맹점</strong>
+					<div class="com_input_type01 mt0">
+						<label for="com_input01"></label>
+						<input type="search" id="com_input01" class="" name="" value="" placeholder="가맹점명을 입력하세요" title="가맹점 찾기">
+						<a href="javascript:void(0);" class="com_btn_delete"><span class="blind">삭제</span></a>
+					</div>
+				</div>
+				<!--//[v4.0] 가맹점 타이틀 / wrapping  추가-->
+
+				<!-- 카드 종류 -->
+				<div class="btn_radio_wrap">
+					<strong class="titH5">카드 종류</strong>
+					<ul class="com_radio_type03">
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radio1-1" checked="checked">
+								<label for="radio1-1">
+									<span>전체</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radi1-2">
+								<label for="radi1-2">
+									<span>신용</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radio1-3">
+								<label for="radio1-3">
+									<span>체크</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //카드 종류 -->
+
+				<!-- 결제금액 -->
+				<div class="btn_radio_wrap">
+					<strong class="titH5">결제금액</strong>
+					<ul class="com_radio_type03">
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio2" id="radio2-1" checked="checked">
+								<label for="radio2-1">
+									<span>전체</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio2" id="radi2-2">
+								<label for="radi2-2">
+									<span>높은순</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio2" id="radio2-3">
+								<label for="radio2-3">
+									<span>낮은순</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //결제금액 -->
+
+				<!-- 거래상태 -->
+				<div class="btn_radio_wrap">
+					<strong class="titH5">거래상태</strong>
+					<ul class="com_radio_type03">
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio3" id="radio3-1" checked="checked">
+								<label for="radio3-1">
+									<span>전체</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio3" id="radi3-2">
+								<label for="radi3-2">
+									<span>결제(승인)</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio3" id="radio3-3">
+								<label for="radio3-3">
+									<span>취소</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //거래상태 -->
+
+				<!--[v4.0] 내역정렬 추가-->
+				<div class="btn_radio_wrap">
+					<strong class="titH5">내역정렬</strong>
+					<ul class="com_radio_type02">
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio4" id="radio4-1" checked="checked" aria-hidden="true">
+								<label for="radio4-1" aria-checked="false" role="radio">
+									<span>최신순</span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio4" id="radio4-2" aria-hidden="true">
+								<label for="radio4-2" aria-checked="false" role="radio">
+									<span>오래된순</span>
+								</label>
+							</div>
+						</li>
+					</ul>
+                </div>
+				<!--//[v4.0] 내역정렬 추가-->
+			</div>
+			<div class="popup_footer">
+				<div class="btn_full_box2">
+					<button type="button" class="btn btn_mint">조회</button>
+				</div>
+			</div>
+			<a href="#nolink" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

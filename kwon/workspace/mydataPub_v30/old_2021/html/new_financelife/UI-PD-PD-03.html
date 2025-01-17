@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>금융생활</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript" src="../../static/js/slick.min.js"></script>	
+</head>
+
+<body>
+	<!-- wrap S -->
+	
+	<div id="page-area">
+        <div id="wrap" class="sticky-scroll">
+            <!-- header S -->
+            <header id="header">
+                <h1>금융생활</h1>		
+				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈</span></a>	
+                <a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+            </header> <!-- 홈버튼 헤더 -->
+            <!--// header E -->
+
+            <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+            <div class="com_tabmenu_type02">
+				<div>
+					<ul role="tablist">
+						<li><a href="javascript:void(0);">나의목표</a></li>
+						<li class="on"><a href="javascript:void(0);">상품추천</a></li>
+						<li><a href="javascript:void(0);">금융통통</a></li>
+						<li><a href="javascript:void(0);">자동차</a></li>
+					</ul>
+				</div>
+            </div>
+			<!-- 20211118 한별 접근성 role="tablist" 추가 E -->
+			<div class="lnb pb0">
+                <ul role="tablist">
+                    <li class=""><a href="javascript:void(0);" aria-selected="true" role="tab">상품추천</a></li>
+					<li class="on"><a href="javascript:void(0);" aria-selected="false" role="tab">은퇴 준비 진단</a></li><!-- [개발자전달] 20210723 명칭변경 되었습니다 -->
+                </ul>
+            </div>
+            <!-- content S -->
+            <div id="content" class="com_sub_type02">
+				<!-- <div class="com_inner top_period_box">
+					<div class="new_period_box">
+						<div class="scroll_wrap">
+							<div class="checkbox_box">
+								<span class="cmm_radio">
+									<input type="radio" name="UI-AS-0102-1" id="UI-AS-0102-1">
+									<label for="UI-AS-0102-1">상품추천</label>
+								</span>
+								<span class="cmm_radio">
+									<input type="radio" name="UI-AS-0102-1" id="UI-AS-0102-2" checked="checked">
+									<label for="UI-AS-0102-2">은퇴 준비 진단</label>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div> -->
+                <div class="com_submainbox_type12  bg">
+                    <p class="txt_submaincont_type01"><strong>편안한 노후 생활을 위한<br>준비가 되셨나요?
+						</strong></p>
+					<p class="txt_submaincont_type02 fs15">기대수명은 늘고, 은퇴 시기는<br>
+						빨라 지고 있는 요즘, 나의 노후 준비는 어떤가요?</p>
+                </div>
+                <div class="com_inner new_mb25">
+					<div class="com_box_type01">
+                        <div class="compare_chart_wrap">
+                            <div class="chart chart_type02">
+                                <div class="bg">
+                                    <div class="area mid">은퇴 생활기간 30년!</div>
+                                    <div class="area bottom"></div>
+                                </div>
+                                <div class="bar_wrap">
+                                    <div class="bars">
+                                        <div class="bar bar01"></div>
+                                        <div class="bar bar02"></div>
+                                    </div>
+                                    <div class="label">
+                                        <span>기대수명</span>
+                                        <span>평균퇴직연령</span>
+                                    </div>
+                                </div>
+                            </div>
+							<p class="com_txt_sub01 ">[2020년 통계청 자료]</p>
+                        </div>
+                    </div>					
+					<div class="com_box_type06 mt30 bg02">
+                        <div class="text ">
+                            나의 은퇴 준비 상태를 진단 하고 <br> <span class="color">지금부터 노후 준비 하세요!</span></div>
+                    </div>
+					<div class="btn_full_box mt30">
+						<a href="javascript:void(0);" class="btn btn_mint" role="button">진단하기</a><!-- 20211118 한별 접근성 추가(role="button") -->
+					</div>
+                </div>
+                
+            </div>
+            <!--// content E -->
+
+			<!-- footer S -->
+			<script src="../../worklist/@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->   
+            <!--// footer E -->
+			
+				
+        </div>   
+	</div>
+	<!--// wrap E -->
+	<script>
+		$(document).on('click' , '.btn_close', function(){
+			$(this).parents('.cal_pop_info_wrap').css('display','none');
+	});
+	</script>
+	<script type="text/javascript">
+        $('.slider_wrap .tab_cont').slick({
+            speed : 300,
+            dots : true,
+            arrows : false,
+            vertical : false,
+            adaptiveHeight: true,
+            infinite: true
+        });
+    </script>
+	
+</body>
+</html>

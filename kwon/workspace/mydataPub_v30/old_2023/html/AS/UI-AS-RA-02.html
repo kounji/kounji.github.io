@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>나의자산</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script type="text/javascript" src="../../static/js/slick.min.js"></script>	
+</head>
+
+<body>
+    <!-- 20210630 한별 서브메인 스크롤 인터랙션 추가 클래스는 'sticky-scroll' --->
+    <div id="wrap" class="sticky-scroll">
+		 <!-- header S -->
+         <header id="header">
+			<h1>나의 자산</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">뒤로</span></a>		
+			<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		</header>
+		<!--// header E -->
+        
+        <!-- content-view S -->
+		<div class="content-view hasLNB">
+            <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+            <div class="com_tabmenu_type01 menunum04">
+                <ul role="tablist">
+                    <li><a href="#nolink">전체</a></li>
+                    <li class="on"><a href="#nolink">자산</a></li>
+                    <li><a href="#nolink">부채</a></li>
+                    <li><a href="#nolink">진단</a></li>
+                </ul>
+            </div>
+            <div class="lnb pb0">
+                <ul role="tablist">
+                    <li><a href="#nolink">예금</a></li>
+                    <li><a href="#nolink">투자</a></li>
+                    <li><a href="#nolink">선불</a></li>
+                    <li><a href="#nolink">보험</a></li>
+                    <li class="on"><a href="#nolink">부동산</a></li>
+                    <li><a href="#nolink">자동차</a></li>
+                    <li><a href="#nolink">기타</a></li>
+                </ul>
+            </div>
+             <!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+            
+            <div id="content" class="com_sub_type02" >                
+                <div class="car_top_wrap estate_top_wrap_type2">
+                    <!-- 2021108 한별 접근성 <span class="text_over">상승</span>,<span class="text_over">하락</span> 추가 S -->
+                    <div class="slider_wrap">
+                        <div class="tab_cont">
+                            <!---20210817 한별수정 자가 / 전세 / 월세 케이스 이미지 다름
+                                자가 : bg01
+                                전세 : bg02
+                                월세 : bg03
+                                --->
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="estate_card_wrap bg01">
+                                    <div class="top">
+                                        <span class="icon_mint">자가</span>
+                                        <div class="estate_name">
+                                            압구정동 <br> 현대아파트
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="price">
+                                            시세 <span class="num">28</span>억 <span class="num">8,000</span>만원
+                                        </div>
+                                        <!--상승 up 하락 down 클래스 사용--->
+                                        <div class="market_price up">
+                                            <span class="text_over">상승</span>
+                                            <span>
+                                                <em class="num">4</em><em class="unit">억</em><em class="num">2,000</em><em class="unit">만원</em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="estate_card_wrap bg02">
+                                    <div class="top">
+                                        <span class="icon_mint">전세</span>
+                                        <div class="estate_name">
+                                            압구정동 <br> 현대아파트
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="price">
+                                            시세 <span class="num">28</span>억 <span class="num">8,000</span>만원
+                                        </div>
+                                        <!--상승 up 하락 down 클래스 사용--->
+                                        <div class="market_price down">
+                                            <span class="text_over">하락</span>
+                                            <span>
+                                                <em class="num">1</em><em class="unit">억</em><em class="num">2,000</em><em class="unit">만원</em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="estate_card_wrap bg03">
+                                    <div class="top">
+                                        <span class="icon_mint">월세</span>
+                                        <div class="estate_name">
+                                            압구정동 <br> 현대아파트
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div class="price">
+                                            시세 <span class="num">28</span>억 <span class="num">8,000</span>만원
+                                        </div>
+                                        <!--상승 up 하락 down 클래스 사용--->
+                                        <div class="market_price up">
+                                            <span class="text_over">상승</span>
+                                            <span>
+                                                <em class="num">4</em><em class="unit">억</em><em class="num">2,000</em><em class="unit">만원</em>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--// 20211108 한별 접근성 <span class="text_over">상승</span>,<span class="text_over">하락</span> 추가 E -->
+                </div>
+                <!-- 2021108 한별 접근성 role="button" 추가 S -->
+                <div class="com_inner">					
+                    <div class="del_modi_wrap">
+                        <div class="float_inner">
+                            <a href="#nolink" role="button" class="btn_iconwrite"><span class="blind">수정</span></a>
+                            <a href="#nolink" role="button" class="btn_icodelete"><span class="blind">삭제</span></a>
+                        </div>
+                    </div>
+                    <div class="car_detail_box new_box_sub_wrap separate add_btn_calcu">
+                        <div class="box_sub">
+                            <div class="box_content">
+                                <div class="info">
+                                    <div class="tt">
+                                        <h2 class="name">구입가 </h2>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <span class="num">2,123</span>만원
+                                </div>
+                            </div>
+                            <div class="box_content">
+                                <div class="info">
+                                    <div class="tt">
+                                        <h2 class="name">유형</h2>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <span class="txt">아파트 </span>
+                                </div>
+                            </div>
+                            <div class="box_content">
+                                <div class="info">
+                                    <div class="tt">
+                                        <h2 class="name">주거형태</h2>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <span class="txt">자가</span>
+                                </div>
+                            </div>
+                            <div class="box_content">
+                                <div class="info">
+                                    <div class="tt">
+                                        <h2 class="name">면적</h2>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <span class="num">154.3 m2</span>
+                                </div>
+                            </div>
+                            <a href="#nolink" role="button" class="btn_calcu"><span>재산세계산기</span></a>
+                        </div>
+                    </div>
+
+                    <div class="new_box_sub_wrap separate mt15">
+                        <div class="box_sub">
+                            <h1>담보대출 <a href="#nolink" role="button" class="com_btnround_type04 fr"><span>대출삭제</span></a><a href="#nolink" role="button" class="com_btnround_type04 fr"><span>대출변경</span></a></h1>
+                            <div class="box_content">
+                                <div class="info">
+                                    <div class="tt">
+                                        <h2 class="name">내집마련드림대출</h2>
+                                        <p class="num">12375312345</p>
+                                    </div>
+                                </div>
+                                <div class="price">
+                                    <span class="num">123,456,789</span>원
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <strong class="com_pop_tit01 com_center mt30">등록한 부동산에  보유 중인 대출 상품이 있나요?</strong>
+                    <div class="com_btn_area mt15 new_mb30">
+                        <a href="#nolink" role="button" class="com_btn_round"><span class="btn_money">대출 선택하기</span></a>
+                    </div>
+
+                    <a href="#nolink" role="button">
+                        <div class="com_box_type03 mt25 bg03">
+                            <div class="text">내 집 마련의 꿈<br> <span class="color">목표를 시작으로 현실로! </span></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="new_add_register"><a href="#nolink" role="button"><span>더 연결할 자산이 있으신가요?</span></a></div>
+                <!--// 20211108 한별 접근성 role="button" 추가 E -->
+            </div>
+            
+
+            <!-- 20210713 한별 조회내역이 없을경우 추가 S -->
+			<div id="content" class="sub_main com_bg_type02" style="display: none;">
+                <div class="no_data_box">
+                    <div class="no_data_list">
+                        <p>조회된 정보가 없습니다.</p>
+                    </div>
+                </div>
+                <!-- 2021108 한별 접근성 role="button" 추가 S -->
+                <div class="com_inner com_banner_area">
+                    <a href="#nolink"  role="button">
+                        <div class="com_box_type03 mt25 bg03">
+                            <div class="text">내 집 마련의 꿈<br> <span class="color">목표를 시작으로 현실로! </span></div>
+                        </div>
+                    </a>
+                </div>
+				<div class="new_add_register"><a href="#nolink" role="button"><span>더 연결할 자산이 있으신가요?</span></a></div>
+                <!--// 20211108 한별 접근성 role="button" 추가 E -->
+			</div>
+			<!--// 20210713 한별 조회내역이 없을경우 추가 E -->
+
+            <!-- footer S -->
+            <script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+            <!--// footer E -->
+        </div>
+        
+	</div>
+
+    <script type="text/javascript">
+        $('.slider_wrap .tab_cont').slick({
+            speed : 500,
+            dots : true,
+            arrows : false,
+            vertical : false,
+            adaptiveHeight: true,
+            infinite: false
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>전국 둘레길 현황</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>전국 둘레길</h1>
+			
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+
+			<div id="content">
+				
+				<section class="local_info road">
+					<div class="mylocal">
+						<p class="txt">우리나라<br>둘레길은요</p>
+						<p>한국관광공사가 함께합니다</p>
+					</div>
+
+					<div class="board_box">
+						<ul class="thum_list">
+							<li>
+								<a href="#nolink" class="item">
+									<img src="../../../../src/assets_v40/images/img/img_road_01.png" alt="" class="img">
+									<p class="name">DMZ평화의 길</p>
+									<!-- <p class="date">2024.12.23~2025.01.20</p> -->
+									<p class="location">510km 여행길</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<img src="../../../../src/assets_v40/images/img/img_road_02.png" alt="" class="img">
+									<p class="name">해파랑길</p>
+									<!-- <p class="date">2024.12.23~2025.01.20</p> -->
+									<p class="location">750km 여행길</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<img src="../../../../src/assets_v40/images/img/img_road_03.png" alt="" class="img">
+									<p class="name">DMZ평화의 길</p>
+									<!-- <p class="date">2024.12.23~2025.01.20</p> -->
+									<p class="location">510km 여행길</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<img src="../../../../src/assets_v40/images/img/img_road_04.png" alt="" class="img">
+									<p class="name">해파랑길</p>
+									<!-- <p class="date">2024.12.23~2025.01.20</p> -->
+									<p class="location">750km 여행길</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="local_search">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="전국 둘레길 코스를 검색하세요" title="전국 둘레길 코스를 검색하세요">
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+
+					<div class="board_box">
+						<p class="sum">검색결과 총 <span class="num">4</span>개</p>
+						<ul class="cate_list ty_local">
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">해파랑길 1코스</p>
+									<p class="text">부산 남구</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">해파랑길 2코스</p>
+									<p class="text">부산 해운대구</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">해파랑길 3코스</p>
+									<p class="text">부산 기장군</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">해파랑길 4코스</p>
+									<p class="text">울산 울주군</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		/*
+			축제명으로 검색하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+	</script>
+</body>
+</html>

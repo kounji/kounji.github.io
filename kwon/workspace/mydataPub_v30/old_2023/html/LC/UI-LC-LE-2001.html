@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지출내역 목록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript" src="../../../resource/js/slick.min.js"></script>	
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header" class="mydata2023">
+			<h1>지출</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">뒤로</span></a>		
+			<div class="header_option">
+				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<!-- content-view S -->
+		<div class="content-view mydata2023">
+			<div class="com_tabmenu_type01 menunum04">
+				<ul role="tablist">
+					<li><a href="#nolink">금융달력</a></li>
+					<li class="on"><a href="#nolink">지출내역</a></li>
+					<li><a href="#nolink">지출분석</a></li>
+				</ul>
+			</div>
+			
+			<div id="content" class="sub_main renewal expenditure_details">
+				<div class="com_inner top_area">
+					<div class="select_date">
+						<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+						<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2023</span>년 <span class="num">6</span>월 </a>
+						<button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+					</div>
+					
+					<div class="new_sub_info">
+						<div class="text">
+							<strong><span class="num">532,456,789</span>원</strong><!-- 0908 counter 삭제 -->
+						</div>
+					</div>
+
+					<!-- <div class="link_area eat_out">
+						<a href="#nolink">
+							외식에 가장 많이 썼어요</a>
+					</div>		 -->
+					
+					<div class="link_area">
+						<i class="AS20000003"><span class="blind">외식</span></i>
+						<a href="#nolink">외식에 가장 많이 썼어요</a>
+					</div>	
+				</div>
+
+				<hr class="hr02">
+
+				<div class="com_inner">
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<div class="new_tit_area">
+									<div class="tit"><span>카드 </span><span class="com_icon_num custom">2</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+							<div class="expenditure_info">
+								<div class="text">
+									<p>
+										지난달 총지출 보다<br>
+										<span class="num">123,456,789</span>원 많이 썼어요
+									</p>
+								</div>
+								<div class="chart_img up"></div>
+							</div>
+						</div>
+						<ul class="view_cont list_type_01">
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="H1AAPL0000"><span class="blind">농협</span></i>
+												<em class="prod_name">NH올원파이카드</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">123,456,789</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<em class="prod_name">신한 Deep Dream Platinum+</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">123,456,789</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="com_box_type01">
+						<div class="com_box_inner">
+							<p class="title">카드</p>
+
+							<div class="expenditure_info">
+								<div class="text">
+									<p>
+										카드 내역 확인하고<br> 
+										지출 관리 하세요
+									</p>
+								</div>
+								<div class="card_img"></div>
+							</div>
+
+							<div class="card_link_btn">
+								<a href="javascript:void(0);" role="button" class="com_btn_more">카드 연결</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<div class="new_tit_area">
+									<div class="tit"><span>페이 </span><span class="com_icon_num custom">3</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+							<div class="expenditure_info">
+								<div class="text">
+									<p>
+										지난달 총지출 보다<br>
+										<span class="num">123,456,789</span>원 적게 썼어요
+									</p>
+								</div>
+								<div class="chart_img down"></div>
+							</div>
+						</div>
+						<div class="view_cont link_banner_type">
+							<ul class="list_type_01">
+								<li>
+									<a href="#nolink" role="button">
+										<dl>
+											<dt>
+												<div>
+													<i class="ZYAAQH0000"><span class="blind">네이버</span></i>
+													<em class="prod_name">네이버페이 포인트</em>
+												</div>
+											</dt>
+											<dd>
+												<span class="com_price">
+													<em class="num">123,456,789</em><em class="unit">원</em>
+												</span>
+											</dd> 
+										</dl>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button">
+										<dl>
+											<dt>
+												<div>
+													<i class="ZVAAIA0000"><span class="blind">카카오</span></i>
+													<em class="prod_name">카카오페이 머니</em>
+												</div>
+											</dt>
+											<dd>
+												<span class="com_price">
+													<em class="num">123,456,789</em><em class="unit">원</em>
+												</span>
+											</dd>
+										</dl>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button">
+										<dl>
+											<dt>
+												<div>
+													<i class="A1AAER0000"><span class="blind">신한</span></i>
+													<em class="prod_name">신한Pre선불카드</em>
+												</div>
+											</dt>
+											<dd>
+												<span class="com_price">
+													<em class="num">123,456,789</em><em class="unit">원</em>
+												</span>
+											</dd>
+										</dl>
+									</a>
+								</li>
+							</ul>
+
+							<div class="gray_box_m">
+								<a href="#nolink" class="link_arrow">선불 결제내역을 확인해 보세요</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<div class="new_tit_area">
+									<div class="tit"><span>현금 </span><span class="com_icon_num custom">2</span></div>
+									<span class="total_price">
+										<em class="num">123,456,789</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+							<div class="expenditure_info">
+								<div class="text">
+									<p>
+										지난달 총지출과<br>
+										같아요
+									</p>
+								</div>
+								<div class="chart_img"></div>
+							</div>
+						</div>
+						<ul class="view_cont list_type_01">
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="icon_money"></i>
+												<em class="prod_name">계좌 이체로 쓴 금액</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">123,456,789</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" role="button">
+									<dl>
+										<dt>
+											<div>
+												<i class="icon_money"></i>
+												<em class="prod_name">직접 등록한 지출 금액</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">123,456,789</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="com_box_type01 communication_price">
+						<div class="new_tit_area">
+							<div class="tit">
+								<span>통신비 청구금액</span>
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+											<div>
+												<p>
+													통신비 청구금액은 결제 예정금액으로 현재
+													총지출 금액에는 포함되지 않으며 결제일
+													이후에 카드/페이/현금 결제 내역에서 확인 
+													가능합니다.
+												</p>
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- <span class="total_price">
+								<em class="num">456,789</em><em class="unit">원</em>
+							</span>
+							<button type="button" class="link_btn"></button> -->
+
+							<!-- 0912 터치 영역 수정 -->
+							<a href="#nolink" role="button" class="link_btn">
+								<span class="total_price">
+									<em class="num">456,789</em><em class="unit">원</em>
+								</span>
+							</a>
+							<!-- //0912 터치 영역 수정 -->
+						</div>	
+						
+
+						<ul class="list_type_01">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="H1AAPL0000"><span class="blind">SK텔레콤</span></i>
+											<em class="prod_name">SK텔레콤</em>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">123,456,789</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAER0000"><span class="blind">LG유플러스</span></i>
+											<em class="prod_name">LG유플러스</em>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">123,456,789</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>				
+
+					<div class="subSvcBannerArea fixType">
+						<div class="com_box_type01 bannerCard expd">
+							<a href="#nolink">
+								<p>매월 이만큼 써요</p>
+								<strong>정기지출</strong>
+							</a>
+						</div>
+						<div class="com_box_type01 bannerCard taxf">
+							<a href="#nolink">
+								<p>이번달 내 소비는?</p>
+								<strong>지출분석</strong>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+
+		</div>
+		
+	</div>
+</body>
+</html> 

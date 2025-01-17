@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이데이터 서비스 가입</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+ 
+<body>
+	
+	<div id="wrap">
+		<!-- header S -->
+		<header id="header">
+			<h1>마이데이터 서비스 가입</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>		
+		</header>
+		<!--// header E -->
+
+		<!-- content S -->
+		<div id="content-prev" class="com_sub_02">
+			<div class="com_inner com_line_type01 com_top_type02">
+                <strong class="com_pop_tit01">등록하신 권유직원은 변경할 수 없습니다.</strong>
+                <p class="com_txtinfo_type01 mt4">서비스 해지 후 1년이 지나면 변경 가능합니다.</p>
+			</div>
+			
+			<!--권유직원 구분 선택-->
+			<ul class="com_radio02_type01 style01 fixed">
+				<li>
+					<span class="btn_radio02">
+						<input type="radio" name="agree" id="agree01" aria-hidden="true">
+						<label for="agree01" role="radio" aria-checked="false">
+							<span>성명</span>
+						</label>
+					</span>
+				</li>
+				<li>
+					<span class="btn_radio02">
+						<input type="radio" name="agree" id="agree02" aria-hidden="true">
+						<label for="agree02" role="radio" aria-checked="false">
+							<span>사원번호</span>
+						</label>
+					</span>
+				</li>
+			</ul>
+			<!--//권유직원 구분 선택-->
+
+			<div class="com_inner com_boxarea_type01">
+				<div class="com_input_type02">
+					<label for="txt01"></label>
+					<input type="search" id="txt01" class="" name="" value="" placeholder="권유직원을 입력해주세요." title="권유직원 찾기"><!--  20211111 한별 접근성 추가 (title="") -->				
+					<a href="javascript:void(0);" class="com_btn_delete"><span class="blind">삭제</span></a>
+					<a href="javascript:void(0);" class="com_btn_search"><span class="blind">검색</span></a>
+				</div>
+				<p class="dot_msg mt15">권유직원이 없으시면 '권유직원 없음' 버튼을 눌러주세요.</p><!--  20211207 한별 수정 -->
+			</div>
+		</div>
+
+		<div class="bottom_box">
+			<div class="com_btnhalfbox_type01 fixed">
+				<a href="javascript:void(0);" v-on:click="nextPage(false)" class="btn btn_mint">다음</a>
+				<a href="javascript:void(0);" v-on:click="nextPage(true)" class="btn btn_grey">권유직원없음</a>
+			</div>
+		</div>
+
+	</div>
+
+
+
+	
+
+
+
+	
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>투자목표</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">투자목표</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<!-- 2022-10-07 위치 변경 마크업 수정 -->
+			<!-- 2022-11-10 디자인팀 요청으로 클래스 삽입 : pt1  -->
+			<div class="com_inner com_line_type01 com_top_type02 pt1">
+				<!-- 2022-11-10 디자인팀 요청으로 클래스 삽입 : mt0  -->
+				<div class="titbox_type01 style_up mt0">
+					<strong class="com_pop_tit01">투자목표를 설정하세요.</strong>
+				</div>
+			</div>
+			<!-- //2022-10-07 위치 변경 마크업 수정 -->
+			<div class="com_inner">
+				<div class="com_input_type01">
+					<input type="text" id="com_input01" class="" name="" value="" required="" placeholder="목표 제목 입력" title="목표 제목 입력">
+					<label for="com_input01"><span class="txt_label_x">목표제목</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2 type02"></span>
+					</div>
+				</div>
+				<!-- 계좌선택전 -->
+				<div class="connect_asset custom">
+					<div class="connect_tit">
+						어떤계좌의 투자목표를 설정하시겠어요?
+					</div>
+					<p>
+						펀드계좌의 평가금액으로 목표를 설정하세요
+					</p>
+					<div class="com_btn_area"><a href="javascript:void(0);" role="button" class="com_btn_round"><span class="btn_plus black">연결계좌 선택</span></a></div>
+				</div>
+				<!-- //계좌선택전 -->
+				<!-- 계좌선택후 -->
+				<div>
+					<div class="card_list_box custom">
+						<ul class="list_type_01">
+							<li>
+								<dl>
+									<dt>
+										<i class="bank_01"><span class="blind">농협</span></i>
+										<div>
+											<em>농협은행</em>
+											<span>123412312313</span>
+										</div>
+									</dt>
+									<dd>
+										<span class="com_price">
+											<em class="num">5,000,000</em><em class="unit">원</em>
+										</span>
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<div class="com_btn_area"><a href="javascript:void(0);" role="button" class="com_btn_round"><span class="btn_plus black">연결계좌 다시 선택</span></a></div>
+				</div>
+				<!-- //계좌선택후 -->
+				<div class="price_wrap mg_cl"><!-- 2022-07-01 mg_cl 추가 -->
+					<div class="com_input_type01 com_word2">
+						<input type="number" id="com_input02" class="input_right" name="" value="" required="" placeholder="얼마를 모을까요" title="목표평가금액 입력"><!-- 2022-06-30 input type number 변경-->
+						<label for="com_input02"><span class="txt_label_x">목표금액</span></label>
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">만원</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p>
+						<!-- 2022-06-30 버튼위치변경 -->
+						<div class="btn_price_group">
+							<button type="button" class="btn_price">+<strong>5</strong>만</button>
+							<button type="button" class="btn_price">+<strong>10</strong>만</button>
+							<button type="button" class="btn_price">+<strong>100</strong>만</button>
+							<button type="button" class="btn_price">+<strong>1000</strong>만</button>
+						</div>
+						<!-- //2022-06-30 버튼위치변경 -->
+					</div>
+				</div>
+				<div class="com_input_type01" role="button" aria-label="필수입력, 목표기간 2022년 10월 17일, 목표기간 선택" ><!-- 22-10-20 접근성 aria 추가-->
+					<input type="text" id="com_input03" class="input_cal_date input_right" name="" value="" required="" placeholder="언제까지 모을까요(최소1개월~10년사이)" title="언제까지 모을까요" aria-hidden="true">
+					<label for="com_input03"><span class="txt_label_x">목표기간</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2 type02"></span>
+					</div>
+				</div>
+				<!-- 계좌선택후 -->
+				<div class="com_txt">
+					<strong>2022년 10월 15일</strong>까지<br> 
+					<strong class="num">100,000,000</strong>원을 모으려면
+					<p>매 월 <strong class="com_point_darkblue">30,000원</strong>씩 모으면 가능해요!</p><!-- 2022-10-14 com_point_darkblue 변경 -->
+				</div>
+				<!-- //계좌선택후 -->
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">등록</a>
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

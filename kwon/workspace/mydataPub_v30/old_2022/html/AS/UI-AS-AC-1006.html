@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>계좌별 예상 잔액조회 (예정) &lt; 계좌 잔액 예상 리포트 &lt; 예금 &lt; 자산현황 &lt; 자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>계좌별 예상 잔액 조회</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+			
+				<!-- <div class="select_box_detail">
+					<button type="button" class="com_btnselect_type01 layerPopupOpen" data-popup="slide_popup_01">전체카드</button>
+				</div> -->
+				<div class="custom_list com_box_type01 custom_box_com_box_list02">
+					<div class="list_type_custom">
+						<a href="javascript:void(0)" role="button" class="list_item arrow">
+							<i class="I1AAAZ0000"><span class="blind">NH농협</span></i>
+							<span>
+								<strong class="tit">콕BASIC통장</strong>
+
+								<span class="subtxt">농협중앙회</span><span class="num">5317020184123</span>
+							</span>
+						</a>
+					</div>
+				</div>
+				<div class="char_box01">
+					<!-- 2022-11-16 : 기획 업데이트로 인해 삽입 -->
+					<div class="chart_tit">
+						<ul class="bl_dot_list">
+							<li>날짜를 선택해 예상 잔액을 확인하세요.</li>
+						</ul>
+					</div>
+					<!--// 2022-11-16 : 기획 업데이트로 인해 삽입 -->
+
+					<!-- 차트가 삽입될 DIV -->
+					<!-- 22-10-26 접근성 추가 -->
+					<div id="chartHolder" role="img" aria-label="계좌별 예상 잔액 조회 - 08.02 9000, 08.03 300, 0805 1,100 지출하였습니다"></div>
+
+					<!-- 2022-11-16 : 기획 업데이트로 인해 삽입 -->
+					<div class="post_popup">
+						<div class="com_arrow_box">
+							<span class="arrow"></span>
+						</div>
+						<div class="com_content_box">
+							<div>좌우로 차트를 밀면 감춰진 날짜를 볼 수 있어요</div>
+						</div>
+					</div>
+					<!--// 2022-11-16 : 기획 업데이트로 인해 삽입 -->
+				</div>
+			
+				<!-- 8월 4일 수요일 -->
+				<div class="new_tit_area pb16 pt30 bdb0">
+					<strong class="com_pop_tit05">8월 4일 수요일</strong>
+                </div>
+				<!--// 8월 4일 수요일 -->
+				
+				<!-- 통장 잔액 -->
+				<div class="custom_box custom_box_com_box_list02">
+					<div class="com_box_type02 custom_com_box">
+						<div class="df first wh">
+							<strong class="txttotal">통장 잔액</strong>
+							<strong class="com_mumbertotal">
+								<span class="num">160,000,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df wh">
+							<p>
+								<strong class="txttotal">삼성화재해상보험㈜</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df wh">
+							<p>
+								<strong class="txttotal">넷플릭스</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df wh nolin">
+							<p>
+								<strong class="txttotal">40주년 페스타적금</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df end">
+							<p>
+								<strong class="txttotal">예상잔액</strong>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num com_point_darkblue">1,156,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+					</div>
+				</div>
+				<!--// 통장 잔액 -->
+
+				<!-- 잔액 예상은 전월 기준 당월을 예상한 결과로 실제 잔액과 다를 수 있습니다. -->
+				<div class="help_box pt15">
+					<ul class="bl_dot_list one_register_list m0">
+						<li>
+							잔액 예상은 전월 기준 당월을 예상한 결과로 실제 잔액과 다를 수 있습니다.
+						</li>
+					</ul>
+				</div>
+				<!--// 잔액 예상은 전월 기준 당월을 예상한 결과로 실제 잔액과 다를 수 있습니다. -->
+
+				<!-- 예상 지출이 없는 날 이에요 -->
+				<div class="no_data_box">
+					<div class="no_data_list">
+						<p>예상 지출이 없는 날 이예요</p>
+						<span class="txt_sub">추가할 정기지출이 더 있지 않나요?</span>
+						<!-- 2022-10-05 : mt35 추가 -->
+						<div class="btn_wrap mt35">
+							<a href="javascript:void(0);" role="button" class="com_btn_round"><span class="btn_plus black">자산연결</span></a>
+						</div>
+					</div>
+				</div>
+				<!--// 예상 지출이 없는 날 이에요 -->
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+	<script>
+		$(function() {
+			
+			// 차트
+			function chart01() {
+				// -----------------------차트 설정 시작-----------------------
+
+				// rMateChart 를 생성합니다.
+				// 파라메터 (순서대로)
+				//  1. 차트의 id ( 임의로 지정하십시오. )
+				//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+				//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+				//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+				//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+				rMateChartH5.create("chart1", "chartHolder", "", "100%", "100%");
+
+				// 스트링 형식으로 레이아웃 정의.
+				var layoutStr =
+					'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+						+'<Options>'
+							// +'<Caption text="Annual Report"/>'
+							+'<SubCaption text="" fontSize="11" textAlign="right"/>'
+						+'</Options>'
+						+'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>' 
+						// Area2DChart gutterLeft="0" showDataTips="true" : 왼쪽 라벨 없애는 속성(?)
+						/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+						+'<Area2DChart gutterLeft="0" showDataTips="true" displayCompleteCallFunction="removeTabindex">'
+							+'<horizontalAxis>'
+								+'<CategoryAxis categoryField="Month" padding="0.5"/>'
+							+'</horizontalAxis>'
+							+'<verticalAxis>'
+								+'<LinearAxis id="vAxis" interval="300" formatter="{numfmt}"/>'
+							+'</verticalAxis>'
+							+'<verticalAxisRenderers>'
+								+'<Axis2DRenderer  axis="{vAxis}"/>'
+							+'</verticalAxisRenderers>'
+							+'<series>'
+								+'<Area2DSeries labelPosition="up" radius="6" yField="Profit" form="segment" displayName="Profit" itemRenderer="CircleItemRenderer">'
+								/* fillJsFunction : Series의 채우기 Javascript함수로 html에 보내는 데이터값의 범위에 따라 */
+								/* html내의 Javascript함수에서 데이터를 판단하고 데이터값에 맞는 색을 return합니다. */
+									// 2022-11-07 : 속도 문제로 주석처리
+									// +'<showDataEffect>'
+									// 	+'<SeriesInterpolate/>'
+									// +'</showDataEffect>'
+									/* 컬러값 변경 : 녹색선 + 오피시티 */
+									+'<areaStroke>'
+										+'<Stroke color="#23a0a5" weight="0.7"/>'
+										// +'<Stroke color="red" weight="0.7"/>'
+									+'</areaStroke>'
+									+'<areaFill>'
+											+'<SolidColor color="#23a0a5" alpha="0.7"/>'
+										+'</areaFill>'
+								+'</Area2DSeries>'
+							+'</series>'
+							+'<horizontalAxis>'
+								+'<CategoryLinearAxis id="hAxis" categoryField="Month"/>'
+								/* Scroll_Column_2D차트를 생성시엔 verticalAxis에 CategoryLinearAxis를 정의해야합니다 */
+							+'</horizontalAxis>'
+							+'<horizontalAxisRenderers>'
+								+'<ScrollableAxisRenderer axis="{hAxis}" visibleItemSize="7"/>'
+								/*
+								Scroll_Column_2D차트를 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+								*/
+							+'</horizontalAxisRenderers>'
+						+'</Area2DChart>'
+					+'</rMateChart>';
+
+					// 차트 데이터
+					var chartData = [
+					{"Month":"08.02","Profit":9000},
+										{"Month":"08.03","Profit":9000},
+										{"Month":"08.04","Profit":0},
+										{"Month":"08.05","Profit":1100},
+										{"Month":"08.06","Profit":1000},
+										{"Month":"08.07","Profit":900},
+										{"Month":"08.08","Profit":800},
+										{"Month":"08.09","Profit":700},
+										{"Month":"08.10","Profit":600},
+										{"Month":"08.11","Profit":500},
+										{"Month":"08.12","Profit":400},
+										{"Month":"08.13","Profit":300},
+										{"Month":"08.14","Profit":200},
+										{"Month":"08.15","Profit":100}
+									];	
+					rMateChartH5.calls("chart1", {
+						"setLayout" : layoutStr,
+						"setData" : chartData
+					});
+			}
+			chart01(); // 차트
+
+			// 2022-11-16 : 기획 업데이트로 인해 삽입
+			postPopupFn(); // post_popup( txt : 좌우로 차트를 밀면 감춰진 날짜를 볼 수 있어요 )
+		});
+
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+
+		// 2022-11-16 : 기획 업데이트로 인해 삽입
+		// post_popup( txt : 좌우로 차트를 밀면 감춰진 날짜를 볼 수 있어요 )
+		function postPopupFn() {
+			var post_popup = $('.renewal .char_box01 .post_popup');
+			post_popup.delay(3000).fadeOut(400);
+		}
+	</script>
+</body>
+</html>

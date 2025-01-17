@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지역문화시설목록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>지역문화시설</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+
+			<div id="content">
+				
+				<section class="local_info culture">
+					<!--관심지역 설정-->
+					<div class="local_favorite">
+						<h2>관심지역 설정</h2>
+
+						<div class="setting">
+							<div class="toggle_check">
+								<input type="checkbox" title="선택" name="" id="toggle_check_01">
+								<label for="toggle_check_01">
+									<span class="blind">관심지역</span>
+								</label>
+							</div>
+
+							<button type="button" class="btn_setting"><span class="blind">관심지역설정하기</span></button>
+						</div>
+
+						<!--셋팅전-->
+						<div class="mylocal">
+							<p class="txt">우리 어디서<br>만날까요?</p>
+							<p>한국문화정보원이 함께합니다</p>
+						</div>
+						<!--//셋팅전-->
+
+						<!--셋팅후-->
+						<div class="mylocal after">
+							<p class="txt">지금 <span>서울</span>을<br>만나러 갑니다</p>
+							<p>한국문화정보원이 함께합니다</p>
+						</div>
+						<!--//셋팅후-->
+					</div>
+
+					<div class="local_search">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요($서울$지역)" title="검색어를 입력하세요($서울$지역)">
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+
+					<a href="http://xn--zb0b89fr6j1ya86wzy3a.xn--3e0b707e/index.htm" target="_blank" class="img_banner">
+						<img src="../../../../src/assets_v40/images/banner/img_banner_local01.png" alt="맛이 좋은 농업쌀박물관 바로가기">
+					</a>
+
+					<!-- empty 케이스 -->
+					<div class="no_result">
+						<p class="text">현재 관심지역이 미 설정 상태에요.<br>관심지역을 설정해보세요.</p>
+					</div>
+					<!-- //empty 케이스 -->
+
+					<div class="category_tab has_btn">
+						<ul role="tablist">
+							<li class="on"><a href="#navi11" role="tab" aria-selected="true">모두보기</a></li>
+							<li><a href="#navi12" role="tab" aria-selected="false">생활문화센터</a></li>
+							<li><a href="#navi13" role="tab" aria-selected="false">문화의집</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">미술관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+						</ul>
+						<button type="button" class="btn_fold" aria-expanded="false"><span class="blind">토글 버튼</span></button>
+					</div>
+					
+					<div class="board_box">
+						<p class="sum">검색결과 <span class="num">가나다</span>순</p>
+						<ul class="cate_list ty_local">
+							<!-- [D]: 생활문화센터 : .local01, 문화의집 : .local02, 미술관 : .local03, 문예회관 : .local04 -->
+							<li class="local01">
+								<a href="#nolink" class="item">
+									<p class="name">한광미술관</p>
+									<p class="text">부산광역시 중구 중앙대로 130 주소 한 줄 기준 말줄임</p>
+								</a>
+							</li>
+							<li class="local02">
+								<a href="#nolink" class="item">
+									<p class="name">천안시립미술관</p>
+									<p class="text">천안시 동남구 성남면 용원리 710</p>
+								</a>
+							</li>
+							<li class="local03">
+								<a href="#nolink" class="item">
+									<p class="name">파소 갤러리 헤리티지</p>
+									<p class="text">서울시 종로구 성균관로 92</p>
+								</a>
+							</li>
+							<li class="local04">
+								<a href="#nolink" class="item">
+									<p class="name">아울 갤러리</p>
+									<p class="text">서울시 강서구 곰달래로59길 67</p>
+								</a>
+							</li>
+							<li class="local04">
+								<a href="#nolink" class="item">
+									<p class="name">아울 갤러리</p>
+									<p class="text">서울시 강서구 곰달래로59길 67</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="board_box">
+						<h2 class="title">전국 인구현황</h2>
+						<div class="total_num">
+							<span class="pin purple">2022.10월 통계기준</span>
+							<p class="total">총 인구수 <span class="num">9,635,445</span>명</p>
+							<div class="box">
+								<p>남녀성비: <span class="num">1.05</span></p>
+							</div>
+						</div>
+						<ul class="cate_list ty_gender">
+							<li class="man">
+								<p class="name">남성인구</p>
+								<p class="text"><span class="num">4,947,469</spanc>명</p>
+							</li>
+							<li class="woman">
+								<p class="name">여성인구</p>
+								<p class="text"><span class="num">4,947,469</span>명</p>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+
+			<aside class="tabbar block">
+				<!--toolbar-->
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">연금/절세</a></li>
+						<li><a href="#nolink">추천</a></li>
+					</ul>
+				</nav>
+			</aside>
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		/*
+			검색어를 입력하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+	</script>
+</body>
+</html>

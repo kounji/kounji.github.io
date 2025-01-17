@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지난달 지출 비교</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "450rem");
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "450rem");
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+				+'<Stroke id="stroke" color="#111" weight="1"/>'
+				+'<Options>'
+					// +'<Caption text="Sales by Month"/>'
+					+'<Legend defaultMouseOverAction="false" useVisibleCheck="true"/>'
+				+'</Options>'
+				+'<CurrencyFormatter id="nft" currencySymbol="만원" alignSymbol="right"/>'
+				/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+				+'<Bar2DChart barWidthRatio="0.66" styleName="tickText" gutterBottom="0" showDataTips="false" selectionMode="single" dataTipJsFunction="tipTxt" displayCompleteCallFunction="removeTabindex">'
+					+'<verticalAxis>'
+						+'<CategoryAxis categoryField="Month"/>'
+					+'</verticalAxis>'
+					+'<horizontalAxis>' 
+						+'<LinearAxis interval="10"/>'
+					+'</horizontalAxis>'
+					+'<series>'
+					/* Bar2D Multi-Sereis 를 생성시에는 Bar2DSeries 여러 개 정의합니다 */
+						+'<Bar2DSeries styleName="valueLabelStyle" halfWidthOffset="5" labelPosition="outside" xField="prev" displayName="지난달" color="#333333" formatter="{nft}" >'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate/>'
+							+'</showDataEffect>'
+							+'<fills>'
+								+'<SolidColor color="#cccccc"/>'
+							+'</fills>'
+						+'</Bar2DSeries>'
+						+'<Bar2DSeries styleName="valueLabelStyle" halfWidthOffset="5" labelPosition="outside" xField="next" displayName="이번달" color="#333333" formatter="{nft}" >'
+							+'<showDataEffect>'
+								+'<SeriesInterpolate/>'
+							+'</showDataEffect>'
+							+'<fills>'
+							+'<SolidColor color="#57c9ae"/>'
+						+'</fills>'
+						+'</Bar2DSeries>'
+					+'</series>'
+					+'<backgroundElements>'
+						//+'<GridLines/>'
+						+'<AxisMarker>'
+							+'<lines>'
+								+'<AxisLine value="0" label="" labelAlign="left" stroke="{stroke}"/>'           
+							+'</lines> '
+						+'</AxisMarker>'
+					+'</backgroundElements>'
+				+'</Bar2DChart>'
+				+'<Style>'
+					+'.tickText{' 
+						+'font-family: "Noto Sans KR";'
+						+'fontSize:14;'
+						+'color:#333;'
+					+'}'
+					+'.valueLabelStyle{'
+						+'fontSize:12;'
+						+'textAlign:center;'
+					+'}'
+					+'.title{'
+						+'fontSize:18;'
+						+'color:#666'
+						+'textAlign:center;'
+					+'}'
+				  +'.title{color:#111; fontSize:14; fontWeight:bold;}'
+				+'</Style>'
+			+'</rMateChart>';
+		
+		// 차트 데이터
+		var chartData =
+			[{"Month":"금융","prev":25,"next":20},
+			{"Month":"주거<br>통신","prev":46,"next":40},
+			{"Month":"교통","prev":77,"next":53},
+			{"Month":"교육","prev":70,"next":70},
+			{"Month":"의료<br>건강","prev":33,"next":48}];
+		var chartData2 =
+			[{"Month":"쇼핑","prev":25,"next":20},
+			{"Month":"외식","prev":46,"next":40},
+			{"Month":"자동차","prev":60,"next":53},
+			{"Month":"여행<br>숙박","prev":77,"next":70},
+			{"Month":"의료<br>건강","prev":33,"next":48}];
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr,
+			"setData" : chartData2
+		});
+		// seriesName
+		function tipTxt(seriesId, seriesName, index, xName, yName, data, values) {
+		 return values[1] +"<br>"+ seriesName +' '+ values[0]+'만원';
+		}
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+		// -----------------------차트 설정 끝 -----------------------
+		
+		</script>
+</head>
+
+<body>
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>지난달 지출 비교</h1>
+		</div>
+		<div class="popup_content com_no_bottom">
+			<div class="com_inner com_line_type01 com_top_type02">
+				<div class="wrap_item_box lcip">
+					<div class="graph_box_wrap">
+						<div class="top_info_box pb0">
+							<p class="subtxt">9월에는</p>
+							<div class="bill">
+								<span class="num counter" data-count="5600000">5,600,000</span><span class="fs22 bold">원을 썼어요.</span>
+							</div>
+							<p class="price_txt_info" role="text">지난달 지출 <em class="num">1,234,567</em>원 (<em class="num">123,456원</em> <span class="price_vary raise"><span>상승</span></span> )</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="com_inner">
+				<div class="chart_price_tit">
+					<strong class="com_pop_tit01">정기지출 TOP 5</strong>
+					<p class="price_txt_info" role="text">
+						이번달 지출 
+						<em class="num">1,234,567</em>원 (
+						<em class="num">123,456원</em> 
+						<span class="price_vary raise"><span>상승</span></span> )
+						<!-- <span class="price_vary decrease"><span>하락</span></span> ) -->
+						<!-- <span class="price_vary zero"><span>유지</span></span> ) -->
+					</p>
+				</div>
+				<div class="com_box_type01">
+					<!-- <p class="chart_sub_txt">[단위: 만원]</p> -->
+					<div id="chartHolder" class="chart_left_bor" role="img" aria-label="정기지출 TOP 5 이번달 지출 - 의료건강 지난달 000 / 이번달 000, 교육 지난달 000 / 이번달 000, 교통 지난달 000 / 이번달 000, 주거통신 지난달 000 / 이번달 000, 금융 지난달 000 / 이번달 000 입니다."></div>
+				</div>
+				<div class="chart_price_tit">
+					<strong class="com_pop_tit01">변동지출 TOP 5</strong>
+					<p class="price_txt_info" role="text">
+						이번달 지출 
+						<em class="num">1,234,567</em>원 (
+						<em class="num">123,456원</em> 
+						<!-- <span class="price_vary raise"><span>상승</span></span> ) -->
+						<span class="price_vary decrease"><span>하락</span></span> )
+						<!-- <span class="price_vary zero"><span>유지</span></span> ) -->
+					</p>
+				</div>
+				<div class="com_box_type01">
+					<div id="chartHolder2" class="chart_left_bor" role="img" aria-label="변동지출 TOP 5 이번달 지출 - 의료건강 지난달 000 / 이번달 000, 교육 지난달 000 / 이번달 000, 교통 지난달 000 / 이번달 000, 주거통신 지난달 000 / 이번달 000, 금융 지난달 000 / 이번달 000 입니다."></div>
+				</div>
+			</div>
+			<!-- <div class="com_inner">
+				<div class="com_btn_area02"><a href="#nolink" class="com_btn_more"><span>더보기</span></a></div>
+			</div> -->
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+	
+</body>
+</html> 

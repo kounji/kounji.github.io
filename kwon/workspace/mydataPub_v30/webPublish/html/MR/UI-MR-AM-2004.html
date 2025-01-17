@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>만료 기관 관리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function() {
+			//전체선택
+			jQuery('.btn_check3 input[type=checkbox]').prop("checked",true);//전체선택 체크
+			var _btn = jQuery('.btn_check3.checkAll input[type=checkbox]'),
+					_checkAll = jQuery('.bottomBtnType input[type=checkbox]'),
+					_checkAllCnt =_checkAll.length;//전체 체크박스 갯수
+			_btn.on('click',function(){
+				if(jQuery(this).prop("checked")){
+					jQuery(this).next().text('선택해제');
+					jQuery('.btn_check input[type=checkbox]').prop("checked",true);
+				}else{
+					jQuery(this).next().text('전체선택');
+					jQuery('.btn_check input[type=checkbox]').prop("checked",false);
+				};
+			});
+			//항목선택
+			_checkAll.on('click',function(){
+				_checkedCnt =jQuery('.bottomBtnType input[type=checkbox]:checked').length;//선택된 체크박스 갯수
+				//console.log(_checkAllCnt + " == " + _checkedCnt);
+				if(_checkAllCnt == _checkedCnt){
+					_btn.prop("checked",true);
+					_btn.next().text('선택해제');
+				}else{
+					_btn.prop("checked",false);
+					_btn.next().text('전체선택');
+				};
+			});
+		});
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>만료 기관 관리</h1>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner progress_wrap">
+				<strong class="titH1"><span>2</span>개 기관의 자산 조회 기간을<br>연장해 주세요.</strong>
+				<!-- 선택해제 -->
+				<div class="custom_box flex_new_tit_area">
+					<div class="">
+					</div>
+					<div class="btn_check btn_check3 checkAll">
+						<input type="checkbox" name="checkAll" id="checkAll" checked="checked">
+						<label for="checkAll">선택해제</label>
+					</div>
+				</div>
+				<!--// 선택해제 -->
+				<!-- 농협은행 -->
+				<div class="com_box_type01 bottomBtnType nonBtn">
+					<div class="tit">
+						<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
+						<div class="btn_check">
+							<input type="checkbox" name="checkall" checked id="checkall01">
+							<label for="checkall01">
+								<span class="bank_name">NH농협은행</span>
+								<span class="dat">연결 만료가 28일 남았어요</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!--// 농협은행 -->
+				<!-- NH농협카드 -->
+				<div class="com_box_type01 bottomBtnType nonBtn">
+					<div class="tit">
+						<i class="A1AABG0000"><span class="blind">NH농협카드</span></i>
+						<div class="btn_check">
+							<input type="checkbox" name="checkall" checked id="checkall02">
+							<label for="checkall02">
+								<span class="bank_name">NH농협카드</span>
+								<span class="dat">연결이 오늘 만료되요</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!--// NH농협카드 -->
+				<!-- DB손해보험 -->
+				<div class="com_box_type01 bottomBtnType nonBtn">
+					<div class="tit">
+						<i class="B2AAEN0000"><span class="blind">DB손해보험</span></i>
+						<div class="btn_check">
+							<input type="checkbox" name="checkall" checked id="checkall03">
+							<label for="checkall03">
+								<span class="bank_name">DB손해보험</span>
+								<span class="dat">연결 만료가 18일 남았어요</span>
+							</label>
+						</div>
+					</div>
+				</div>
+				<!--// DB손해보험 -->
+				<!-- 국민연금공단 -->
+				<div class="com_box_type01 bottomBtnType nonBtn">
+					<div class="tit">
+						<i class="B2AAEN0000"><span class="blind">국민연금공단</span></i>
+						<span class="btn_check">
+							<input type="checkbox" name="checkall" checked id="checkall10">
+							<label for="checkall10">
+								<span class="bank_name">국민연금공단</span>
+								<span class="dat">연결 만료가 20일 남았어요</span>
+							</label>
+						</span>
+					</div>
+				</div>
+				<!--// 국민연금공단 -->
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" role="button" class="btn btn_mint">2개 기관 만료일 연장</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

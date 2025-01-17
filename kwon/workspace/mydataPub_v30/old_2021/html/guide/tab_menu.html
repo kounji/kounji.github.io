@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>layout sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+        <header id="header">
+			<h1>탭 메뉴</h1>
+			<a href="javascript:void(0);" class="btn_home"><span class="blind">홈</span></a>		
+			<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		</header>
+		<!--// header E -->
+
+        <!-- content-view S -->
+		<div class="content-view">
+            <div class="com_tabmenu_type01 menunum02">
+                <ul role="tablist">
+                    <li class="on"><a href="javascript:void(0);">조회내역</a></li>
+                    <li><a href="javascript:void(0);">변동내역</a></li>
+                </ul>
+            </div> 
+
+            <div class="com_tabmenu_type01 menunum03" style="top:10rem;">
+                <ul role="tablist">
+                    <li class="on"><a href="javascript:void(0);">연체</a></li>
+                    <li><a href="javascript:void(0);">대출</a></li>
+                    <li><a href="javascript:void(0);">카드</a></li>
+                </ul>
+            </div>
+
+			<div class="com_tabmenu_type01 menunum04" style="top:15rem;">
+				<ul role="tablist">
+					<li class="on"><a href="javascript:void(0);">전체</a></li>
+					<li><a href="javascript:void(0);">자산</a></li>
+					<li><a href="javascript:void(0);">부채</a></li>
+					<li><a href="javascript:void(0);">진단</a></li>
+				</ul>
+			</div>
+            <div class="lnb pb0" style="top:20rem;">
+                <ul role="tablist">
+                    <li><a href="javascript:void(0);">예금</a></li><!-- [개발자전달] 20210723 명칭변경 되었습니다 -->
+                    <li><a href="javascript:void(0);">투자</a></li>
+                    <li><a href="javascript:void(0);">보험</a></li>
+                    <li><a href="javascript:void(0);">부동산</a></li>
+                    <li class="on"><a href="javascript:void(0);">자동차</a></li>
+                    <li><a href="javascript:void(0);">기타</a></li>
+                </ul>
+            </div>
+            <div class="lnb pb0" style="top:27rem;">
+                <ul role="tablist">
+                    <li><a href="javascript:void(0);">카드</a></li>
+                    <li><a href="javascript:void(0);">대출</a></li>
+                    <li><a href="javascript:void(0);">할부금융</a></li>
+                    <li><a href="javascript:void(0);">자동차할부</a></li>
+                    <li class="on"><a href="javascript:void(0);">리스</a></li>
+                    <li><a href="javascript:void(0);">빌린돈</a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type01 menunum03" style="top:35rem;">
+                <ul role="tablist">
+                    <li><a href="javascript:void(0);">달력</a></li>
+                    <li><a href="javascript:void(0);">지출</a></li>
+                    <li class="on"><a href="javascript:void(0);">분석</a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type02" style="top:40rem;">
+				<div>
+					<ul role="tablist">
+						<li class="on"><a href="javascript:void(0);">나의목표</a></li>
+						<li><a href="javascript:void(0);">상품추천</a></li>
+						<li><a href="javascript:void(0);">금융통통</a></li>
+						<li><a href="javascript:void(0);">자동차</a></li>
+					</ul>
+				</div>
+            </div>
+            <div class="lnb" style="top:45rem;">
+                <ul role="tablist">
+                    <li class="on"><a href="javascript:void(0);">전체</a></li>
+                    <li><a href="javascript:void(0);">진행중</a></li>
+                    <li><a href="javascript:void(0);">종료</a></li>
+                </ul>
+            </div>
+            <div class="lnb pb0" style="top:51rem;">
+                <ul role="tablist">
+                    <li class=""><a href="javascript:void(0);" aria-selected="true" role="tab">상품추천</a></li>
+					<li class="on"><a href="javascript:void(0);" aria-selected="false" role="tab">은퇴 준비 진단</a></li>
+                </ul>
+            </div>
+            <div class="lnb pb0" style="top:57rem;">
+                <ul role="tablist">
+                    <li class="on"><a href="javascript:void(0);">나의 연말정산</a></li>
+					<li><a href="javascript:void(0);">카드활용가이드</a></li><!-- [개발자전달] 20210723 명칭변경 되었습니다 -->
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type02" style="top:65rem;">
+                <div>
+                    <ul role="tablist">
+                        <li class="on"><a href="javascript:void(0);">영농달력</a></li>
+                        <li><a href="javascript:void(0);">영농일지</a></li>
+                        <li><a href="javascript:void(0);">농기계임대</a></li>
+                        <li><a href="javascript:void(0);">손익분석</a></li>
+                        <li><a href="javascript:void(0);">정책자금</a></li>
+                        <li><a href="javascript:void(0);">조합원</a></li>
+                        <li><a href="javascript:void(0);">설정</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="com_tabmenu_type02" style="top:70rem;">
+                <div>
+                    <ul>
+                        <li class="on"><a href="javascript:void(0);">은행</a></li>
+                        <li><a href="javascript:void(0);">증권</a></li>
+                        <li><a href="javascript:void(0);">카드</a></li>
+                        <li><a href="javascript:void(0);">보험</a></li>
+                        <li><a href="javascript:void(0);">전자금융</a></li>
+                        <li><a href="javascript:void(0);">할부금융</a></li>
+                        <li><a href="javascript:void(0);">보증보험</a></li>
+                        <li><a href="javascript:void(0);">통신</a></li>
+                        <li><a href="javascript:void(0);">P2P금융</a></li>
+                        <li><a href="javascript:void(0);">대부</a></li>
+                        <li><a href="javascript:void(0);">채권</a></li>
+                    </ul>
+                </div>
+            </div>
+
+			<div id="content" class="sub_main">
+				
+			</div>
+		</div>
+		<!--// content-view E -->
+
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>탭</h1>
+		</div>
+			
+		<div class="popup_content com_bg_type00">     
+            <!-- tab menu S -->   
+            <div class="com_tabmenu_type04">
+                <ul>
+                    <li class="on"><a href="javascript:void(0);"><em>은행<span>7</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>투자<span>0</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>카드<span>3 <strong class="blind">알림</strong></span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>보험<span>1</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>전자금융<span>3</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>할부금융<span>1</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>보증보험<span>35</span></em></a></li>
+                    <li><a href="javascript:void(0);"><em>기타<span>3</span></em></a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type03" style="padding-top:5rem;">
+                <ul role="tablist">
+                    <li role="tab" aria-selected="true" aria_controls="tab_01" class="on"><a href="javascript:void(0);" ><span>대출받기</span></a></li>
+                    <li role="tab" aria-selected="false" aria_controls="tab_02"><a href="javascript:void(0);"><span>목돈모으기</span></a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type03">
+                <ul role="tablist">
+                    <li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="javascript:void(0);" ><span>농기계 검색</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_02"><a href="javascript:void(0);"><span>직접입력</span></a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type03">
+                <ul role="tablist">
+                    <li class="on" aria-controls="tab_01"><a href="javascript:void(0);" role="tab"><span>등록된 계좌</span></a></li>
+                    <li aria-controls="tab_02"><a href="javascript:void(0);" role="tab"><span>계좌등록 하기</span></a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type03 menunum03">
+                <ul role="tablist">
+                    <li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="javascript:void(0);"><span>매매</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_02"><a href="javascript:void(0);"><span>전세</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_03"><a href="javascript:void(0);"><span>월세</span></a></li>
+                </ul>
+            </div>
+
+            <div class="com_tabmenu_type03 menunum04">
+                <ul role="tablist">
+                    <li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="javascript:void(0);"><span>기본</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_02"><a href="javascript:void(0);"><span>1구간</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_03"><a href="javascript:void(0);"><span>2구간</span></a></li>
+                    <li role="tab" aria-selected="false" aria-controls="tab_04"><a href="javascript:void(0);"><span>3구간</span></a></li>
+                </ul>
+            </div>
+            
+
+            <div class="new_top_menu_box block mt15 tab_header shadow">
+                <ul>
+                    <li><a href="javascript:void(0);" class="on">유종별</a></li>
+                    <li><a href="javascript:void(0);">기기별</a></li>
+                </ul>
+            </div>
+            <!--// tab menu E -->
+
+            <div class="com_inner">
+                <!-- <div style="position:relative;padding-top:5rem;">
+                     <div role="tablist" class="full-box">
+                        <button type="button" role="tab" aria-selected="true" aria-controls="tab_01" class="active"><span>도로명</span></button>
+                        <button type="button" role="tab" aria-selected="false" aria-controls="tab_02" class=""><span>지번</span></button>
+                    </div>
+
+                    <div role="tabpanel" id="tab_01" class="cmm-tab-panel active">
+                        탭1 콘텐츠
+                    </div>
+                    <div role="tabpanel" id="tab_02" class="cmm-tab-panel">
+                        탭2 콘텐츠
+                    </div>
+                </div> 구버전 삭제예정-->                
+            </div>
+		</div>
+		
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

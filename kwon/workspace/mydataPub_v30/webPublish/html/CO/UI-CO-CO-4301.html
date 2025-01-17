@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>통합검색</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript" src="../../../resource/js/slick.min.js"></script>
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01">
+
+		<div class="popup_header">
+			<h1>검색</h1>
+		</div>
+
+		<div class="popup_content">
+
+			<div class="search_all flex_cont">
+				<div class="search_input">
+					<div class="search">
+						<label for="search_01"></label>
+						<input type="search" id="search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요." title="검색어를 입력하세요.">
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+					<button type="button" class="btn_mike"><span class="blind">음성검색 버튼</span></button>
+				</div>
+
+				<div class="scroller">
+					<div class="search_word">
+						<p class="h_tit01">인기 검색어</p>
+						<ul>
+							<li>
+								<a href="#nolink" class="item">자산</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">금융</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">지출</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">카드</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">금융알림</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">신용정보</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">부채관리</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">대출</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">노후준비</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">세금</a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="service_slider">
+						<div class="tit_group">
+							<p class="h_tit01">나의 관심서비스</p>
+							<button type="button" class="btn_add">관심서비스 담기</button>
+						</div>
+						<ul class="slick">
+							<li>
+								<a href="#nolink" class="item menu_01"> <!-- [D]: 메뉴별 클래스(menu_01 ~ 35) 추가  -->
+									<strong class="title">소비분석</strong>
+									<p class="text">한눈에 보는<br>내 소비 패턴</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item menu_02">
+									<strong class="title">지역축제</strong>
+									<p class="text">가까운 곳에서<br>만나는 즐거움</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item menu_03">
+									<strong class="title">목표 챌린지</strong>
+									<p class="text">작은 목표부터<br>큰 꿈까지</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item menu_04">
+									<strong class="title">NH콕마이카</strong>
+									<p class="text">자동차, 내 삶의<br>자유를 더하다!</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// full popup E -->
+
+	<script type="text/javascript">
+		/*
+			검색어를 입력하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+
+		$(function() {
+			slick (); //슬릭
+		});
+
+		function slick () {
+			var $service =  $('.service_slider .slick');
+
+			$service.slick({
+				slidesToShow : 2.3,
+				// dots : true,
+				infinite : false,
+				arrows : false,
+			});
+		}
+	</script>
+</body>
+</html>

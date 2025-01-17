@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산연결 | 부동산 | 아파트검색</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>아파트 검색</h1>
+		</div>
+		
+		<div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
+
+			<!-- 검색 영역 S -->
+			<div class="com_inner com_line_type01 com_top_type02">
+				<div class="com_input_type02">
+					<input type="search" id="txt01" class="inputClear" name="" value="" placeholder="아파트을 검색하세요" title="아파트을 검색">
+					<a href="javascript:void(0);" role="button" class="com_btn_delete"><span class="blind">삭제</span></a>
+					<a href="javascript:void(0);" role="button" class="com_btn_search"><span class="blind">검색</span></a>
+				</div>
+			</div>
+			<!-- 검색 영역 E -->
+
+			<!-- 결과 영역 S -->
+			<ul class="search_list">
+				<li>
+					<a href="javascript:void(0);"></a>
+					<input type="radio" name="area" id="area_01">
+					<label for="area_01">
+						<dl>
+							<dt>의왕농협 청계지점</dt>
+							<dd>경기도 의왕시 안양판교로 238</dd>
+						</dl>
+					</label>
+				</li>
+				<li>
+					<input type="radio" name="area" id="area_02">
+					<label for="area_02">
+						<dl>
+							<dt>의왕농협 청계지점</dt>
+							<dd>경기도 의왕시 안양판교로 238</dd>
+						</dl>
+					</label>
+				</li>
+			</ul>
+			<!-- 결과 영역 E -->
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
+
+	</div>
+	<!--// full popup E -->
+
+	<script type="text/javascript">
+
+	/*
+		영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+		입력 후 x 버튼 클릭시 글자 삭제
+	*/
+	$(function() {
+		var _inputBox = $('.inputClear'); // Input Box
+		var _clearBtn = $('.com_btn_delete'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('btnDeleteShow');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('btnDeleteShow');
+				_inputBox.val(''); 
+			});
+		});
+
+	});
+	</script>
+</body>
+</html>

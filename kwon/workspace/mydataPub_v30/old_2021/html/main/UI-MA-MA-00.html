@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>상호금융 개인자산관리</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script src="../../static/js/slick.min.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <link rel="stylesheet" href="../../static/css/slick.css"><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+    <div id="wrap">
+        
+        <div class="main_section_top">
+            <div class="menu_area">
+                <ul class="top_menu">
+                    <li class="home">
+                        <a href="javascript:console.log('GNB홈');">홈</a>
+                    </li>
+                    <li class="alram">
+                        <a href="javascript:console.log('GNB알림');" class="active">알림</a><!-- [개발자 전달] 알림 있으면 class active 추가하세요 -->
+                    </li>
+                    <li class="menu">
+                        <a href="javascript:console.log('GNB전체메뉴');">메뉴</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="user_info">     
+                <p><span class="user_nm">김농협</span>님 총자산<a hefr="javascript:console.log('자산새로고침');" class="ico_refresh"><span class="blind">새로고침</span></a></p>
+                <p class="my_asserts"><span>683,772,000</span>원<a href="javascript:console.log('자산등록');" class="ico_main_more"><span class="blind">더보기</span></a></p>
+                <p class="change_asserts">지난달보다 <span class="change_price">5,272,000</span>원 <span>증가했어요.</span></p>
+            </div>
+            <div class="main_notice active"><!-- 청구서가 있을 경우 active class 추가해주세요-->
+                <ul>
+                    <li><a href="javascript:console.log('청구서팝업');">오늘 도착한 청구서가 있어요.</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main_section">
+            <div class="main_cont_section">
+                <ul class="main_tab">
+                    <li class="on">자산</li>
+                    <li>부채</li>
+                    <li>지출</li>
+                    <li>X</li><!-- [개발자 전달] 등록된 자산이 없을 때 테스트 탭 -->
+                </ul>
+                <div class="main_tab_content on">
+                    <a href="javascript:console.log('자산1위');">
+                        <p>자산 1위는<br><strong class="disib mt10">부동산 <em>678,500,000</em></strong>원</p>
+                    </a>
+                    <div class="main_graph">
+                        <ol>
+                            <li><a href="javascript:console.log('부동산');">부동산</a></li><!-- 1순위 -->
+                            <li><a href="javascript:console.log('계좌');">계좌</a></li><!-- 2순위 3글자일 경우 a 태그에 f16 class 추가 -->
+                            <li><a href="javascript:console.log('투자');">투자</a></li><!-- 3순위 3글자일 경우 a 태그에 f16 class 추가 -->
+                            <li><a href="javascript:console.log('외화');">외화</a></li><!-- 4순위 3글자일 경우 a 태그에 f12 class 추가 -->
+                        </ol>
+                    </div>
+                </div>
+                <div class="main_tab_content">
+                    <a href="javascript:console.log('부채1위');">
+                        <p>부채 1위는<br><strong class="disib mt10">대출 <em>278,573,000</em></strong>원</p>
+                    </a>
+                    <div class="main_graph type02">
+                        <ol>
+                            <li><a href="javascript:console.log('대출');">대출</a></li><!-- 1순위 -->
+                            <li><a href="javascript:console.log('자동차');" class="f16">자동차</a></li><!-- 2순위 3글자일 경우 a 태그에 f16 class 추가 -->
+                            <li><a href="javascript:console.log('카드');">카드</a></li><!-- 3순위 3글자일 경우 a 태그에 f16 class 추가 -->
+                            <li><a href="javascript:console.log('기타');">기타</a></li><!-- 4순위 3글자일 경우 a 태그에 f12 class 추가 -->
+                        </ol>
+                    </div>                    
+                </div>
+                <div class="main_tab_content">
+                    <a href="javascript:console.log('지출1위');">
+                        <p>지출 1위는<br><strong class="disib mt10">외식/카페/베이커리 <em>278,573,000</em></strong>원</p>
+                    </a>
+                    <div class="main_graph icn">
+                        <ol>
+                            <li class="cate04"><a href="javascript:console.log('외식/카페/베이커리');"><span class="blind">카페/베이커리</span></a></li><!-- 1순위 -->
+                            <li class="cate01"><a href="javascript:console.log('쇼핑/생활/마트');"><span class="blind">쇼핑</span></a></li><!-- 2순위 -->
+                            <li class="cate08"><a href="javascript:console.log('여행/숙박/문화/레저');"><span class="blind">여행/숙박</span></a></li><!-- 3순위 -->
+                            <li class="cate06"><a href="javascript:console.log('자동차/교통');"><span class="blind">자동차</span></a></li><!-- 4순위 -->
+                        </ol>
+                    </div>
+                    <!-- [개발자 전달] class 범례 (기획 이연호부장 협의 10개)
+                        cate01  쇼핑/생활/마트       cate02  가구/침구/주거/통신
+                        cate03  의료/건강            cate04 외식/카페/베이커리
+                        cate05  뷰티/미용           cate06  자동차/교통
+                        cate07  교육                cate08  여행/숙박/문화/레저
+                        cate09  자녀/육아           cate10  기타/금융/공통 -->
+                </div>
+                <!-- [개발자 전달] 등록된 자산이 없을 때 S -->
+                <div class="main_tab_content">
+                    <a href="javascript:console.log('자산등록');">
+                        <!-- 부채 없을 때 -->
+                        <p>등록된 부채가 없어요.<br><strong class="disib mt10">자산을 등록하고 서비스를 받으세요.</strong></p>
+                        <!-- 가계부 없을 때
+                        <p>가계부을 원하신다면?<br><strong class="disib mt10">자산을 등록하고 서비스를 받으세요.</strong></p>
+                        -->
+                    </a>
+                    <div class="main_graph none">
+                        <div class="com_btn_area">
+                            <a href="javascript:console.log('자산등록하러 가기');" class="com_btnround_type02"><span class="btn_plus">자산등록하러 가기</span></a>
+                        </div> 
+                    </div>               
+                </div>
+                <!-- //[개발자 전달] 등록된 자산이 없을 때 E -->
+            </div>
+            <div>
+                <ul class="section_list">
+                    <li>
+                        <a href="javascript:console.log('입출금');">
+                            <!-- [개발자 전달] 타입별 class 확인하세요.
+                                type01 입금 > 출금 -->
+                            <span class="list_box li_01 type01">
+                                <span class="list_tit">입출금</span>
+                                <span class="list_txt"><span class="money"><span>573,000</span>원</span>의<br>여유가 있네요.</span>
+                            </span>
+                            <!-- [개발자 전달] type02 입금 < 출금 -->
+                            <!-- <span class="list_box li_01 type02">
+                                <span class="list_tit">입출금</span>
+                                <span class="list_txt"><span class="money"><span>573,000</span>원</span>이<br>부족해요.</span>
+                            </span> -->
+                            <!-- [개발자 전달] type03 입금 출금 둘 다 많을 때 // 코멘트 기획 미정 -->
+                            <!-- <span class="list_box li_01 type03">
+                                <span class="list_tit">입출금</span>
+                                <span class="list_txt"><span class="money"><span> </span> </span> <br></span>
+                            </span> -->
+                            <!-- [개발자 전달] type04 입금 출금 둘다 없을 때 // 코멘트 기획 미정-->
+                            <!-- <span class="list_box li_01 type04">
+                                <span class="list_tit">입출금</span>
+                                <span class="list_txt"><span class="money"><span> </span></span> <br> </span>
+                            </span> -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('미래지향');">
+                            <span class="list_box li_02">
+                                <span class="list_tit">미래지향</span>
+                                <span class="list_txt">보험과 연금 비중이<br>높으시네요.</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="bg_on">
+                        <a href="javascript:console.log('신용점수안내');">
+                            <span class="list_box li_03">
+                                <span class="list_txt">김농협님의<br>신용점수는<br><em><span>상위 5%</span> 입니다.</em></span>
+                                <div class="list_graph">
+                                    <strong>940</strong>
+                                </div> 
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('상품광고');">
+                            <span class="list_box li_04">
+                                <span class="list_txt"><span>콕콕신용대출</span>의<br>금리혜택을<br>받으세요.</span>                              
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- slider 영역 -->                    
+            <!-- 등록된 카드가 없을 때 S -->
+            <div class="slider-wrap">
+                <ul class="slide_box">
+                    <li>
+                        <a href="javascript:console.log('5월카드결제예정금액');">
+                            5월 카드결제예정금액<br>                            
+                            <strong><em>카드를 등록하시고<br>결제예정금액을 관리하세요.</em></strong>                            
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- 등록된 카드가 없을 때 E -->
+            <!--// slider 영역 -->
+
+            <!-- slider 영역 -->
+            <div class="slider-wrap">
+                <ul class="slide_box card">
+                    <li>
+                        <a href="javascript:console.log('7월 전체카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                                                    
+                            <strong><em class="cate">전체</em><br>5,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('7월 NH카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                            
+                            <strong><em class="cate">NH카드</em><br>5,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('7월 KB카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                            
+                            <strong><em class="cate">KB카드</em><br>8,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('7월 현대카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                            
+                            <strong><em class="cate">현대카드</em><br>9,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('7월 우리카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                            
+                            <strong><em class="cate">우리카드</em><br>9,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('7월 삼성카드 결제예정금액');">
+                            7월 카드결제예정금액<br>                            
+                            <strong><em class="cate">삼성카드</em><br>9,350,000<em>원</em></strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--// slider 영역 -->
+
+            <div>
+                <ul class="section_list">
+                    <li class="bg_on"><!-- [개발자 전달] 등록값 없을 시 li 자체를 뺴주세요 -->
+                        <a href="javascript:console.log('지출TOP3');">
+                            <span class="list_box li_05">
+                                <span class="list_tit">지출 TOP3</span>
+                                <ul>
+                                    <li>쿠팡</li>
+                                    <li>네이버페이</li>
+                                    <li>GS25</li>
+                                </ul>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:console.log('지출캘린더');">
+                            <span class="list_box li_06">
+                                <span class="list_tit">지출캘린더</span>
+                                <span class="list_txt">지난달 오늘보다<span class="money"><span>573,000</span>원을</span><br>더 쓰고 있어요.</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li><!-- [개발자 전달] 등록값 없을 시 li 자체를 뺴주세요 -->
+                        <a href="javascript:console.log('소비스타일안내');">
+                            <span class="list_box li_07">
+                                <span class="list_tit">소비스타일</span>
+                                <span class="list_txt"><span class="list_txt">커피를 좋아하는<br><span>김농협</span>님!</span></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="bg_on">
+                        <a href="javascript:console.log('마이농가메인');">
+                            <span class="list_box li_08">
+                                <span class="list_tit">마이농가</span>
+                                <span class="list_txt">농산물 재배<br>관리의 모든것</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul class="banner">
+                    <li>
+                        <a href="javascript:console.log('스타벅스');">
+                            <span>
+                                <span>스타벅스 50% 할인되는<br><em>올바른 FLEX 카드</em>로<br>할인혜택 받으세요.</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="new_add_register">
+                <a href="javascript:console.log('더 연결할 자산');"><span>더 연결할 자산이 있으신가요?</span></a>
+            </div>
+        </div>       
+
+        <!-- footer S -->
+        <div class="dim_wrap"><!-- [개발자 전달] class dim_wrap 추가하세요-->
+            <div class="rollRoundBox">
+                <div class="rollRound box1">
+                    <a href="javascript:console.log('나의자산');">나의자산</a><!-- [개발자 전달] 선택시 class active 추가하세요-->
+                </div>
+                <div class="rollRound box2">
+                    <a href="javascript:console.log('가계부');">가계부</a>
+                </div>
+                <div class="rollRound box3">
+                    <a href="javascript:console.log('금융생활');">금융생활</a>
+                </div>
+                <div class="rollRound box4">
+                    <a href="javascript:console.log('마이농가');">마이농가</a>
+                </div>
+            </div>
+            <div id="com_footer">
+                <div class="com_footer_wrap">
+                    <ul>
+                        <li><a href="javascript:console.log('footer홈');" class="item fhome">홈</a></li>
+                        <li><a href="javascript:console.log('footer메뉴');" id="footBtn"><span class="blind">나의 메뉴</span></a></li>
+                        <li><a href="javascript:console.log('footer전체메뉴');" class="item fall">전체</a></li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+        <!--// footer E -->
+
+        <!-- 전체메뉴 테스트 영역 S -->
+        <div class="allmenu-wrapper" style="display:none">
+            <div class="menu_area allmenu">
+                <ul class="top_menu">
+                    <li class="prof">
+                        <a href="javascript:console.log('김농협 프로필');">김농협 프로필</a>
+                    </li>
+                    <li class="alram">
+                        <a href="javascript:console.log('알림');" class="active">알림</a><!-- [개발자 전달] 알림 있으면 class active 추가하세요 -->
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main_section allmenu">
+                <div class="user_info">     
+                    <p><span class="user_nm">김농협</span>님</p>
+                </div>
+                <ul class="main_notice">
+                    <li><a href="javascript:console.log('청구서');">오늘 도착한 청구서가 있어요.</a></li>
+                </ul>
+
+                <div>
+                    <ul class="section_list">                   
+                        <li class="wPc100">
+                            <a href="javascript:console.log('자산기관관리');" class="bg_white">
+                                <span class="list_box all">
+                                    <span class="list_tit">자산기관관리</span>                                
+                                </span>
+                            </a>
+                        </li>                 
+                    </ul>
+                </div>
+            </div>
+
+            <div class="com_inner credit_list_box all_Menu">
+                <div class="com_box_nobox">
+                    <div class="list_type_box">
+                        <div class="new_tit_area">
+                            <div class="tit"><span>나의자산</span></div>
+                        </div>
+                        <ul class="list_type_02">
+                            <li><a href="javascript:console.log('전체');">전체</a></li>
+                            <li><a href="javascript:console.log('자산');">자산</a></li>
+                            <li><a href="javascript:console.log('부채');">부채</a></li>
+                            <li><a href="javascript:console.log('진단');">진단</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_box_nobox">
+                    <div class="list_type_box">
+                        <div class="new_tit_area">
+                            <div class="tit"><span>가계부</span></div>
+                        </div>
+                        <ul class="list_type_02">
+                            <li><a href="javascript:console.log('달력');">달력</a></li>
+                            <li><a href="javascript:console.log('내역');">내역</a></li>
+                            <li><a href="javascript:console.log('분석');">분석</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_box_nobox">
+                    <div class="list_type_box">
+                        <div class="new_tit_area">
+                            <div class="tit"><span>금융생활</span></div>
+                        </div>
+                        <ul class="list_type_02">
+                            <li><a href="javascript:console.log('나의목표');">나의목표</a></li>
+                            <li><a href="javascript:console.log('상품추천');">상품추천</a></li>
+                            <li><a href="javascript:console.log('자동차관리');">자동차관리</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="com_box_nobox">
+                    <div class="list_type_box">
+                        <div class="new_tit_area">
+                            <div class="tit"><span>마이농가</span></div>
+                        </div>
+                        <ul class="list_type_02">
+                            <li><a href="javascript:console.log('영농달력');">영농달력</a></li>
+                            <li><a href="javascript:console.log('영농일지');">영농일지</a></li>
+                            <li><a href="javascript:console.log('농기계임대');">농기계임대</a></li>
+                            <li><a href="javascript:console.log('조합원');">조합원</a></li>
+                            <li><a href="javascript:console.log('설정');">설정</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="com_btn_area">
+                    <a href="javascript:console.log('자산관리 서비스 안내');" class="com_btn_round"><span class="ico type03">자산관리 서비스 안내</span></a>
+                </div>
+                <div class="com_btn_area">
+                    <a href="javascript:console.log('마이농가 이용안내');" class="com_btn_round"><span class="ico type04">마이농가 이용안내</span></a>
+                </div>
+            </div>
+
+            <div class="closed-wrap all_Menu">
+                <ul>
+                    <li><a href="javascript:console.log('새소식');">새소식</a></li>
+                    <li><a href="javascript:console.log('자주하는질문');">자주하는질문</a></li>
+                    <li><a href="javascript:console.log('숨김보관함');">숨김보관함</a></li>
+                    <li><a href="javascript:console.log('이용약관');">약관 및 동의서</a></li>
+                </ul>
+                <ul class="mt15">
+                    <li><a href="javascript:console.log('제3자정보제공동의');">제3자정보제공동의</a></li>
+                    <li><a href="javascript:console.log('개인정보처리방침');"><strong class="txt_black">개인정보처리방침</strong></a></li>
+                    <li><a href="javascript:console.log('서비스해지');">서비스해지</a></li>
+                </ul>            
+            </div>
+
+            <!-- 닫기 S -->
+            <div class="com_btn_area all_Menu">
+                <a href="javascript:console.log('전체메뉴닫기');" class="all_close"><span class="blind">전체메뉴닫기</span></a>
+            </div>   
+            <!--// 닫기 E -->
+        </div>
+        <!-- //전체메뉴 테스트 영역 E -->
+
+    </div>
+
+<script>
+$(document).ready(function(){
+    // 자산 부채 지출선택 tab
+    $('.main_tab li').click(function(){
+        var idx = $(this).index();
+        //console.log(idx);
+        $('.main_tab li').removeClass('on').eq(idx).addClass('on');
+        $('.main_tab_content').removeClass('on').eq(idx).addClass('on');
+    });
+
+    //슬라이드 배너 
+    $('.slide_box.card').slick({
+        dots:true,
+        arrows:false,
+        //vertical:true,
+        mobileFirst:true,
+        pauseOnHover:false,
+        pauseOnFocus:false,
+        //autoplay:false
+        autoplay:true
+    });
+
+    //footer 부채메뉴 이미지 테스트용
+	$('.rollRound a').on('click',function(){
+		$('.rollRound a').removeClass('active');
+		$(this).addClass('active');
+	});
+
+    //전체메뉴 테스트용
+	$('.top_menu .menu a').on('click',function(){//누르면 나와요
+		$('.allmenu-wrapper').fadeToggle(500);
+	});
+	$('.com_btn_area.all_Menu .all_close').on('click',function(){//누르면 닫혀요
+		$('.allmenu-wrapper').fadeToggle(500);
+	});
+
+    //스크롤 테스트용
+    $('body').on('scroll',function(){
+        var st = $(this).scrollTop(); 
+        //console.log(st);
+        if(st > 100){
+            $('body').addClass('nav-up');
+        } else {
+            $('body').removeClass('nav-up');
+        }
+    });    
+});    
+</script>
+</body>
+</html>

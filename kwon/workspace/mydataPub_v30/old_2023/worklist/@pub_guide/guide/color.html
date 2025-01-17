@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>layout sample</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../@pub_include/head_guide.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<style>		
+		.guide_box {display: flex;flex-direction: column;margin:0 auto;width: 90%;}
+		.guide_box + .guide_box {margin-top:2rem;}
+		.guide_box .color_box{display: flex;}
+		.guide_box .color_box div{
+			display:flex;align-items:center;justify-content:center;width:14rem;height:14rem;color:#fff;text-align:center;line-height:2rem;flex-direction:column;
+		}
+		.guide_box .color_box div > i {font-size:1.2rem;line-height:1.2rem;margin-top:1rem;}
+		.guide_box .color_box + .color_box {margin-top:.5rem;}
+		.guide_box .color_box div + div{margin-left:.5rem;}
+		.color_main1{background-color:#0a9ba0;}
+		.color_sub_a1{background-color:#008288;}
+		.color_sub_a2{background-color:#19b9be;}
+		.color_point_navy{background-color:#30374d;}
+		.color_point_red{background-color:#e91610;}
+		.color_point_blue{background-color:#046fd9;}
+		.color_point_green1{background-color:#43dc9b;}
+		.color_point_green2{background-color:#d8faf0;}
+		.color_text_title{background-color:#111;}
+		.color_text_list{background-color:#333;}
+		.color_text_sub1{background-color:#666;}
+		.color_text_sub2{background-color:#999;}
+		.color_text_input{background-color:#ccc;}
+		.color_line_button{background-color:#424242;}
+		.color_line_input{background-color:#dedede;}
+		.color_line_box{background-color:#e2e2e2;}
+		.color_line_stroke{background-color:#eff2f3;}
+		.color_line_stroke2{background-color:#f4f4f4;}
+		.color_bgcolor_info{background-color:#f6f8fa;}
+		.color_bgcolor_bg1{background-color:#dedede;}
+		.color_bgcolor_bg2{background-color:#e2e2e2;}
+		.color_bgcolor_bg3{background-color:#e2e8f6;}
+		.color_button_basic{background-color:#008288;}
+		.color_button_on{background-color:#3c5a96;}
+		.color_button_off{background-color:#d2d2d2;}
+		.color_button_disabled{background-color:#717477;}
+		.color_icon_depth1{background-color:#111;}
+		.color_icon_depth2{background-color:#d5d5dd;}
+		.color_icon_list{background-color:#6a7688;}
+		.color_bullet{background-color:#6a6a6a;}
+	</style>
+</head>
+<body>
+	<!-- wrap -->
+	<div id="wrap">
+		<!-- content -->
+		<div id="content">
+			<div>
+				<a href="javascript:;" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+			</div>
+		</div>
+		<!-- // content -->
+	</div>
+	<!--// wrap -->
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01" style="display:block;"> 
+		<div class="popup_header">
+				<h1>Color</h1>
+		</div>   
+		<div class="popup_content bg_white">
+				<div class="guide_box">
+					<h3>Primary Color</h3>
+					<div class="color_box">
+						<div class="backgroundColor green">Green<br>#0a9ba0</div>
+					</div>
+				</div>
+				<div class="guide_box">
+					<h3>Secondary Color</h3>
+					<div class="color_box">
+						<div class="backgroundColor deepgreen">Deep Green<br>#008288</div>
+						<div class="backgroundColor lightgreen">Light Green<br>#19b9be</div>
+					</div>
+				</div>
+				<div class="guide_box">
+					<h3>Point Color</h3>
+					<div class="color_box">
+						<div class="backgroundColor navy">Navy<br>#30374d</div>
+						<div class="backgroundColor red1">Red1<br>#e91610<br>상승</div>
+						<div class="backgroundColor Blue">Blue<br>#046fd9<br>하락</div>
+					</div>
+					<div class="color_box">
+						<div class="backgroundColor green1">Green1<br>#43dc9b</div>
+						<div class="backgroundColor green2 pointColor black">Green2<br>#d8faf0</div>
+						<div class="backgroundColor red2">Red2<br>#ea4956<br>오류,실패,해지</div>
+					</div>
+				</div>
+				<div class="guide_box">
+					<h3>Font Color</h3>
+					<div class="color_box">
+						<div class="color_text_title">Black<br>#111111<br><i>Header Title<br>Input Data</i></div>
+						<div class="color_text_list">Gray1<br>#333333<br><i>Contents Default</i></div>
+						<div class="color_text_sub1">Gray2<br>#666666<br><i>Contents Default<br>Input Label/Readonly</i></div>
+					</div>
+					<div class="color_box">
+						<div class="color_text_sub2">Gray3<br>#999999<br><i>Input Disabled</i></div>
+						<div class="color_text_input pointColor gray3">Gray4<br>#cccccc<br><i>Placeholder</i></div>
+						<div class=""></div>
+					</div>
+				</div>  
+				<div class="guide_box">
+					<h3>Border Color</h3>
+					<div class="color_box">
+						<div class="color_line_button">Black<br>#424242<br><i>Tooltip box</i></div>
+						<div class="color_line_input pointColor gray3">Gray1<br>#dedede<br><i>Default - Input/Radio/<br>Check/Select</i></div>
+						<div class="color_line_box pointColor gray3">Gray2<br>#e2e2e2<br><i>Box/List top, bottom</i></div>
+					</div>
+					<div class="color_box">
+						<div class="color_line_stroke pointColor gray3">Gray3<br>#eff2f3<br><i>Divider</i></div>
+						<div class="color_line_stroke2 pointColor gray3">Gray L4<br>#f4f4f4<br><i>List</i></div>
+						<div class=""></div>
+					</div>
+				</div>
+				<div class="guide_box">
+					<h3>background Color</h3>
+					<div class="color_box">
+						<div class="color_bgcolor_info pointColor gray3">Gray1<br>#f6f8fa<br>Table/Button</div>
+						<div class="color_bgcolor_bg1 pointColor gray3">Gray2<br>#dedede<br>Util Button</div>
+						<div class="color_bgcolor_bg2 pointColor gray3">Gray3<br>#e2e2e2<br>Box/Card</div>
+						<div class="color_bgcolor_bg3 pointColor gray3">Gray4<br>#e2e8f6<br>Banner</div>
+					</div>
+				</div>
+				<div class="guide_box">
+					<h3>Icon/Bullet Color</h3>
+					<div class="color_box">
+						<div class="color_icon_depth1">Black<br>#111111<br>Table/Button</div>
+						<div class="color_icon_depth2">Gray1<br>#d5d5dd<br>Table/Button</div>
+						<div class="color_icon_list">Gray2<br>#6a7688<br>Table/Button</div>
+						<div class="color_button_disabled">Gray3<br>#6a6a6a<br>Bullet</div>
+					</div>
+				</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

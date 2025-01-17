@@ -1,0 +1,97 @@
+<html>
+<head>
+    <style>
+        div::before {
+            position: absolute;
+            transform: translateX(-50%);
+            z-index: 22;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <canvas width="800" height="800"></canvas>
+        <button onclick="rotate()" style="width: 100; height: 100;">돌리기</button>
+    </div>
+
+    <script>
+        const $c = document.querySelector("canvas");
+        const ctx = $c.getContext(`2d`);
+
+        const product = ["떡볶이", "돈가스", "초밥", "피자", "냉면", "피자"];
+        const colors = ["red", "yellow", "green", "purple", "black", "yellow"];
+        let num = 1;
+
+        const newMake = () => {
+            const [cw, ch] = [$c.width / 2, $c.height / 2];
+            const arc = Math.PI / (product.length / 2);
+
+            for(let i=0; i<product.length; i++){
+                ctx.beginPath();
+                ctx.fillStyle = colors[i % (colors.length)];
+                ctx.moveTo(cw, ch);
+                ctx.arc(cw, ch, cw, arc * (i - 1), arc * i);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            ctx.fillStyle = "#fff";
+            ctx.font = "30px Pretendard";
+            ctx.textAlign = "center";
+
+            for(let i=0; i<product.length; i++){
+                const angle = (arc * i ) + (arc / 2);
+                ctx.save();
+                ctx.translate(
+                    cw + Math.cos(angle) * (cw - 50),
+                    cw + Math.sin(angle) * (ch -50)
+                )
+
+                ctx.rotate(angle + Math.PI / 2);
+                product[i].split(" ").forEach((text, j) => {
+                    ctx.fillText(text, 0, 30 * j);
+                })
+
+                ctx.restore();
+            }
+        }
+
+        const rotate = () => {
+            // $c.style.transform = `initial`;
+            // $c.style.transition = `initial`;
+            let deg = [];
+
+            //룰렛 각도 설정
+            for(let i=1, len = product.length; i<=len; i++){
+                deg.push((360 / len) * i);
+            }
+            
+            setTimeout(() => {
+                const ran = Math.floor(Math.random() * product.length);
+
+                const arc = 360 / product.length;
+                const rotate = (ran * arc) + (3600 + (360 - product.length * 4)) +  (arc * 3) - (arc/4);
+
+                $c.style.transform = "rotate(" + ((360 * num * 8)+deg[2]) + "deg)";
+                $c.style.transition = `transform 7s ease-in-out`;
+
+            }, 1);
+        }
+
+        const rReset = (ele) => {
+            setTimeout(() => {
+                num++;
+            }, 7000)
+        }
+        
+        document.addEventListener("click", function(e) {
+            let target = e.target;
+            if(target.tagName === "BUTTON"){
+                rotate();
+                rReset(target);
+            }
+        })
+        newMake();
+    </script>
+</body>
+</html>

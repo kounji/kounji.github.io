@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>정기지출 삭제</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>정기지출 삭제</h1>
+			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		<div class="popup_content com_btn_bottom">
+			<div class="com_inner">
+				<strong class="titH1">삭제할 지출을 선택하세요</strong>
+
+				<div class="remove_expenditure">
+					<!-- 주거/통신 -->
+					<div class="custom_list">
+						<div class="custom_box flex_new_tit_area mt0">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>주거/통신</span></div>
+								</div>
+							</div>	
+						</div>
+
+						<ul class="list_type_01">
+							<li>
+								<div class="ipt_wrap">
+									<input type="checkbox" id="checkbox1-01">
+									<label for="checkbox1-01" class="bank_state_che">
+										<i class="ico_bank A1AABG0000"></i>
+										<div class="ipt_txt_flex">
+											<strong class="bank_name">SK텔레콤</strong>
+											<p class="price"><span class="num">123,456,789</span>원</p>
+										</div>
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="ipt_wrap">
+									<input type="checkbox" id="checkbox1-02" checked>
+									<label for="checkbox1-02" class="bank_state_che">
+										<i class="ico_bank ZVAAER0000"></i>
+										<div class="ipt_txt_flex">
+											<strong class="bank_name">삼천리도시가스</strong>
+											<p class="price"><span class="num">123,456,789</span>원</p>
+										</div>
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //주거/통신 -->
+					
+					<!-- 금융 -->
+					<div class="custom_list">
+						<div class="custom_box flex_new_tit_area mt0">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>금융</span></div>
+								</div>
+							</div>							
+						</div>
+
+						<ul class="list_type_01">
+							<li>
+								<div class="ipt_wrap">
+									<input type="checkbox" id="checkbox2-01">
+									<label for="checkbox2-01" class="bank_state_che">
+										<i class="ico_bank A1AABG0000"></i>
+										<div class="ipt_txt_flex">
+											<strong class="bank_name">DB손해보험</strong>
+											<p class="price"><span class="num">123,456,789</span>원</p>
+										</div>
+									</label>
+								</div>
+							</li>
+							<li>
+								<div class="ipt_wrap">
+									<input type="checkbox" id="checkbox2-02" checked>
+									<label for="checkbox2-02" class="bank_state_che">
+										<i class="ico_bank A1AAEO0000"></i>
+										<div class="ipt_txt_flex">
+											<strong class="bank_name">이자/대출</strong>
+											<p class="price"><span class="num">123,456,789</span>원</p>
+										</div>
+									</label>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- //금융 -->
+				</div>
+				
+				
+			</div>	
+
+
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" role="button" class="btn btn_mint"><em>2</em>개 정기지출 삭제</a>
+			</div>
+		</div>
+		
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

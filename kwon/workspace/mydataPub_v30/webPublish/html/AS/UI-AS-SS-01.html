@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>금융진단 금융스타일</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript">
+
+        // -----------------------차트 설정 시작-----------------------
+ 
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "350rem");
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+		'<rMateChart backgroundColor="#FFFFFF" paddingTop="40" borderStyle="none">'
+			+'<Options>'
+				+'<Caption text="Life Expectancy vs. GDP per Capita" />'
+				+'<Legend useVisibleCheck="true"/>'
+			+'</Options>'
+		+'<NumberFormatter id="numFmt" precision="0" useThousandsSeparator="true"/>'
+		+'<Bubble3DChart showDataTips="true" minRadius="5" maxRadius="50" dataTipJsFunction="dataTipFunc" >'
+			+'<verticalAxis>'
+				+'<LinearAxis id="vAxis" minimum="-10" maximum="90" tickCount="6" title=""/>'
+			+'</verticalAxis>'
+			+'<verticalAxisRenderers>'
+				+'<Axis2DRenderer axis="{vAxis}" axisTitleStyleName="title" showLine="false"/>'
+			+'</verticalAxisRenderers>'
+			+'<horizontalAxis>'
+				+'<LinearAxis id="hAxis"  minimum="0" maximum="12000" labelJsFunction="axisLabelFunc" title=""/>'
+			+'</horizontalAxis>'
+			+'<horizontalAxisRenderers>'
+				+'<Axis2DRenderer axis="{hAxis}" axisTitleStyleName="title" showLine="false" />'
+			+'</horizontalAxisRenderers>'
+			+'<series>'
+					+'<Bubble3DSeries id="AF" xField="입출금" yField="AF_Life" radiusField="AF_Population" displayName="입출금">'
+					+'<fill>'
+						+'<SolidColor color="#23a0a5" alpha="0.5"/>'
+					+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+				+'</Bubble3DSeries>'
+				+'<Bubble3DSeries id="EA" xField="예금" yField="EA_Life" radiusField="EA_Population" displayName="예금">'
+					+'<fill>'
+						+'<SolidColor color="#fa7288" alpha="0.5"/>'
+					+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+				+'</Bubble3DSeries>'
+				+'<Bubble3DSeries id="SA" xField="적금" yField="SA_Life" radiusField="SA_Population" displayName="적금">'
+					+'<fill>'
+						+'<SolidColor color="#84b0fc" alpha="0.5"/>'
+					+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+				+'</Bubble3DSeries>'
+				+'<Bubble3DSeries id="ME" xField="외화" yField="ME_Life" radiusField="ME_Population" displayName="외화">'
+						+'<fill>'
+						+'<SolidColor color="#fdbb68" alpha="0.5"/>'
+					+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+				+'</Bubble3DSeries>'
+				+'<Bubble3DSeries id="EU" xField="청약" yField="EU_Life" radiusField="EU_Population" displayName="청약">'
+					+'<fill>'
+						+'<SolidColor color="#57c9ae" alpha="0.5"/>'
+					+'</fill>'
+						+'<showDataEffect>'
+							+'<SeriesInterpolate/>'
+						+'</showDataEffect>'
+				+'</Bubble3DSeries>'
+			+'</series>'
+			+'<backgroundElements>'
+					+'<GridLines horizontalShowOrigin="false" verticalShowOrigin="false"/>'
+				+'</backgroundElements>'
+			+'<annotationElements>'
+					+'<CrossRangeZoomer zoomType="both" verticalLabelFormatter="{numFmt}" horizontalLabelFormatter="{numFmt}"/>'
+			+'</annotationElements>'
+		+'</Bubble3DChart>'
+		+'</rMateChart>';
+		/* 20211006 한별 삭제 +'<Style>.title{color:0x4691E1; fontSize:14; fontWeight:bold;}'
+			+'</Style>' */
+		/* 20211001 한별 수정 SolidColor="[#fa7288]" */
+		/* 20211001 한별 수정 SolidColor="[#fdbb68]" */
+		/* 20211001 한별 수정 SolidColor="[#57c9ae]" */
+		// 차트 데이터 // 범례+자산구간+고객비율(소수점절삭) + 고객수 입력순서
+		// 20210915 한별 추가
+		//20211006 한별 수정 Axis3DRenderer ==> Axis2DRenderer로 수정
+		//20211006 한별 수정 <LinearAxis id="vAxis" minimum="-10" maximum="90" tickCount="6" title=""/>
+		var chartData =
+		[{"입출금":100, "AF_Life":30, "AF_Population":1362,"AF_Country":"자산구간 : 100",     /* 초록 */
+		"예금":100, "EA_Life":63, "EA_Population":2866,"EA_Country":"자산구간 : 100",           /* 분홍 */
+		"적금":100, "SA_Life":62, "SA_Population":12323,"SA_Country":"자산구간 : 100",          /* 파랑 */
+		"외화":100, "ME_Life":59, "ME_Population":1843,"ME_Country":"자산구간 : 100",           /* 노랑 */
+		"청약":100, "EU_Life":21, "EU_Population":8581,"EU_Country":"자산구간 : 100"},          /* 민트 */
+		{"입출금":800, "AF_Life":71, "AF_Population":8681,"AF_Country":"자산구간 : 800",      /* 초록 */
+		"예금":800, "EA_Life":57, "EA_Population":7773,"EA_Country":"자산구간 : 800",           /* 분홍 */
+		"적금":800, "SA_Life":62, "SA_Population":24567,"SA_Country":"자산구간 : 800",          /* 파랑 */
+		"외화":800, "ME_Life":62, "ME_Population":4018,"ME_Country":"자산구간 : 800",           /* 노랑 */
+		"청약":800, "EU_Life":77, "EU_Population":1089,"EU_Country":"자산구간 : 800"},          /* 민트 */
+		{"입출금":2000, "AF_Life":71, "AF_Population":8598,"AF_Country":"자산구간 : 2000",    /* 초록 */
+		"예금":2000, "EA_Life":71, "EA_Population":9759,"EA_Country":"자산구간 : 2000",         /* 분홍 */
+		"적금":2000, "SA_Life":72, "SA_Population":32345,"SA_Country":"자산구간 : 2000",        /* 파랑 */
+		"외화":2000, "ME_Life":80, "ME_Population":622,"ME_Country":"자산구간 : 2000",          /* 노랑 */
+		"청약":2000, "EU_Life":67, "EU_Population":7343,"EU_Country":"자산구간 : 2000"},        /* 민트 */
+		{"입출금":3300, "AF_Life":71, "AF_Population":8694,"AF_Country":"자산구간 : 3300",    /* 초록 */
+		"예금":3300, "EA_Life":66, "EA_Population":7365,"EA_Country":"자산구간 : 3300",         /* 분홍 */
+		"적금":3300, "SA_Life":44, "SA_Population":7654,"SA_Country":"자산구간 : 3300",        /* 파랑 */
+		"외화":3300, "ME_Life":68, "ME_Population":5803,"ME_Country":"자산구간 : 3300",         /* 노랑 */
+		"청약":3300, "EU_Life":67, "EU_Population":5133,"EU_Country":"자산구간 : 3300"},        /* 민트 */
+		{"입출금":5400, "AF_Life":61, "AF_Population":2517,"AF_Country":"자산구간 : 5400",    /* 초록 */
+		"예금":5400, "EA_Life":70, "EA_Population":5883,"EA_Country":"자산구간 : 5400",         /* 분홍 */ 
+		"적금":5400, "SA_Life":30, "SA_Population":48233,"SA_Country":"자산구간 : 5400",        /* 파랑 */
+		"외화":5400, "ME_Life":50, "ME_Population":4364,"ME_Country":"자산구간 : 5400",         /* 노랑 */
+		"청약":5400, "EU_Life":40, "EU_Population":5244,"EU_Country":"자산구간 : 5400"},        /* 민트 */
+		{"입출금":10000, "AF_Life":71, "AF_Population":3710,"AF_Country":"자산구간 : 10000",  /* 초록 */
+		"예금":10000, "EA_Life":71, "EA_Population":4502,"EA_Country":"자산구간 : 10000",       /* 분홍 */
+		"적금":10000, "SA_Life":72, "SA_Population":4343,"SA_Country":"자산구간 : 10000",       /* 파랑 */
+		"외화":10000, "ME_Life":80, "ME_Population":7341,"ME_Country":"자산구간 : 10000",       /* 노랑 */
+		"청약":10000, "EU_Life":67, "EU_Population":9108,"EU_Country":"자산구간 : 10000"},      /* 민트 */
+		{"입출금":20000, "AF_Life":18, "AF_Population":7435,"AF_Country":"자산구간 : 20000",  /* 초록 */
+		"예금":20000, "EA_Life":16, "EA_Population":7164,"EA_Country":"자산구간 : 20000",       /* 분홍 */
+		"적금":20000, "SA_Life":1, "SA_Population":213,"SA_Country":"자산구간 : 20000",         /* 파랑 */
+		"외화":20000, "ME_Life":24, "ME_Population":7378,"ME_Country":"자산구간 : 20000",       /* 노랑 */
+		"청약":20000, "EU_Life":10, "EU_Population":4296,"EU_Country":"자산구간 : 20000"}       /* 민트 */
+		];
+		
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+		"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		
+		// 20210915 한별 추가
+		function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values) {
+		if (seriesId == "AF")
+			return data["AF_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["AF_Life"]) + "%" + "<br>" + "고객수 : " + insertComma(data["AF_Population"]) + "명";
+		else if (seriesId == "EA")
+		return data["EA_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["EA_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["EA_Population"]) + "명";
+		else if (seriesId == "SA")
+		return data["SA_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["SA_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["SA_Population"]) + "명";
+		else if (seriesId == "ME")
+		return data["ME_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["ME_Life"]) + "%"+  "<br>" + "고객수 : " + insertComma(data["ME_Population"]) + "명";
+		else if (seriesId == "EU")
+		return data["EU_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["EU_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["EU_Population"]) + "명";
+		else if (seriesId == "AM")
+		return data["AM_Country"] + "만원" + "<br>" + "고객비율 : " + insertComma(data["AM_Life"]) + "%" +  "<br>" + "고객수 : " + insertComma(data["AM_Population"]) + "명";}
+		
+		function axisLabelFunc(id, value) {
+			return  insertComma(value) + "만원";
+		}
+		
+		function insertComma(n) {
+		var reg = /(^[+-]?\d+)(\d{3})/; // Regular expression
+			n += "";
+			while (reg.test(n))
+			n = n.replace(reg, '$1' + "," + '$2');
+		return n;
+		}
+		
+		/**
+		* rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		* 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		*
+		* -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* -------------------------------------------------
+		*
+		* rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		*/
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		* 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		* 접근하는 차트 객체의 테마를 변경합니다.
+		* 파라메터로 넘어오는 값
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* - default
+		*
+		* default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		*/
+		function rMateChartH5ChangeTheme(theme){
+		document.getElementById("chart1").setTheme(theme);
+		}
+		
+		// -----------------------차트 설정 끝 -----------------------
+        
+    </script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>4월의 금융스타일</h1>
+		</div> 
+		<div class="com_tabmenu_type01 menunum02">
+			<!-- 20211119 한별 접근성 role="tablist" 추가 S -->
+			<ul role="tablist">
+				<li><a href="#nolink">나의 금융 평가  </a></li>
+				<li class="on"><a href="#nolink">남들과 비교</a></li>
+			</ul>
+			<!--// 20211119 한별 접근성 role="tablist" 추가 E -->
+		</div> 
+		<div class="popup_content com_no_bottom com_sub_type02 com_bg_type00">
+			<!-- 20210914 한별 수정 S -->  
+			<div class="com_inner">
+				<div class="com_pop_tit01 mt30"><strong>45세 이하 남성</strong> 평균보다<br>
+					금융자산 보유가 적으시네요.</div>
+				<div class="com_box_type01 mt15">
+					<div class="liability_box">
+						<strong class="tit">지난달 자산 비교 그래프</strong>						
+						<!--20210827 한별수정 기획단 디자인누락 영역추가 : 이병철-->
+						<div class="fs14 txt_gray mt10">상호금융 개인계좌 자산군 대상 범위</div>
+						<!-- 막대그래프 S -->
+						<div class="stick_gh_box2">
+							<div class="gray_box">
+								<!-- 막대그래프 S -->
+								<div class="vertical_graph">
+									<ul>
+										<li>
+											<div>
+												<span class="graph" style="height:80%;">
+													<span class="money"><em>28,114</em>만원</span>
+												</span>
+											</div>
+											<em class="name">지난달 내 자산</em>
+										</li>
+										<li>
+											<div>
+												<span class="graph" style="height:90.5%;">
+													<span class="money"><em>12,346</em>만원</span>
+												</span>
+											</div>
+											<em class="name">또래 평균 자산</em>
+										</li>
+									</ul>
+									
+								</div>
+								<!--// 막대그래프 E -->
+							</div>
+						</div>
+						<!-- 막대그래프 E -->
+					</div>
+				</div>
+				<strong class="com_box_tit mt35">또래 자산 비교 그래프</strong>
+			</div>
+			<!-- 비교그래프 S -->
+			<div class="com_inner">
+				<div class="horizon_chart_wrap com_list_type01"><!-- 20211006 한별 com_list_type01 클래스 추가 -->
+					<div class="chart_legend type2">
+						<span class="lgnd b1"><i></i> 또래 자산</span>
+						<span class="lgnd b2"><i></i> 내 자산</span>
+					</div>
+					<div class="horizon_chart type3 pb30">
+						<div class="chart_set">
+							<div class="hori_chart_label">
+								<span class="raise">입출금</span>
+								<span class="text_over">높음</span>
+							</div>
+							
+							<div class="hori_chart">
+								<div class="bar bar01" style="width:100%"><span class="mount"><span>또래자산</span><span>100%</span></span></div>
+								<div class="bar bar02" style="width:26.2%"><span class="mount"><span>내 자산</span><span>26.2%</span></span></div>
+							</div>
+						</div>
+						<div class="chart_set">
+							<div class="hori_chart_label">
+								<span class="raise">예금</span>
+								<span class="text_over">높음</span>
+							</div> 
+							<div class="hori_chart">
+								<div class="bar bar01" style="width:28.2%"><span class="mount"><span>또래자산</span><span>28.2%</span></span></div>
+								<div class="bar bar02" style="width:18.3%"><span class="mount"><span>내 자산</span><span>18.3%</span></span></div>
+							</div>
+						</div>
+						<div class="chart_set">
+							<div class="hori_chart_label">
+								<span class="raise">적금</span>
+								<span class="text_over">높음</span>
+							</div> 
+							<div class="hori_chart">
+								<div class="bar bar01" style="width:43.1%"><span class="mount"><span>또래자산</span><span>43.1%</span></span></div>
+								<div class="bar bar02" style="width:31.5%"><span class="mount"><span>내 자산</span><span>31.5%</span></span></div>
+							</div>
+						</div>
+						<div class="chart_set">
+							<div class="hori_chart_label">
+								<span class="decrease">외화</span>
+								<span class="text_over">낮음</span>
+							</div> 
+							<div class="hori_chart">
+								<div class="bar bar01" style="width:9.3%"><span class="mount"><span>또래자산</span><span>9.3%</span></span></div>
+								<div class="bar bar02" style="width:12.3%"><span class="mount"><span>내 자산</span><span>12.3%</span></span></div>
+							</div>
+						</div>
+						<div class="chart_set">
+							<div class="hori_chart_label">
+								<span class="decrease">청약</span>
+								<span class="text_over">낮음</span>
+							</div> 
+							<div class="hori_chart">
+								<div class="bar bar01" style="width:5.2%"><span class="mount"><span>또래자산</span><span>5.2%</span></span></div>
+								<div class="bar bar02" style="width:20.7%"><span class="mount"><span>내 자산</span><span>20.7%</span></span></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 비교그래프 E -->
+			<div class="com_inner product_info_view">
+				<strong class="com_pop_tit01 com_center">45세 이하 남성들은 입출금 상품에<br>많이 가입하셨어요.</strong>
+				<div class="com_btn_area">
+					<a href="#nolink" class="com_btn_round"><span class="btn_money">나의 맞춤 상품 알아보기</span></a>
+				</div>
+				<div class="tit_sub_top">45세 이하 남성들은 <strong>5,400만원 이하</strong>로<br>금융자산을 많이 보유하고 있네요.</div>
+				<!-- 버블차트 S -->
+				<div class="graph_wrap_bubble">
+					<!-- 차트가 삽입될 DIV -->
+					<!-- 20211108 한별 접근성 추가  S -->
+					<div id="chartHolder" aria-hidden="true"></div>
+					<!-- 20211108 한별 접근성 추가  E -->
+				</div>
+				<!-- 버블차트 E -->
+			</div>
+			<div class="com_space_type01"></div>
+			<div class="com_inner">
+				<div class="com_pop_tit01 mt30"><strong>45세 이하 남성</strong> 평균보다<br>
+					대출 보유가 많으시네요.</div>
+				<div class="com_box_type01 mt15">
+					<div class="liability_box">
+						<strong class="tit">지난달 대출 비교 그래프</strong>	
+						<!--20210827 한별수정 문구추가 :이병철-->					
+						<div class="fs14 txt_gray mt10">상호금융 개인계좌 자산군 대상 범위</div>
+						<!-- 막대그래프 S -->
+						<div class="stick_gh_box2">
+							<div class="gray_box">
+								<!-- 막대그래프 S -->
+								<div class="vertical_graph">
+									<ul>
+										<li>
+											<div>
+												<span class="graph" style="height:80%;">
+													<span class="money"><em>28,114</em>만원</span>
+												</span>
+											</div>
+											<em class="name">지난달 내 대출 </em>
+										</li>
+										<li>
+											<div>
+												<span class="graph" style="height:90.5%;">
+													<span class="money"><em>12,346</em>만원</span>
+												</span>
+											</div>
+											<!--20210827 한별수정 문구변경 :이병철-->
+											<em class="name">또래 평균 대출 </em>
+										</li>
+									</ul>
+									
+								</div>
+								<!--// 막대그래프 E -->
+							</div>
+						</div>
+						<!-- 막대그래프 E -->
+					</div>
+				</div>
+				<a href="#nolink">
+					<div class="com_box_type03 bg10 mt10">
+						<div class="text ">
+							<strong>금융 목표를 세워서</strong><br><span class="color">차근차근 대출을 줄여볼까요?</span>
+						</div>
+					</div>
+				</a>
+			</div>
+			<!-- 20210914 한별 수정 E --> 
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>full layout</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script type="text/javascript" src="../../static/js/slick.min.js"></script>	
+    <script>
+        function draw(){
+            var ctx = document.getElementById('myCanvas').getContext("2d");
+            /*
+            //원그리기
+            ctx.beginPath();
+            ctx.arc(100,100,50,0,(Math.PI/180)*360,false);
+            //ctx.arc(x,y,반지름,시작각도,종료각도,그리는방향);
+            //그리는 방향:true이면 시계 반대방향 / false이면 시계방향
+            ctx.fillStyle = "rgb(255,0,0)";//채울색상
+            ctx.fill();//채우기
+            ctx.closePath();
+            //ctx.stroke();//테두리
+            */
+
+            //부채꼴 그리기
+            ctx.beginPath();
+            ctx.moveTo(50,50);
+            ctx.arc(50,50,50,(Math.PI/180)*90,(Math.PI/180)*215,false);
+            ctx.fillStyle = "rgb(5,100,0)";//채울색상
+            ctx.fill();//채우기
+            ctx.closePath();
+
+            //부채꼴 그리기
+            ctx.beginPath();
+            ctx.moveTo(50,50);
+            ctx.arc(50,50,50,(Math.PI/180)*215,(Math.PI/180)*360,false);
+            ctx.fillStyle = "rgb(50,50,0)";//채울색상
+            ctx.fill();//채우기
+            ctx.closePath();
+
+            //부채꼴 그리기
+            ctx.beginPath();
+            ctx.moveTo(50,50);
+            ctx.arc(50,50,50,0,(Math.PI/180)*90,false);
+            ctx.fillStyle = "rgb(255,200,0)";//채울색상
+            ctx.fill();//채우기
+            ctx.closePath();
+
+            /*
+            //부채꼴 그리기 type2
+            ctx.beginPath();
+            ctx.moveTo(200,200);
+            ctx.arc(200,200,50,0,(Math.PI/180)*90,true);
+            ctx.fillStyle = "rgb(155,100,0)";//채울색상
+            ctx.fill();//채우기
+            ctx.closePath();
+            ctx.strokeStyle = "rgb(255,0,0)";//선색상
+            ctx.stroke();
+            */
+        }
+    </script>
+    <script type="text/javascript">
+        // -----------------------차트 설정 시작-----------------------
+         
+        // rMateChart 를 생성합니다.
+        // 파라메터 (순서대로)
+        //  1. 차트의 id ( 임의로 지정하십시오. )
+        //  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+        //  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+        //  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+        //  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+        rMateChartH5.create("chart1", "chartHolder", "", "100%", "170rem");
+         
+        // 스트링 형식으로 레이아웃 정의.
+        var layoutStr =
+                     '<rMateChart backgroundColor="transparent" borderStyle="none" >'
+                          +'<Column2DChart  showDataTips="true" columnWidthRatio="0.4">'
+                                  +'<horizontalAxis>'
+                                      +'<CategoryAxis id="hAxis" categoryField="Month"/>'
+                                   +'</horizontalAxis>'
+                                   +'<horizontalAxisRenderers>'
+                                  /* style로 정의한 axisLabel을 styleName으로 설정 합니다. */
+                                 +'<Axis2DRenderer axis="{hAxis}" styleName="axisLabel" showLine="true"/>'
+                             +'</horizontalAxisRenderers>'   
+                                  +'<verticalAxis>'
+                                     +'<LinearAxis interval="5"  id="vAxis"/>'
+                                 +'</verticalAxis>'
+                                 +'<verticalAxisRenderers>'
+                                    +'<Axis3DRenderer axis="{vAxis}" visible="false"/>'
+                                   /* visible속성을 false로 하여 Chart에서는 보이지 않게 합니다 */
+                              +'</verticalAxisRenderers>'
+                                   +'<series>'
+                                        +'<Column2DSeries yField="Profit" labelPosition="outside"  fontSize="15" color="#111"> '
+                                       +'<fills>'
+                                        /* Series안에 색을 채울 때(여러색) fills에 주목 */
+                                           +'<SolidColor color="#33d4d2"/>'
+                                          /* color:색깔 */
+                                          +'<SolidColor color="#449bfd"/>'
+                                          +'<SolidColor color="#903bdf"/>'
+                                          +'<SolidColor color="#ff0072"/>'
+                                      +'</fills>'
+                                       +'<showDataEffect>'
+                                           +'<SeriesInterpolate/>'
+                                       +'</showDataEffect>'
+                                      +'</Column2DSeries>'
+                                  +'</series>'
+                                                     
+                               +'</Column2DChart>'
+                               +'<Style>'
+                                +'.axisLabel{fontSize:1.5rem;color:#111111;}'
+                           +'</Style>'
+                          +'</rMateChart>';
+         
+        // 차트 데이터
+        var chartData = [{"Month":"12월","Profit":812},
+                        {"Month":"1월","Profit":785},
+                        {"Month":"2월","Profit":785},
+                        {"Month":"3월","Profit":10000},]
+         
+        // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+        //
+        // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+        // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+        // 
+        // 아래 내용은 
+        // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+        // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+        rMateChartH5.calls("chart1", {
+            "setLayout" : layoutStr,
+            "setData" : chartData
+        });
+         
+        // -----------------------차트 설정 끝 -----------------------
+                </script>
+    <style>
+        canvas{width:400px;height:200px;}
+        .chart{width:400px;height:200px;position:relative;}
+        .chart:after{background-color:#fff;content:'';display:inline-block;position:absolute;width:80px;height:80px;border-radius:100%;left:50%;top:50%;transform:translate(-217%,-92%);}
+    </style>
+</head>
+
+<body onload="draw();" style="overflow-y: auto;">
+    <div class="chart">
+        <canvas id="myCanvas"></canvas>
+    </div>
+    <div class="com_inner">
+        <div class="stick_gh_box">
+            <div class="tit">최근 납부 내역</div>
+            <div class="gray_box">
+                <div class="txt_bubble"><span>평균 월 이용요금:<em>84,675</em>원</span></div>
+                <!-- 막대그래프 S -->
+                        <!-- 차트가 삽입될 DIV -->
+                <div id="chartHolder" style="position:relative;left:-1.5rem;padding:2rem 0;top:3.5rem">
+                    
+                </div>							
+                <style>
+                    .stick_gh_box .gray_box:after{
+                        border-bottom:.2rem solid #e2e2e2;
+                    }
+                </style>
+            </div>
+        </div>
+    
+        <div class="com_box_type01 slide_box_wrap new_mb50 gray "><!-- 20211005 한별 slide_box_wrap 클래스 추가 -->
+            <div id="slider_01" class="slider_wrap">
+                <div class="tab_cont">
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide type01 bg00 mb15">										
+                                <h2>자유로부금 [자유적립]</h2>
+                                <p>일단위로 계약기간 설정 할 수 있고 중도 분할 인출이 가능한 상품</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide type01 bg00 mb15">										
+                                <h2>자유로부금 [자유적립]</h2>
+                                <p>일단위로 계약기간 설정 할 수 있고 중도 분할 인출이 가능한 상품</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide type01 bg00 mb15">										
+                                <h2>자유로부금 [자유적립]</h2>
+                                <p>일단위로 계약기간 설정 할 수 있고 중도 분할 인출이 가능한 상품</p>
+                            </div>
+                        </a>
+                    </div>								
+                </div>
+            </div>
+        </div>
+    
+        <div class="com_box_type01 slide_box_wrap new_mb50"><!-- 20211005 한별 slide_box_wrap 클래스 추가 -->
+            <div class="slider_wrap">
+                <div class="tab_cont">
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg01">
+                                <span class="com_icon_num">대출</span>
+                                <h2>NH직장인마이너스대출</h2>
+                                <p>대출한도 내에서 쓸 수 있는<br> 직장인 전용 모바일 대출</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg01">
+                                <span class="com_icon_num">대출</span>
+                                <h2>NH직장인마이너스대출</h2>
+                                <p>대출한도 내에서 쓸 수 있는<br> 직장인 전용 모바일 대출</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg01">
+                                <span class="com_icon_num">대출</span>
+                                <h2>NH직장인마이너스대출</h2>
+                                <p>대출한도 내에서 쓸 수 있는<br> 직장인 전용 모바일 대출</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg01">
+                                <span class="com_icon_num">대출</span>
+                                <h2>NH직장인마이너스대출</h2>
+                                <p>대출한도 내에서 쓸 수 있는<br> 직장인 전용 모바일 대출</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg01">
+                                <span class="com_icon_num">대출</span>
+                                <h2>NH직장인마이너스대출</h2>
+                                <p>대출한도 내에서 쓸 수 있는<br> 직장인 전용 모바일 대출</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="com_box_type01 slide_box_wrap new_mb50"><!-- 20211005 한별 slide_box_wrap 클래스 추가 -->
+            <div class="slider_wrap">
+                <div class="tab_cont">
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg02">
+                                <span class="com_icon_num">펀드</span>
+                                <h2>NH-Amundi 우량채권형 증권자  
+                                    투자신탁[채권] Ce</h2>
+                                <p>NH-Amundi 자산운용 채권형</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg02">
+                                <span class="com_icon_num">펀드</span>
+                                <h2>NH-Amundi 우량채권형 증권자  
+                                    투자신탁[채권] Ce</h2>
+                                <p>NH-Amundi 자산운용 채권형</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg02">
+                                <span class="com_icon_num">펀드</span>
+                                <h2>NH-Amundi 우량채권형 증권자  
+                                    투자신탁[채권] Ce</h2>
+                                <p>NH-Amundi 자산운용 채권형</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg02">
+                                <span class="com_icon_num">펀드</span>
+                                <h2>NH-Amundi 우량채권형 증권자  
+                                    투자신탁[채권] Ce</h2>
+                                <p>NH-Amundi 자산운용 채권형</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div role="tabpanel" class="cmm-tab-panel">
+                        <a href="#">
+                            <div class="slide bg02">
+                                <span class="com_icon_num">펀드</span>
+                                <h2>NH-Amundi 우량채권형 증권자  
+                                    투자신탁[채권] Ce</h2>
+                                <p>NH-Amundi 자산운용 채권형</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="new_sub_main_box"><!-- car_top_bg  20210929 삭제 -->
+        <div class="com_line_type01">
+            <div class="com_right topcard_plus">
+                <!-- 20211109 한별 접근성 role="button" 추가 S -->
+                <a href="javascript:void(0);" role="button" class="com_btnround_type08"><span>카드등록</span></a>
+                <!--// 20211109 한별 접근성 role="button" 추가 E -->
+            </div>
+            <div class="">
+                <div class="car_top_wrap estate_top_wrap_type2">
+                    <div class="slider_wrap sc_Top">
+                        <div class="tab_cont slick-initialized slick-slider slick-dotted">
+                            <div class="slick-list draggable" style="padding: 0px 5rem;"><div class="slick-track" style="opacity: 1; width: 825px; transform: translate3d(-275px, 0px, 0px);"><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" id="slick-slide10" aria-describedby="slick-slide-control10" style="width: 275px;">
+                                <a class="" tabindex="-1">
+                                    <div class="slide_card_img top_type">
+                                        <img src="../../../../src/assets/images/icon/card_dummy4.png">
+                                    </div>
+                                </a>
+                            </div><div role="tabpanel" class="cmm-tab-panel slick-slide slick-current slick-center" data-slick-index="1" aria-hidden="true" tabindex="0" id="slick-slide11" aria-describedby="slick-slide-control11" style="width: 275px;">
+                                <a class="" tabindex="-1">
+                                    <div class="slide_card_img top_type">
+                                        <img src="../../../../src/assets/images/icon/card_dummy2.png">
+                                    </div>
+                                </a>
+                            </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" id="slick-slide12" aria-describedby="slick-slide-control12" style="width: 275px;">
+                                <a class="" tabindex="-1">
+                                    <div class="slide_card_img top_type">
+                                        <img src="../../../../src/assets/images/icon/card_dummy3.png">
+                                    </div>
+                                </a>
+                            </div></div></div>
+                            
+                            
+                        <ul class="slick-dots" role="tablist" style="display: block;"><li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control10" aria-controls="slick-slide10" aria-label="1 of 3" tabindex="-1">1</button></li><li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control11" aria-controls="slick-slide11" aria-label="2 of 3" tabindex="0" aria-selected="true">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control12" aria-controls="slick-slide12" aria-label="3 of 3" tabindex="-1">3</button></li></ul></div>
+                        <strong class="com_box_tit02 mt10 pb10">NH농협 올바른 MYPICK 카드</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="com_inner com_boxarea_type01 m0"> 
+            <div class="select_dual_wrap hasNav mt15">
+                <div class="select_dual">
+                    <div class="area">
+                        <div class="select_date">
+                            <!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
+                            <!-- 20211105 한별 접근성 추가 라벨명 aria label명 추가 및 disabled 시 disabled 필요 S -->
+                            <button class="cal_btn cal_prev disabled" aria-label="한달 전 이동" disabled=""></button>
+                            <a class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년<span class="num">8</span>월</a>
+                            <button class="cal_btn cal_next" aria-label="한달 후 이동"></button>
+                            <!-- 20211105 한별 접근성 추가 라벨명 aria label명 추가 및 disabled 시 disabled 필요 E -->
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- 20211109 한별 접근성 role="button" 추가 S -->
+            <div class="com_box_type01 com_box_list01">
+                <ul class="list_type_01 list_type_etc no-stroke">
+                    <li>
+                        <a href="javascript:void(0);" role="button">
+                            <dl>
+                                <dt>
+                                    <em>지출액</em>
+                                    <span class="com_black fs16">1,800,000원</span>
+                                </dt>
+                            </dl>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" role="button">
+                            <dl>
+                                <dt>
+                                    <em>전월 청구금액</em>
+                                    <span class="com_black fs16">2,498,000원</span>
+                                </dt>
+                            </dl>
+                        </a>
+                    </li>								
+                </ul>
+            </div>
+            <div class="linkbox_wrap linkbox_two">
+                <div class="box">
+                    <div class="tt_wrap">
+                        <a href="javascript:void(0);" role="button">
+                            <em class="tt_top com_black">청구할인 금액</em>
+                            <span class="com_price">
+                                <em class="num">8,620</em><em class="unit">원</em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="tt_wrap">
+                        <a href="javascript:void(0);" role="button">
+                            <em class="tt_top com_black">적립 Point</em>
+                            <span class="com_price">
+                                <em class="num">3,200</em><em class="unit">P</em>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--// 20211109 한별 접근성 role="button" 추가 E -->
+        </div>
+        <div class="com_slide_inner">
+            <!-- 20211109 한별 지출내역 있을때 S -->
+            <div class="car_top_wrap estate_top_wrap_type2 graph_slide_layout">
+                <div class="slider_wrap sc_Mid">
+                    <div class="tab_cont slick-initialized slick-slider slick-dotted">
+                        <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 1500px; transform: translate3d(0px, 0px, 0px);"><div role="tabpanel" class="cmm-tab-panel slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" id="slick-slide00" aria-describedby="slick-slide-control00" style="width: 375px;">
+                            
+                            <div class="com_box_type01 pb0">
+                                <!-- 20211110 한별 링크없을때 a 링크 삭제 S -->
+                                <strong class="com_box_tit02 p0 com_block com_left">월별 지출 추이</strong>
+                                <div class="chart mt20">
+                                    <div class="slide_chart">
+                                        <div class="monthly_change"><span class="legend">
+                                            <!--//  20211108 한별 접근성 추가 S 상승,하락,보합 케이스시 text_over로 상태를 읽어줍니다.-->
+                                            <!-- <span class="raise com_black"><span class="text_over">상승</span><strong>84,675</strong>원</span></span></div> -->
+                                            <span class="decrease com_black"><span class="text_over">하락</span><strong>84,675</strong>원</span></span></div>
+                                            <!-- <span class="zero com_black"><span class="text_over">보합</span><strong>84,675</strong>원</span></span></div> -->
+                                            <!--//  20211108 한별 접근성 추가 E 상승,하락,보합 케이스시 text_over로 상태를 읽어줍니다..-->
+                                            <!-- <div class="monthly_change"><span class="legend"><span class="decrease"><strong>84,675</strong>원</div> -->
+                                        <!-- 차트가 삽입될 DIV -->
+                                        <!-- 20211108 한별 접근성 추가  S -->
+                                        <div id="chartHolder" aria-hidden="true"><div class="rMateH5__Root" id="chart1" style="position: relative; height: 150px; width: 300px;"><div id="rMateChartH5__TrialMarkBox_6285" class="rMateChartH5__TrialMarkBox_6285" style="position: absolute; width: 100%; overflow: hidden; height: 16px; z-index: 1; left: 0px; top: 0px; display: block; pointer-events: none;"><canvas id="rMateChartH5__LeftTrialMark_6285" class="rMateChartH5__LeftTrialMark_6285" width="67" height="16" style="width: 67px; height: 16px; position: absolute; left: 0px; cursor: pointer; display: block; pointer-events: auto;"></canvas><canvas id="rMateChartH5__RightTrialMark_6285" class="rMateChartH5__RightTrialMark_6285" width="67" height="16" style="width: 67px; height: 16px; position: absolute; right: 0px; cursor: pointer; display: block; pointer-events: auto;"></canvas></div><div class="rMateH5__rMateChart" tabindex="-1" style="background-color: rgb(255, 255, 255); border-style: none; position: absolute; overflow: visible; outline: none; left: 0px; top: 0px; height: 150px; width: 300px;"><div class="rMateH5__ContentPane" style="overflow: visible; position: absolute; left: 0px; top: 0px; width: 300px; height: 150px;"><div class="rMateH5__Caption" style="width: 300px; position: absolute; height: 17px; left: 0px; top: 0px;">Annual Report</div><div class="rMateH5__Main" tabindex="-1" style="width: 100%; height: 133px; position: absolute; overflow: visible; outline: none; left: 0px; top: 17px;"><div class="rMateH5__ContentPane" style="overflow: visible; position: absolute; left: 0px; top: 0px; width: 300px; height: 133px;"><div class="rMateH5__Line2DChart" style="position: absolute; height: 133px; width: 300px; left: 0px; top: 0px;"><div class="rMateH5__BackgroundElementHolder" style="left: 39px; top: 7px; height: 94px; width: 262px;"><div class="rMateH5__GridLines" style="height: 94px; width: 262px;"></div></div><div class="rMateH5__Axis2DRenderer horizontal" style="height: 133px; width: 300px; left: 0px; top: 0px;"></div><div class="rMateH5__Axis3DRenderer vertical" style="display: none; height: 133px; width: 300px; left: 0px; top: 0px;"></div><div class="rMateH5__SeriesHolder" style="left: 39px; top: 7px; height: 94px; width: 262px;"><div class="rMateH5__Line2DSeries" style="height: 94px; width: 262px;"></div></div><div class="rMateH5__CanvasElementHolder"><canvas class="rMateH5__Chart" width="300" height="133" style="position: absolute; width: 300px; height: 133px;"></canvas></div><div class="rMateH5__AnnotationElementHolder" style="left: 39px; top: 7px; height: 94px; width: 262px;"></div></div></div></div></div></div></div></div>	
+                                        <!-- 20211108 한별 접근성 추가  E -->
+                                    </div>							
+                                    <ul class="list_type_02 list_subtype02 no-stroke pb10">
+                                        <li>
+                                            <div class="list_type_box">
+                                                <div class="view_btn no_list no-stroke">
+                                                    <dl>
+                                                        <dt>
+                                                            <div>
+                                                                <em>07월 사용 금액
+                                                                </em>
+                                                            </div>
+                                                            
+                                                        </dt>
+                                                        <dd>
+                                                            <span class="fs13 com_black">
+                                                                <em class="num">798,820</em><em class="unit">원</em>
+                                                            </span>
+                                                            
+                                                        </dd>
+                                                    </dl>
+                                                </div>
+                                            </div>
+                                            
+                                            <dl class="list_depth2">
+                                                <dt>
+                                                    <div>
+                                                        <em>4개월 평균 지출액</em>
+                                                    </div>
+                                                    
+                                                </dt>
+                                                <dd>
+                                                    <span class="fs13 com_black">
+                                                        <em class="num">1,198,820</em><em class="unit">원</em>
+                                                    </span>
+                                                </dd>
+                                            </dl>
+                                            
+                                        </li>	
+                                    </ul>
+                                </div>
+                                <!--// 20211110 한별 링크없을때 a 링크 삭제 E -->
+                            </div>
+                        </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" id="slick-slide01" aria-describedby="slick-slide-control01" style="width: 375px;">
+                            <div class="com_box_type01 pb0">
+                                <a href="javascript:console.log('link')" tabindex="-1">
+                                <strong class="com_box_tit02 p0 com_block com_left">소비 비율</strong>
+                                    <div class="chart mt40">
+                                        <div class="top_graph_info">
+                                            <div class="top_info_box">														   
+                                                <div class="graph_box p0">
+                                                    <div class="graph_wrap_donut a-center mb30">
+                                                        <!-- 차트가 삽입될 DIV
+                                                        시리즈에 항목 , % 삽입되어야 합니다. (기획서 참조 부탁드립니다)
+                                                        -->
+                                                        <!-- 20211108 한별 접근성 추가  S -->
+                                                        <div id="chartHolder2" aria-hidden="true"><div class="rMateH5__Root" id="chart2" style="position: relative; height: 220px; width: 320px;"><div id="rMateChartH5__TrialMarkBox_15614" class="rMateChartH5__TrialMarkBox_15614" style="position: absolute; width: 100%; overflow: hidden; height: 16px; z-index: 1; left: 0px; top: 0px; display: block; pointer-events: none;"><canvas id="rMateChartH5__LeftTrialMark_15614" class="rMateChartH5__LeftTrialMark_15614" width="67" height="16" style="width: 67px; height: 16px; position: absolute; left: 0px; cursor: pointer; display: block; pointer-events: auto;"></canvas><canvas id="rMateChartH5__RightTrialMark_15614" class="rMateChartH5__RightTrialMark_15614" width="67" height="16" style="width: 67px; height: 16px; position: absolute; right: 0px; cursor: pointer; display: block; pointer-events: auto;"></canvas></div><div class="rMateH5__rMateChart" tabindex="-1" style="background-color: rgb(255, 255, 255); border-style: none; position: absolute; overflow: visible; outline: none; left: 0px; top: 0px; height: 220px; width: 320px;"><div class="rMateH5__ContentPane" style="overflow: visible; position: absolute; left: 0px; top: 0px; width: 320px; height: 220px;"><div class="rMateH5__Main" tabindex="-1" style="width: 100%; height: 100%; position: absolute; overflow: visible; outline: none; left: 0px; top: 0px;"><div class="rMateH5__ContentPane" style="overflow: visible; position: absolute; left: 0px; top: 0px; width: 320px; height: 220px;"><div class="rMateH5__Pie2DChart" style="position: absolute; height: 220px; width: 320px; left: 0px; top: 0px;"><div class="rMateH5__BackgroundElementHolder" style="left: 0px; top: 0px;"></div><div class="rMateH5__SeriesHolder" style="left: 0px; top: 0px;"><div class="rMateH5__Pie2DSeries" style="height: 220px; width: 320px;"></div></div><div class="rMateH5__CanvasElementHolder" style="left: 0px; top: 0px;"><canvas class="rMateH5__Chart" width="320" height="220" style="position: absolute; width: 320px; height: 220px;"></canvas></div><div class="rMateH5__AnnotationElementHolder" style="left: 0px; top: 0px;"></div></div></div></div></div></div></div></div>
+                                                        <!-- 20211108 한별 접근성 추가  E -->
+                                                    </div>
+                                                    <!-- <ul class="list com_left">
+                                                        <li class="bl_darkcyan">주거</li>
+                                                        <li class="bl_lightcyan">금융/보험</li>
+                                                        <li class="bl_sky">세금/공과금</li>
+                                                        <li class="bl_blue">온라인</li>
+                                                        <li class="bl_aqua">자동차</li>
+                                                        <li class="bl_red">식비</li>
+                                                        <li class="bl_orange">생활/마트</li>
+                                                        <li class="bl_pink">미분류</li>
+                                                    </ul> -->
+                                                </div>
+                                                 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" id="slick-slide02" aria-describedby="slick-slide-control02" style="width: 375px;">
+                            <div class="com_box_type01 pb0">
+                                <a href="javascript:console.log('link')" tabindex="-1">
+                                <strong class="com_box_tit02 p0 com_block com_left">자주 이용하는 거래처</strong>
+                                    <div class="chart mt20">
+                                        <div class="top_graph_info ">
+                                            <div class="top_info_box">
+                                                <div class="v_chart_wrap type2">
+                                                    <div class="chart_box mt10">
+                                                        <div class="bar num bar01">1<span class="mount"><b>5</b>건</span></div>
+                                                        <div class="bar num bar02">2<span class="mount"><b>4</b>건</span></div>
+                                                        <div class="bar num bar03">3<span class="mount"><b>3</b>건</span></div>
+                                                    </div>
+                                                </div>
+                                              <div class="top_chart_wrap v_chart_list type2">
+                                                <div class="">
+                                                    <div class="tab_content mt20 on">
+                                                        <table class="submain_list_wrap">
+                                                            <tbody>
+                                                            <tr class="list case01">
+                                                                <td class="title">쿠팡(쿠페이)</td>
+                                                                
+                                                            </tr>
+                                                            <tr class="list case02">
+                                                                <td class="title">㈜뉴코아-킴스아울렛</td>
+                                                                
+                                                            </tr>
+                                                            <tr class="list case03">
+                                                                <td class="title">KH에너지직영광명주유소</td>
+                                                                
+                                                            </tr>
+                                                        </tbody></table>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" id="slick-slide03" aria-describedby="slick-slide-control03" style="width: 375px;">
+                            <div class="no_graph_slide_layout">
+                                <div class="com_box_type01">
+                                    <div class="no_data_box">
+                                        <div class="no_data_list">
+                                            <p>조회된 지출내역이 없습니다.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div></div>
+                        
+                        
+                        <!-- 20211109 한별 지출내역 없을때 S -->
+                        
+                        <!--// 20211109 한별 지출내역 없을때 E -->
+                    <ul class="slick-dots" role="tablist" style="display: block;"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 4" tabindex="0" aria-selected="false">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 4" tabindex="-1" aria-selected="false">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 4" tabindex="-1" aria-selected="false">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 4" tabindex="-1" aria-selected="false">4</button></li></ul></div>
+                </div>
+            </div>
+            <!--// 20211109 한별 지출내역 있을때 E -->
+
+            <div class="com_inner">
+                <strong class="com_pop_tit01">카드 이용 실적</strong>
+                <div class="com_box_type01 com_box_list01 mt15">
+                    <div class="new_tit_area">
+                        <ul class="list_type_01 list_type_card no-stroke">
+                        <li>
+                            <a href="javascript:void(0);" role="button">
+                                <dl>
+                                    <dt>
+                                        <div>
+                                            <i class="D1AADO0000"><span class="blind">농협카드</span></i>
+                                            <em>NH농협 올바른 MYPICK 카드           
+                                            </em>
+                                            <span>1234-678-156458</span>
+                                        </div>
+                                    </dt>
+                                </dl>
+                            </a>
+                        </li>
+                    </ul>
+                    </div>
+                    <ul class="list_type_01 list_type_etc list_type_card"><!-- 20210901 한별 list_type_card 클래스 추가 -->
+                        <div class="four_step_progress">
+                            <div class="progressBar_wrapper">
+                                <div class="top">
+                                    <div class="st fs16 point_gray">이용금액</div>
+                                    <div class="ed com_black fs13"><span class="num fs16 bold">930,000</span>원</div>
+                                </div>
+                                <div class="progressBar type02">
+                                    <div class="bar" style="width:60%">
+                                    </div>
+                                    <!--progress bar 25% / 50% / 75% / 100% 이상으로 나눠서 하단 station에 on클래스로 개발 부탁드립니다-->
+                                    <div class="station_wrap">
+                                        <span class="st1 on">1</span>
+                                        <span class="st2 on">2</span>
+                                        <span class="st3">3</span>
+                                        <span class="st4">4</span>
+                                    </div>
+                                </div>
+                                <div class="date mt20">
+                                    <div class="st">
+                                        <p class="com_txtinfo_type01 com_point_darkblue">
+                                            <b>2구간 실적 달성</b>(3구간까지 530,000원 남음)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            
+            <div class="com_box_type01 pb0">
+                <div class="liability_box">
+                    <strong class="tit">받은 월별 혜택</strong>						
+                    <!-- 막대그래프 S -->
+                    <div class="stick_gh_box4">
+                        <!--disabled 클래스 추가시 disable case 버튼으로 바뀜-->
+                        <!-- 20211108 한별 접근성 추가  S -->
+                        <button class="contbtn prev disabled" aria-label="이전 월 이동"></button>
+                        <button class="contbtn next" aria-label="이후 월 이동"></button>
+                        <!--//  20211108 한별 접근성 추가 E -->
+                        <div class="gray_box">
+                            <!-- 막대그래프 S -->
+                            <div class="vertical_graph">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <span class="graph" style="height:80%;">
+                                                <span class="money"><em>7,000</em>원</span>
+                                            </span>
+                                        </div>
+                                        <em class="name">21.06</em>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <span class="graph" style="height:90.5%;">
+                                                <span class="money"><em>6,720</em>원</span>
+                                            </span>
+                                        </div>
+                                        <em class="name">21.05</em>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <span class="graph" style="height:90.5%;">
+                                                <span class="money"><em>7,200</em>원</span>
+                                            </span>
+                                        </div>
+                                        <em class="name">21.04</em>
+                                    </li>
+                                    <li>
+                                        <div>
+                                            <span class="graph" style="height:90.5%;">
+                                                <span class="money"><em>5,190</em>원</span>
+                                            </span>
+                                        </div>
+                                        <em class="name">21.03</em>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                            <!--// 막대그래프 E -->
+                        </div>
+                    </div>
+                    <!-- 막대그래프 E -->
+                    <ul class="list_type_02 list_subtype02 no-stroke pb10">
+                        <li>
+                            <div class="list_type_box">
+                                <div class="view_btn no_list no-stroke">
+                                    <dl>
+                                        <dt>
+                                            <div>
+                                                <em class="com_normal">올해 혜택받은 금액
+                                                </em>
+                                            </div>
+                                        </dt>
+                                        <dd>
+                                            <span class="fs13 com_black">
+                                                <em class="num">70,800</em><em class="unit">원</em>
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            
+                            <dl class="list_depth2">
+                                <dt>
+                                    <div>
+                                        <em class="com_normal">올해 혜택받은 평균 금액 </em>
+                                    </div>
+                                    
+                                </dt>
+                                <dd>
+                                    <span class="fs13 com_black">
+                                        <em class="num">7,250</em><em class="unit">원</em>
+                                    </span>
+                                </dd>
+                            </dl>
+                            
+                        </li>	
+                    </ul>
+                </div>
+            </div>
+            <!--20211101 삭제(안하기로함) <strong class="com_box_tit02 pb0 mt10">고객님께 추천드리는 카드</strong>
+            </div>
+            <div class="com_slide_inner">
+                <div class="car_top_wrap estate_top_wrap_type2">
+                    <div class="slider_wrap sc_Bottom">
+                        <div class="tab_cont">
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="com_box_type01">
+                                    <div class="slide_card_img">
+                                        <img src="../../../../src/assets/images/icon/card_dummy2.png">
+                                    </div>
+                                    <strong class="com_box_tit02 pb10">NH농협 올바른 MYPICK 카드</strong>
+                                    <div class="fs16 point_gray mb5">간편결제  시  건당 1천원 청구할인</div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="com_box_type01">
+                                    <div class="slide_card_img">
+                                        <img src="../../../../src/assets/images/icon/card_dummy3.png">
+                                    </div>
+                                    <strong class="com_box_tit02 pb10">NH농협 올바른 MYPICK 카드</strong>
+                                    <div class="fs16 point_gray mb5">간편결제  시  건당 1천원 청구할인</div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="cmm-tab-panel">
+                                <div class="com_box_type01">
+                                    <div class="slide_card_img">
+                                        <img src="../../../../src/assets/images/icon/card_dummy4.png">
+                                    </div>
+                                    <strong class="com_box_tit02 pb10">NH농협 올바른 MYPICK 카드</strong>
+                                    <div class="fs16 point_gray mb5">간편결제  시  건당 1천원 청구할인</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="new_add_register new_add_search"><a href="javascript:void(0);"><span>내게 맞는 맞춤 카드 찾기</span></a></div>
+            -->
+            </div>
+
+            <div class="com_inner">
+                <div class="top_info_box_wrap">					
+                    <div class="shadow"></div>
+                    <div class="top_info_box type02 noBG hasdetail">
+                        <div class="car_top_wrap">
+                            <div class="slider_wrap">
+                                <div class="tab_cont slick-initialized slick-slider slick-dotted">
+                                    <div class="slick-list draggable" style="height: 237px;"><div class="slick-track" style="opacity: 1; width: 903px; transform: translate3d(0px, 0px, 0px);"><div role="tabpanel" class="cmm-tab-panel slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="0" id="slick-slide00" aria-describedby="slick-slide-control00" style="width: 301px;">
+                                        <div class="slide ">
+                                            <!-- 20210831 한별 a링크 추가 S -->
+                                            <a href="javascript:void(0);" tabindex="0">
+                                                <div class="car_pic">
+                                                    <img src="../../../../src/assets/images/icon/car_noimg.png" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+                                                </div>
+                                                <div class="car_name">
+                                                    쉐보레(대우) 더 뉴 트랙스<br>
+                                                    1.4터보 블레이드									
+                                                </div>
+                                                <span class="car_num">
+                                                    <span>12 나 1234</span>
+                                                </span>
+                                            </a>
+                                            <!-- 20210831 한별 a링크 추가 E -->
+                                        </div>
+                                    </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" id="slick-slide01" aria-describedby="slick-slide-control01" style="width: 301px;">
+                                        <div class="slide ">
+                                            <!-- 20210831 한별 a링크 추가 S -->
+                                            <a href="javascript:void(0);" tabindex="-1">
+                                                <div class="car_pic">
+                                                    <img src="../../../../src/assets/images/icon/car_trax.png" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+                                                </div>
+                                                <div class="car_name">
+                                                    쉐보레(대우) 더 뉴 트랙스<br>
+                                                    1.4터보 블레이드									
+                                                </div>
+                                                <span class="car_num">
+                                                    <span>12 나 1234</span>
+                                                </span>
+                                            </a>
+                                            <!-- 20210831 한별 a링크 추가 E -->
+                                        </div>
+                                    </div><div role="tabpanel" class="cmm-tab-panel slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" id="slick-slide02" aria-describedby="slick-slide-control02" style="width: 301px;">
+                                        <div class="slide ">
+                                            <!-- 20210831 한별 a링크 추가 S -->
+                                            <a href="javascript:void(0);" tabindex="-1">
+                                                <div class="car_pic">
+                                                    <img src="../../../../src/assets/images/icon/car_trax.png" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+                                                </div>
+                                                <div class="car_name">
+                                                    쉐보레(대우) 더 뉴 트랙스<br>
+                                                    1.4터보 블레이드									
+                                                </div>
+                                                <span class="car_num">
+                                                    <span>12 나 1234</span>
+                                                </span>
+                                            </a>
+                                            <!-- 20210831 한별 a링크 추가 E -->
+                                        </div>
+                                    </div></div></div>
+                                    
+                                    
+                                <ul class="slick-dots" role="tablist" style="display: block;"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 3" tabindex="0" aria-selected="false">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 3" tabindex="-1" aria-selected="false">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 3" tabindex="-1" aria-selected="false">3</button></li></ul></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>					
+                
+                
+            </div>
+
+            <div class="com_inner">
+				<div class="calendar_list_view car_list_view">
+					<!-- 메세지 S -->
+					<div>
+						<strong class="msg">메세지</strong>
+						<div class="view_list_area">
+							
+						</div>
+					</div>
+					<!-- 메세지 E -->
+					<!-- 6일 S -->
+					<span class="year">2021년</span>
+					<div>
+						<strong class="day">6월</strong>
+						<div class="view_list_area">							
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">엔진오일</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 6일 E -->
+					<!-- 7일 S -->
+					<span class="year">2021년</span>
+					<div>
+						<strong class="day">7월</strong>
+						<div class="view_list_area">							
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">에어컨 필터</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar PBColor2" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">에어크리너</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar PBColor3" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">브레이크오일</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar PBColor4" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">배터리</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar PBColor5" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+							<div class="cal_pop_info_wrap">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="top">
+													<div class="st com_black bold">타이어</div>													
+												</div>
+												<div class="progressBar">
+													<div class="bar PBColor6" style="width:80%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st point_gray">주기 10,000km</div>
+													<span class="bar"></span>
+													<div class="ed point_gray">1,212km 남음</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 7일 E -->
+					
+					<!-- 20210826 한별 추가 S -->
+				</div>
+			</div>
+
+            <div class="stick_gh_box car">
+                <div class="tit">최근6개월 지출금액</div>
+                <p class="txt_sub"><span>2021</span>년 월평균 지출 : <span>2,340,000</span><em>원</em></p>
+                <div class="gray_box car">
+                    <!-- 막대그래프 S -->
+                    <div class="vertical_graph">
+                        <div class="vertical_graph_box">
+                            <div class="vertical_graph_line" style="top:0%;"></div>
+                            <ul>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:100%;"></span>
+                                    </div>
+                                    <em class="name">9월</em>
+                                </li>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:78.5%;"></span>
+                                    </div>
+                                    <em class="name">8월</em>
+                                </li>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:81.2%;"></span>
+                                        <!-- 
+                                            height="10rem" => 100%
+                                            10rem => 100px
+                                        -->
+                                    </div>
+                                    <em class="name">7월</em>
+                                </li>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:81.2%;"></span>
+                                    </div>
+                                    <em class="name">6월</em>
+                                </li>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:81.2%;"></span>
+                                    </div>
+                                    <em class="name">5월</em>
+                                </li>
+                                <li>
+                                    <div>
+                                        <span class="graph" style="height:81.2%;"></span>
+                                    </div>
+                                    <em class="name">4월</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--// 막대그래프 E -->
+                </div>
+            </div>
+
+            <div class="goal_box_wrap pt0">
+                <div class="new_goal_box">
+                    <div class="head">
+                        <!---20210803 한별수정 금융,버킷 뱃지 이병철 S-->
+                        <p><span class="icon_mint icon">금융</span>이달의 지출목표 220만원</p>
+                        <!---20210803 한별수정 금융,버킷 뱃지 이병철 E-->
+                    </div>
+                    <div class="progressBar_wrapper">
+                        <div class="top">
+                            <div class="st warn bold">소비를 멈추세요!</div>
+                            <div class="ed num">2021.05.31</div>
+                        </div>
+                        <div class="progressBar warn">
+                            <div class="bar" style="width:90%">
+                            </div>
+                        </div>
+                        <div class="date">
+                            <div class="st">현재 <span class="num">2,350,200</span>원</div>
+                            <div class="ed">목표 <span class="num">250</span>만원</div>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="tag">
+                            <span class="icon_grey">온라인쇼핑</span>
+                            <span class="icon_grey">주거/통신</span>
+                            <span class="icon_grey">식비</span>
+                            <span class="icon_grey">교통</span>
+                            <span class="icon_grey">뷰티/미용</span>
+                            <span class="icon_grey">생활/마트</span>
+                            <span class="icon_grey">자동차</span>
+                            <span class="icon_grey">자녀/육아</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="new_goal_box">
+                    <div class="head">
+                        
+                        <p><span class="icon_mint icon">금융</span>인생비자금 만들기</p>
+                    </div>
+                    <div class="head_sub">연결계좌  3520059467621 <span class="badge">+<span class="num">1</span></span> </div>
+                    <div class="progressBar_wrapper">
+                        <div class="top">
+                            <div class="st"></div>
+                            <div class="ed num">2021.05.31</div>
+                        </div>
+                        <!--20210826 한별수정 type01 : 금융 // type02 버킷 제거-->
+                        <div class="progressBar type01">
+                            <div class="bar" style="width:90%">
+                            </div>
+                        </div>
+                        <div class="date">
+                            <div class="st">현재 <span class="num">6,850,200</span>원</div>
+                            <div class="ed">목표 <span class="num">1,000</span>만원</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 계좌없을때 S -->
+                <div class="new_goal_box">
+                    <div class="head">
+                        <p><span class="icon_mint icon">금융</span>인생비자금 만들기</p>
+                    </div>
+                    <div class="head_sub"></div>
+                    <div class="progressBar_wrapper">
+                        <div class="top">
+                            <div class="st warn bold">계좌가 연결되지 않았어요.</div>
+                            <div class="ed num">2021.05.31</div>
+                        </div>
+                        <!--20210826 한별수정 type01 : 금융 // type02 버킷 제거-->
+                        <div class="progressBar type01">
+                            <div class="bar" style="width:0%">
+                            </div>
+                        </div>
+                        <div class="date">
+                            <div class="st">현재 <span class="num">0</span>원</div>
+                            <div class="ed">목표 <span class="num">1,000</span>만원</div>
+                        </div>
+                    </div>
+                </div>
+                <!--// 계좌없을때 E -->
+                <div class="new_goal_box goal_fail">
+                    <div class="head">
+                        <p>500만원 모으기</p>
+                    </div>
+                    <div class="head_sub">연결계좌  3520059467621 <span class="badge">+<span class="num">1</span></span></div>
+                    <!--한별 추가 20210705 이병철 달성/실패 케이스 fail, success 클래스로 구분-->
+                    <div class="goal_done fail">
+                        <span class="img">
+                            실패
+                        </span>
+                        <span class="num date">2021.05.15</span>
+                    </div>
+                </div>
+                <div class="new_goal_box goal_done">
+                    <div class="head">
+                        <p>500만원 모으기</p>
+                    </div>
+                    <div class="head_sub">연결계좌  3520059467621 </div>
+                    <div class="goal_done success">
+                        <span class="img">
+                            달성
+                        </span>
+                        <span class="num date">2021.05.15</span>
+                    </div>
+                </div>
+                <div class="new_goal_box">
+                    <div class="head">
+                        
+                        <p><span class="icon_mint icon">버킷</span>인덕원 푸르지오에서 살기</p>
+                    </div>
+                    <div class="head_sub">연결계좌  3520059467621  </div>
+                    <div class="progressBar_wrapper">
+                        <div class="top">
+                            <div class="st"></div>
+                            <div class="ed num">2021.05.31</div>
+                        </div>
+                        <div class="progressBar type02">
+                            <div class="bar" style="width:90%">
+                            </div>
+                        </div>
+                        <div class="date">
+                            <div class="st">현재 <span class="num">6,850,200</span>원</div>
+                            <div class="ed">목표 <span class="num">1,000</span>만원</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="com_inner">
+				<div class="com_box_type01 card_use_box02">
+					<div class="new_tit_area">
+						<div class="tit"><span>카테고리 별 지출</span>
+								<a href="javascript:void(0);" class="btn_write fr"><span class="blind">쓰기</span></a>
+						</div>
+					</div>
+					<div class="list_type_02">
+						<!-- 20211008 한별 수정 S (div i 아이콘 추가) -->
+						<div class="progressBar_wrapper">
+                            <div class="top">
+								<div>
+									<i class="AS20000001"><span class="blind">쇼핑아이콘</span></i>
+                                	<div class="st bold">쇼핑</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type01">
+                                <div class="bar" style="width:56%">
+									<div class="popover_wrap">
+										<span class="popover">
+											56%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000002"><span class="blind">가구/침구아이콘</span></i>
+									<div class="st bold">가구/침구</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type02">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000003"><span class="blind">외식아이콘</span></i>
+									<div class="st bold">외식</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type03">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000004"><span class="blind">카페/베이커리아이콘</span></i>
+									<div class="st bold">카페/베이커리</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type04">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000005"><span class="blind">생활/마트아이콘</span></i>
+									<div class="st bold">생활/마트</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type05">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000006"><span class="blind">자동차아이콘</span></i>
+									<div class="st bold">자동차</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type06">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000007"><span class="blind">교통아이콘</span></i>
+									<div class="st bold">교통</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type07">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000008"><span class="blind">여행/숙박아이콘</span></i>
+									<div class="st bold">여행/숙박</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type08">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000009"><span class="blind">문화/레저아이콘</span></i>
+									<div class="st bold">문화/레저</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type09">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000010"><span class="blind">의료/건강아이콘</span></i>
+									<div class="st bold">의료/건강</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type10">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000011"><span class="blind">뷰티/미용아이콘</span></i>
+									<div class="st bold">뷰티/미용</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type11">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000012"><span class="blind">금융아이콘</span></i>
+									<div class="st bold">금융</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type12">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000013"><span class="blind">교육아이콘</span></i>
+									<div class="st bold">교육</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type13">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000014"><span class="blind">주거/통신아이콘</span></i>
+									<div class="st bold">주거/통신</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type14">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000015"><span class="blind">자녀/육아아이콘</span></i>
+									<div class="st bold">자녀/육아</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type14">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<div class="progressBar_wrapper mt30">
+                            <div class="top">
+								<div>
+									<i class="AS20000016"><span class="blind">기타아이콘</span></i>
+									<div class="st bold">기타</div>
+								</div>
+                                <div class="ed bold"><span class="num">500,000</span>원</div>
+                            </div>
+                            <div class="progressBar type15">
+                                <div class="bar" style="width:82%">
+									<div class="popover_wrap">
+										<span class="popover">
+											82%
+											<span class="arrow"></span>
+										</span>
+									</div>
+								</div>
+                            </div>
+                            <div class="date">
+                                <div class="st">목표 <span class="num">550,000</span>원</div>
+                                <div class="ed">남은금액 <span class="num">50,000</span>원</div>
+                            </div>
+                        </div>
+						<!--// 20211008 한별 수정 E (div i 아이콘 추가) -->
+					</div>
+				</div>
+			</div>
+    </div>
+            
+</div>
+
+    <script type="text/javascript">
+        $('.slider_wrap .tab_cont').slick({
+            speed : 300,
+            dots : true,
+            arrows : false,
+            vertical : false,
+            adaptiveHeight: true,
+            infinite: true
+        });
+    </script>
+
+
+</body>
+</html>

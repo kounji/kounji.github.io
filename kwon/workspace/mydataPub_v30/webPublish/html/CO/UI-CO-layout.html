@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>화면 레이아웃</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>레이아웃 정리</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<nav class="navi">
+				<div class="inner">
+					<!--자산현황 3depth-->
+					<ul role="navigation" aria-label="자산현황" class="depth1-1">
+						<li><a href="#"><span>예금</span></a></li>
+						<li><a href="#"><span>투자</span></a></li>
+						<li><a href="#"><span>연금</span></a></li>
+						<li><a href="#"><span>페이ㆍ포인트</span></a></li>
+						<li><a href="#" aria-current="page"><span>보험</span></a></li>
+						<li><a href="#"><span>부동산</span></a></li>
+						<li><a href="#"><span>자동차</span></a></li>
+						<li><a href="#"><span>기타</span></a></li>
+					</ul>
+
+					<!--부채관리 3depth-->
+					<!-- <ul role="navigation" aria-label="부채관리" class="depth1-2">
+						<li><a href="#" aria-current="page"><span>카드</span></a></li>
+						<li><a href="#"><span>대출</span></a></li>
+						<li><a href="#"><span>할부금융</span></a></li>
+						<li><a href="#"><span>자동차할부</span></a></li>
+						<li><a href="#"><span>학자금대출</span></a></li>
+						<li><a href="#"><span>리스</span></a></li>
+						<li><a href="#"><span>빌린돈</span></a></li>
+					</ul> -->
+
+					<!--슬기로운영농생활 3depth-->
+					<!-- <ul role="navigation" aria-label="슬기로운 영농생활" class="depth7-8">
+						<li><a href="#"><span>영농달력</span></a></li>
+						<li><a href="#"><span>영농일지</span></a></li>
+						<li><a href="#"><span>농기계임대</span></a></li>
+						<li><a href="#"><span>손익분석</span></a></li>
+						<li><a href="#"><span>조합원</span></a></li>
+						<li><a href="#" aria-current="page"><span>마이농가설정</span></a></li>
+					</ul> -->
+				</div>
+			</nav>
+
+			<div id="content">
+				컨텐츠 영역
+			</div>
+
+			<aside class="tabbar block">
+				 <!-- 마케팅 팝업 : 메인에만 노출 -->
+				<div class="marketing_popup_box">
+					<div aria-hidden="false" class="marketing_popup_inner" id="slide_popup_02">
+						<div class="popup_content">
+							<!-- case 1 : popup 다건 -->
+							<div id="slider_01" class="slider_wrap">
+								<div class="tab_cont">
+									<div role="tabpanel" class="cmm-tab-panel">
+										<a href="#nolink" role="button">
+											<div class="slide slide02">	
+												<img src="../../../../src/assets_v40/images/event/2023/img_slide_openevent2023.png" alt="" />
+												<p>새로워진 콕마이데이터</p>
+												<strong>웰컴백 이벤트</strong>
+											</div>
+										</a>
+									</div>
+									<div role="tabpanel" class="cmm-tab-panel">
+										<a href="#nolink" role="button">
+											<div class="slide slide01">
+												<img src="../../../../src/assets_v40/images/newmain/img/img_slide_img01_2023.png" alt="" />
+												<p>신차 견적내고</p>
+												<strong class="co">대출까지 바로받자~</strong>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
+							<!-- case 2 : popup 다건 -->
+							<!--<div id="slider_01" class="slider_wrap slider_solo">
+								<div class="tab_cont">
+									<div role="tabpanel" class="cmm-tab-panel">
+										<a href="#nolink" role="button">
+											<div class="slide slide01">
+												<img src="../../../../src/assets_v40/images/newmain/img/img_slide_img01.png" alt="" />
+												<p>신차 견적내고 대출까지 바로!</p>
+												<button type="button">바로가기</button>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>-->
+						</div>
+						<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+					</div>
+				</div>
+				<!--// 마케팅 팝업 : 메인에만 노출 -->
+
+				<!--toolbar-->
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">연금/절세</a></li>
+						<li><a href="#nolink">추천</a></li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+
+         <!--scroll test-->
+		<script>
+			for(var i =0; i < 1001; i++){
+				$("<p>"+ i + "</p>").appendTo('#content');
+			}
+		</script>
+		<!--//scroll test-->
+	</div>
+</body>
+</html>

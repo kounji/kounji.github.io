@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>재배지 등록 | 마이농가</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+        <!-- header S -->
+		<header id="header">
+			<h1>재배지 등록</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>		
+			<a href="javascript:void(0);" class="btn_close"><span class="blind">화면닫기</span></a>	
+		</header>
+		<!--// header E -->
+
+        <!-- content S -->
+		<div id="content" class="com_sub">
+			<!-- 20210823 한별 수정 S -->
+			<div class="com_inner">    
+				<strong class="com_box_tit style01">설정한 작목</strong>
+				<div class="com_inputarea_type05">
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01 com_iconstar" disabled title="작목을 설정해 주세요"><!--  20211112 한별 접근성 추가 (title="") --><em class="blind">필수입력</em><span>작목을 설정해 주세요.</span></button>
+					</div>
+				</div>			
+				
+                <strong class="com_box_tit style01 ani-active">재배지 설정</strong>
+				<div class="com_inputarea_type05">
+					<div class="com_btnselectbox_type01 ani-active">
+						<button type="button" class="com_btnselect_type01 com_iconstar"><em class="blind">필수입력</em><span>지역을 설정해 주세요</span></button>
+					</div>
+					<div class="com_input_type01 ani-active">
+						<input type="tel" id="com_input10" class="" name="" value="" required placeholder="동(개)수 정보를 입력해 주세요." title="동(개)수 정보를 입력해 주세요."><!--  20211112 한별 접근성 추가 (title="") -->
+						<label for="com_input10">
+							<span class="txt_label_x">동(개)수 정보</span>
+						</label>
+						<div class="del_txt type01">
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						</div>
+					</div>
+				</div>
+				
+                <strong class="com_box_tit style01 ani-active">동(개)당 면적</strong>
+                <ul class="com_radio_type02 new_mb15 ani-active">
+					<li>
+						<div class="btn_radio">
+							<input type="radio" name="yymm" id="radio11">
+							<label for="radio11">
+								<span>평</span>											
+							</label>	
+						</div>						
+					</li>
+					<li>
+						<div class="btn_radio">
+							<input type="radio" name="yymm" id="radio12">
+							<label for="radio12">
+								<span>㎡</span>	
+							</label>	
+						</div>
+					</li>
+				</ul>
+				<div class="com_inputarea_type10">
+					<div class="com_input_type01 ani-active com_word1">
+						<input type="tel" id="com_input11" class="" name="" value="" required placeholder="면적 정보를 입력해 주세요." title="면적 정보를 입력해 주세요."><!--  20211112 한별 접근성 추가 (title="") -->
+						<label for="com_input11">
+							<em><span class="blind">필수입력</span></em>
+							<span class="txt_label_x">면적 정보</span>
+						</label>
+						<div class="del_txt type01">
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">평</span>
+						</div>
+					</div>
+				</div>
+				<div class="com_textarea_type01 ani-active com_no_iconstar">
+					<!-- 20211022 한별 수정(상세내역 => 상세내용) S -->
+					<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="상세내용을 입력해 주세요"></textarea>
+					<label for="txt00"><span class="txt_label_x">상세내용</span></label>
+					<!--// 20211022 한별 수정(상세내역 => 상세내용) E -->
+				</div>
+            </div>  
+			<!--// 20210823 한별 수정 E -->
+		</div>
+		<!--// content E -->
+
+        <!-- footer S -->
+		<div class="bottom_box">
+            <div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey">최소</a>
+				<a href="javascript:void(0);" class="btn btn_mint">저장</a>
+			</div>
+        </div>
+        <!--// footer E -->
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

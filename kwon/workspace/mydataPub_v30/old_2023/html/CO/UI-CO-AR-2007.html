@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>로딩</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function(){
+			setInterval(loadingBox, 2000);
+		});
+		function loadingBox(){
+			jQuery('.dataLoadingArea').removeClass('mov');//setInterval전 첫번째 애니메이션을 위한 css삭제
+			jQuery('.dataLoadingBox').animate({'right':'50%'},500,//박스 이동
+				function(){
+					setTimeout(
+						function(){
+							//원래 위치로 이동
+							//jQuery('.dataLoadingBox').css('right','');//박스
+							jQuery('.dataLoadingBox .paper1, .dataLoadingBox .paper2, .dataLoadingBox .paper3').css('opacity','').css('bottom','');//종이 1,2,3
+						}
+					,1500);
+				}
+			);
+			//console.log(1);
+			setTimeout(//순차 모션
+				function(){//박스로 떨어지는 모션
+					jQuery('.dataLoadingBox .paper1').css('opacity',1).animate({'bottom':'0'},300);
+				},500
+			);
+			//console.log(2);
+			setTimeout(
+				function(){
+					jQuery('.dataLoadingBox .paper2').css('opacity',1).animate({'bottom':'0'},300);
+				},700
+			);
+			//console.log(3);
+			setTimeout(
+				function(){
+					jQuery('.dataLoadingBox .paper3').css('opacity',1).animate({'bottom':'0'},300);
+				},900
+			);
+			//console.log(4);
+			clearTimeout();
+			clearInterval(loadingBox);
+		};
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="renewal_loading">
+				<div class="dataLoadingArea mov">
+					<div class="dataLoadingBox">
+						<img src="../../../../src/assets_v40/images/loading/img_dataLoadingBg.png" class="front" alt="">
+						<img src="../../../../src/assets_v40/images/loading/img_dataLoadingPaper03.png" class="paper3" alt="">
+						<img src="../../../../src/assets_v40/images/loading/img_dataLoadingPaper02.png" class="paper2" alt="">
+						<img src="../../../../src/assets_v40/images/loading/img_dataLoadingPaper01.png" class="paper1" alt="">
+						<img src="../../../../src/assets_v40/images/loading/img_dataLoadingFront.png" alt="">
+					</div>
+				</div>
+				<p class="loading_name">
+					<em>N</em>개 기관에 흩어져 있는<br><strong>김농협님</strong>의 정보를 가져오고 있어요
+				</p>
+				<p class="loading_txt">잠시만 기다려 주세요 <span class="loading_dot"></span></p>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+
+</html>

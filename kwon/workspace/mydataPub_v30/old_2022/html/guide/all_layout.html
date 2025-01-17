@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산관리 서비스 가입  나의자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <script type="text/javascript" src="../../static/js/jquery-3.7.1.min.js"></script>
+	<script src="../../worklist/@pub_include/head.js"></script>
+</head>
+<body>
+<div id="page-area">    
+    <div id="wrap" aria-hidden="false" class="sticky-scroll">
+        <!--헤더-->
+        <header id="header"  aria-hidden="false">
+            <h1>가계부</h1>
+            <a href="javascript:void(0);" role="button" class="btn_back" style=""><span class="blind">이전화면</span></a>
+            <a href="javascript:void(0);" role="button" class="btn_home" style="right: 5rem;"><span class="blind">홈이동</span></a><a href="javascript:void(0);" role="button" class="btn_nav" style="display: block;"><span class="blind">전체메뉴열기</span></a>
+        </header> 
+        <!--컨텐츠 뷰-->
+        <div class="content-view">
+            <!--서브메뉴-->
+            <div id="category_menu" class="com_tabmenu_type01 menunum03">                   
+                <ul role="tablist">
+                    <li class=""><a href="javascript:void(0);" >달력</a></li>
+                    <li class="on"><a href="javascript:void(0);" >지출</a></li>
+                    <li class=""><a href="javascript:void(0);" >분석</a></li>
+                </ul>
+            </div>
+            <!--컨텐츠-->
+            <div id="content" class="com_sub_type02 com_bg_type02">
+                <div class="com_submainbox_type02 com_line_type01">
+                    <div class="new_top_info_box">
+                        <div class="new_top_box type02">
+                            <div class="box_head">
+                                <div class="select_date_wrap">
+                                    <div class="select_date">
+                                        <button aria-label="한달 전 이동" class="cal_btn cal_prev"></button>
+                                        <a title="년월선택" href="javascript:void();" class="year_month"><span class="num">2022</span>년 <span class="num">6</span>월 </a>
+                                        <button aria-label="한달 후 이동" disabled="disabled" title="선택불가" class="cal_btn cal_next disabled"></button>
+                                    </div>
+                                </div>
+                            </div>                  
+                        </div>
+                    </div>
+                </div>
+                <dv class="no_data_box">
+                    <div class="no_data_list">
+                        <p>조회된 정보가 없습니다.</p>
+                        <div class="com_inner com_boxarea_type01">
+                            <div class="com_banner_type01">
+                                <a href="javascript:void(0);"><span class="ico_pre_exp">다음달 예정된 지출이 궁금하신가요?</span></a>
+                            </div>                      
+                        </div>
+                    </div>
+                </dv>
+                <div style="position: relative;text-align: center;padding: 20px;">
+                    <a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">bottom sheets popup 보기</a>
+                </div>
+                <div style="position: relative;text-align: center;padding: 20px;margin-top:40px">
+                    <a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">full popup 보기</a>
+                </div>
+                <div style="position: relative;text-align: center;padding: 20px;margin-top:40px">
+                    <a href="javascript:void(0);" class="btn_pop_view" data-popup="alert_popup"> alert 보기</a>
+                </div>
+            </div>
+			<!-- 푸터버튼/전체메뉴 영역 -->
+			<script src="../../worklist/@pub_include/footer.js"></script>
+			<!--// 푸터버튼/전체메뉴 영역 -->
+        </div>
+        <!--//컨텐츠 뷰-->
+    </div>
+    <!--팝업영역-->
+    <div class="popupArea">
+        <div id="modal_3" aria-hidden="true">
+            <!--바텀시트 팝업-->         
+            <div class="popup_box">             
+                <div class="slide_popup" id="slide_popup_01" style="display: none;">
+                    <div class="popup_header">
+                        <h1>혼밥코리아<span>2021.04.08 14:20:40</span></h1>          
+                    </div>
+                    <div class="popup_content h1_type02">
+                        <div class="com_txt_type01">
+                            <dl>
+                                <dt>이용금액</dt>
+                                <dd>
+                                    <span class="com_number01">2,041,151</span>
+                                    <em>원</em>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>전체할부회차</dt>
+                                <dd>
+                                    <span class="com_number01">2</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>승인번호</dt>
+                                <dd>
+                                    <span class="com_number01">12345678</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>결제상태</dt>
+                                <dd>
+                                    <span>승인</span>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>사업자등록번호</dt>
+                                <dd>
+                                    <span class="com_number01">12345678</span>
+                                </dd>
+                            </dl>
+                        </div>	
+                    </div>                    
+                    <a href="javascript:void(0);" class="btn_close"><span class="">닫기</span></a>
+                </div>
+            </div>
+        </div>
+        <div id="modal_1" aria-hidden="true">
+            <!--풀팝업-->
+            <div class="full_popup" id="full_popup_01" > 
+                <!--팝업헤더-->
+                <div class="popup_header">    
+                    <h1>계좌정보</h1>
+                </div>  
+                <!--팝업컨텐츠-->       
+                <div class="popup_content com_no_bottom">
+                    <div class="com_inner"></div>
+                    <div class="com_inner"></div>
+                </div>
+                <div class="popup_footer fixed">
+                    <div class="btn_full_box">
+                        <a href="javascript:void(0);" class="btn btn_mint">선택</a>
+                    </div>
+                </div>    
+                <a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+            </div>
+        </div>
+         <!--알림 팝업-->
+        <div id="modal_2" aria-hidden="true">            
+            <div class="dimmed"></div>           
+            <div class="alert_popup" id="alert_popup" style="display: none;"><!-- 개발시 style="display:block;" 제거 -->
+                <div class="popup_content">
+                    <p class="txt_normal">등록한 정보는 저장되지 않습니다.<br>
+                        정말로 취소하시겠습니까?</p>
+                </div>
+                <div class="popup_footer">
+                    <div class="btn_box">
+                        <a href="javascript:void(0);" class="btn btn_mint btn_no">확인</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--로딩-->
+        <div class="com_innerloading" style="display: none;">
+            <div class="com_loading bg-none">
+                <span class="blind">로딩중</span>
+            </div>
+        </div>
+         <!--토스트팝업-->
+        <div class="inner-wrap toast" style="display: none;">
+            <div class="cmm-update-txt">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

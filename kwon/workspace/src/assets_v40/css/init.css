@@ -1,0 +1,187 @@
+@charset "utf-8";
+/* [v4.0] Spoqa 폰트에서 Pretendard 폰트로 변경 - 배포 이슈로 기존 폰트명 유지 
+/*
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 700;
+	font-display: swap;
+	src:url('../font/SpoqaHanSansNeo-Bold.woff2') format('woff2'),
+	url('../font/SpoqaHanSansNeo-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 500;
+	font-display: swap;
+	src:url('../font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+	url('../font/SpoqaHanSansNeo-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 400;
+	font-display: swap;
+	src:url('../font/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
+	url('../font/SpoqaHanSansNeo-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 300;
+	font-display: swap;
+	src:url('../font/SpoqaHanSansNeo-Light.woff2') format('woff2'),
+	url('../font/SpoqaHanSansNeo-Light.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 100;
+	font-display: swap;
+	src:url('../font/SpoqaHanSansNeo-Thin.woff2') format('woff2'),
+	url('../font/SpoqaHanSansNeo-Thin.woff') format('woff');
+}
+*/
+@font-face {
+	font-family: 'Spoqa Han Sans Neo';
+	font-weight: 45 920;
+	font-style: normal;
+	font-display: swap;
+	src: url('../font/PretendardVariable.woff2') format('woff2-variations');
+}
+/*//[v4.0] Spoqa 폰트에서 Pretendard 폰트로 변경 - 배포 이슈로 기존 폰트명 유지 */
+
+*{box-sizing:border-box; }
+html, body, div, span, object, iframe, textarea,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video{
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	vertical-align:baseline;
+	background:transparent;
+	box-sizing: border-box;
+	letter-spacing:-0.25px;
+}
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,main{display:block;}
+ol, ul, li{list-style:none;}
+blockquote, q{quotes:none;}
+
+a{text-decoration:none;color:#666;}
+a:hover{text-decoration:none;}
+a:link{text-decoration:none;}
+a:focus{outline:none;}
+strong{font-weight:500;}
+img{vertical-align:top;max-width:100%;}
+table{
+	/*border-collapse:collapse;*/
+	border-spacing:0;
+	width:100%;
+	table-layout:fixed;
+}
+table caption{width:0;height:0;font-size:0;visibility:hidden;}
+hr{
+	display:block;
+	height:1px;
+	border:0;
+	border-top:1px solid #ccc;
+	margin:1em 0;
+	padding:0;
+}
+input, select{
+	vertical-align:middle;
+	box-sizing:border-box;
+	-webkit-border-radius:0;
+	border-radius:0;
+	outline:none;
+}
+em, address{font-style:normal}
+textarea, input, button{-webkit-border-radius:0;-webkit-appearance:none;border-radius:0}
+h1, h2, h3, h4, h5, h6{font-weight:500;color:#111;}
+button:disabled {/* background-color:#d0d0d0 !important; */ opacity: 1 !important;}
+button:disabled > span {color:#717478;}
+/*skip css*/
+#skipNav, .skip, .blind {
+	position:absolute;
+	display:inline-block;
+	width:1px;
+	height:1px;
+	border:0;
+	margin:-1px;
+	clip:rect(1px,1px,1px,1px);
+	line-height:0;
+	overflow:hidden;
+}
+
+a span,
+button span{display:block;}
+
+a,button {-webkit-tap-highlight-color: transparent;}
+*:hover{-webkit-tap-highlight-color:transparent;}
+
+/* show, hide */
+.hide{display:none}
+.show{display:block}
+.text_over{position: absolute;
+	display: inline-block;
+	width: 1px;
+	height: 1px;
+	border:0;
+	margin:-1px;
+	clip:rect(1px,1px,1px,1px);
+	line-height: 0;
+	overflow: hidden;
+}
+.pop_skip {
+	position: absolute;
+	display: inline-block;
+	top:0;
+	width: 1px;
+	height: 1px;
+	border:0;
+	margin:-1px;
+	clip:rect(1px,1px,1px,1px);
+	line-height: 0;
+	overflow: hidden;
+}
+
+/* Placeholder color */
+::-webkit-input-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;text-align:left;}
+::-moz-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;text-align:left;} /* firefox 19+ */
+:-ms-input-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;text-align:left;} /* ie */
+input:-moz-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;text-align:left;}
+
+textarea::-webkit-input-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;}
+textarea::-moz-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;} /* firefox 19+ */
+textarea:-ms-input-placeholder{color:#ababab;font-size:1.6rem;font-weight:400;} /* ie */
+textarea::placeholder{font-family:"Spoqa Han Sans Neo";color:#ababab;font-size:1.6rem;font-weight:400;}
+
+html{width:100%;height:100%;font-size:62.5% /* 62.5% of 16px = 10px */;overflow-x:hidden;-webkit-user-select:none;user-select:none;}
+body *{-ms-overflow-style:none;}
+body{
+	font-family:'Spoqa Han Sans Neo','맑은 고딕', 'Malgun Gothic',"돋움", dotum, arial, sans-serif;
+	font-weight:400;
+	max-width:100vw;
+	height:100%;
+	color:#666;
+	font-size:1.6rem; /* = 16px */
+	margin:0;padding:0;
+	background:#ffffff;
+	line-height:1;
+	-webkit-text-size-adjust:none;
+	text-size-adjust:none;
+	-moz-text-size-adjust:none;
+	-ms-text-size-adjust:none;
+	overflow:auto;
+	-webkit-user-select:none;user-select:none;
+}

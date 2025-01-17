@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이농가 서브메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="page-area">
+        <div id="wrap" class="sticky-scroll">
+            <!-- header S -->
+            <header id="header">
+                <h1>마이농가</h1>		
+                <a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+                <a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+            </header> <!-- 홈버튼 헤더 -->
+            <!--// header E -->
+
+            <!-- content-view S -->
+            <div class="content-view">
+                <!-- tab menu S -->
+                <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+                <div class="com_tabmenu_type02">
+                    <div>
+                        <ul role="tablist">
+                            <li><a href="javascript:void(0);">영농달력</a></li>
+                            <li><a href="javascript:void(0);">영농일지</a></li>
+                            <li><a href="javascript:void(0);">농기계임대</a></li>
+                            <li><a href="javascript:void(0);">손익분석</a></li>
+                            <li><a href="javascript:void(0);">정책자금</a></li>
+                            <li><a href="javascript:void(0);">조합원</a></li>
+                            <li class="on"><a href="javascript:void(0);">설정</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+                <!--// tab menu E -->
+		
+                <!-- content S -->
+                <div id="content" class="com_sub_type02 com_bg_type00">
+                    <div class="com_inner com_top_type04 pb30">
+                        <ul class="com_radio_type01">
+                            <li>
+                                <span class="btn_radio">
+                                    <input type="radio" name="com_check" id="com_check01" checked="checked">
+                                    <label for="com_check01">
+                                        <span>작목/재배지 관리</span>   
+                                    </label>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="btn_radio">
+                                    <input type="radio" name="com_check" id="com_check02">
+                                    <label for="com_check02">
+                                        <span>농기계 상각 관리</span>   
+                                    </label>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="btn_radio">
+                                    <input type="radio" name="com_check" id="com_check03">
+                                    <label for="com_check03">
+                                        <span>자가노동비 관리</span> 
+                                    </label>
+                                </span>
+                            </li>
+                            <!-- 20210723 한별 계좌연동 설정 추가 S -->
+                            <li>
+                                <span class="btn_radio">
+                                    <input type="radio" name="com_check" id="com_check04">
+                                    <label for="com_check04">
+                                        <span>계좌연동 설정</span> 
+                                    </label>
+                                </span>
+                            </li>
+                            <!-- // 20210723 한별 계좌연동 설정 추가 E -->
+                        </ul>
+                    </div>
+                    <!-- 20210723 한별 광고배너,절기정보 추가 S -->
+                    <div class="com_space_type01"></div>
+                    <div class="com_inner com_setlist_type01 mt0">
+                        <dl class="com_line">
+                            <dt>광고배너</dt>
+                            <dd class="w5r">
+                                <span class="cmm-switch sm">
+                                    <input type="checkbox" id="check01">
+                                    <label for="check01"><em class="blind">광고배너 선택</em></label>
+                                </span>
+                            </dd>
+                        </dl>
+                        <dl class="com_line">
+                            <dt>절기정보 노출여부</dt>
+                            <dd class="w5r">
+                                <span class="cmm-switch sm">
+                                    <input type="checkbox" id="check02" checked>
+                                    <label for="check02"><em class="blind">절기정보 노출여부 선택</em></label>
+                                </span>
+                            </dd>
+                        </dl>
+                    </div>                
+                    <!-- // 20210723 한별 계좌연동 설정 추가 E -->
+                    
+                </div>
+                <!--// content E -->
+
+                <script src="../../worklist/@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+            </div>
+
+        </div>   
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

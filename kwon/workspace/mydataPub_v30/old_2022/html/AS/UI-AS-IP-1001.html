@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산진단 &lt; 자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+
+	<script type="text/javascript">
+		// 도너츠형 차트3 : UI-AS-IP-1001.html
+		var layoutDoughnut3 = 
+		'<rMateChart backgroundColor="#FFFFFF" horizontalAlign="center" borderStyle="none"  width="100%">'
+			// +'<Options>'
+				// +'<Caption text=""/>'
+				// +'<Legend useVisibleCheck="true" />'
+				// +'<Legend position="right" direction="vertical" useVisibleCheck="true" borderStyle="none" />'// 범례 속성
+			// +'</Options>'
+			+'<CurrencyFormatter id="numFmt2" currencySymbol="%" alignSymbol="right"/>'
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+			+'<Pie2DChart innerRadius="0.5" showDataTips="true" displayCompleteCallFunction="removeTabindex">'
+			/* Pie2D 차트 생성시에 필요한 Pie2DChart 정의합니다. */
+			/* showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다. */
+				+'<series>'
+					+'<Pie2DSeries nameField="name" field="value" startAngle="-90" labelPosition="none" color="#ffffff" formatter="{numFmt2}">'
+						+'<fills>'
+							+'<SolidColor color="#57c9af" />' //각 영역 별 속성
+							+'<SolidColor color="#f883a9" />' //각 영역 별 속성
+							+'<SolidColor color="#668ee3" />' //각 영역 별 속성
+						+'</fills>'
+						/* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+							+'<showDataEffect>'
+								/* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+								+'<SeriesZoom duration="1000"/>'
+								+'<SeriesInterpolate duration="1200" elementOffset="60" easingFunction="EaseOutElastic"/>'
+							/* SeriesSlide 효과는 시리즈 데이터가 데이터로 표시될 때 한쪽에서 미끄러지듯 나타나는 효과를 적용합니다. */
+								/* elementOffset : effect를 지연시키는 시간을 지정합니다 default:20 */
+								/* minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0 */
+										/* 이 값보다 짧은 시간에 effect가 실행되지 않습니다. */
+								/* offset : effect개시의 지연시간을 설정합니다 default:0 */
+								/* perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다. */
+								/* direction : left:왼쪽, right:오른쪽, up:위, down:아래 default는 left입니다. */
+							+'</showDataEffect>'
+						+'</Pie2DSeries>'
+				+'</series>'
+			+'</Pie2DChart>'
+		+'</rMateChart>';
+
+
+		// 도너츠형 차트 데이터
+		var doughnutData3 = [
+			{"name":"미래 <span class='blind'>36.7%</span>", "value":36.7},
+			{"name":"저축 <span class='blind'>52.2%</span>", "value":52.2},
+			{"name":"투자 <span class='blind'>12.1%</span>", "value":12.1}
+		];
+		
+		// 도너츠형 차트
+		rMateChartH5.create("chart1", "ID_Doughnut2", "", "100%", "100%");
+	
+		// 도너츠형 차트
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutDoughnut3,
+			"setData" : doughnutData3
+		});
+
+
+		// 나의 신용정보 차트
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로) 
+		//  1. 차트의 id ( 임의로 지정하십시오. ) 
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "80rem"); 
+		
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr2 = 
+		'<rMateChart>'
+			+'<CurrencyFormatter id="cft" currencySymbol="%" precision="0" alignSymbol="right"/>'
+			/**
+			 * showDataTip : 툴팁 출력 설정
+				 * minimum : 게이지 최소 값
+				 * maximum : 게이지 최대 값
+				 * startAngle : 시작 각도
+				 * minimumAngle : 게이지 최소 각도
+			 * maximumAngle : 게이지 최대 각도
+			 * gaugeWidth : 게이지 가로 크기
+				 * gaugeHeight : 게이지 세로 크기
+				* innerRatio : 안쪽 영역 비율 값, 유효 값 0 ~ 1
+				* outerRatio : 바깥쪽 영역 비율 값, 유효 값 0 ~ 1
+			* circleOffset : 값이 여러개일 경우 원 형태 간의 여백을 설정합니다.
+			* horizontalOriginRatio : 게이지 출력 수평위치를 설정합니다.
+				* verticalOriginRatio : 게이지 출력 수직위치를 설정합니다.
+				* valueChangeFunction : 데이터가 변경 될 경우 호출될 사용자 정의 함수를 설정합니다
+				* fillJsFunction : 데이터의 값에 따른 색상 값을 설정하는 사용자 정의 함수를 설정합니다.
+			* duration : 이펙트 출력시간을 설정합니다. default 800
+				* bounceAnimating : 튕김 이펙트를 설정합니다. deafult true
+				* showValueLabel : 수치 라벨을 출력할지 설정합니다. default true
+			* valueField : 여러 데이터를 출력 할 경우 차트 데이터의 필드 명을 설정합니다.
+				* nameField : 여러 데이터 출력 시 해당 데이터에 대한 이름을 출력할 필드 명을 설정합니다.
+				* backgroundColors : 게이지가 출력되는 영역의 배경 색상을 설정합니다. default [#e2eaf3]
+			* backgroundStrokes : 게이지가 출력되는 영역의 배경 테두리 색상을 설정합니다. 
+			* foregroundColors : 게이지가 출력되는 영역의 색상을 설정합니다. default [#51c0ee]
+				* foregroundStrokes : 게이지가 출력되는 영역의 테두리 색상을 설정합니다.
+			*/
+			/* 22-10-26 접근성 추가 displayCompleteCallFunction="removeTabindex" */
+			+'<Gauge height="150" formatter="{cft}" innerRatio="0.7" labelJsFunction="valueLabelFunc" foregroundColors="[#668ee3]" backgroundColors="[#ced0d9]" minimum="0" maximum="1000" startAngle="-90" minimumAngle="0" maximumAngle="180" color="#333333" fontSize="2.2rem" verticalOriginRatio="0.7" valueChangeFunction="changeFunction" labelYOffset="-10" labelClickJsFunction="labelClickFunc"  displayCompleteCallFunction="removeTabindex">'
+				+'<backgroundElements>'
+				//     +'<CanvasElement>'
+				//          +'<CanvasLabel fontSize="13" height="17" color="#000" horizontalCenter="0" verticalCenter="65" text="HALF SIMPLE GAUGE"/>'
+				//   +'</CanvasElement>'
+				+'</backgroundElements>'
+			+'</Gauge>'
+		+'</rMateChart>';
+		
+		// 게이지 데이터
+		var chartData2 = [940];
+		
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr2,
+			"setData" : chartData2
+		});
+		
+		// 라벨 클릭 함수
+		function labelClickFunc(value){
+		alert(value);
+		}
+		
+		//게이지 값 랜덤 변경 함수
+		function changeValue(){
+			// 게이지의 값을 변경할려면 setData 함수를 사용하세요.
+			document.getElementById("chart1").setData([parseInt(Math.random()*200)]);
+		}
+		
+		// 게이지 값 보관.
+		var gaugeValue;
+		
+		// 게이지 value change 이벤트 핸들러 함수.
+		function changeFunction(value){
+			gaugeValue = value;
+		}
+		
+		// 확인
+		function commitValue(){
+			alert(gaugeValue);
+		}
+		
+		function valueLabelFunc(value){
+			return '<font size="18" color="#111111">' + value.toFixed(0) + "점</font>";
+		}
+		
+		function labelFunc(value){
+			return '<font size="30" color="#111111">' + value + "\n%</font>";
+		}
+		// -----------------------차트 설정 끝 -----------------------
+
+		/* 22-10-26 접근성 추가 */
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>자산</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view"><!--  데이터 없을때 class nodata 추가-->
+			<div class="com_tabmenu_type01 menunum04">
+				<ul role="tablist">
+					<li><a href="javascript:void(0);">전체자산</a></li>
+					<li><a href="javascript:void(0);">자산현황</a></li>
+					<li><a href="javascript:void(0);">부채관리</a></li>
+					<li class="on"><a href="javascript:void(0);">자산진단</a></li>
+				</ul>
+			</div>
+			<div id="content" class="sub_main renewal">
+                <div class="com_submainbox_type01 com_submainbox_type01-02 custom_box">
+						<!-- 2022-10-26 클래스명 변경 -->
+						<div class="custom_box_fiexd_round01">
+						<div class="select_date">
+                            <button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+                            <a title="년월선택" class="year_month" href="javascript:console.log('월');">
+								<span class="num year">2022</span>년
+								<span class="num month">9</span>월
+							</a>
+                            <button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled title="한달 후 이동"></button>
+						</div>
+					</div>
+					<!-- 2022-10-13 : 기획 변경으로 인한 신규 추가 -->
+					<div class="custom_box_linst01 arrow">
+						<a href="#">나의 자산 평가</a>
+					</div>
+					<!--// 2022-10-13 : 기획 변경으로 인한 신규 추가 -->
+				
+					<!-- 
+						common-ui.js 의 문제로 인해 클래스명
+						select_date_wrap에서 
+						custom_box_fiexd_round01로 교체
+						문제 부분 : /*스크롤인터랙션 - ios이슈 해결용 test 20210712 이병철*/
+					-->
+					<!-- <div class="select_date_wrap">
+						<div class="select_date">
+                            <button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+                            <a title="년월선택" class="year_month" href="javascript:console.log('월');">
+								<span class="num year">2022</span>년
+								<span class="num month">9</span>월
+							</a>
+                            <button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled title="한달 후 이동"></button>
+						</div>
+                    </div> -->
+					<!-- 삭제
+					<div class="text_sm">
+						<strong>오전 <span class="num">8</span>시</strong>에 금융보고서가 업데이트됩니다.<br>
+						자주방문하셔서 최신의 정보를 제공받으세요.
+					</div>
+					-->
+
+					<div class="text">
+						<p><strong class="com_point_mint">매우 건강</strong>하게</p>자산을 관리하고 계시네요.
+						<!-- 2022-11-01 : 툴팁삽입 -->
+						<div class="custom_tooltip">
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="javascript:void(0);" class="com_btn_info">
+									<!-- 2022-11-02 : question 삽입 ( 디자인 수정 됨 ) -->
+									<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+									<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+										, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+									<span class="arrow" style="display:none"></span>
+									<!--!!!!!!!!!!!툴팁 화살표 관련 : 툴팁 클릭시 display : block 
+										, 툴팁 닫을 때 display : none 처리 부탁드립니다!!!!!!!!!-->
+								</a>
+							</div>
+							<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+								<div>
+									자산 진단은 전일자에 연결된 자산을 기준으로 분석한 결과입니다.
+									<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+								</div> <!-- 말풍선영역 -->
+							</div>
+						</div>
+					</div>
+
+					<!-- 자산 / 대출 -->
+					<div class="card_wrap">
+						<div class="row">
+							<div class="card">
+								<stong class="title">자산 </stong>
+								<div class="content" role="text"><!-- 22-10-20 접근성 role 추가-->
+									<span class="raise">
+										<span class="blind">상승</span>
+									</span>
+									<span class="num">45,000,000</span><em class="won">원</em>
+								</div>
+							</div>
+							<div class="card">
+								<!-- 2022-11-03 : 오타수정 -->
+								<div class="title">부채 </div>
+								<div class="content" role="text"><!-- 22-10-20 접근성 role 추가-->
+									<span class="decrease">
+										<span class="blind">하락</span>
+									</span>
+									<span class="num">2,800,000</span><em class="won">원</em>
+								</div>
+							</div>
+						</div>
+						<!-- 2022-11-03 : 기획 문구추가 요청으로 인해 문구 삽입 -->
+						<p class="com_txtinfo_type01">
+							자산&middot;부채 금액은 지난달 대비 변동 금액입니다.
+						</p>
+						<!-- 나의 신용정보 -->
+						<div class="com_box_type01 custom_box_com_box_type02">
+							<div class="h_donut_wrap">
+								<div class="h_donut">
+									<!-- 차트가 삽입될 DIV -->
+									<!-- 22-10-26 접근성 추가 -->
+									<div id="chartHolder2" role="img" aria-label="나의 신용점수는 940점 입니다."></div>
+								</div>
+								<div class="chart_txt">
+									<p>김농협님의 신용점수는<strong>상위5%</strong>입니다.</p>
+								</div>
+							</div>
+						</div>
+						<!--// 나의 신용정보 -->
+					</div>
+					<!--// 자산 / 대출 -->
+				</div>
+
+				<!-- com_sub_radius custom_box -->
+				<div class="com_sub_radius custom_box com_submainbox_type01-03">
+					<!-- 2022-11-01 : 클래스명 변경 ( bank_img05 )-->
+					<!-- 
+						2022-11-01 : 클래스 이미지 리스트
+						bank_img01 : 안락한 노후준비형입니다.
+						bank_img02 : 도전적 수익추구형입니다.
+						bank_img03 : 차곡차곡 저축형입니다.
+						bank_img04 : 넉넉한 금융부자입니다.
+						bank_img05 : 아직은 금융초보입니다.
+					-->
+					<div class="com_box_type01 com_box_type07 bank_img bank_img05">
+						<div class="titbox_type01">
+							김농협님의 금융스타일은?
+							<!-- 2022-11-01 : 멘트 추가 -->
+							<strong>안락한 <span class="com_point_mint">노후준비형</span>입니다.</strong>
+							<strong>도전적 <span class="com_point_mint">수익추구형</span>입니다.</strong>
+							<strong>차곡차곡 <span class="com_point_mint">저축형</span>입니다.</strong>
+							<strong>넉넉한 <span class="com_point_mint">금융부자</span>입니다.</strong>
+							<strong>아직은 <span class="com_point_mint">금융초보</span>입니다.</strong>
+						</div>
+						<!-- 나의 금융스타일 -->
+						<div class="com_box_type02">
+							<strong class="blind">나의 금융스타일</strong>
+							<div class="chart_wrap">
+								<!-- 22-10-26 접근성 추가 -->
+								<div id="ID_Doughnut2" aria-hidden="true"></div>
+							</div>
+							<div class="submain_list_wrap">
+								<div class="list case01">
+									<div class="title">저축<span class="num">52.2%</span></div>
+									<div class="content"><span class="num">2,060,000</span><em class="won">원</em></div>
+								</div>
+								<div class="list case02">
+									<div class="title">미래<span class="num">36.7%</span></div>
+									<div class="content"><span class="num">10,424,700</span><em class="won">원</em></div>
+								</div>
+								<div class="list case03">
+									<div class="title">투자<span class="num">12.1%</span></div>
+									<div class="content"><span class="num">8,494,200</span><em class="won">원</em></div>
+								</div>
+							</div>
+						</div>
+						<!--// 나의 금융스타일 -->
+					</div>
+				</div>
+				<!--// com_sub_radius custom_box -->
+
+				<div class="com_sub_radius custom_box com_submainbox_type01-03">
+					<div class="com_box_type01 com_box_type07">
+						<!-- 또래와의 자산.부채 비교 -->
+						<div class="householdBook">
+							<!-- <div class="new_tit_area pb15 pt30 bdb0"> -->
+							<div class="new_tit_area bdb0">
+								<strong class="com_pop_tit05">
+									또래와의 자산 &middot; 부채 비교
+								</strong>
+							</div>
+
+							<!-- 나의 또래 그룹 seg정보 -->
+							<div class="custom_box_com_box_list01">
+								<div class="new_tit_area">
+									<a href="javascript:void(0);">
+										<em class="unit txt02">#30대 후반</em>
+										<em class="unit txt03"># 여소득자 김농협의 금융생활</em>
+									</a>
+								</div>
+							</div>
+
+							<!-- 금융자산 차트 -->
+							<div class="new_tit_area custom_box_subTxt01">
+								<strong class="com_pop_tit06">금융자산</strong>
+							</div>
+							<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 mt20">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper">
+												<div class="progressBar mt5">
+													<div class="bar" style="width:40%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st">
+														<span class="unit-tit">또래</span>
+														<p>
+															<em class="num">2,222,500,000</em>
+															<span class="unit">원</span>
+														</p>
+													</div>
+													<div class="ed">
+														<span class="unit-tit">나</span><em class="num">2,222,500,000</em><span class="unit">원</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+
+							<!-- 보유대출 차트 -->
+							<div class="new_tit_area custom_box_subTxt01">
+								<strong class="com_pop_tit06">보유대출</strong>
+							</div>
+							<div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 mt20">
+								<div class="car_pop_bar_area">
+									<div class="com_box_type01 goal_warp no-stroke no-shadow">
+										<div class="goal_box m0">
+											<div class="progressBar_wrapper custom_box_progressBar_wrapper01">
+												<div class="progressBar mt5">
+													<div class="bar" style="width:40%">
+													</div>
+												</div>
+												<div class="date">
+													<div class="st">
+														<span class="unit-tit">또래</span>
+														<p>
+															<em class="num">2,222,500,000</em>
+															<span class="unit">원</span>
+														</p>
+													</div>
+													<div class="ed">
+														<span class="unit-tit">나</span><em class="num">2,222,500,000</em><span class="unit">원</span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>	
+								</div>
+							</div>
+
+							<div class="custom_box_linst01 arrow">
+								<a href="#">또래엿보기</a>
+							</div>
+						</div>
+						<!--// 보유 대출 금액 비교 -->
+					</div>
+				</div>
+				<!-- com_sub_radius custom_box -->
+				<div class="com_sub_radius custom_box">
+
+					<!-- case 1 : 입출금 계좌 잔액 예상 -->
+					<div class="custom_box_chart01 case01 mt15">
+						<strong class="com_box_tit arrow mt9">입출금 계좌 잔액 예상</strong>
+						<div class="txt">
+							<p>
+								김농협님 <storng class="num">9</storng>월 <storng class="num">25</storng>일 예상 잔액 합계는
+								<span><strong class="num">-1,080,450</strong>원 입니다.</span>
+							</p>
+						</div>
+						<!-- 차트 -->
+						<div class="compare_chart_wrap">
+							<div class="chart">
+								<div class="bg">
+									<div class="area mid">
+										<div class="box">
+											<span class="infoTxt">
+												부족자금
+												<p><strong class="num">-1,080,450</strong><em class="won">원</em></p>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="bar_wrap">
+									<div class="bars">
+										<div class="bar bar01"></div>
+										<div class="bar bar02"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 차트 -->
+						<div class="date">
+							<div class="st">
+								<span class="unit-tit">현재 통장 총 잔액</span>
+								<p>
+									<strong class="num">2,222,500,000</strong>
+									<span class="unit">원</span>
+								</p>
+							</div>
+							<div class="ed">
+								<span class="unit-tit">9월 30일까지 예상지출</span>
+								<p>
+									<strong class="num">2,222,500,000</strong>
+									<span class="unit">원</span>
+								</p>
+							</div>
+						</div>
+					</div> 
+					<!--// case 1 : 입출금 계좌 잔액 예상 -->
+
+					<!-- case 2 : 여유자금이 생겼을 경우 -->
+					<div class="custom_box_chart01 case02 mt15">
+						<strong class="com_box_tit arrow mt9">입출금 계좌 잔액 예상</strong>
+						<div class="txt">
+							<p>
+								김농협님 <storng class="num">9</storng>월 <storng class="num">25</storng>일 예상 잔액 합계는
+								<span><strong class="num">1,080,450</strong>원 입니다.</span>
+							</p>
+						</div>
+						<!-- 차트 -->
+						<div class="compare_chart_wrap">
+							<div class="chart">
+								<div class="bg">
+									<div class="area mid">
+										<div class="box">
+											<span class="infoTxt">
+												여유자금
+												<p><strong class="num">1,080,450</strong><em class="won">원</em></p>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="bar_wrap">
+									<div class="bars">
+										<div class="bar bar01"></div>
+										<div class="bar bar02"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--// 차트 -->
+						<div class="date">
+							<div class="st">
+								<span class="unit-tit">현재 통장 총 잔액</span>
+								<p>
+									<strong class="num">2,222,500,000</strong>
+									<span class="unit">원</span>
+								</p>
+							</div>
+							<div class="ed">
+								<span class="unit-tit">9월 30일까지 예상지출</span>
+								<p>
+									<strong class="num">2,222,500,000</strong>
+									<span class="unit">원</span>
+								</p>
+							</div>
+						</div>
+					</div> 
+					<!--// case 2 : 여유자금이 생겼을 경우 -->
+
+				</div>
+				<!--// com_sub_radius custom_box -->
+				
+				<!-- 자산을 연결하고 관리해 보세요 -->
+				<div class="new_add_register custom_box">
+					<a href="javascript:void(0);"><span>자산을 연결하고 관리해 보세요</span></a>
+				</div>
+				<!--// 자산을 연결하고 관리해 보세요 -->
+
+
+
+
+
+				
+			</div>
+			<script src="../../worklist/@pub_include/footer.js"></script>
+		</div>
+	</div>
+</body>
+</html>

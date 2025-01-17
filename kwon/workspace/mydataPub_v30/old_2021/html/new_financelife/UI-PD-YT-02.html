@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>총 소득 입력</h1>          
+			</div>
+			<div class="popup_content com_btn_bottom">
+                <div class="com_txt_type01">
+					<!-- 20211112 한별 (com_won02수정,title=""추가) S-->
+                    <div class="com_input_type01 com_won02 new_mb15">
+                        <input type="tel" id="com_input01" class="" name="" value="" required="" placeholder="연 근로 소득을 입력하세요." title="연 근로 소득을 입력하세요.">
+                        <label for="com_input01"><span class="txt_label_x">직접 입력</span></label>
+
+                        <div class="del_txt">
+                            <a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+                            <span class="com_inputtxtright2 style01">만원</span>
+                        </div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+                    </div>
+					<!--// 20211112 한별 (com_won02수정,title=""추가) E-->
+                </div>
+				<p class="com_txtinfo_type01 mt10 new_mb30">총소득에 따라 공제 여부와 금액이 다릅니다.</p> <!-- 20211108 한별 추가 (mt10 new_mb30)-->
+			</div>
+			<div class="popup_footer">
+                <div class="btn_full_box">
+                    <a href="javascript:void(0)" class="btn btn_mint">확인</a>
+                </div>
+            </div>
+			
+			<a href="javascript:void(0);" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

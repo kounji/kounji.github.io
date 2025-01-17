@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>중계수수료 계산 | 금융과생활</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+ 
+<body>
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제-->
+		<div class="popup_header">    
+			<h1>중계수수료 계산</h1>
+		</div>
+        <div class="popup_content com_no_bottom com_bg_type00">
+			<div class="com_inner com_top_type01">
+				<div class="com_tabmenu_type03 menunum03">
+					<ul role="tablist">
+						<li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="#nolink"><span>매매</span></a></li>
+						<li role="tab" aria-selected="false" aria-controls="tab_02"><a href="#nolink"><span>전세</span></a></li>
+						<li role="tab" aria-selected="false" aria-controls="tab_03"><a href="#nolink"><span>월세</span></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="com_inner com_inputarea_type00">
+				<!-- 20211112 한별 (com_won02수정,title=""추가) S-->
+				<div role="tabpanel" id="tab_01" class="cmm-tab-panel on">
+					<div class="com_input_type01 com_won02 mb62">
+						<input type="tel" id="com_input01" class="input_right" name="" value="" required="" placeholder="거래금액을 입력하세요." title="거래금액을 입력하세요.">
+						<label for="com_input01"><span class="txt_label_x">금액</span></label>
+						<div class="del_txt">
+							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2 style01">만원</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>					
+				</div>
+	
+				<div role="tabpanel" id="tab_02" class="cmm-tab-panel">
+					<div class="com_input_type01 com_won02 mb62">
+						<input type="tel" id="com_input02" class="input_right" name="" value="" required="" placeholder="보증금을 입력하세요." title="보증금을 입력하세요.">
+						<label for="com_input02"><span class="txt_label_x">보증금</span></label>
+
+						<div class="del_txt">
+							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2 style01">만원</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+				</div>
+		
+				<div role="tabpanel" id="tab_03" class="cmm-tab-panel">
+					<div class="com_input_type01 com_won02">
+						<input type="tel" id="com_input03" class="input_right" name="" value="" required="" placeholder="보증금을 입력하세요." title="보증금을 입력하세요.">
+						<label for="com_input03"><span class="txt_label_x">보증금</span></label>
+						<div class="del_txt">
+							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2 style01">만원</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+					<div class="com_input_type01 com_won02 mb62">
+						<input type="tel" id="com_input04" class="input_right" name="" value="" required="" placeholder="월세를 입력하세요." title="월세를 입력하세요.">
+						<label for="com_input04"><span class="txt_label_x">월세</span></label>
+
+						<div class="del_txt">
+							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2 style01">만원</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+				</div>
+				<!--// 20211112 한별 (com_won02수정,title=""추가) E-->
+				<div class="com_btn_area00"><a href="#nolink" class="com_btn_more"><span>계산하기</span></a></div>
+				<strong class="com_box_tit01">중개수수료 계산결과</strong>
+				<div class="com_box_type01 com_box_list03">
+					<!-- 20210827 한별 수정 S -->
+					<ul class="list_type_02">
+						<li>
+							<dl>
+								<dt>
+									<div><em>거래금액</em></div>
+								</dt>
+								<dd>
+									<span class="com_price">
+										<em class="num">150,000,000</em><em class="unit">원</em>
+									</span>
+								</dd>
+							</dl>
+							<span class="txt_etc">보증금 + (월세 x 100)</span>
+						</li>
+						<li>
+							<dl>
+								<dt>
+									<div><em>상한요율</em></div>
+								</dt>
+								<dd>
+									<span class="com_price">
+										<em class="num">0.3</em><em class="unit">%</em>
+									</span>
+								</dd>
+							</dl>
+							<span class="txt_etc">1억원 이상 3억원 미만</span>
+						</li>
+					</ul>
+					<!--// 20210827 한별 수정 E -->
+					<div class="total_list">
+						<div>
+							<em>최대수수료</em>
+							<span>VAT별도</span>
+						</div>
+						<span class="com_price">
+							<em class="num com_point_blue">450,000</em><em class="unit">원</em>
+						</span>
+					</div>
+				</div>
+				<ul class="bl_dot_list one_register_list">
+					<li>계산 결과는 서울/주택거래 기준으로 산정되었습니다.</li>
+					<li>실제 중개수수료는 공인중개사와 협의에 의해 결정할 수 있습니다.</li>
+				</ul>
+			</div>
+        </div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+</body>
+</html>

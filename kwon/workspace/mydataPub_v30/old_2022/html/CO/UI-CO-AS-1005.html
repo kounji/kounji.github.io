@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box renewal">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>거래 농축협을 선택해 주세요</h1>
+				<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+			</div>
+			<div class="popup_content">
+				<div class="com_txt_type02">
+					<!-- 2022-07-01 마크업 변경 -->
+					<div class="new_sec_box custom">
+						<ul class="list_round_box">
+							<li>
+								<input type="radio" checked name="area" id="area_01">
+								<label for="area_01">
+									<dl>
+										<dt>의왕농협 청계지점</dt>
+										<dd>경기도 의왕시 안양판교로 238</dd>
+									</dl>
+								</label>
+							</li>
+							<li>
+								<input type="radio" name="area" id="area_02">
+								<label for="area_02">
+									<dl>
+										<dt>의왕농협 청계지점</dt>
+										<dd>경기도 의왕시 안양판교로 238</dd>
+									</dl>
+								</label>
+							</li>
+						</ul>
+					</div>
+					<!-- //2022-07-01 마크업 변경 -->
+					<div class="custom_box">
+						<div class="com_btn_area mb0">
+							<a href="javascript:void(0);" class="com_btn_round">
+								<span class="btn_go">직접찾기</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<a href="javascript:void(0);" role="button" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

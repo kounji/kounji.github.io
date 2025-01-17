@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>물보험</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		//더보기
+		jQuery(document).ready(function(){
+			jQuery('.btn_view_detail').on('click',function(){
+				jQuery(this).siblings().children('.asset_detail').toggleClass('open');
+				jQuery(this).toggleClass('close');
+				if(jQuery('.asset_detail').hasClass('open')) {
+					jQuery('.asset_detail').slideDown('slow');
+					jQuery('.btn_view_detail').text('접기');
+				}else {
+					jQuery('.asset_detail').slideUp('slow');
+					jQuery('.btn_view_detail').text('더보기');
+				}
+			});
+		});
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup mydata2023" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>물보험</h1>
+		</div>
+		<div class="popup_content com_no_bottom com_bg_type00 insur">
+			<div class="asset_info_box">
+				<div class="com_inner">
+					<div class="asset_info_wrap">
+						<div class="asset_info">
+							<dl>
+								<dt>보험명<span class="mint_badge">정상</span></dt>
+								<dd>
+									<span class="account_num">352210808677</span>
+								</dd>
+							</dl>
+							<div class="bank_icon">
+								<i class="ZVAAAZ0000"><span class="blind">농협</span></i>
+							</div>
+						</div>
+						<div class="asset_price_wrap">
+							<div class="amount">보험료</div>
+							<div class="asset_price"><!-- 0908 counter 삭제 -->
+								<span class="num">45,000</span>원
+							</div>
+						</div>
+					</div>
+					<div class="asset_detail">
+						<ul class="list_type_2023">
+							<li>
+								<dl>
+									<dt>갱신여부</dt>
+									<dd>갱신형</dd>
+								</dl>
+								<dl>
+									<dt>계약체결일</dt>
+									<dd class="num">2010.02.16</dd>
+								</dl>
+								<dl>
+									<dt>종료일</dt>
+									<dd class="num">2030.03.01</dd>
+								</dl>								
+								<dl>
+									<dt>보험가입금액</dt>
+									<dd><em class="num">45,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>계약자명</dt>
+									<dd>홍*동</dd>
+								</dl>
+								<dl>
+									<dt>특약 목록</dt>
+									<dd><a href="#nolink" class="link_arrow">2건</a></dd>
+								</dl>
+								<dl>
+									<dt>특약가입금액 합계</dt>
+									<dd><em class="num">10,000,000</em>원</dd>
+								</dl>
+								<dl>
+									<dt>목적물 수</dt>
+									<dd><a href="#nolink" class="link_arrow">2개</a></dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<button type="button" class="btn_view_detail">더보기</button>
+			</div>
+
+			<div class="com_inner">
+				<div class="renewal shor_term">
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area open">
+							<button type="button" class="view_btn" aria-expanded="true">
+								<div class="new_tit_area">
+									<div class="tit"><span>보험 담보명 1</span></div>
+									<span class="total_price">
+										<em class="num">8,600,000</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<div class="view_cont list_type_01">
+							<dl>
+								<dt>계약관계자 구분</dt>
+								<dd>계약자</dd>
+							</dl>	
+							<dl>
+								<dt>피보험자계약자관계</dt>
+								<dd>친인척</dd>
+							</dl>	
+							<dl>
+								<dt>담보상태</dt>
+								<dd>실효</dd>
+							</dl>
+							<dl>
+								<dt>담보시작일자</dt>
+								<dd class="num">YYYY.MM.DD</dd>
+							</dl>
+							<dl>
+								<dt>담보종료일자</dt>
+								<dd class="num">YYYY.MM.DD</dd>
+							</dl>
+						</div>
+					</div>
+	
+					<div class="com_box_type01 toggle_list_box2 custom_list">
+						<div data-ui-toggle="box" class="toggle_box_area">
+							<button type="button" class="view_btn" aria-expanded="false">
+								<div class="new_tit_area">
+									<div class="tit"><span>보험 담보명 2</span></div>
+									<span class="total_price">
+										<em class="num">5,000,000</em><em class="unit">원</em>
+									</span>
+								</div>
+								<em class="open">열기</em>
+								<em class="close">닫기</em>
+							</button>
+						</div>
+						<div class="view_cont list_type_01">
+							<dl>
+								<dt>계약관계자 구분</dt>
+								<dd>계약자</dd>
+							</dl>	
+							<dl>
+								<dt>피보험자계약자관계</dt>
+								<dd>친인척</dd>
+							</dl>	
+							<dl>
+								<dt>담보상태</dt>
+								<dd>실효</dd>
+							</dl>
+							<dl>
+								<dt>담보시작일자</dt>
+								<dd class="num">YYYY.MM.DD</dd>
+							</dl>
+							<dl>
+								<dt>담보종료일자</dt>
+								<dd class="num">YYYY.MM.DD</dd>
+							</dl>
+						</div>
+					</div>	
+
+					<!-- <a href="javascript:void(0);" role="button" class="com_btn_more mt30">더보기</a> -->
+				</div>
+			</div>
+			<!--//com_inner -->
+
+		</div>
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

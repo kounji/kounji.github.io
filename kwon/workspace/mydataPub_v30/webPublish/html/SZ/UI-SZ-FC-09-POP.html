@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>작목 선택</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display:block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display:block;">
+			<div class="popup_header">
+				<h1>수입 카테고리 선택</h1>          
+			</div>
+			<div class="popup_content">
+                <!--   20210726 한별 수정 적용 S -->
+                <div class="com_formarea_type01">
+                    <ul class="com_slide_check_type03">
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_50">
+								<label for="category_50">
+									<i class="SZ10000001"><span class="blind">주산물</span></i>
+									<span>주산물</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_51">
+								<label for="category_51">
+									<i class="SZ10000002"><span class="blind">부산물</span></i>
+									<span>부산물</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_54">
+								<label for="category_54">
+									<i class="AS10000002"><span class="blind">기타외 수익</span></i>
+									<span>기타외 수익</span>	
+								</label>	
+							</div>	
+						</li>
+					</ul>
+                </div>
+				<!--//   20210726 한별 수정 적용 E -->						
+			</div>
+			
+			<a href="#nolink" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

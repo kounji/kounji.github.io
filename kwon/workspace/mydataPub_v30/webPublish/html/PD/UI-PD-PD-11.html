@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <link rel="stylesheet" href="../../static/css/drum.css">
+
+
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>연 소득 입력</h1>          
+			</div>
+			<div class="popup_content com_btn_bottom">
+				<!--   20211117 한별 클래스명 수정 S -->
+                <div class="com_input_type01 com_inputbox_type02 com_won02">
+					<label for="txt01"></label>
+					<input type="tel" id="txt01" class="" name="" value="" placeholder="연 소득을 입력하세요." title="금액입력"><!--  20211117 한별 접근성 수정 (title="") -->
+					<span class="com_inputtxtright style01">만원</span>
+					<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211117 한별 추가 -->
+				</div>
+				<!--// 20211117 한별 클래스명 수정 E -->
+			</div>
+            <div class="popup_footer">
+				<div class="btn_full_box">
+					<a href="#nolink" class="btn btn_mint">확인</a>
+				</div>
+			</div>
+			
+			<a href="#nolink" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

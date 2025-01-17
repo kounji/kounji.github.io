@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Chart</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns renewal" id="styleGuide">
+	<h1>components</h1>
+	<article class="guide_group">
+		<h2>chart</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. 뱃지(pin)</h3>
+				<section class="source">
+                    <div style="width:240px; height:120px; border:1px solid red">
+                        <canvas id="halfdoughnutChartCanvas" ></canvas>
+                    </div>
+					
+				</section>
+			</div>
+			<!-- //item -->
+
+            <script>
+                var canvas  = document.getElementById("halfdoughnutChartCanvas");
+                var chart = canvas.getContext("2d");
+               
+                var data = {
+                    numberOfParts: 2,
+                    parts:{"pt": [20 , 30 , 25 , 25]},//percentage of each parts 
+                    colors:{"cs": [
+                        [
+                            [0.5, '#000'],
+                            [1, '#f00']
+                            
+                        ],   
+                        [
+                            [1, '#ff0'],
+                            [0.5, '#000']
+                            
+                        ], "blue", "yellow"
+                    ]}//color of each part
+                };
+               
+                var drawDount = new drawdountChart(chart);
+                drawDount.set(120, 120, 115, false, Math.PI, 0, 10, "#000", 1);
+                drawDount.draw(data);
+            </script>
+
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+</script>
+</body>
+
+</html>

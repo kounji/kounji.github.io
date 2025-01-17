@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>수입여부</h1>          
+			</div>
+			<div class="popup_content">
+                <div class="com_txt_type02">
+                    <ul class="com_radio_type01">
+                        <li>
+                            <span class="btn_radio">
+                                <input type="radio" name="com_check" id="com_check01" checked="checked">
+                                <label for="com_check01">
+                                    <span>전체</span>   
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_radio">
+                                <input type="radio" name="com_check" id="com_check02">
+                                <label for="com_check02">
+                                    <span>수입</span>   
+                                </label>
+                            </span>
+                        </li>
+                        <li>
+                            <span class="btn_radio">
+                                <input type="radio" name="com_check" id="com_check03">
+                                <label for="com_check03">
+                                    <span>국산</span> 
+                                </label>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+			
+			<a href="javascript:void(0);" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

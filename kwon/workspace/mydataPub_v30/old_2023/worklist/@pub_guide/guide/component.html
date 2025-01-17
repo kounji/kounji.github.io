@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>title</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns renewal" id="styleGuide">
+	<h1>components</h1>
+	<article class="guide_group">
+		<h2>tooltip</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>01. tooltip tag</h3>
+				<section class="source">
+					<br>
+					<br>
+					<br>
+					<div style="position:relative;color:#111;font-size:2.4rem;font-weight:400;letter-spacing:0;">
+						<div class="custom_tooltip">2,750,000원
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info">
+									<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+								</a>
+								<div class="com_ballon_type01 com_ballon_type02">
+									<div>
+										신한세배드림적금을 <strong>복리식정기예탁금</strong>에
+										예치하시고 높은 이자를 받으세요.
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<br>
+					<div style="position:relative;color:#111;font-size:2.4rem;font-weight:400;letter-spacing:0;">
+						<div class="custom_tooltip up"><!-- 상단으로 팝업 -->
+							2,000,000원<span style="font-size:1.6rem;">(상단으로 팝업.up추가)</span>
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info">
+									<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+								</a>
+								<div class="com_ballon_type01 com_ballon_type02">
+									<div>
+										<p class="title">타이틀</p>
+										신한세배드림적금을 복리식정기예탁금에
+										예치하시고 높은 이자를 받으세요.
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			<!-- item -->
+			<div class="item">
+				<h3>02. tooltip 좌,우 분할</h3>
+				<section class="source">
+					<div class="custom_list com_box_type01 mt0 noBorder">
+						<div class="list_type_custom">
+							<div class="list_item">
+								<i class="B1AABF0000"></i>
+								<strong class="tit">신한은행</strong>
+								<span class="ico_result suc">연결성공</span>
+							</div>
+							<div class="list_item">
+								<i class="B1AABF0000"></i>
+								<strong class="tit">신한은행</strong>
+								<span class="ico_result fail_tip">실패
+									<div class="custom_tooltip">
+										<div class="com_tooltip_type02 com_tooltip_type03">
+											<a href="#nolink" role="button" class="com_btn_info">
+												<em class="com_icon_info3"><span class="blind">툴팁열기</span></em>
+											</a>
+										</div>
+										<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
+											<div>
+												해당 기관에 보유한 자산이 없습니다.<br>
+												(오류코드 <em>40403</em>)
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	<article class="guide_group">
+		<h2>chips</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>chips tag</h3>
+				<section class="source">
+					<ul class="com_radio_type01">
+						<li>
+								<span class="btn_radio">
+										<input type="radio" name="com_check" id="com_check01" checked="checked">
+										<label for="com_check01">
+												<span>24K</span>   
+										</label>
+								</span>
+						</li>
+						<li>
+								<span class="btn_radio">
+										<input type="radio" name="com_check" id="com_check02">
+										<label for="com_check02">
+												<span>18K</span>   
+										</label>
+								</span>
+						</li>
+						<li>
+								<span class="btn_radio">
+										<input type="radio" name="com_check" id="com_check03">
+										<label for="com_check03">
+												<span>14K</span> 
+										</label>
+								</span>
+						</li>
+						<li>
+								<span class="btn_radio">
+										<input type="radio" name="com_check" id="com_check04">
+										<label for="com_check04">
+												<span>백금</span> 
+										</label>
+								</span>
+						</li>
+					</ul>
+					<br>
+					<ul class="com_radio_type03">
+						<li>
+								<div class="btn_radio">
+										<input type="radio" name="house" id="radio01" checked="checked">
+										<label for="radio01">
+												<span>나의농장</span>
+										</label>	
+								</div>	
+						</li>
+						<li>
+								<div class="btn_radio">
+										<input type="radio" name="house" id="radio02">
+										<label for="radio02">
+												<span>콩</span>
+										</label>	
+								</div>	
+						</li>
+						<li>
+								<div class="btn_radio">
+										<input type="radio" name="house" id="radio03">
+										<label for="radio03">
+												<span>오이</span>
+										</label>	
+								</div>	
+						</li>
+						<li>
+								<div class="btn_radio">
+										<input type="radio" name="house" id="radio04">
+										<label for="radio04">
+												<span>배추</span>
+										</label>	
+								</div>	
+						</li>
+						<li>
+								<div class="btn_radio">
+										<input type="radio" name="house" id="radio05">
+										<label for="radio05">
+												<span>사과</span>
+										</label>	
+								</div>	
+						</li>
+					</ul>
+					<br>
+					<ul class="com_radio_type04 h_mid">
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radio1-1" checked="checked">
+								<label for="radio1-1">
+									<span>24K</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radi1-2">
+								<label for="radi1-2">
+									<span>18K</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radio1-3">
+								<label for="radio1-3">
+									<span>14K</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="radio1" id="radi1-4">
+								<label for="radi1-4">
+									<span>백금</span>
+								</label>	
+							</div>	
+						</li>
+					</ul>
+
+					<ul class="com_slide_check_type03 etc"><!-- 20210702 한별 클래스 etc 추가 -->
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_01" checked>
+								<label for="currency_01">
+									<i class="ico_USD"><span class="blind">미국</span></i>
+									<span><span>미국<br><em>USD</em></span></span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_02">
+								<label for="currency_02">
+									<i class="ico_JPY"><span class="blind">일본</span></i>
+									<span><span>일본<br><em>JPY</em></span></span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_03">
+								<label for="currency_03">
+									<i class="ico_EUR"><span class="blind">유럽연합</span></i>
+									<span><span>유럽연합<br><em>EUR</em></span></span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_04">
+								<label for="currency_04">
+									<i class="ico_CNY"><span class="blind">중국</span></i>
+									<span><span>중국<br><em>CNY</em></span></span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_05">
+								<label for="currency_05">
+									<i class="ico_AUD"><span class="blind">호주</span></i>
+									<span><span>호주<br><em>AUD</em></span></span>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="btn_radio">
+								<input type="radio" name="currency" id="currency_06">
+								<label for="currency_06">
+									<i class="ico_CAD"><span class="blind">캐나다</span></i>
+									<span><span>캐나다<br><em>CAD</em></span></span>
+								</label>
+							</div>
+						</li>
+					</ul>
+					<br>
+					<!-- 신규 -->
+					<div class="radio_list">
+						<div class="btn_radio">
+							<input type="radio" name="radio02" id="radio2-1" checked>
+							<label for="radio2-1">
+								<span>1,000만원 미만</span>
+							</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio02" id="radio2-2">
+							<label for="radio2-2">
+								<span>2,000만원 ~ 3,000만원</span>
+							</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio02" id="radio2-3">
+							<label for="radio2-3">
+								<span>3,000만원 ~ 4,000만원</span>
+							</label>
+						</div>
+					</div>
+					<br>
+					<!-- 신규 -->
+					<div class="radio_list noLine">
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-1" checked>
+							<label for="radio3-1">
+								<span>SKT</span>
+							</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-2">
+							<label for="radio3-2">
+								<span>KT</span>
+							</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-3">
+							<label for="radio3-3">
+								<span>LGU+</span>
+							</label>
+						</div>
+						<div class="btn_radio">
+							<input type="radio" name="radio03" id="radio3-4">
+							<label for="radio3-4">
+								<span>SKT 알뜰폰</span>
+							</label>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+</script>
+</body>
+
+</html>

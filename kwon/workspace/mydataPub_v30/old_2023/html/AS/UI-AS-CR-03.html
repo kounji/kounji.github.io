@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>신용정보</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script>
+		// -----------------------차트 설정 시작-----------------------
+ 
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "200rem");
+		
+		var layoutStr =
+						'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+							+'<Options>'
+								+'<Caption text="배경에 이미지 삽입"/>'
+							+'</Options>'
+							+'<Line2DChart showDataTips="true">'
+								+'<horizontalAxis>'
+									+'<CategoryAxis categoryField="Month"/>'
+								+'</horizontalAxis>'
+								+'<verticalAxis >'
+									+'<LinearAxis maximum="100" id="vAxis" />'
+								+'</verticalAxis>'
+								+'<verticalAxisRenderers>'
+									+'<Axis3DRenderer axis="{vAxis}" visible="true"/>'
+								/* visible속성을 false로 하여 Chart에서는 보이지 않게 합니다 */
+							+'</verticalAxisRenderers>'
+								+'<series>'
+									+'<Line2DSeries yField="Vancouver" displayName="Vancouver" itemRenderer="CircleItemRenderer" radius="6">'
+										+'<showDataEffect>'
+											+'<SeriesInterpolate/>'
+										+'</showDataEffect>'
+										+'<lineStroke>'
+											+'<Stroke color="#046fd9" weight="2.5"/>'
+										+'</lineStroke>'
+										+'<stroke>'
+											+'<Stroke color="#046fd9" weight="3"/>'
+										+'</stroke>'
+										+'<fill>'
+											+'<SolidColor color="#fff"/>'
+										+'</fill>'
+									+'</Line2DSeries>'
+								+'</series>'
+								/*
+								차트 배경에 이미지를 넣을 경우에는 backgroundElements와 annotationElements 중 하나를 정의합니다
+								backgroundElements는 그래프가 뿌려진 레이어를 기준으로 뒷면을 의미하고
+								annotationElements는 그래프가 뿌려진 레이어를 기준으로 앞면을 의미합니다
+								*/
+								// +'<backgroundElements>'
+								// 	+'<CanvasImage source="../rMateChartH5/Assets/Images/chart_background.jpg" maintainAspectRatio="false" alpha="1"/>'
+								// 	/*
+								// 		Image의 속성으로는
+								// 		source : 실제 이미지가 있는 URL경로입니다
+								// 		maintainAspectRation : 이미지 원본 비율을 유지할지를 나타냅니다
+								// 						True면 고유비율을 유지하려 하고
+								// 						False면 차트 크기에 맞춘 사이즈를 갖습니다
+								// 		alpha : 이미지의 투명도를 나타 냅니다
+								// 	*/
+								// +'</backgroundElements>'
+							+'</Line2DChart>'
+						+'</rMateChart>';
+
+		// 차트 데이터
+		var chartData = [{"Month":"2021-01-06","Vancouver":40},
+			{"Month":"2021-02-06","Vancouver":50},
+			{"Month":"2021-03-06","Vancouver":58},
+			{"Month":"2021-04-06","Vancouver":80},
+			{"Month":"2021-05-06","Vancouver":80}
+			];
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		
+		/*
+		// ------------------------- 데이터팁 사용자 정의 함수 -----------------------------------------------------
+		// 챠트에서 showDataTips="true" 설정 후 마우스 오버 시 보이는 데이터팁 정의
+		// layout XML 에서 Chart 속성을 넣을때 dataTipJsFunction를 주고, 만든 javascript 함수명을 넣어줍니다
+		// 예) <Column3DChart showDataTips="true" dataTipJsFunction="dataTipFunc">
+		//
+		// 파라메터 설명
+		// seriesId : layout XML에서 부여한 series의 id가 있을 경우, 해당 id를 보내줍니다.
+		// seriesName : 시리즈의 displayName 으로 정의한 시리즈 이름을 보내줍니다.
+		// index : 해당 아이템의 인덱스.
+		// xName : X 축에 displayName 을 정의하였다면 X축의 displayName을 보내줍니다.
+		// yName : Y 축에 displayName 을 정의하였다면 Y축의 displayName을 보내줍니다.
+		// data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
+		// values : 해당 item의 값 (배열로 전달되며, 차트 종류에 따라 아래와 같이 들어옵니다.)
+					Bar2D(3D)Series     0:x축값 1:y축값
+					Column2D(3D)Series  0:x축값 1:y축값
+					Area2DSeries    0:x축값 1:y축값
+					Bubble3DSeries  0:x축값 1:y축값 2:radius값
+					Line2DSeries    0:x축값 1:y축값
+					Pie2D(3D)Series     0:값 1:퍼센트값 2:nameFiled명
+		*/
+		function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values)
+		{
+			return "<font color='#CC3300'>데이터팁 사용자 정의</font>seriesId:"+seriesId+" <font color='#0000FF'>현재 데이터 : </font>"+"<b>"+seriesName+"</b>"+"itemIndex:"+index+"data: "+obj2string(data)+" values:"+values;
+		}
+		
+		function obj2string(d) {
+			var r = "";
+		for (var p in d) {
+			if (r.length > 0)
+					r += "";
+			r += "   "+d[p];
+			}
+			return r;
+		}
+		
+		/**
+		* rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		* 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		*
+		* -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* -------------------------------------------------
+		*
+		* rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		*/
+		rMateChartH5.registerTheme(rMateChartH5.themes);
+		
+		/**
+		* 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		* 접근하는 차트 객체의 테마를 변경합니다.
+		* 파라메터로 넘어오는 값
+		* - simple
+		* - cyber
+		* - modern
+		* - lovely
+		* - pastel
+		* - default
+		*
+		* default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		*/
+		function rMateChartH5ChangeTheme(theme){
+		document.getElementById("chart1").setTheme(theme);
+		}
+		
+		// -----------------------차트 설정 끝 -----------------------
+	</script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>신용정보</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+		<div class="com_tabmenu_type01 menunum02">
+			<!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+			<ul role="tablist">
+				<li><a href="#nolink">조회내역</a></li>
+				<li class="on"><a href="#nolink">변동내역</a></li>
+			</ul>
+			<!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+		</div>
+		<div class="popup_content com_sub_type02 com_space_bottom com_bg_type00"><!-- 20210705 한별 클래스 com_space_bottom com_bg_type00로 수정 -->
+            <!--   20210625 한별 상단 수정건 적용 S -->
+			<div class="com_submainbox_type01 com_submainbox_type01-05 ui-as-cr-03 m0 com_line_type01">
+				<div class="toptitle">
+					
+					<div class="right time">
+						<span>2021.04.13 11:00</span>
+						<button class="refresh inline_refresh">
+							<span class="blind">새로고침</span>
+						</button>
+					</div>
+				</div>
+				<div class="com_box_type01">
+					<div class="linemix_chart_wrap">
+						<div class="chart_title_underbar">
+							신용점수
+						</div>
+						<!-- 차트가 삽입될 DIV -->
+						<!-- 20211108 한별 접근성 추가  S -->
+						<div id="chartHolder" aria-hidden="true"></div>
+						<!-- 20211108 한별 접근성 추가  E -->
+					</div>
+				</div>
+					<div class="linkbox_wrap type03">
+						<div class="box">
+							<div class="tt_wrap">
+								<p class="tt_top">최근 1년 내</p>
+									<div class="tt">
+										<b>2</b>건
+									</div>
+							</div>
+							<div class="bar"></div>
+							<div class="tt_wrap">
+								<p class="tt_top">1년~3년 내</p>
+									<div class="tt">
+										<b>3</b>건
+									</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<!--   20210625 한별 상단 수정건 적용 E -->
+			<!-- 20210705 한별 클래스 com_boxarea_type01로 수정,aria-controls로 수정,클래스 cmm-tab-panel로 수정,아이콘 리스트부분 수정,클래스 mt12로 수정 S -->
+			<div class="com_inner com_boxarea_type01">
+				<div class="com_tabmenu_type03">
+					<ul role="tablist">
+						<li role="tab" aria-selected="true" aria-controls="tab_01" class="on"><a href="#nolink" ><span>일반정보 변동</span></a></li>
+						<li role="tab" aria-selected="false" aria-controls="tab_02"><a href="#nolink"><span>연체정보 변동</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 일반정보 변동 컨텐츠 S-->
+			<div role="tabpanel" id="tab_01" class="cmm-tab-panel on">
+				<div class="com_inner info_change_box">
+					<div class="card_list_box">
+						<ul class="list_type_01">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<p class="dot_msg mt12">코리아크레딧뷰로(KCB)에서 제공하는 정보이며,
+						KCB 데이터 산정일 및 기준금액의 차이로 실제 금융정보
+						와 다를 수 있습니다.</p>
+				</div>
+			</div>
+			<!--// 일반정보 변동 컨텐츠 E -->
+			<!-- 연체정보 변동 컨텐츠 S-->
+			<div role="tabpanel" id="tab_02" class="cmm-tab-panel">
+				<div class="com_inner info_change_box">
+					<div class="card_list_box">
+						<ul class="list_type_01">
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>국민카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>
+										<div>
+											<i class="A1AAEM0000"><span class="blind">우리</span></i>
+											<em>하나카드</em>
+											<span>정보등록일</span>
+										</div>
+									</dt>
+									<dd>
+										<!-- 20210806 한별 수정 S -->
+										<span class="com_price">
+											<span>신용/체크카드 발급</span>
+										</span>
+										<span class="com_price">
+											<em class="num">2012.01.26</em>
+										</span>
+										<!-- //20210806 한별 수정 E -->
+									</dd>
+								</dl>
+							</li>
+						</ul>
+					</div>
+					<p class="dot_msg mt12">코리아크레딧뷰로(KCB)에서 제공하는 정보이며,
+						KCB 데이터 산정일 및 기준금액의 차이로 실제 금융정보
+						와 다를 수 있습니다.</p>
+				</div>
+			</div>
+			<!--// 연체정보 변동 컨텐츠 E -->
+			<!--// 20210705 한별 클래스 com_boxarea_type01로 수정,aria-controls로 수정,클래스 cmm-tab-panel로 수정,아이콘 리스트부분 수정,클래스 mt12로 수정 E -->
+		</div>		
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

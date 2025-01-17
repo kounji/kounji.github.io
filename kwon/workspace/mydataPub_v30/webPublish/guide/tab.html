@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Tab Sample</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
+</head>
+
+<body>
+<div class="guide contetns" id="styleGuide">
+	<h1>Tab</h1>
+	<article class="guide_group">
+		<h2>Depth type for full popup</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>tablist</h3>
+				<section class="source">
+					<ul role="tablist" class="tablist">
+						<li class="on"><button type="button" role="tab" aria-selected="true">tab01</button></li>
+						<li><button type="button" role="tab" aria-selected="false">tab02</button></li>
+						<li><button type="button" role="tab" aria-selected="false">tab03</button></li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+
+	<article class="guide_group">
+		<h2>가로스크롤 </h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>category</h3>
+				<section class="source">
+					<div class="category_tab">
+						<div class="scroller">
+							<ul role="tablist">
+								<li><a href="#navi01" role="tab" aria-selected="false">자산</a></li>
+								<li><a href="#navi02" role="tab" aria-selected="false">지출</a></li>
+								<li><a href="#navi03" role="tab" aria-selected="false">연금/절세</a></li>
+								<li><a href="#navi04" role="tab" aria-selected="false">추천</a></li>
+								<li><a href="#navi05" role="tab" aria-selected="false">금융지식</a></li>
+								<li><a href="#navi06" role="tab" aria-selected="false">놀이터</a></li>
+								<li><a href="#navi07" role="tab" aria-selected="false">도전 목표 챌린지</a></li>
+								<li><a href="#navi08" role="tab" aria-selected="false">나의 신용점수 올리기</a></li>
+								<li><a href="#navi09" role="tab" aria-selected="false">HN지역정보</a></li>
+								<li><a href="#navi10" role="tab" aria-selected="false">HN콕마이카</a></li>
+								<li><a href="#navi11" role="tab" aria-selected="false">HN콕부동산</a></li>
+								<li><a href="#navi12" role="tab" aria-selected="false">이벤트/이용안내</a></li>
+								<li><a href="#navi13" role="tab" aria-selected="false">콕마이데이터관리</a></li>
+								<li><a href="#navi14" role="tab" aria-selected="false">타기관 마이데이터관리</a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+
+
+	<article class="guide_group">
+		<h2>오픈형 </h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>category</h3>
+				<section class="source">
+					<div class="category_tab has_btn">
+						<ul role="tablist">
+							<li class="on"><a href="#navi11" role="tab" aria-selected="true">생활문화센터</a></li>
+							<li><a href="#navi12" role="tab" aria-selected="false">문화의집</a></li>
+							<li><a href="#navi13" role="tab" aria-selected="false">미술관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
+						</ul>
+						<button type="button" class="btn_fold" aria-expanded="false"><span class="blind">토글 버튼</span></button>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+
+
+	<article class="guide_group">
+		<h2>컨텐츠 내 tab</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<h3>category</h3>
+				<section class="source">
+
+					<ul role="tablist" class="inner_tab">
+						<li class="on"><button type="button" role="tab" aria-selected="true">공적연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+					</ul>
+
+					<ul role="tablist" class="inner_tab">
+						<li class="on"><button type="button" role="tab" aria-selected="false" disabled>공적연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+					</ul>
+
+
+					<ul role="tablist" class="inner_tab green">
+						<li class="on"><button type="button" role="tab" aria-selected="false">공적연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+					</ul>
+
+					<ul role="tablist" class="inner_tab purple">
+						<li class="on"><button type="button" role="tab" aria-selected="false">공적연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+						<li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+					</ul>
+
+					<ul role="tablist" class="inner_tab gray">
+						<li class="on" aria-controls="tab_01"><button type="button" role="tab" aria-selected="true" >원리금 균등상환</button></li>
+						<li aria-controls="tab_02"><button type="button" role="tab" aria-selected="false">원금 균등상환</button></li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
+		</section>
+	</article>
+	
+</div>
+<script type="text/javascript">
+	fnGuide.guide();
+	/*
+		영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+		입력 후 x 버튼 클릭시 글자 삭제
+	*/
+	$(function() {
+		var _inputBox = $('.inputClear'); // Input Box
+		var _clearBtn = $('.com_btn_delete'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('btnDeleteShow');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('btnDeleteShow');
+				_inputBox.val(''); 
+			});
+		});
+	});
+	/*lnb-filter 버튼 클릭이벤트*/
+	$(document).ready(function(){
+		$('.lnb.lnb_filter').append('<button class="btn_lnb"><span class="blind">카테고리 펼치기</span></button>')
+		$('.btn_lnb').on('click', function(){
+			$(this).parent().toggleClass('is_open');
+			$(this).toggleClass('open');
+			if($(this).hasClass('open')){
+				$(this).children().text('카테고리 접기');
+			} else {
+				$(this).children().text('카테고리 펼치기');
+			}
+		});	
+	});
+</script>
+</body>
+
+</html>

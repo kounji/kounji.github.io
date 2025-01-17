@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>alert 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- popup S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<div class="alert_popup renewal" id="alert_popup" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<div class="complete">
+				<!-- 2022-09-16 : mt0 제거 -->
+				<div class="secede_box">
+					<!-- 2022-09-16 : 김현철 부장님 요청으로 인한 DIV 추가 (개발관련) -->
+					<div>
+						<p class="txt">PASS 서비스에 가입하지<br>않은 고객입니다.</p>
+						<p class="txt_sub txt_gray">서비스 가입 후 이용해 주세요<br>
+							<a href="javascript:void(0)">PASS 앱 설치 안내</a><br>
+							PASS 고객센터 <a href="tel:1800-4273" role="button">1800-4273</a>
+						</p>
+					</div>
+					<div class="new_view_wrap">
+						<!-- 2022-09-15 : buttom 태그로 변경 -->
+						<button type="button" class="view">
+							<em class="num">PASS</em> 인증서 이용안내<span class="ico_rightbar"></span>
+						</button>
+					</div>
+					<p class="txt_sub txt_gray">에러코드 <em>3106</em></p>
+				</div>
+			</div>
+		</div>
+		<div class="popup_footer">
+			<div class="btn_box">
+				<a href="#nolink" class="btn btn_mint">확인</a>
+			</div>
+		</div>
+	</div>
+	<!--// popup E -->
+</body>
+</html>

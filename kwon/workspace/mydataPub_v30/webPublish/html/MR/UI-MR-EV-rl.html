@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko" class="">
+<head>
+	<title>이벤트 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup mydata2023 openEvent event" id="full_popup_01"> 
+		<div class="popup_content">
+			<div class="ev_rl">
+				<div class="rl_top">
+					<div class="inner">
+						<div class="logo"><span>NH콕뱅크X마이데이터</span> <span>NH농협</span></div>
+						<div class="tit">
+							<span class="lucky">Lucky</span>
+							<em class="tit">룰렛찬스!</em>
+							<span>내가 <em>연결한 자산 갯수</em> 만큼<br /><em>룰렛 참여의 기회</em>가!</span>
+						</div>
+						<div class="vs">
+							<div class="left_y"><p><span>내가 연결한<br /><strong>자산 갯수</strong></span><em>15</em></p></div>
+							<div class="right_y"><p><span>내게 남은<br /><strong>룰렛 기회</strong></span><em>03</em></p></div>
+						</div>
+					</div>
+					<div class="rl_btm">
+						<div class="rouletter">
+							<div class="rouletter-arrow"></div>
+							<div class="rouletter-bg">
+								<div class="rouletter-wacu"></div>
+							</div>
+							<button class="rouletter-btn"></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+
+<script>
+    let rolLength = 6;  //컨텐츠 갯수
+    let setNum;     //랜덤숫자 담을 변수
+    let hiddenInput = document.createElement("input");
+    hiddenInput.className = "hidden-input";
+    let num = 1;
+    //랜덤숫자 부여
+    const rRandom = () => {
+        let min = Math.ceil(0);
+        let max = Math.floor(rolLength - 1);
+        let random = Math.random();
+        // console.log('min : ',min)
+        // console.log('max : ',max)
+        // console.log('random : ',random)
+        return Math.round(random * (max - min)) + min;
+    }
+
+    const rRotate = () => {
+        let panel = document.querySelector(".rouletter-wacu");
+        let btn = document.querySelector(".rouletter-btn");
+        let deg = [];
+
+        //룰렛 각도 설정
+        for(let i=1, len = rolLength; i<=len; i++){
+            deg.push((360 / len) * i);
+        }
+
+        let start = 0;    
+        document.body.append(hiddenInput);
+        setNum = hiddenInput.value = rRandom();
+        let ani = setInterval(() => {
+            start++;
+            panel.style.transform = "rotate(" + ((360 * num * 8)+deg[setNum]) + "deg)";
+            btn.disabled = true;
+            btn.style.pointerEvents = "none"
+
+            if(start === 70){
+                clearInterval(ani);
+                // panel.style.transform = `rotate(${deg[setNum]}deg)`;
+            }
+        }, 50)
+    }
+
+    const rLayerPopup = (num) => {
+        switch(num){
+            case 0:
+                alert("플레이스테이션5 당첨");
+                break;
+            case 1:
+                alert("NH멤버스 포인트 500점 당첨");
+            break;
+            case 2:
+                alert("꽝");
+                break;
+            case 3:
+                alert("벤틀리 당첨");
+                break;
+            case 4:
+                alert("스타벅스 커피 당첨");
+                break;
+            case 5:
+                alert("아이패드 당첨");
+                break;
+        }
+    }
+
+    const rReset = (ele) => {
+        setTimeout(() => {
+            ele.disabled = false;
+            ele.style.pointerEvents = "auto";
+            console.log('setNum : ', setNum)
+            rLayerPopup(setNum);
+            hiddenInput.remove();
+            num++;
+        }, 7000)
+    }
+
+    document.addEventListener("click", function(e) {
+        let target = e.target;
+        if(target.tagName === "BUTTON"){
+            rRotate();
+            rReset(target);
+        }
+    })
+</script>
+</html>

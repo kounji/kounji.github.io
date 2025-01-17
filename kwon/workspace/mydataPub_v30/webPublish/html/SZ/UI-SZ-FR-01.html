@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이농가 서브메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!--   20210623 한별 수정 S -->
+		<!--캘린더 날짜 선택시 하단 리스트 스크롤링 기능 관련 레이아웃 수정 
+			달력 하단 리스트 부분은
+						<div class="calendar_detail">
+							<div class="calendar_notice_box">
+								<div class="inner_wrap">
+									...
+								</div>
+							</div>
+						</div>
+			해당 태그 사이로 넣고 section 태그 사이에 위치함
+			레이아웃은 calendar_box 클래스에 의해 작동
+			--->
+	<!--// 20210623 한별 수정 E -->
+	<!-- wrap S -->
+	<!-- 20210630 한별 서브메인 스크롤 인터랙션 추가 클래스는 'sticky-scroll' --->    
+	<div id="wrap" class="sticky-scroll">
+        <div id="view-wrap">
+            <!-- header S -->
+            <header id="header">
+                <h1>마이농가</h1>
+                <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>		
+                <a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+                <a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+            </header> <!-- 홈버튼 헤더 -->
+            <!--// header E -->
+
+			<!-- content-view S -->
+			<div class="content-view">
+				<!-- tabmenu S -->
+				<!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+				<div class="com_tabmenu_type02">
+					<div>
+						<ul role="tablist">
+							<li><a href="#nolink">영농달력</a></li>
+							<li class="on"><a href="#nolink">영농일지</a></li>
+							<li><a href="#nolink">농기계임대</a></li>
+							<li><a href="#nolink">손익분석</a></li>
+							<li><a href="#nolink">정책자금</a></li>
+							<li><a href="#nolink">조합원</a></li>
+							<li><a href="#nolink">설정</a></li>
+						</ul>
+					</div>
+				</div>
+				<!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+				<!--// tabmenu E -->
+
+				<!-- content S -->
+				<div id="content" class="com_sub_type02 com_bg_type00"><!-- 20210901 한별 com_bg_type00클래스로 수정 -->	<!-- class="type_01" 일대 bg #f2f4f7 -->
+					<div class="calendar_wrap myfarm_calendar_wrap"><!-- 20211008 한별 myfarm_calendar_wrap클래스 추가 -->
+						<section class="cal_day_box">
+							<div class="com_inner">
+								<div class="select_dual_wrap hasNav">
+									<div class="select_dual">
+										<div class="area">
+											<div class="select_date">
+												<!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
+												<!-- 20211105 한별 접근성 추가  S -->
+												<button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+												<a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+												<button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+												<!--//  20211105 한별 접근성 추가 E -->
+											</div>
+										</div>
+										<div class="area">
+											<button class="select_date select_date_type02">
+												<em>나의농장</em> <span class="caret"></span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--   20210630 한별 스크롤 인터랙션 때문에 감싸는 래퍼 필요하여 수정 E -->
+							<!--한별 추가 20210714 달력 그래픽요소 1월~12월 : 이병철
+								SZ-month01 ~ SZ-month01 까지
+								---->
+							<table class="cal_tb SZ-month05">
+								<caption>가계부 메인 달력에서 해당 요일 및 날짜에 대한 지출내용을 제공합니다.</caption>
+								<colgroup>
+									<col style="width:15%">
+									<col style="width:14%">
+									<col style="width:14%">
+									<col style="width:14%">
+									<col style="width:14%">
+									<col style="width:14%">
+									<col style="width:15%">
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">일</th>
+										<th scope="col">월</th>
+										<th scope="col">화</th>
+										<th scope="col">수</th>
+										<th scope="col">목</th>
+										<th scope="col">금</th>
+										<th scope="col">토</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="pre">
+											<a href="#;" role="button">
+												<span class="date">30</span>
+											</a>
+
+										</td>
+										<td class="pre">
+											<a href="#;" role="button">
+												<span class="date">31</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">1</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">2</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">3</span>
+											</a>
+										</td>
+										<!-- 20211105 한별 접근성 추가  S -->
+										<td class="today" >
+											<a href="#;" title="오늘 날짜 선택됨">
+												<span class="date">4</span>
+												<div class="event_mark">
+													<span class="icon_grey">6</span>
+												</div>
+											</a>
+											
+										</td>
+										<!--//  20211105 한별 접근성 추가 E -->
+										<td class="sat">
+											<a href="#;" role="button">
+												<span class="date">5</span>
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="sun">
+											<a href="#;" role="button">
+												<span class="date">6</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">7</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">8</span>
+												<div class="event_mark">
+													<span class="icon_mint">10</span>
+												</div>
+											</a>
+											
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">9</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">10</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">11</span>
+											</a>
+										</td>
+										<td class="sat">
+											<a href="#;" role="button">
+												<span class="date">12</span>
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="sun">
+											<a href="#;" role="button">
+												<span class="date">13</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">14</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">15</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">16</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">17</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">18</span>
+											</a>
+										</td>
+										<td class="sat">
+											<a href="#;" role="button">
+												<span class="date">19</span>
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="sun">
+											<a href="#;" role="button">
+												<span class="date">20</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">21</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">22</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">23</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">24</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">25</span>
+											</a>
+										</td>
+										<td class="sat">
+											<a href="#;" role="button">
+												<span class="date">26</span>
+											</a>
+										</td>
+									</tr>
+									<tr>
+										<td class="sun">
+											<a href="#;" role="button">
+												<span class="date">27</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">28</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">29</span>
+											</a>
+										</td>
+										<td>
+											<a href="#;" role="button">
+												<span class="date">30</span>
+											</a>
+										</td>
+										<td class="disable">
+											<a href="#;" role="button">
+												<span class="date">31</span>
+											</a>
+										</td>
+										<td class="disable">
+											<a href="#;" role="button">
+												<span class="date">1</span>
+											</a>
+										</td>
+										<td class="disable">
+											<a href="#;" role="button">
+												<span class="date">2</span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							
+							<div class="calendar_detail">
+								<div class="calendar_notice_box">
+									<div class="inner_wrap">
+										<!-- 아이콘없고 링크없는 리스트 S -->
+										<div class="com_list_type01 com_inner">
+											<!-- 20210824 한별 추가 S -->
+											<div class="new_period_box">
+												<div class="scroll_wrap">
+													<div class="checkbox_box">
+														<span class="cmm_radio">
+															<input type="radio" name="chk_01" id="all_chk" checked="checked">
+															<label for="all_chk">전체</label>
+														</span>
+														<!-- 20210826 한별 수정 S -->
+														<span class="cmm_radio">
+															<input type="radio" name="chk_01" id="chk_01">
+															<label for="chk_01">(간편)일지</label>
+														</span>
+														<!--// 20210826 한별 수정 E -->
+													</div>
+												</div>
+											</div>
+											<!-- //20210824 한별 추가 E -->
+											<div class="calendar_list_view diary_list_view"><!-- 20211008 한별 diary_list_view 클래스 추가 -->
+												<!-- 메세지 S -->
+												<div>
+													<strong class="msg">메세지</strong>
+													<div class="view_list_area">
+														
+													</div>
+												</div>
+												<!-- 메세지 E -->
+												<!-- 6일 S -->
+												<div>
+													<strong class="day">6<span class="week">(목)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+														<!-- 배너 S -->
+														<div class="cal_pop_info_wrap">
+															<div class="cal_pop_info">
+																<div class="text">
+																	봄 밭갈이 준비하셨나요?<br>괭이삽 또는 비료등 구입하세요.
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+														<div class="cal_pop_info_wrap">
+															<div class="cal_pop_info">
+																<div class="text">
+																	4월 4일은 청명(淸明)으로 따뜻하면서 맑은 화사한 봄을 알리는 날이 왔습니다.
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+														<div class="cal_pop_info_wrap">
+															<div class="cal_pop_info">
+																<div class="text">
+																	봄 밭갈이 준비하셨나요?<br>괭이삽 또는 비료등 구입하세요.
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+														<div class="cal_pop_info_wrap">
+															<div class="cal_pop_info">
+																<div class="text">
+																	봄 밭갈이 준비하셨나요?<br>괭이삽 또는 비료등 구입하세요.
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+														<!-- //배너 E -->
+
+														<div class="view_list" data-ui-toggle="box">
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<em><em>거름주기</em></em>
+																	<span class="sub_tit">밑거름 작업</span>
+																	<!--// 20210906 한별 수정 E -->
+																	<span>
+																		<em>모종뿌리기전 밑거름 작업모종뿌리기전 밑거름 작업</em>
+																	</span>
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+														</div>
+														<!-- 배너 S -->
+														<div class="cal_pop_info_wrap">
+															<div class="cal_pop_info">
+																<div class="text">
+																	아산맑은 도고쪽파 축제 (4.1~4.30)의 쪽파를 알리고 소비 촉진의 행사에  많은 관심 바랍니다. 
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+														<!-- //배너 E -->
+													</div>
+												</div>
+												<!-- 6일 E -->
+												<!-- 8일 S -->
+												<div>
+													<strong class="day">8<span class="week">(목)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+
+														<div class="view_list" data-ui-toggle="box">
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<a href="#nolink">
+																		<em><em>출하(매취)</em><span class="icon_reg">등록</span></em><!-- [개발자 전달] 2021-07-22 등록 수정되었습니다 -->
+																		<span class="sub_tit">OO농협 산지유통센터OO농협 산지유통센터OO농협 산지유통센터</span>
+																	</a>
+																	<!--// 20210906 한별 수정 E -->
+																	<a href="#nolink" aria-expanded="false" class="detail_view"><span>상세보기</span></a>
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210830 한별 수정 상세보기 리스트 S -->
+															<div class="detail_view_list">
+																<ul>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(감홍)</span>
+																					<span>5kg</span>
+																					<span>PE대</span>
+																					<span>6내</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>200</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(국광)</span>
+																					<span>15kg</span>
+																					<span>상자</span>
+																					<span>특1등</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>300</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>배(단배)</span>
+																					<span>5kg</span>
+																					<span>P-BOX</span>
+																					<span>7개</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>250</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+															<!--// 20210830 한별 수정 상세보기 리스트 E -->
+														</div>
+														<div class="view_list" data-ui-toggle="box">
+															<!-- 20210804 상세보기 추가 -->
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<a href="#nolink">
+																		<em><em>출하(매취)</em><span class="icon_reg">등록</span></em><!-- [개발자 전달] 2021-07-22 등록 수정되었습니다 -->
+																		<span class="sub_tit">OO농협 산지유통센터</span>
+																	</a>
+																	<!--// 20210906 한별 수정 E -->
+																	<a href="#nolink" aria-expanded="false" class="detail_view"><span>상세보기</span></a>
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210830 한별 수정 상세보기 리스트 S -->
+															<div class="detail_view_list">
+																<ul>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(감홍)</span>
+																					<span>5kg</span>
+																					<span>PE대</span>
+																					<span>6내</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>200</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(국광)</span>
+																					<span>15kg</span>
+																					<span>상자</span>
+																					<span>특1등</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>300</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>배(단배)</span>
+																					<span>5kg</span>
+																					<span>P-BOX</span>
+																					<span>7개</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>250</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+															<!--// 20210830 한별 수정 상세보기 리스트 E -->
+															<!-- //20210804 상세보기 추가 -->
+														</div>
+
+														<div class="cal_pop_info_wrap" >
+															<div class="cal_pop_info">
+																<div class="text">
+																	아산맑은 도고쪽파 축제 (4.1~4.30)의 쪽파를 알리고 소비 촉진의 행사에  많은 관심 바랍니다. 
+																</div>
+																<a href="#nolink" class="btn_close"><span class="blind">닫기</span></a>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- 8일 E -->
+												<!-- 9일 S -->
+												<div>
+													<strong class="day">9<span class="week">(목)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+														<div class="view_list" data-ui-toggle="box">
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<a href="#nolink">
+																		<em><em>자재구입</em></em>
+																		<span class="sub_tit">OO농협 자재유통센터</span>
+																	</a>
+																	<!--// 20210906 한별 수정 E -->
+																	<a href="#nolink" aria-expanded="false" class="detail_view"><span>상세보기</span></a>
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210830 한별 수정 상세보기 리스트 S -->
+															<div class="detail_view_list">
+																<ul>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(감홍)</span>
+																					<span>5kg</span>
+																					<span>PE대</span>
+																					<span>6내</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>200</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(국광)</span>
+																					<span>15kg</span>
+																					<span>상자</span>
+																					<span>특1등</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>300</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>배(단배)</span>
+																					<span>5kg</span>
+																					<span>P-BOX</span>
+																					<span>7개</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>250</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+															<!--// 20210830 한별 수정 상세보기 리스트 E -->
+														</div>
+													</div>
+												</div>
+												<!-- 9일 E -->
+												<!-- 10일 S -->
+												<div>
+													<strong class="day today">10<span class="week">(수)</span><span>today</span></strong><!-- 20210830 한별 요일 추가 --><!--오늘날짜에 class="today" 클래스 추가 -->
+													<div class="view_list_area">
+														<div class="view_list">
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<a href="#nolink">
+																		<em><em>농기계임대(계약)</em></em>
+																		<span class="sub_tit">OO농협 자재유통센터</span>
+																	</a>
+																	<!--// 20210906 한별 수정 E -->
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+														</div>
+													</div>
+												</div>
+												<!-- 10일 E -->
+												<!-- 11일 S -->
+												<div>
+													<strong class="day">11<span class="week">(목)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+														<div class="view_list" data-ui-toggle="box">
+															<dl>
+																<dt>
+																	<!-- 20210906 한별 수정 S -->
+																	<a href="#nolink">
+																		<em><em>농작업</em></em>
+																		<span class="sub_tit">OO농협 자재유통센터</span>
+																	</a>
+																	<!--// 20210906 한별 수정 E -->
+																	<a href="#nolink" aria-expanded="false" class="detail_view"><span>상세보기</span></a>
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210830 한별 수정 상세보기 리스트 S -->
+															<div class="detail_view_list">
+																<ul>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(감홍)</span>
+																					<span>5kg</span>
+																					<span>PE대</span>
+																					<span>6내</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>200</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>사과(국광)</span>
+																					<span>15kg</span>
+																					<span>상자</span>
+																					<span>특1등</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>300</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="javascript:void(0)">
+																			<dl>
+																				<dt>품명</dt>
+																				<dd>
+																					<span>배(단배)</span>
+																					<span>5kg</span>
+																					<span>P-BOX</span>
+																					<span>7개</span>
+																				</dd>
+																			</dl>
+																			<dl>
+																				<dt>수량</dt>
+																				<dd>
+																					<span>250</span>
+																					<!-- 20210917 한별 추가 S -->
+																					<span>
+																						<dl>
+																							<dt>금액</dt>
+																							<dd><span>400,000</span></dd>
+																						</dl>
+																					</span>
+																					<!-- 20210917 한별 추가 E -->
+																				</dd>
+																			</dl>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+															<!--// 20210830 한별 수정 상세보기 리스트 E -->
+														</div>
+													</div>
+													
+												</div>
+												<!-- 11일 E -->
+												<!-- 20210901 한별 수정 및 추가 S -->
+												<!-- 12일 S -->
+												<div>
+													<strong class="day">12<span class="week">(목)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+
+														<div class="view_list" data-ui-toggle="box">
+															<dl class="pb0">
+																<dt>
+																	<!-- 20210721 한별 a태그 추가 S -->
+																	<a href="#nolink">
+																		<em><em>거름주기</em><span class="icon_reg">등록</span></em><!-- [개발자 전달] 2021-07-22 등록 수정되었습니다 -->
+																	</a>
+																	<!--// 20210721 한별 a태그 추가 E -->
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210906 한별 수정 S -->
+															<div class="farmbox_type01">
+																<div>
+																	<em>날씨</em>
+																	<span>맑음</span>
+																</div>
+																<div class="ellipsis">
+																	<em>작업명</em>
+																	<span>밑거름 작업 밑거름 작업 밑거름 작업 밑거름 작업 밑거름 작업 밑거름 작업</span>
+																</div>
+																<div>
+																	<em>자가인력</em>
+																	<span>남 1명, 여 0명</span>
+																</div>
+																<div>
+																	<em>작업시간</em>
+																	<span>남 8시간 30분</span>
+																</div>
+																<div>
+																	<em>외부인력</em>
+																	<span>남 1명, 여 0명</span>
+																</div>
+																<div>
+																	<em>작업시간</em>
+																	<span>남 3시간 30분, 여 2시간 30분</span>
+																</div>
+																<div>
+																	<em>작업면적</em>
+																	<span>200평</span>
+																</div>
+																<div class="ellipsis">
+																	<em>상세내용</em>
+																	<span>모종뿌리기 전 밑거름 작업 모종뿌리기 전 밑거름 작업 모종뿌리기 전 밑거름 작업</span>
+																</div>
+															</div>
+															<!--// 20210906 한별 수정 E -->
+														</div>
+													</div>
+												</div>
+												<!-- 12일 E -->
+												<!-- 13일 S -->
+												<div>
+													<strong class="day no_line">13<span class="week">(금)</span></strong><!-- 20210830 한별 요일 추가 -->
+													<div class="view_list_area">
+
+														<div class="view_list" data-ui-toggle="box">
+															<dl class="pb0">
+																<dt>
+																	<!-- 20210721 한별 a태그 추가 S -->
+																	<a href="#nolink">
+																		<em><em>출하(매취)</em><span class="icon_reg">등록</span></em><!-- [개발자 전달] 2021-07-22 등록 수정되었습니다 -->
+																	</a>
+																	<!--// 20210721 한별 a태그 추가 E -->
+																</dt>
+																<dd>
+																	<a href="#nolink">더보기</a>
+																</dd>
+															</dl>
+															<!-- 20210906 한별 수정 S -->
+															<div class="farmbox_type01">
+																<div>
+																	<em>날씨</em>
+																	<span>맑음</span>
+																</div>
+																<div class="ellipsis">
+																	<em>지사무소명</em>
+																	<span>남서울 농협 산지유통센터 남서울 농협 산지유통센터</span>
+																</div>
+																<div>
+																	<em>작업시간</em>
+																	<span>8시간</span>
+																</div>
+																<div>
+																	<em>외부인력</em>
+																	<span>남 1명, 여 0명</span>
+																</div>
+																<div>
+																	<em>작업시간</em>
+																	<span>남 12시간</span>
+																</div>
+																<div>
+																	<em>작업면적</em>
+																	<span>200(평)</span>
+																</div>
+															</div>
+															<!--// 20210906 한별 수정 E -->
+														</div>
+													</div>
+												</div>
+												<!-- 13일 E -->
+												<!-- 20210901 한별 수정 및 추가 E -->
+
+											</div>
+										</div>
+										<!--// 아이콘없고 링크없는 리스트 E -->
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				
+
+
+				</div>
+				<!--// content E -->
+				<script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+			</div>
+			<!--// content-view E -->
+			
+			<a href="#nolink" class="btn_float_write"><img src="../../../../src/assets_v30/images/common/btn_write.png" alt="글쓰기" /></a>
+        </div>   
+	</div>
+	<!--// wrap E -->
+	<script>
+		$(document).on('click' , '.btn_close', function(){
+			$(this).parents('.cal_pop_info_wrap').css('display','none');
+		});	
+	</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>외화</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01">
+		<div class="popup_header">    
+			<h1>외화</h1>
+		</div>
+
+		<!-- 20210804 한별 수정 S -->
+		<div class="popup_content com_bg_type00">
+			<div class="com_inner com_line_type01 com_top_type02">
+				<strong class="com_pop_tit01">보유하신 외화를 입력하세요.</strong>
+				<!-- 20210903 한별 클래스수정 및 삭제 수정 S -->
+				<p class="com_txt_sub01">2021년 5월 20일 매도 환율<span class="bar"></span><span class="common_bk"><span class="num">1,125.00</span><em class="com_mark">원</em></span></p>
+			</div>
+			<div class="com_inner com_inputarea_type07">
+				<div class="com_input_type01 new_mb10">
+					<input type="text" id="com_input01" class="" maxlength="15" name="" value="외화별칭이름" required="" placeholder="외화 별칭을 입력하세요." title="외화 별칭을 입력하세요"><!--  20211111 한별 접근성 추가 (title="") -->				
+					<label for="com_input01"><span class="txt_label_x">별칭</span></label>
+
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+                </div>
+				<div class="com_input_type01_etc">
+					<div class="flag_area"><em class="ico_JPY"></em><span>JPY</span></div>
+					<div class="com_input_type01 com_word1">
+						<!--  20211108 한별 접근성 id,for 값변경 수정 S -->
+						<input type="text" id="com_input02" class="com_txtleft_type04 input_right" name="" value="" placeholder="" title="엔"><!--  20211111 한별 접근성 추가 (title="") -->				
+						<label for="com_input02"></label>
+						<!--  20211108 한별 접근성 수정 E -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">엔</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+				</div> 
+				<div class="com_input_type01_etc">
+					<div class="flag_area"><em class="ico_USD"></em><span>USD</span></div>
+					<div class="com_input_type01 com_word2">
+						<!--  20211108 한별 접근성 id,for 값변경 수정 S -->
+						<input type="text" id="com_input03" class="com_txtleft_type04 input_right" name="" value="" placeholder="" title="달러"><!--  20211111 한별 접근성 추가 (title="") -->				
+						<label for="com_input03"></label>
+						<!--  20211108 한별 접근성 수정 E -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">달러</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+				</div> 
+				<div class="com_input_type01_etc">
+					<div class="flag_area"><em class="ico_GBP"></em><span>GBP</span></div>
+					<div class="com_input_type01 com_word3">
+						<!--  20211108 한별 접근성 id,for 값변경 수정 S -->
+						<input type="text" id="com_input04" class="com_txtleft_type04 input_right" name="" value="" placeholder="" title="파운드"><!--  20211111 한별 접근성 추가 (title="") -->				
+						<label for="com_input04"></label>
+						<!--  20211108 한별 접근성 수정 E -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">파운드</span>
+						</div>
+						<p class="com_sum">4조 2,345억 6,789만원</p><!-- 20211108 한별 추가 -->
+					</div>
+				</div>
+				<!--// 20210903 한별 클래스수정 및 삭제 수정 E --> 
+				<!-- <span class="com_changevalue">1,125<em>원</em></span> 삭제 -->
+				
+			</div>
+			<p class="dot_msg mt_auto">한화 변환 금액은 원 단위로 자동 계산 됩니다.</p>
+		</div>
+		<!--// 20210804 한별 수정 E -->
+		<div class="bottom_box">
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">등록</a>
+				<!-- btn_off 제거시 활성화 -->
+			</div>
+        </div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>

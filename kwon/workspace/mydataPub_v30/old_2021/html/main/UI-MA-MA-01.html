@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>상호금융 개인자산관리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" viewport-fit="cover">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript" src="../../static/js/slick.min.js"></script>	
+</head>
+
+<body>
+    <div id="wrap"><!-- #wrap S -->   
+        <div class="main-scroll"><!-- [개발자 전달] 메인 스크롤 수정 추가해주세요 -->
+            <div class="main_section_top">
+                <div class="menu_area">
+                    <ul class="top_menu">
+                        <!-- 20211026 한별 수정 S -->
+                        <li class="prev">
+                            <a href="javascript:console.log('GNB홈');" role="button"><span class="text_over">이전화면이동</span></a>
+                        </li>
+                        <!--// 20211026 한별 수정 E -->
+                        <li class="alram">
+                            <a href="javascript:console.log('GNB알림');" class="active" title="새알림" role="button"><span class="text_over">알림</span></a><!-- [개발자 전달] 알림 있으면 class active 추가하세요 -->
+                        </li>
+                        <li class="menu">
+                            <a href="javascript:console.log('GNB전체메뉴');" role="button"><span class="text_over">전체메뉴</span></a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="user_info"><!-- [개발자 전달] 2021-07-21 디자인 변경되었습니다 -->
+                    <p><span class="user_nm">김농협</span>님 총자산<a href="javascript:console.log('자산편집');" class="ico_edit" data-popup="slide_popup_01" role="button"><span class="blind">자산편집</span></a></p>
+                    <div class="my_asserts_area">
+                        <p class="my_asserts">
+                            <!-- [개발자 전달] 숫자 카운터 요청 class="counter" data-count="683772000" 추가해주세요. -->
+                            <span class="counter" data-count="683772000">683,772,000</span><em>원</em> 
+                            <a href="javascript:console.log('자산추가');" class="ico_main_more">자산등록</a>
+                        </p>
+                    </div>
+                    <p class="change_asserts">마지막업데이트 <span class="ml5 num lsp0">2021.7.20 18:30</span><a href="javascript:console.log('새로고침');" class="ico_refresh-w" role="button"><span class="blind">새로고침</span></a></p>
+                </div>
+                <div class="main_notice active"><!-- [개발자 전달] 청구서가 있을 경우 active class 추가해주세요 -->
+                    <ul>
+                        <li><a href="javascript:console.log('청구서팝업');">오늘 도착한 청구서가 있어요</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main_section scroll active"><!-- [개발자 전달] 청구서가 있을 경우 active class 추가해주세요 -->
+                <div class="main_cont_section">
+                    <ul class="main_tab">
+                        <li><a href="javascript:console.log('자산');" class="on" role="button">자산</a></li>
+                        <li><a href="javascript:console.log('부채');" role="button">부채</a></li>
+                        <li><a href="javascript:console.log('지출');" role="button">지출</a></li>
+                        <li><a href="javascript:console.log('전체');" class="btn_total" role="button"><span>전체</span></a></li><!-- [개발자 전달] 전체탭추가20211116 -->
+                    </ul>
+                    <div class="main_tab_content on">
+                        
+                            <!-- <p>자산 1위는<br><strong class="disib mt10">부동산 <em>678,500,000</em></strong>원</p> -->
+                           <!--  <p>가장 많은 자산은<br><strong class="disib mt10"><strong>부동산</strong> 입니다</strong></p> 2021117 삭제-->
+
+                            <p>가장 많은 자산은 <strong>부동산</strong>입니다</p><!-- 2021117 한별 수정 -->
+                       
+                        <div class="main_graph">
+                            <ol>
+                                <li><a href="javascript:console.log('부동산');" role="button">부동산</a></li><!-- 1순위 -->
+                                <li><a href="javascript:console.log('예금');" role="button">예금</a></li><!-- 2순위 3글자일 경우 <a>에 f16 class 추가 / 없을 때 <li>에 none class 추가 -->
+                                <li><a href="javascript:console.log('투자');" role="button">투자</a></li><!-- 3순위 3글자일 경우 <a>에 f16 class 추가 / 없을 때 <li>에 none class 추가 -->
+                                <li><a href="javascript:console.log('페이머니');" role="button">페이머니</a></li><!-- 4순위 3글자일 경우 <a>에 f12 class 추가 / 없을 때 <li>에 none class 추가 -->
+                                <li><a href="javascript:console.log('보험');" role="button">보험</a></li><!-- 5순위 3글자일 경우 <a>에 f12 class 추가 / 없을 때 <li>에 none class 추가 -->
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="main_tab_content">
+                       
+                            <!-- <p>부채 1위는<br><strong class="disib mt10">대출 <em>278,573,000</em></strong>원</p> -->
+                             <p><strong>가장 많은 부채는</strong><br><strong class="disib mt10">대출 입니다</strong></p> <!-- 2021117 삭제-->
+                         <!--    <p>가장 많은 부채는 <strong>대출</strong>입니다</p>2021117 한별 수정 -->
+                       
+                        <div class="main_graph type02">
+                            <ol>
+                                <li><a href="javascript:console.log('대출');" role="button">대출</a></li><!-- 1순위 -->
+                                <li><a href="javascript:console.log('자동차');" role="button">자동차</a></li><!-- 2순위 없을 때 <li>에 none class 추가 -->
+                                <li><a href="javascript:console.log('카드');" role="button">카드</a></li><!-- 3순위 없을 때 <li>에 none class 추가 -->
+                                <li class="none"><a href="javascript:console.log('기타');" role="button">기타</a></li><!-- 4순위 없을 때 <li>에 none class 추가 -->
+                            </ol>
+                        </div>                    
+                    </div>
+                    <div class="main_tab_content">
+                      
+                            <!-- <p>지출 1위는<br><strong class="disib mt10">외식/카페/베이커리 <em>278,573,000</em></strong>원</p> -->
+                            <!-- <p><strong>외식/카페/베이커리에</strong><br><strong class="disib mt10">가장 많은 돈을 쓰고 있습니다</strong></p> 2021117 삭제-->
+                            <p>외식/카페/베이커리에<br><strong>가장 많은 돈</strong>을 쓰고 있습니다</p><!-- 2021117 한별 수정 -->
+                      
+                        <div class="main_graph icn">
+                            <ol>
+                                <li class="cate04"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">카페/베이커리</span></a></li><!-- 1순위 -->
+                                <li class="cate01"><a href="javascript:console.log('쇼핑/생활/마트');" role="button"><span class="blind">쇼핑</span></a></li><!-- 2순위 / 없을 때 <li>에 none class 추가-->
+                                <li class="cate08 none"><a href="javascript:console.log('여행/숙박/문화/레저');" role="button"><span class="blind">여행/숙박</span></a></li><!-- 3순위 / 없을 때 <li>에 none class 추가 -->
+                                <li class="cate06 none"><a href="javascript:console.log('자동차/교통');" role="button"><span class="blind">자동차</span></a></li><!-- 4순위 / 없을 때 <li>에 none class 추가 -->
+                                <li class="cate06"><a href="javascript:console.log('자동차/교통');" role="button"><span class="blind">자동차</span></a></li><!-- 5순위 / 없을 때 <li>에 none class 추가 -->
+
+                                <li class="cate01"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">쇼핑</span></a></li>
+                                <li class="cate02"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">가구/침구</span></a></li>
+                                <li class="cate03"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">외식</span></a></li>
+                                <li class="cate04"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">카페/베이커리</span></a></li>
+                                <li class="cate05"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">생활/마트</span></a></li>
+                                <li class="cate06"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">자동차</span></a></li>
+                                <li class="cate07"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">교통</span></a></li>
+                                <li class="cate08"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">여행/숙박</span></a></li>
+                                <li class="cate09"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">문화/레저</span></a></li>
+                                <li class="cate10"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">의료/건강</span></a></li>
+                                <li class="cate11"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">뷰티/미용</span></a></li>
+                                <li class="cate12"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">교육</span></a></li>
+                                <li class="cate13"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">금융</span></a></li>
+                                <li class="cate14"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">주거/통신</span></a></li>
+                                <li class="cate15"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">자녀/육아</span></a></li>
+                                <li class="cate16"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">기타</span></a></li>
+                                <li class="cate17"><a href="javascript:console.log('외식/카페/베이커리');" role="button"><span class="blind">미분류</span></a></li>
+                            </ol>
+                        </div>
+                        <!-- [개발자 전달] class 범례 (기획 이연호부장 협의 ,카테고리 16개 이미지 10개)
+                            cate01  쇼핑/생활/마트       cate02  가구/침구/주거/통신
+                            cate03  의료/건강            cate04 외식/카페/베이커리
+                            cate05  뷰티/미용           cate06  자동차/교통
+                            cate07  교육                cate08  여행/숙박/문화/레저
+                            cate09  자녀/육아           cate10  기타/금융 -->
+                    </div>
+                    <!-- [개발자 전달] 등록된 자산이 없을 때 S -->
+                    <div class="main_tab_content">
+                        
+                            <!-- 부채 없을 때 -->
+                          <p>등록된 부채가 없어요<br><strong class="disib mt10">자산을 등록하고 서비스를 받으세요</strong></p> 
+                            <!-- 가계부 없을 때
+                            <p>가계부을 원하신다면?<br><strong class="disib mt10">자산을 등록하고 서비스를 받으세요.</strong></p>
+                            -->
+                            <!-- <p>등록된 부채가 없어요<br><strong>자산을 등록하고 서비스를 받으세요</strong></p> -->
+                      
+                        <div class="main_graph none">
+                            
+                            <a href="javascript:console.log('자산등록하러 가기');" class="com_btnround_type02"><span class="btn_plus">자산등록</span></a>
+                          
+                        </div>               
+                    </div>
+                    <!-- //[개발자 전달] 등록된 자산이 없을 때 E -->
+                </div>
+                <div>
+                    <ul class="section_list">
+                        <li>
+                            <a href="javascript:console.log('입출금');" role="button">
+                                <!-- [개발자 전달] 타입별 class 확인하세요.
+                                    type01 입금 > 출금 -->
+                                <!-- <span class="list_box li_01 type01">
+                                    <span class="list_tit">입출금</span>
+                                    <span class="list_txt"><span class="money"><span>573,000</span>원</span>의<br>여유가 있네요</span>                                
+                                </span> -->
+                                <!-- [개발자 전달] type02 입금 < 출금 -->
+                                <!-- <span class="list_box li_01 type02">
+                                    <span class="list_tit">입출금</span>
+                                    <span class="list_txt"><span class="money"><span>573,000</span>원</span>이<br>부족해요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type03 입금 출금 둘 다 많을 때 -->
+                                <!-- <span class="list_box li_01 type03">
+                                    <span class="list_tit">입출금</span>
+                                    <span class="list_txt">입출금이 활발하네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type04 입금출금 총액이 백만원 미만이고, 입금과 출금 차액이 -5만원 이상 + 5만원 미만 -->
+                                <!-- <span class="list_box li_01 type04">
+                                    <span class="list_tit">입출금</span>
+                                    <span class="list_txt">거래가 거의 없어요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type05 케이스 둘다 중간 추가 -->
+                                <span class="list_box li_01 type05">
+                                    <span class="list_tit">입출금</span>
+                                    <span class="list_txt">잔액 변동이 거의 없어요</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('진단');" role="button">
+                                <!-- [개발자 전달] type01 금융자산 100만원 미만 -->
+                                <!-- <span class="list_box li_02 type01">
+                                    <span class="list_tit">금융초보</span>
+                                    <span class="list_txt">아직은 자산의<br>규모가 적어요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type02 금융자산 20억 이상 -->
+                                <!-- <span class="list_box li_02 type02">
+                                    <span class="list_tit">금융부자</span>
+                                    <span class="list_txt">보유자산이<br>매우 많으시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type03 저축 높음 -->
+                                <!-- <span class="list_box li_02 type03">
+                                    <span class="list_tit">은행친구</span>
+                                    <span class="list_txt">열심히<br>저축하시는 분</span>
+                                </span> -->
+                                <!-- [개발자 전달] type04 투자 높음 -->
+                                <!-- <span class="list_box li_02 type04">
+                                    <span class="list_tit">수익지향</span>
+                                    <span class="list_txt">투자에<br>진심이시군요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] type05 보험/IRP높음 -->
+                                <!-- <span class="list_box li_02 type05">
+                                    <span class="list_tit">미래지향</span>
+                                    <span class="list_txt">보험과 연금 비중이<br>높으시네요</span>
+                                </span> -->
+                                <!-- [개발자 전달] type06 디폴트-->
+                                <!--20211105 디폴트 케이스 추가--->
+                                <span class="list_box li_02 type06">
+                                    <span class="list_tit">금융진단</span>
+                                    <span class="list_txt">다음달 1일 <br>첫 보고서가 <br>업데이트 되요</span>
+                                </span>
+                                <!--20211105 디폴트 케이스 추가--->
+                            </a>
+                        </li>
+                        <li class="bg_on">
+                            <a href="javascript:console.log('신용점수안내');" role="button">
+                                <span class="list_box li_03">
+                                    <span class="list_txt">김농협님의<br>신용점수는<br><em><span>상위 5%</span> 입니다</em></span>
+                                    <div class="list_graph">
+                                        <strong>940<span class="blind">점</span></strong>
+                                    </div> 
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('상품광고');" role="button">
+                                <span class="list_box li_04">
+                                    <span class="list_txt">나에게 딱 맞는<br><span>금융상품</span>이<br>궁금하세요?</span><!-- 20211026 한별 수정 -->                              
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- slider 영역 -->                    
+                <!-- 등록된 카드가 없을 때 S -->
+                <div class="slider-wrap">
+                    <ul class="slide_box">
+                        <li>
+                            <a href="javascript:console.log('5월카드결제예정금액');" class="ico-card-all" role="button"><!-- [개발자 전달] 전체 또는 카드사 이미지 없을 떄 -->
+                                <strong>5월 카드결제예정금액</strong>                          
+                                <p>카드를 등록하시고<br>결제예정금액을 관리하세요</p>                            
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 등록된 카드가 없을 때 E -->
+                <!--// slider 영역 -->
+
+                <!-- slider 영역 -->
+                <div class="slider-wrap"><!-- [개발자 전달] 2021-07-21 카드별 이미지 추가 되었습니다 현재 10개사 -->
+                    <ul class="slide_box card">
+                        <li>
+                            <a href="javascript:console.log('7월 전체카드 결제예정금액');" class="ico-card-all" role="button"><!-- [개발자 전달] 전체 또는 카드사 이미지 없을 떄 -->
+                                <strong>7월 카드결제예정금액</strong> 
+                                <span class="cate">전체</span>                                                 
+                                <p>5,350,000<em>원</em></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 NH카드 결제예정금액');" class="ico-card-D1AABG0000"><!-- [개발자 전달] NH카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">NH카드</span>                 
+                                <p>5,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 KB카드 결제예정금액');" class="ico-card-D1AAAF0000"><!-- [개발자 전달] KB카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">KB카드</span>                 
+                                <p>5,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 현대카드 결제예정금액');" class="ico-card-D1AAFO0000"><!-- [개발자 전달] 현대카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">현대카드</span>                 
+                                <p>5,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 우리카드 결제예정금액');" class="ico-card-D1AAAH0000"><!-- [개발자 전달] 우리카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">우리카드</span>                 
+                                <p>5,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 삼성카드 결제예정금액');" class="ico-card-D1AAEV0000"><!-- [개발자 전달] 삼성카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">삼성카드</span>                 
+                                <p>5,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 하나카드 결제예정금액');" class="ico-card-D1AABJ0000"><!-- [개발자 전달] 하나카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">하나카드</span>                 
+                                <p>9,350,000<em>원</em></p>    
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 BC카드 결제예정금액');" class="ico-card-D1AAFQ0000"><!-- [개발자 전달] BC카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">BC카드</span>                 
+                                <p>9,350,000<em>원</em></p>  
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 수협카드 결제예정금액');" class="ico-card-D2AAHX0000"><!-- [개발자 전달] 수협카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">수협카드</span>                 
+                                <p>9,350,000<em>원</em></p> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 전북카드 결제예정금액');" class="ico-card-D1AAHP0000"><!-- [개발자 전달] 전북카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">전북카드</span>                 
+                                <p>9,350,000<em>원</em></p> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 롯데카드 결제예정금액');" class="ico-card-D1AADO0000"><!-- [개발자 전달] 롯데카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">롯데카드</span>                 
+                                <p>9,350,000<em>원</em></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 신한카드 결제예정금액');" class="ico-card-D1AAEX0000"><!-- [개발자 전달] 신한카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">신한카드</span>                 
+                                <p>9,350,000<em>원</em></p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('7월 롯데카드 결제예정금액');" class="ico-card-D1AAII0000"><!-- [개발자 전달] 부산카드 -->
+                                <strong>7월 카드결제예정금액</strong>
+                                <span class="cate">부산카드</span>                 
+                                <p>9,350,000<em>원</em></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--// slider 영역 -->
+
+                <div>
+                    <ul class="section_list">
+                        <li class="bg_on"><!-- [개발자 전달] 등록값 없을 시 li 자체를 뺴주세요 -->
+                            <a href="javascript:console.log('지출TOP3');" role="button">
+                                <span class="list_box li_05">
+                                    <span class="list_tit">지출 TOP3</span>
+                                    <ul>
+                                        <li>쿠팡</li>
+                                        <li>네이버페이 네이버페이네이버페이네이버페이</li>
+                                        <li>GS25</li>
+                                    </ul>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:console.log('지출캘린더');" role="button">
+                                <span class="list_box li_06">
+                                    <span class="list_tit">지출캘린더</span>
+                                    <span class="list_txt">지난달 보다<span class="money"><span>573,000</span>원을</span><br>더 쓰고 있어요</span>
+                                   <!--  <span class="list_txt">지난달 보다<span class="money"><span>573,000</span>원을</span><br>덜 쓰고 있어요</span>
+                                    <span class="list_txt">지난달과<br>같은 금액을 쓰고 있어요</span>
+                                    <span class="list_txt">지난달과<br>이번달 지출이 없어요</span> -->
+                                    <div class="list_calen">
+                                        <strong>7<span class="blind">월</span></strong><!-- [개발자 전달] 현재 월 '7' 표시해주세요 -->
+                                    </div> 
+                                </span>
+                            </a>
+                        </li>
+                        <li><!-- [개발자 전달] 등록값 없을 시 li 자체를 뺴주세요 -->
+                            <a href="javascript:console.log('소비스타일');" role="button">
+                                <!-- [개발자 전달] 이미지 type01 쇼핑 -->
+                                <!-- <span class="list_box li_07 type01">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">쇼핑을 좋아하시는<br><span>김농협</span>님!</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type01 생활/마트 -->
+                                <!-- <span class="list_box li_07 type01">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">생활비 지출이<br>가장 많으시네요!</span>
+                                </span>                             -->
+                                <!-- [개발자 전달] 이미지 type02 가구/침구 -->
+                                <!-- <span class="list_box li_07 type02">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">집 꾸미기를<br>좋아하시는<br><span>김농협</span>님!</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type02 주거/통신 -->
+                                <!-- <span class="list_box li_07 type02">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">집에서 주로<br>생활하시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type03 의료/건강 -->
+                                <!-- <span class="list_box li_07 type03">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">건강에 많은 돈을<br>쓰고 계시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type04 외식 -->
+                                <!-- <span class="list_box li_07 type04">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">외식을 즐기시는<br><span>김농협</span>님!</span>
+                                </span> -->
+
+                                <!-- [개발자 전달] 이미지 type04 카페/베이커리 -->
+                                <span class="list_box li_07 type04">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">커피를 좋아하시는<br><span>김농협</span>님!</span>
+                                </span>
+
+                                <!-- [개발자 전달] 이미지 type05 뷰티/미용 -->
+                                <!-- <span class="list_box li_07 type05">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">아름다움에<br>투자하시는<br><span>김농협</span>님!</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type06 자동차 -->
+                                <!-- <span class="list_box li_07 type06">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">자동차에 많은 돈을<br>쓰고 계시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type06 교통 -->
+                                <!-- <span class="list_box li_07 type06">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">교통비가<br>많아요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type07 교육 -->
+                                <!-- <span class="list_box li_07 type07">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">미래를 위해<br>교육은 중요하죠.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type08 여행/숙박 -->
+                                <!-- <span class="list_box li_07 type08">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">여행을<br>좋아하시는군요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type08 문화/레져 -->                            
+                                <!-- <span class="list_box li_07 type08">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">인생을 즐기시는<br>편이네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type09 자녀/육아 -->
+                                <!-- <span class="list_box li_07 type09">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">자녀양육에<br>돈을 많이 쓰시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type10 기타 -->
+                                <!-- <span class="list_box li_07 type10">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">어디에 지출을 하고<br>계신가요?</span>
+                                </span> -->
+                                <!-- [개발자 전달] 이미지 type10 금융 -->
+                                <!-- <span class="list_box li_07 type10">
+                                    <span class="list_tit">소비스타일</span>
+                                    <span class="list_txt">금융지출이<br>많으시네요.</span>
+                                </span> -->
+                                <!-- [개발자 전달] class 범례 (기획 이연호부장 협의 ,카테고리 16개 이미지 10개)
+                                    type01  쇼핑/생활/마트       type02  가구/침구/주거/통신
+                                    type03  의료/건강            type04 외식/카페/베이커리
+                                    type05  뷰티/미용           type06  자동차/교통
+                                    type07  교육                type08  여행/숙박/문화/레저
+                                    type09  자녀/육아           type10  기타/금융 -->
+                            </a>
+                        </li>
+                        <li class="bg_on">
+                            <a href="javascript:console.log('마이농가메인');" role="button">
+                                <span class="list_box li_08">
+                                    <span class="list_tit">목표관리</span>
+                                    <span class="list_txt">지출은 줄이고<br>통장은 불리고</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="section_last">
+                        <a href="javascript:console.log('마이농가메인');" role="button">
+                            <strong>마이농가</strong>
+                            <p>농산물 재배 관리의 모든 것</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="banner">
+                        <li>
+                            <a href="javascript:console.log('스타벅스');" role="button">
+                                <span>
+                                    <span>스타벅스 50% 할인되는<br><em>올바른 FLEX 카드</em>로<br>할인혜택 받으세요</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 20210722 삭제요청 이성재차장님
+                <div class="new_add_register">
+                    <a href="javascript:console.log('더 연결할 자산');"><span>더 연결할 자산이 있으신가요?</span></a>
+                </div> -->
+            </div>      
+        </div>
+
+        <!-- NEW footer S --><!-- [개발자 전달] footer 변경되었습니다 -->
+        <div class="footer-wrap">
+            <div class="menu_area allmenu">
+                <ul class="top_menu">
+                    <li class="alram">
+                        <a href="javascript:console.log('GNB알림');" class="active" title="새알림" role="button"><span class="text_over">알림</span></a><!-- [개발자 전달] 알림 있으면 class active 추가하세요 -->
+                    </li>
+                    <li class="menu">
+                        <a href="javascript:console.log('GNB전체메뉴');" role="button"><span class="text_over">전체메뉴</span></a>
+                    </li>
+                </ul>
+            </div><!-- //footer GNB -->
+            <div class="footer-contents">
+                <p class="item1 active"><!-- [개발자 전달] 기본값 active -->
+                    <strong>흩어져 있는 나의 자산<br>농협 마이데이터로 모아보세요!</strong>
+                </p>
+                <p class="item2">
+                    <strong>손쉬운 가계부<br>달력으로 관리하세요!</strong>
+                </p>            
+                <p class="item3">
+                    <strong>금융목표를 세우고 달성하는<br>즐거움! 나의목표 세우기!</strong>
+                </p>
+                <p class="item4">
+                    <strong>데이터로 키우는 마이농가<br>영농일지로 시작하세요!</strong>
+                </p>
+            </div><!-- //footer contents -->        
+            <div class="footer-depth2">
+                <ul class="cnt4 active"><!-- [개발자 전달] 메뉴4개일때 cnt4 --><!-- [개발자 전달] 기본값 active -->
+                    <li class="item1"><a href="javascript:console.log('전체');" role="button">전체</a></li>
+                    <li class="item2"><a href="javascript:console.log('자산');" role="button">자산</a></li>
+                    <li class="item3"><a href="javascript:console.log('부채');" role="button">부채</a></li>
+                    <li class="item4"><a href="javascript:console.log('진단');" role="button">진단</a></li>
+                </ul>            
+                <ul class="cnt3 cate2"><!-- [개발자 전달] 메뉴3개일때 cnt3 -->
+                    <li class="item1"><a href="javascript:console.log('달력');" role="button">달력</a></li>
+                    <li class="item2"><a href="javascript:console.log('지출');" role="button">지출</a></li>
+                    <li class="item3"><a href="javascript:console.log('분석');" role="button">분석</a></li>
+                </ul>            
+                <ul class="cnt4-2 cate3"><!-- [개발자 전달] 메뉴3개일때 cnt3 -->
+                    <li class="item1"><a href="javascript:console.log('나의목표');" role="button">나의목표</a></li>
+                    <li class="item2"><a href="javascript:console.log('상품추천');" role="button">상품추천</a></li>
+                    <li class="item3"><a href="javascript:console.log('자동차관리');" role="button">금융통통</a></li>
+                    <li class="item4"><a href="javascript:console.log('자동차관리');" role="button">자동차관리</a></li>
+                </ul>
+                <!-- [개발자 전달] 조합원 있을 때 S -->            
+                <!-- [개발자 전달] 메뉴5개일때 cnt5 -->
+                <ul class="cnt5">
+                    <li class="item2"><a href="javascript:console.log('영농달력');" role="button">영농달력</a></li>
+                    <li class="item3"><a href="javascript:console.log('영농일지');" role="button">영농일지</a></li>
+                    <li class="item4"><a href="javascript:console.log('손익분석');" role="button">손익분석</a></li>            
+                    <li class="item5"><a href="javascript:console.log('농기계임대');" role="button">농기계임대</a></li>
+                    <li class="item6"><a href="javascript:console.log('정책자금');" role="button">정책자금</a></li>
+                </ul>
+                <!-- [개발자 전달] 메뉴6개일때 cnt5 -->
+                <!-- <ul class="cnt6">
+                    <li class="item1"><a href="javascript:console.log('조합원');">조합원</a></li>
+                    <li class="item2"><a href="javascript:console.log('영농달력');">영농달력</a></li>
+                    <li class="item3"><a href="javascript:console.log('영농일지');">영농일지</a></li>
+                    <li class="item4"><a href="javascript:console.log('손익분석');">손익분석</a></li>            
+                    <li class="item5"><a href="javascript:console.log('농기계임대');">농기계임대</a></li>
+                    <li class="item6"><a href="javascript:console.log('정책자금');">정책자금</a></li>
+                </ul> -->
+                <!-- //[개발자 전달] 조합원 있을 때 E -->
+                <!-- [개발자 전달] 조합원 없을 때 S             
+                <ul class="cnt4"> [개발자 전달] 메뉴4개일때 cnt4
+                    <li class="item1"><a href="javascript:console.log('영농달력');">영농달력</a></li>
+                    <li class="item2"><a href="javascript:console.log('영농일지');">영농일지</a></li>
+                    <li class="item3"><a href="javascript:console.log('농기계임대');">농기계임대</a></li>
+                    <li class="item4"><a href="javascript:console.log('정책자금');">정책자금</a></li>
+                </ul>
+                // [개발자 전달] 조합원 없을 때 E -->
+            </div><!-- //2depth -->
+        </div><!-- // .footer-wrap E -->
+        <div id="com_footer"><!-- // 하단 고정 -->
+            <div class="footer-cancle">
+                <button class="cancle"><span class="blind">푸터메뉴닫기</span></button>
+            </div>
+            <div class="footer-depth1">
+                
+                <ul><!-- 20211105 한별 접근성 - 전체메뉴에 role 추가, active 클래스 사용시 하위 요소 a태그에 title="선택됨" 필요합니다 S -->
+                    <li class="item1 active"><a href="javascript:console.log('나의자산');" title="선택됨" role="button">나의자산</a></li><!-- [개발자 전달] 기본값 active -->
+                    <li class="item2"><a href="javascript:console.log('가계부');" role="button">가계부</a></li>
+                    <li class="item3"><a href="javascript:console.log('금융생활');" role="button">금융생활</a></li>
+                    <li class="item4"><a href="javascript:console.log('마이농가');" role="button">마이농가</a></li>
+                    <li class="item5 allmenu"><a href="javascript:console.log('메뉴');" role="button"></a></li>
+                    <!--//  20211105 한별 접근성 - 전체메뉴에 role 추가, active 클래스 사용시 하위 요소 a태그에 title="선택됨" 필요합니다 E -->
+                </ul>
+            </div><!-- //1depth -->
+        </div><!-- // #com_footer E -->            
+        <!-- // NEW footer E -->
+
+        <!-- 전체메뉴 영역 S -->
+        <div class="allmenu-wrapper">
+            <div class="ios"><!-- [개발자 전달] 스크롤 버그 수정용 -->        
+                <div class="allmenu-top"><!-- [개발자 전달] 디자인 변경되었습니다 S -->
+                    <div class="menu_area">
+                        <div class="user_info">     
+                            <p><span class="user_nm">김농협(2000000848)</span>님</p>
+                        </div>                    
+                        <ul class="top_menu">
+                            <li class="prof">
+                                <a href="javascript:console.log('김농협 프로필');" role="button"><span class="text_over">김농협 프로필</span></a>
+                            </li>
+                            <li class="alram">
+                                <a href="javascript:console.log('알림');" class="active" title="새알림" role="button"><span class="text_over">알림</span></a><!-- [개발자 전달] 알림 있으면 class active 추가하세요 -->
+                            </li>
+                        </ul>
+                    </div>
+       
+                    <div>
+                        <ul class="section_list">
+                            <li class="wPc100">
+                                <a href="javascript:console.log('자산기관관리');" class="bg_white" role="button">
+                                    <span class="list_box all">
+                                        <span class="list_tit">자산기관관리</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <ul class="section_list">
+                            <li class="wPc100">
+                                <a href="javascript:console.log('나의신용점수');" class="bg_white" role="button">
+                                    <span class="list_box all credit">
+                                        <span class="list_tit">나의신용점수</span>
+                                        <span class="list_num">940<em>점</em></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div><!-- // [개발자 전달] 디자인 변경되었습니다 E -->
+        
+                <div class="com_inner credit_list_box all_Menu">
+                    <div class="com_box_nobox">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>나의자산</span></div>
+                            </div>
+                            <ul class="list_type_02">
+                                <li><a href="javascript:console.log('전체');" role="button">전체</a></li>
+                                <li><a href="javascript:console.log('자산');" role="button">자산</a></li>
+                                <li><a href="javascript:console.log('부채');" role="button">부채</a></li>
+                                <li><a href="javascript:console.log('진단');" role="button">진단</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="com_box_nobox">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>가계부</span></div>
+                            </div>
+                            <ul class="list_type_02">
+                                <li><a href="javascript:console.log('달력');" role="button">달력</a></li>
+                                <li><a href="javascript:console.log('지출');" role="button">지출</a></li>
+                                <li><a href="javascript:console.log('분석');" role="button">분석</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="com_box_nobox">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>금융생활</span></div>
+                            </div>
+                            <ul class="list_type_02">
+                                <li><a href="javascript:console.log('나의목표');" role="button">나의목표</a></li>
+                                <li><a href="javascript:console.log('상품추천');" role="button">상품추천</a></li>
+                                <li><a href="javascript:console.log('금융통통');" role="button">금융통통</a></li>
+                                <li><a href="javascript:console.log('자동차관리');" role="button">자동차관리</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="com_box_nobox">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>마이농가</span></div>
+                            </div>
+                            <ul class="list_type_02">
+                                <li><a href="javascript:console.log('영농달력');" role="button">영농달력</a></li>
+                                <li><a href="javascript:console.log('영농일지');" role="button">영농일지</a></li>
+                                <li><a href="javascript:console.log('영농일지');" role="button">손익분석</a></li>
+                                <li><a href="javascript:console.log('농기계임대');" role="button">농기계임대</a></li>
+                                <li><a href="javascript:console.log('정책자금');" role="button">정책자금</a></li>
+                                <li><a href="javascript:console.log('조합원');" role="button">조합원</a></li><!-- [개발자 전달] 조합원이 있을 때 노출하세요. -->
+                                <li><a href="javascript:console.log('마이농가설정');" role="button">설정</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="com_inner credit_list_box all_Menu com_bg_type02">
+                    <div class="com_btn_area">
+                        <a href="javascript:console.log('자산관리 서비스 안내');" class="com_btn_round" role="button"><span class="ico type03">자산관리 서비스 안내</span></a>
+                    </div>
+                    <div class="com_btn_area">
+                        <a href="javascript:console.log('마이농가 이용안내');" class="com_btn_round" role="button"><span class="ico type04">마이농가 이용안내</span></a>
+                    </div>
+                </div>
+        
+                <div class="closed-wrap all_Menu">
+                    <ul>
+                        <li><a href="javascript:console.log('새소식');">새소식</a></li>
+                        <li><a href="javascript:console.log('자주하는질문');">자주하는질문</a></li>
+                        <li><a href="javascript:console.log('숨김보관함');">숨김보관함</a></li>
+                        <li><a href="javascript:console.log('이용약관');">약관/동의</a></li>
+                    </ul>
+                    <ul class="mt15">
+                        <li><a href="javascript:console.log('제3자정보제공동의');">제3자정보제공동의</a></li>
+                        <li><a href="javascript:console.log('개인정보처리방침');"><strong class="txt_black">개인정보처리방침</strong></a></li>
+                        <li><a href="javascript:console.log('서비스해지');">서비스해지</a></li>
+                    </ul>            
+                </div>            
+            </div>
+            <!-- 닫기 S -->
+            <div class="com_btn_area all_Menu">
+                <a href="javascript:console.log('전체메뉴닫기');" class="all_close"><span class="blind">전체메뉴닫기</span></a>
+            </div>   
+            <!--// 닫기 E -->
+        </div>
+        <!-- //전체메뉴 영역 E -->
+
+        <!-- slide popup S --><!-- [개발자 전달] 2021-07-21 슬라이드 팝업 추가되었습니다 -->
+        <div class="dimmed"></div>
+        <div class="popup_box">
+            <div aria-hidden="true" class="slide_popup" id="slide_popup_01">
+                <div class="popup_header">
+                    <h1>나의 자산 합계 편집</h1>          
+                </div>
+                <div class="popup_content com_btn_bottom ppb30">
+                    <div class="com_box_type02 mt25 pr20 pl20">
+                        <div class="df jsb aic">
+                            <strong class="f19">총자산</strong>
+                            <strong><span class="num blue f24 lsp0">5,000,000,000</span><span class="f19">원</span></strong>
+                        </div>
+                    </div>
+                    <div class="list_area pt0">
+                        <ul class="view_box view_link_list2 chkbox_list">
+                            <li>
+                                <dl class="ptb25"><!-- [개발자 전달] 첫번째 항목은 레이아웃이 다릅니다 -->
+                                    <dt class="wPc30"><em class="f16">금융자산</em></dt>
+                                    <dd>
+                                        <span>
+                                            <strong class="date num mr0 dark1 lsp0 lh24">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span> 
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">부채</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>                                        
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check01" checked>
+                                            <label for="check01"><em class="blind">부채선택</em></label>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">현금</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>                                        
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check02">
+                                            <label for="check02"><em class="blind">현금선택</em></label>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">부동산</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>                                        
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check03" checked>
+                                            <label for="check03"><em class="blind">부동산선택</em></label>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">자동차</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check04">
+                                            <label for="check04"><em class="blind">자동차선택</em></label>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">금(gold)</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check05" checked>
+                                            <label for="check05"><em class="blind">금(gold)선택</em></label>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl class="ptb20">
+                                    <dt class="wPc30"><em class="f16">기타</em></dt>
+                                    <dd>
+                                        <span class="mr10">
+                                            <strong class="date num mr0 dark1 lsp0">5,000,000,000</strong><em class="unit f16">원</em>
+                                        </span>
+                                        <span class="cmm-switch sm">
+                                            <input type="checkbox" id="check06">
+                                            <label for="check06"><em class="blind">기타선택</em></label>
+                                        </span>                                 
+                                    </dd>
+                                </dl>
+                            </li>					
+                        </ul>
+                    </div>                    
+                </div>
+                <div class="popup_footer">
+                    <div class="btn_full_box">
+                        <a href="javascript:console.log('저장');" class="btn btn_mint">저장</a>
+                    </div>
+                </div>                
+                <a href="javascript:console.log('슬라이드 팝업 닫기');" class="btn_close"><span>닫기</span=></a>
+            </div>
+        </div>
+        <!--// slide popup E -->
+
+    </div><!-- //#wrap E -->
+
+<script>
+$(document).ready(function(){
+    // 자산 부채 지출선택 tab
+    $('.main_tab li').click(function(){
+        var idx = $(this).index();
+        //console.log(idx);
+        $('.main_tab li').removeClass('on').attr('title','선택안됨').eq(idx).addClass('on').attr('title','선택됨');
+        //20211109 한별 접근성 추가 (.attr('title','선택됨')
+        $('.main_tab_content').removeClass('on').eq(idx).addClass('on');
+    });
+
+    //슬라이드 배너 
+    $('.slide_box.card').slick({
+        dots:true,
+        arrows:false,
+        //vertical:true,
+        mobileFirst:true,
+        pauseOnHover:false,
+        pauseOnFocus:false,
+        //autoplay:false
+        autoplay:true
+    });
+
+  
+    //스크롤 테스트용
+    $('.main_section.scroll').on('scroll',function(){       
+        var st = $(this).scrollTop();
+        //console.log(st);
+        if(st > 20){
+            $('.main-scroll').addClass('active');
+            $('.my_asserts > span').attr('tabindex','0')
+            $('.main_section_top > .user_info > p:first-of-type').removeAttr('tabindex','0')
+        } else {
+            $('.main-scroll').removeClass('active');
+            $('.main_section_top > .user_info > p:first-of-type').attr('tabindex','0')
+            $('.my_asserts > span').removeAttr('tabindex','0')
+        }
+    });   
+ 
+});
+</script>
+</body>
+</html>

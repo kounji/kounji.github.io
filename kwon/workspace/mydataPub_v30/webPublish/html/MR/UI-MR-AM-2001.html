@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>연결 기관 관리 &lt; 연결 기관</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		jQuery(document).ready(function() {
+			//더보기 클릭
+			jQuery('.bottomBtnType .bottomBtn').on('click',function(){
+				var _this = jQuery(this),
+						_par = _this.parent();
+				if(_par.hasClass('open')){
+					_par.find('.slideBox').slideUp(300);
+					_par.removeClass('open');
+					_par.find('.bottomBtn').text('더보기');
+				}else{
+					_par.find('.slideBox').slideDown(300);
+					_par.addClass('open');
+					_par.find('.bottomBtn').text('접기');
+				};
+			});
+		});
+	//-->
+	</script>
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll fix">
+		<!-- header S -->
+		<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<h1>연결 기관 관리</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		
+		<!-- content-view S -->
+		<div class="content-view mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type01 bottomBtnType"><!-- 09/19 하단버튼 위치 이동으로 .bottomBtnType 추기 jlee -->
+				<div class="com_inner">
+					<div class="layoutBox topTit">
+						<div class="left">
+							<strong class="titH1">연결한 <span>12</span>개의 기관을<br>관리하고 있어요</strong>
+						</div>
+						<div class="right">
+							<button type="button" class="stdBtn innerType01">자산연결</button>
+						</div>
+					</div>
+					<div class="box_border_link iconType01">
+						<a role="button" href="#nolink"><span class="arrow"><em class="num">1</em>개의 기관이 만료 예정 이예요.</span></a>
+					</div>
+					<div class="com_tabmenu_type03 switchType btn2">
+						<ul role="tablist">
+							<li class="on" role="presentation" aria-controls="tab_01"><a href="#nolink" role="tab"><span>연결 기관</span></a></li>
+							<li role="presentation" aria-controls="tab_02"><a href="#nolink" role="tab"><span>만료&middot;해제 기관</span></a></li>
+						</ul>
+					</div>
+					<!-- 연결기관 tabBox 시작 -->
+					<div id="tab_01" role="tabpanel" class="cmm-tab-panel on"><!-- 20230628 cmm-tab-panel 추가 jlee -->
+						<!-- 은행 -->
+						<div class="custom_box">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>은행</span> <span class="com_icon_num custom">9</span></div>
+								</div>
+							</div>
+						</div>
+						<!--// 은행 -->
+						<!-- 농협은행 -->
+						<div class="com_box_type01 bottomBtnType">
+							<div class="tit">
+								<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="allagree" id="checkall01">
+									<label for="checkall01">
+										<span class="bank_name">NH농협은행</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</div>
+								<span class="txtFinish">만료예정</span>
+							</div>
+							<div class="slideBox">
+								<ul class="list_type_02">
+									<li>
+										<span>정기 업데이트</span>
+										<em>주 1회</em>
+									</li>
+									<li>
+										<span>적요&middot;거래메모 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>가맹점&middot;사업자등록번호 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>상품구매 카테고리 전송</span>
+										<em>미동의</em>
+									</li>
+								</ul>
+								<ul class="list_type_01">
+									<li>
+										<dl>
+											<dt>
+												<em class="prod_name">콕 BASIC통장</em>
+											</dt>
+											<dd>
+												<em class="bank_num">13246534325</em>
+											</dd>
+										</dl>
+										<span class="cmm-switch fxn">
+											<input type="checkbox" id="check01" name="check01" checked role="switch">
+											<label for="check01"><em class="blind">계좌선택</em></label>
+										</span>
+									</li>
+									<li>
+										<dl>
+											<dt>
+												<em class="prod_name">(가계일반)농업인멤버쉽대출-조합자 최저리자금</em>
+											</dt>
+											<dd>
+												<em class="bank_num">13246534325</em>
+											</dd>
+										</dl>
+										<span class="cmm-switch fxn">
+											<input type="checkbox" id="check02" name="check02" role="switch">
+											<label for="check02"><em class="blind">계좌선택</em></label>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<button class="bottomBtn">더보기</button>
+						</div>
+						<!--// 농협은행 -->
+						<!-- 농협은행 disabled -->
+						<div class="com_box_type01 bottomBtnType open">
+							<div class="tit">
+								<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="allagree" disabled id="checkall02">
+									<label for="checkall02">
+										<span class="bank_name">NH농협은행</span>
+										<!--span class="dat">연결만료<i>2022.07.10</i></span-->
+									</label>
+								</div>
+								<!--span class="txtFinish">만료예정</span-->
+							</div>
+							<div class="slideBox">
+								<ul class="list_type_01">
+									<li>
+										<dl>
+											<dt>
+												<em class="prod_name">콕 BASIC통장</em>
+											</dt>
+											<dd>
+												<em class="bank_num">13246534325</em>
+											</dd>
+										</dl>
+										<span class="cmm-switch fxn">
+											<input type="checkbox" id="check11" name="check11" disabled checked role="switch">
+											<label for="check11"><em class="blind">계좌선택</em></label>
+										</span>
+									</li>
+									<li>
+										<dl>
+											<dt>
+												<em class="prod_name">(가계일반)농업인멤버쉽대출-조합자 최저리자금</em>
+											</dt>
+											<dd>
+												<em class="bank_num">13246534325</em>
+											</dd>
+										</dl>
+										<span class="cmm-switch fxn">
+											<input type="checkbox" id="check12" name="check12" disabled role="switch">
+											<label for="check12"><em class="blind">계좌선택</em></label>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<button class="bottomBtn">접기</button>
+						</div>
+						<!--// 농협은행 -->
+
+						<!-- 카드 -->
+						<div class="custom_box">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>카드</span> <span class="com_icon_num custom">1</span></div>
+								</div>
+							</div>
+						</div>
+						<!--// 카드 -->
+						<!-- NH농협카드 -->
+						<div class="com_box_type01 bottomBtnType">
+							<div class="tit">
+								<i class="A1AABG0000"><span class="blind">NH농협카드</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="allagree" id="checkall03">
+									<label for="checkall03">
+										<span class="bank_name">NH농협카드</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+							<div class="slideBox">
+								<ul class="list_type_02">
+									<li>
+										<span>정기 업데이트</span>
+										<em>주 1회</em>
+									</li>
+									<li>
+										<span>적요&middot;거래메모 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>가맹점&middot;사업자등록번호 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>상품구매 카테고리 전송</span>
+										<em>미동의</em>
+									</li>
+								</ul>
+							</div>
+							<button class="bottomBtn">더보기</button>
+						</div>
+						<!--// NH농협카드 -->
+						
+						<!-- 보험 -->
+						<div class="custom_box">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>보험</span> <span class="com_icon_num custom">1</span></div>
+								</div>
+							</div>
+						</div>
+						<!--// 보험 -->
+						<!-- DB손해보험 -->
+						<div class="com_box_type01 bottomBtnType">
+							<div class="tit">
+								<i class="B2AAEN0000"><span class="blind">DB손해보험</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="allagree" id="checkall04">
+									<label for="checkall04">
+										<span class="bank_name">DB손해보험</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+							<div class="slideBox">
+								<ul class="list_type_02">
+									<li>
+										<span>정기 업데이트</span>
+										<em>주 1회</em>
+									</li>
+									<li>
+										<span>적요&middot;거래메모 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>가맹점&middot;사업자등록번호 전송</span>
+										<em>동의</em>
+									</li>
+									<li>
+										<span>상품구매 카테고리 전송</span>
+										<em>미동의</em>
+									</li>
+								</ul>
+							</div>
+							<button class="bottomBtn">더보기</button>
+						</div>
+						<!--// DB손해보험 -->
+
+						<!-- 공공기관 -->
+						<div class="custom_box">
+							<div class="list_type_box">
+								<div class="new_tit_area">
+									<div class="tit"><span>공공기관</span> <span class="com_icon_num custom">1</span></div>
+								</div>
+							</div>
+						</div>
+						<!--// 공공기관 -->
+						<!-- 국민연금공단 -->
+						<div class="com_box_type01 bottomBtnType">
+							<div class="tit">
+								<i class="B2AAEN0000"><span class="blind">국민연금공단</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="allagree" id="checkall10">
+									<label for="checkall10">
+										<span class="bank_name">국민연금공단</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</div>
+								<!--
+									필요시 주석 푸세요.
+									<span class="txtFinish">만료예정</span>
+								-->
+							</div>
+							<div class="slideBox">
+								<ul class="list_type_02">
+									<li>
+										<span>정기 업데이트</span>
+										<em>주 1회</em>
+									</li>
+								</ul>
+								<ul class="list_type_01">
+									<li>
+										<span class="prod_name">연금산정용 가입내역확인서</span>
+									</li>
+									<li>
+										<span class="prod_name">지방세납부확인서(등록면허세면허분)</span>
+									</li>
+								</ul>
+							</div>
+							<button class="bottomBtn">더보기</button>
+						</div>
+						<!--// 국민연금공단 -->
+					</div>
+					<!--// tabBox 종료 -->
+					<!-- 만료해제 기관 tabBox 시작 -->
+					<div id="tab_02" role="tabpanel" class="cmm-tab-panel"><!-- 20230628 cmm-tab-panel 추가 jlee -->
+						<!-- 선택해제 -->
+						<div class="custom_box flex_new_tit_area mt0">
+							<div class="">
+							</div>
+							<div class="btn_check btn_check3 checkAll">
+								<input type="checkbox" name="checkedAll" id="checkAll" checked="checked">
+								<label for="checkAll">선택해제</label>
+							</div>
+						</div>
+						<!--// 선택해제 -->
+						<!-- 농협은행 -->
+						<div class="com_box_type01 bottomBtnType nonBtn">
+							<div class="tit">
+								<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="checkall" checked id="checkall11">
+									<label for="checkall11">
+										<span class="bank_name">NH농협은행</span>
+										<span class="dat">만료/해제일<i>2022.07.10</i></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<!--// 농협은행 -->
+						<!-- NH농협카드 -->
+						<div class="com_box_type01 bottomBtnType nonBtn">
+							<div class="tit">
+								<i class="A1AABG0000"><span class="blind">NH농협카드</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="checkall" checked id="checkall12">
+									<label for="checkall12">
+										<span class="bank_name">NH농협카드</span>
+										<span class="dat">만료/해제일<i>2022.07.10</i></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<!--// NH농협카드 -->
+						<!-- DB손해보험 -->
+						<div class="com_box_type01 bottomBtnType nonBtn">
+							<div class="tit">
+								<i class="B2AAEN0000"><span class="blind">DB손해보험</span></i>
+								<div class="btn_check">
+									<input type="checkbox" name="checkall" checked id="checkall13">
+									<label for="checkall13">
+										<span class="bank_name">DB손해보험</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<!--// DB손해보험 -->
+						<!-- 국민연금공단 -->
+						<div class="com_box_type01 bottomBtnType nonBtn">
+							<div class="tit">
+								<i class="B2AAEN0000"><span class="blind">국민연금공단</span></i>
+								<span class="btn_check">
+									<input type="checkbox" name="checkall" checked id="checkall14">
+									<label for="checkall14">
+										<span class="bank_name">국민연금공단</span>
+										<span class="dat">연결만료<i>2022.07.10</i></span>
+									</label>
+								</span>
+							</div>
+						</div>
+						<!--// 국민연금공단 -->
+						<p class="stdMsg star">만료 또는 해제된 기관의 개인신용정보는 만료&middot;해제일로부터 5년간 보존 됩니다.</p>
+						<!-- 만료,해제 기관이 없는 경우 -->
+						<div class="no_data_box no_data_box01 grayExclamationType">
+							<div class="no_data_list">
+								<p class="txt_sub">만료&middot;해제 기관이 없어요.</p>
+							</div>
+						</div>
+						<!--// 만료,해제 기관이 없는 경우 -->
+					</div>
+					<!--// tabBox 종료 -->
+					<!-- btn --><!-- 09/19 하단버튼 위치 content 아래로 이동 -->
+					<!--div class="com_btnhalfbox_type02">
+						<a href="#nolink" class="btn btn_mint_gray">연결 해제</a>
+						<a href="#nolink" class="btn btn_mint">연결 변경</a>
+					</div>
+					<!--// btn -->
+				</div>
+			</div>
+			<!--// content -->
+			<!-- btn --><!-- 09/19 하단버튼 위치 content 아래로 이동 -->
+			<div class="com_btnhalfbox_type02 com_inner">
+				<a href="#nolink" class="btn btn_mint_gray">연결 해제</a>
+				<a href="#nolink" class="btn btn_mint">연결 변경</a>
+			</div>
+			<!--// btn -->
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+		<!--// content-view S -->
+	</div>
+</body>
+</html>

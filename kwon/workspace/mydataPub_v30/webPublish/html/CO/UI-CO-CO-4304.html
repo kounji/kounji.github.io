@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>통합검색</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<!-- <script type="text/javascript" src="../../../resource/js/slick.min.js"></script> -->
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01">
+
+		<div class="popup_header">
+			<h1>검색</h1>
+		</div>
+
+		<div class="popup_content">
+
+			<div class="search_all flex_cont">
+				<div class="search_input">
+					<div class="search">
+						<label for="search_01"></label>
+						<input type="search" id="search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요." title="검색어를 입력하세요.">
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+					<button type="button" class="btn_mike"><span class="blind">음성검색 버튼</span></button>
+				</div>
+				
+				<div class="scroller">
+					<!-- 검색 결과 -->
+					<div class="search_result">
+						<p class="h_tit01">메뉴 <span class="primary">11</span></p>
+						<ul>
+							<li>
+								<a href="#nolink" class="item"><strong>자산</strong></a>
+							</li>
+							<li>
+								<a href="#nolink" class="item"><strong>자산</strong>진단</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item"><strong>자산</strong>관리</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item"><strong>자산</strong>현황</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">전체<strong>자산</strong></a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">실물<strong>자산</strong></a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">금융<strong>자산</strong></a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">금융<strong>자산</strong>변화</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">금융<strong>자산</strong> 유형</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">내 전체 <strong>자산</strong></a>
+							</li>
+							<li>
+								<a href="#nolink" class="item"><strong>자산</strong> 보유현황</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- 결과 없음 -->
+					<div class="no_result">
+						<p class="text">검색 결과가 없습니다.</p>
+					</div>
+					<!-- //검색 결과 -->
+				</div>
+			</div>
+			
+		</div>
+
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// full popup E -->
+
+	<script type="text/javascript">
+		/*
+			검색어를 입력하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+
+	</script>
+</body>
+</html>

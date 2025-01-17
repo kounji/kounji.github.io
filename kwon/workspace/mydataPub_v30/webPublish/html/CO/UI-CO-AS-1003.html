@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>서비스 가입</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>서비스 가입</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<strong class="com_cont_tit02">다양한 서비스 제공을 받기 위해<br>
+					약관에 동의해 주세요
+				</strong>
+				<div class="custom_terms">
+					<div class="new_check_all">
+						<span class="btn_check">
+							<input type="checkbox" name="allagree" id="checkall">
+							<label for="checkall">
+								<span>선택 약관 전체 동의</span>
+							</label>
+						</span>
+					</div>
+					<ul class="new_agree_list">
+						<li>
+							<span class="btn_check">
+								<input type="checkbox" name="agree" id="check01">
+								<label for="check01">
+									<span>개인(신용)정보 제3자 제공 동의</span>
+								</label>
+								<button type="button" class="btn_arrow">상세보기</button>
+							</span>
+						</li>
+						<li>
+							<span class="btn_check">
+								<input type="checkbox" name="agree" id="check02">
+								<label for="check02">
+									<span>개인(신용)정보<br>
+										수집·이용 동의(농협경제)</span>
+								</label>
+								<button type="button" class="btn_arrow">상세보기</button>
+							</span>
+						</li>
+					</ul>
+				</div>
+				<div class="custom_terms">
+					<div class="new_check_all">
+						<span class="btn_check">
+							<input type="checkbox" name="allagree" id="checkemail">
+							<label for="checkemail">
+								<span>서비스 변동 내용 수신 동의</span>
+							</label>
+						</span>
+					</div>
+					<!-- 수신 동의 보임 -->
+					<div class="new_agree_list terms_email" >
+						<div class="com_input_type01">
+							<input type="text" id="com_input01" class="com_txtright_type02" name="" value="" required="" placeholder="이메일 주소를 입력해 주세요." title="이메일 주소">
+							<label for="com_input01"><span class="txt_label_x">이메일 주소</span></label>
+							<div class="del_txt">
+								<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2 type02"></span>
+							</div>
+						</div>
+					</div>
+					<!-- //수신 동의 보임 -->
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint">다음</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

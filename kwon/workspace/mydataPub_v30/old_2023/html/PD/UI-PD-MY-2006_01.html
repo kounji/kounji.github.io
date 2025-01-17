@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>여가생활 목표등록 | 버킷리스트</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup" id="full_popup_01" style="display:block;">
+		<div class="popup_header"> 
+			<h1>버킷리스트</h1>
+		</div>
+
+		<div class="popup_content com_bg_type00">
+			<div class="com_inner">
+				<strong class="titH1">힐링 라이프, 나의 여가생활!</strong>
+
+				<div class="com_inputarea_type01">					
+					<div class="com_input_type01">
+						<input type="text" id="com_input01" class="" name="" value="" required="" placeholder="목표 제목 입력" title="목표 제목">
+						<label for="com_input01"><span class="txt_label_x">목표 제목</span></label>
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+						</div>
+					</div>
+
+					<!-- 여가생활 카테고리 선택(인풋창 아님) 클릭시 팝업창 호출 -->
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01 search_icon" title="여가생활 선택">
+							<span>레저 스포츠</span>
+						</button>
+					</div>
+					<!-- //여가생활 카테고리 선택(인풋창 아님) 클릭시 팝업창 호출 -->
+
+					<!-- 여가생활 항목 카테고리 선택 -->
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01" title="여가생활 항목 선택">
+							<span>골프</span>
+						</button>
+					</div>
+					<!-- //여가생활 항목 카테고리 선택 -->
+
+					<!-- 유형 선택 -->
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01" title="유형 선택">
+							<span>레포츠 시작하기</span>
+						</button>
+					</div>
+					<!-- //유형 선택 -->
+
+					<!-- 비용 -->
+					<div class="cost_wrap">
+						<strong class="titH4">골프 비용 (1년 기준)</strong>
+						<div class="list_gray_box">
+							<dl>
+								<dt>용품비</dt>
+								<dd><span class="num">400,000</span>원</dd>
+							</dl>
+							<dl>
+								<dt>시설 이용료</dt>
+								<dd><em class="num">1,800,000</em>원</dd>
+							</dl>
+						</div>
+					</div>
+					<!-- //비용 -->
+
+					<!-- 목표금액 -->
+					<div class="com_input_type01 com_won01">
+						<input type="tel" id="com_input01" class="input_right" name="" value="11,250" required="" placeholder="" title="목표금액">
+						<label for="com_input01"><span class="txt_label_x">목표금액</span></label>
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">원</span>
+						</div>
+						<div class="infoBox">
+							<p class="com_sum">1만 1,250원</p>
+						</div>
+					</div>
+					<!--// 목표금액 -->
+
+					<!-- 언제까지 모을까요 -->
+					<div class="com_input_type01 readonly_ph" role="button" aria-label="필수입력, 목표기간 2022년 10월 17일, 목표기간 선택"><!-- 1005 readonly_ph 추가 -->
+						<input type="text" id="com_input03" class="input_cal_date input_right focusforce" name="" value="" required="" readonly placeholder="언제까지 모을까요(최소6개월~10년사이)" title="언제까지 모을까요" aria-hidden="true"><div class="lineEF"></div>
+						<label for="com_input03"><span class="txt_label_x">목표기간</span></label>
+						<div class="del_txt">
+							<a href="javascript:void(0);" role="button" class="com_btn_delete2 blur" style="display: none;"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2 type02"></span>
+						</div>
+					</div>
+					<!-- //언제까지 모을까요 -->
+
+					<p class="check_text">
+						예/적금계좌를 연결 하고 목표금액에 필요한 금액을<br>
+						확인하세요.
+					</p>
+
+					<div class="com_btn_area">
+						<a href="javascript:void(0);" class="com_btnround_type02" role="button"><span class="btn_plus">연결계좌 선택</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" class="btn btn_mint">등록</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>	
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

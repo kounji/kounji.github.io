@@ -1,0 +1,52 @@
+.view-container {
+  height: 100%;
+}
+
+.view-container * button {
+  border: solid;
+  border-width: 1px;
+}
+
+#modals-container * button {
+  border: solid;
+  border-width: 1px;
+}
+
+.modal-container {
+  position: absolute;
+  z-index: 100000;
+  left: 0;
+  top: 0;
+}
+
+.vm--modal {
+  top: 0px !important;
+  left: 0px !important;
+}
+
+body {
+  margin: 0px;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+  
+#mainContainer {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#viewContainer {
+  padding: 10px;
+  flex: 1;
+}
+
+.red {
+  color: red
+}

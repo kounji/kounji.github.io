@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이농가</title>	
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script>
+        //프로토타입 탭
+        $(function(){
+            $('.com_box_type01 .tab_header ul li').click(function(){
+		var idx = $(this).index();
+	  //	$('.tab_cont:first').show();
+		$('.com_box_type01 .tab_header ul li a').removeClass('on').eq(idx).addClass('on');
+	 // 	$('.tab_content:first').show();
+		$('.tab_content').removeClass('on').eq(idx).addClass('on');
+	});
+        })
+        //팝오버 닫힘
+        $(document).on('click' , '.btn_close', function(){
+			$(this).parents('.com_box_type01').fadeOut(500);
+	});
+    </script> 
+    <style>
+     
+    </style>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap" class="sticky-scroll">
+        <!-- header S -->
+		<header id="header">
+			<h1>마이농가</h1>	
+			<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+			<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		</header>
+		<!--// header E -->
+
+        <!-- content-view S -->
+        <div class="content-view">
+            <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+            <div class="com_tabmenu_type02">
+                <div>
+                    <ul role="tablist">
+                        <li><a href="#nolink">영농달력</a></li>
+                        <li><a href="#nolink">영농일지</a></li>
+                        <li><a href="#nolink">농기계임대</a></li>
+                        <li><a href="#nolink">손익분석</a></li>
+                        <li><a href="#nolink">정책자금</a></li>
+                        <li class="on"><a href="#nolink">조합원</a></li>
+                        <li><a href="#nolink">설정</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+
+            <!-- content S -->
+            <div id="content" class="com_sub_type02">
+                <!--   20210625 한별 상단 수정건 적용 S -->
+                <div class="com_submainbox_type03 com_submainbox_type03-01">
+                    <strong class="com_box_tit">조합원 현황</strong>
+                    <a href="#nolink" class="com_btn_view"><span>자세히보기</span></a>
+                    <div class="com_box_type01 mt20 slimcard">
+                    <div class="title"><span class="new_bank_ico bank01"></span><span class="text">의왕농협 포일지점</span></div>
+                    <div class="code num">003927</div>
+                    </div>
+                    <div class="com_box_type01 slimcard">
+                    <div class="title"><span class="new_bank_ico bank01"></span><span class="text">의왕시 포일동 축산농협<br> 
+                        종합운동장 지점</span></div>
+                    <div class="code num">003927</div>
+                    </div>
+                </div>
+                <!--   20210625 한별 상단 수정건 적용 E -->
+                <div class="com_submainbox_type04 com_sub_radius">
+                    <strong class="com_box_tit">면세유 현황</strong>
+                    <div class="com_box_type01 goal_warp mt15">
+                            <div class="new_top_menu_box block mt-15 tab_header shadow">
+                                <ul>
+                                    <li><a href="#nolink" class="on">유종별</a></li>
+                                    <li><a href="#nolink">기기별</a></li>
+                                </ul>
+                            </div>
+                            <!-- 20210708 한별 추가 유종 기기 아이콘 & 색깔  :이병철
+                                ////////////유종////////////
+                                휘발유 : type01
+                                휘발유 : type02
+                                보일러등유 : type03
+                                경유 : type04
+                                윤활유 : type05
+                                중유 : type06
+                                가스(난방) : type07
+                                가스(차량) : type08
+                                부생연료유1호 : type09
+                                부생연료유2호 : type10
+                                ////////////기기////////////
+                                농기계 : type11
+                                선박 : type12
+                                양식 : type13
+                                화물자동차 : type14
+                                농업용로우더 : type15
+                            -->
+                            <div class="tab_content mt25 on">
+                                <div class="goal_box m0 mt30 type02">
+                                    <div class="progressBar_wrapper">
+                                        <div class="top">
+                                            <div class="oil_wrap">
+                                                <span class="ico type01"></span><!-- type01을 여기에 변경  -->
+                                                <div class="text_wrap">
+                                                    <h1>휘발유</h1>
+                                                    <p class="text">
+                                                        배정량 <span class="num">1,500</span>
+                                                        사용량 <span class="num">1,500</span>
+                                                        잔량 <span class="num">1,500</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="progressBar type01"><!-- type01을 여기에 변경  -->
+                                            <div class="bar" style="width:54%">
+                                                <div class="popover_wrap">
+                                                    <span class="popover">
+                                                        54%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date">
+                                            <div class="st"><span class="num">100%</span></div>
+                                            <div class="ed"> <span class="num">0%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#nolink" class="btn_round full mt30"><span>월별 사용량</span></a>
+                                <div class="goal_box m0 mt40 type04"><!-- type01을 여기에 변경  -->
+                                    <div class="progressBar_wrapper">
+                                        <div class="top">
+                                            <div class="oil_wrap">
+                                                <span class="ico type04"></span><!-- type01을 여기에 변경  -->
+                                                <div class="text_wrap">
+                                                    <h1>경유</h1>
+                                                    <p class="text">
+                                                        배정량 <span class="num">1,500</span>
+                                                        사용량 <span class="num">1,500</span>
+                                                        잔량 <span class="num">1,500</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="progressBar type04"><!-- type01을 여기에 변경  -->
+                                            <div class="bar" style="width:54%">
+                                                <div class="popover_wrap">
+                                                    <span class="popover">
+                                                        54%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date">
+                                            <div class="st"><span class="num">100%</span></div>
+                                            <div class="ed"> <span class="num">0%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#nolink" class="btn_round full mt30"><span>월별 사용량</span></a>
+                            </div>
+                            <div class="tab_content mt25">
+                                <div class="goal_box m0 mt30 type02">
+                                    <div class="progressBar_wrapper">
+                                        <div class="top">
+                                            <div class="oil_wrap">
+                                                <span class="ico type04"></span><!-- type01을 여기에 변경  -->
+                                                <div class="text_wrap">
+                                                    <h1>화물자동차</h1>
+                                                    <p class="text">
+                                                        배정량 <span class="num">1,500</span>
+                                                        사용량 <span class="num">1,500</span>
+                                                        잔량 <span class="num">1,500</span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="progressBar type04"><!-- type01을 여기에 변경  -->
+                                            <div class="bar" style="width:54%">
+                                                <div class="popover_wrap">
+                                                    <span class="popover">
+                                                        54%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="date">
+                                            <div class="st"><span class="num">100%</span></div>
+                                            <div class="ed"> <span class="num">0%</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#nolink" class="btn_round full mt30"><span>월별 사용량</span></a>
+                            </div>
+                    </div>
+                    <strong class="com_box_tit02">영농자금대출 현황</strong>
+                    <!-- 20210916 한별 수정 S -->
+                    <div class="com_box_type01 com_box_list01">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>신용대출</span></div>
+                                <div class="total_price">
+                                    <em class="num">635,000</em><em class="unit">원</em>
+                                </div>
+                            </div>
+                            <ul class="list_type_01">
+                                <li>
+                                    <a href="#nolink">
+                                        <dl>
+                                            <dt>
+                                                <div>
+                                                    <i class="kakao_pay"><span class="blind">카카오페이</span></i>
+                                                    <em>의왕사거리 농협</em>
+                                                </div>
+                                            </dt>
+                                            <dd>
+                                                <span class="com_price">
+                                                    <em class="num">10,000</em><em class="unit">원</em>
+                                                </span>
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                                <!-- 20211116 한별 링크없을때 no_link 클래스 추가 S -->
+                                <li class="no_link">
+                                    <dl>
+                                        <dt>
+                                            <div>
+                                                <i class="kakao_pay"><span class="blind">카카오페이</span></i>
+                                                <em>인덕원 농협</em>
+                                            </div>
+                                        </dt>
+                                        <dd>
+                                            <span class="com_price">
+                                                <em class="num">10,000</em><em class="unit">원</em>
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </li>
+                                <!--// 20211116 한별 링크없을때 no_link 클래스 추가 E -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="com_box_type01 com_box_list01">
+                        <div class="list_type_box">
+                            <div class="new_tit_area">
+                                <div class="tit"><span>마이너스 1</span></div>
+                                <div class="total_price">
+                                    <em class="num">- 635,000</em><em class="unit">원</em>
+                                </div>
+                            </div>
+                            <ul class="list_type_01">
+                                <li>
+                                    <a href="#nolink">
+                                        <dl>
+                                            <dt>
+                                                <div>
+                                                    <i class="kakao_pay"><span class="blind">카카오페이</span></i>
+                                                    <em>NH입출금통장</em>
+                                                    <span>352210808677</span>
+                                                </div>
+                                            </dt>
+                                            <dd>
+                                                <span class="com_price">
+                                                    <em class="num">10,000</em><em class="unit">원</em>
+                                                </span>
+                                            </dd>
+                                        </dl>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- 20210916 한별 수정 E -->
+                    <!-- <div class="com_box_type01">
+                        <table class="submain_list_wrap type00 type00-01">
+                            <tbody>
+                            <tr class="list">
+                                <th class="title">신용대출 2</th>
+                                <th class="content"><span class="num">5,000,000</span>원</th>
+                            </tr>
+                            <tr class="list">
+                                <td class="title"><span class="new_bank_ico type01 bank01"></span>
+                                    <div class="text_warp">의왕사거리 농협 </div>
+                                </td>
+                                <td class="content"><a class="link"><span class="num">330,000</span>원</a></td>
+                            </tr>
+                            <tr class="list">
+                                <td class="title"><span class="new_bank_ico type01 bank01"></span>
+                                    <div class="text_warp">인덕원 농협 </div>
+                                </td>
+                                <td class="content"><a class="link"><span class="num">330,000</span>원</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                    <!-- <div class="com_box_type01">
+                        <table class="submain_list_wrap type00 type00-01">
+                            <tbody>
+                            <tr class="list">
+                                <th class="title">마이너스 1</th>
+                                <th class="content"><span class="num">- 2,000,000</span>원</th>
+                            </tr>
+                            <tr class="list">
+                                <td class="title"><span class="new_bank_ico type01 bank01"></span>
+                                    <div class="text_warp">NH입출금통장<div class="num">352210808677</div></div>
+                                </td>
+                                <td class="content"><span class="num">330,000</span>원</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div> -->
+                </div>
+            </div>
+            <!--// content E -->
+
+            
+
+           
+        </div>
+        <!--// content-view E -->
+        <script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

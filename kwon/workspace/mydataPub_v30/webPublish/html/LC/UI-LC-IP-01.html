@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>분석 ㅣ 가계부</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script>
+		// -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "150rem");
+// rMateChartH5.create("chart2", "chartHolder2", "", "100%", "150rem");
+rMateChartH5.create("chart3", "chartHolder3", "", "100%", "200rem");
+ // -----------------------차트 설정 시작-----------------------
+
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+
+
+// 스트링 형식으로 레이아웃 정의.
+var layoutStr =
+				'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+					+'<Options>'
+						+'<Caption text="배경에 이미지 삽입"/>'
+					+'</Options>'
+					+'<Line2DChart showDataTips="true">'
+						+'<horizontalAxis>'
+							+'<CategoryAxis categoryField="Month"/>'
+						+'</horizontalAxis>'
+						+'<verticalAxis >'
+							+'<LinearAxis labelJsFunction="labelFunc" maximum="100" id="vAxis" />'
+						+'</verticalAxis>'
+                        +'<verticalAxisRenderers>'
+                            +'<Axis3DRenderer axis="{vAxis}" visible="false"/>'
+                           /* visible속성을 false로 하여 Chart에서는 보이지 않게 합니다 20211014 한별 visible="true"로 수정 */
+                      +'</verticalAxisRenderers>'
+						+'<series>'
+							+'<Line2DSeries yField="Vancouver" displayName="Vancouver" itemRenderer="CircleItemRenderer" radius="6">'
+								+'<showDataEffect>'
+									+'<SeriesInterpolate/>'
+								+'</showDataEffect>'
+								+'<lineStroke>'
+									+'<Stroke color="#23a0a5" weight="2.5"/>'
+								+'</lineStroke>'
+								+'<stroke>'
+									+'<Stroke color="#23a0a5" weight="3"/>'
+								+'</stroke>'
+								+'<fill>'
+									+'<SolidColor color="#fff"/>'
+								+'</fill>'
+							+'</Line2DSeries>'
+						+'</series>'
+						/*
+						차트 배경에 이미지를 넣을 경우에는 backgroundElements와 annotationElements 중 하나를 정의합니다
+						backgroundElements는 그래프가 뿌려진 레이어를 기준으로 뒷면을 의미하고
+						annotationElements는 그래프가 뿌려진 레이어를 기준으로 앞면을 의미합니다
+						*/
+						// +'<backgroundElements>'
+						// 	+'<CanvasImage source="../rMateChartH5/Assets/Images/chart_background.jpg" maintainAspectRatio="false" alpha="1"/>'
+						// 	/*
+						// 		Image의 속성으로는
+						// 		source : 실제 이미지가 있는 URL경로입니다
+						// 		maintainAspectRation : 이미지 원본 비율을 유지할지를 나타냅니다
+						// 						True면 고유비율을 유지하려 하고
+						// 						False면 차트 크기에 맞춘 사이즈를 갖습니다
+						// 		alpha : 이미지의 투명도를 나타 냅니다
+						// 	*/
+						// +'</backgroundElements>'
+					+'</Line2DChart>'
+				+'</rMateChart>';
+
+// 차트 데이터
+var chartData = [{"Month":"6월","Vancouver":40},
+	{"Month":"7월","Vancouver":50},
+	{"Month":"8월","Vancouver":58},
+	{"Month":"9월","Vancouver":80},
+	];
+
+// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+//
+// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+// 
+// 아래 내용은 
+// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+rMateChartH5.calls("chart1", {
+	"setLayout" : layoutStr,
+	"setData" : chartData
+});
+
+function labelFunc(id,value){
+   return value+"만원";
+}
+// ------------------- 왼쪽 차트 단위추가 ------------------------------
+//+'<LinearAxis labelJsFunction="labelFunc" maximum="100" id="vAxis" />'
+//function labelFunc(id,value){
+//   return value+"만원";
+//}
+ /*
+ // ------------------------- 데이터팁 사용자 정의 함수 -----------------------------------------------------
+ // 챠트에서 showDataTips="true" 설정 후 마우스 오버 시 보이는 데이터팁 정의
+ // layout XML 에서 Chart 속성을 넣을때 dataTipJsFunction를 주고, 만든 javascript 함수명을 넣어줍니다
+ // 예) <Column3DChart showDataTips="true" dataTipJsFunction="dataTipFunc">
+ //
+ // 파라메터 설명
+ // seriesId : layout XML에서 부여한 series의 id가 있을 경우, 해당 id를 보내줍니다.
+ // seriesName : 시리즈의 displayName 으로 정의한 시리즈 이름을 보내줍니다.
+ // index : 해당 아이템의 인덱스.
+ // xName : X 축에 displayName 을 정의하였다면 X축의 displayName을 보내줍니다.
+ // yName : Y 축에 displayName 을 정의하였다면 Y축의 displayName을 보내줍니다.
+ // data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
+ // values : 해당 item의 값 (배열로 전달되며, 차트 종류에 따라 아래와 같이 들어옵니다.)
+			 Bar2D(3D)Series     0:x축값 1:y축값
+			 Column2D(3D)Series  0:x축값 1:y축값
+			 Area2DSeries    0:x축값 1:y축값
+			 Bubble3DSeries  0:x축값 1:y축값 2:radius값
+			 Line2DSeries    0:x축값 1:y축값
+			 Pie2D(3D)Series     0:값 1:퍼센트값 2:nameFiled명
+ */
+ function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values)
+ {
+	return "<font color='#CC3300'>데이터팁 사용자 정의</font>seriesId:"+seriesId+" <font color='#0000FF'>현재 데이터 : </font>"+"<b>"+seriesName+"</b>"+"itemIndex:"+index+"data: "+obj2string(data)+" values:"+values;
+ }
+  
+ function obj2string(d) {
+	var r = "";
+  for (var p in d) {
+	   if (r.length > 0)
+			 r += "";
+	  r += "   "+d[p];
+	}
+	return r;
+ }
+  
+        var layoutStr2 =
+                        '<rMateChart backgroundColor="transparent" borderStyle="none">'
+                           
+                            +'<Bar2DChart showDataTips="true" barWidthRatio="1">'
+                                +'<horizontalAxis>'
+                                    +'<LinearAxis/>'
+                                +'</horizontalAxis>'
+                                +'<verticalAxis>'
+                                    +'<CategoryAxis categoryField="Month"/>'
+                                +'</verticalAxis>'
+                                +'<series>'
+                                    /*
+                                    type 속성을 stacked로 변경
+                                    type속성으로는
+                                    clustered : 일반적인 다중데이터(차트의 멀티시리즈)방식으로 데이터를 표현합니다.(Default)
+                                    stacked : 데이터를 위에 쌓아 올린 방식으로 표현 합니다.
+                                    overlaid : 수치 데이터 값을 겹쳐서 표현 합니다. 주로 목표 위치와 현재 위치를 나타낼 때 많이 쓰입니다.
+                                    100% : 차트의 수치 데이터를 퍼센티지로 계산 후 값을 퍼센티지로 나타냅니다.
+                                    */
+                                    +'<Bar2DSet type="stacked" showTotalLabel="true" totalLabelJsFunction="totalFunc" color="#f5f6fa" labelYOffset="0" labelXOffset="5">'
+                                        +'<series>'
+                                        /* Bar2D Stacked 를 생성시에는 Bar2DSeries를 최소 2개 정의합니다 */
+                                            +'<Bar2DSeries showValueLabels="[5]" xField="tv" displayName="TV" color="#ffffff" insideLabelYOffset="2">'
+                                                +'<fills>'
+                                                    /* Series안에 색을 채울 때(여러색) fills에 주목 */
+                                                    +'<SolidColor color="#5a8ac8"/>'
+                                                +'</fills>'
+                                                +'<showDataEffect>'
+                                                    +'<SeriesInterpolate/>'
+                                                +'</showDataEffect>'
+                                            +'</Bar2DSeries>'
+                                            +'<Bar2DSeries showValueLabels="[5]" xField="tablet" displayName="Tablet" color="#ffffff" insideLabelYOffset="2">'
+                                                +'<fills>'
+                                                    /* Series안에 색을 채울 때(여러색) fills에 주목 */
+                                                    +'<SolidColor color="#ff0072"/>'
+                                                +'</fills>'
+                                                +'<showDataEffect>'
+                                                    +'<SeriesInterpolate/>'
+                                                +'</showDataEffect>'
+                                            +'</Bar2DSeries>'
+                                            +'<Bar2DSeries showValueLabels="[5]" xField="phone" displayName="Cell Phone" color="#ffffff" insideLabelYOffset="2">'
+                                                +'<fills>'
+                                                    /* Series안에 색을 채울 때(여러색) fills에 주목 */
+                                                    +'<SolidColor color="#33d4d2"/>'
+                                                +'</fills>'
+                                                +'<showDataEffect>'
+                                                    +'<SeriesInterpolate/>'
+                                                +'</showDataEffect>'
+                                            +'</Bar2DSeries>'
+                                        +'</series>'
+                                    +'</Bar2DSet>'
+                                +'</series>'
+                            +'</Bar2DChart>'
+                        +'</rMateChart>';
+        
+        // 차트 데이터
+        var chartData2 =
+            [{"Month" : "2월","phone" : 1,"tv" : 12,"tablet" : 2},
+             {"Month" : "3월","phone" : 2,"tv" : 23,"tablet" : 4},];
+        
+        // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+        //
+        // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+        // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+        // 
+        // 아래 내용은 
+        // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+        // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+        // rMateChartH5.calls("chart2", {
+        //     "setLayout" : layoutStr2,
+        //     "setData" : chartData2
+        // });
+        
+        /*
+        // ------------------------- 스택 타입의 토탈 필드 사용자 정의 함수 -----------------------------------------------------
+        // 차트의 SeriesSet 에서 showTotalLabel 속성을 설정한 경우 토탈 필드를 사용자 정의하는 함수입니다.
+        // layout XML 에서 Series 속성을 넣을때 labelJsFunction 주고, 만든 javascript 함수명을 넣어줍니다
+        //
+        // 예) <Bar2DSet showTotalLabel="true" totalLabelJsFunction="totalLabelFunc">
+        //
+        // 파라메터 설명
+        // index : 해당 시리즈 아이템의 인덱스.
+        // data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
+        // value : 총 합계 값.
+        */
+        function totalFunc(index, data, value){
+            if(index == 5)
+                return insertComma(value);
+            return "";
+        }
+        
+        //숫자에 천단위 콤마 찍어 반환하는 함수.
+        function insertComma(n) {
+            var reg = /(^[+-]?\d+)(\d{3})/; // 정규식
+            n += "";
+            while (reg.test(n))
+            n = n.replace(reg, '$1' + "," + '$2');
+            return n;
+        }
+        
+        
+        // 스트링 형식으로 레이아웃 정의.
+        var layoutStr3 =
+                        '<rMateChart backgroundColor="transparent" borderStyle="none">'
+                            
+                            +'<Pie2DChart innerRadius="0.55" showDataTips="true" selectionMode="single">'
+                        /*
+                        Doughnut2D 차트 생성시에 필요한 Pie2DChart 정의합니다
+                        showDataTips : 데이터에 마우스를 가져갔을 때 나오는 Tip을 보이기/안보이기 속성입니다.
+                        innerRadius : PieChart 가운데에 빈 공간을 만듭니다. 유효값 0.1 ~ 0.9 0은 PieChart 1은 차트 사라짐
+                        */
+                                +'<series>'
+                                    +'<Pie2DSeries nameField="Month" field="Profit" startAngle="20" renderDirection="clockwise" color="#ffffff">'
+                                        +'<fills>'
+                                            +'<SolidColor color="#0b9ba0"/>'
+                                            +'<SolidColor color="#57c9ae"/>'
+                                        +'</fills>'
+                                    /* Pie2DChart 정의 후 Pie2DSeries labelPosition="inside"정의합니다 */
+                                        +'<showDataEffect>'
+                                        /* 차트 생성시에 Effect를 주고 싶을 때 shoDataEffect정의합니다 */
+                                            +'<SeriesZoom duration="1000"/>'
+                        /*
+                        SeriesZoom 효과는 시리즈 데이터가 데이터로 표시될 때 특정 지점에서 점점 확대되어지며 나타나는 효과를 적용합니다
+                        - 공통속성 -
+                        elementOffset : effect를 지연시키는 시간을 지정합니다 default:20
+                        minimumElementDuration : 각 엘리먼트의 최소 지속 시간을 설정합니다 default:0
+                                     이 값보다 짧은 시간에 effect가 실행되지 않습니다
+                        offset : effect개시의 지연시간을 설정합니다 default:0
+                        perElementOffset : 각 엘리먼트의 개시 지연시간을 설정합니다
+                        - SeriesZoom속성 -
+                        relativeTo : 이펙트의 기준을 어디로 잡을지에 대한 속성입니다. 유효값 : chart, series
+                        horizontalFocus : relativeTo를 기준으로 수평선 방향의 기준을 정합니다. 유효값 : left, center, right
+                        verticalFocus : relativeTo를 기준으로 수직선 방향의 기준을 정합니다. 유효값 : top, middle, bottom
+                        */
+                                        +'</showDataEffect>'
+                                    +'</Pie2DSeries>'
+                                +'</series>'
+                                +'<backgroundElements>'
+                                    +'<CanvasElement>'
+                                        
+                                        
+                                    +'</CanvasElement>'
+                                +'</backgroundElements>'
+                            +'</Pie2DChart>'
+                        +'</rMateChart>';
+        
+        // 차트 데이터 
+        var chartData3 = [{"Month":"Jan", "Profit":900},
+                        {"Month":"Feb", "Profit":2400}];
+        
+        // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+        //
+        // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+        // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+        // 
+        // 아래 내용은 
+        // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+        // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+        rMateChartH5.calls("chart3", {
+            "setLayout" : layoutStr3,
+            "setData" : chartData3
+        });
+        
+        </script>
+    <script>
+        //프로토타입 탭
+        $(function(){
+            $('.com_box_type01 .tab_header ul li').click(function(){
+		var idx = $(this).index();
+	  //	$('.tab_cont:first').show();
+		$('.com_box_type01 .tab_header ul li a').removeClass('on').eq(idx).addClass('on');
+	 // 	$('.tab_content:first').show();
+		$('.tab_content').removeClass('on').eq(idx).addClass('on');
+	});
+        })
+        //팝오버 닫힘
+        $(document).on('click' , '.btn_close', function(){
+			$(this).parents('.com_box_type01').fadeOut(500);
+	});
+    </script> 
+    <style>
+     
+    </style>
+</head>
+
+<body>
+	<!-- wrap S -->
+    <!-- 20210630 한별 서브메인 스크롤 인터랙션 추가 클래스는 'sticky-scroll' --->
+	<div id="wrap" class="sticky-scroll">
+        <!-- header S -->
+		<header id="header">
+			<h1>가계부</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>		
+			<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
+			<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		</header>
+		<!--// header E -->
+        <!-- content-view S -->
+        <div class="content-view">
+            <div class="com_tabmenu_type01 menunum03">
+                <!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+                <ul role="tablist">
+                    <li><a href="#nolink">달력</a></li>
+                    <li><a href="#nolink">지출</a></li>
+                    <li class="on"><a href="#nolink">분석</a></li>
+                </ul>
+                <!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+            </div>
+            <!-- content S -->
+            <div id="content" class="com_sub_type02 com_bg_type00">
+                <!--   20210625 한별 상단 수정건 적용 S -->
+                <div class="com_submainbox_type01 com_submainbox_type01-01">
+                    <!-- 20210707 한별 추가 스크롤링 년/월 고정 관련 wrapper 필요하여 추가: 이병철 S-->
+                    <div class="select_date_wrap">
+                        <div class="select_date">
+                            <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 S -->
+                            <button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+                            <a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+                            <button class="cal_btn cal_next disabled" aria-label="한달 후 이동" disabled></button>
+                            <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 E -->
+                        </div>
+                    </div>
+                    <!-- 20210707 한별 추가 스크롤링 년/월 고정 관련 wrapper 필요하여 추가: 이병철 E-->
+                    <!-- 20211015 한별 증가할때 com_point_red 감소할때 com_point_blue 클래스 추가 S -->
+                    <div class="text">
+                        지난 3개월 평균보다 <span class="bold com_point_red">300,000원</span><br>더 지출하셨네요. 이유를 알아보세요.
+                    </div>
+                    <!-- 20211015 한별 증가할때 com_point_red 감소할때 com_point_blue 클래스 추가 E -->
+                    <div class="chart_wrap com_box_type01">
+                        <!-- 차트가 삽입될 DIV -->
+                        <!-- 20211108 한별 접근성 추가  S -->
+                        <div id="chartHolder" aria-hidden="true" class="chart_analysis"></div><!-- 202109014 한별 class="chart_analysis" 추가 -->
+                        <!-- 20211108 한별 접근성 추가  E -->
+                    </div>
+                    <div class="submain_list_wrap sm_list mt15">
+                        <div class="list">
+                            <div class="title">9월 지출 금액</div>
+                            <div class="content"><span class="num">2,060,000<em class="won">원</em></span></div>
+                        </div>
+                        <div class="list">
+                            <div class="title">3개월 평균 지출 금액</div>
+                            <div class="content"><span class="num">1,760,000<em class="won">원</em></span></div>
+                        </div>
+                    </div>
+                </div>            
+                <div class="com_sub_radius">
+                    <!--   20210625 한별 상단 수정건 적용 E -->
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">결제수단별 지출</strong>
+                        <!-- 20210903 한별 추가 S -->
+                        <a href="#nolink" class="com_btnround_type07"><span>지출비교</span></a>
+                        <!--// 20210903 한별 추가 E -->
+                        <!-- <div class="new_top_menu_box block mt15 tab_header">
+                            <ul>
+                                <li><a href="#nolink" class="on">전월비교</a></li>
+                                <li><a href="#nolink">동일그룹비교</a></li>
+                            </ul>
+                        </div> -->
+                        <div class="tab_content mt25 on">
+                            <!-- 20211015 한별 증가할때 com_point_red 감소할때 com_point_blue 클래스 추가 S -->
+                            <div class="txt">이전 달보다 카드 지출이 <span class="color bold com_point_blue">21만원(16%) 증가</span>
+                                하셨네요. 할인 혜택 많은 카드를 살펴보세요.
+                            </div>
+                            <!-- 20211015 한별 증가할때 com_point_red 감소할때 com_point_blue 클래스 추가 E -->
+                            <div class="com_box_type02 mt20">
+                                <!-- 차트가 삽입될 DIV -->
+                                <div class="horichart_wrap">
+                                </div>
+                                <!-- 20211014 한별 수정 S -->
+                                <div class="three_layer_chart_wrap">
+                                    <div class="ch_inner">
+                                        <div class="horizon_chart_wrap m0">
+                                            <div class="horizon_chart type4">
+                                                <div class="chart_set">
+                                                    <div class="hori_chart_label">
+                                                        9월
+                                                    </div> 
+                                                    <div class="hori_chart">
+                                                        <div class="bar_wrap" style="width:80%">
+                                                            <span class="bar bar01" style="width:60%"></span>
+                                                            <span class="bar bar02" style="width:20%"></span>
+                                                            <span class="bar bar03" style="width:10%"></span>
+                                                            <span class="bar bar04" style="width:10%"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="chart_set">
+                                                    <div class="hori_chart_label">
+                                                    8월
+                                                    </div> 
+                                                    <div class="hori_chart">
+                                                        <div class="bar_wrap" style="width:70%">
+                                                            <span class="bar bar01" style="width:70%"></span>
+                                                            <span class="bar bar02" style="width:10%"></span>
+                                                            <span class="bar bar03" style="width:10%"></span>
+                                                            <span class="bar bar04" style="width:10%"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--// 20211014 한별 수정 E -->
+                            </div>
+                             <!-- 20211014 한별 수정 S -->
+                            <table class="submain_list_wrap">
+                                <tr class="list head">
+                                    <th class="title"></th>
+                                    <th class="content">8월</th>
+                                    <th class="content">9월</th>
+                                </tr>
+                                <tr class="list case04">
+                                    <td class="title">카드</td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em></td>
+                                    <td class="content"><a class="link"><span class="num">8,160,000</span><em class="won">원</em></a></td>
+                                </tr>
+                                <tr class="list case03">
+                                    <td class="title">페이머니</td>
+                                    <td class="content"><span class="num">424,700</span><em class="won">원</em></td>
+                                    <td class="content"><a class="link"><span class="num">160,000</span><em class="won">원</em></a></td>
+                                </tr>
+                                <tr class="list case05">
+                                    <td class="title">선불카드</td>
+                                    <td class="content"><span class="num">494,200</span><em class="won">원</em></td>
+                                    <td class="content"><a class="link"><span class="num">960,000</span><em class="won">원</em></a></td>
+                                </tr>
+                                <tr class="list case06">
+                                    <td class="title">기타</td>
+                                    <td class="content"><span class="num">494,200</span><em class="won">원</em></td>
+                                    <td class="content"><a class="link"><span class="num">960,000</span><em class="won">원</em></a></td>
+                                </tr>
+                            </table>
+                            <!--// 20211014 한별 수정 E -->
+                        </div>
+                        <!-- <div class="tab_content mt25">
+                            <div class="txt">동일 그룹에 비해 <span class="color bold">카드 지출</span>이 많으시네요. </div>
+                            <table class="submain_list_wrap type02">
+                                <tr class="list head">
+                                    <th class="title"></th>
+                                    <th class="content">3월(40대 평균)</th>
+                                    <th class="content">3월(나)</th>
+                                </tr>
+                                <tr class="list case04">
+                                    <td class="title">카드</td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                </tr>
+                                <tr class="list case03">
+                                    <td class="title">페이머니</td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                </tr>
+                                <tr class="list case02">
+                                    <td class="title">기타</td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                    <td class="content"><span class="num">2,060,000</span><em class="won">원</em><p class="num percent">71.0%</p></td>
+                                </tr>
+                            </table>
+                        </div> -->
+                    </div>
+
+                    <div class="admin_banner_area">
+                        <a href="#nolink"><img src="../../../../src/assets_v30/images/sub/banner_01.png" alt="부자되는 첫걸음 돈 모으기 목표부터 세우기!"></a>
+                    </div>
+
+                    <div class="new_float_popover_wrap mb30">
+                        <div class="float_popover m0 flat">
+                            <div class="text">
+                                연 최대 38만 4천원, 스타벅스 50%<br><a href="#"><span class="com_point_blue">올바른 FLEX 카드</span></a>로 할인혜택 받으세요.
+                            </div>
+                            <a href="#;" class="btn_close gray"><span class="blind">닫기</span></a>
+                        </div>
+                    </div>
+
+                    <div class="com_box_type01 goal_warp">
+                        <strong class="com_box_tit">목표대비 지출</strong>
+                        <div class="goal_price mt15">
+                            <span class="num">140,000</span><em class="won">원</em><span class="gadget">남음</span>
+                        </div>
+                        <div class="goal_box m0 mt25">
+                            <div class="progressBar_wrapper">
+                                <div class="top">
+                                    <div class="st">지출</div>
+                                    <div class="ed">목표</div>
+                                </div>
+                                <div class="progressBar">
+                                    <div class="bar" style="width:80%">
+                                    </div>
+                                </div>
+                                <div class="date">
+                                    <div class="st"><span class="num">2,060,000</span><em class="won">원</em></div>
+                                    <div class="ed"> <span class="num">2,200,000</span><em class="won">원</em></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">Top3 지출</strong>
+                        <div class="txt"><span class="color">온라인 쇼핑</span> 지출이 가장 많으세요.<br> 
+                            과도한 지출이 있는지 확인 후 줄여보세요.
+                        </div>
+                        <div class="submain_list_wrap type03 mt15">
+                            <div class="list case01">
+                                <div class="title">온라인 쇼핑</div>
+                                <div class="content"><span class="num">30%</span><span class="bar"></span><span class="num">260,000</span><em class="won">원</em></div>
+                            </div>
+                            <div class="list case02">
+                                <div class="title">식비</div>
+                                <div class="content"><span class="num">30%</span><span class="bar"></span><span class="num">224,700</span><em class="won">원</em></div>
+                            </div>
+                            <div class="list case03">
+                                <div class="title">자동차</div>
+                                <div class="content"><span class="num">30%</span><span class="bar"></span><span class="num">794,200</span><em class="won">원</em></div>
+                            </div>
+                        </div>
+                    <!--   20210701 한별 한윤석 클래스명 수정 S -->
+                    <div class="com_btn_area01"><a href="#nolink" class="com_btn_more"><span>더보기</span></a></div>
+                    <!--// 20210701 한별 한윤석 클래스명 수정 E -->
+                    </div>
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">자주 이용하는 거래처 Top3 </strong>
+                        <div class="best">
+                            <div class="img"></div>
+                            <div class="txt big"><span class="color">쿠팡 주식회사</span>가<br>
+                                당신의 으뜸 거래처
+                            </div>
+                        </div>
+                        <table class="submain_list_wrap type02 type02-1 mt20 mb20">
+                            <!-- <colgroup>
+                                <col style="width:70%">
+                                <col style="width:30%">
+                            </colgroup> -->
+                            <tbody>
+                                <tr class="list">
+                                    <td class="title">쿠팡 주식회사</td>
+                                    <td class="content"><span class="num">260,000</span><em class="won">원</em></td>
+                                </tr>
+                                <tr class="list">
+                                    <td class="title">㈜뉴코아-킴스아울렛
+                                    </td>
+                                    <td class="content"><span class="num">160,000</span><em class="won">원</em></td>
+                                </tr>
+                                <tr class="list">
+                                    <td class="title">KH에너지직영광명주유소KH에너지직영광명주유소KH에너지직영광명주유소</td>
+                                    <td class="content"><span class="num">160,000</span><em class="won">원</em></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--   20210701 한별 한윤석 클래스명 수정 S -->
+                    <div class="com_btn_area01"><a href="#nolink" class="com_btn_more"><span>더보기</span></a></div>
+                    <!--// 20210701 한별 한윤석 클래스명 수정 E -->
+                    </div>
+                    <div class="com_box_type01">
+                        <strong class="com_box_tit">고정지출, 잊지 말고 관리하세요</strong>
+                        <div class="txt">변동지출을 줄이고 여유자금을 만들어보세요</div>
+                        <div class="chart_wrap">  
+                            <!-- 차트가 삽입될 DIV -->
+                            <!-- 20211108 한별 접근성 추가  S -->
+                            <div id="chartHolder3" aria-hidden="true"></div>
+                            <!-- 20211108 한별 접근성 추가  E -->
+                        </div>
+                        <table class="submain_list_wrap type00">
+                            <tr class="list case01">
+                                <td class="title">고정지출 <span class="num">30%</span></td>
+                                <td class="content"><a class="link"><span class="num">160,000</span><em class="won">원</em></a></td>
+                            </tr>
+                            <tr class="list case02">
+                                <td class="title">변동지출 <span class="num">30%</span></td>
+                                <td class="content"><a class="link"><span class="num">960,000</span><em class="won">원</em></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--// content E -->
+
+            <script src="../../../@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+        </div>
+        <!--// content-view E -->
+        
+
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

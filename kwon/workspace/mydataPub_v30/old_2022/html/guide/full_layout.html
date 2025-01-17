@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이농가</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript" src="../../static/js/slick.min.js"></script>
+	<script>
+        $(function(){
+        $("#content").scroll(function(){
+            var elem = $("#content");
+            if ( elem.scrollTop() > 0 ){
+                $("#wrap").addClass("fixed");
+            }
+            else{
+                $("#wrap").removeClass("fixed");
+            }
+            })
+        });
+    </script>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="page-area">
+        <div id="view-wrap">
+            <!-- header S -->
+            <header id="header">
+                <h1>마이농가</h1>
+                <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>		
+                <a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+                <a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+            </header> <!-- 홈버튼 헤더 -->
+            <!--// header E -->
+
+            <!-- header S -->
+            <header id="header" style="display: none;">
+                <h1>나의 자산(title 영역)</h1>
+                <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>		
+                <a href="javascript:void(0);" class="btn_close"><span class="blind">화면닫기</span></a>	
+            </header> <!-- 닫기 헤더 -->
+            <!--// header E -->
+
+            <!-- content S -->
+			<div id="content" class="sub_main type_01"> <!-- class="type_01" 일 경우 bg #f2f4f7 -->
+				<div id="slider_01">
+					<div class="sub_main_box">
+						<div class="lnb">
+							<ul class="slick_tab">
+								<li><a href="javascript:void(0);">계좌</a></li>
+								<li><a href="javascript:void(0);">투자</a></li>
+								<li><a href="javascript:void(0);">연금</a></li>
+								<li><a href="javascript:void(0);">보험</a></li>
+								<li><a href="javascript:void(0);">자동차</a></li>
+								<li><a href="javascript:void(0);">기타</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="tab_cont" style="height:2000px;">
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea1
+							</div>
+						</div>
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea2
+							</div>
+						</div>
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea3
+							</div>
+						</div>
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea4
+							</div>
+						</div>
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea5
+							</div>
+						</div>
+						<div role="tabpanel" class="inner cmm-tab-panel">
+							<div>
+								ChartArea6
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--// content E -->
+
+           
+           
+        </div>
+
+        <div class="cmm-layer-area">
+           
+        </div>       
+	</div>
+	<!--// wrap E -->
+
+	<script type="text/javascript">
+        $('#slider_01 .tab_cont').slick({
+            slide : 'div',
+            speed : 100,
+            dots : false,
+            arrows : false,
+            vertical : false,
+            adaptiveHeight: true,
+            infinite: false,
+            asNavFor: '.slick_tab'
+        });
+        $('.slick_tab').slick({
+            slidesToshow:3,
+            slidesToScroll:3,
+            dots: false,
+            arrows : false,
+            focusOnSelect: true,
+            infinite: false,
+            centerMode: false,
+            asNavFor: '#slider_01 .tab_cont',
+            variableWidth: true,
+        });
+    </script>
+</body>
+</html>

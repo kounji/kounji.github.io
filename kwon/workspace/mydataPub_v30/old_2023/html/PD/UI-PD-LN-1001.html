@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box renewal">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>연 소득 입력</h1>
+				<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+			</div>
+			<div class="popup_content com_btn_bottom">
+				<div class="com_input_type01 com_word2">
+					<input type="number" id="com_input01" value="300,000"  required="" placeholder="연 소득을 입력하세요" title="연 소득 입력">
+					<!-- <label for="com_input01">
+						<span class="txt_label_x">연소득</span>
+					</label> -->
+					<div class="del_txt">
+						<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">만원</span>
+					</div>
+					<p class="com_sum">4조 2,345억 6,789만원</p>
+					<div class="btn_price_group">
+						<button type="button" class="btn_price">+<strong>5</strong>만</button>
+						<button type="button" class="btn_price">+<strong>10</strong>만</button>
+						<button type="button" class="btn_price">+<strong>100</strong>만</button>
+						<button type="button" class="btn_price">+<strong>1000</strong>만</button>
+					</div>
+				</div>
+			</div>
+			<div class="popup_footer">
+				<div class="btn_full_box2">
+					<a href="#nolink" role="button" class="btn btn_mint">등록</a>
+				</div>
+			</div>
+			<a href="#nolink" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

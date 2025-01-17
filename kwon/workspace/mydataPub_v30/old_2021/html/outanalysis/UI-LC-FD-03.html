@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>수입 상세내역 | 마이농가</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>수입 상세내역</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+			
+		<div class="popup_content com_bg_type00">
+			<!-- 20210819 한별 UI개선 수정 S -->
+			<div class="top_box_wrapper">
+				<div class="new_top_box type01">
+					<div class="box_head">
+						<div class="info">
+							<div class="title">
+								우리은행<div class="num">424001*******362</div>
+							</div>
+						</div>
+					</div>
+					<div class="box_content">
+						<div class="price">
+							<p class="plan gray">할부 2개월</p>
+							<div class="won"><span class="num counter" data-count="100000">100,000</span><span>원</span>
+							</div>
+							<div class="period">2021.04.12 오후 6시 12분</span></div>
+						</div>
+					</div>             
+				</div>
+			</div>
+
+			<div class="com_inner com_line_type01">
+				<dl class="com_setlist_type02">
+					<dt><strong class="com_pop_tit01">수입에 반영</strong></dt>
+					<dd>
+						<span class="com_btn_switch">
+							<input type="checkbox" id="check02">
+							<label for="check02" aria-hidden="true"><!--  20211108 한별 접근성 추가 (aria-hidden="true") -->
+								<span class="txt">선택</span>
+								<span role="img" class="on">선택</span>
+								<span role="img" class="off">해제</span>
+							</label>
+						</span>
+					</dd>
+				</dl>
+				<dl class="com_setlist_type02">
+					<dt><strong class="com_pop_tit01">지출에 반영</strong></dt>
+					<dd>
+						<span class="com_btn_switch">
+							<input type="checkbox" id="check01">
+							<label for="check01" aria-hidden="true"><!--  20211108 한별 접근성 추가 (aria-hidden="true") -->
+								<span class="txt">선택</span>
+								<span role="img" class="on">선택</span>
+								<span role="img" class="off">해제</span>
+							</label>
+						</span>
+
+					</dd>
+				</dl>
+			</div>
+			
+			<div class="com_inner com_bg_type00 com_inputarea_type07">	
+				<div class="com_btnselectbox_type01">
+					<button type="button" class="com_btnselect_type01 com_iconstar" title="카테고리 선택"><span>카테고리를 선택하세요.</span></button><!--  20211111 한별 접근성 추가 (title="") -->
+				</div>
+				<div class="com_btnselectbox_type01">
+					<span class="com_iconstar"><span class="blind">필수입력</span><em>카테고리</em></span>
+					<button type="button" class="com_btnselect_type01" title="카테고리 선택"><span>카테고리를 선택하세요.</span></button>
+				</div>
+				<div class="com_input_type01 ani-active">
+					<input type="text" id="com_input01" class="" name="" value="" required placeholder="수입 내용을 입력하세요." title="수입 내용을 입력하세요."><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input01"><em><span class="blind">필수입력</span></em><span class="txt_label_x">수입 내용</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+                </div>
+				<div class="com_input_type01 ani-active">
+					<input type="text" id="com_input01" class="" name="" value="" required placeholder="지출 내용을 입력하세요." title="지출 내용을 입력하세요."><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="com_input01"><em><span class="blind">필수입력</span></em><span class="txt_label_x">지출 내용</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+					</div>
+                </div>
+				<div class="com_textarea_type01 ani-active">
+					<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="메모를 입력하세요." title="메모를 입력하세요."></textarea><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="txt00"><span class="txt_label_x">메모</span></label>
+				</div>
+				<div class="com_textarea_type01 ani-active">
+					<textarea name="" id="txt10" class="com_txtarea_type02" cols="10" rows="5" required placeholder="메모를 입력하세요." title="메모를 입력하세요."></textarea><!--  20211111 한별 접근성 추가 (title="") -->
+					<label for="txt10"><span class="txt_label_x">메모</span></label>
+				</div>
+            </div>
+
+			<div class="com_inner com_bg_type00">
+				<div class="com_setlist_type01 ani-active">
+					<strong class="com_pop_tit01 set">설정</strong>	
+					<dl class="com_line">
+						<dt>
+                            <p>마이농가 수입에 추가</p> 
+                            <span>부산물 &gt; 사과</span>
+                        </dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check02">
+								<label for="check02">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>마이농가 수입에 추가</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check02">
+								<label for="check02">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>마이농가 지출에 추가</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check02">
+								<label for="check02">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					
+					<dl>
+						<dt>지출내역에서 숨김</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check05">
+								<label for="check05">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>지출목표에서 제외</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check06">
+								<label for="check06">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>이체→지출내역으로 이동하기</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check07">
+								<label for="check07">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>이체→수입내역으로 이동하기</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check04">
+								<label for="check04">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>마이농가 지출에 추가</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check08">
+								<label for="check08">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>마이농가 지출에 추가</dt>
+						<dd>
+							<span class="com_btn_switch">
+								<input type="checkbox" id="check09">
+								<label for="check09">
+									<span class="txt">선택</span>
+									<span role="img" class="on">선택</span>
+									<span role="img" class="off">해제</span>
+								</label>
+							</span>
+						</dd>
+					</dl>
+				</div>		
+
+			</div>
+			<!--// 20210819 한별 UI개선 수정 E -->
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey">취소</a>
+				<!-- <a href="javascript:void(0);" class="btn btn_grey">삭제</a> 삭제버튼 -->
+				<a href="javascript:void(0);" class="btn btn_mint">저장</a>
+			</div>
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">수입으로 저장</a>
+			</div>
+			<div class="btn_full_box">
+				<a href="javascript:void(0);" class="btn btn_mint">지출로 저장</a>
+			</div>
+		</div>
+		
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

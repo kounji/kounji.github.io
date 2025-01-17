@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>계좌 별 잔액 예상 &lt; 자금흐름진단 &lt; 자산진단 &lt; 자산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript">
+	<!--
+		// 차트
+		//function chart01() {
+			// -----------------------차트 설정 시작-----------------------
+
+			// rMateChart 를 생성합니다.
+			// 파라메터 (순서대로)
+			//  1. 차트의 id ( 임의로 지정하십시오. )
+			//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+			//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+			//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+			//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+			rMateChartH5.create("chart1", "chartHolder", "useContextMenu=false", "100%", "100%");//useContextMenu=false 차트메뉴 숨김
+
+			// 스트링 형식으로 레이아웃 정의.
+			var layoutStr =
+				'<rMateChart backgroundColor="#FFFFFF" borderStyle="none" >'
+					+'<Stroke id="stroke1" color="#eee" weight="1"/>'
+					+'<Stroke id="stroke2" color="#eee" weight="1"/>'
+					+'<Options>'
+						//+'<Caption text="Annual Report"/>'
+						//+'<SubCaption text="" fontSize="11" textAlign="right"/>'
+					+'</Options>'
+					+'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>' 
+					// Area2DChart gutterLeft="0" showDataTips="true" : 왼쪽 라벨 없애는 속성(?)
+					/* displayCompleteCallFunction="removeTabindex" */
+					+'<Line2DChart gutterLeft="0" showDataTips="false" displayCompleteCallFunction="removeTabindex" styleName="axisLabel" dataTipJsFunction="dataTipFunc">'
+						+'<horizontalAxis>'
+							+'<CategoryAxis categoryField="Month" padding="0.5"/>'
+						+'</horizontalAxis>'
+						+'<verticalAxis>'
+							+'<LinearAxis id="vAxis" interval="300" formatter="{numfmt}"/>'
+						+'</verticalAxis>'
+						+'<verticalAxisRenderers>'
+							+'<Axis2DRenderer  axis="{vAxis}"/>'
+						+'</verticalAxisRenderers>'
+						+'<series>'
+							+'<Line2DSeries radius="8" yField="Profit" form="segment" displayName="Profit" itemRenderer="CircleItemRenderer" strokeJsFunction="strokeJsFunc">'
+							/* fillJsFunction : Series의 채우기 Javascript함수로 html에 보내는 데이터값의 범위에 따라 */
+							/* html내의 Javascript함수에서 데이터를 판단하고 데이터값에 맞는 색을 return합니다. */
+								// 속도 문제로 주석처리
+								//+'<showDataEffect>'
+								//	+'<SeriesInterpolate duration="1200" elementOffset="60"/>'
+								//+'</showDataEffect>'
+								/* 컬러값 변경 : 녹색선 + 오피시티 */
+								+'<stroke>'//영역선설정
+									+'<Stroke color="#06b0b2" weight="2"/>'
+								+'</stroke>'
+								+'<lineStroke>'//선설정
+									+'<Stroke color="#06b0b2" weight="2"/>'
+								+'</lineStroke>'
+								+'<fills>'//영역설정
+									//+'<SolidColor color="#06b0b2" alpha="0.3"/>'
+								+'</fills>'
+							+'</Line2DSeries>'
+						+'</series>'
+						+'<horizontalAxis>'
+							+'<CategoryLinearAxis id="hAxis" categoryField="Month"/>'
+							/* Scroll_Column_2D차트를 생성시엔 verticalAxis에 CategoryLinearAxis를 정의해야합니다 */
+						+'</horizontalAxis>'
+						+'<horizontalAxisRenderers>'
+							+'<ScrollableAxisRenderer axis="{hAxis}" visibleItemSize="7"/>'
+							/*
+							Scroll_Column_2D차트를 생성시엔 horizontalAxisRenderers ScrollableAxisRenderer를 정의해야 합니다
+							*/
+						+'</horizontalAxisRenderers>'
+						+'<backgroundElements>'
+						//+'<GridLines/>'
+							+'<AxisMarker>'
+								+'<lines>'//날짜별 배경라인 넣기
+									+'<AxisLine value="08.02" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.03" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.04" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.05" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.06" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.07" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.08" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.09" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.10" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.11" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.12" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.13" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.14" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.15" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.16" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.17" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.18" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.19" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.20" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.21" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.22" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.23" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.24" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.25" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.26" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.27" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.28" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+									+'<AxisLine value="08.29" label="" stroke="{stroke1}" lineStyle="normal" horizontal="false"/>'
+								+'</lines>'
+								//+'<lineStroke>'
+								//	+'<Stroke color="#eee" weight="1"/>'
+								//+'</lineStroke>'
+							+'</AxisMarker>'
+						+'</backgroundElements>'
+						//+'<annotationElements>'
+						//	+'<CrossRangeZoomer enableZooming="false" horizontalLabelFormatter="{numfmt}" horizontalStrokeEnable="false"/>'
+						//+'</annotationElements>'
+					+'</Line2DChart>'
+					+'<Style>'
+						+'.axisLabel{fontSize:1.2rem;color:#999;}'
+						+'.strokeStyle{fontSize:1.2rem;color:#999;}'
+					+'</Style>'
+				+'</rMateChart>';
+
+				// 차트 데이터
+				var chartData = [
+					{"Month":"08.02","Profit":8000},
+					{"Month":"08.03","Profit":9000},
+					{"Month":"08.04","Profit":0},
+					{"Month":"08.05","Profit":1100},
+					{"Month":"08.06","Profit":1000},
+					{"Month":"08.07","Profit":900},
+					{"Month":"08.08","Profit":800},
+					{"Month":"08.09","Profit":700},
+					{"Month":"08.10","Profit":600},
+					{"Month":"08.11","Profit":5000},
+					{"Month":"08.12","Profit":400},
+					{"Month":"08.13","Profit":-3000},
+					{"Month":"08.14","Profit":200},
+					{"Month":"08.15","Profit":100},
+					{"Month":"08.16","Profit":8000},
+					{"Month":"08.17","Profit":9000},
+					{"Month":"08.18","Profit":0},
+					{"Month":"08.19","Profit":1100},
+					{"Month":"08.20","Profit":1000},
+					{"Month":"08.21","Profit":900},
+					{"Month":"08.22","Profit":800},
+					{"Month":"08.23","Profit":700},
+					{"Month":"08.24","Profit":600},
+					{"Month":"08.25","Profit":5000},
+					{"Month":"08.26","Profit":400},
+					{"Month":"08.27","Profit":-3000},
+					{"Month":"08.28","Profit":200},
+					{"Month":"08.29","Profit":100}
+				];
+				rMateChartH5.calls("chart1", {
+					"setLayout" : layoutStr,
+					"setData" : chartData
+				});
+		//}
+
+		//dataTipFunc(null, "Profit", 4, "", "", {"Month":"08.02","Profit":8000}, [8.02,8000]); //초기 팝업
+
+		function removeTabindex(seriesId){
+			$('#'+seriesId).find('div').removeAttr('tabindex');
+		};
+
+		function dataTipFunc(seriesId, seriesName, index, xName, yName, data, values) {
+			//console.log('dataTipFunc === '+seriesId, seriesName, index, xName, yName, data, values);
+			return "<div class='postPop'>"
+				+"<span class='day'>" + getDay(data) + "</span>"
+				//+"<span>" + values[0] + "</span>"
+				+"<span class='won'>" + getWon(data) + "원</span>"
+				+"</div>";
+		}
+		
+		//날짜처리
+		function getDay(values) {
+			//console.log('getDay === '+values["Month"]);
+			var won = values["Profit"];
+			var wons = won.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+			var days = values["Month"].split('.');
+			days = parseInt(days[0])+"월 "+parseInt(days[1])+"일";
+			//console.log(days);
+			jQuery('.post_popup, .postPop').fadeOut(500);//안내 팝업, 첫번째 값 숨기기
+			if(won < 0){
+				jQuery('.char_box01.chartArea').addClass('noAmt');
+				jQuery('.list_gray_box .amt').text(wons+'원');
+				jQuery('.list_gray_box .txt em').text(days);
+			}else{
+				jQuery('.char_box01.chartArea').removeClass('noAmt');
+				jQuery('.list_gray_box .amt').text(wons+'원');
+				jQuery('.list_gray_box .txt em').text(days);
+			}
+			return days;
+		}
+		
+		//금액처리
+		function getWon(values) {
+			//console.log('getWon === '+values["Month"]);
+			var won = values["Profit"];
+			return won.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+		}
+
+		//예산잔액이 마이너스인 경우
+		function strokeJsFunc(seriesId, index, data, values) {
+			//console.log('strokeJsFunc === '+seriesId, index, data, values);
+			if(values[1] < 0)
+				return {"color":"#ea4956", "weight":3};
+			else
+				return {"color":"#06b0b2", "weight":2};
+		}
+
+	//-->
+	</script>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>계좌 별 잔액 예상</h1>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner assetCheck">
+				<div class="com_box_type01 custom_box_com_box_list02">
+					<div class="list_type_custom">
+						<a href="#nolink" role="button" class="list_item arrow">
+							<span>
+								<span class="tit">콕BASIC통장</span>
+								<span class="subtxt">농협중앙회</span><span class="num">5317020184123</span>
+								<span class="accountNum">계좌잔액 <b>123,456,789원</b></span>
+							</span>
+						</a>
+					</div>
+				</div>
+				<div class="char_box01 chartArea">
+					<div id="chartHolder" role="img" aria-label="30일 후 계좌 잔액 예상 정보를 안내합니다."></div><!-- 1004 접근성 반영 -->
+					<!-- 시작일 값 표시 첫 클릭 후 사라짐 jlee 08/28 추가 -->
+					<div class="postPop top" style="top:25%;"><!-- 첫번째 값에 따라서 top을 10% ~ 50%로 넣어 주세요. -->
+						<span class="day">8월 2일</span>
+						<span class="won">8,000원</span>
+					</div>
+					<!--// 시작일 값 표시 -->
+					<div class="post_popup">
+						<div class="com_arrow_box">
+							<span class="arrow"></span>
+						</div>
+						<div class="com_content_box">
+							<div>날짜를 선택해 잔액을 확인하세요</div>
+						</div>
+					</div>
+				</div>
+				<div class="list_gray_box"><!-- 잔액이 0인 경우 .noAmt추가 -->
+					<dl>
+						<dd class="txt"><em>8월 02일</em> 예상 잔액</dd><!-- 첫째날 데이터를 넣어주세요. -->
+						<dt class="amt">8,000원</dt>
+					</dl>
+				</div>
+				<!-- 예상지출 -->
+				<p class="accountTit">남은 예상지출</p>
+				<div class="custom_box_com_box_list02 noBoard">
+					<div class="custom_com_box">
+						<div class="df">
+							<p>
+								<strong class="txttotal">삼성화재해상보험㈜</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df">
+							<p>
+								<strong class="txttotal">넷플릭스</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+						<div class="df">
+							<p>
+								<strong class="txttotal">40주년 페스타적금</strong>
+								<span class="num">08.02</span>
+							</p>
+							<strong class="com_mumbertotal">
+								<span class="num">-160,000</span>
+								<span class="unit">원</span>
+							</strong>
+						</div>
+					</div>
+				</div>
+				<!--// 예상지출 -->
+
+				<!-- 예상 지출이 없는 날 이에요 -->
+				<div class="no_data_box">
+					<div class="no_data_list">
+						<p>예상 지출이 없는 날 이예요</p>
+						<span class="txt_sub">추가할 정기지출이 더 있지 않나요?</span>
+						<div class="btn_wrap">
+							<a href="#nolink" role="button" class="small_btn_gray">계좌연결</a>
+						</div>
+					</div>
+				</div>
+				<!--// 예상 지출이 없는 날 이에요 -->
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

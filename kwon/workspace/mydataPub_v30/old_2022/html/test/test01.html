@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산 | 증권 | 증권보유상세</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script type="text/javascript">
+
+		// -----------------------차트 설정 시작-----------------------
+		
+		// rMateChart 를 생성합니다.
+		// 파라메터 (순서대로)
+		//  1. 차트의 id ( 임의로 지정하십시오. )
+		//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+		//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+		//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+		//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+		rMateChartH5.create("chart1", "chartHolder", "", "100%", "180rem"); 
+		rMateChartH5.create("chart2", "chartHolder2", "", "100%", "220rem"); 
+		// 스트링 형식으로 레이아웃 정의.
+		var layoutStr =
+             '<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+                   +'<Options>'
+                      +'<Caption text="Monthly Sales w/ Total"/>'
+                       +'<SubCaption text="( $M )" textAlign="right" />'
+                     +'<Legend />'
+                 +'</Options>'
+                 +'<NumberFormatter id="numfmt" />'
+                    +'<Combination2DChart gutterLeft="0" >'
+                       +'<horizontalAxis>'
+                           +'<CategoryAxis categoryField="Month" padding="0.5"/>'
+                        +'</horizontalAxis>'
+               //       +'<verticalAxis>'
+               //          +'<LinearAxis formatter="{numfmt}"/>'
+               //      +'</verticalAxis>'
+                        +'<series>'
+                           +'<Area2DSeries yField="phone" >'
+                             +'<showDataEffect>'
+                                   +'<SeriesInterpolate/>'
+                               +'</showDataEffect>'
+                          +'</Area2DSeries>'
+                            +'<Area2DSeries yField="tv" >'
+                                +'<showDataEffect>'
+                                   +'<SeriesInterpolate/>'
+                               +'</showDataEffect>'
+                          +'</Area2DSeries>'                          
+                        
+                        +'</series>'
+                  +'</Combination2DChart>'
+              +'</rMateChart>';
+			var layoutStr2 =
+			'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+                   +'<Options>'
+                      +'<Caption text="Monthly Sales w/ Total"/>'
+                       +'<SubCaption text="( $M )" textAlign="right" />'
+                     +'<Legend />'
+                 +'</Options>'
+                 +'<NumberFormatter id="numfmt" useThousandsSeparator="true"/>'
+                    +'<Combination2DChart showDataTips="true">'
+                       +'<horizontalAxis>'
+                           +'<CategoryAxis categoryField="Month" padding="0.5"/>'
+                        +'</horizontalAxis>'
+                      +'<verticalAxis>'
+                         +'<LinearAxis formatter="{numfmt}"/>'
+                     +'</verticalAxis>'
+                        +'<series>'
+                  
+                            +'<Area2DSeries yField="tv" displayName="TV">'
+                                +'<showDataEffect>'
+                                   +'<SeriesInterpolate/>'
+                               +'</showDataEffect>'
+                          +'</Area2DSeries>'
+                            +'<Area2DSeries yField="tablet" displayName="Tablet">'
+                                +'<showDataEffect>'
+                                   +'<SeriesInterpolate/>'
+                               +'</showDataEffect>'
+                          +'</Area2DSeries>'
+                            
+                        +'</series>'
+                  +'</Combination2DChart>'
+              +'</rMateChart>';		
+		// 차트 데이터
+// 차트 데이터
+			var chartData =
+[{"Month":"","phone":510,"tv":320,"tablet":180,"total":1010},
+{"Month":"","phone":440,"tv":600,"tablet":240,"total":1280},
+{"Month":"","phone":110,"tv":430,"tablet":180,"total":720},
+{"Month":"","phone":190,"tv":330,"tablet":260,"total":780},
+{"Month":"","phone":140,"tv":500,"tablet":220,"total":860},
+{"Month":"","phone":400,"tv":680,"tablet":360,"total":1440}];
+		// rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+		//
+		// argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+		// argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+		// 
+		// 아래 내용은 
+		// 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+		// 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+		rMateChartH5.calls("chart1", {
+			"setLayout" : layoutStr,
+			"setData" : chartData
+		});
+		rMateChartH5.calls("chart2", {
+			"setLayout" : layoutStr2,
+			"setData" : chartData
+		});
+		/**
+		 * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+		 * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+		 *
+		 * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * -------------------------------------------------
+		 *
+		 * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+		 */
+		rMateChartH5.registerTheme(rMateChartH5.themes);		
+		/**
+		 * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+		 * 접근하는 차트 객체의 테마를 변경합니다.
+		 * 파라메터로 넘어오는 값
+		 * - simple
+		 * - cyber
+		 * - modern
+		 * - lovely
+		 * - pastel
+		 * - default
+		 *
+		 * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+		 */
+		function rMateChartH5ChangeTheme(theme){
+			document.getElementById("chart1").setTheme(theme);
+		}		
+		// -----------------------차트 설정 끝 -----------------------		
+		</script>
+</head>
+<style>
+.border_box {
+    border-radius: 1.2rem;
+    border: 0.1rem solid #e2e2e2;
+    background-color: #fff;
+	box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 25, 28, 0.08);
+	padding: 2rem;
+	height:28rem
+}
+.slick-dots li.slick-active{width: 10rem;height: 10rem}
+#slick-slide-control00{width:10rem !important;height:10rem !important;}
+#slick-slide-control01{width:10rem !important;height:10rem !important;}
+</style>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">증권</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>	
+		<div class="popup_content com_no_bottom pt0"><!-- 하단 버튼 없을때 com_no_bottom -->					
+			<div class="com_inner">		
+				<!-- //2022-07-04 마크업 변경 -->
+				<div class="house_slide slide slick_refresh">
+					<div class="item border_box">
+						<p class="chart_sub_txt">[단위: 만원]</p><!-- 2022-07-11 추가 -->
+						<div id="chartHolder2" aria-label=""></div>
+					</div>
+					<div class="item border_box">
+						<div style="width: 80px;">
+							<p class="chart_sub_txt">[단위: 만원]</p><!-- 2022-07-11 추가 -->
+							<div id="chartHolder" aria-label=""></div>
+						</div>
+		
+					</div>
+				</div>
+	
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

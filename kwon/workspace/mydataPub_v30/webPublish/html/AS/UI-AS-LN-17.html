@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>청구 상세 | 나의자산</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+    <div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제--> 
+		<div class="popup_header">    
+			<h1>청구 상세</h1>			
+		</div>
+        <div class="popup_content com_no_bottom list_top_info_area com_bg_type00"><!-- 20210701 한별 com_space_bottom list_top_info_area 수정 mtm10클래스 삭제  -->
+            <div class="com_inner">
+                <div class="select_date">
+                    <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 S -->
+                    <button class="cal_btn cal_prev" aria-label="한달 전 이동"></button>
+                    <a title="년월선택" class="year_month" href="javascript:console.log('월');"><span class="num">2021</span>년 <span class="num">4</span>월 </a>
+                    <button class="cal_btn cal_next disabled" aria-label="한달 후 이동"></button>
+                    <!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 E -->
+                </div>
+            </div>
+            <div class="com_inner">
+				<div class="top_info_box_wrap">
+					<div class="top_info_box type02 hasdetail new_top_box fixBG">
+                        <button class="btn_cardselect">
+                            <div class="box_head">
+                                <div class="info">
+                                    <div class="title">
+                                        현대카드 전체
+                                    </div>
+                                </div>                                
+                            </div>
+                        </button>
+                        <div class="mt45">
+							<span class="icon_mint">확정</span>
+						</div>
+                        <div class="card_area">
+                            <div class="bill align mb10">
+                                <span class="num counter" data-count="850000">850,000</span><span class="text fs25">원</span>
+                            </div>
+                            <i class="D1AAAF0000"><span class="blind">신한카드</span></i>
+                        </div>
+                        <div class="txt_card">
+							<div class="title">결제일 2020.10.10</div>
+						</div>					
+						<div class="box_toggle_wrap">
+							<div class="box_toggle">
+								<div class="toggle-box">
+									<div class="active hold border pb0"><!-- 20211022 한별 pb0 클래스 추가 -->									
+										<div class="view-box">
+											<div class="info">
+												<div class="title">일시불 (3건)</div>
+												<div class="num">750,000원</div>
+											</div>
+											<div class="info">
+												<div class="title">할부 (1건)</div>
+												<div class="num">100,000원</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+						</div>  
+					</div>
+				</div>
+			</div>  <!-- 카드번호 미노출시 -->         
+            <div class="com_inner">
+				<div class="top_info_box_wrap">
+					<div class="top_info_box type02 hasdetail new_top_box fixBG">
+                        <button class="btn_cardselect">
+                            <div class="box_head">
+                                <div class="info">
+                                    <div class="title">
+                                        Hyundai M Edition
+                                        <div class="num">3565-1234-1234-4005</div>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </button>
+                        <div class="mt20">
+							<span class="icon_mint">확정</span>
+						</div>
+                        <div class="card_area">
+                            <div class="bill align mb10">
+                                <span class="num counter" data-count="850000">850,000</span><span class="text fs25">원</span>
+                            </div>
+                            <i class="D1AAAF0000"><span class="blind">신한카드</span></i>
+                        </div>
+                        <div class="txt_card">
+							<div class="title">결제일 2020.10.10</div>
+						</div>					
+						<div class="box_toggle_wrap">
+							<div class="box_toggle">
+								<div class="toggle-box">
+									<div class="active hold border pb0"><!-- 20211022 한별 pb0 클래스 추가 -->									
+										<div class="view-box">
+											<div class="info">
+												<div class="title">일시불 (3건)</div>
+												<div class="num">750,000원</div>
+											</div>
+											<div class="info">
+												<div class="title">할부 (1건)</div>
+												<div class="num">100,000원</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> 
+						</div>  
+					</div>
+				</div>
+			</div>  <!-- 카드번호 노출시 -->   
+           
+            <!-- 20210712 한별 수정 S -->
+            <ul class="list_more_box">
+                <li>
+                    <div class="com_inner">
+                        <div class="new_tit_area">
+                            <div class="tit"><span>총</span><em>4</em><span>건</span></div>
+                        </div>
+                        <!-- 20211213 한별 리스트수정 S -->
+                        <ul class="list_type_02">
+                            <li>
+                                <a href="#nolink">
+                                    <dl>
+                                        <dt>
+                                            <span><span>21.04.10</span><em>할부</em><span>(0/3)</span></span>
+                                            <div><em>한라산도새기</em></div>
+                                            <em>Hyundai M Edition</em>
+                                        </dt>
+                                        <dd>
+                                            <span class="com_price">
+                                                <em class="num">10,000</em><em class="unit">원</em>
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </a>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>
+                                        <span><span>21.04.10</span></span>
+                                        <div><em>AMAZON.COM</em></div>
+                                        <em>Hyundai M Edition</em>
+                                    </dt>
+                                    <dd>
+                                        <span class="com_price">
+                                            <em class="num">10,000</em><em class="unit">원</em>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>
+                                        <span><span>21.04.10</span></span>
+                                        <div><em>현금서비스(2.5%)</em></div>
+                                        <em>Hyundai M Edition</em>
+                                    </dt>
+                                    <dd>
+                                        <span class="com_price">
+                                            <em class="num">40,000</em><em class="unit">원</em>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>
+                                        <span><span>21.04.10</span></span>
+                                        <div><em>**론(2.5%)</em></div>
+                                        <em>Hyundai M Edition</em>
+                                    </dt>
+                                    <dd>
+                                        <!-- 20210806 한별 수정 S -->
+                                        <span class="com_price">
+                                            <em class="num">40,000</em><em class="unit">원</em>
+                                        </span>
+                                        <span class="com_price">
+                                            <span class="com_point_darkblue">거치식원리금균등상환</span>
+                                        </span>
+                                        <!-- //20210806 한별 수정 E -->
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>
+                                        <span><span>21.04.10</span></span>
+                                        <div><em>리볼빙</em></div>
+                                        <em>Hyundai M Edition</em>
+                                    </dt>
+                                    <dd>
+                                        <span class="com_price">
+                                            <em class="num">40,000</em><em class="unit">원</em>
+                                        </span>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                        <!--// 20211213 한별 리스트수정 E -->
+                    </div>
+                    <div class="com_space_type01"></div>
+                </li>
+            </ul>
+            <div class="com_inner">
+                <div class="com_btn_area02"><a href="#nolink" class="com_btn_more"><span>더보기</span></a></div>
+            </div>
+            <!--// 20210712 한별 수정 E -->
+
+            <!-- 20210712 한별 추가 S -->
+			<!-- 조회내역이 없을경우 S -->
+			<div class="no_data_box">
+				<div class="no_data_list">
+					<p>조회된 정보가 없습니다.</p>
+				</div>
+			</div>
+			<!--// 조회내역이 없을경우 E -->
+			<!--// 20210712 한별 추가 E -->
+            <!--// 20210712 한별 수정 E -->
+        </div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E --> 
+</body>
+</html> 

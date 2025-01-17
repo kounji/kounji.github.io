@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>만료 기관 관리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>만료 기관 관리</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+			<div class="com_top_type01">
+				<div class="com_tabmenu_type03 custom_tab">
+					<ul role="tablist">
+						<li role="presentation" aria-controls="tab_01"><a href="javascript:void(0);" role="tab"><span>만료 예정 기관</span></a></li>
+						<li class="on" role="presentation" aria-controls="tab_02"><a href="javascript:void(0);" role="tab"><span>만료/해제 기관</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div role="tabpanel" id="tab_02" class="cmm-tab-panel on">
+				<div class="ipt_wrap mb24">
+					<input type="checkbox" id="che-1">
+					<label for="che-1" class="new_tit_area not_border">
+						<div class="state">
+							<span class="on">전체선택</span>
+							<!-- <span class="off">선택해제</span> -->
+						</div>
+					</label>
+				</div>
+				<div class="com_box_type01 custom_list">
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checc1-01">
+								<label for="checc1-01" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국민은행</strong>
+										<p class="ipt_p_txt">
+											만료/해제일 <em>2022.05.15</em>
+										</p>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<div class="com_box_type01 custom_list">
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checc1-01">
+								<label for="checc1-01" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국민은행</strong>
+										<p class="ipt_p_txt">
+											만료/해제일 <em>2022.05.15</em>
+										</p>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+				<ul class="bl_dot_list">
+					<li>만료 또는 해제된 기관의 개인신용정보는 만료/해제일로부터 5년간 보존 됩니다.</li>
+				</ul>
+			</div>
+		</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="com_btnhalfbox_type02">
+					<a href="javascript:void(0);" class="btn btn_mint_gray">2개 삭제</a>
+					<a href="javascript:void(0);" class="btn btn_mint">2개 재연결</a>
+				</div>
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

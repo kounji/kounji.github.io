@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>지출 카테고리 설정</h1>          
+			</div>
+			<div class="popup_content">
+				<div class="com_txt_type01">
+					<ul class="com_slide_check_type03">
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_20">
+								<label for="category_20">
+									<i class="SZ20000001"><span class="blind">종자·종묘비</span></i>
+									<span>종자·종묘비</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_21">
+								<label for="category_21">
+									<i class="SZ20000002"><span class="blind">비료비</span></i>
+									<span>비료비</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_22">
+								<label for="category_22">
+									<i class="SZ20000003"><span class="blind">농약비</span></i>
+									<span>농약비</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_23">
+								<label for="category_23">
+									<i class="SZ20000004"><span class="blind">사료비</span></i>
+									<span>사료비</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_24">
+								<label for="category_24">
+									<i class="SZ20000005"><span class="blind">진료(약품비)</span></i>
+									<span>진료(약품비)</span>
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_25">
+								<label for="category_25">
+									<i class="SZ20000006"><span class="blind">수도/광열비</span></i>
+									<span>수도/광열비</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_26">
+								<label for="category_26">
+									<i class="SZ20000007"><span class="blind">기타재료비</span></i>
+									<span>기타재료비</span>	
+								</label>	
+							</div>	
+						</li>
+						<!-- <li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_27">
+								<label for="category_27">
+									<i class="category_27"><span class="blind">상각비</span></i>
+									<span>상각비</span>	
+								</label>	
+							</div>	
+						</li> -->
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_28">
+								<label for="category_28">
+									<i class="SZ20000009"><span class="blind">유지비</span></i>
+									<span>유지비</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_29">
+								<label for="category_29">
+									<i class="SZ20000010"><span class="blind">임차료</span></i>
+									<span>임차료</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_30">
+								<label for="category_30">
+									<i class="SZ20000011"><span class="blind">위탁영농비</span></i>
+									<span>위탁영농비</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_31">
+								<label for="category_31">
+									<i class="SZ20000012"><span class="blind">노동비</span></i>
+									<span>노동비</span>	
+								</label>	
+							</div>	
+						</li>
+						<li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_32">
+								<label for="category_32">
+									<i class="SZ20000013"><span class="blind">기타</span></i>
+									<span>기타</span>	
+								</label>	
+							</div>	
+						</li>
+						<!-- <li>
+							<div class="btn_chk">
+								<input type="radio" name="category" id="category_33">
+								<label for="category_33">
+									<i class="category_33"><span class="blind">자가노동비</span></i>
+									<span>자가노동비</span>	
+								</label>	
+							</div>	
+						</li> -->
+					</ul>
+				</div>
+			</div>
+			
+			<a href="#nolink" class="btn_close"><span class="">취소</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

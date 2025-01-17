@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>마이농가 서브메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<!-- 20210630 한별 서브메인 스크롤 인터랙션 추가 클래스는 'sticky-scroll' --->
+	<div id="wrap" class="sticky-scroll">
+        <div id="view-wrap">
+            <!-- header S -->
+            <header id="header">
+                <h1>마이농가</h1>		
+                <a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+                <a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+            </header> <!-- 홈버튼 헤더 -->
+            <!--// header E -->
+
+			<!-- content-view S -->
+			<div class="content-view">
+				<!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+				<div class="com_tabmenu_type02">
+					<div>
+						<ul role="tablist">
+							<li><a href="javascript:void(0);">영농달력</a></li>
+							<li><a href="javascript:void(0);">영농일지</a></li>
+							<li class="on"><a href="javascript:void(0);">농기계임대</a></li>
+							<li><a href="javascript:void(0);">손익분석</a></li>
+							<li><a href="javascript:void(0);">정책자금</a></li>
+							<li><a href="javascript:void(0);">조합원</a></li>
+							<li><a href="javascript:void(0);">설정</a></li>
+						</ul>
+					</div>
+				</div>
+				<!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+			
+				<!-- content S -->
+				<div id="content" class="com_sub_type02">
+					<div class="com_submainbox_type05 com_submainbox_type05-01 com_line_type01">
+						<p class="txt_submaincont_type01"><strong>홍길동님</strong>을 위한<br><strong>농기계 구입 자금 마련</strong>을<br>도와드려요.</p>
+					</div>
+					<div class="com_inner com_bg_type00">
+						<div class="top_info_box_wrap new_mb40">
+							<div class="top_info_box type02 hasdetail new_top_box noBG">
+								<div class="box_head">
+									<div class="info">
+										<div class="title">
+											농기계 자금
+										</div>
+									</div>
+									<button class="restore">
+										초기화
+									</button>
+								</div>
+								<!--설정 / 재설정일 떄 UI가 다름.
+									설정 : setting_big_btn 재설정 : restore_big_btn-->
+								<div class="btn_half_box2 mt20 restore_wrap">
+									<!------------농기계 자금 맞춤 설정일 경우----------->
+									<a href="javascript:void(0);" class="btn full setting_big_btn">농기계 자금 맞춤 설정</a>
+									<!------------농기계 자금 맞춤 설정일 경우----------->
+									<!------------농기계 자금 맞춤 재설정일 경우--------->
+										<!-- <a href="javascript:void(0);" class="btn full restore_big_btn">농기계 자금 맞춤 재설정</a> -->
+									<!------------농기계 자금 맞춤 재설정일 경우--------->
+								</div>
+								<div class="box_toggle_wrap restore_list_wrap">
+									<div class="box_toggle">
+										<div class="toggle-box">
+											<div data-ui-toggle="box">									
+												<div class="view-box">
+													<div class="info">
+														<div class="title">농기계 기종</div>
+														<div class="text">결손기 · 굴삭기</div>
+													</div>
+													<div class="info">
+														<div class="title">대출한도</div>
+														<div class="text">설정 없음</div>
+													</div>
+													<div class="info">
+														<div class="title">업체</div>
+														<div class="text">대동공업㈜ · 대양이앤브이 · (유)동양실업</div>
+													</div>
+												</div>
+												<button type="button" class="view-btn" aria-expanded="false">
+													<!-- <em class="open">열기</em><em class="close">닫기</em> 20211108 한별 접근성 삭제 -->
+												</button>
+											</div>
+										</div>
+									</div> 
+								</div>  
+							</div>
+						</div>
+					</div>
+					<div class="com_inner">
+						<!-- 20211108 한별 접근성 role="button" 추가 S --> 
+						<div class="com_total_type04">	
+							<span class="txt_total left">총<em>10</em>건</span>
+							<a href="javascript:void(0);" role="button" class="com_btn_txtlimit"><span>높은한도순</span></a>
+						</div>
+						<div class="com_box_type01 com_box_list">
+							<a href="javascript:void(0);" role="button">
+								<div class="new_tit_area">
+									<div class="tit"><span class="icon_mint">수확기</span><span>보향동력경운기</span></div>
+								</div>
+							</a>
+							<ul class="bl_dot_list">
+								<li>
+									<dl>
+										<dt>업체</dt>
+										<dd>대동공업(주)</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>상품코드</dt>
+										<dd class="roboto">210034761033</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>형식명</dt>
+										<dd class="roboto">CS240H</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>규격</dt>
+										<dd class="roboto">24(18kw)</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+						<div class="com_box_type01 com_box_list">
+							<a href="javascript:void(0);" role="button">
+								<div class="new_tit_area">
+									<div class="tit"><span class="icon_mint">쟁기</span><span>보향동력경운기</span></div>
+								</div>
+							</a>
+							<ul class="bl_dot_list">
+								<li>
+									<dl>
+										<dt>업체</dt>
+										<dd>대동공업(주)</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>상품코드</dt>
+										<dd class="roboto">210034761033</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>형식명</dt>
+										<dd class="roboto">CS240H</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>규격</dt>
+										<dd class="roboto">24(18kw)</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+						<div class="com_box_type01 com_box_list">
+							<a href="javascript:void(0);" role="button">
+								<div class="new_tit_area">
+									<div class="tit"><span class="icon_mint">삼토파쇄기</span><span>성우심토파쇄기</span></div>
+								</div>
+							</a>
+							<ul class="bl_dot_list">
+								<li>
+									<dl>
+										<dt>업체</dt>
+										<dd>대동공업(주)</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>상품코드</dt>
+										<dd class="roboto">210034761033</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>형식명</dt>
+										<dd class="roboto">CS240H</dd>
+									</dl>
+								</li>
+								<li>
+									<dl>
+										<dt>규격</dt>
+										<dd class="roboto">24(18kw)</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+						<!--// 20211108 한별 접근성 role="button" 추가 E -->
+					</div>
+					<div class="com_inner">
+						<!-- 20211108 한별 접근성 role="button" 추가 S -->   
+						<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more"><span>더보기</span></a></div>
+						<!--// 20211108 한별 접근성 role="button" 추가 E -->
+					</div>
+				</div>
+				<!--// content E -->
+				
+				<script src="../../worklist/@pub_include/footer.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+				
+			</div>
+			<!--// content-view E -->
+			 
+        </div>   
+	</div>
+	<!--// wrap E -->
+	<script>
+		$(document).on('click' , '.btn_close', function(){
+			$(this).parents('.cal_pop_info_wrap').css('display','none');
+		});
+	</script>
+</body>
+</html>

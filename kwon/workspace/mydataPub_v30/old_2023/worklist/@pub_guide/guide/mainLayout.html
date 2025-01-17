@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>main layout</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../@pub_include/head_guide.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header -->
+		<header id="header">
+			<h1>자산</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>
+			<div class="header_option">
+				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
+				<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			</div>
+		</header>
+		<!--// header -->
+		<div class="content-view hasLNB">
+			<!-- 서브메뉴 -->
+			<div class="com_tabmenu_type01 menunum04">
+				<ul role="tablist">
+					<li><a href="javascript:void(0);">전체</a></li>
+					<li class="on"><a href="javascript:void(0);">자산</a></li>
+					<li><a href="javascript:void(0);">부채</a></li>
+					<li><a href="javascript:void(0);">진단</a></li>
+				</ul>
+			</div>
+			<div class="lnb">
+				<div class="lnb_inner">
+					<ul role="tablist">
+						<li class="on"><a href="javascript:void(0);">예금</a></li>
+						<li><a href="javascript:void(0);">투자</a></li>
+						<li><a href="javascript:void(0);">선불</a></li>
+						<li><a href="javascript:void(0);">보험</a></li>
+						<li><a href="javascript:void(0);">부동산</a></li>
+						<li><a href="javascript:void(0);">자동차</a></li>
+						<li><a href="javascript:void(0);">기타</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- //서브메뉴 -->
+			<div id="content" class="renewal">
+				<div class="custom_no_data">
+					<div class="no_data_box">
+						<div class="no_data_list">
+								<p>조회된 정보가 없습니다.</p>
+						</div>
+					</div>
+					<div class="new_add_register"><a href="javascript:void(0);" role="button"><span>더 연결할 자산이 있으신가요?</span></a></div>
+				</div>
+			</div>
+			<script src="../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+	</div>
+</body>
+</html>

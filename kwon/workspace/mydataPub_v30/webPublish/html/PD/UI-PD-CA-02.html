@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자동차 정보 | 금융과생활 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+    <script>
+		// -----------------------차트 설정 시작-----------------------
+ 
+// rMateChart 를 생성합니다.
+// 파라메터 (순서대로)
+//  1. 차트의 id ( 임의로 지정하십시오. )
+//  2. 차트가 위치할 div 의 id (즉, 차트의 부모 div 의 id 입니다.)
+//  3. 차트 생성 시 필요한 환경 변수들의 묶음인 chartVars
+//  4. 차트의 가로 사이즈 (생략 가능, 생략 시 100%)
+//  5. 차트의 세로 사이즈 (생략 가능, 생략 시 100%)
+rMateChartH5.create("chart1", "chartHolder", "", "100%", "200rem");
+ 
+var layoutStr =
+				'<rMateChart backgroundColor="#FFFFFF" borderStyle="none">'
+					+'<Options>'
+                      +'<Caption text="Annual Report"/>'
+                        +'<SubCaption text="[단위: 만원]" fontSize="12" textAlign="right" color="#111"/>'
+                 +'</Options>'
+					+'<Line2DChart showDataTips="true">'
+						+'<horizontalAxis>'
+							+'<CategoryAxis categoryField="Month"/>'
+						+'</horizontalAxis>'
+						+'<verticalAxis >'
+							+'<LinearAxis maximum="6000" id="vAxis" interval="500"/>'
+						+'</verticalAxis>'
+                        +'<verticalAxisRenderers>'
+                            +'<Axis3DRenderer axis="{vAxis}" visible="true"/>'
+                           /* visible속성을 false로 하여 Chart에서는 보이지 않게 합니다 */
+                      +'</verticalAxisRenderers>'
+						+'<series>'
+							+'<Line2DSeries yField="Vancouver" displayName="Vancouver" itemRenderer="CircleItemRenderer" radius="6"  labelPosition="outside" >'
+								+'<showDataEffect>'
+									+'<SeriesInterpolate/>'
+								+'</showDataEffect>'
+								+'<lineStroke>'
+									+'<Stroke color="#23a0a5" weight="2.5"/>'
+								+'</lineStroke>'
+								+'<stroke>'
+									+'<Stroke color="#23a0a5" weight="3"/>'
+								+'</stroke>'
+								+'<fill>'
+									+'<SolidColor color="#fff"/>'
+								+'</fill>'
+							+'</Line2DSeries>'
+						+'</series>'
+						/*
+						차트 배경에 이미지를 넣을 경우에는 backgroundElements와 annotationElements 중 하나를 정의합니다
+						backgroundElements는 그래프가 뿌려진 레이어를 기준으로 뒷면을 의미하고
+						annotationElements는 그래프가 뿌려진 레이어를 기준으로 앞면을 의미합니다
+						*/
+						// +'<backgroundElements>'
+						// 	+'<CanvasImage source="../rMateChartH5/Assets/Images/chart_background.jpg" maintainAspectRatio="false" alpha="1"/>'
+						// 	/*
+						// 		Image의 속성으로는
+						// 		source : 실제 이미지가 있는 URL경로입니다
+						// 		maintainAspectRation : 이미지 원본 비율을 유지할지를 나타냅니다
+						// 						True면 고유비율을 유지하려 하고
+						// 						False면 차트 크기에 맞춘 사이즈를 갖습니다
+						// 		alpha : 이미지의 투명도를 나타 냅니다
+						// 	*/
+						// +'</backgroundElements>'
+					+'</Line2DChart>'
+				+'</rMateChart>';
+
+// 차트 데이터
+var chartData = [{"Month":"현재","Vancouver":5659},
+	{"Month":"1년","Vancouver":5557},
+	{"Month":"2년","Vancouver":5168},
+	{"Month":"3년","Vancouver":4552}
+	];
+ // rMateChartH5.calls 함수를 이용하여 차트의 준비가 끝나면 실행할 함수를 등록합니다.
+ //
+ // argument 1 - rMateChartH5.create시 설정한 차트 객체 아이디 값
+ // argument 2 - 차트준비가 완료되면 실행할 함수 명(key)과 설정될 전달인자 값(value)
+ // 
+ // 아래 내용은 
+ // 1. 차트 준비가 완료되면 첫 전달인자 값을 가진 차트 객체에 접근하여
+ // 2. 두 번째 전달인자 값의 key 명으로 정의된 함수에 value값을 전달인자로 설정하여 실행합니다.
+ rMateChartH5.calls("chart1", {
+	"setLayout" : layoutStr,
+	 "setData" : chartData
+ });
+  
+ /*
+ // ------------------------- 데이터팁 사용자 정의 함수 -----------------------------------------------------
+ // 챠트에서 showDataTips="true" 설정 후 마우스 오버 시 보이는 데이터팁 정의
+ // layout XML 에서 Chart 속성을 넣을때 dataTipJsFunction를 주고, 만든 javascript 함수명을 넣어줍니다
+ // 예) <Column3DChart showDataTips="true" dataTipJsFunction="dataTipFunc">
+ //
+ // 파라메터 설명
+ // seriesId : layout XML에서 부여한 series의 id가 있을 경우, 해당 id를 보내줍니다.
+ // seriesName : 시리즈의 displayName 으로 정의한 시리즈 이름을 보내줍니다.
+ // index : 해당 아이템의 인덱스.
+ // xName : X 축에 displayName 을 정의하였다면 X축의 displayName을 보내줍니다.
+ // yName : Y 축에 displayName 을 정의하였다면 Y축의 displayName을 보내줍니다.
+ // data : 해당 item의 값을 표현하기 위해 입력된 data(입력된 데이타중 해당 row(레코드) 자료입니다)
+ // values : 해당 item의 값 (배열로 전달되며, 차트 종류에 따라 아래와 같이 들어옵니다.)
+			 Bar2D(3D)Series     0:x축값 1:y축값
+			 Column2D(3D)Series  0:x축값 1:y축값
+			 Area2DSeries    0:x축값 1:y축값
+			 Bubble3DSeries  0:x축값 1:y축값 2:radius값
+			 Line2DSeries    0:x축값 1:y축값
+			 Pie2D(3D)Series     0:값 1:퍼센트값 2:nameFiled명
+ */
+
+  
+ /**
+  * rMateChartH5 3.0이후 버전에서 제공하고 있는 테마기능을 사용하시려면 아래 내용을 설정하여 주십시오.
+  * 테마 기능을 사용하지 않으시려면 아래 내용은 삭제 혹은 주석처리 하셔도 됩니다.
+  *
+  * -- rMateChartH5.themes에 등록되어있는 테마 목록 --
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * -------------------------------------------------
+  *
+  * rMateChartH5.themes 변수는 theme.js에서 정의하고 있습니다.
+  */
+ rMateChartH5.registerTheme(rMateChartH5.themes);
+  
+ /**
+  * 샘플 내의 테마 버튼 클릭 시 호출되는 함수입니다.
+  * 접근하는 차트 객체의 테마를 변경합니다.
+  * 파라메터로 넘어오는 값
+  * - simple
+  * - cyber
+  * - modern
+  * - lovely
+  * - pastel
+  * - default
+  *
+  * default : 테마를 적용하기 전 기본 형태를 출력합니다.
+  */
+ function rMateChartH5ChangeTheme(theme){
+   document.getElementById("chart1").setTheme(theme);
+ }
+  
+ // -----------------------차트 설정 끝 -----------------------
+	</script>
+</head>
+ 
+<body>
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" aria-controls="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+    <!-- full popup S -->
+    <div class="full_popup" id="full_popup_01" style="display:block;"> <!-- 개발시 style="display:block;" 삭제-->
+		<div class="popup_header">    
+			<h1>자동차 정보</h1>
+		</div>
+	
+        <div class="popup_content com_no_bottom com_bg_type00">
+			<div class="new_sub_main_box"><!-- car_top_bg  20210929 삭제 -->
+				<div class="com_inner">
+					<div class="top_info_box_wrap">					
+						<!-- <div class="shadow"></div>  20210916 삭제 -->
+						<div class="top_info_box type02 noBG hasdetail">
+							<div class="car_top_wrap">
+								<div class="slider_wrap">
+									<div class="slide">
+										<div class="car_pic">
+											<img src="../../../../src/assets_v30/images/icon/car_trax.png" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+										</div>
+										<div class="car_name">
+											쉐보레(대우) 더 뉴 트랙스<br>
+											1.4터보 블레이드									
+										</div>
+										<span class="car_num">
+											<span>123나 1234</span>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="box_toggle_wrap">
+								<div class="box_toggle">
+									<div class="toggle-box">
+										<div data-ui-toggle="box" class="active force">									
+											<div class="view-box">
+												<div class="info">
+													<div class="title">모델명</div>
+													<div class="text">더 뉴 트랙스</div>
+												</div>
+												<div class="info">
+													<div class="title">연식</div>
+													<div class="text">2018년형</div>
+												</div>
+												<div class="info">
+													<div class="title">최초등록</div>
+													<div class="text">2017년 9월 26일</div>
+												</div>
+												<div class="info">
+													<div class="title">등급</div>
+													<div class="text">더 뉴 트래스 1.4LT디럭스</div>
+												</div>
+												<div class="info">
+													<div class="title">주행거리</div>
+													<div class="text">20,000Km</div>
+												</div>
+												<div class="info">
+													<div class="title">차체형태</div>
+													<div class="text">SUV</div>
+												</div>
+												<div class="info">
+													<div class="title">엔진</div>
+													<div class="text">휘발유 1,400cc</div>
+												</div>
+												<!-- 20210916 한별 수정(클래스명수정) S -->
+												<div class="info">
+													<div class="title">변속기</div>
+													<div class="text">오토 A/T</div>
+												</div>
+												<div class="info">
+													<div class="title">차고지</div>
+													<div class="text">경기도 용인시 ********
+														-***-***
+													</div>
+												</div>
+												<!--// 20210916 한별 수정(클래스명수정) E -->
+											</div>
+										</div>
+									</div>
+								</div> 
+							</div>  
+						</div>
+					</div>
+					<div class="cost_wrap mt15">
+						<div class="cost_notice">
+							<div class="cost"><p class="bold fs16 mb15">평균시세</p><span class="num fs24">1,350</span><span class="fs19">만원</span> </div>
+							<span class="bar"></span>
+							<div class="cost out"><p class="bold fs16 mb15">출시가격</p><span class="num fs24">1</span><span class="fs19">억<span class="num fs24">2,416</span><span class="fs19">만원</span></div>
+						</div>
+					</div>
+					<div class="com_box_type01 mt15">
+						<strong class="com_box_tit02 p0">내차 시세</strong>
+						<!--   20210628 한별 수정 예상가격 삭제 S -->
+							<!--// 20210628 한별 수정 E -->
+					<div class="chart mt20">
+						<!-- 차트가 삽입될 DIV -->
+						<!-- 20211108 한별 접근성 추가  S -->
+						<div id="chartHolder" aria-hidden="true"></div>
+						<!-- 20211108 한별 접근성 추가  E -->
+					</div>
+					</div>
+					
+				</div>
+				
+			</div>
+        </div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+    <!--// full popup E -->
+</body>

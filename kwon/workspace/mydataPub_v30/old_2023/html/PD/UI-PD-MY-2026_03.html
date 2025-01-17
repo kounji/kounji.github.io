@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>여가생활 목표상세</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1 class="">버킷리스트</h1>
+			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content com_bg_type00"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner fail"><!-- 성공 success | 실패 fail -->
+				<div class="mygoal_title_area">
+					<p class="pointColor green">힐링 라이프, 나의 여가생활!</p>
+					<strong class="titH1">골생아에서 골린이 되기</strong>
+					<p class="sub_text">골프<span class="dot_text">레포츠 시작하기</span></p>
+				</div>
+
+				<!-- mygoal_top_box -->
+				<div class="mygoal_top_box">
+					<div class="content_wrap">
+						<div class="title">
+							오늘까지<br>
+							<span class="num">8억 50,000</span>원 모으고 있어요.
+						</div>
+					</div>
+
+					<!-- 그래프 100% -->
+					<div class="custom_box mt20"><!-- 2020.06.29 mt20 추가 -->
+						<div class="content_wrap">
+							<!-- 2020.07.03 progressBar 수정  -->
+							<div class="progressBar_wrapper">
+								<div class="progressBar">
+									<div class="bar">
+										<div class="popover_wrap">
+											<span class="popover">
+												<em class="num">70</em>%
+												<span class="arrow"></span>
+											</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 2020.07.03 progressBar 수정  -->
+						</div>
+					</div>
+
+					<div class="list_gray_box mt20">
+						<p class="icon_type">
+							아쉬운 도전이었어요!<br>
+							새로운 목표를 달성해 볼까요?
+						</p>
+					</div>
+
+					<!-- 금액 초과시 -->
+					<!-- <div class="list_gray_box mt20">
+						<dl>
+							<dt class="pointColor green">6월의 지출목표</dt>
+							<dd><span class="num">1,150,000</span>원</dd>
+						</dl>
+						<dl class="over">
+							<dt>초과 금액</dt>
+							<dd><span class="num">300,000</span>원</dd>
+						</dl>
+						<dl>
+							<dt>남은 기간</dt>
+							<dd class="num">D-10일</dd>
+						</dl>
+					</div> -->
+					<!-- //금액 초과시 -->
+
+				</div>
+				<!-- //mygoal_top_box -->
+			</div>
+
+			<hr class="hr02">
+
+			<div class="com_inner">	
+				<strong class="com_box_tit mt10">연결된 계좌</strong>
+
+				<ul class="account_list_2023">
+					<li>
+						<dl>
+							<dt>
+								<i class="ico_bank ZWAAAZ0000"><span class="blind">NH농협카드</span></i>
+								<span class="name">NH정기적금</span>
+								<span class="num">352210808675</span>
+							</dt>
+							<dd>
+								<em class="num">580,000</em>원
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>
+								<i class="ico_bank ZWAAAZ0000"><span class="blind">NH농협카드</span></i>
+								<span class="name">NH정기적금</span>
+								<span class="num">352210808675</span>
+							</dt>
+							<dd>
+								<em class="num">580,000</em>원
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			
+				
+			</div>
+		</div>
+		
+		<div class="popup_footer fixed">
+			<div class="com_btnhalfbox_type02">
+				<a href="#nolink" role="button" class="btn btn_mint_gray">삭제</a>
+				<a href="#nolink" role="button" class="btn btn_mint">목표수정</a>
+				<!-- btn_off 제거시 활성화 -->
+				<!--22-10-20 btn_off aria-disabled="true" 없을때 aria-disabled="false"-->
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// 전체 팝업 시작 -->
+
+	<script>
+		jQuery(document).ready(function(){
+			var progressBar = jQuery('.progressBar .bar');
+			
+			progressBar.each(function(){
+				var progressNum = jQuery(this).children().find('.popover .num').text();
+				var popoverWrap = jQuery(this).children('.popover_wrap');
+				var popoverWidth = jQuery(this).children().find('.popover').outerWidth();
+				
+				// console.log(popoverWidth);
+
+				if(progressNum >= 100) {
+					progressNum = 100;
+					jQuery(this).addClass('over');
+					popoverWrap.css('transform','translateX(-100%)');// 230721 -100%로 수정
+					popoverWrap.animate({
+						left: progressNum + "%"
+					},2000,function(){
+						popoverWrap.addClass('full');
+					});
+				} else if(progressNum == 0) {
+					popoverWrap.addClass('zero');
+				} else {
+					popoverWrap.animate({
+						left: progressNum +'%'
+					},2000);
+				}
+
+				progressBar.css('width','0');
+				popoverWrap.css('left','0');				
+				jQuery(this).animate({					
+					width: progressNum + '%',
+				},2000);
+				
+			});
+
+		});
+	</script>
+</body>
+</html>

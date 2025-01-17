@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>공통 | 자산연결 | 금융자산 | 연결 기관 선택</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+		<div class="popup_header">
+			<h1>자산연결</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+		</div>
+		
+		<div class="popup_content custom_fixed_lnb"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner progress_wrap">
+				<strong class="com_pop_tit01">연결할 기관을 선택하세요</strong>
+				<span class="progress_num"><em class="pointColor green">1</em>/5</span>
+				<div class="com_input_type02">
+					<input type="search" id="txt01" class="inputClear" name="" value="" placeholder="기관명을 입력하세요" title="금융기관 찾기">
+					<a href="#nolink" role="button" class="com_btn_delete"><span class="blind">삭제</span></a>
+					<a href="#nolink" role="button" class="com_btn_search"><span class="blind">검색</span></a>
+				</div>
+
+				<div class="lnb lnb_filter">
+					<div class="tablistBox">
+						<ul role="tablist">
+							<li class="on"><a href="#nolink" title="선택됨">은행 <em class="num">2</em></a></li>
+							<li><a href="#nolink">카드 <em class="num">8</em></a></li>
+							<li><a href="#nolink">증권</a></li>
+							<li><a href="#nolink">보험</a></li>
+							<li><a href="#nolink">페이</a></li>
+							<li><a href="#nolink">할부</a></li>
+							<li><a href="#nolink">통신</a></li>
+							<li><a href="#nolink">대부</a></li>
+							<li><a href="#nolink">P2P</a></li>
+							<li><a href="#nolink">공공</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<hr class="hr02">
+
+			<div class="com_inner institution_list"><!-- 0914 institution_list 클래스 추가 -->
+				<div class="recommend_check">
+					<input type="checkbox" id="che">
+					<label for="che">추천 기관 선택</label>
+				</div>
+
+				<!-- 은행 -->
+				<div class="custom_list">
+					<div class="custom_box flex_new_tit_area mt0">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>은행</span></div>
+							</div>
+						</div>
+	
+						<div class="btn_check btn_check3 checkAll">
+							<input type="checkbox" name="allagree" id="checkall01" checked="checked">
+							<label for="checkall01">전체해제</label>
+						</div>
+					</div>
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox1-01">
+								<label for="checkbox1-01" class="bank_state_che">
+									<i class="ico_bank A1AABG0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">농협은행</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox1-02">
+								<label for="checkbox1-02" class="bank_state_che">
+									<i class="ico_bank A1AAJB0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">케이뱅크은행</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox1-03">
+								<label for="checkbox1-03" class="bank_state_che">
+									<i class="ico_bank ZVAAER0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">신한은행</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //은행 -->
+				
+				<!-- 카드 -->
+				<div class="custom_list">
+					<div class="custom_box flex_new_tit_area mt0">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>카드</span></div>
+							</div>
+						</div>
+	
+						<div class="btn_check btn_check3 checkAll">
+							<input type="checkbox" name="allagree" id="checkall02" checked="checked">
+							<label for="checkall02">전체해제</label>
+						</div>
+					</div>
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox2-01">
+								<label for="checkbox2-01" class="bank_state_che">
+									<i class="ico_bank A1AABG0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">농협카드</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox2-02">
+								<label for="checkbox2-02" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">BC카드</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox2-03">
+								<label for="checkbox2-03" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국민카드</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //카드 -->
+				
+				<!-- 증권 -->
+				<div class="custom_list">
+					<div class="custom_box flex_new_tit_area mt0">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>증권</span></div>
+							</div>
+						</div>
+	
+						<div class="btn_check btn_check3 checkAll">
+							<input type="checkbox" name="allagree" id="checkall03" checked="checked">
+							<label for="checkall03">전체해제</label>
+						</div>
+					</div>
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox3-01">
+								<label for="checkbox3-01" class="bank_state_che">
+									<i class="ico_bank C1AADB0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">NH투자증권</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox3-02">
+								<label for="checkbox3-02" class="bank_state_che">
+									<i class="ico_bank ZVAAER0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">신한투자증권</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //증권 -->
+			
+				<!-- 보험 -->
+				<div class="custom_list">
+					<div class="custom_box flex_new_tit_area mt0">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>보험</span></div>
+							</div>
+						</div>
+	
+						<div class="btn_check btn_check3 checkAll">
+							<input type="checkbox" name="allagree" id="checkall04" checked="checked">
+							<label for="checkall04">전체해제</label>
+						</div>
+					</div>
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox4-01">
+								<label for="checkbox4-01" class="bank_state_che">
+									<i class="ico_bank A1AABG0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">농협생명보험</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox4-01">
+								<label for="checkbox4-01" class="bank_state_che">
+									<i class="ico_bank A1AABG0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">농협손해보험</strong>
+										<span class="link_text">연결됨</span>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //보험 -->
+				
+				<!-- 공공기관 -->
+				<div class="custom_list">
+					<div class="custom_box flex_new_tit_area mt0">
+						<div class="list_type_box">
+							<div class="new_tit_area">
+								<div class="tit"><span>공공기관</span></div>
+							</div>
+						</div>
+	
+						<div class="btn_check btn_check3 checkAll">
+							<input type="checkbox" name="allagree" id="checkall05" checked="checked">
+							<label for="checkall05">전체해제</label>
+						</div>
+					</div>
+					<ul class="list_type_01">
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-01">
+								<label for="checkbox5-01" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국민연금공단</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-02">
+								<label for="checkbox5-02" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국민건강보험공단</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-03">
+								<label for="checkbox5-03" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">행정안전부</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-04">
+								<label for="checkbox5-04" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">국세청</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-05">
+								<label for="checkbox5-05" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">관세청</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+						<li>
+							<div class="ipt_wrap">
+								<input type="checkbox" id="checkbox5-06">
+								<label for="checkbox5-06" class="bank_state_che">
+									<i class="ico_bank A1AAEO0000"></i>
+									<div class="ipt_txt_flex">
+										<strong class="bank_name">공무원연금공단</strong>
+									</div>
+								</label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- //공공기관 -->
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" role="button" class="btn btn_mint"><em>2</em>개 기관 연결하기</a>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+	<script type="text/javascript">
+
+		/*
+			영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		jQuery(function() {
+			var _inputBox = jQuery('.inputClear'); // Input Box
+			var _clearBtn = jQuery('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = jQuery(this).val()
+				searchLen = searchVal.length;
+				jQuery(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					jQuery(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+		});
+		/*lnb-filter 버튼 클릭이벤트*/
+		jQuery(document).ready(function(){
+			var _lnb = jQuery('.lnb.lnb_filter'),
+					_lnbCnt = _lnb.find('[role=tablist] > li').length, //탭전체 개수
+					_ldx = _lnb.find('[role=tablist] > li.on').index(), //현재 선택된 탭 위치
+					_width = _lnb.find('[role=tablist]').width(), //탭전체 넓이
+					_totCnt = (_width/_lnbCnt)*_ldx; //선택된 탭을 이동할 위치
+			_lnb.append('<button class="btn_lnb"><span class="blind">카테고리 펼치기</span></button>')
+			jQuery('.btn_lnb').on('click', function(){
+				jQuery(this).parent().toggleClass('is_open');
+				jQuery(this).toggleClass('open');
+				if(jQuery(this).hasClass('open')){
+					jQuery(this).children().text('카테고리 접기');
+				} else {
+					jQuery(this).children().text('카테고리 펼치기');
+					_ldx = _lnb.find('[role=tablist] > li.on').index(); //현재 선택된 탭 위치
+					_totCnt = (_width/_lnbCnt)*_ldx; //선택된 탭을 이동할 위치
+					jQuery('.tablistBox').animate({'scrollLeft':_totCnt-150},500); //접기 후 선택된 탭이동
+					//console.log(_lnbCnt+'==='+_ldx+'==='+_width+'==='+_totCnt);
+				}
+			});
+			//탭선택 시 스크롤 옮기기
+			jQuery('.lnb [role=tablist] > li').each(function(){
+				jQuery(this).on('click', function(){
+					var scrollTo = jQuery(this).position().left - 120;
+					jQuery(this).parents().animate({'scrollLeft':scrollTo},500);
+					//console.log(scrollTo);
+				});
+			});
+		});
+
+		/* 전체선택 */
+		jQuery(document).ready(function() {
+			jQuery('.ipt_wrap input[type=checkbox]').prop("checked",true);//전체선택 체크
+			var _btn = jQuery('.btn_check.checkAll input'),
+					_checkAll = jQuery('.ipt_wrap input[type=checkbox]'),
+					_checkAllCnt =_checkAll.length;//전체 체크박스 갯수
+			//전체선택
+			_btn.on('click',function(){
+				if(jQuery(this).prop("checked")){
+					jQuery(this).next().text('선택해제');
+					jQuery(this).closest('.custom_list').find('.ipt_wrap input[type=checkbox]').prop("checked",true);
+				}else{
+					jQuery(this).next().text('전체선택');
+					jQuery(this).closest('.custom_list').find('.ipt_wrap input[type=checkbox]').prop("checked",false);
+				};
+			});
+			
+			//항목선택
+			_checkAll.on('click',function(){
+				_checkedCnt =jQuery('.ipt_wrap input[type=checkbox]:checked').length,//선택된 체크박스 갯수
+				_this = jQuery(this).parent().parent().parent().parent().find('.btn_check.checkAll input');
+				//console.log(_checkAllCnt + " == " + _checkedCnt);
+				if(_checkAllCnt == _checkedCnt){
+					_this.prop("checked",true);
+					_this.next().text('선택해제');
+				}else{
+					_this.prop("checked",false);
+					_this.next().text('전체선택');
+				};
+			});
+		});
+
+
+		//필터 오픈시 기관 리스트 영역 간격	0914 스크립트 추가
+		jQuery(document).ready(function() {
+			var lnbFilter = jQuery('.lnb.lnb_filter');
+			var filterHeight = jQuery('.lnb.lnb_filter').height();
+			var institutionList = jQuery('.institution_list');
+			jQuery('.btn_lnb').on('click', function(){
+				if(jQuery('.custom_fixed_lnb').hasClass('custom_fixed_active')) {
+					var filterOpenHeight = jQuery('.lnb.lnb_filter.is_open').height();
+					var listPtNum =  filterOpenHeight - filterHeight;
+					// console.log(filterOpenHeight);
+					// console.log(listPtNum);
+					institutionList.toggleClass('list_pt');
+					if(institutionList.hasClass('list_pt')) {
+						institutionList.css('padding-top', listPtNum + 'px');
+					} else {
+						institutionList.css('padding-top', '0');
+					}
+				} else {
+					institutionList.removeClass('list_pt');
+				}				
+			});
+
+			jQuery('.custom_fixed_lnb').scroll(function(){
+				var filterOpenHeight = jQuery('.lnb.lnb_filter.is_open').height();
+				var listPtNum =  filterOpenHeight - filterHeight;	
+				// console.log(jQuery(this));
+				if(jQuery(this).hasClass('custom_fixed_active') && lnbFilter.hasClass('is_open')) {
+					institutionList.addClass('list_pt');
+					institutionList.css('padding-top', listPtNum + 'px');
+				} else {
+					institutionList.removeClass('list_pt');
+					institutionList.css('padding-top', '0');
+				}
+			});
+		});	
+		
+	</script>
+</body>
+</html>

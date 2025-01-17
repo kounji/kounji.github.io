@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>재배지 조회 | 마이농가</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+        <!-- header S -->
+		<header id="header">
+			<h1>재배지 조회</h1>
+			<a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a>		
+			<a href="javascript:void(0);" class="btn_close"><span class="blind">화면닫기</span></a>	
+		</header>
+		<!--// header E -->
+
+        <!-- content S -->
+		<div id="content" class="com_sub">
+			<div class="com_inner">    
+				<strong class="com_box_tit mt15 new_mb15">설정한 작목</strong>
+				<div class="com_inputarea_type05">
+					<div class="com_input_type01">
+						<label for="com_input01"></label>
+						<input type="text" id="com_input01" class="" name="" value="과일 > 과일채소류 > 감귤" readonly placeholder="" title="설정한 작목선택"><!--  20211112 한별 접근성 추가 (title="") -->
+					</div>
+				</div>			
+				
+
+                <strong class="com_box_tit mt30 new_mb15">재배지 설정</strong>
+				<div class="com_inputarea_type05">
+					<div class="com_btnselectbox_type01">
+						<button type="button" class="com_btnselect_type01" title="재배지 설정 선택"><!--  20211112 한별 접근성 추가 (title="") --><span>경기도 > 파주시 > 파주읍</span></button>
+					</div>
+					<div class="com_input_type01 ani-active">
+						<label for="com_input11"></label>
+						<input type="text" id="com_input11" class="" name="" value="3개동" placeholder="" title="재배지 설정 상세"><!--  20211112 한별 접근성 추가 (title="") -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+						</div>
+					</div>
+				</div>
+				
+                <strong class="com_box_tit mt40 ani-active">동(개)당 면적</strong>
+                <ul class="com_radio_type02 mt15 new_mb25 ani-active">
+					<li>
+						<div class="btn_radio">
+							<input type="radio" name="yymm" id="radio11">
+							<label for="radio11">
+								<span>평</span>											
+							</label>	
+						</div>						
+					</li>
+					<li>
+						<div class="btn_radio">
+							<input type="radio" name="yymm" id="radio12">
+							<label for="radio12">
+								<span>㎡</span>	
+							</label>	
+						</div>
+					</li>
+				</ul>
+				<div class="com_inputarea_type05">
+					<div class="com_input_type01 ani-active">
+						<label for="com_input12"></label>
+						<input type="text" id="com_input12" class="" name="" value="20평" placeholder="" title="재배지 메모"><!--  20211112 한별 접근성 추가 (title="") -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+						</div>
+					</div>
+					<div class="com_input_type01 ani-active">
+						<label for="com_input13"></label>
+						<input type="text" id="com_input13" class="" name="" value="감귤 농장" placeholder="" title="재배지 메모"><!--  20211112 한별 접근성 추가 (title="") -->
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+						</div>
+					</div>
+				</div>
+                
+            </div>  
+		</div>
+		<!--// content E -->
+
+        <!-- footer S -->
+		<div class="bottom_box">
+            <div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey">삭제</a>
+				<a href="javascript:void(0);" class="btn btn_mint">저장</a>
+			</div>
+        </div>
+        <!--// footer E -->
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

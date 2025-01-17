@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>옵션선택 | 자산연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>옵션 선택</h1>
+			</div>
+			<div class="popup_content">
+				<div class="radio_group">
+					<div class="radio">
+						<input type="radio" name="option_chk" id="option_chk1">
+						<label for="option_chk1">추천기관</label>
+					</div>
+					<div class="radio">
+						<input type="radio" name="option_chk" id="option_chk2">
+						<label for="option_chk2">연결기관 제외 전체선택</label>
+					</div>
+					<div class="radio">
+						<input type="radio" name="option_chk" id="option_chk3">
+						<label for="option_chk3">만료예정기관</label>
+					</div>
+					<div class="radio">
+						<input type="radio" name="option_chk" id="option_chk4">
+						<label for="option_chk4">선택 안 함</label>
+					</div>
+				</div>
+			</div>
+			<div class="popup_footer fixed">
+				<div class="btns_wrap">
+					<button type="button" class="btns lg primary">확인</button>
+				</div>
+			</div>
+			
+			<a href="#nolink" role="button" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

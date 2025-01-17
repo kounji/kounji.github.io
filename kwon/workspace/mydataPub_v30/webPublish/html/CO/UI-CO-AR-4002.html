@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>연결기관선택 | 자산연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup" id="full_popup_01">
+		<div class="popup_header">
+			<h1>자산연결</h1>
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+		</div>
+		
+		<div class="popup_content">
+			<div class="asset_connect organ_sel">
+				<div class="tit_area">
+					<h2 class="headline sm"><strong>연결할 기관</strong>을 선택해 주세요</h2>
+					<span class="progress" aria-label="전체 4단계 중 현재 1단계"><em class="now">01</em><span class="total">04</span></span>
+				</div>
+				<div class="input">
+					<input type="text" name="" id="input01" placeholder="기관명을 입력해주세요.">
+					<button type="button" class="btn_search"><span class="blind">검색</span></button>
+				</div>
+
+				<div class="institu_wrap">
+					<div class="category_tab">
+						<div class="scroller">
+							<ul role="tablist">
+								<li><a href="#institu01" role="tab" aria-selected="false">은행<span>10</span></a></li>
+								<li><a href="#institu02" role="tab" aria-selected="false">공공</a></li>
+								<li><a href="#institu03" role="tab" aria-selected="false">카드<span>1</span></a></li>
+								<li><a href="#institu04" role="tab" aria-selected="false">보험</a></li>
+								<li><a href="#institu05" role="tab" aria-selected="false">통신</a></li>
+								<li><a href="#institu06" role="tab" aria-selected="false">증권</a></li>
+								<li><a href="#institu07" role="tab" aria-selected="false">전자금융</a></li>
+								<li><a href="#institu08" role="tab" aria-selected="false">기타금융</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="top_desc">
+						<div class="checkbox border checkFull">
+							<input type="checkbox" name="fullcheck" id="fullcheck" title="전체 동의">
+							<label for="fullcheck">전체</label>
+						</div>
+						<a href="#nolink" class="btn_recom"><span class="ico_line_down">추천기관</span></a>
+					</div>
+
+					<div class="category_cont">
+						<div class="institu_group" id="institu01">
+							<div class="tit_area">
+								<strong class="institu_tit">은행 <em class="num">3</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree" id="checkall01" checked="checked">
+									<label for="checkall01">선택해제</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_01" checked="checked">
+										<label for="checkbox01_01">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결중</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_02" checked="checked">
+										<label for="checkbox01_02">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결중</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_03" checked="checked">
+										<label for="checkbox01_03">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status end">만료예정</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_04" checked="checked">
+										<label for="checkbox01_04">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu02">
+							<div class="tit_area">
+								<strong class="institu_tit">공공 <em class="num">1</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree2" id="allagree2">
+									<label for="allagree2">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02" id="checkbox02_1" checked="checked">
+										<label for="checkbox02_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결중</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02" id="checkbox02_2">
+										<label for="checkbox02_2">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02_2" id="checkbox02_3">
+										<label for="checkbox02_3">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu03">
+							<div class="tit_area">
+								<strong class="institu_tit">카드 <em class="num">1</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree3" id="allagree3">
+									<label for="allagree3">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_1" checked="checked">
+										<label for="checkbox03_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결중</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_2">
+										<label for="checkbox03_2">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_3">
+										<label for="checkbox03_3">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu04">
+							<div class="tit_area">
+								<strong class="institu_tit">보험</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree4" id="allagree4">
+									<label for="allagree4">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox04" id="checkbox04_1" >
+										<label for="checkbox04_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu05">
+							<div class="tit_area">
+								<strong class="institu_tit">통신</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree5" id="allagree5">
+									<label for="allagree5">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox05" id="checkbox05_1" >
+										<label for="checkbox05_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu06">
+							<div class="tit_area">
+								<strong class="institu_tit">증권</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree6" id="allagree6">
+									<label for="allagree6">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox06" id="checkbox06_1" >
+										<label for="checkbox06_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu07">
+							<div class="tit_area">
+								<strong class="institu_tit">전자금융</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree7" id="allagree7">
+									<label for="allagree7">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox07" id="checkbox07_1" >
+										<label for="checkbox07_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu08">
+							<div class="tit_area">
+								<strong class="institu_tit">기타금융</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree8" id="allagree8">
+									<label for="allagree8">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox08" id="checkbox08_1" >
+										<label for="checkbox08_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="institu_desc">
+					<p class="txt">원하는 기관이 없다면<br>전체 기관에서 직접 선택해보세요</p>
+					<a href="#nolink" class="link"><span>395개</span> 전체 기관 보기</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg primary"><em>2</em>개 기관 연결하기</button>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+
+
+<script type="text/javascript">
+/* [v4.0] */
+/*
+const observer_header2 = function(){
+	console.log('observer start!!!!!!!!!!');
+
+	const header2 = document.querySelector('.full_popup');
+
+	const stickyAssetNav = function(entries){
+		console.log("Observer ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ :"  + entries[0].isIntersecting);
+		// console.log("여기 ********************************************************: " + entries[0].intersectionRatio);
+		// console.log("여기 ********************************************************: " + entries[0].rootBounds);
+
+		if(!entries[0].isIntersecting){
+			// $(".com_tabmenu_type01, .com_tabmenu_type02, .lnb").addClass('fixed');
+
+			$('.asset_connect .category_tab').addClass('fixed');
+			// $("nav.navi").height($("nav.navi .inner").outerHeight());
+			// setTimeout(function(){
+			// 	$("nav.navi").height($("nav.navi .inner").outerHeight());
+			// }, 300);
+		}else{
+			console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ observer');
+
+			// $(".com_tabmenu_type01, .com_tabmenu_type02, .lnb").removeClass('fixed');
+
+			$('.asset_connect .category_tab').removeClass('fixed');
+			// setTimeout(function(){
+			// 	$("nav.navi").height($("nav.navi .inner").outerHeight());
+			// }, 300);
+		}
+	}
+
+	const observer2 = new IntersectionObserver(stickyAssetNav, {
+		root:null,
+		rootMargin :'0px 0px 0px 0px',
+		threshold:0 // 대상의 전체기준
+	});
+	observer2.observe(header2);
+}
+
+const observer_content2 = function(){
+	const content2 = document.querySelector('#wrap');
+
+	const mutation_cont2 = function(mutations){
+		console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ mutations : ' + mutations[0]);
+
+		// nav aria-current page 위치
+		if($("nav.navi").length > 0) {
+			$("li", $("nav.navi ul")).each(function(i){
+				if($("> a", $(this)).attr("aria-current")){
+					console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  i);
+					console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  $(this).offset().left);
+	
+					const _left2 = $(this).offset().left;
+					const _curLeft2 = $("nav.navi .inner ul").scrollLeft();
+	
+					$("nav.navi .inner ul").stop().animate({
+						scrollLeft:_curLeft2 + _left2
+					}, 400);
+				}
+			});
+		}
+	}
+
+	const observer2 = new MutationObserver(mutation_cont2)
+
+	let option2 = {
+		attributes:true,
+		childList:true,
+		characterData:true
+	}
+	observer2.observe(content2, option2);
+}
+*/
+const observer_assetConnect = function(){
+	const assetConnect = document.querySelector('.asset_connect .category_tab');
+
+	const stickyAssetNav = function(entries){
+		console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ asset connect: ' + entries[0].isIntersecting);
+
+		if(!entries[0].isIntersecting){
+			$(".asset_connect .category_tab").addClass('fixed');
+		}else{
+			$(".asset_connect .category_tab").removeClass('fixed');
+			
+			$.each($(".asset_connect .category_tab li"), function(i,obj){
+				$("> a", $(obj)).attr('aria-selected', false);
+			});
+		}
+	}
+
+	const assetObserver = new IntersectionObserver(stickyAssetNav, {
+		root:null,
+		rootMargin :'-51px 0px 0px 0px',
+		threshold:1
+	});
+
+	assetObserver.observe(assetConnect);
+}
+
+
+let lastScroll2 = 0; //초기 스크롤 위치
+let scrolling2;
+let scrollEnding2 = false;
+
+$(document).ready(function(){
+	/*obsever 상태체크 ************/
+	//observer_header();
+	//observer_content();
+	observer_assetConnect();
+
+	/****** observer_content ***********************/
+	$('.popup_content').off('scroll.poplayout').on('scroll.poplayout', function(){
+		
+		let nowScroll2 = $(this).scrollTop();
+	
+		lastScroll2 = nowScroll2;
+
+		scrollEnding2 = true;
+
+		console.log('nowScroll2:'+nowScroll2)
+		//}else{
+		//	scrollEnding = false;c
+		//}	
+
+		if($(".asset_connect").find('.category_tab').length > 0){
+			$.each($(".asset_connect .category_cont .institu_group"), function(idx,item){
+				let _top = $(item).position().top;
+				let _top2 = $(".asset_connect .category_tab").outerHeight();
+				let _top3 = $(item).position().top - $(".asset_connect .category_tab").outerHeight();
+				console.log(_top,_top2,_top3)
+				if(_top <= nowScroll2){
+					$.each($(".asset_connect .category_tab li"), function(i,obj){
+						$("> a", $(obj)).attr('aria-selected', false);
+					});
+
+					$(">a", $(".asset_connect .category_tab li").eq(idx)).attr('aria-selected', true);
+					scroll_assetNav(idx);
+				}
+			});
+		}
+	});	
+});
+
+var scroll_assetNav = function(idx){
+	const obj = $(".asset_connect .category_tab li").eq(idx);
+	//console.log($(".asset_connect .category_tab li").eq(idx))
+	/*const selector =  $(".asset_connect nav .category_tab .selector");*/
+	const _left = $(obj).offset().left;
+	const _curLeft = $('.asset_connect .category_tab .scroller').scrollLeft();
+
+	$(".asset_connect .category_tab .scroller").stop().animate({
+		scrollLeft:_curLeft + _left - 20
+	}, 400);
+
+	/*
+	$(selector).css({
+		'left' : _curLeft + _left + 'px',
+		'width':  $(obj).outerWidth()  + 'px'
+	});
+	*/
+}
+
+$(document).off('click.assetConnect').on('click.assetConnect', '.asset_connect .category_tab a', function(){
+	const id = $(this).attr('href');
+	const _top = $(id).position().top - $(".asset_connect .category_tab").outerHeight();
+	const $this = $(this);
+	$('.popup_content').stop().animate({
+		scrollTop : _top
+	},300, function(){
+		//if(scrollEnding2){
+			//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ scrollEnding click : ' + scrollEnding);
+			$.each($(".asset_connect .category_tab li"), function(i,obj){
+				$("> a", $(obj)).attr('aria-selected', false);
+			});
+
+			$this.attr('aria-selected', true);
+			scroll_assetNav($this.parent().index())
+		//}
+	});
+});
+
+
+
+</script>
+</body>
+</html>

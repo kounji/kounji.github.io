@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>전체메뉴 | 연결자산관리 | 자산연결해제 | 연결해제완료</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>연결 해제</h1>
+		</div>
+		
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<strong class="titH1">N개 기관의 연결을<br>해제 하시겠어요?</strong>
+				<p class="desc">연결을 해제하면 고객님의 자산(공공)정보를<br>더 이상 가져오지 않아요.</p>
+			</div>
+			<div class="com_inner">
+				<div class="com_box_type01 toggle_list_box2 custom_list inBtnType">
+					<div data-ui-toggle="box" class="toggle_box_area"><!--활성화 class open -->
+						<button type="button" class="view_btn" aria-expanded="false">
+							<div class="new_tit_area">
+								<i class="ico_bank A1AAEM0000"><span class="blind">우리</span></i>
+								<div class="tit">
+									<span>우리</span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_03">
+						<li>
+							<p class="bank_name">스탠다드차타드은행</p>
+							<p class="bank_num">123-486-57899</p>
+						</li>
+						<li>
+							<p class="bank_name">스탠다드차타드은행</p>
+							<p class="bank_num">123-486-57899</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="com_box_type01 toggle_list_box2 custom_list inBtnType">
+					<div data-ui-toggle="box" class="toggle_box_area">
+						<button type="button" class="view_btn" aria-expanded="false">
+							<div class="new_tit_area">
+								<i class="ico_bank C1AADF0000"><span class="blind">BC카드</span></i>
+								<div class="tit">
+									<span>BC카드</span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_03">
+						<li>
+							<p class="bank_name">스탠다드차타드은행</p>
+							<p class="bank_num">123-486-57899</p>
+						</li>
+						<li>
+							<p class="bank_name">스탠다드차타드은행</p>
+							<p class="bank_num">123-486-57899</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="com_box_type01 toggle_list_box2 custom_list inBtnType">
+					<div data-ui-toggle="box" class="toggle_box_area">
+						<button type="button" class="view_btn" aria-expanded="false">
+							<div class="new_tit_area">
+								<i class="ico_bank C1AADF0000"><span class="blind">국민연금공단</span></i>
+								<div class="tit">
+									<span>국민연금공단</span>
+								</div>
+							</div>
+							<em class="open">열기</em>
+							<em class="close">닫기</em>
+						</button>
+					</div>
+					<ul class="view_cont list_type_03">
+						<li>
+							<p class="bank_name">연금산정용 가입내역확인서</p>
+						</li>
+					</ul>
+				</div>
+
+				<div class="custom_terms noBorder">
+					<div class="new_check_all">
+						<span class="btn_check">
+							<input type="checkbox" name="allagree" id="checkall">
+							<label for="checkall">
+								<span class="vam">개인신용정보 즉시 삭제 동의</span><!-- vam 추가 20230630 jlee -->
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												삭제 하지 않은 개인신용정보는 서비스 해지 또는 삭제 요청 시까지 보관 됩니다.
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</label>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
+				<a href="#nolink" role="button" class="btn btn_mint">연결 해제</a>
+			</div>
+		</div>
+
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</body>
+</html>

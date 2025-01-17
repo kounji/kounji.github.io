@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>슬라이드 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box renewal">
+		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
+			<div class="popup_header">
+				<h1>쇼핑 지출 비교</h1>
+				<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+			</div>
+			<div class="popup_content">
+				<div class="gray_spend_box">
+					<div>
+						<strong class="present_month"><em>9</em>월 총 <em>12</em>회<em class="ml">1,300,300</em>원</strong>
+						<p class="">지난달 지출<em class="ml">1,250,500</em>원</p>
+					</div>
+					<!-- 22-10-20 접근성 추가 -->
+					<span role="text">
+						<em>124,400</em>원
+						<span class="price_sub_txt raise"><span class="blind">상승</span></span>
+						<!-- <span class="price_sub_txt decrease"><span class="blind">하락</span></span> -->
+					</span>
+				</div>
+				<strong class="com_pop_tit01">지난달에 비해 이렇게 썼어요</strong>
+				<ol class="spend_list">
+					<li>
+						<i class="ranking_label top"><em>1</em>위</i>
+						<div class="spend_item">
+							<strong class="spend_name">현대쇼핑몰</strong>
+							<span class="spend_price"><em>1,250,500</em>원</span>
+							<!-- 22-10-20 접근성 추가 -->
+							<span class="price_sub_txt raise" role="text"><span class="blind">상승</span><em>1,250,500</em>원</span>
+						</div>
+					</li>
+					<li>
+						<i class="ranking_label"><em>2</em>위</i>
+						<div class="spend_item">
+							<strong class="spend_name">김안과 의원</strong>
+							<span class="spend_price"><em>51,250,500</em>원</span>
+							<!-- 22-10-20 접근성 추가 -->
+							<span class="price_sub_txt decrease" role="text"><span class="blind">하락</span><em>21,250,500</em>원</span>
+						</div>
+					</li>
+					<li>
+						<i class="ranking_label"><em>3</em>위</i>
+						<div class="spend_item">
+							<strong class="spend_name">관리비</strong>
+							<span class="spend_price"><em>1,250,000,000</em>원</span>
+							<!-- 22-10-20 접근성 추가 -->
+							<span class="price_sub_txt" role="text"><span class="blind">유지</span><em>1,250</em>원</span>
+						</div>
+					</li>
+					<li>
+						<i class="ranking_label"><em>4</em>위</i>
+						<div class="spend_item">
+							<strong class="spend_name">모임</strong>
+							<span class="spend_price"><em>100,250,500</em>원</span>
+							<!-- 22-10-20 접근성 추가 -->
+							<span class="price_sub_txt decrease" role="text"><span class="blind">하락</span><em>21,250,500</em>원</span>
+						</div>
+					</li>
+					<li>
+						<i class="ranking_label"><em>5</em>위</i>
+						<div class="spend_item">
+							<strong class="spend_name">넷플릭스</strong>
+							<span class="spend_price"><em>1,250,500</em>원</span>
+							<!-- 22-10-20 접근성 추가 -->
+							<span class="price_sub_txt" role="text"><span class="blind">유지</span><em>1,250,500</em>원</span>
+						</div>
+					</li>
+				</ol>
+			</div>
+			
+			<a href="#nolink" role="button" class="btn_close"><span class="">닫기</span></a>
+		</div>
+	</div>
+	<!--// slide popup E -->
+</body>
+</html>

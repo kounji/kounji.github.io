@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>중개수수료 계산</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup renewal" id="full_popup_01"> 
+		<div class="popup_header">
+			<h1>중개수수료 계산</h1>
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
+		</div>
+		
+		<div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="com_inner">
+				<div class="custom_box">
+
+					<!-- 탭 -->
+					<div class="com_tabmenu_type03 custom_tab">
+						<!-- 2022-07-19 li role / aria aria-selected 삭제 -->
+						<ul role="tablist">
+							<li role="presentation" aria-controls="tab_01"><a href="javascript:void(0);" ><span>매매</span></a></li>
+							<li role="presentation" aria-controls="tab_02"><a href="javascript:void(0);"><span>전세</span></a></li>
+							<li role="presentation" aria-controls="tab_03" class="on"><a href="javascript:void(0);"><span>월세</span></a></li>
+						</ul>
+					</div>
+					<!--// 탭 -->
+
+					<div id="tab_01" role="tabpanel" class="cmm-tab-panel p0">
+						<div class="com_inputarea_type07">
+							<!-- 거래 금액 box -->
+							<!-- 2022-09-05 : 클래스(com_word2) 변경 -->
+							<div class="com_input_type01 com_word2">
+								<!-- 거래 금액 -->
+								<input type="number" id="com_input01" value=""  required="" placeholder="거래 금액을 입력하세요 " title="거래 금액을 입력하세요 ">
+								<label for="com_input01">
+									<em><span class="blind">필수입력</span></em>
+									<span class="txt_label_x">거래 금액</span>
+								</label>
+								<!--// 거래 금액 -->
+								<!-- 원 -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+									<span class="com_inputtxtright2">만원</span>
+								</div>
+								<!--// 원 -->
+								<!-- 1조 1억 1000만원 -->
+								<p class="com_sum">1조 1억 1000만원</p>
+								<!--// 1조 1억 1000만원 -->
+								<!-- 버튼(5만, 10만, 100만 1000만) -->
+								<div class="btn_price_group">
+									<button type="button" class="btn_price" title="5만">+<strong>5</strong>만</button>
+									<button type="button" class="btn_price" title="10만">+<strong>10</strong>만</button>
+									<button type="button" class="btn_price" title="100만">+<strong>100</strong>만</button>
+									<button type="button" class="btn_price" title="1000만">+<strong>1000</strong>만</button>
+								</div>
+								<!--// 버튼(5만, 10만, 100만 1000만) -->
+							</div>
+							<!--// 거래 금액 box -->
+							<!-- button 계산하기 -->
+							<div class="com_btn_area"><a href="javascript:void(0);" class="com_btn_round com_btn_round01"><span class="btn_calculation">계산하기</span></a></div>
+							<!--// button 계산하기 -->
+						</div>
+						<!-- 중개수수료 계산결과 -->
+						<div class="titbox_type01 style_up">
+							<strong class="com_box_tit01">중개수수료 계산결과</strong>
+						</div>
+						<!--// 중개수수료 계산결과 -->
+
+						<!-- 상한요율 / 상한요율 / 농어촌특별세 -->
+						<div class="com_box_type01 com_box_list03 box_shadow01">
+							<ul class="list_type_02">
+								<li>
+									<dl>
+										<dt>
+											<div><em>상한요율</em></div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">0.9</em><em class="unit">%</em>
+											</span>
+										</dd>
+									</dl>
+									<span class="txt_etc"><em class="num">9</em>억원 이상</span>
+								</li>
+							</ul>
+							<div class="total_list com_price02">
+								<div>
+									<em>최대수수료</em>
+									<span><em class="num">VAT</em>별도</span>
+								</div>
+								<span class="com_price">
+									<em class="num">9,000,000</em><em class="unit">원</em>
+								</span>
+							</div>
+						</div>
+						<!--// 상한요율 / 상한요율 / 농어촌특별세 -->
+						<ul class="bl_dot_list one_register_list">
+							<li>계산 결과는 서울/주택거래 기준으로 산정되었습니다.</li>
+							<li>실제 중개수수료는 공인중개사와 협의에 의해 결정할 수 있습니다.</li>
+						</ul>
+					</div>
+					<div id="tab_02" role="tabpanel" class="cmm-tab-panel p0">
+						<div class="com_inputarea_type07">
+							<!-- 보증금 box -->
+							<!-- 2022-09-05 : 클래스(com_word2) 변경 -->
+							<div class="com_input_type01 com_word2">
+								<!-- 보증금 -->
+								<input type="number" id="com_input02-1" value=""  required="" placeholder="보증금을 입력하세요 " title="보증금을 입력하세요 ">
+								<label for="com_input02-1">
+									<em><span class="blind">필수입력</span></em>
+									<span class="txt_label_x">보증금</span>
+								</label>
+								<!--// 보증금 -->
+								<!-- 원 -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+									<span class="com_inputtxtright2">만원</span>
+								</div>
+								<!--// 원 -->
+								<!-- 1조 1억 1000만원 -->
+								<p class="com_sum">1조 1억 1000만원</p>
+								<!--// 1조 1억 1000만원 -->
+								<!-- 버튼(5만, 10만, 100만 1000만) -->
+								<div class="btn_price_group">
+									<button type="button" class="btn_price" title="5만">+<strong>5</strong>만</button>
+									<button type="button" class="btn_price" title="10만">+<strong>10</strong>만</button>
+									<button type="button" class="btn_price" title="100만">+<strong>100</strong>만</button>
+									<button type="button" class="btn_price" title="1000만">+<strong>1000</strong>만</button>
+								</div>
+								<!--// 버튼(5만, 10만, 100만 1000만) -->
+							</div>
+							<!--// 보증금 box -->
+							<!-- button 계산하기 -->
+							<div class="com_btn_area"><a href="javascript:void(0);" class="com_btn_round com_btn_round01"><span class="btn_calculation">계산하기</span></a></div>
+							<!--// button 계산하기 -->
+						</div>
+						<!-- 중개수수료 계산결과 -->
+						<div class="titbox_type01 style_up">
+							<strong class="com_box_tit01">중개수수료 계산결과</strong>
+						</div>
+						<!--// 중개수수료 계산결과 -->
+
+						<!-- 거래금액 / 상한요율 / 농어촌특별세 -->
+						<div class="com_box_type01 com_box_list03 box_shadow01">
+							<ul class="list_type_02">
+								<li>
+									<dl>
+										<dt>
+											<div><em>거래금액</em></div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">150,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+									<span class="txt_etc">보증금 + (월세 x <em class="num">100</em>)</span>
+								</li>
+								<li>
+									<dl>
+										<dt>
+											<div><em>상한요율</em></div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">0.3</em><em class="unit">%</em>
+											</span>
+										</dd>
+									</dl>
+									<span class="txt_etc"><em class="num">1</em>억원 이상 <em class="num">3</em>억원 미만</span>
+								</li>
+							</ul>
+							<div class="total_list com_price02">
+								<div>
+									<em>최대수수료</em>
+									<span><em class="num">VAT</em>별도</span>
+								</div>
+								<span class="com_price">
+									<em class="num">450,000</em><em class="unit">원</em>
+								</span>
+							</div>
+						</div>
+						<!--// 거래금액 / 상한요율 / 농어촌특별세 -->
+						<ul class="bl_dot_list one_register_list">
+							<li>계산 결과는 서울/주택거래 기준으로 산정되었습니다.</li>
+							<li>실제 중개수수료는 공인중개사와 협의에 의해 결정할 수 있습니다.</li>
+						</ul>
+					</div>
+					<div id="tab_03" role="tabpanel" class="cmm-tab-panel p0 on">
+						<div class="com_inputarea_type07">
+							<!-- 보증금 box -->
+							<!-- 2022-09-05 : 클래스(com_word2) 변경 -->
+							<div class="com_input_type01 com_word2">
+								<!-- 보증금 -->
+								<input type="number" id="com_input03-1" value=""  required="" placeholder="보증금을 입력하세요 " title="보증금을 입력하세요 ">
+								<label for="com_input03-1">
+									<em><span class="blind">필수입력</span></em>
+									<span class="txt_label_x">보증금</span>
+								</label>
+								<!--// 보증금 -->
+								<!-- 원 -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+									<span class="com_inputtxtright2">만원</span>
+								</div>
+								<!--// 원 -->
+								<!-- 1조 1억 1000만원 -->
+								<p class="com_sum">1조 1억 1000만원</p>
+								<!--// 1조 1억 1000만원 -->
+								<!-- 버튼(5만, 10만, 100만 1000만) -->
+								<div class="btn_price_group">
+									<button type="button" class="btn_price" title="5만">+<strong>5</strong>만</button>
+									<button type="button" class="btn_price" title="10만">+<strong>10</strong>만</button>
+									<button type="button" class="btn_price" title="100만">+<strong>100</strong>만</button>
+									<button type="button" class="btn_price" title="1000만">+<strong>1000</strong>만</button>
+								</div>
+								<!--// 버튼(5만, 10만, 100만 1000만) -->
+							</div>
+							<!--// 보증금 box -->
+							<!-- 월세 -->
+							<!-- 2022-09-05 : 클래스(com_word2) 변경 -->
+							<div class="com_input_type01 com_word2">
+								<!-- 월세 -->
+								<input type="number" id="com_input03-1" value=""  required="" placeholder="월세를 입력하세요 " title="월세를 입력하세요 ">
+								<label for="com_input03-1">
+									<em><span class="blind">필수입력</span></em>
+									<span class="txt_label_x">월세</span>
+								</label>
+								<!--// 월세 -->
+								<!-- 원 -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+									<span class="com_inputtxtright2">만원</span>
+								</div>
+								<!--// 원 -->
+								<!-- 1조 1억 1000만원 -->
+								<p class="com_sum">1조 1억 1000만원</p>
+								<!--// 1조 1억 1000만원 -->
+								<!-- 버튼(5만, 10만, 100만 1000만) -->
+								<div class="btn_price_group">
+									<button type="button" class="btn_price" title="5만">+<strong>5</strong>만</button>
+									<button type="button" class="btn_price" title="10만">+<strong>10</strong>만</button>
+									<button type="button" class="btn_price" title="100만">+<strong>100</strong>만</button>
+									<button type="button" class="btn_price" title="1000만">+<strong>1000</strong>만</button>
+								</div>
+								<!--// 버튼(5만, 10만, 100만 1000만) -->
+							</div>
+							<!--// 월세 -->
+							<!-- button 계산하기 -->
+							<div class="com_btn_area"><a href="javascript:void(0);" class="com_btn_round com_btn_round01"><span class="btn_calculation">계산하기</span></a></div>
+							<!--// button 계산하기 -->
+						</div>
+
+						<!-- 중개수수료 계산결과 -->
+						<div class="titbox_type01 style_up">
+							<strong class="com_box_tit01">중개수수료 계산결과</strong>
+						</div>
+						<!--// 중개수수료 계산결과 -->
+
+						<!-- 거래금액 / 상한요율 / 농어촌특별세 -->
+						<div class="com_box_type01 com_box_list03 box_shadow01">
+							<ul class="list_type_02">
+								<li>
+									<dl>
+										<dt>
+											<div><em>거래금액</em></div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">150,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+									<span class="txt_etc">보증금 + (월세 x <em class="num">100</em>)</span>
+								</li>
+								<li>
+									<dl>
+										<dt>
+											<div><em>상한요율</em></div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">0.3</em><em class="unit">%</em>
+											</span>
+										</dd>
+									</dl>
+									<span class="txt_etc"><em class="num">1</em>억원 이상 <em class="num">3</em>억원 미만</span>
+								</li>
+							</ul>
+							<div class="total_list com_price02">
+								<div>
+									<em>최대수수료</em>
+									<span><em class="num">VAT</em>별도</span>
+								</div>
+								<span class="com_price">
+									<em class="num">450,000</em><em class="unit">원</em>
+								</span>
+							</div>
+						</div>
+						<!--// 거래금액 / 상한요율 / 농어촌특별세 -->
+						<ul class="bl_dot_list one_register_list">
+							<li>계산 결과는 서울/주택거래 기준으로 산정되었습니다.</li>
+							<li>실제 중개수수료는 공인중개사와 협의에 의해 결정할 수 있습니다.</li>
+						</ul>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// full popup E -->
+</body>
+</html>

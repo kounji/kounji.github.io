@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>신용정보</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+        <!-- header S -->
+		<header id="header">
+			<h1>신용정보</h1>
+			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>		
+			<a href="#nolink" class="btn_close"><span class="blind">화면닫기</span></a>	
+		</header>
+		<!--// header E -->
+		<div class="com_tabmenu_type01 menunum03">
+			<!-- 20211118 한별 접근성 role="tablist" 추가 S -->
+			<ul role="tablist">
+				<li><a href="#nolink">연체</a></li>
+				<li class="on"><a href="#nolink">대출</a></li>
+				<li><a href="#nolink">카드</a></li>
+			</ul>
+			<!--// 20211118 한별 접근성 role="tablist" 추가 E -->
+		</div>
+        <!-- content S -->
+		<div id="content" class="com_sub_type02"> <!-- class="type_01" 일 경우 bg #f2f4f7 -->  
+			<!--   20210625 한별 상단 수정건 적용 S -->
+			<div class="com_submainbox_type01 com_submainbox_type01-07 com_line_type01 ui-as-cr-05 m0">
+				<div class="toptitle">
+					<div class="left">
+						대출 잔액<a href="#"><span class="caution_ico"></span><span class="blind">도움말버튼</span></a>
+					</div>
+				</div>
+				<div class="com_inner p0">
+					<div class="top_info_box_wrap m0">						
+						<div class="top_info_box gradiant_boxlist p0">
+							<div class="bill mt5">
+								<span class="num counter" data-count="100000000">100,000,000</span>원
+							</div>
+							<div class="com_inner com_bg_type00 radius mt25">									
+								<div class="info-txt">
+									대출 금리가 높을 수록, 보유 부채의 규모가 클수록, 
+									부채 건수가 많을수록 신용점수에 부정적인 영향을 
+									미칩니다.<br> 오래되거나 <span>높은 금리의 대출부터 상환 후, 
+									대출을 연체없이 성실히 상환하는 것</span>이 신용점수 
+									관리에 도움이 됩니다.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--   20210625 한별 상단 수정건 적용 E -->
+			<!-- 조회내역 없을때 S -->
+			<div class="com_inner">	
+				<div class="com_total_type02">
+					<strong class="com_myfarm_tit01">보유 대출</strong>
+					<span class="txt_total"><em>0</em>개</span>
+				</div>
+				<div class="no_data_box">
+					<div class="no_data_list">
+						<p>보유 대출이 없습니다.</p>
+					</div>
+				</div>
+			</div>
+			<!-- 조회내역 없을때 E -->
+		</div>
+		
+
+	</div>
+	<!--// wrap E -->
+</body>
+</html>

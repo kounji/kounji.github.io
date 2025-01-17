@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>영농일지 등록</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../worklist/@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>영농일지 등록</h1>
+		</div>
+			
+		<div class="popup_content com_bg_type00">
+			<div class="top_weather">
+				<div class="title">사과</div>
+				<div class="sub_title">경기도 파주시 당하동</div>
+				<div class="info_wrap">
+					<div class="txt_weather">
+						<div class="com_tooltip_type01">
+							<!-- 20211115 한별 수정 S -->
+							<p>
+								<span>날씨정보</span>
+								<a href="javascript:void(0);" class="com_btn_info">
+									<em class="com_icon_info2"><span class="blind">툴팁열기</span></em>                  
+								</a>  
+							</p>       
+							<div class="com_ballon_type01" style="display:none;">       
+								<div>
+									현지사정이나 수신 상태에 의해 차이가 발생할 수 있습니다.<br>
+									(제공: K-weather)
+									<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+								</div> <!-- 말풍선영역 -->
+							</div>
+							<!--// 20211115 한별 수정 E -->       
+						</div>                                      
+					</div>
+				</div>
+			</div>
+			<!--   20210622 한별 수정 영농일지등록안되있을경우 S -->
+					<div class="weather_top_default">
+						<strong class="com_box_tit">나의농장</strong>
+						<a href="#">
+							<div class="com_box_type01 mt15">
+								<span class="add_btn_ico"></span>
+								<strong class="com_box_tit">재배지를 등록해 주세요.</strong>
+							</div>
+						</a>
+					</div>
+			<!--// 20210622 한별 수정 영농일지등록안되있을경우 E -->
+			<div class="weather_top">
+				<div class="weather_sel_wrap">
+					<div class="weather_sel">
+						<!--   20210630 한별 날씨케이스 추가 이병철
+							weather01 맑음
+							weather02 구름조금
+							weather03 구름맑음
+							weather04 흐림
+							weather05 비
+							weather06 눈
+							weather07 갬
+							weather08 소나기
+							weather09 눈 또는 비
+							weather10 비 또는 눈
+							weather11 천둥번개
+							weather12 안개-->
+						<!--날씨 weather01 ~-->
+						<div class="weather weather08"></div>
+						<button class="select_date"  title="날씨 선택"><!--  20211112 한별 접근성 추가 (title="") -->
+							흐림 <span class="caret"></span>
+						</button>
+					</div>
+				</div>
+				<div class="weather_detail mt10">
+					<div class="com_box_title">                
+						<div class="tt">기온</div>
+						<div class="tt">강수</div>
+					</div>
+					<div class="com_inner pair">                
+						<div class="com_box_type01">
+							<div class="com_input_type01 com_placeholder_right m0"> <!-- com_word2 삭제 20211020 -->
+								<label for="com_input01">최고</label>
+								<input type="text" id="com_input01" class="input_right com_txtright_type01 no-stroke" name="" value="20˚" placeholder="" title="최고기온"><!--  20211112 한별 접근성 추가 (title="") -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2 blur" style="display: inline-block;"><span class="blind">삭제</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="com_box_type01">
+							<div class="com_input_type01 com_placeholder_right m0"> <!-- com_word2 삭제 20211020 -->
+								<label for="com_input02">습도</label>
+								<input type="text" id="com_input02" class="input_right com_txtright_type01 no-stroke" name="" value="40%" placeholder="" title="습도"><!--  20211112 한별 접근성 추가 (title="") -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2 blur" style="display: inline-block;"><span class="blind">삭제</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="com_inner pair">                
+						<div class="com_box_type01">
+							<div class="com_input_type01 com_placeholder_right m0"> <!-- com_word2 삭제 20211020 -->
+								<label for="com_input03">최저</label>
+								<input type="text" id="com_input03" class=" input_right com_txtright_type01 no-stroke" name="" value="7˚" placeholder="" title="최저기온"><!--  20211112 한별 접근성 추가 (title="") -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2 blur" style="display: inline-block;"><span class="blind">삭제</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="com_box_type01">
+							<div class="com_input_type01 com_placeholder_right m0"> <!-- com_word2 삭제 20211020 -->
+								<label for="com_input04">최저</label>
+								<input type="text" id="com_input04" class=" input_right com_txtright_type01 no-stroke" name="" value="15mm" placeholder="" title="최저습도"><!--  20211112 한별 접근성 추가 (title="") -->
+								<div class="del_txt">
+									<a href="javascript:void(0);" class="com_btn_delete2 blur" style="display: inline-block;"><span class="blind">삭제</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="weather_input_wrap">
+				<!-- 20210824 한별 수정 S -->
+				<div class="com_input_type01">
+					<input type="date" id="com_input05" class="input_left" name="" value="2020.12.01" disabled required date-placeholder=""  title="날짜선택"><!--  20211112 한별 접근성 추가 (title="") -->
+					<label for="com_input05"></label>
+                </div>
+				<!-- 20210825 한별 추가 S -->
+				<div class="com_input_type01 ani-active">
+                    <label for="com_input06"></label>
+                    <input type="text" id="com_input06" class="" name="" value="출하(매취)" readonly placeholder="" title="출하(매취)"><!--  20211112 한별 접근성 추가 (title="") -->
+                </div>
+				<!--// 20210825 한별 추가 E -->
+				<div class="com_btnselectbox_type01 ani-active">
+					<button type="button" class="com_btnselect_type01 com_iconstar" title="작업을 설정해주세요"><!--  20211112 한별 접근성 추가 (title="") --><span>작업을 설정해 주세요</span></button>
+				</div>
+				<!-- 20210826 한별 추가 S -->
+				<!-- 20211022 한별 수정 S -->
+				<div class="com_input_type01">
+					<input type="text" id="com_input21" class="" name="" value="" required="" placeholder="상세 작업명을 입력해 주세요." title="상세 작업명을 입력해 주세요"><!--  20211112 한별 접근성 추가 (title="") -->
+					<label for="com_input21">
+						<em><span class="blind">필수입력</span></em><span class="txt_label_x">상세 작업명</span>
+					</label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+					</div>
+                </div>
+				<!--// 20211022 한별 수정 E -->
+				<div class="com_textarea_type01 ani-active com_no_iconstar">
+					<textarea name="" id="txt00" class="com_txtarea_type02" cols="10" rows="5" required placeholder="">등록한글내용사용</textarea>
+					<label for="txt00">
+						<span class="txt_label_x">메모</span>
+					</label>
+				</div>
+				<!-- 등록화면일때 추가 -->
+				<div class="com_textarea_type01 ani-active com_no_iconstar">
+					<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="메모를 입력하세요."></textarea>
+					<label for="txt00">
+						<span class="txt_label_x">메모</span>
+					</label>
+				</div>
+				<!--// 20210826 한별 추가 E -->
+				<div class="title mt30 ani-active">
+					자가인력
+				</div>
+				<div class="pair_input ani-active">
+					<div class="com_input_type01 com_word1">
+						<label for="com_input07"><span class="txt_label">남</span></label>
+						<input type="tel" id="com_input07" class="" name="" value="" placeholder="" title="남"><!--  20211112 한별 접근성 추가 (title="") -->
+						
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">명</span>
+						</div>
+					</div>
+
+					<!-- 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 S -->
+					<div>
+						<div class="com_input_type01 com_placeholder_right com_word2">
+							<label for="com_input08"></label>
+							<input type="tel" id="com_input08" class="" name="" value="" placeholder="시간입력" title="시간입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">시간</span><!-- 20211020 수정(시 => 시간) -->
+							</div>
+						</div>
+						<div class="com_input_type01 com_placeholder_right com_word1">
+							<label for="com_input09"></label>
+							<input type="tel" id="com_input09" class="" name="" value="" placeholder="분입력" title="분입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">분</span>
+							</div>
+						</div>
+					</div>
+					<!--// 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 E -->
+			
+					<!-- <div class="com_btnselectbox_type02">
+						<button type="button" class="com_btnselect_type02">
+							<div>
+								<em></em><span>시</span>
+							</div>
+							<div>
+								<em></em><span>분</span>
+							</div>
+						</button>
+					</div> -->
+				</div>
+
+				<div class="pair_input ani-active">
+					<div class="com_input_type01 com_word1">
+						<label for="com_input10"><span class="txt_label">여</span></label>
+						<input type="tel" id="com_input10" class="" name="" value="" placeholder="" title="여"><!--  20211112 한별 접근성 추가 (title="") -->
+						
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">명</span>
+						</div>
+					</div>
+
+					<!-- 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 S -->
+					<div>
+						<div class="com_input_type01 com_placeholder_right com_word2">
+							<label for="com_input11"></label>
+							<input type="tel" id="com_input11" class="" name="" value="" placeholder="시간입력" title="시간입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">시간</span><!-- 20211020 수정(시 => 시간) -->
+							</div>
+						</div>
+						<div class="com_input_type01 com_placeholder_right com_word1">
+							<label for="com_input12"></label>
+							<input type="tel" id="com_input12" class="" name="" value="" placeholder="분입력" title="분입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">분</span>
+							</div>
+						</div>
+					</div>
+					<!--// 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 E -->
+			
+					<!-- <div class="com_btnselectbox_type02">
+						<button type="button" class="com_btnselect_type02">
+							<div>
+								<em>10</em><span>시</span>
+							</div>
+							<div>
+								<em>30</em><span>분</span>
+							</div>
+						</button>
+					</div> -->
+				</div>
+				<div class="title mt17 ani-active">
+					고용인력
+				</div>
+				<div class="pair_input ani-active">
+					<div class="com_input_type01 com_word1">
+						<label for="com_input13"><span class="txt_label">남</span></label>
+						<input type="tel" id="com_input13" class="" name="" value="" placeholder="" title="남"><!--  20211112 한별 접근성 추가 (title="") -->
+						
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">명</span>
+						</div>
+					</div>
+
+					<!-- 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 S -->
+					<div>
+						<div class="com_input_type01 com_placeholder_right com_word2">
+							<label for="com_input14"></label>
+							<input type="tel" id="com_input14" class="" name="" value="" placeholder="시간입력" title="시간입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">시간</span><!-- 20211020 수정(시 => 시간) -->
+							</div>
+						</div>
+						<div class="com_input_type01 com_placeholder_right com_word1">
+							<label for="com_input15"></label>
+							<input type="tel" id="com_input15" class="" name="" value="" placeholder="분입력" title="분입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">분</span>
+							</div>
+						</div>
+					</div>
+					<!--// 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 E -->
+
+					<!-- <div class="com_btnselectbox_type02">
+						<button type="button" class="com_btnselect_type02">
+							<div>
+								<em>10</em><span>시</span>
+							</div>
+							<div>
+								<em>30</em><span>분</span>
+							</div>
+						</button>
+					</div> -->
+				</div>
+
+				<div class="pair_input ani-active">
+					<div class="com_input_type01 com_word1">
+						<label for="com_input16"><span class="txt_label">여</span></label>
+						<input type="tel" id="com_input16" class="" name="" value="" placeholder="">
+						
+						<div class="del_txt">
+							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+							<span class="com_inputtxtright2">명</span>
+						</div>
+					</div>
+
+					<!-- 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 S -->
+					<div>
+						<div class="com_input_type01 com_placeholder_right com_word2">
+							<label for="com_input17"></label>
+							<input type="tel" id="com_input17" class="" name="" value="" placeholder="시간입력" title="시간입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">시간</span><!-- 20211020 수정(시 => 시간) -->
+							</div>
+						</div>
+						<div class="com_input_type01 com_placeholder_right com_word1">
+							<label for="com_input18"></label>
+							<input type="tel" id="com_input18" class="" name="" value="" placeholder="분입력" title="분입력"><!--  20211112 한별 접근성 추가 (title="") -->
+							<div class="del_txt">
+								<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+								<span class="com_inputtxtright2">분</span>
+							</div>
+						</div>
+					</div>
+					<!--// 20210825 한별 com_placeholder_right class 추가,placeholder 문구 추가 E -->
+			
+					<!-- <div class="com_btnselectbox_type02">
+						<button type="button" class="com_btnselect_type02">
+							<div>
+								<em>10</em><span>시</span>
+							</div>
+							<div>
+								<em>30</em><span>분</span>
+							</div>
+						</button>
+					</div> -->
+				</div>
+				<div class="com_input_type01 ani-active mb20 com_word1">
+					<input type="tel"  id="com_input19" class="" name="" value="" required placeholder="작업면적(평수)을 입력해 주세요" title="작업면적(평수)을 입력해 주세요"><!--  20211112 한별 접근성 추가 (title="") -->
+					<label for="com_input19"><span class="txt_label_x">작업면적</span></label>
+					<div class="del_txt">
+						<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
+						<span class="com_inputtxtright2">㎡</span>
+					</div>
+                </div>
+				<!--data_wrap영역 없을 경우 자체를 삭제-->
+				<div class="data_wrap ani-active">
+					<div class="gray_box">
+						<div class="list">
+							<div class="row"><span class="tit">품명</span>사과(감홍) <span class="bar"></span>5kg <span class="bar"></span>PE대<span class="bar"></span>6내</div>
+							<div class="row"><span class="tit">수량</span>200<span class="bar"></span><span class="tit">금액</span> 400,000</div>
+						</div>
+						<div class="list">
+							<div class="row"><span class="tit">품명</span>사과(국광) <span class="bar"></span>15kg <span class="bar"></span>상자<span class="bar"></span>6내</div>
+							<div class="row"><span class="tit">수량</span>300<span class="bar"></span><span class="tit">금액</span> 400,000</div>
+						</div>
+						<div class="list">
+							<div class="row"><span class="tit">품명</span>배(단배) <span class="bar"></span>5kg <span class="bar"></span>P-BOX<span class="bar"></span>7개</div>
+							<div class="row"><span class="tit">수량</span>250<span class="bar"></span><span class="tit">금액</span> 400,000</div>
+						</div>
+					</div>
+				</div>
+				<div class="com_textarea_type01 ani-active com_no_iconstar">
+					<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="작업 메모를 입력해 주세요 (선택)"></textarea>
+					<label for="txt00"><span class="txt_label_x">메모</span></label>
+				</div>
+				<!--// 20210824 한별 수정 E -->
+			</div>
+ 		</div>
+		
+        <div class="popup_footer fixed">
+			<div class="btn_half_box">
+				<a href="javascript:void(0);" class="btn btn_grey">취소</a>
+				<a href="javascript:void(0);" class="btn btn_mint">저장</a>
+				<!-- btn_off 제거시 활성화 -->
+			</div>
+		</div>
+
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>		
+	</div>
+	<!--// full popup E -->
+</body>
+</html>
