@@ -9,8 +9,8 @@
 	<title>lotto test</title>
     <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
     <style>
-        .lotto_btn{margin-bottom:10px; padding:10px 20px; border:0; background:#238789; color:#fff; border-radius:4px;}
-        .clear_btn{margin-bottom:10px; padding:10px 20px; border:0; background:#ddd; color:#333; border-radius:4px;}
+        .btn_lotto{margin-bottom:10px; padding:10px 20px; border:0; background:#238789; color:#fff; border-radius:4px;}
+        .btn_clear{margin-bottom:10px; padding:10px 20px; border:0; background:#ddd; color:#333; border-radius:4px;}
         .result {display:flex; justify-content:center;align-items:center;margin-top:5px; padding:5px 0;border:1px solid #238789;border-radius:4px;}
         .result .number{display: inline-block; margin:5px; width:30px; height:30px; line-height:30px; text-align:center; font-size:18px; color:#fff; border-radius:50%;}
 
@@ -22,14 +22,12 @@
     <div class="content">
         <h1 class="h2">lotto test</h1>
         <div class="btn_area">
-            <button type="button" id="draw" class="lotto_btn">추첨</button>
-            <button type="button" id="clear" class="clear_btn">모두 삭제</button>
+            <button type="button" id="draw" class="btn_lotto">추첨</button>
+            <button type="button" id="clear" class="btn_clear">모두 삭제</button>
         </div>
 
-        <div id="results"></div>
-        <div>
+        <div id="resultWrap"></div>
 
-        </div>
     </div>
 </div>
 
@@ -39,38 +37,38 @@ let drawCount = 0; // 추첨 횟수 제한
 
 $(document).ready(function () {
     loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
-
-    $("#draw").click(function () {
-      if (drawCount < 5) {
+});
+// 추첨
+$(document).off('click.lottoDraw').on('click.lottoDraw', '.btn_lotto', function() {
+    if (drawCount < 5) {
         const newSet = generateNextSet(allPreviousSets);
 
         // 화면에 출력
         const $resultDiv = $("<div>").addClass("result");
         newSet.forEach(num => {
-          const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));;
-          $resultDiv.hide().fadeIn(300).append($number);
+            const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));
+            $resultDiv.hide().fadeIn(300).append($number);
         });
-        $("#results").append($resultDiv);
+        $("#resultWrap").append($resultDiv);
 
         // 로컬 스토리지에 저장
         allPreviousSets.push(newSet);
         localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
 
         drawCount++;
-      } else {
+    } else {
         alert("5번까지만!");
-      }
-    });
-
-    $("#clear").click(function () {
-      if (confirm("다 삭제?")) {
+    }
+});
+// 모두 삭제
+$(document).off('click.lottoClear').on('click.lottoClear', '.btn_clear', function() {
+    if (confirm("다 삭제?")) {
         localStorage.removeItem('lottoNumbers');
-        $("#results").empty();
+        $("#resultWrap").empty();
         drawCount = 0;
         alert("오케 다 삭제함");
-      }
-    });
-  });
+    }
+});
 
 // 10 단위로 공색깔 변경
 function getColor(number){
@@ -95,11 +93,20 @@ function loadExistingResults() {
       const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));
       $resultDiv.append($number);
     });
-    $("#results").append($resultDiv);
+    $("#resultWrap").append($resultDiv);
   });
 }
-
-
+/*
+function lottoNum (){
+  let lotto = [];
+  for(var i=0; i<6; i++){
+    let n = Math.floor(Math.random() * 45) + 1;
+    lotto.push(n);
+  }  
+  return lotto;
+}
+lottoNum ();
+*/
 function generateLottoNumbers() {
   const numbers = [];
   while (numbers.length < 6) {

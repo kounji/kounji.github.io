@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="shortcut icon" href="guide/image/favicon_cok.png">
+	<title>lotto test</title>
+    <script type="text/javascript" src="guide/js/jquery-3.7.1.min.js"></script>
+    <style>
+        .btn_lotto{margin-bottom:10px; padding:10px 20px; border:0; background:#238789; color:#fff; border-radius:4px;}
+        .btn_clear{margin-bottom:10px; padding:10px 20px; border:0; background:#ddd; color:#333; border-radius:4px;}
+        .result {display:flex; justify-content:center;align-items:center;margin-top:5px; padding:5px 0;border:1px solid #238789;border-radius:4px;}
+        .result .number{display: inline-block; margin:5px; width:30px; height:30px; line-height:30px; text-align:center; font-size:18px; color:#fff; border-radius:50%;}
+
+      </style>
+</head>
+
+<body>
+<div clkass="wrap">
+    <div class="content">
+        <h1 class="h2">lotto test</h1>
+        <div class="container">
+          <button class="sampleBtn">로또 자동추첨</button>
+          <button class="sampleBtn">결과 확인</button>
+          <input id="gameCnt"/>
+          <button class="sampleBtn">연속게임</button>
+      </div>
+
+    </div>
+</div>
+
+<script>
+  /*
+const start = document.querySelector("#start");
+const result = document.querySelector("#result");
+
+function startLotto() {
+  const lottoNumbers = [];
+  for (i=0; i<6; i++) {
+    const lottoNumber = Math.floor(Math.random() * 45) + 1;
+    i = lottoNumbers.length;
+    if (!lottoNumbers.includes(lottoNumber)) {
+      lottoNumbers.push(lottoNumber);
+    }
+  }
+
+  lottoNumbers.sort(function (a, b) {
+    return a - b;
+  });
+
+  result.innerHTML = lottoNumbers;
+}
+
+start.addEventListener("click", startLotto);
+*/
+document.addEventListener('DOMContentLoaded', function(){
+    script.init();
+})
+
+let jackpots = {};
+let myNums = {};
+let records = {
+    'gameCnt' : 0,
+    'rank1' : 0,
+    'rank2' : 0,
+    'rank3' : 0,
+    'rank4' : 0,
+    'rank5' : 0,
+    'lose' : 0
+};
+let directClick = false;
+
+let script = {
+    init : function(){
+        script.makeJackpots();
+        script.addBtnEvent();
+    },
+
+    makeJackpots : function(){
+        script.make6Nums(1, jackpots); //당첨번호 선정
+    },
+
+    make6Nums : function(trycnt, target){
+        let makeCnt = 0;
+        while(makeCnt < trycnt){
+            let column = 0;
+            target[makeCnt] = [];
+            while(column < 6){
+                let num = Number.parseInt((Math.random()) * 45) +1; // 1~ 45번
+                //중복 체크
+                if(!target[makeCnt].includes(num)){
+                    target[makeCnt].push(num);
+                    column ++;
+                }
+
+                if(column === 6 && target === jackpots){
+                    //마지막번호 뽑았고, 당첨번호 만들 경우 보너스번호 생성
+                    let stop = false;
+                    let bonus;
+                    while(stop === false){
+                        bonus = Number.parseInt((Math.random()) * 45) +1;
+                        if(!target[makeCnt].includes(bonus)) stop = true;
+                    }
+                    target['bonus'] = bonus;
+                    column ++;
+                }
+            }
+            target[makeCnt] = target[makeCnt].sort(function(a, b){
+                //오름차순 정렬
+                if(a > b) return 1;
+                if(a < b) return -1;
+                else return 0;
+            });
+            if(target === jackpots){
+                console.log(`1등 당첨번호 : ${jackpots[makeCnt]}`);
+            }
+            
+            makeCnt ++;
+        }
+    },
+
+    //당첨여부 확인
+    checkWin : function(){
+        let lotteries = Object.keys(myNums);
+        let winNums = jackpots[0];
+        let hasBought = lotteries.length > 0 ? true : false; //내 번호가 있는가
+        if(hasBought){
+            myNums['results'] = new Object();
+            let currectCnt = 0;
+            lotteries.forEach((e, idx) => {
+                const results = {
+                    6 : 'rank1',
+                    5 : 'rank3',
+                    4 : 'rank4',
+                    3 : 'rank5',
+                    'second' : 'rank2',
+                };
+
+                let result;
+                // 당첨번호 배열과 내 번호배열 비교
+                if(Array.isArray(myNums[e])){
+                    let chk = myNums[e].filter(x => winNums.includes(x));
+                    currectCnt = chk.length; //당첨번호 갯수
+                    result = results[currectCnt] ?? 'lose';
+                    //2등여부 판별
+                    if(currectCnt === 5){
+                        let isSecond = myNums[e].includes(jackpots['bonus']) ? true : false;
+                        if(isSecond) result = results['second'];
+                    }
+                    myNums['results'][idx] = {'result' : result, 'cnt' : currectCnt};
+                }
+            })
+        } else console.log('아직 복권이 없다.');
+
+        //결과기록
+        Object.keys(myNums['results']).forEach(e => {
+            function takeMsgAndRecord(key){
+                const msgs = {
+                    'rank1' : '1등당첨!!!!',
+                    'rank2' : '2등!!!!',
+                    'rank3' : '오예 100만원 3등!',
+                    'rank4' : '그래도 10만원 개꿀 4등',
+                    'rank5' : '5천원..ㅎㅎ 본전 ㄴㅇㅅ',
+                    'lose' : null
+                }
+                records[key['result']] ++;
+                return msgs[key['result']] ?? '낙첨....'
+            }
+            if(directClick){
+                console.log(takeMsgAndRecord(myNums['results'][e]));
+            } else {
+                takeMsgAndRecord(myNums['results'][e]);
+            }
+            
+            records['gameCnt'] ++;
+        })
+    },
+
+    addBtnEvent : function(){
+        let eventBtns = Array.from(document.getElementsByClassName('sampleBtn'));
+        myNums = {};
+
+        let gameCntInput = document.getElementById('gameCnt');
+
+        eventBtns.forEach((e, idx) => {
+            if(idx === 0){
+                e.addEventListener('click', function(){
+                    directClick = true;
+                    script.doGame();
+                }, true);
+            } else if(idx === 1){
+                e.addEventListener('click', function(){
+                    let gamePrice = (records['gameCnt'] * 1000).toLocaleString('ko-KR');
+                    let totalEarn = 0;
+                    let priceInfo = {
+                        'rank1' : 1000000000,
+                        'rank2' : 50000000,
+                        'rank3' : 1000000,
+                        'rank4' : 100000,
+                        'rank5' : 5000
+                    }
+                    Object.keys(priceInfo).forEach(e => {
+                        totalEarn += priceInfo[e] * records[e];
+                    })
+                    totalEarn = totalEarn.toLocaleString('ko-KR');
+                    let gameCnt = records['gameCnt'].toLocaleString('ko-KR');
+                    let result = `============================================================================
+                                    게임 결과
+                        총 게임 횟수 :  ${gameCnt}
+                        1등 횟수 :  ${records['rank1']}
+                        2등 횟수 :  ${records['rank2']}
+                        3등 횟수 :  ${records['rank3']}
+                        4등 횟수 :  ${records['rank4']}
+                        5등 횟수 :  ${records['rank5']}
+                        꽝 횟수  :  ${records['lose']}
+                        
+                        총 소모비용 : ${gamePrice} 원
+                        총 회수비용 : ${totalEarn} 원
+============================================================================`
+                    console.log(result);
+                }, true);
+            } else if(idx === 2){
+                e.addEventListener('click', function(){
+                    let inputCnt = Number(document.getElementById('gameCnt').value);
+                    script.doManyGames(inputCnt);
+                }, true);
+            }
+            
+        })
+
+        //숫자입력이벤트
+        gameCntInput.addEventListener('input',function(){
+            let words = /[^0-9]/; //문자 거르기용
+            this.value = this.value.replaceAll( new RegExp(words, 'ig'), '');
+
+            let gameCnt = document.getElementById('gameCnt');
+            if(Number(gameCnt.value) > 100000){
+                gameCnt.value = 100000;
+                alert('연속게임 1회 최대 횟수는 10만회 입니다.');
+            }
+        }, true);
+    },
+
+    doGame : function(){
+        script.make6Nums(5, myNums);
+        script.checkWin();
+    },
+    doManyGames : function(gameCnt){
+        gameCnt = Number(gameCnt);
+        if(Number.isNaN(gameCnt)){
+            alert('숫자를 입력해주세요');
+            document.getElementById('gameCnt').value = '';
+            return false;
+        }
+        directClick = false;
+        let tryCnt = 0;
+
+        //연속게임중 버튼들 잠그기
+        let btns = Array.from(document.getElementsByTagName('button'));
+        btns.forEach(e => {
+            e.disabled = true;
+        })
+        
+        while(tryCnt < gameCnt){
+            script.doGame();
+            tryCnt ++;
+        }
+
+        //버튼들 잠금해제
+        btns.forEach(e => {
+            e.disabled = false;
+        })
+    }
+}
+</script>
+
+</body>
+</html>
