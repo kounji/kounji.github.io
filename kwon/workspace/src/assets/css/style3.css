@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+/* 페이지 데이터 없음 */
+.custom_no_data {position:relative;height:100%;background-color:#f5f6fa;}
+.custom_no_data .new_add_register {position:absolute;bottom:2.5rem;width:100%;}
+/* 풀팝업 버튼 높이 조절 */
+.renewal .com_btn_area{margin-bottom: 0;}
+/* 버튼 클릭안되게 */
+a.btn_off{pointer-events:none;}
+.custom_box_alrim a.btn_off em:after {display: none;background: none;}
+#checkGroup.no_touch .answer_radio input[type="radio"] + label{pointer-events: none;}
+/* 레이블고정 */
+.com_input_type01 label.focus{transform:translateY(-2.1rem); font-size: 1.3rem;}
+.com_input_type01 label.focus .txt_label_x{opacity: 1;}
+/* as-is 쉐도우및라인제거 */
+#wrap.responsive.sticky-scroll .lnb {box-shadow:none; border-bottom:none;}
+/* as-ac-1007 아이콘 추가 */
+.new_sec_box.custom .list_round_box.ico_inner li label.bank_state_che{padding-left: 5.5rem;}
+.new_sec_box.custom .list_round_box.ico_inner li label.bank_state_che .ico_bank{left: 1.7rem;}
+/* 아이폰일때  */
+#view-wrap {-webkit-overflow-scrolling:auto;}
+#wrap{-webkit-overflow-scrolling:auto;}
+.full_popup .popup_content{-webkit-overflow-scrolling:touch}/*ios 보이스오버 스크롤 오류 수정 2022-12-27*/
+.full_popup .popup_content.no-padder{-webkit-overflow-scrolling:auto;}
+.slide_popup .popup_content{-webkit-overflow-scrolling:auto;}
+.content-view{-webkit-overflow-scrolling:auto;}
+.full_popup .popup_content.iframe{-webkit-overflow-scrolling:touch;}
+/*  풀팝업슬라이딩팝업 흰색버튼 as-is 변경 221116  */
+.full_popup .btn_close.txt_cancel, .popup_box .txt_cancel{border: .1rem #dedede solid;background-color: #fff;}
+/*  로딩이미지 */
+#loadingArea{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000;background:rgba(0,0,0,.8);}
+.loadingWrap{position:absolute;top:50%;left:50%;margin-top:-50px;margin-left:-30px;width:60px;height:100px}
+.loadingChaWrap{position:relative;width:60px;height:60px;background-color:#e3e4e7;border-radius:30px;overflow:hidden;will-change:transform;}
+.loadingChaWrap [class*='cha']{position:absolute;top:50%;left:50%;margin-left:-60px;margin-top:-60px;width:120px;height:120px;transform:scale(0.2);-webkit-transform:scale(0.2);}
+.loadingChaWrap .cha1{background:url('../images/loading/loading_c2.png') 0 0/cover;opacity:0;animation:aniCha1 5s 0s infinite}
+.loadingChaWrap .cha2{background:url('../images/loading/loading_c1.png') 0 0/cover;opacity:0;animation:aniCha2 5s 0s infinite}
+.loadingChaWrap .cha3{background:url('../images/loading/loading_c3.png') 0 0/cover;opacity:0;animation:aniCha3 5s 0s infinite}
+@keyframes aniCha1{
+    0%{opacity:0;transform:scale(0.2);-webkit-transform:scale(0.2);}
+    10%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    30%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    40%{opacity:0;transform:scale(1);-webkit-transform:scale(1)}
+    100%{opacity:0;transform:scale(1);-webkit-transform:scale(1)}
+}
+@keyframes aniCha2{
+    0%{opacity:0;transform:scale(0.2);-webkit-transform:scale(0.2);}
+    30%{opacity:0;transform:scale(0.2);-webkit-transform:scale(0.2);}
+    40%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    60%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    70%{opacity:0;transform:scale(1);-webkit-transform:scale(1)}
+    100%{opacity:0;transform:scale(1);-webkit-transform:scale(1)}
+}
+@keyframes aniCha3{
+    0%{opacity:0;transform:scale(0.2);-webkit-transform:scale(0.2);}
+    60%{opacity:0;transform:scale(0.2);-webkit-transform:scale(0.2);}
+    70%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    90%{opacity:1;transform:scale(1);-webkit-transform:scale(1)}
+    100%{opacity:0;transform:scale(1);-webkit-transform:scale(1)}  
+}
+.loadingDotWrap{position:absolute;top:70px;width:60px;height:30px}
+.loadingDotWrap [class*='dot']{position:absolute;top:18px;left:24px;width:12px;height:12px;background-color:#fee144;border-radius:50%}
+.loadingDotWrap .dotL{animation:aniDotL 1.5s 0s ease-in-out infinite;z-index:1}
+.loadingDotWrap .dotC{animation:aniDotC 1.5s 0s ease-in-out infinite}
+.loadingDotWrap .dotR{animation:aniDotR 1.5s 0s ease-in-out infinite;z-index:1}
+@keyframes aniDotL{
+    10%{left:24px;top:18px;background-color:#fee144}
+    15%{left:0;top:18px;background-color:#4894ea}
+    40%{left:0;top:18px;background-color:#4894ea}
+    50%{left:0;top:0;background-color:#4894ea}
+    60%{left:0;top:18px;background-color:#4894ea}
+    90%{left:0;top:18px;background-color:#4894ea}
+    100%{left:24px;top:18px;background-color:#fee144}
+}
+@keyframes aniDotC{
+    0%{left:24px;top:18px}
+    50%{left:24px;top:18px}
+    60%{left:24px;top:0}
+    70%{left:24px;top:18px}
+    100%{left:24px;top:18px}
+}
+@keyframes aniDotR{
+    20%{left:24px;top:18px;background-color:#fee144}
+    35%{left:48px;top:18px;background-color:#8878ff}
+    60%{left:48px;top:18px;background-color:#8878ff}
+    70%{left:48px;top:0;background-color:#8878ff}
+    80%{left:48px;top:18px;background-color:#8878ff}
+    100%{left:24px;top:18px;background-color:#fee144}
+}

@@ -1,0 +1,528 @@
+{
+	"pages": [
+		{
+			"title": "",
+			"desc" : "PFM메인",
+			"name": "MAMA2001",
+			"path": "/MAMA2001",
+			"componentPath": "views/page/MA/MA/MAMA2001/MAMA2001.vue"
+		},
+		{
+			"title":"더보기",
+			"desc":"더보기",
+			"name":"MRMR2001",
+			"path":"/MRMR2001",
+			"componentPath":"views/page/MR/AM/MRMR2001/MRMR2001.vue"
+		},
+		{
+			"title":"연결기관관리",
+			"desc":"전체메뉴 > 연결기관관리 > 연결기관목록",
+			"name":"MRAM2001",
+			"path":"/MRAM2001",
+			"componentPath":"views/page/MR/AM/MRAM2001/MRAM2001.vue"
+		},
+		{
+			"title": "",
+			"desc" : "서비스가입 > 서비스소개",
+			"name": "COAS2001",
+			"path": "/COAS2001",
+			"componentPath": "views/page/CO/AS/COAS2001/COAS2001.vue"
+		},
+		{
+			"title": "",
+			"desc" : "서비스가입 > 서비스소개 > 서비스 안내 및 필수 약관 동의",
+			"name": "COAS2002",
+			"path": "/COAS2002",
+			"componentPath": "views/page/CO/AS/COAS2002/COAS2002.vue"
+		},
+		{
+			"title": "",
+			"desc" : "서비스가입 > 서비스소개 > 서비스 안내 및 필수 약관 재동의",
+			"name": "COAS2104",
+			"path": "/COAS2104",
+			"componentPath": "views/page/CO/AS/COAS2104/COAS2104.vue"
+		},
+		{
+			"title": "",
+			"name": "COCO1125",
+			"path": "/COCO1125",
+			"disableHistory": true,
+			"desc" : "서비스장애",
+			"componentPath": "views/page/CO/CO/COCO1125/COCO1125.vue"
+		},
+		{
+			"title": "금융생활",
+			"name": "PDMY2001",
+			"path": "/PDMY2001",
+			"componentPath": "views/page/PD/MY/PDMY2001/PDMY2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 메인(투자)",
+			"name": "ASIV2001",
+			"path": "/ASIV2001",
+			"componentPath": "views/page/AS/IV/ASIV2001/ASIV2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLN2001",
+			"path": "/ASLN2001",
+			"desc" : "나의자산 > 부채 > 메인(대출)",
+			"componentPath": "views/page/AS/LN/ASLN2001/ASLN2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLN1102",
+			"path": "/ASLN1102",
+			"desc" : "나의자산 > 부채 > 메인(자동차)",
+			"componentPath": "views/page/AS/LN/ASLN1102/ASLN1102.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASCD2001",
+			"path": "/ASCD2001",
+			"desc" : "나의자산 > 부채 > 메인(카드)",
+			"componentPath": "views/page/AS/CD/ASCD2001/ASCD2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLN1105",
+			"path": "/ASLN1105",
+			"desc" : "나의자산 > 부채 > 메인(할부금융)",
+			"componentPath": "views/page/AS/LN/ASLN1105/ASLN1105.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLN1106",
+			"path": "/ASLN1106",
+			"desc" : "나의자산 > 부채 > 메인(리스)",
+			"componentPath": "views/page/AS/LN/ASLN1106/ASLN1106.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLN1107",
+			"path": "/ASLN1107",
+			"desc" : "나의자산 > 부채 > 메인(빌린돈)",
+			"componentPath": "views/page/AS/LN/ASLN1107/ASLN1107.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASIT2001",
+			"path": "/ASIT2001",
+			"desc" : "나의자산 > 부채 > 메인(할부금융)",
+			"componentPath": "views/page/AS/IT/ASIT2001/ASIT2001.vue"
+		},
+        {
+			"title": "나의자산",
+			"name": "ASCL2001",
+			"path": "/ASCL2001",
+			"desc" : "나의자산 > 부채 > 메인(자동차)",
+			"componentPath": "/views/page/AS/CL/ASCL2001/ASCL2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASLS2001",
+			"path": "/ASLS2001",
+			"desc" : "나의자산 > 부채 > 메인(리스)",
+			"componentPath": "views/page/AS/LS/ASLS2001/ASLS2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASBR2001",
+			"path": "/ASBR2001",
+			"desc" : "나의자산 > 부채 > 메인(빌린돈)",
+			"componentPath": "views/page/AS/BR/ASBR2001/ASBR2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"name": "ASCA2001",
+			"path": "/ASCA2001",
+			"desc" : "나의자산 > 자산 > 메인(자동차)",
+			"componentPath": "views/page/AS/CA/ASCA2001/ASCA2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 예금(메인)",
+			"name": "ASAC2001",
+			"path": "/ASAC2001",
+			"componentPath": "views/page/AS/AC/ASAC2001/ASAC2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 포인트(메인)",
+			"name": "ASAC1110",
+			"path": "/ASAC1110",
+			"componentPath": "views/page/AS/AC/ASAC1110/ASAC1110.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 포인트(메인)",
+			"name": "ASPT2001",
+			"path": "/ASPT2001",
+			"componentPath": "views/page/AS/PT/ASPT2001/ASPT2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 전체(메인)",
+			"name": "ASAC1001",
+			"path": "/ASAC1001",
+			"componentPath": "views/page/AS/AC/ASAC1001/ASAC1001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 예금 > 계좌별 잔액 예측 리포트",
+			"name": "ASAC1003",
+			"path": "/ASAC1003",
+			"componentPath": "views/page/AS/AC/ASAC1003/ASAC1003.vue"
+		},
+		{
+			"title": "연금",
+			"desc" : "자산현황 > 연금",
+			"name": "ASPS2001",
+			"path": "/ASPS2001",
+			"componentPath": "views/page/AS/PS/ASPS2001/ASPS2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 기타(메인)",
+			"name": "ASOA2001",
+			"path": "/ASOA2001",
+			"componentPath": "views/page/AS/OA/ASOA2001/ASOA2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 자산진단",
+			"name": "ASIP2001",
+			"path": "/ASIP2001",
+			"componentPath": "views/page/AS/IP/ASIP2001/ASIP2001.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 전체 메인",
+			"name": "ASTA2001",
+			"path": "/ASTA2001",
+			"componentPath": "views/page/AS/TA/ASTA2001/ASTA2001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 달력",
+			"name": "LCFD1101",
+			"path": "/LCFD1101",
+			"componentPath": "views/page/LC/FD/LCFD1101/LCFD1101.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 지출내역",
+			"name": "LCLE1101",
+			"path": "/LCLE1101",
+			"componentPath": "views/page/LC/LE/LCLE1101/LCLE1101.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 지출분석",
+			"name": "LCIP1001",
+			"path": "/LCIP1001",
+			"componentPath": "views/page/LC/IP/LCIP1001/LCIP1001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 달력",
+			"name": "LCFD2001",
+			"path": "/LCFD2001",
+			"componentPath": "views/page/LC/FD/LCFD2001/LCFD2001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 지출내역",
+			"name": "LCLE2001",
+			"path": "/LCLE2001",
+			"componentPath": "views/page/LC/LE/LCLE2001/LCLE2001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 지출분석",
+			"name": "LCIP2001",
+			"path": "/LCIP2001",
+			"componentPath": "views/page/LC/IP/LCIP2001/LCIP2001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 정기지출",
+			"name": "LCIP2004",
+			"path": "/LCIP2004",
+			"componentPath": "views/page/LC/IP/LCIP2004/LCIP2004.vue"
+		},
+
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 상품추천",
+			"name": "PDPD1001",
+			"path": "/PDPD1001",
+			"componentPath": "views/page/PD/PD/PDPD1001/PDPD1001.vue"
+		},
+		
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융통통 > 연말정산",
+			"name": "PDYT2002",
+			"path": "/PDYT2002",
+			"componentPath": "views/page/PD/YT/PDYT2002/PDYT2002.vue"  
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융통통 > 노후준비",
+			"name": "PDRT2001",
+			"path": "/PDRT2001",
+			"componentPath": "views/page/PD/RT/PDRT2001/PDRT2001.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융통통 > 은퇴 준비 진단",
+			"name": "PDRT1012",
+			"path": "/PDRT1012",
+			"componentPath": "views/page/PD/RT/PDRT1012/PDRT1012.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융통통 > 사회보험",
+			"name": "PDSC2001",
+			"path": "/PDSC2001",
+			"componentPath": "views/page/PD/SC/PDSC2001/PDSC2001.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융브리핑",
+			"name": "PDBF2001",
+			"path": "/PDBF2001",
+			"componentPath": "views/page/PD/BF/PDBF2001/PDBF2001.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 부동산서비스",
+			"name": "ANRE2201",
+			"path": "/ANRE2201",
+			"componentPath": "views/page/AN/RE/ANRE2201/ANRE2201.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > NH콕마이카",
+			"name": "ANCA2201",
+			"path": "/ANCA2201",
+			"componentPath": "views/page/AN/CA/ANCA2201/ANCA2201.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 부동산 메인(상세)",
+			"name": "ASRE2001",
+			"path": "/ASRE2001",
+			"componentPath": "views/page/AS/RE/ASRE2001/ASRE2001.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 귀농귀촌 > 귀농귀촌 메인",
+			"name": "ANFM2001",
+			"path": "/ANFM2001",
+			"componentPath": "views/page/AN/FM/ANFM2001/ANFM2001.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 영농달력 > 영농달력 메인",
+			"name": "SZFC2101",
+			"path": "/SZFC2101",
+			"componentPath": "views/page/SZ/FC/SZFC2101/SZFC2101.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 영농일지 > 영농일지 메인",
+			"name": "ANSZ2002",
+			"path": "/ANSZ2002",
+			"componentPath": "views/page/AN/SZ/ANSZ2002/ANSZ2002.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 농기계임대 > 농기계임대 메인",
+			"name": "SZFL2101",
+			"path": "/SZFL2101",
+			"componentPath": "views/page/SZ/FL/SZFL2101/SZFL2101.vue"
+		},
+		
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 손익분석 > 손익분석 메인",
+			"name": "SZFP2101",
+			"path": "/SZFP2101",
+			"componentPath": "views/page/SZ/FP/SZFP2101/SZFP2101.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 정책자금 > 정책자금 메인",
+			"name": "SZPC2101",
+			"path": "/SZPC2101",
+			"componentPath": "views/page/SZ/PC/SZPC2101/SZPC2101.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 농기계임대 > 농기계임대 메인",
+			"name": "SZUM2101",
+			"path": "/SZUM2101",
+			"componentPath": "views/page/SZ/UM/SZUM2101/SZUM2101.vue"
+		},
+		{
+			"title": "제휴서비스",
+			"desc" : "제휴서비스 > 농기계임대 > 농기계임대 메인",
+			"name": "SZST2101",
+			"path": "/SZST2101",
+			"componentPath": "views/page/SZ/ST/SZST2101/SZST2101.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 메인(보험)",
+			"name": "ASIN1101",
+			"path": "/ASIN1101",
+			"componentPath": "views/page/AS/IN/ASIN1101/ASIN1101.vue"
+		},
+		{
+			"title": "나의자산",
+			"desc" : "나의자산 > 자산 > 메인(보험)",
+			"name": "ASIS2001",
+			"path": "/ASIS2001",
+			"componentPath": "views/page/AS/IS/ASIS2001/ASIS2001.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 나의 세금/사회보험료",
+			"name": "PDTX1001",
+			"path": "/PDTX1001",
+			"componentPath": "views/page/PD/TX/PDTX1001/PDTX1001.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 공공 정보 미연결",
+			"name": "PDTX1002",
+			"path": "/PDTX1002",
+			"componentPath": "views/page/PD/TX/PDTX1002/PDTX1002.vue"
+		},
+		{
+			"title": "금융생활",
+			"desc" : "금융생활 > 금융통통 > 세금현황",
+			"name": "PDTX2004",
+			"path": "/PDTX2004",
+			"componentPath": "views/page/PD/TX/PDTX2004/PDTX2004.vue"
+		},
+		{
+			"title": "",
+			"name": "COCO1114",
+			"path": "/COCO1114",
+			"disableHistory": true,
+			"desc" : "서비스오류",
+			"componentPath": "views/page/CO/CO/COCO1114/COCO1114.vue"
+		},
+		{
+			"title": "",
+			"name": "COCO1115",
+			"path": "/COCO1115",
+			"disableHistory": true,
+			"desc" : "서비스준비중",
+			"componentPath": "views/page/CO/CO/COCO1115/COCO1115.vue"
+		},
+		{
+			"title": "",
+			"name": "COCO1126",
+			"path": "/COCO1126",
+			"disableHistory": true,
+			"desc" : "서비스점검",
+			"componentPath": "views/page/CO/CO/COCO1126/COCO1126.vue"
+		},
+		
+		{
+			"title": "본인인증 방식 선택",
+			"name": "PI0001",
+			"path": "/PI0001",
+			"componentPath": "views/page/XX/pilot/PI0001/PI0001.vue"
+		},{
+			"title": "정보제공자 선택",
+			"name": "PI0002",
+			"path": "/PI0002",
+			"componentPath": "views/page/XX/pilot/PI0002/PI0002.vue"
+		},{
+			"title": "전송요구내역 선택",
+			"name": "PI0003",
+			"path": "/PI0003",
+			"componentPath": "views/page/XX/pilot/PI0003/PI0003.vue"
+		},{
+			"title": "수집",
+			"name": "PI0004",
+			"path": "/PI0004",
+			"componentPath": "views/page/XX/pilot/PI0004/PI0004.vue"
+		},{
+			"title": "재배지수정",
+			"name": "SZFC0013P01",
+			"path": "/SZFC0013P01",
+			"componentPath": "views/page/SZ/FC/SZFC0013/SZFC0013P01.vue"
+		},{
+			"title": "정보조회",
+			"name": "IC0001",
+			"path": "/IC0001",
+			"componentPath": "views/page/XX/indcert/IC0001/IC0001.vue"
+		},
+		{
+			"title": "테스트-자산관리서비스소개",
+			"name": "EXCOAS0001",
+			"path": "/EXCOAS0001",
+			"componentPath": "views/page/XX/CO/AS/COAS0001/COAS0001.vue"
+		},
+		{
+			"title": "테스트-자산관리서비스가입",
+			"desc" : "서비스가입 > 동시가입주의사항",
+			"name": "EXCOAS0012",
+			"path": "/EXCOAS0012",
+			"componentPath": "views/page/XX/CO/AS/COAS0012/COAS0012.vue"
+		},
+		{
+			"title": "테스트-자산관리서비스가입",
+			"desc" : "서비스가입 > 약관동의",
+			"name": "EXCOAS0002",
+			"path": "/EXCOAS0002",
+			"componentPath": "views/page/XX/CO/AS/COAS0002/COAS0002.vue"
+		},
+		{
+			"title": "테스트-자산관리 서비스가입",
+			"desc" : "서비스가입 > 권유직원입력",
+			"name": "EXCOAS0004",
+			"path": "/EXCOAS0004",
+			"componentPath": "views/page/XX/CO/AS/COAS0004/COAS0004.vue"
+		},
+		{
+			"title": "테스트-자산관리 서비스가입",
+			"desc" : "서비스가입 > 거래지점선택",
+			"name": "EXCOAS0005",
+			"path": "/EXCOAS0005",
+			"disableHistory": true,
+			"componentPath": "views/page/XX/CO/AS/COAS0005/COAS0005.vue"
+		},
+		{
+			"title": "테스트-자산관리 서비스가입",
+			"desc" : "서비스가입 > 약관재동의안내 > 재동의완료",
+			"name": "EXCOAS0010",
+			"path": "/EXCOAS0010",
+			"disableHistory": true,
+			"componentPath": "views/page/XX/CO/AS/COAS0010/COAS0010.vue"
+		},
+		{
+			"title": "테스트-자산관리 서비스가입",
+			"desc" : "서비스가입 > 가입완료",
+			"name": "EXCOAS0007",
+			"path": "/EXCOAS0007",
+			"disableHistory": true,
+			"componentPath": "views/page/XX/CO/AS/COAS0007/COAS0007.vue"
+		}
+	],
+	"sample": [
+		{
+			"title": "",
+			"name": "sample",
+			"path": "/sample",
+			"componentPath": "views/page/XX/sample/Sample.vue"
+    }
+	]
+}

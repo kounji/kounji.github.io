@@ -1,0 +1,522 @@
+@charset "utf-8";
+
+/* common */
+/* ### Layout Main */
+/* Layout Main Slick */
+.main .slick-slide {height: 0px !important;}
+.main .slick-slide.slick-active {height: 100% !important;}
+
+/* Layout Main Header */
+#wrap .main {width:100%;height:100%;}
+#wrap .main .mainHeader {width:100%;height:auto;background-color: #fff;}
+.main .topMenu {width:100%;height: 17.9rem;transition: all .2s;}
+.main .mainHeader .subMenu {width: 100%;height: 14rem;overflow:hidden;}
+
+/* Layout Main Content */
+.main .mainContentView {width:100%;height:100%;/* background-color: #f6f8fa; */}
+.main .mainScroll {width:100%;height: calc(100% - 10.5rem);overflow-y: auto;/* background-color: #f6f8fa; */-webkit-overflow-scrolling:touch}/*ios 보이스오버 스크롤 오류 수정 2022-12-27*/
+.main .container {width:100%;height:100%;overflow-x: hidden;background-color: #f6f8fa;} /*스와이핑 할 때 반대쪽 안보임 */
+.main .container .boxTop {position: relative;background-color: #fff;border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem;box-shadow: 0 0.4rem 1.1rem 0 rgba(0, 25, 28, 0.12);}
+
+.main .slide01 .container .boxBottom {margin-top: -3rem;padding-top: 6rem;background-color: #f6f8fa;}
+.main .slide02 .container .boxBottom {margin-top: -3rem;padding-top: 6rem;background-color: #f6f8fa;}
+.main .slide03 .container .boxBottom {margin-top: -3rem;padding-top: 6rem;background-color: #f6f8fa;}
+.main .slide04 .container .boxBottom {margin-top: -3rem;padding-top: 6rem;background-color: #f6f8fa;}
+
+
+/* Layout Main Footer */
+.custom_footer #com_footer.block {bottom: 0;}
+.custom_footer #com_footer {display: block;position: fixed;left:0;/*bottom: -10.4rem;*/bottom: -7.8rem;width:100%;/*height:9.4rem;*/transition: all .1s;background-color: transparent;}
+.custom_footer #com_footer.borderRadius {border-top-left-radius: 0;border-top-right-radius: 0;}
+.custom_footer #com_footer.none {height: 0;opacity: 0;}
+
+/* ############### Layout Main Responsive Start */
+/* Layout Main Responsive Header 관련 */
+#wrap .main.responsive .mainHeader {height: auto;transition: none;}
+.main.responsive .mainHeader .subMenu {margin: 1.5rem 0 0;}
+.main.responsive .subMenuList button[type='button'] span {transition:none;} 
+.main .topMenuHide {margin-top: -2rem;height:0;opacity: 0;}
+.main .mainHeader .topMenuHide .top_menu {display: none;}
+#wrap .main .mainHeader .topMenu.topMenuHide .top_content {display: none;}
+/* Layout Main Responsive Content 관련 */
+.mainContentView .slick-list {height: 100% !important;/* border-radius: 1.1rem; */}
+/* Layout Main Responsive Footer 관련 */
+/* ############### Layout Main Responsive End */
+
+/* ############### Main Style Start */
+/* Main Header Style */
+/* Main Header Top Menu */
+.main .mainHeader .top_menu {display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: flex-end;align-items: flex-start;padding: 1.9rem 2rem 0;height: 6.9rem;}
+.main .mainHeader .btn_back {display: block;z-index: 400;position: absolute;top: 1.9rem;left: 2rem;width: 1.1rem;height: 1.6rem;background: url(../images/newmain/btn/btn_back.png) no-repeat center center;background-size: 100% auto;}
+
+.main .alram {margin-top: -.4rem;margin-left: -0.5rem;width:2.3rem;height: 1.9rem;}
+.main .alram a {display:block;width:100%;height:100%;background: url('../images/newmain/icon/ico_alram_no.png') no-repeat left top;background-size:100% auto;transition: all .3s;}
+.main .alram a.active {background-image:url('../images/newmain/icon/ico_alram.png');}
+
+.main .top_menu .menu {margin-left: .7rem;width:1.8rem;height: 1.6rem;}
+.main .top_menu .menu a {display:block;width:100%;height: 100%;background:url('../images/newmain/btn/btn_hamberger.png') no-repeat left top;background-size:100% auto;}
+
+
+/* Main Header Top Content */
+.mainHeader .topMenu > .top_content {margin: 0 2rem;}
+.mainHeader .topMenu > .top_content .top_content_header {position: relative;height: 3.8rem;font-family: 'Noto Sans KR';font-size: 2rem;color: #111;}
+.mainHeader .topMenu > .top_content .top_content_header .user_name {margin-left: -0.0rem;font-weight: 500;}
+.mainHeader .topMenu > .top_content .top_content_header a {position: absolute;top: -0.5rem;display: block;width: 2.8rem;height: 2.8rem;border:solid .1rem #e4e4e4;border-radius: 50%;background-repeat: no-repeat;background-position: center center;box-shadow: 0 0.1rem 0.7rem 0 rgba(0, 25, 28, 0.12);}
+.mainHeader .topMenu > .top_content .top_content_header .ico_main_insert {right: 4.4rem;background-image: url(../images/newmain/icon/ico_money_insert.png);background-size: 1.6rem auto;}
+.mainHeader .topMenu > .top_content .top_content_header .ico_main_edit {right: 0;background-image: url('../images/newmain/icon/ico_edit.png');background-size: 1.6rem auto;}
+
+/* Main Header Top Content my_asserts_area */
+.mainHeader .topMenu > .top_content .my_asserts_area {height: 4.6rem;}
+.mainHeader .topMenu > .top_content .my_asserts_area .counter {padding-left: 0.1rem;font-family: 'Roboto';font-weight: 500;font-size: 3.4rem;}
+.mainHeader .topMenu > .top_content .my_asserts_area em {font-family: 'Noto Sans KR';font-weight: 500;font-size: 2.5rem;}
+.mainHeader .topMenu > .top_content .my_asserts_area .btn01,
+.mainHeader .topMenu > .top_content .my_asserts_area .btn02,
+.mainHeader .topMenu > .top_content .my_asserts_area .btn03 {margin-left: 1rem;width: 2rem;height: 2rem;background: url('../images/newmain/btn/btn_arrow_down.png') no-repeat left center;background-size: 100% auto;    display: inline-block;}
+
+/* Main Header Top Content change_asserts */
+.mainHeader .topMenu > .top_content .change_asserts {display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: flex-start;align-items: center;font-family: 'Roboto';color: #333;font-size: 1.4rem;}
+.mainHeader .topMenu > .top_content .change_asserts .ico_refresh_black {margin-left:1.1rem;display: block;width: 1.6rem;height: 1.6rem;background: url('../images/newmain/icon/ico_refresh_black.png') no-repeat left top;background-size: 100% auto;}
+
+/* Main Header SubMenu Style */
+.main .mainHeader .subMenu {margin: 1.5rem 0 1.2rem;height: 11rem;background: url('../images/newmain/bg/bg_wave00_repeatX.png') repeat-x left -1rem;background-size: auto 11rem;}
+
+/* wave 관련 css Start */
+.main .mainHeader .subMenu .comTabmenuType01 {position: relative;height: 100%;}
+.main .mainHeader .subMenu .comTabmenuType01 .waveMove{position: relative;width: 25%;height: 100%;/* height: 11.5rem; */height: 100%;transition: left .1s;}
+.main .subMenu .waveMove::after {content: "";display: block;position: absolute;top: 1.2rem;left: 50%;transform:translateX(-50%);width: 1.3rem;height: 1.3rem;border-radius: 50%;transition: all .5s;background: linear-gradient(to bottom right, #0da0aa, #3dc8a1);animation: upDownWave 700ms infinite;
+box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.22);}
+@keyframes upDownWave { 0% {margin-top: 0;}25% {margin-top: -0.1rem;} 50% {margin-top: -0.2rem;} 75% {margin-top: -0.1rem;}100% {margin-top: 0;}  }
+.main .subMenu .waveMove .waveAni01{position: absolute;top: -1.4rem;left:50%;transform: translateX(-50%);display: block;width: 17.8rem;height: 100%;background: url('../images/newmain/bg/bg_wave00.png') no-repeat 0 0;background-size: 100% auto;}
+
+/* 물결 투명한 부분 2 */
+@keyframes anim {0% {background-position: 0 0;}50% {background-position: 20px 0;}100% {background-position: 0 0;}}
+@keyframes anim-rev {0% {background-position: 20px 0;}50% {background-position: 0 0;}100% {background-position: 20px 0;}}
+/* wave 관련 css End */
+
+/* Menu01 Anumation Bg Start */
+.main .mainHeader .subMenu.menu00 {background-image:url('../images/newmain/bg/bg_wave00_repeatX.png')}
+.main .subMenu.menu00 .waveMove .waveAni01{background-image: url('../images/newmain/bg/bg_wave00.png');}
+
+.main .subMenu.menu00 .waveMove::after {background: linear-gradient(315deg, #43dc9b 0%,  #14aaae 50%, #0b9a9f 100%);}
+/* Menu01 Anumation Bg End */
+
+/* Menu02 Anumation Bg Start */
+.main .mainHeader .subMenu.menu01 {background-image:url('../images/newmain/bg/bg_wave01_repeatX.png');}
+.main .subMenu.menu01 .waveMove .waveAni01{background-image: url('../images/newmain/bg/bg_wave01.png');}
+.main .menu01 .subMenuList button[type='button'] span {color: #7e28a3}
+.main .subMenu.menu01 .subMenuList button[type='button'].is-active span {color: #fff;border-color: #9a56b7;background: linear-gradient(280deg, #965dc0 0%, #9a56b7 45%, #9a56b7 100%);}
+.main .subMenu.menu01 .waveMove::after {background: linear-gradient(280deg, #e650f2 0%,  #a746c2 50%, #9650b4 100%);}
+/* Menu02 Anumation Bg End */
+
+/* Menu03 Anumation Bg Start */
+.main .mainHeader .subMenu.menu02 {background-image:url('../images/newmain/bg/bg_wave02_repeatX.png');}
+.main .subMenu.menu02 .waveMove .waveAni01{background-image: url('../images/newmain/bg/bg_wave02.png');}
+.main .subMenu.menu02 .subMenuList button[type='button'] span {color: #3c3aa0;}
+.main .subMenu.menu02 .subMenuList button[type='button'].is-active span {color: #fff;background: linear-gradient(280deg, #4a73a5 0%, #5d6eb4 45%, #5d6eb4 100%);}
+.main .subMenu.menu02 .waveMove::after {background: linear-gradient(280deg, #96a7fa 0%, #4d58a7 50%, #504da7 100%);}
+/* Menu03 Anumation Bg End */
+
+/* Menu04 Anumation Bg Start */
+.main .subMenu.menu03 {background-image:url('../images/newmain/bg/bg_wave03_repeatX.png');}
+.main .subMenu.menu03 .waveMove .waveAni01{background-image: url('../images/newmain/bg/bg_wave03.png');}
+.main .subMenu.menu03 .subMenuList button[type='button'] span {color: #1e53a7;}
+.main .subMenu.menu03 .subMenuList button[type='button'].is-active span {color: #fff;border-color: #1e78b2;background: linear-gradient(280deg, #1a809d 0%, #1e78b2 45%, #1e78b2 100%);}
+.main .subMenu.menu03 .waveMove::after {background: linear-gradient(280deg, #88e4f7 0%,  #4d8ec0 50%, #3467b7 100%);}
+/* Menu04 Anumation Bg End */
+
+/* Main Header SubMenu Start */
+.main .subMenu .subMenuList {position: absolute;top: 5.1rem;left: 0;width: 100%;height: 4rem;}
+.main .subMenu .slick-list {height: 100%; overflow: visible;}
+.main .subMenu .slick-list .slick-track {display: flex;flex-direction: row;flex-wrap: nowrap;align-content: space-around;justify-content: space-between;align-items: center;margin: 0 2rem;width: auto !important;height: 100%;overflow: visible;}
+.main .subMenu button[type='button'] {position: relative;padding: 0;float: none;width: 100% !important;height: 100%;}
+.main .subMenu .subMenuList button[type='button'] + button[type='button']{margin-left: 0.7rem;}
+.main .subMenu .subMenuList .slick-list .slick-track .slick-slide {margin-left: 0.7rem;}
+.main .subMenu .subMenuList .slick-list .slick-track .slick-slide:first-child {margin-left: 0;}
+.main .subMenu button[type='button']:first-child {margin-left: 0;}
+.main .subMenu button[type='button'] span {position: relative;width:100%;height: 4rem;border-radius: 2rem;border: solid 0.1rem #78ced0;background: #fff;font-size: 1.5rem;font-weight: 500;color: #008288;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: space-evenly;align-items: center;box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 25, 28, 0.12);}
+.main .menu00 .subMenuList button[type='button'] span {border-color: #78ced0;}
+.main .menu01 .subMenuList button[type='button'] span {border-color: #c288d0;}
+.main .menu02 .subMenuList button[type='button'] span {border-color: #8096c6;}
+.main .menu03 .subMenuList button[type='button'] span {border-color: #75b1d4;}
+.main button[type='button'].is-active span {color:#fff;border-color:#008288;background: linear-gradient(280deg, #048282 0%, #008288 45%, #008288 100%);box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.22);text-shadow: 0 .1rem .1rem rgba(0, 0, 0, 0.12);}
+/* Main Header SubMenu End */
+
+/* Main Content Start */
+.main .graph li {padding: 0 2rem;width:100%;}
+.main .graph li:first-child {border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem;background-color: #fff;}
+.main .graph li:first-child > .title {display:flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: space-between;border-top: solid .1rem #fff;}
+.main .graph li:first-child > .title span:first-child {font-size: 1.8rem;font-weight: 400;color: #111;}
+.main .graph li:first-child > .title a {position: relative; display:inline-block;padding: 0 1.4rem 0 0;height: auto;font-size: 1.4rem;line-height:1.8rem;font-weight: 400;color: #333;}
+.main .graph li:first-child > .title a::before {position: absolute;top:50%; right: 0;transform: translateY(-50%);content:'';display: block;width: 0.6rem;height: 1rem;background: url('../images/newmain/btn/btn_arrow_right.png') no-repeat right center;background-size: 0.6rem auto;}
+.main .myMoneyAdminWrap {margin: 0 -2rem;padding: 2rem 0 2.8rem;border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem;background-color: #f0fcfa;}
+.main .myMoneyAdmin {position: relative;margin:0 2rem;padding: 2rem 2.9rem 0 1.5rem;display:block;border-radius: 1.5rem;border: solid .1rem #e2f0ec;background-color: #fff;box-shadow: 0 .1rem .6rem 0px rgba(198, 167, 210, 0.32);}
+.main .myMoneyAdmin::after {position: absolute;top: 0;right: 0;width: 1.2rem;height: 100%;border-top-right-radius: 0.9rem;border-bottom-right-radius: 0.9rem;background-color: #8cdbca;content: '';}
+.main .myMoneyAdmin .moneyStyle {position: relative;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: flex-start;align-items: center;margin-top: 1.8rem;padding: 0 0 0 4.8rem;height: 5.5rem;font-size: 1.6rem;line-height: 1.6rem;border-top: solid .1rem #e2f0ec;}
+.main .slide02 .myMoneyAdmin .moneyStyle {border-top-color: #e6e4f2;}
+
+/*메인 자산 금융스타일 하나만 존재할때*/
+.main .myMoneyAdmin.one {padding: 0 2.9rem 0 1.5rem;}
+.main .myMoneyAdmin.one .moneyStyle {margin-top: 0;border-top: 0;}
+.main .myMoneyAdmin.one span.title{display:none;}
+.main .myMoneyAdmin.one p.titleInfo{display:none;}
+
+
+.main .slide02 .txtStyle {padding-right: 0;}
+.main .myMoneyAdmin .moneyStyle::before {position: absolute;top: 50%;left: 0;transform: translateY(-50%);display: block;content: '';width: 3.6rem;height: 3.2rem;background:url('../images/newmain/bg/bg_main06.png') no-repeat 0 0;background-size: 100% auto;}
+.main .slide02 .myMoneyAdmin .moneyStyle::before {background-image: url(../images/newmain/bg/bg_main08.png);}
+.main .slideBox .slide.slide01 .container .graph .myMoneyAdmin .moneyStyle .pink {padding-left: 0.4rem;color: #7e28a3;line-height: 1.6rem;font-weight: 500;}
+.main .myMoneyAdmin .title {width:100%;font-size: 1.8rem;color: #111;line-height: 1.6rem;font-weight: 500;background: url('../images/newmain/btn/btn_arrow_right.png') no-repeat right center;background-size: 0.8rem auto;}
+
+.main .myMoneyAdmin > .titleInfo {padding-top:1.5rem;font-family: 'Noto Sans KR';font-size: 1.6rem;color:#111;font-weight: 400;line-height: 1.4rem;}
+.main .myMoneyAdmin > .titleInfo strong {margin-left: 0.55rem;font-family: 'Roboto';font-size: 1.8rem;color: #111;font-weight: 500;}
+
+.main .txtStyle {padding-right: 0.5rem;color: #333;font-weight: 500;}
+.main .txtStyle + .green {padding-left: 0;}
+.main .green {padding-left: 0.4rem;font-family: 'Noto Sans KR';font-weight: 500;color:#008288;line-height: 4.4rem;}
+.main .container .credit {margin: 0 2rem 0 2rem;height: 7.2rem;font-family: 'Noto Sans KR';font-weight: 500;font-size: 1.8rem;color:#111;line-height: 7.2rem;border-radius: 1.15rem;background: #fff url('../images/newmain/bg/bg_main02.png') no-repeat 1.7rem center;background-size: 5.85rem auto;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);}
+.main .container .credit a {display: inline-block;padding:0 1.6rem 0 9.1rem;width: 100%;height: 100%;}
+.main .container .credit .title {float: left;font-family: 'Noto Sans KR';font-weight: 500;font-size: 1.8rem;color:#111;}
+.main .container .credit .total {float: right;padding-right: 1.8rem;color: #111;font-size: 2.2rem;background: url('../images/newmain/btn/btn_arrow_right.png') no-repeat right center;background-size: 0.8rem auto;}
+.main .container .credit strong {font-family: 'Roboto';}
+.main .moneyTotal {margin: 1.5rem 2rem 0 2rem;height: 7.2rem;font-weight: 500;font-size: 1.8rem;color:#111;line-height: 7.2rem;border:solid 0.1rem #fff;border-radius: 1.15rem;background: #fff url('../images/newmain/bg/bg_main03.png') no-repeat 1.65rem center;background-size: 5.8rem auto;box-shadow: 0 0.01rem 0.6rem 0 rgba(0, 0, 0, 0.08);}
+.main .moneyTotal a {display: inline-block;padding:0 1.6rem 0 9.1rem;width: 100%;height: 100%;color: #111;}
+.main .moneyTotal .title {color: #111;background: url('../images/newmain/btn/btn_arrow_right.png') no-repeat right center;background-size: 0.8rem auto;}
+.main .mainReport {background: #fff url('../images/newmain/bg/bg_main07.png') no-repeat 1.7rem center;background-size: 5.5rem auto;}
+.main .mainReport a {padding:0 1.6rem 0 8.7rem;}
+
+/* 자산: 자동차 / 부동산 */
+.main .infoBox {margin: 1.5rem 2rem 0;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: space-between;align-items: flex-start;}
+.main .innerBox {width: calc(50% - 0.5rem);height: 20rem;}
+.main .list01 {border-radius: 1.1rem;box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.08);}
+.main .list02 {border-radius: 1.1rem;box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.08);}
+.main .innerBox a {position: relative;padding: 2.4rem 1.6rem;width:100%;height:100%;font-family: 'Noto Sans KR';font-weight: 500;font-size: 1.8rem;color: #111;border-radius: 1.1rem;/* box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.08); */background:#fcf8e8;background-size: 100% 100%;text-align: left;display: flex;flex-direction: column;flex-wrap: nowrap;justify-content: flex-start;align-items: flex-start;}
+.main .innerBox:first-child a {background:#fff;background-size: 100% 100%;}
+.main .innerBox:first-child a:after {position: absolute;right: 1.7rem;bottom: 2.2rem;width: 9.8rem;height: 6.6rem;content:'';display:block;background: url('../images/newmain/bg/bg_main04.png') no-repeat 0 0;background-size: 9.8rem 6.6rem;}
+.main .innerBox:last-child a:after {position: absolute;right: 1.7rem;bottom: 2.2rem;width: 9.8rem;height: 6.6rem;content:'';display:block;background: url('../images/newmain/bg/bg_main05.png') no-repeat 0 0;background-size: 9.8rem 6.6rem;}
+.main .conTxt01 {padding-top: 1.6rem;font-size: 1.4rem;color: #666;line-height: 2.4rem;}
+.main .conTxt02 {padding-top: 1.6rem;font-size: 1.4rem;color: #666;}
+.main .conTxt02 strong {font-family: 'Roboto';font-size: 1.7rem;} 
+.main .infoBox .title {line-height: 1.6rem;}
+
+/* 금융생활: 상품추천 / 연말정산 */
+.main .slide03 .innerBox a:after {position: absolute;right: 1.5rem;top: 11.2rem;width: 10rem;height: 6.8rem;content:'';display:block;background: url('../images/newmain/bg/bg_main12.png') no-repeat 0 0;background-size: 100% auto;}
+.main .slide03 .innerBox a {background-color: #fff;}
+.main .slide03 .innerBox:last-child a:after {background-image: url('../images/newmain/bg/bg_main13.png');}
+.main .slide03 .conTxt01 {padding-top: 1.1rem;font-size: 1.6rem;color: #333;font-weight: 400;}
+.main .slide03 .conTxt02 {padding-top: 1.6rem;font-size: 1.4rem;color: #666;}
+.main .slide03 .conTxt02 strong {font-family: 'Roboto';font-size: 1.7rem;}
+.main .slide03 .infoBox .title {line-height: 1.8rem;}
+.main .slide03 .innerBox {border-radius: 1.1rem;box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.08);}
+
+/* 상품추천 / 마이카 / 맞춤부동산 / 금융브리핑 */
+.main .iconList {padding: 4rem 0 4rem;}
+.main .iconList ul {width: 100%;display: flex;flex-direction: row;flex-wrap: nowrap;align-items: stretch;justify-content: space-between;align-content: stretch;}
+.main .iconList li {height: 8.1rem;text-align: center;flex:1;}
+.main .iconList li a {position: relative;display: inline-block;width: 100%;height: 100%;text-align: center;}
+
+/* iconList */
+.main .iconList span {display: inline-block;width: 5.6rem;height: 5.6rem;border-radius: 50%;background-color:#fff;background-repeat: no-repeat;background-position: center center;background-size: 2.4rem auto;box-shadow: 0 2px 10px 0 rgba(0, 25, 28, 0.08);background-size: 2.8rem auto}
+.main .iconList em {position: absolute;left: 50%;bottom: 0;transform: translateX(-50%);color: #424242;font-weight: 500;display: block;width: 130%;}
+
+/* 자산 탭 */
+.main .slide01 .iconSub01 span,
+.main .slide02 .iconSub01 span {background-image: url('../images/newmain/bg/bg_iconList01.png');}
+.main .slide01 .iconSub02 span,
+.main .slide02 .iconSub02 span {background-image: url('../images/newmain/bg/bg_iconList02.png');}
+.main .slide01 .iconSub03 span,
+.main .slide02 .iconSub03 span {background-image: url('../images/newmain/bg/bg_iconList03.png');}
+.main .slide01 .iconSub04 span,
+.main .slide02 .iconSub04 span {background-image: url('../images/newmain/bg/bg_iconList04.png');}
+
+/* 금융생활 탭 */
+.main .slide03 .iconSub01 span {background-image: url('../images/newmain/bg/bg_iconList03_01.png');}
+.main .slide03 .iconSub02 span {background-image: url('../images/newmain/bg/bg_iconList03_02.png');}
+.main .slide03 .iconSub03 span {background-image: url('../images/newmain/bg/bg_iconList02.png');}
+.main .slide03 .iconSub04 span {background-image: url('../images/newmain/bg/bg_iconList03.png');}
+
+/* 지출 Tab Style Start */
+/* 컬럼 그래프 */
+.main .stick_gh_box.car {margin-top: 2.5rem;padding-top: 0 !important;text-align: center;padding-bottom: 2rem !important;}
+.main .grapTitBox {position: absolute;top: 0;left: 50%;z-index:1;transform: translateX(-50%); margin:0 auto;padding: 0 0.7rem;display: inline-block;line-height: 3rem;border: solid 0.1rem #dedede;border-radius: 0.5rem;background: #fff;box-shadow: 0 0.1rem 0.4rem 0 rgba(0, 25, 28, 0.08);}
+.main .stick_gh_box .tit {margin:0;padding:0;display: inline-block;color: #666;font-size: 1.4rem;}
+.main .stick_gh_box .txt_sub {padding:0;display: inline-block;}
+.main .stick_gh_box .txt_sub .num {padding-left: 0.8rem;font-weight: 500;font-size: 1.4rem;}
+.main .stick_gh_box .txt_sub .unit {font-size: 1.1rem;color: #333;}
+.main .stick_gh_box .gray_box {margin-top: 0;}
+.main .stick_gh_box .gray_box ul {height: 13.5rem;}
+.main .vertical_graph ul li .name {bottom: -2.65rem;font-size: 1.4rem;line-height: 1.5rem;}
+.main .gray_box.car .vertical_graph {padding-bottom: 0;height: 16.2rem;}
+.main .slick-slide.slide02 .vertical_graph ul li .graph {position: absolute;bottom: 0;left: 0;transform: none;display: inline-block;vertical-align: bottom;width: 2.5rem;height: 0;border-top-left-radius: 0.5rem;border-top-right-radius: 0.5rem;}
+.main .slide02 .vertical_graph ul li.grap_color_green .graph {background-color: #57c9af !important;}
+.main .slide02 .vertical_graph ul li.grap_color_yellow .graph {background-color: #fdbb68 !important;}
+.main .slide02 .vertical_graph ul li.grap_color_blue .graph {background-color: #668ee3 !important;}
+.main .slide02 .vertical_graph ul li.grap_color_purple .graph {background-color: #ca7ae8 !important;}
+.main .slide02 .vertical_graph ul li:nth-child(1) .graph_1_1,
+.main .slide02 .vertical_graph ul li:nth-child(2) .graph_1_1,
+.main .slide02 .vertical_graph ul li:nth-child(3) .graph_1_1,
+.main .slide02 .vertical_graph ul li:nth-child(4) .graph_1_1 {margin-left: 2.5rem;background-color: #e2e2e2 !important;}
+.main .slick-slide.slide02 .vertical_graph .tit {position: absolute;top: -1.8rem;left: 50%;z-index:1;transform: translateX(-50%);font-size: 1.2rem;color: #666;line-height: 1.4rem;font-weight: 500;font-family: 'Roboto';font-weight: 400;}
+.main .vertical_graph .num {font-weight: 500;font-size: 1.4rem;}
+.main .stick_gh_box .gray_box .vertical_graph ul li {padding:0;width: 25%;border-radius: 0;background: none;box-shadow: none;}
+.main .vertical_graph_box > ul > li div {margin: 0 auto;width: 5rem;}
+.main .slick-slide.slide02 .gray_box.car .vertical_graph ul::after {bottom: -1px;}
+.main .slick-slide.slide02 .vertical_graph ul:after {height: 0.1rem;background-color: #cbcdd6;}
+.main .bankTarget {position:relative;display: flex;flex-direction: row;flex-wrap: nowrap;align-items: center;justify-content: flex-start;margin: 2.5rem 0 0;padding-left: 3.7rem;min-height: 3.2rem;font-weight: 500;font-size: 1.4rem;border-radius: 1.5rem;background: #f4f4f4;}
+.main .bankTarget .num {padding-left: 0.6rem;font-size: 1.6rem;}
+.main .bankTarget::after {position:absolute;top:50%;left:1.6rem;transform: translateY(-50%);width: 1.4rem;height: 1.4rem;content: '';background:url('../images/newmain/icon/ico_won.png') no-repeat center center;background-size: 100% auto;}
+
+/* 나의 소비 분석 */
+.main .slide02 .myMoneyAdminWrap {background-color: #f5f3fd;}
+.main .slide02 .myMoneyAdmin {border-color:  #e6e4f2;}
+.main .slide02 .myMoneyAdmin::after {background-color: #d8aae4;}
+.main .pink {padding-left: 0.4rem;color: #7e28a3;line-height: 1.6rem;font-weight: 500;}
+
+/* 이달의 가계부 */
+.main .householdBook {margin: 0 2rem 0;padding: 2.8rem 1.6rem; border-radius: 1.1rem;background: #fff;box-shadow: 0 0.1rem 0.6rem 0 rgba(0, 0, 0, 0.08);}
+.main .householdBook > .title {display: block;font-weight: 500;font-size: 1.8rem;color: #111;background: url(../images/newmain/btn/btn_arrow_right.png) no-repeat right center;background-size: 0.8rem auto;}
+
+/* Bar Grap */
+.main .householdBook .com_box_type01 {padding: 0;border-radius: 0;}
+.main .householdBook .com_box_type01.goal_warp .progressBar {margin-top: 2rem;height: 2rem;border-radius: 2rem;background-color: #84b0fc;}
+.main .householdBook .com_box_type01.goal_warp .progressBar .bar {min-width: 2rem;}
+
+.main .householdBook .PBColor7 {background: #ca7ae8 !important;}
+.main .householdBook .com_box_type01.goal_warp .goal_box .progressBar_wrapper .date {display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-between !important;align-items: center;margin-top: 1.6rem;font-size: 1.4rem !important;color: #666;}
+.main .householdBook .progressBar_wrapper .date .st,
+.main .householdBook .progressBar_wrapper .date .ed{position: relative;padding-left: 1.35rem;display: inline-block;}
+.main .householdBook .progressBar_wrapper .date .st::before,
+.main .householdBook .progressBar_wrapper .ed::before{position: absolute;top:50%;left:0;transform:translateY(-50%);width: 0.6rem;height: 0.6rem;border-radius:0.3rem;content: '';}
+.main .householdBook .progressBar_wrapper .date .st::before{background-color: #ca7ae8;}
+.main .householdBook .progressBar_wrapper .date .ed::before{background-color: #84b0fc;}
+.main .householdBook .progressBar_wrapper .date .unit-tit {font-size: 1.4rem;color: #666;}
+.main .householdBook .progressBar_wrapper .date .num {padding-left: 1.2rem;font-size: 1.4rem;color: #333;}
+.main .householdBook .progressBar_wrapper .date .unit {color: #333;}
+
+/* 다가올 정기지출 */
+.aptArim {margin-top: 2.9rem;}
+.aptArim > .title {font-size: 1.6rem;font-weight: 500;color: #111;line-height: 1.6rem;display: block;background: url(../images/newmain/btn/btn_arrow_right.png) no-repeat right center;background-size: 0.8rem auto;}
+.regularEx {margin-top: 1.6rem;padding: .7rem 1.5rem .7rem 1.6rem;font-size: 1.5rem;color: #333;border-radius: 0.7rem;background: #e6ecf8;}
+.regularEx > p {padding: .4rem 0;line-height: 2.7rem;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: space-around;justify-content: flex-start;align-items: center;}
+.regularEx .num {width: 3.9rem;}
+.regularEx .lifeValue {position: relative;width: calc(100% - 11.7rem);line-height: 2.1rem;}
+.regularEx .aptAdmin {font-weight: 500;text-align: right;color:#111;width:7.8rem;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: center;justify-content: flex-end;align-items: center;}
+.regularEx .aptAdmin .unit {font-weight: 400;}
+/* 지출 Tab Style End */
+
+/* 금융생활 Tab Style start */
+/* 나만을 위한 금융 브리핑 */
+.main .welcomInfo {margin-top: 1.5rem;padding: 1.0rem 0 3.4rem .1rem;border-bottom: solid .1rem #f4f4f4;background: url('../images/newmain/bg/bg_main10.png') no-repeat top right;background-size: 8rem auto;}
+.main .welcomInfoTxt {font-size: 1.6rem;color: #111;line-height: 2.4rem;}
+.main .slideBox .slide.slide03 .container .graph li .grapBoxWrap {padding: 1.6rem 0 2.8rem;border-bottom-right-radius: 3rem;border-bottom-left-radius: 3rem;}
+.main .slideBox .slide.slide03 .container .graph li .grapBoxWrap .grapTitBox {position: relative;top: 0;left: 0;margin: 0;padding: 0;display: block;width: 100%;border-radius: 0;transform: translateX(0);border: none;box-shadow: none;}
+.main .grapBoxWrap .tit {position: relative;display: block;font-weight: 500;color: #111;font-size: 1.8rem;line-height: 1.8rem;}
+.main .grapBoxWrap .tit .num {padding-left: 0;}
+.main .grapBoxWrap .tit::before {position: absolute;top: 50%;right: 0;transform: translateY(-50%);content: '';display: block;width: 0.65rem;height: 1rem;background: url(../images/newmain/btn/btn_arrow_right.png) no-repeat right center;background-size: 100% auto;}
+.main .grapBoxWrap .tit .num {font-family: 'Noto Sans KR';color: #046fd9;}
+.main .grapBoxWrap .graphArea {margin-top: 2.5rem;width:100%;height: 10.6rem;}
+.main .grapBoxWrap .graphArea img {display: inline-block;width: 33.5rem;height: auto;}
+.main .grapBoxWrap .graphArea .wrapper {width: 100%;height: 100%;overflow: hidden;}
+.main .grapBoxWrap .graphArea #content {top: 0;}
+.main .grapBoxWrap .graphArea #ID_GaugeHalf {width: 100%;height: 100%;overflow: hidden;background: gray}
+.main .grapBoxWrap .graphArea #ID_GaugeHalf .rMateH5__CanvasElement {height: 100% !important;}
+.main .grapBoxWrap .graphArea #ID_GaugeHalf .rMateH5__Gauge {height: 100% !important;}
+
+/* half_circle */
+.main .graphAreaBox {position:relative;margin:0 auto;width: 21.3rem;height: 21.3rem;}
+.main .graphAreaBox .fixedBox {position: relative;width: 21.3rem;height: 50%;}
+.main .graphAreaBox .graphAreaInner{width: 21.3rem;height: 100%;overflow: hidden;}
+.main .graphAreaBox .circleSilver{position:relative;width: 100%;height: 21.3rem;border-radius: 50%;background: url('../images/newmain/bg/bg_half_circle_gray.png') no-repeat left top;background-size: 100% auto;/* box-shadow: 0 .1rem .6rem rgba(0, 25, 28, 0.16); */}
+.main .graphAreaBox .circlePink {position: absolute;top:0;left:0;z-index: 1;width:100%;height:100%;background: url('../images/newmain/bg/bg_half_circle_pink.png') no-repeat left top;background-size: 100% auto;transform: rotateZ(0);transform-origin: center center;transition: all .6s;}
+.main .graphAreaBox .needle{position:absolute;top:0;left:50%;width: 1rem;height: 100%;background: url('../images/newmain/bg/bg_hr.png') no-repeat center top 0;background-size: 100% auto;transform-origin: 50% 50%;transform: rotateZ(0);transition: all .6s;margin-left: -.5rem;}
+.main .graphAreaBox .smailCircle {position: absolute;top:50%;left:50%;z-index: 1;transform: translate(-50%, -50%);width: 10.1rem;height: 10.1rem;border-radius: 50%;content:'';background-color: #fff;box-shadow: 0 .4rem 1.1rem rgba(0, 25, 28, 0.12);
+display: flex;justify-content: center;align-items: center;}
+.main .graphAreaBox .smailCircle {color:#333;}
+.main .graphAreaBox .smailCircle > span {margin-top: -2.1rem;font-size: 1.6rem;font-weight: 500;}
+.main .graphAreaBox .smailCircle > span .num {padding: 0;font-size: 2.4rem;}
+.main .graphAreaBox .txt_count {position: absolute;bottom:0%;z-index:1;line-height: 1.4rem;font-size: 1.2rem;color:#666;}
+.main .graphAreaBox .txt_count .num {padding:0;}
+.main .graphAreaBox .count_min{left: 0;margin-left: -2.7rem;}
+.main .graphAreaBox .count_max{left: 100%;transform: translateX(-50%);margin-left: 2.7rem;}
+.main .graphAreaBox .num {padding:0;font-weight: 500;font-size: 1.4rem;}
+/* @keyframes rotateAni {0% {transform: rotateZ(0deg);}100% {transform: rotateZ(180deg);}} */
+
+.main .grapBoxWrap .date {margin: 2rem 1.6rem 0;}
+.main .grapBoxWrap .st {position: relative;padding-left: 1.4rem;}
+.main .grapBoxWrap .ed {position: relative;margin-top: 1rem;padding-left: 1.4rem;line-height: 1.1rem;}
+.main .grapBoxWrap .st::before,
+.main .grapBoxWrap .ed::before {position: absolute;top:50%;left:0;transform: translateY(-50%);width: 0.6rem;height: 0.6rem;border-radius: 50%;content: '';background: #6a6a6a;}
+.main .grapBoxWrap .unit-tit{color: #666;font-size: 1.6rem;line-height: 1.1;}
+.main .grapBoxWrap .num{padding-left: 1.2rem;font-size: 1.6rem;line-height: 1.1;}
+.main .grapBoxWrap .unit{font-size: 1.6rem;line-height: 1.1;}
+.main .slide03 .bankTarget {margin: 1.6rem 0 0;padding-left: 3.3rem;}
+.main .slide03 .bankTarget::after {width: 0.3rem;height: 1.6rem;background-image:url('../images/newmain/icon/ico_important.png');}
+.main .slide03 .householdBook {position: relative;padding: 0;border-radius: 1.2rem;background: #e2e8f6;}
+.main .slide03 .householdBook a {padding: 1.1rem 11.2rem 1.1rem 1.6rem;width:100%;height: 100%;min-height: 8.8rem;display: flex;flex-direction: column;flex-wrap: nowrap;align-content: flex-start;justify-content: center;align-items: flex-start;word-break: keep-all;}
+.main .slide03 .householdBook::after {position: absolute;top: 50%;right: 1.7rem;transform: translateY(-50%); width: 8rem;height: 6rem;content:'';background: url('../images/newmain/bg/bg_main11.png') no-repeat center center;background-size: 100% auto;} 
+.main .slide03 .householdBook.textLine3::after {background-image: url('../images/newmain/bg/bg_main11_01.png');}
+.main .slide03 .householdBook .title {font-size: 1.5rem;font-weight: 500;color: #333;background: none;}
+.main .slide03 .householdBook .cal_pop_info_wrap {margin: 1.1rem 0 0 0;font-size: 1.4rem;font-weight: 500;color: #666;line-height: 2rem;}
+.main .slide03 .moneyTotal {margin-top: 3rem;background-image: url('../images/newmain/bg/bg_main07-01.png');background-position: 1.7rem center;}
+.main .slide03 .infoBox li:last-child a {background: #fff;}
+.main .slide03 .infoBox li:first-child a:after {bottom: 2.1rem;width: 9.8rem;height: 6.6rem;background: url(../images/newmain/bg/bg_main12.png) no-repeat 0 0;background-size: 100% auto;}
+.main .slide03 .infoBox li:last-child a:after {right: 1.7rem;bottom: 2.1rem;width: 9.8rem;height: 6.6rem;background: url(../images/newmain/bg/bg_main13.png) no-repeat 0 0;background-size: 100% auto;}
+/* 금융생활 Tab Style End */
+
+/* 금융생활 : 등록한 모으기 목표가 없는 경우 */
+.main .slideBox .slide.slide03 .container .graph li .grapBoxWrap.noData {padding:2.8rem 0;position:relative;border-bottom: 0;    border-bottom-right-radius: 0;border-bottom-left-radius: 0;}
+.main .grapBoxWrap.noData .tartgetSelect {position: relative;display: block;font-weight: 500;color: #111;font-size: 1.8rem;line-height: 1.8rem;}
+
+/* .main .grapBoxWrap.noData .tartgetSelect::before {position: absolute;top: 50%;right: 0;transform: translateY(-50%);content: '';display: block;width: 0.65rem;height: 1rem;background: url(../images/newmain/btn/btn_arrow_right.png) no-repeat right center;background-size: 0.6rem auto;} */
+
+.main .grapBoxWrap.noData .txt01 {padding: .5rem 0 .5rem 7.1rem;font-size: 1.4rem;color: #666;line-height: 2rem;background: url('../images/newmain/bg/bg_nodata_target_120x120.png') no-repeat left center;background-size: 6rem auto;}
+.main .grapBoxWrap.noData .txt01 > span {display:block;width:100%;padding-bottom: .8rem;}
+.main .grapBoxWrap.noData .txt01 .arrow {padding-right: 1.6rem;color:#333;font-size: 1.5rem;line-height: 2.2rem;background: url('../images/btn/btn_arrow_right_16x26.png') no-repeat right center;background-size: .8rem auto;}
+
+
+
+/* 제휴서비스 Tab Style Start */
+/* 자동차의 모든 것 NH콕마이카 */
+.main .slide04 .welcomInfo {margin-top: 0;padding: 1.5rem 0 0 0;border-bottom: none;background: url('../images/newmain/bg/bg_main14.png') no-repeat right top 2.2rem;background-size: 8rem auto;}
+.main .slide04 .welcomInfoTxt {line-height: 1.6rem;}
+.main .bottom {padding-top: 2.3rem;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: flex-start;justify-content: flex-start;align-items: center;}
+.main .bottom a {position:relative;padding: 0 3.15rem 0 1.6rem;display: inline-block;color: #333;font-size: 1.5rem;line-height: 3.2rem;border-radius: 1.5rem;background: #f4f4f4;}
+.main .bottom a::after {position:absolute;top:50%;right:1.6rem;transform: translateY(-50%);width: 0.8rem;height: 1.3rem;content: '';background:url('../images/newmain/btn/btn_arrow_right03.png') no-repeat center center;background-size: 100% auto;}
+.main .bottom a + a {margin-left: 1.2rem;}
+
+/* 부자로 가는 부동산 자산관리 */
+.main .slide04 .myMoneyAdminWrap {margin: 2rem 0 0;padding: 2.8rem 0 2.5rem;border-top: solid .1rem #f4f4f4;background:#fff;}
+.main .myMoneyAdminWrap > .title {font-size: 1.8rem;color: #111;line-height: 1.8rem;}
+.main .myMoneyAdminWrap > .title span {display: inline-block;line-height: 1.8rem;}
+.main .slide04 .myMoneyAdmin {margin:1.6rem 0 0;padding: 1.4rem 1.2rem 1.9rem 8.6rem;border-color: #ecf6fa;box-shadow: 0 0.1rem 0.6rem 0 rgba(157, 194, 210, 0.32);}
+
+.main .slide04 .myMoneyAdmin::after {background-color: #aad3e4;}
+.main .slide04 .myMoneyAdmin::before {position: absolute;top: 2rem;left: 1.5rem;width: 6rem;height: 6rem;background: url('../images/newmain/bg/bg_main15.png') no-repeat center center;background-size: 100% auto;content: '';}
+.main .slide04 .myMoneyAdmin > .titleInfo {padding-top: 0;line-height: 2rem;font-size: 1.4rem;color: #666;word-break: keep-all;}
+.main .slick-slide.slide04 .container .graph .myMoneyAdmin > .titleInfo strong {font-size: 1.8rem;color: inherit;}
+.main .slide04 .myMoneyAdmin .title {margin-top: 1.2rem;padding-right: 2rem;display: inline-block;width: auto;height: auto;font-size: 1.5rem;line-height: 1.5rem;color: #333;}
+.main .slick-slide.slide04 .container .graph .myMoneyAdmin .moneyStyle {position: relative;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: flex-start;align-items: center;margin-top: 1.85rem;padding: 0 0 0 4.8rem;height: 5.4rem;font-size: 1.6rem;border-top: solid 0.1rem #e6e4f2;border-radius: 0; background: none;box-shadow: none;}
+.main .slick-slide.slide04 .container .graph .myMoneyAdmin .moneyStyle::before {position: absolute;top: 50%;left: 0.1rem;transform: translateY(-50%);display: block;content: '';width: 3.5rem;height: 3rem;background: url(../images/newmain/bg/bg_main08.png) no-repeat 0 0;background-size: 100% auto;}
+.main .slick-slide.slide04 .container .graph .myMoneyAdmin .moneyStyle .pink {padding-left: 0.4rem;color: #7e28a3;line-height: 1.6rem;font-weight: 500;}
+
+/* 꿈에 그리는 귀농귀촌 라이프 */
+.main .slide04 .householdBook {background:#fff url('../images/newmain/bg/bg_main16.png') no-repeat right 1.7rem top 7.35rem;background-size: 5.9rem auto;}
+.main .slide04 .householdBook > .title {font-weight: 400;}
+.main .slide04 .householdBook .cal_pop_info_wrap {margin: 1.5rem 0 0 0;padding-top: 2rem;color: #111;font-size: 1.6rem;line-height: 2.4rem;border-top: solid .1rem #f4f4f4;}
+.main .slide04 .householdBook {position: relative;margin: 0 2rem 0;padding-top: 2.4rem;padding-bottom: 2.4rem;}
+.main .slide04 .householdBook::after {position: absolute;top:0;right:0;width: auto;height: auto;content:'';background: url('../images/newmain/bg/bg_main16.png') no-repeat left top;}
+
+/* 슬기로운 영농생활 */
+.main .householdBookWrap {margin-top: 1.5rem;padding-bottom: 4rem;}
+.main .slide04 .householdBook2 {margin-top: 0;background:#fff none;box-shadow: 0 .1rem 0.6rem 0 rgba(0, 25, 28, 0.08);}
+.main .slide04 .householdBook2 > .title {background: none;}
+.main .slide04 .householdBook2 .cal_pop_info_wrap {margin-top:1.6rem;padding-top:0;border-top: 0;}
+.main .slide04 .householdBook2 .cal_pop_info_wrap ul {display: flex;flex-direction: row;flex-wrap: wrap;align-content: space-between;justify-content: space-between;}
+.main .slide04 .householdBook2 .cal_pop_info_wrap li {width: 50%;height: 3.6rem;}
+.main .householdBook2 a {position: relative;padding: 0 0 0 4.7rem;display: block;width: auto;height: 100%;line-height: 3.4rem;border: solid .1rem #aad3e4;border-radius: 1.7rem;font-size: 1.4rem;color: #333;box-shadow: 0 .1rem 0.4rem 0px rgba(157, 194, 210, 0.42);}
+.main .householdBook2 li:nth-of-type(1) a, 
+.main .householdBook2 li:nth-of-type(3) a {margin-right: 0.3rem;}
+.main .householdBook2 li:nth-of-type(2) a, 
+.main .householdBook2 li:nth-of-type(4) a {margin-left: 0.3rem;}
+.main .householdBook2 li:nth-of-type(3), 
+.main .householdBook2 li:nth-of-type(4) {margin-top: 1.2rem;}
+.main .slide04 .householdBook2 .cal_pop_info_wrap li:nth-of-type(1) a {padding-left: 4.5rem;}
+.main .householdBook2 li a::after {position: absolute;top:50%;left: 1.6rem;transform: translateY(-50%);width: 2.4rem;height: 2.4rem;content:'';background-repeat: no-repeat;background-position: center center;background-size: 100% auto;}
+.main .householdBook2 li:first-child a::after {background-image:url('../images/newmain/bg/bg_main17.png');}
+.main .householdBook2 li:nth-of-type(2) a::after {background-image:url('../images/newmain/bg/bg_main18.png');}
+.main .householdBook2 li:nth-of-type(3) a::after {background-image:url('../images/newmain/bg/bg_main19.png');}
+.main .householdBook2 li:nth-of-type(4) a::after {background-image:url('../images/newmain/bg/bg_main20.png');}
+/* 제휴서비스 Tab Style End */
+
+.left_car .innerBox,
+.left_car .slide,
+.left_car .slider_wrap,
+.left_car .tab_cont,
+.left_car .slick-track {height: 100%;}
+.left_car .slick-slide {height: 100% !important;}
+.left_car .slick-slide > div {height: 100% !important;}
+.left_car .slider_wrap .tab_cont .cmm-tab-panel {height: 100% !important;}
+/* btn (prev / next) */
+.left_car .slick-arrow:focus {outline: dotted .1rem #e4e4e4;}
+
+/* car dot */
+.left_car .slick-dots-wrap {position: absolute;left: 50%;bottom: 1.5rem;z-index: 1;transform: translateX(-50%);display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: center;align-items: center;width:100%;height: 1rem;}
+.left_car .slick-play {display: inline;}
+.left_car {position: relative;width: 100%;height: 100%;}
+.left_car .slick-dots {position: static;display: inline !important;width:auto;height: 100%;}
+.left_car .slick-play,
+.left_car .slick-play.active {margin-left:1.6rem;width:0.8rem;height: 100%;border-radius:0;}
+.left_car .slick-play .palyText {background: url('../images/btn/btn_play.png') no-repeat 0 0;background-size: 0.8rem auto;}
+.left_car .slick-play.active .palyText {background: url('../images/btn/btn_stop.png') no-repeat 0 0;background-size: 0.8rem auto;}
+.left_car .palyText {text-indent: -9999px;}
+
+/* 시세 알아보기 */
+.notCompleted {height: 100%;}
+.notCompleted .title {width: 100%;}
+.notCompleted .conTxt01 {margin-top:.8rem;padding-top:0;width: 100%;background: url('../images/newmain/btn/btn_arrow_right_14x24.png') no-repeat right center; background-size: .7rem auto;}
+.innerBox:first-child .notCompleted a:after,
+.innerBox:last-child .notCompleted a:after {display: none;}
+
+/* no data 자산 : 내차 / 자산 : 부동산 */
+.innerBox.list01 .notCompleted a {background:#fff url('../images/newmain/bg/bg_nodata02_200x136.png') no-repeat right 1.6rem bottom 2rem;background-size: 10rem auto;}
+.innerBox.list02 .notCompleted a {background:#fcf8e8 url('../images/newmain/bg/bg_nodata01_200x136.png') no-repeat right 1.8rem bottom 2rem;background-size: 10rem auto;}
+/* ############### Main Style End */
+
+/* com_txt_type07 main popup */
+.com_txt_type07 .itemList li {display: flex;flex-direction: row;flex-wrap: nowrap;align-content: stretch;justify-content: space-between;align-items: center;font-size: 1.6rem;color: #111;line-height: 1.5rem;}
+.com_txt_type07 .itemList li + li {margin-top: 2.8rem;}
+.com_txt_type07 .itemList li .num {display: flex;align-items: center;font-weight: 500;}
+.com_txt_type07 .itemList li:first-child {padding-top: 2.5rem;}
+.com_txt_type07 .itemList li .unit {font-size: 1.3rem;font-weight: 500;}
+
+
+/* NH콕마이카 신차 견적내고 대출까지 바로! */
+.custom_footer .footer-depth1 {z-index: 1100;}
+/* 푸터 레이아웃 : 마케팅 배너로 인한 z-index 조절 */
+
+/* 마케팅배너 슬라이드 */
+.marketing_popup_box.block {/*height: 18.5rem;*/height: 15.9rem;transition: height .3s;}
+.marketing_popup_box {position: absolute;left: 0;bottom: 0;width: 100%;height: 0;background: #fff;border-top-left-radius: 1.5rem;border-top-right-radius: 1.5rem;box-shadow: 0 -0.1rem 0.6rem 0 rgba(0, 25, 28, 0.12);transition: height .5s;}
+.marketing_popup_inner {display: block;position: absolute;left:0;top:0;z-index: 1001;width:100%;}
+
+.marketing_popup_box.hideHeight {height: 0;transition: height .3s;}
+
+.marketing_popup_inner .popup_content {position: relative;padding: 2.8rem 2rem 2rem;width:100%;height: auto;}
+.marketing_popup_inner .popup_content .slider_wrap .cmm-tab-panel{position: relative;padding:0;}
+.marketing_popup_inner .popup_content .slider_wrap .slide {height: 4.2rem;}
+.marketing_popup_inner .popup_content .slider_wrap .slide p {margin-top: 0;padding-right: 7.5rem;word-break: keep-all;line-height: 2rem;color:#111;font-size: 1.6rem;font-weight: 500;}
+.marketing_popup_inner .popup_content .slider_wrap .slide img {position: absolute;top:.2rem;right:0;display:inline-block;width: 6.4rem;height: 4rem;}
+.marketing_popup_inner .popup_content .slider_wrap .slide > button {padding: 0 1.4rem 0 0;font-size: 1.3rem;color:#666;font-weight:500;line-height: 1.3rem;background:url('../images/newmain/btn/btn_arrow_right04.png') no-repeat right center;background-size: .6rem auto;}
+.marketing_popup_inner .popup_content .slider_wrap .slick-list {min-height: auto;height: auto !important;}
+.marketing_popup_inner .popup_content .slick-dots {top:6.3rem;left:2rem;bottom: auto;right:2rem;width:auto;height:.8rem;text-align: left;}
+.marketing_popup_inner .popup_content .slick-dots li {margin:0 .6rem 0 0;}
+.marketing_popup_inner .popup_content .slick-dots li.slick-active > button[type='button'] {background:#30374d;border-radius: .4rem;}
+.marketing_popup_inner .popup_content .slider_solo .slick-dots {display: none;}
+.marketing_popup_inner .btn_close {display: block;position: absolute;z-index: 900;top: 1.5rem;right: 2rem;z-index: 1000;width: 1.2rem;height: 1.2rem;border:none;text-indent: -100%;background: url(../images/common/full_popup_close.png) no-repeat center center;background-size: 100% auto;}
+
+/* 메인 > 자산 > 도넛차트 : 부동산/투자/예금/자동차 관련 */
+/* 13.2 / 6.3 */
+.main .slideBox .slide .container .graph li .doughnutChart {margin: 1.7rem auto;width:26.4rem;height:100%;/* min-height:12.1rem; */min-height: 16.6rem;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__Main {top: 50% !important; z-index: 1 !important;transform: translateY(-50%) !important;background-color: #fff !important;height: 100% !important;}
+
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__Pie2DChart {left: -33px !important;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__Legend{width:12rem !important;left:15rem !important;}
+
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__ContentPane {padding: 0 !important;width:12rem !important;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__rMateChart .cp {display: flex;flex-direction: row;flex-wrap: nowrap;align-content: center;justify-content: space-between;align-items: center;width: 100% !important;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__rMateChart .cp > .rMateH5__LegendMarker {/*position: absolute !important;top:50% !important;transform: translateY(-50%) !important;*/width: 0.6rem !important;height: 0.6rem !important;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__Main > span {top: 50% !important;transform: translateY(-50%);left: 1.4rem !important;font-family: 'Noto Sans KR' !important;font-weight: 400 !important;font-size: 1.4rem;color: #666;line-height: 1.4rem;}
+.main .slideBox .slide .container .graph li .doughnutChart .rMateH5__Main span > .num {padding-left: 1.1rem;width:auto;}
+
+/* 메인 > 자산 > 도넛차트 : 부동산/투자/예금/자동차 관련 */
+/* 13.2 / 6.3 */
+.main .chartBox {position: relative;display: flex;flex-direction: row;flex-wrap: nowrap;align-content: flex-start;justify-content: center;align-items: center;}
+.main .slideBox .slide .container .graph li .doughnutChart.nodata {width: 17.9rem;background: url('../images/newmain/bg/bg_nodata01.png') no-repeat center center;background-size: 12rem auto;}
+
+.main .chartBox .txt {display: block;width:14.9rem;}
+.main .chartBox .txt > p {color:#333;font-size: 1.6rem;line-height: 2.4rem;}
+.main .chartBox .txt .btn {padding: 0 1.1rem 0 3.2rem;background-color: #0b9ba0;border-radius: .5rem;height: 2.8rem;line-height: 2.6rem;color:#fff;font-size: 1.4rem;}
+.main .chartBox .txt .bg_plus {position:relative;margin-top: 1.5rem;}
+.main .chartBox .txt .bg_plus:after {position:absolute;top:50%;left:1.2rem;transform:translateY(-50%);width: 1.2rem;height: 1.2rem;background: url('../images/newmain/bg/bg_plus_fff_24x24.png') no-repeat left center;background-size: 100% auto;content:'';}
+
+.main .rMateH5__UITextField {left: 1.3rem !important;min-width: 7.4rem;font-size:1.4rem;color:#111;line-height: 2.2rem;}
+.main .rMateH5__UITextField .num {position: static;font-size: 1.4rem;color:#666;}
