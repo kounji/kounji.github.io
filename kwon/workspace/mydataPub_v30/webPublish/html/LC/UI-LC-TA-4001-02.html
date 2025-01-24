@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지출 메인(0원)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>지출</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
+                <section class="wallet_main">
+
+                    <!--배너-->
+                    <p class="top_banner">
+                        <a href="#nolink">나는 얼마나 쓰고,<br>또 내또래는 얼마나 쓰고 있을까요</a>
+                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
+                    </p>
+
+                    <!--update-->
+                    <div class="update">
+                        <span>조금전</span>
+                        <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+                    </div>
+
+                    <!--개요-->
+                    <div class="outline">
+                        <h2><a href="#nolink">11월 지출</a></h2>
+                        
+                        <div class="toggle_money">
+                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <label for="sum_view_01" class="btns">
+                                <span class="show">보기</span>
+                                <span class="hide">숨김</span>
+                            </label>
+                            <div class="sum">
+                                <span class="show">쉿! 비밀이에요</span>
+                                <span class="hide">1,952,692,372원</span>
+                            </div>
+                        </div>
+
+                        <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
+                    </div>
+
+                    <!--분류별 개요-->
+                    <div class="wallet_outline">
+                        <div class="board_box">
+                            <ul role="tablist" class="inner_tab">
+                                <li class="on"><button type="button" role="tab" aria-selected="true">카드</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">페이</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">현금</button></li>
+                            </ul>
+
+                            <div class="details no">
+                                <div class="analysis">
+                                    <p class="h_tit01">이번 달 카드 이용<br>내역이 없어요</p>
+                                    <p>이번달 카드 이용 금액<span class="num"><em>0</em>원</span></p>
+                                </div>
+
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_no.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                            </div>
+                        </div> 
+
+                        <div class="spend_history">
+                            <p class="txt">내 카드 지출내역이 없어요</p>
+                        </div>
+                    </div>
+
+                    <!--통신비-->
+                    <div class="phonebill">
+                        <h2>통신비 청구 금액</h2>
+
+                        <div class="custom_tooltip up">
+                            <div class="com_tooltip_type02 com_tooltip_type03">
+                                <a href="#nolink" class="com_btn_info" role="button">
+                                    <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                                </a>
+                            </div>
+                            <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                <div>
+                                    <p>
+                                       통신비 청구금액은 결제 예정금액으로 현재 총지출 금액에는 포홤되지 않으며 결제일 이후에 카드/페이/현금 결제 내역에서 확인 가능합니다.
+                                    </p>
+
+                                    <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                </div> 
+                            </div>
+                        </div>
+
+                        <!--금액이 없는 경우-->
+                        <p>이번달 통신비 청구 금액이 없어요</p>
+                    </div>
+
+                    <!--최근소비-->
+                    <div class="board_box lately_spend">
+                        <h2><a href="#nolink" class="title">최근 소비</a></h2>
+                        
+                        <p class="txt">최근 나의 소비가<br>없어요</p>
+                    </div>
+
+                    <!--주요소비-->
+                    <div class="board_box staple_spend">
+                        <h2><a href="#nolink" class="title">주요 소비</a></h2>
+
+                        <!--소비가 없는 경우-->
+                        <div class="analysis">
+                            <p class="txt">이번 달 지출 내역이<br>없어요</p>
+                        </div>
+
+                    </div>
+
+                    <!--정기지출-->
+                    <div class="board_box regular_spend">
+                        <h2><a href="#nolink" class="title">정기 지출</a></h2>
+                        <!--정기지출이 없는 경우-->
+                        <div class="analysis">
+                            <p class="txt">예상되는 정기지출을<br>찾을 수 없어요</p>
+                            <p class="txt2">결제 계좌나 카드를 연결하거나<br>정기지출을 추가해서 현명한 지출 관리 하세요</p>
+                            <a href="#nolink" class="btns md gray">정기지출 추가하기</a>
+                        </div>
+                    </div>
+
+                    <!--소비 줄이기-->
+                    <div class="board_box less_spend">
+                        <h2><a href="#nolink" class="title">소비 줄이기</a></h2>
+
+                        <!--소비가 없는 경우-->
+                        <div class="analysis">
+                            <p class="txt">계획적인 소비를 위한<br>지출목표</p>
+                            <p class="txt2">지금 설정하고 실천해보세요</p>
+                            <a href="#nolink" class="btns md gray">예산 설정하기</a>
+                        </div>
+                    </div>
+                
+                    <!--배너-->
+                    <a href="#nolink" class="gotoCok">
+                        <img src="../../../../src/assets_v40/images/banner/img_banner_goto_cok.png" alt="나의 꿈을 현실로 NH콕뱅킹이 함께 합니다!" />
+                    </a>
+
+                   <!--금융지식-->
+                   <div class="finlit">
+                    <h2 class="h_tit01">금융지식</h2>
+                    <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+
+                    <div class="scroller">
+                        <ul>
+                            <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>진화하는 보이스 피싱</strong>
+                                    <span class="hash">#사고예방</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>나의 지출이 줄지 않는 이유?!</strong>
+                                    <span class="hash">#금융지식</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>연금저축 및 IRP 가입하고<br>노후 자금 준비</strong>
+                                    <span class="hash">#40대</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>맞벌이 부부를 위한 세금<br>절약 노하우</strong>
+                                    <span class="hash">#30대</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+                                    <span class="hash">#20대</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#nolink">
+                                    <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                    <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+                                    <span class="hash">#10대</span>
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                </section>
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+        $(function() {
+           slick (); //슬릭
+       });
+
+       function slick () {
+           var $banner =  $(".slick_banner");
+           
+           $banner.each(function(){
+                let $this = $(this);
+
+                $(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+                });
+
+                $(".inner", $this).slick({
+                    speed : 300,
+                    dots : false,
+                    adaptiveHeight: true,
+                    infinite: true,
+                    draggable: true,
+                    accessibility:true,
+                    arrows : true,
+                    cssEase:'linear',
+                    prevArrow:$(".controls .prev", $this),
+                    nextArrow:$(".controls .next", $this),
+                });
+
+           });
+       }
+   </script>
+</body>
+</html>

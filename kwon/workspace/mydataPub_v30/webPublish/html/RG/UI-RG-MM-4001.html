@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>군장병 TMO</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>군장병 지원정보</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+
+			<div id="content">
+				
+				<section class="local_info army">
+					<div class="mylocal">
+						<p class="txt">장병을 위한 <br>안내를 해드릴게요</p>
+						<p>국방부가 함께합니다</p>
+						<lottie-player src="../../../../src/assets_v40/images/lottie/bg_local_army.json"  loop autoplay aria-hidden="true" class="local_lottie" ></lottie-player>
+					</div>
+
+					<div class="local_search">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요" title="검색어를 입력하세요">
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+
+					<div class="board_box">
+						<p class="sum">검색결과 <span class="num">가나다</span>순</p>
+						<ul class="cate_list ty_local">
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">서울 <span class="tel">033-641-9690</span></p>
+									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">용산<span class="tel">033-641-9690</span></p>
+									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">청량리<span class="tel">033-641-9690</span></p>
+									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">수서<span class="tel">033-641-9690</span></p>
+									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink" class="item">
+									<p class="name">수원<span class="tel">033-641-9690</span></p>
+									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<!-- empty 케이스 -->
+					<div class="no_result">
+						<p class="text">검색결과가 없습니다</p>
+					</div>
+					<!-- //empty 케이스 -->
+
+				</section>
+
+			</div>
+
+			<aside class="tabbar block">
+				<!--toolbar-->
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">연금/절세</a></li>
+						<li><a href="#nolink">추천</a></li>
+					</ul>
+				</nav>
+			</aside>
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		/*
+			검색어를 입력하세요 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+	</script>
+</body>
+</html>

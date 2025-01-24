@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>지출 메인(미연결)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>지출</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
+                <section class="wallet_main">
+
+                    <!--배너-->
+                    <p class="top_banner">
+                        <a href="#nolink">나는 얼마나 쓰고,<br>또 내또래는 얼마나 쓰고 있을까요</a>
+                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
+                    </p>
+
+                    <!--update-->
+                    <div class="update">
+                        <span>조금전</span>
+                        <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+                    </div>
+
+                    <!--개요-->
+                    <div class="outline">
+                        <h2><a href="#nolink">11월 지출</a></h2>
+                        
+                        <div class="toggle_money">
+                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <label for="sum_view_01" class="btns">
+                                <span class="show">보기</span>
+                                <span class="hide">숨김</span>
+                            </label>
+                            <div class="sum">
+                                <span class="show">쉿! 비밀이에요</span>
+                                <span class="hide">1,952,692,372원</span>
+                            </div>
+                        </div>
+
+                        <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
+                    </div>
+
+                    <!--분류별 개요-->
+                    <div class="wallet_outline">
+                        <div class="board_box">
+                            <ul role="tablist" class="inner_tab">
+                                <li class="on"><button type="button" role="tab" aria-selected="true">카드</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">페이</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">현금</button></li>
+                            </ul>
+
+                            <div class="details not">
+                                <!--카드-->
+                                <div class="analysis">
+                                    <p class="h_tit01">카드 내역 확인하고<br>지출 관리 하세요</p>
+                                </div>
+
+                                <!--페이
+                                 <div class="analysis">
+                                    <p class="h_tit01">페이 내역 확인하고<br>지출 관리 하세요</p>
+                                </div>
+                                -->
+
+                                <!--현금
+                                 <div class="analysis">
+                                    <p class="h_tit01">현금 내역 확인하고<br>지출 관리 하세요</p>
+                                </div>
+                                -->
+                            </div>
+                        </div> 
+
+                        <div class="spend_history">
+                            <!--카드-->
+                            <a href="#nolink">카드 연결 하기</a>
+                            <!--페이
+                            <a href="#nolink">페이 연결 하기</a>
+                            -->
+                            <!--페이
+                            <a href="#nolink">현금 연결 하기</a>
+                            -->
+                        </div>
+                    </div>
+
+                </section>
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+        $(function() {
+           slick (); //슬릭
+       });
+
+       function slick () {
+           var $banner =  $(".slick_banner");
+           
+           $banner.each(function(){
+                let $this = $(this);
+
+                $(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+                });
+
+                $(".inner", $this).slick({
+                    speed : 300,
+                    dots : false,
+                    adaptiveHeight: true,
+                    infinite: true,
+                    draggable: true,
+                    accessibility:true,
+                    arrows : true,
+                    cssEase:'linear',
+                    prevArrow:$(".controls .prev", $this),
+                    nextArrow:$(".controls .next", $this),
+                });
+
+           });
+       }
+   </script>
+</body>
+</html>
