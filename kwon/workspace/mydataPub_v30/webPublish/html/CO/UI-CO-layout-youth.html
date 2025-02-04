@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>청소년모드 레이아웃</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>나의 자산</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+            <div id="content">
+				컨텐츠 영역
+			</div>
+
+			<aside class="tabbar youth block">
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">금융지식</a></li>
+						<li><a href="#nolink">놀이터</a></li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+
+         <!--scroll test-->
+		<script>
+			for(var i =0; i < 1001; i++){
+				$("<p>"+ i + "</p>").appendTo('#content');
+			}
+		</script>
+		<!--//scroll test-->
+	</div>
+</body>
+</html>

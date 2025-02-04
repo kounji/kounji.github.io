@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>큰글모드 메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>리포트</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+            <div id="content">
+                <section class="main_senior">
+					<!--개요-->
+					<div class="outline">
+						<ul role="tablist" class="inner_tab green">
+							<li class="on"><button type="button" role="tab" aria-selected="false">자산</button></li>
+							<li><button type="button" role="tab" aria-selected="false">지출</button></li>
+						</ul>
+
+						<!--slick-->
+						<div class="slick">
+							<div class="details"><!--//늘은 경우 up, 줄은 경우 down class 추가-->
+								<h2>나의 총 자산</h2>
+
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
+									<label for="sum_view_01">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show"><em>금액숨김</em></span>
+										<span class="hide"><em>1,952,692,372</em>원</span>
+									</div>
+								</div>
+								
+								<p class="analysis">나의 총 자산을 확인해보세요</p>
+								<!-- <p class="analysis">나의 총 자산이 <em>동일해요</em></p> -->
+							</div>	
+							<div class="details down"><!--//늘은 경우 up, 줄은 경우 down class 추가-->
+								<h2>12월 총 지출</h2>
+								<p class="num"><em>1,367,020</em>원</p>
+								<p class="analysis">나의 총 자산이 <em>줄었어요</em></p>
+							</div>
+						</div>
+						<!--//slick-->
+					</div>
+
+					<script type="text/javascript">
+						$(function() {
+							slick (); //슬릭
+						});
+					
+						function slick () {
+							var $outline =  $(".outline .slick");
+							
+							$outline.slick({
+								fade:true,
+								infinite: false,
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								speed: 300,
+								arrows:false,
+								dots:true
+							});
+
+							$(".outline .slick-dots li button").on('click', function(e){
+								e.stopPropagation(); // use this
+							});
+
+							$(".outline .inner_tab li").each(function(idx){
+								$("button", $(this)).click(function(){
+									$outline.slick('slickGoTo', idx);
+								});
+							})
+						}
+					</script>
+
+					<!--주요서비스-->
+					<div class="staple_cont">
+						<a href="#nolink" class="gotolink">자산</a>
+						<a href="#nolink" class="gotolink">지출</a>
+						<a href="#nolink" class="gotolink">연금/절세</a>
+						<a href="#nolink" class="gotolink">금융지식</a>
+						<a href="#nolink" class="phishing"><em>보이스피싱 예방 10계명</em>확인하고 함께 예방해요</a>
+					</div>
+
+					<!--금융지식-->
+					<div class="finlit">
+                        <h2 class="h_tit01">금융지식</h2>
+                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+
+                        <div class="scroller">
+                            <ul>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>진화하는 보이스 피싱</strong>
+                                        <span class="hash">#사고예방</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>나의 지출이 줄지 않는 이유?!</strong>
+                                        <span class="hash">#금융지식</span>
+                                    </a>
+                                </li>
+                                <!-- <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>연금저축 및 IRP 가입하고<br>노후 자금 준비</strong>
+                                        <span class="hash">#40대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>맞벌이 부부를 위한 세금<br>절약 노하우</strong>
+                                        <span class="hash">#30대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+                                        <span class="hash">#20대</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#nolink">
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+                                        <span class="hash">#10대</span>
+                                    </a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+
+					<!--상담센터-->
+					<a href="tel:1600-2800" class="gotolink">
+						HN콕뱅크 상담센터
+						<span>1600-2800</span>
+					</a>
+                </section>
+			</div>
+
+			<aside class="tabbar block">
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">연금/절세</a></li>
+						<li><a href="#nolink">추천</a></li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+        
+	</div>
+</body>
+</html>

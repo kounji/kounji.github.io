@@ -688,9 +688,17 @@ $(document).ready(function(){
 				*/
 			//}
 
-
+			var comments = "";
 			
-				
+			if(typeof comment == 'object'){
+				for(var i = 0; i < comment.length; i++){
+					console.log(comment[i]);
+					comments += "<p>"+ comment[i]+"</p>";
+					//$("<p>"+ comment[i]+"</p").appendTo($(".comment", $(html)))
+				}
+			}else{
+				comments = comment;
+			}
 
 			html = "<tr class="+disabled+">" + 
 				//"<td class='center'>"+gubun+"</td>" + //업무구분
@@ -709,13 +717,11 @@ $(document).ready(function(){
 				//"<td class='center state' data-element='"+status+"'>"+state+"</td>" + //상태
 				"<td class='center'>"+date+"</td>" + //완료일자
 				//"<td class='center check'>"+checked+"</td>" + //확인
-				"<td>"+comment+"</td>" + //비고
+				"<td class='comment'>"+ comments +"</td>" + //비고
 				"</tr>";
-
-
-				//console.log(html);
-
+			
 			$('#'+menuid).find('tbody').append(html);
+
 		}
 	}
 	

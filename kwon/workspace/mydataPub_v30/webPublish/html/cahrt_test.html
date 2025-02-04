@@ -21,6 +21,153 @@
 		<div class="content-view">
 			<!-- content -->
 			<div id="content">
+        <div id="minwon-bar" class="progress-bar">
+          <div class="progress"> </div>
+      </div>
+      <div class="progress-bar2"></div>
+      <div class="progress-bar3"></div>
+      <div class="donut-container">
+          <div class="donut"> </div>
+      </div>
+      <div class="donut-container">
+          <div class="donut"> </div>
+      </div>
+<style>
+  .progress-bar {
+  width: 100%;
+  height: 30px;
+  background-color: #dedede;
+  font-weight: 600;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar2,
+.progress-bar3 {
+  width: 100%;
+  height: 30px;
+  font-weight: 600;
+  font-size: .8rem;
+  margin-bottom: 1rem;
+}
+
+.progress-bar .progress {
+  width: 0;
+  height: 30px;
+  padding: 0;
+  text-align: center;
+  background-color: #4F98FF;
+  color: #111;
+}
+
+.donut {
+  width: calc(100% - 16px);
+  padding-bottom: calc(100% - 16px);
+  margin: 0 auto;
+  border-radius: 50%;
+  position: relative;
+  text-align: center;
+}
+
+.donut::before {
+  color: #fff;
+  width: 70%;
+  background: #264057;
+  border-radius: 50%;
+  position: absolute;
+  left: 15%;
+  top: 15%;
+  display: block;
+  content: attr(data-percent)'%';
+  transform: skew(-0.03deg);
+  margin: auto;
+  font-weight: 800;
+  font-size: 2vw;
+  padding: calc(35% - 1.3vw) 0;
+}
+.donut-container {
+  margin: 0 40vw 1rem 40vw;
+}
+</style>
+<script>
+  const bar = document.querySelector("#minwon-bar .progress")  // 민원바
+const bar2 = document.querySelector(".progress-bar2")  // 민원바
+const bar3 = document.querySelector(".progress-bar3")  // 여러 색 민원바
+const donut = document.getElementsByClassName("donut")[0]
+const donut2 = document.getElementsByClassName("donut")[1]
+
+let totalMinwon = 72, resolveMinwon = 12
+let t = 0
+bar.style.width = 0
+const barAnimation = setInterval(() => {
+  bar.style.width =  t + '%'
+  t++ >= totalMinwon && clearInterval(barAnimation)
+}, 10)
+
+let t2 = 0
+const barAnimation2 = setInterval(() => {
+  bar2.style.background = `linear-gradient(to right, #4F98FF 0 ${t2}%, #dedede ${t2}% 100% )`
+  t2++ >= totalMinwon && clearInterval(barAnimation2)
+}, 10)
+
+let t3 = 0
+const barAnimation3 = setInterval(() => {
+  bar3.style.background = totalMinwon > t3 ? `linear-gradient(to right, #4F98FF 0 ${t3}%, #dedede ${t3}% 100% )` : 
+  totalMinwon + resolveMinwon > t3 ? `linear-gradient(to right, #4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${t3}%, #dedede ${t3}% 100%)` : 
+  `linear-gradient(to right, #4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${totalMinwon + resolveMinwon}%, #dedede ${totalMinwon + resolveMinwon}% 100%)`
+  t3++ >= totalMinwon + resolveMinwon && clearInterval(barAnimation3)
+}, 10)
+
+let t4 = 0
+const donutAnimation = setInterval(() => {
+  donut.dataset.percent = t4
+  donut.style.background = `conic-gradient(#4F98FF 0 ${t4}%, #DEDEDE ${t4}% 100% )`
+  t4++ >= totalMinwon && clearInterval(donutAnimation)
+}, 10)
+
+let t5 = 0
+const donutAnimation2 = setInterval(() => {
+  donut2.dataset.percent = t5
+  donut2.style.background = totalMinwon > t5 ? `conic-gradient(#4F98FF 0 ${t3}%, #dedede ${t3}% 100% )` : 
+  totalMinwon + resolveMinwon > t5 ? `conic-gradient(#4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${t3}%, #dedede ${t3}% 100%)` : 
+  `conic-gradient(#4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${totalMinwon + resolveMinwon}%, #dedede ${totalMinwon + resolveMinwon}% 100%)`
+  t5++ >= totalMinwon + resolveMinwon && clearInterval(donutAnimation2)
+}, 10)
+
+const repeat = setInterval(() => {
+  barAnimation() || barAnimation2() || barAnimation3()
+  donutAnimation() || donutAnimation2()
+})
+</script>
+
+<svg id="color-gradient" width="400" height="400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+      <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="red"/>
+        <stop offset="50%" stop-color="blue" />
+        <stop offset="100%" stop-color="yellow"/>
+      </linearGradient>
+  </defs>
+    <circle cx="200" cy="200" r="100" fill="url(#gradient)"/>
+</svg>
+
+
+
+<svg style="width: 100px; height: 100px;">
+    <circle cx="50%" cy="50%" r="45" fill="none" stroke="grey" stroke-width="10%">
+
+    </circle>
+    <circle cx="50%" cy="50%" r="45" fill="none" stroke="orange" style="animation-name:  mat-progress-spinner-stroke-rotate-100; stroke-dashoffset: 197.92px; stroke-dasharray: 282.743px; stroke-width: 10%;">
+    </circle>
+  </svg>
+<style>
+  svg.svg {
+  background: radial-gradient(ellipse at center, #ffffff 0%,#ffffff 56%,#bbbbbb 59%,#bbbbbb 100%);
+  border-radius: 50%,
+}
+svg.svg circle{background: linear-gradient(249deg, #9D7CED 26.83%, #30CA82 93.73%);}
+</style>
+
 
                 <div>
                     <canvas id="myChart"></canvas>

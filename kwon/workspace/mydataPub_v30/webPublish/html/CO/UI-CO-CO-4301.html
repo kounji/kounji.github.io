@@ -77,38 +77,22 @@
 							</li>
 						</ul>
 					</div>
-
-					<div class="service_slider">
+					
+					<div class="service">
 						<div class="tit_group">
 							<p class="h_tit01">나의 관심서비스</p>
 							<button type="button" class="btn_add">관심서비스 담기</button>
 						</div>
-						<ul class="slick">
-							<li>
-								<a href="#nolink" class="item menu_01"> <!-- [D]: 메뉴별 클래스(menu_01 ~ 35) 추가  -->
-									<strong class="title">소비분석</strong>
-									<p class="text">한눈에 보는<br>내 소비 패턴</p>
-								</a>
-							</li>
-							<li>
-								<a href="#nolink" class="item menu_02">
-									<strong class="title">지역축제</strong>
-									<p class="text">가까운 곳에서<br>만나는 즐거움</p>
-								</a>
-							</li>
-							<li>
-								<a href="#nolink" class="item menu_03">
-									<strong class="title">목표 챌린지</strong>
-									<p class="text">작은 목표부터<br>큰 꿈까지</p>
-								</a>
-							</li>
-							<li>
-								<a href="#nolink" class="item menu_04">
-									<strong class="title">NH콕마이카</strong>
-									<p class="text">자동차, 내 삶의<br>자유를 더하다!</p>
-								</a>
-							</li>
-						</ul>
+						<div class="board_box">
+							<ul class="attention_list">
+								<li><a href="#nolink">자산</a></li>
+								<li><a href="#nolink">대출이자 계산기</a></li>
+								<li><a href="#nolink">지역축제</a></li>
+								<li><a href="#nolink">농촌여행</a></li>
+								<li><a href="#nolink">자전거길 국토종주</a></li>
+								<li><a href="#nolink">마이데이터</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -139,21 +123,6 @@
 			});
 	
 		});
-
-		$(function() {
-			slick (); //슬릭
-		});
-
-		function slick () {
-			var $service =  $('.service_slider .slick');
-
-			$service.slick({
-				slidesToShow : 2.3,
-				// dots : true,
-				infinite : false,
-				arrows : false,
-			});
-		}
 	</script>
 </body>
 </html>

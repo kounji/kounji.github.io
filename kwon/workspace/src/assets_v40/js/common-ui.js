@@ -1472,7 +1472,7 @@ const observer_content = function(){
 					const _curLeft = $("nav.navi .inner ul").scrollLeft();
 	
 					$("nav.navi .inner ul").stop().animate({
-						scrollLeft:_curLeft + _left
+						scrollLeft:_curLeft + _left -20
 					}, 400);
 				}
 			});
@@ -1482,7 +1482,6 @@ const observer_content = function(){
 		if($(".allNavi").length > 0){
 			observer_allNavi();
 		}
-		
 	}
 
 	const observer = new MutationObserver(mutation_cont);
@@ -1680,3 +1679,158 @@ $(document).off('click.category_tab').on('click.category_tab', '.category_tab.ha
 	$tabList.toggleClass('open');
 });
 
+function drawdountChart(canvas){
+	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;
+
+	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir){
+		this.x = x;
+		this.y = y;
+		this.radius = radius;
+		this.counterclockwise = counterclockwise;
+		this.from=from;
+		this.to= to;
+		this.lineWidth = lineWidth;
+		this.strockStyle = strockStyle; 
+		this.circle = circle;   /*1 - HALF; 2 - fULL*/
+		if(dir == null){
+			this.dir = 1;
+		}else{
+			this.dir = dir;
+		}
+		//console.log(" 시작방향이 어디야 : " + this.dir);
+	}
+
+	/*bg 원 그리기*/
+	this.bgdraw = function(){
+		canvas.beginPath();
+		canvas.lineWidth = this.lineWidth;
+		canvas.strokeStyle = this.strockStyle;
+		canvas.lineJoin = "bevel";
+		canvas.lineCap = "round";
+
+		canvas.arc(this.x , this.y , this.radius , this.from , this.to, this.counterclockwise);
+		canvas.stroke();
+	}
+
+	/*데이타 원 그리기*/
+	this.draw = function(data){
+		this.bgdraw();
+
+		console.log(data);
+		
+		var numberOfParts = data.numberOfParts;
+		var parts = data.parts.pt;
+		var df = Math.PI * this.dir;
+
+		for(var i = 0; i<numberOfParts; i++)
+		{
+			canvas.beginPath();
+			var colors = data.colors.cs[i];
+			var gradient = null;
+
+			gradient = canvas.createLinearGradient(this.x, this.y, df, df + (Math.PI * this.circle) * (parts[i] / 100));
+			//gradient = canvas.createRadialGradient(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100) - 0.1, this.radius + this.lineWidth + 5 );
+			
+			for(var j=0; j<colors.length; j++){
+			   gradient.addColorStop(colors[j][0], colors[j][1]);
+			   console.log(colors[j][0], colors[j][1]);
+			}
+			
+			canvas.strokeStyle = gradient;
+
+			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100), this.counterclockwise);
+			canvas.stroke();
+			
+			/*
+			console.log("시작점 " + i + " : " + df);
+			console.log("끝점 " + i + " : " + Math.PI*(1+ (parts[i] / 100))); 
+			*/
+
+			df += (Math.PI * 1) * (parts[i] / 100) ;
+		}
+	}
+}
+
+function drawlineChart(lineChart) {
+	this.canvas, this.dpr, this.width, this.height, this.name, this.last_x = null
+	this.set = function(canvas, width, height, x, y, x_gap){/*캔버스, 캔버스W, 캔버스H, 이름, startX, startY, x좌표 간격*/
+		this.canvas =  canvas;
+		//this.dpr = window.devicePixelRatio;
+		this.dpr = 2;
+		this.width = width;
+		this.height = height - 28;
+		this.x = x;
+		this.gap = x_gap;
+		this.y = y;
+	}
+
+	this.draw = function(data){
+		//lineChart.clearRect(0, 0, 300, 300);
+
+		lineChart.beginPath();
+		
+		lineChart.lineWidth = 2;
+		lineChart.setLineDash([3, 5]);
+		lineChart.lineJoin = "bevel";
+		lineChart.lineCap = "round";
+		lineChart.strokeStyle = "#FFB301";
+		//lineChart.scale(this.dpr, this.dpr);
+
+		if($(this.canvas).attr("id") == 'staple_spend'){
+			lineChart.moveTo(this.x * this.dpr, (this.height + 2 - (this.height * data[data.length - 1]) / 100) * this.dpr);
+			this.last_x = this.x; 
+
+			for(var i=0; i < data.length-1; i++){
+				lineChart.lineTo((this.last_x + this.gap) * this.dpr, (this.height + 2 - (this.height * data[i]) / 100)*this.dpr);
+				this.last_x = this.last_x + this.gap;
+			}
+		}else{
+			lineChart.moveTo(this.x, (this.height - (this.height * data[0]) / 100) * 0.75);
+			this.last_x = this.x;
+			for(var i=1; i < data.length; i++){
+				lineChart.lineTo(this.last_x + this.gap, (this.height - (this.height * data[i]) / 100)* 0.75);
+				this.last_x = this.last_x + this.gap;
+			}
+		}
+
+		lineChart.stroke();
+
+		if($(this.canvas).attr("id") == 'staple_spend'){
+			lineChart.beginPath();
+			lineChart.setLineDash([3, 0]);
+			lineChart.lineWidth = 2;
+
+			if($(".up", $(this.canvas).prev()).index() == (data.length - 1)){
+				lineChart.strokeStyle = "#35CDA8";
+			}else{
+				lineChart.strokeStyle = "#BCC2CA";
+			}
+
+			lineChart.fillStyle = "#fff";
+			lineChart.arc(this.x * this.dpr, (this.height + 2.5 - (this.height * data[data.length - 1]) / 100) * this.dpr, 4, 0, Math.PI*2);
+			lineChart.stroke();
+			lineChart.fill();
+			lineChart.closePath();
+
+			this.last_x = this.x + this.gap;
+
+			for(var i=0; i < data.length-1; i++){
+				lineChart.beginPath();
+				lineChart.setLineDash([3, 0]);
+				lineChart.lineWidth = 2;
+				if($(".up", $(this.canvas).prev()).index() == i){
+					lineChart.strokeStyle = "#35CDA8";
+				}else{
+					lineChart.strokeStyle = "#BCC2CA";
+				}
+				lineChart.fillStyle = "#fff";
+				lineChart.arc(this.last_x * this.dpr , (this.height + 2.5 - (this.height * data[i]) / 100)* this.dpr, 4, 0, Math.PI*2);
+				lineChart.stroke();
+				lineChart.fill();
+				lineChart.closePath();
+
+				this.last_x = this.last_x + this.gap;
+			}
+		}
+	}
+}  

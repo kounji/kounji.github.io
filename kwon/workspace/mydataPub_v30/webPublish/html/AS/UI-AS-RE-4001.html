@@ -16,35 +16,30 @@
 		<!-- header S -->
 		<header id="header" class="mydata2023"><!-- 08/04 .mydata2023 위치 이동 -->
 			<h1>자산</h1>
-			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
-			<div class="header_option">
-				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
-				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
 		
 		<div class="content-view hasLNB mydata2023"><!-- 08/04 .mydata2023 위치 이동 -->
-			<div class="com_tabmenu_type01 menunum04">
-				<ul role="tablist">
-					<li><a href="#nolink">전체자산</a></li>
-					<li class="on"><a href="#nolink">자산현황</a></li>
-					<li><a href="#nolink">부채관리</a></li>
-					<li><a href="#nolink">자산진단</a></li>
-				</ul>
-			</div>
-			<div class="lnb">
-				<ul role="tablist">
-					<li><a href="#nolink">예금</a></li>
-					<li><a href="#nolink">투자</a></li>
-					<li><a href="#nolink">연금</a></li>
-					<li><a href="#nolink">페이/포인트</a></li>
-					<li><a href="#nolink">보험</a></li>
-					<li class="on"><a href="#nolink">부동산</a></li>
-					<li><a href="#nolink">자동차</a></li>
-					<li><a href="#nolink">기타</a></li>
-				</ul>
-			</div>
+			<nav class="navi">
+				<div class="inner">
+					<!--자산현황 3depth-->
+					<ul role="navigation" aria-label="자산현황" class="depth1-1">
+						<li><a href="#"><span>예금</span></a></li>
+						<li><a href="#"><span>투자</span></a></li>
+						<li><a href="#"><span>연금</span></a></li>
+						<li><a href="#"><span>페이ㆍ포인트</span></a></li>
+						<li><a href="#"><span>보험</span></a></li>
+						<li><a href="#" aria-current="page"><span>부동산</span></a></li>
+						<li><a href="#"><span>자동차</span></a></li>
+						<li><a href="#"><span>기타</span></a></li>
+					</ul>
+				</div>
+			</nav>
 
 			<div id="content" class="renewal">
 				<div class="com_inner">

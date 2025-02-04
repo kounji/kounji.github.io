@@ -1495,7 +1495,7 @@ const observer_content = function(){
 					const _curLeft = $("nav.navi .inner ul").scrollLeft();
 	
 					$("nav.navi .inner ul").stop().animate({
-						scrollLeft:_curLeft + _left
+						scrollLeft:_curLeft + _left + 20
 					}, 400);
 				}
 			});
@@ -1514,18 +1514,16 @@ const observer_content = function(){
 
 const observer_allNavi = function(){
 	const allNavi = document.querySelector('.allNavi nav .category_tab');
+	
 
 	const stickyNav = function(entries){
-		console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ all navi: ' + entries[0].isIntersecting);
+		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ all navi: ' + entries[0].isIntersecting);
 
 		if(!entries[0].isIntersecting){
 			$(".allNavi nav .category_tab").addClass('fixed');
+			
 		}else{
 			$(".allNavi nav .category_tab").removeClass('fixed');
-			
-			$.each($(".allNavi .category_tab li"), function(i,obj){
-				$("> a", $(obj)).attr('aria-selected', false);
-			});
 		}
 	}
 
@@ -1536,6 +1534,54 @@ const observer_allNavi = function(){
 	});
 
 	observer.observe(allNavi);
+
+
+	const io = new IntersectionObserver((entries) => {
+		entries.forEach((entry) => {
+		  	const $target = $(entry.target);
+
+			if($(".category_tab").hasClass('fixed')){
+				if (entry.isIntersecting) {//true
+					//$target.classList.add("screening");
+					$target.removeClass("through");
+				} else {
+					//$target.classList.remove("screening");
+
+					if($target.offset().top + $target.outerHeight() > $(window).outerHeight()){
+
+					}else{
+						$target.addClass("through");
+					}
+				}
+			}
+
+			const idx = $(".allNavi nav > ul > li.through").last().index();
+
+			if(idx >= 0){
+				$.each($(".allNavi .category_tab li"), function(i,obj){
+					$("> a", $(obj)).attr('aria-selected', false);
+				});
+
+				$(">a", $(".allNavi .category_tab li").eq(idx)).attr('aria-selected', true);
+				scroll_allNavi(idx);
+			}else{
+				$.each($(".allNavi .category_tab li"), function(i,obj){
+					$("> a", $(obj)).attr('aria-selected', false);
+				});
+			}
+		});
+	  }, {
+		root:null,
+		rootMargin :'-125px 0px 0px 0px',
+		threshold:1
+	  });
+
+	  const $items = document.querySelectorAll(".allNavi nav > ul > li");
+	  $items.forEach((item) => {
+		io.observe(item);
+	  });
+
+
 }
 
 let lastScroll = 0; //초기 스크롤 위치
@@ -1546,21 +1592,23 @@ $(document).ready(function(){
 	/*obsever 상태체크 ************/
 	//observer_header();
 	//observer_content();
-	observer_allNavi();
+	if($(".allNavi").length > 0){
+		observer_allNavi();
+	}
 
 	/****** observer_content ***********************/
 	// nav aria-current page 위치
 	if($("nav.navi").length > 0) {
 		$("li", $("nav.navi ul")).each(function(i){
 			if($("> a", $(this)).attr("aria-current")){
-				console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  i);
-				console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  $(this).offset().left);
+				//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  i);
+				//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ : ' +  $(this).offset().left);
 
 				const _left = $(this).offset().left;
 				const _curLeft = $("nav.navi .inner ul").scrollLeft();
 
 				$("nav.navi .inner ul").stop().animate({
-					scrollLeft:_curLeft + _left
+					scrollLeft:_curLeft + _left - 20 
 				}, 400);
 			}
 		});
@@ -1581,10 +1629,10 @@ $(document).ready(function(){
 		}
 
 		if(nowScroll > lastScroll){//내려가는 방향
-			console.log('down scrolling!');
+			//console.log('down scrolling!');
 			$("aside.tabbar").removeClass('block');
 		}else{// 올라오는 방향
-			console.log('up scrolling!');
+			//console.log('up scrolling!');
 			//$("#com_footer").addClass('block');
 		}
 
@@ -1612,9 +1660,10 @@ $(document).ready(function(){
 			scrollEnding = false;
 		}	
 
-		console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ scrollEnding : ' + scrollEnding);
+		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ scrollEnding : ' + scrollEnding);
 
 		/* 전체메뉴 ----------------------------*/
+		/*
 		if($(".allNavi").length > 0){
 			$.each($(".allNavi nav > ul > li"), function(idx,item){
 				let _top = $(item).position().top - $(".allNavi nav .category_tab").outerHeight();
@@ -1628,6 +1677,7 @@ $(document).ready(function(){
 				}
 			});
 		}
+			*/
 	});	
 });
 
@@ -1702,6 +1752,7 @@ $(document).off('focus.input focusout.input').on('focus.input focusout.input', '
 });
 
 // 서비스가입 checkbox toggle
+/* 25-01-20 체크 삭제로 스크립트 삭제
 $(document).off('click.signupCheckbox').on('click.signupCheckbox', '.signup .formItem .checkbox', function(){
 	if( $(this).find('input[name="check_toggle"]').prop('checked')){
 		//checked
@@ -1711,7 +1762,7 @@ $(document).off('click.signupCheckbox').on('click.signupCheckbox', '.signup .for
 		$(this).closest('.formItem').removeClass('active')
 	}
 });
-
+*/
 /*addition_utll*/
 $(document).off('click.additional_util').on('click.additional_util', '.additional_util > button', function(){
 	const $list = $(this).next('div');
@@ -1767,9 +1818,9 @@ $(document).off('click.category_tab').on('click.category_tab', '.category_tab.ha
 
 /* CHART */
 function drawdountChart(canvas){
-	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw = null;
+	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;
 
-	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle){
+	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir){
 		this.x = x;
 		this.y = y;
 		this.radius = radius;
@@ -1779,6 +1830,12 @@ function drawdountChart(canvas){
 		this.lineWidth = lineWidth;
 		this.strockStyle = strockStyle; 
 		this.circle = circle;   /*1 - HALF; 2 - fULL*/
+		if(dir == null){
+			this.dir = 1;
+		}else{
+			this.dir = dir;
+		}
+		//console.log(" 시작방향이 어디야 : " + this.dir);
 	}
 
 	/*bg 원 그리기*/
@@ -1796,14 +1853,14 @@ function drawdountChart(canvas){
 	/*데이타 원 그리기*/
 	this.draw = function(data){
 		this.bgdraw();
-		
+
+		console.log(data);
 		
 		var numberOfParts = data.numberOfParts;
 		var parts = data.parts.pt;
-		var df = Math.PI;
+		var df = Math.PI * this.dir;
 
-		for(var i = 0; i<numberOfParts; i++)
-		{
+		for(var i = 0; i<numberOfParts; i++){
 			canvas.beginPath();
 			var colors = data.colors.cs[i];
 			var gradient = null;
@@ -1818,7 +1875,7 @@ function drawdountChart(canvas){
 			
 			canvas.strokeStyle = gradient;
 
-			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle ) * (parts[i] / 100) - 0.12, this.counterclockwise);
+			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100), this.counterclockwise);
 			canvas.stroke();
 			
 			/*
@@ -1826,8 +1883,91 @@ function drawdountChart(canvas){
 			console.log("끝점 " + i + " : " + Math.PI*(1+ (parts[i] / 100))); 
 			*/
 
-			df += (Math.PI * 1) * (parts[i] / 100) + 0.07;
+			df += (Math.PI * 1) * (parts[i] / 100) ;
 		}
 	}
 }
 
+function drawlineChart(lineChart) {
+	this.canvas, this.dpr, this.width, this.height, this.name, this.last_x = null
+	this.set = function(canvas, width, height, x, y, x_gap){/*캔버스, 캔버스W, 캔버스H, 이름, startX, startY, x좌표 간격*/
+		this.canvas =  canvas;
+		//this.dpr = window.devicePixelRatio;
+		this.dpr = 2;
+		this.width = width;
+		this.height = height - 28;
+		this.x = x;
+		this.gap = x_gap;
+		this.y = y;
+	}
+
+	this.draw = function(data){
+		//lineChart.clearRect(0, 0, 300, 300);
+
+		lineChart.beginPath();
+		
+		lineChart.lineWidth = 2;
+		lineChart.setLineDash([3, 5]);
+		lineChart.lineJoin = "bevel";
+		lineChart.lineCap = "round";
+		lineChart.strokeStyle = "#FFB301";
+		//lineChart.scale(this.dpr, this.dpr);
+
+		if($(this.canvas).attr("id") == 'staple_spend'){
+			lineChart.moveTo(this.x * this.dpr, (this.height + 2 - (this.height * data[data.length - 1]) / 100) * this.dpr);
+			this.last_x = this.x; 
+
+			for(var i=0; i < data.length-1; i++){
+				lineChart.lineTo((this.last_x + this.gap) * this.dpr, (this.height + 2 - (this.height * data[i]) / 100)*this.dpr);
+				this.last_x = this.last_x + this.gap;
+			}
+		}else{
+			lineChart.moveTo(this.x, (this.height - (this.height * data[0]) / 100) * 0.75);
+			this.last_x = this.x;
+			for(var i=1; i < data.length; i++){
+				lineChart.lineTo(this.last_x + this.gap, (this.height - (this.height * data[i]) / 100)* 0.75);
+				this.last_x = this.last_x + this.gap;
+			}
+		}
+
+		lineChart.stroke();
+
+		if($(this.canvas).attr("id") == 'staple_spend'){
+			lineChart.beginPath();
+			lineChart.setLineDash([3, 0]);
+			lineChart.lineWidth = 2;
+
+			if($(".up", $(this.canvas).prev()).index() == (data.length - 1)){
+				lineChart.strokeStyle = "#35CDA8";
+			}else{
+				lineChart.strokeStyle = "#BCC2CA";
+			}
+
+			lineChart.fillStyle = "#fff";
+			lineChart.arc(this.x * this.dpr, (this.height + 2.5 - (this.height * data[data.length - 1]) / 100) * this.dpr, 4, 0, Math.PI*2);
+			lineChart.stroke();
+			lineChart.fill();
+			lineChart.closePath();
+
+			this.last_x = this.x + this.gap;
+
+			for(var i=0; i < data.length-1; i++){
+				lineChart.beginPath();
+				lineChart.setLineDash([3, 0]);
+				lineChart.lineWidth = 2;
+				if($(".up", $(this.canvas).prev()).index() == i){
+					lineChart.strokeStyle = "#35CDA8";
+				}else{
+					lineChart.strokeStyle = "#BCC2CA";
+				}
+				lineChart.fillStyle = "#fff";
+				lineChart.arc(this.last_x * this.dpr , (this.height + 2.5 - (this.height * data[i]) / 100)* this.dpr, 4, 0, Math.PI*2);
+				lineChart.stroke();
+				lineChart.fill();
+				lineChart.closePath();
+
+				this.last_x = this.last_x + this.gap;
+			}
+		}
+	}
+} 

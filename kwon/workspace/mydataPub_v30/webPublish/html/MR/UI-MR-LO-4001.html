@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<html lang="ko">
 <head>
-	<title>이벤트 현황</title>
+	<title>로또복권 번호만들기 | 이벤트</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -9,25 +9,6 @@
 	<meta name="format-detection" content="telephone=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
-<style>
-/* lotto drawing */
-.com_inner + .com_inner {margin-top: 3rem;}
-
-.lotto_btn{margin-bottom:10px; padding:10px 20px; background:#238789; color:#fff; border-radius:4px;}
-.lotto_result{display:flex; justify-content: center; align-items: center; padding:10px 0; border:1px solid #238789; border-radius:4px;}
-.lotto_result .line{display:flex; justify-content: center; align-items: center; }
-.lotto_result .ball{
-	display:flex; justify-content: center; align-items: center;
-	width: 30px; height: 30px; margin: 0 10px;
-	border-radius: 50%; font-size: 16px; color: white !important;
-	font-weight:700;
-}
-.lotto_result .ball.orange{background-color:orange}/* num < 10*/
-.lotto_result .ball.green{background-color:green}/* number >=10 and number < 20 */
-.lotto_result .ball.blue{background-color:blue}/* number >=20 and number < 30 */
-.lotto_result .ball.red{background-color:red}/* number >=30 and number < 40 */
-.lotto_result .ball.purple{background-color:purple}/* number >=40 and number < 50 */
-</style>
 </head>
 <body>
 	<!-- 팝업용 wrap 시작 -->
@@ -51,83 +32,281 @@
 	<!--// 팝업용 wrap 종료 -->
 
 	<!-- 전체 팝업 시작 -->
-	<div class="full_popup" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동-->
+	<div class="full_popup" id="full_popup_01">
 		<div class="popup_header">
 			<h1>로또복권 번호만들기</h1>
 			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
 		</div>	
 		<div class="popup_content">
-
-			<div id="content">
-				<div class="com_inner">
-					<strong class="titH1">로또 복권 번호를 추천해드려요</strong>
-					<div>
-						<a href="https://m.dhlottery.co.kr/gameResult.do?method=byWin" target="_blank" title="새창 열림">지난 회차 로또 당첨번호 확인하기</a>
-					</div>
-					<p>로또복권 번호만들기는 하루 5회 추천 받을 수 있습니다.</p>
+			<div class="lotto_gen">
+				<div class="tit_area">
+					<h2 class="headline"><strong>로또 복권 번호를 추천해드려요</strong></h2>
+					<p class="sub_txt">로또 번호 추천은 하루 5번까지 가능해요.</p>
 				</div>
 
-				<div class="com_inner">
-					<div>
-						<button type="button" class="lotto_btn" onclick="createNumbers()">추첨</button>
+				<div class="board_box">
+					<div class="top_link">
+						<a href="https://m.dhlottery.co.kr/gameResult.do?method=byWin" target="_blank">지난 회차 로또 번호 확인해볼까?</a>
 					</div>
-					<div>추첨번호</div>
-					<div class="lotto_result"></div>
+
+					<div class="lotteryStart">
+						<lottie-player src="../../../../src/assets_v40/images/lottie/plz_lottery.json"  loop autoplay aria-hidden="true" class="plz_lottery" ></lottie-player>
+						<p>로또 번호 추천 받기 버튼 눌러서<br>하루에 5번 로또 번호 받아보세요!</p>
+						<button type="button" class="btns md primary play">로또 번호 추천받기</button>
+					</div>
+
+					<div class="lotteryGames">
+						<dl>
+							<div>
+								<dt>A</dt>
+								<dd>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</dd>
+							</div>
+							<div>
+								<dt>B</dt>
+								<dd>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</dd>
+							</div>
+							<div>
+								<dt>C</dt>
+								<dd>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</dd>
+							</div>
+							<div>
+								<dt>D</dt>
+								<dd>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</dd>
+							</div>
+							<div>
+								<dt>E</dt>
+								<dd>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+									<span></span>
+								</dd>
+							</div>
+						</dl>
+					</div>
 				</div>
 
+				<div class="gray_box">
+					<p>로또복권 번호만들기는 로또 번호만 추천해 드립니다.<br>복권구매는 복권판매소에서 구매하셔야 합니다.</p>
+					<a href="https://m.dhlottery.co.kr/store.do?method=sellerInfo645" target="_blank" class="btns md">판매점 찾기</a>
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg share">공유하기</button>
+				<button type="button" class="btns lg primary play">로또 번호 추천 받기(<em class="conut">0</em>/5)</button>
+				
 			</div>
 		</div>
 		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// 전체 팝업 종료 -->
 	
-	
 <script>
-	function getColor(number){
-		let color = "orange"; // 10 미만
-		if(number >=10 && number < 20){
-			color = "green"
-		}else if(number >=20 && number < 30){
-			color = "blue"
-		}else if(number >=30 && number < 40){
-			color = "red"
-		}else if(number >=40 && number < 50){
-			color = "purple"
+	let lotteryString = window.localStorage.getItem('lottery');
+	let lottery;
+
+	if(lotteryString === null){
+		lottery = {
+			"count":0,
+			"games":[],
+			"date":''
 		}
-		return color;
+	}else{
+		lottery =  JSON.parse(lotteryString);
+
+		var setDay = new Date(lottery.date);
+		var nowDay = new Date();
+
+		if(setDay.getFullYear() == nowDay.getFullYear() && setDay.getMonth() == nowDay.getMonth()){
+			if(nowDay.getDate() > setDay.getDate()){
+				lottery.count = 0;
+
+				alert('다음날');
+            }
+		}else{
+			lottery.count = 0;
+		}
 	}
-	// 숫자 여섯개 당구공을 생성
-	function displayNumbers(lotto){
-		$(".lotto_result").empty();
-		//$('.lotto_result').append('<div class="line"></div>')
+
+	/*page load check*/
+	$(document).ready(function(){
 		
-		for(let i =0; i < 6; i++){
-			const ball = $('<span class="ball"></span>') // createElement
-			$(ball).text(`${lotto[i]}`)
-			$(ball).hide(); // 안 보이는 상태에서 추가
-			//$(div).css("background-color", getColor(lotto[i]))
-			$(ball).addClass(getColor(lotto[i]));
+		if(lottery.count == 0){
+			if(lottery.games.length == 5) {
+				$(".lotteryStart").hide();
+				$(".lotteryGames").show();
+
+				drawlottery(lottery.games);
+			}else{
+				$(".lotteryStart").show();
+				$(".lotteryGames").hide();
+				$(".btns.share").attr("disabled", true);
+			}
+		}else{
+			$(".lotteryStart").hide();
+			$(".lotteryGames").show();
+
+			$(".play em").text(lottery.count);
 			
-			$('.lotto_result').append(ball);
+			if(lottery.count == 5){
+				$(".play").attr("disabled", true);
+			}
+			//저장된 번호 불러와서 그리기
+			drawlottery(lottery.games);
 		}
-		$(".lotto_result .ball").fadeIn(1000); 
-	
+	});
+
+	let drawlottery = function(games){
+		let setColor = function(i){
+			let color = "yellow"; // 10 미만
+			if(i >=10 && i < 20){
+				color = "blue"
+			}else if(i >=20 && i < 30){
+				color = "red"
+			}else if(i >=30 && i < 40){
+				color = "gray"
+			}else if(i >=40 && i < 50){
+				color = "green"
+			}
+			return color;
+		}
+
+		$(".btns.share").attr("disabled", true);
+
+		$(".lotteryGames dl span").each(function(){
+			$(this).text('').removeClass();
+		})
+
+		$(".lotteryGames dl > div").each(function(game){
+			const _parent = $(this);
+
+			setTimeout(function(){
+				$("span", _parent).each(function(num){
+					let _color = setColor(games[game][num]);
+					const _this = $(this);
+
+					setTimeout(function(){
+						_this.text(games[game][num]).addClass(_color);
+					}, 100 * num)
+				});
+
+			}, 600 * game)
+			
+		})
+
+		setTimeout(function(){
+			$(".btns.share").attr("disabled", false);
+		}, 3000)
+
+		
 	}
-	// 1부터 45 사이의 숫자 
-	function createNumbers(){
-		const lottoNumbers = []
-		while(lottoNumbers.length < 6){
-			const randomNumber = Math.floor(Math.random() *45) + 1
-			// 배열.indexOf(x) : x가 배열의 몇번 인덱스에 있는지 알려준다! 단, 없다면 -1을 반환
-			if(lottoNumbers.indexOf(randomNumber) === -1){ 
-				lottoNumbers.push(randomNumber);
-				lottoNumbers.sort(function(a,b){
-					return a-b;
-				})
+
+	let generatelottery = function(){
+		this.lottery = [];
+		this.randomOverlap = [];
+
+		for(let game = 0; game < 5; game++){
+			this.lottery[game] = [];
+
+			for(let num = 0; num < 6; num++){
+				var i = Math.floor(Math.random() * 45) + 1;
+
+				if(this.lottery[game].length > 0){
+					if(this.lottery[game].indexOf(i) === -1){//게임내에서 숫자와 겹침 비교
+						if(this.randomOverlap.length > 0){///overlap array와 비교
+							if(this.randomOverlap.indexOf(i) === -1){
+								this.lottery[game].push(i);
+							}else{
+								num--;
+							}
+						}else{
+							this.lottery[game].push(i);
+						}
+					}else{
+						num--;
+					}	
+				}else{
+					if(this.randomOverlap.length > 0){///overlap array와 비교
+						if(this.randomOverlap.indexOf(i) === -1){
+							this.lottery[game].push(i);
+						}else{
+							num--;
+						}
+					}else{
+						this.lottery[game].push(i);
+					}
+				}
+			}
+			
+			//작은숫자부터 나열
+			this.lottery[game].sort(function(comp1, comp2) {
+				return comp1 - comp2; 
+			});
+			
+			//overlap array 등록
+			let overlap = Math.floor(Math.random() * 6);
+			this.randomOverlap.push(this.lottery[game][overlap]);
+		}
+
+		lottery.games = this.lottery;
+		lottery.date = new Date();
+		window.localStorage.setItem('lottery',  JSON.stringify(lottery));
+
+		drawlottery(this.lottery);
+	}
+	
+	$(document).off('click.lottoDraw').on('click.lottoDraw', '.play', function() {
+		$(".lotteryStart").hide();
+		$(".lotteryGames").show();
+		$(".btns.share").attr("disabled", true);
+
+		if(lottery.count < 5){
+			lottery.count++;
+			//console.log(lottery.count)
+			$(".play em").text(lottery.count);
+
+			if(lottery.count == 5) {
+				$(this).attr('disabled', true);
 			}
 		}
-		displayNumbers(lottoNumbers)
-	}
+		/*번호생성*/
+		generatelottery();
+	});
 </script>
+
 </body>
 </html>

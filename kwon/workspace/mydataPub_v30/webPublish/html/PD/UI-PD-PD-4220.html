@@ -27,20 +27,14 @@
 
 		<div class="content-view">
 			<!--
-			<div class="com_tabmenu_type01">
-				<ul role="tablist">
-					<li><a href="#nolink">나의 노후준비</a></li>
-					<li><a href="#nolink">연말정산 공제금액</a></li>
-					<li><a href="#nolink">세금 납부 확인</a></li>
-					<li><a href="#nolink">건강보험 가입내역</a></li>
-					<li><a href="#nolink">데일리 금융브리핑</a></li>
-					<li class="on"><a href="#nolink">대출이자 계산기</a></li>
-					<li><a href="#nolink">대출한도 계산기</a></li>
-				</ul>
-			</div>
+			<ul role="tablist" class="tablist">
+				<li><button type="button" role="tab" aria-selected="false">맞춤상품 추천</button></li>
+				<li class="on"><button type="button" role="tab" aria-selected="true">대출이자 계산기</button></li>
+				<li><button type="button" role="tab" aria-selected="false">대출한도 계산기</button></li>
+			</ul>
 			-->
 			
-			<!-- content -->
+			<!-- content --> 
 			<div id="content"> 
 				<div class="loan_cal">
 					<div class="tit_area">
@@ -49,7 +43,7 @@
 
 					<div class="formItem">
 						<div class="input">
-							<label for="loan_cal_01"><em class="required">희망대출금액(필수)</em></label>
+							<label for="loan_cal_01">희망대출금액<em class="required">(필수)</em></label>
 							<input type="text" name="" id="loan_cal_01" required="" placeholder="희망대출금액을 입력해주세요.">
 							<span class="unit">만원</span>
 						</div>
@@ -67,7 +61,7 @@
 
 					<div class="formItem">
 						<div class="input">
-							<label for="loan_cal_02"><em class="required">대출기간(필수)</em></label>
+							<label for="loan_cal_02">대출기간<em class="required">(필수)</em></label>
 							<input type="text" name="" id="loan_cal_02" required="" placeholder="대출기간을 입력해주세요.">
 							<span class="unit">개월</span>
 						</div>
@@ -84,7 +78,7 @@
 
 					<div class="formItem">
 						<div class="input">
-							<label for="loan_cal_03"><em class="required">대출이자율(필수)</em></label>
+							<label for="loan_cal_03">대출이자율<em class="required">(필수)</em></label>
 							<input type="text" name="" id="loan_cal_03" required="" placeholder="대출이자율을 입력해주세요.">
 							<span class="unit">%</span>
 						</div>
@@ -98,44 +92,22 @@
 							<button type="button" class="btns">+4.0%</button>
 						</div>
 					</div>
-					
 					<div class="btns_wrap">
 						<button type="button" class="btns lg primary">계산하기</button>
 					</div>
 				</div>
 
-				<div class="loan_cal result">
-					<div>
-						<span>상환방식</span>
-						<div class="custom_tooltip up">
-							<div class="com_tooltip_type02 com_tooltip_type03">
-								<a href="#nolink" class="com_btn_info">
-									<em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
-								</a>
-							</div>
-							<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-								<div>
-									해당 기관에 보유한 자산이 없습니다.<br>
-									(오류코드 <em>40403</em>)
-									<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-								</div> 
-							</div>
-						</div>
+				<div class="loan_cal section">
+					<div class="top_area">
+						<button type="button" class="btn_repay">상환방식</button>
 					</div>
 					<ul role="tablist" class="inner_tab gray">
 						<li class="on" aria-controls="tab_01"><button type="button" role="tab" aria-selected="true" >원리금 균등상환</button></li>
 						<li aria-controls="tab_02"><button type="button" role="tab" aria-selected="false">원금 균등상환</button></li>
 					</ul>
-					<!--
-					<div class="com_tabmenu_type03 custom_tab">
-						<ul role="tablist">
-							<li role="presentation" aria-controls="tab_01" class="on"><a href="#nolink"><span>원리금 균등상환</span></a></li>
-							<li role="presentation" aria-controls="tab_02"><a href="#nolink"><span>원금 균등상환</span></a></li>
-						</ul>
-					</div>
-					-->
+					<!-- 원리금 균등상환/원금 균등상환 탭데이터만 변경되고 내용 동일 -->
 					<!-- tab1 : 원리금 균등상환 -->
-					<div id="tab_01" role="tabpanel" class="cmm-tab-panel on">
+					<div id="tab_01" role="tabpanel">
 						<div class="result_box">
 							<p class="total">
 								총 상환금액은 <span class="pin purple">60개월</span><br>
@@ -157,8 +129,8 @@
 							<a href="#nolink" class="link_banner"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
 						</div>
 
-						<div class="result">
-							<strong class="titH2">월 상환금액</strong>
+						<div class="result_detail">
+							<strong class="h_tit01">월 상환금액</strong>
 							<div class="tbl_point">
 								<table>
 									<caption>월 상환금액 표표입니다</caption>
@@ -179,27 +151,27 @@
 									<tbody>
 										<tr>
 											<td>1회차</td>
-											<td><em>999,999</em>원</td>
-											<td><em>359,032</em>원</td>
-											<td><em>1,458,031</em>원</td>
+											<td><em>821,937</em><span>원</span></td>
+											<td><em>25,000</em><span>원</span></td>
+											<td><em>846,937</em><span>원</span></td>
 										</tr>
 										<tr>
 											<td>2회차</td>
-											<td><em>999,999</em>원</td>
-											<td><em>359,032</em>원</td>
-											<td><em>1,458,031</em>원</td>
+											<td><em>823,992</em><span>원</span></td>
+											<td><em>22,945</em><span>원</span></td>
+											<td><em>846,937</em><span>원</span></td>
 										</tr>
 										<tr>
 											<td>3회차</td>
-											<td><em>999,999</em>원</td>
-											<td><em>359,032</em>원</td>
-											<td><em>1,458,031</em>원</td>
+											<td><em>826,052</em><span>원</span></td>
+											<td><em>20,885</em><span>원</span></td>
+											<td><em>846,937</em><span>원</span></td>
 										</tr>
 										<tr>
 											<td>4회차</td>
-											<td><em>999,999</em>원</td>
-											<td><em>359,032</em>원</td>
-											<td><em>1,458,031</em>원</td>
+											<td><em>828,117</em><span>원</span></td>
+											<td><em>18,820</em><span>원</span></td>
+											<td><em>846,937</em><span>원</span></td>
 										</tr>
 									</tbody>
 								</table>
@@ -209,41 +181,105 @@
 								
 							</div>
 						</div>
-						<p class="dotted_list">고객님의 이해를 돕기 위한 자료이며, 상품가입을 위해서는 개별상담이 필요합니다.</p>
+
+						<div class="gray_box">
+							<p class="dotted_list">고객님의 이해를 돕기 위한 자료이며, 상품가입을 위해서는 개별상담이 필요합니다.</p>
+						</div>
+						
 					</div>
 					<!-- //tab1 : 원리금 균등상환 -->
-					<!-- tab2 : 원금 균등상환 -->
-					<div id="tab_02" role="tabpanel" class="cmm-tab-panel">
-						<div>
-							<p>원금균등상환
-								일정한 원금에 이자를 더해서 상환하는 방법이에요. 만기까지 매월 상환하는 금액은 다르지만, 상환금액이 줄어든다는 장점이 있어요!
-								</p>
-						</div>
-						<div class="result">
-							<strong>게산결과</strong>
-							<ul>
+					<!-- tab2 : 원금 균등상환 
+					<div id="tab_02" role="tabpanel">
+						<div class="result_box">
+							<p class="total">
+								총 상환금액은 <span class="pin purple">60개월</span><br>
+								<strong class="price">268,627,386</strong><span class="unit">원</span>
+							</p>
+							<ul class="detail">
 								<li>
-									<div>총 납입횟수는</div>
-									<div><strong>60</strong>회</div>
+									<span class="key">내가 빌린 원금은</span>
+									<strong class="val">5,000만원</strong>
 								</li>
 								<li>
-									<div>만기까지 총 이자는</div>
-									<div><strong>18,272,000</strong>원</div>
-								</li>
-								<li>
-									<div>총 상환금액은(원금+이자)</div>
-									<div><strong>268,700,000</strong>원</div>
+									<span class="key">만기까지 총 이자는</span>
+									<strong class="val">1,827만 2,000원원</strong>
 								</li>
 							</ul>
 						</div>
-						<div class="banner">
-							<a href="#nolink">나에게 맞는 대출 상품을 추천드려요</a>
-						</div>
-						<button class="bottomBtn">더보기</button>
 
-						<p>고객님의 이해를 돕기 위한 자료이며, 상품가입을 위해서는 개별상담이 필요합니다.</p>
+						<div class="banner_area">
+							<a href="#nolink" class="link_banner"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
+						</div>
+
+						<div class="result_detail">
+							<strong class="h_tit01">월 상환금액</strong>
+							<div class="tbl_point">
+								<table>
+									<caption>월 상환금액 표표입니다</caption>
+									<colgroup>
+										<col style="width:auto">
+										<col style="width:26%">
+										<col style="width:26%">
+										<col style="width:26%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col"><span>회차</span></th>
+											<th scope="col">납입원금</th>
+											<th scope="col">대출이자</th>
+											<th scope="col"><span>월 상환금</span></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1회차</td>
+											<td><em>833,333</em><span>원</span></td>
+											<td><em>25,000</em><span>원</span></td>
+											<td><em>858,333</em><span>원</span></td>
+										</tr>
+										<tr>
+											<td>2회차</td>
+											<td><em>833,333</em><span>원</span></td>
+											<td><em>22,917</em><span>원</span></td>
+											<td><em>856,250</em><span>원</span></td>
+										</tr>
+										<tr>
+											<td>3회차</td>
+											<td><em>833,333</em><span>원</span></td>
+											<td><em>20,833</em><span>원</span></td>
+											<td><em>854,16</em><span>원</span></td>
+										</tr>
+										<tr>
+											<td>4회차</td>
+											<td><em>833,333</em><span>원</span></td>
+											<td><em>18,750</em><span>원</span></td>
+											<td><em>852,083</em><span>원</span></td>
+										</tr>
+										<tr>
+											<td>5회차</td>
+											<td><em>833,333</em><span>원</span></td>
+											<td><em>16,667</em><span>원</span></td>
+											<td><em>850,000</em><span>원</span></td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="btn_area">
+									<button type="button" class="btn_more_txt">더보기</button>
+								</div>
+								
+							</div>
+						</div>
+
+						<div class="gray_box">
+							<p class="dotted_list">고객님의 이해를 돕기 위한 자료이며, 상품가입을 위해서는 개별상담이 필요합니다.</p>
+						</div>
 					</div>
 					<!-- //tab2 : 원금 균등상환 -->
+
+					<div class="btns_wrap">
+						<button type="button" class="btns lg primary">다시계산하기</button>
+					</div>
+
 				</div>
 
 

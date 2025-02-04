@@ -32,7 +32,7 @@
 
                     <!--배너-->
                     <p class="top_banner">
-                        <a href="#nolink">연말정산으로<br>공제받을 수 있는 금액은?</a>
+                        <a href="#nolink">나는 얼마나 쓰고,<br>또 내또래는 얼마나 쓰고 있을까요</a>
                         <button type="button" class="btn_x"><span class="blind">삭제</span></button>
                     </p>
 
@@ -62,114 +62,127 @@
                     </div>
 
                     <!--분류별 개요-->
-                    <div class="board_box wallet_outline">
-                        <ul role="tablist" class="inner_tab">
-                            <li class="on"><button type="button" role="tab" aria-selected="true">카드</button></li>
-                            <li><button type="button" role="tab" aria-selected="false">페이</button></li>
-                            <li><button type="button" role="tab" aria-selected="false">현금</button></li>
-                        </ul>
+                    <div class="wallet_outline">
+                        <div class="board_box">
+                            <ul role="tablist" class="inner_tab">
+                                <li class="on"><button type="button" role="tab" aria-selected="true">카드</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">페이</button></li>
+                                <li><button type="button" role="tab" aria-selected="false">현금</button></li>
+                            </ul>
 
-                        <div class="details">
-                            <div class="analysis down">
-                                <p class="h_tit01">카드를 지난 달보다<br><em>적게</em>쓰고 있어요</p>
-                                <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                            <!--카드 case-->
+                            <div class="details"><!--적게 쓸경우 down, 초과인 경우 up class 추가-->
+                                <div class="analysis">
+                                    <p class="h_tit01">카드를 지난 달보다<br><em>적게</em>쓰고 있어요</p>
+                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                </div>
+
+                                <!--
+                                    <div class="analysis">
+                                        <p class="h_tit01">지난달<br>총지출과 <em>같아요</em></p>
+                                        <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    </div>
+
+                                    <div class="analysis">
+                                        <p class="h_tit01">카드를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
+                                        <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    </div>
+                                -->
+
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                 <!--
+                                    초과인 경우 icon_wallet_up.json
+                                    적게 쓸 경우 icon_wallet_down.json
+                                -->
                             </div>
 
-                            <!--
+                            <!--페이
+                            <div class="details up">
                                 <div class="analysis">
-                                    <p class="h_tit01">지난달<br>총지출과 <em>같아요</em></p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    <p class="h_tit01">페이를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
+                                    <p>이번달 페이 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
 
-                                <div class="analysis up">
-                                    <p class="h_tit01">카드를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
-                                </div>
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_up.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                            </div>
                             -->
 
-                            <div class="chart">
-                                <div class="word_bubble">
-                                    <p><em>Good</em></p>
+                            <!--현금
+                            <div class="details down">
+                                <div class="analysis">
+                                    <p class="h_tit01">현금을 지난 달보다<br><em>잒[</em>쓰고 있어요</p>
+                                    <p>이번달 현금 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
-                                <div class="bg"></div>
-                                <canvas id="wallet_outline"></canvas>
+
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_down.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                             </div>
+                            -->
+                        </div> 
+
+                        <div class="spend_history">
+                            <!--카드 상세-->
+                            <details>
+                                <summary>내 카드 지출 내역 <span>더보기</span></summary>
+                                <div class="cont">
+                                    <ul class="payment_list">
+                                        <li>
+                                            <a href="#nolink">
+                                                <i class="ZVAAFQ0000"></i>
+                                                <div>
+                                                    <span class="name">BC 좋은 카드BC 좋은 카드BC 좋은 카드BC 좋은 카드BC 좋은 카드</span>
+                                                    <span class="num">1,000,000원</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#nolink">
+                                                <i class="ZVAAFQ0000"></i>
+                                                <div>
+                                                    <span class="name">BC 좋은 카드</span>
+                                                    <span class="num">1,000,000원</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <!--페이 상세
+                            <details>
+                                <summary>내 페이 지출 내역 <span>더보기</span></summary>
+                                <div class="cont">
+                                    <ul class="payment_list">
+                                        <li>
+                                            <a href="#nolink">
+                                                <i class="E1AAIA0000"></i>
+                                                <div>
+                                                    <span class="name">카카오 페이</span>
+                                                    <span class="num">1,000,000원</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>       
+                            -->                 
+                            <!--현금 상세
+                            <details>
+                                <summary>내 현금 지출 내역 <span>더보기</span></summary>
+                                <div class="cont">
+                                    <ul class="payment_list">
+                                        <li>
+                                            <a href="#nolink">
+                                                <i class="icon_money"></i>
+                                                <div>
+                                                    <span class="name">계좌이체로 쓴 금액</span>
+                                                    <span class="num">1,000,000원</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>     
+                            -->
                         </div>
-                    </div> 
-
-                    <script>
-                        const colors =[
-                            [//equal
-                                [0,'#FFB301'],
-                                [0.3,'#FFF0A4']
-                            ],
-                            [//down
-                                [1,'#62FFD9'],
-                                [0,'#0196A2'],
-                                [0.6,'#35CDA8']
-                            ],
-                            [//up
-                                [0,'#FF929D'],
-                                [0.5,'#FFB67C'],
-                                [1,'#FF7459']
-                            ]
-                        ]
-                    
-                        const data = {
-                            numberOfParts: 1,
-                            parts:{"pt": null},//percentage of each parts 
-                            colors:{"cs": null }//color of each part
-                        };
-
-                        var canvas  = document.getElementById("wallet_outline");
-                        var chart = canvas.getContext("2d");
-                        var drawDount = new drawdountChart(chart);
-
-                        drawDount.set(50, 50, 45, false, Math.PI*1.5, Math.PI*3.5, 10, "#f7f8fa", 2, 1.5);/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir*/
-                        drawDount.bgdraw();
-
-                        $(document).off('click.inner_tab').on('click.inner_tab', '.inner_tab button', function(e){        
-                            /*컨텐츠영역 열고 닫기 dummy*/                   
-                            var _now = $(this).parent().index();
-
-                            if(_now == 1){
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart").addClass('down');
-                                $(".wallet_outline .chart .word_bubble em").text('Best');
-                                data.parts.pt = [50];
-                                data.colors.cs = [colors[1]];
-                            }else if(_now == 2){
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart").addClass('up');
-                                $(".wallet_outline .chart .word_bubble em").text('Oops');
-                                data.parts.pt = [80];
-                                data.colors.cs = [colors[2]];
-                            }else {
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart .word_bubble em").text('Good');
-                                data.parts.pt = [30];
-                                data.colors.cs = [colors[0]];
-                            }
-
-                            /*//컨텐츠영역 열고 닫기 dummy*/   
-
-                            chart.clearRect(0, 0, 100, 100);
-                            drawDount.draw(data);
-                        });
-
-                       $("button", $('.inner_tab li').eq(0)).trigger('click');
-                    </script>
-                    
-                    <div class="wallet_more_wrap">
-                        <!--카드 상세-->
-                        <details>
-                            <summary>내 카드 지출 내역 <span>더보기</span></summary>
-                            <div class="cont"></div>
-                        </details>
-
-                        <!--페이 상세-->
-
-                        <!--현금 상세-->
                     </div>
 
                     <!--통신비-->
@@ -185,7 +198,7 @@
                             <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
                                 <div>
                                     <p>
-                                       내용을 주세요
+                                       통신비 청구금액은 결제 예정금액으로 현재 총지출 금액에는 포홤되지 않으며 결제일 이후에 카드/페이/현금 결제 내역에서 확인 가능합니다.
                                     </p>
 
                                     <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
@@ -197,14 +210,31 @@
                         <p>SK Telecom<span class="num">137,275원</span>
                             <a href="#nolink" class="btn_plz_go"><span class="blind">더보기</span></a>
                         </p>
-
-                        <!--금액이 없는 경우-->
-                        <p>이번달 통신비 청구 금액이 없어요</p>
                     </div>
 
                     <!--최근소비-->
-                    <div class="board_box">
+                    <div class="board_box lately_spend">
                         <h2><a href="#nolink" class="title">최근 소비</a></h2>
+                        
+                        <span class="date">27일(일)</span>
+                        <ul class="lately_list">
+                            <li>
+                                <i class="AS20000004"></i>
+                                <div>
+                                    <span class="name">씨유 구리굿모닝점</span>
+                                    <span class="pay">DC SWEET 롯데 포인트 DC SWEET 롯데 포인트DC SWEET 롯데 포인트</span>
+                                </div>
+                                <span class="num">17,400원</span>
+                            </li>
+                            <li>
+                                <i class="AS20000000"></i>
+                                <div>
+                                    <span class="name">씨유 구리굿모닝점씨유 구리굿모닝점씨유 구리굿모닝점</span>
+                                    <span class="pay">DC SWEET 롯데 포인트</span>
+                                </div>
+                                <span class="num">1,017,400원</span>
+                            </li>
+                        </ul>
                     </div>
 
                     <!--주요소비-->
@@ -216,47 +246,85 @@
                             <p class="txt">쇼핑에  가장 많은 지출,<br><em>100만</em>을 썼어요</p>
 
                             <div class="gray_box">
-                                <p>지난달 보다 가장 증가한 소비는 <em>카페/베이커리</em> 에요</p>
+                                <p>주요 소비 중 지난 달 대비<br><em>카페/베이커리</em> 소비 변화가 많아요.</p>
                             </div>
                         </div>
 
-                        <!--소비가 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">이번 달 지출 내역이<br>없어요</p>
-                        </div>
-
                         <!--주요소비 상세-->
-                        <details class="board_box_details" open>
+                        <details class="board_box_details">
                             <summary>
                                 <span class="show">자세히 보기</span>
                                 <span class="hide">닫기</span>
                             </summary>
                             <div class="cont">
-                               <div class="chart">
-                                    그래프를 그려보자.
+                               <div class="chart" aria-hidden="true">
+                                    <div class="bar">
+                                        <!--1위/2위/3위순이고, 전달대비 증가폭이 큰 경우 up class 추가 -->
+                                        <div style="height:90%"><span>카페/베이커리</span></div>
+                                        <div style="height:60%"><span>자녀/육아</span></div>
+                                        <div class="up" style="height:55%"><span>문화/레저</span></div>
+                                    </div>
+                                    <canvas id="staple_spend"></canvas>
+                                    <script>
+                                        var spend = document.getElementById("staple_spend");                                        
+                                        var lineChart = spend.getContext("2d");
+                                        var drawline = new drawlineChart(lineChart);
+                                        var linedata = [100, 0, 60];/*이번달 1위, 2위, 3위 항목순 비율*/
+
+                                        drawline.set(spend, 184, 92, 16, 0, 60);
+                                        drawline.draw(linedata);
+                                    </script>
+
+                                    <div class="model">
+                                        <span class="this">11월</span>
+                                        <span class="prev">10월</span>
+                                    </div>
                                </div>         
 
                                <div class="scroller">
                                     <ul>
-                                        <li class="box_spend "><!--..AS20000002-->
-                                            <strong><span class="pin lg purple">1위</span>가구/침대</strong>
+                                        <li class="box_spend ">
+                                            <strong><span class="pin lg purple">1위</span>카페/베이커리</strong>
+                                            <i class="AS20000004"></i>
                                             <span class="range up">70,000원</span>
                                             <span class="num">14,070,000원</span>
                                             <span class="hash sm">30%</span>
                                         </li>
-                                        <li class="box_spend "><!--..AS20000001-->
-                                            <strong><span class="pin lg">2위</span>쇼핑</strong>
+                                        <li class="box_spend ">
+                                            <strong><span class="pin lg">2위</span>자녀/육야</strong>
+                                            <i class="AS20000015"></i>
                                             <span class="range">70,000원</span>
                                             <span class="num">14,070,000원</span>
                                             <span class="hash sm">30%</span>
                                         </li>
-                                        <li class="box_spend "><!--..AS20000003-->
-                                            <strong><span class="pin lg">3위</span>외식/식대</strong>
+                                        <li class="box_spend ">
+                                            <strong><span class="pin lg">3위</span>문화/레저</strong>
+                                            <i class="AS20000009"></i>
                                             <span class="range down">70,000원</span>
                                             <span class="num">14,070,000원</span>
                                             <span class="hash sm">30%</span>
                                         </li>
                                     </ul>
+
+                                    <!--/*지출 카테고리 참고*/
+                                        .AS20000000 /* 미분류 */
+                                        .AS20000001 /* 쇼핑 */
+                                        .AS20000002 /* 가구/침구 */
+                                        .AS20000003 /* 외식 */
+                                        .AS20000004 /* 카페/베이커리 */
+                                        .AS20000005 /* 생활/마트 */
+                                        .AS20000006 /* 자동차 */
+                                        .AS20000007 /* 교통 */
+                                        .AS20000008 /* 여행/숙박 */
+                                        .AS20000009 /* 문화/레저 */
+                                        .AS20000010 /* 의료/건강 */
+                                        .AS20000011 /* 뷰티/미용 */
+                                        .AS20000012 /* 교육 */
+                                        .AS20000013 /* 금융 */
+                                        .AS20000014 /* 주거/통신 */
+                                        .AS20000015 /* 자녀/육아 */
+                                        .AS20000016 /* 기타 */
+                                    -->
                                </div>
                             </div>
                         </details>
@@ -268,55 +336,62 @@
 
                         <!--정기지출이 있는 경우-->
                         <div class="analysis">
-                            <p class="txt">쇼핑에  가장 많은 지출,<br><em>100만</em>을 썼어요</p>
-                        </div>
-
-                        <!--정기지출이 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">예상되는 정기지출을<br>찾을 수 없어요</p>
-                            <p class="txt2">결제 계좌나 카드를 연결하거나<br>정기지출을 추가해서 현명한 지출 관리 하세요</p>
-                            <button type="button" class="btns md gray">정기지출 추가하기</button>
+                            <p class="txt">매월 나가는 지출이<br><em>12건</em>이 있습니다</p>
                         </div>
 
                         <!--정기지출 상세-->
-                        <details class="board_box_details" open>
+                        <details class="board_box_details">
                             <summary>
                                 <span class="show">자세히 보기</span>
                                 <span class="hide">닫기</span>
                             </summary>
                             <div class="cont">
+                                <span class="total">다가올 지출 <span><em>2</em>건</span></span>
+                                <ul class="regularly_list">
+                                    <li>
+                                        <i class="AS20000000"></i>
+                                        <div>
+                                            <span class="name">Netfix</span>
+                                            <span class="num">17,400원</span>
+                                        </div>
+                                        <span class="due">21일 예정</span>
+                                    </li>
+                                    <li>
+                                        <i class="AS20000000"></i>
+                                        <div>
+                                            <span class="name">도시가스</span>
+                                            <span class="num">5,400원</span>
+                                        </div>
+                                        <span class="due">6일 예정</span>
+                                    </li>
+                                </ul>
                             </div>
                         </details>
                     </div>
 
                     <!--소비 줄이기-->
-                    <div class="board_box less_spend">
+                    <div class="board_box less_spend"><!--chart > now 막대의 width 85% 가 넘으면 초과임. 초과일 경우 up / 목표에 가까워지는 경우 nearby  class 추가-->
                         <h2><a href="#nolink" class="title">소비 줄이기</a></h2>
 
                         <!--소비가 있는 경우-->
                         <div class="analysis">
                             <p class="txt">현재, 목표 예산에서<br><em>안정적</em>이에요</p>
-                            <p class="txt2">현명한 목표 예산을 달성해 주세요</p>
+                            <p class="txt2">지금처럼만 잘 유지해 주세요</p>
                         </div>
 
-                        <div class="analysis">
+                        <!-- <div class="analysis">
                             <p class="txt">현재, 목표 예산과<br><em>가까워요</em></p>
                             <p class="txt2">현명한 목표 예산을 달성해 주세요</p>
                         </div>
 
                         <div class="analysis">
                             <p class="txt">현재, 목표 예산을<br><em>초과</em>했어요</p>
-                            <p class="txt2">현명한 목표 예산을 달성해 주세요</p>
-                        </div>
+                            <p class="txt2">지출한 금액을 한번 점검해 보세요</p>
+                        </div> -->
 
-                        <!--소비가 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">쇼핑에  가장 많은 지출,<br><em>100만</em>을 썼어요</p>
-                            <p class="txt2">지금 설정하고 실천해보세요</p>
-                        </div>
 
                         <!--소비목표 상세-->
-                        <details class="board_box_details" open>
+                        <details class="board_box_details">
                             <summary>
                                 <span class="show">자세히 보기</span>
                                 <span class="hide">닫기</span>
@@ -324,7 +399,11 @@
                             <div class="cont">
                                 <div class="chart">
                                     <div class="standard"><span>목표 : 4,000,000원</span></div>
-                                    <div class="now"><span><span class="blind">현재</span> 200,000원</span></div>
+                                    <div class="now" style="width:70%"><span><span class="blind">현재</span> 4,200,000원</span></div>
+                                </div>
+
+                                <div class="gray_box">
+                                    <p>오늘까지 홍 예산금액 내 <em>50%</em>지출하고 있어요.<br><em>50,000원</em> 이내로 지출해 보세요!</p>
                                 </div>
                             </div>
                         </details>
@@ -344,46 +423,46 @@
                             <ul>
                                 <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
-                                        <strong>절세형 보험 상품 활용하기</strong>
-                                        <span class="hash">#60대</span>
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>진화하는 보이스 피싱</strong>
+                                        <span class="hash">#사고예방</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
-                                        <strong>IRP와 연금저축 활용팁</strong>
-                                        <span class="hash">#50대</span>
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+                                        <strong>나의 지출이 줄지 않는 이유?!</strong>
+                                        <span class="hash">#금융지식</span>
                                     </a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
                                         <strong>연금저축 및 IRP 가입하고<br>노후 자금 준비</strong>
                                         <span class="hash">#40대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
                                         <strong>맞벌이 부부를 위한 세금<br>절약 노하우</strong>
                                         <span class="hash">#30대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
                                         <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
                                         <span class="hash">#20대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
-                                        <img src=".." alt="" />
+                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
                                         <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
                                         <span class="hash">#10대</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                     </div>

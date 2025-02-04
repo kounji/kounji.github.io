@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
 <head>
-	<title>연결 기관 관리 &lt; 연결 기관</title>
+	<title>연결 기관 관리 | 자산연결</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -34,9 +34,16 @@
 <body>
 	<div id="wrap" class="sticky-scroll fix">
 		<!-- header S -->
-		<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+		<header id="header" class="mydata2023">
 			<h1>연결 기관 관리</h1>
-			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+			<!-- [v4.0] -->
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+			<!-- //[v4.0] -->
 		</header>
 		<!--// header E -->
 		
@@ -45,7 +52,7 @@
 			<!-- content -->
 			<div id="content" class="renewal com_sub_type01 bottomBtnType"><!-- 09/19 하단버튼 위치 이동으로 .bottomBtnType 추기 jlee -->
 				<div class="com_inner">
-					<div class="layoutBox topTit">
+					<div class="layoutBox topTit pt0"><!-- [v4.0]pt0 클래스 추가 -->
 						<div class="left">
 							<strong class="titH1">연결한 <span>12</span>개의 기관을<br>관리하고 있어요</strong>
 						</div>
@@ -53,7 +60,7 @@
 							<button type="button" class="stdBtn innerType01">자산연결</button>
 						</div>
 					</div>
-					<div class="box_border_link iconType01">
+					<div class="box_border_link iconType01 mt35"><!-- [v4.0]mt35 클래스 추가 -->
 						<a role="button" href="#nolink"><span class="arrow"><em class="num">1</em>개의 기관이 만료 예정 이예요.</span></a>
 					</div>
 					<div class="com_tabmenu_type03 switchType btn2">
@@ -63,7 +70,16 @@
 						</ul>
 					</div>
 					<!-- 연결기관 tabBox 시작 -->
+					
 					<div id="tab_01" role="tabpanel" class="cmm-tab-panel on"><!-- 20230628 cmm-tab-panel 추가 jlee -->
+						<!-- [v4.0]전체 체크박스 추가 -->
+						<div class="btn_checkbox check_all_wrap">
+							<input type="checkbox" name="allagree" id="checkall_all">
+							<label for="checkall_all">
+								<strong>전체</strong>
+							</label>
+						</div>
+						<!-- //[v4.0]전체 체크박스 추가 -->
 						<!-- 은행 -->
 						<div class="custom_box">
 							<div class="list_type_box">

@@ -47,41 +47,41 @@
 				</div> 
 				
 				<div class="radio_box_group dsr_cal">
-					<div class="radio ico_loan01">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal1" checked>
-						<label for="dsr_cal1">전세보증금<br>담보대출</label>
+						<label for="dsr_cal1"><i class="ico_loan01"></i><span>전세보증금<br>담보대출</span></label>
 					</div>
-					<div class="radio ico_loan02">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal2">
-						<label for="dsr_cal2">주택<br>담보대출</label>
+						<label for="dsr_cal2"><i class="ico_loan02"></i><span>주택<br>담보대출</span></label>
 					</div>
-					<div class="radio ico_loan03">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal3">
-						<label for="dsr_cal3">비주택<br>담보대출</label>
+						<label for="dsr_cal3"><i class="ico_loan03"></i><span>비주택<br>담보대출</span></label>
 					</div>
-					<div class="radio ico_loan04">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal4">
-						<label for="dsr_cal4">기타<br>담보대출</label>
+						<label for="dsr_cal4"><i class="ico_loan04"></i><span>기타<br>담보대출</span></label>
 					</div>
-					<div class="radio ico_loan05">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal5">
-						<label for="dsr_cal5">유가증권<br>담보대출</label>
+						<label for="dsr_cal5"><i class="ico_loan05"></i><span>유가증권<br>담보대출</span></label>
 					</div>
-					<div class="radio ico_loan06">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal6">
-						<label for="dsr_cal6">장기<br>카드대출</label>
+						<label for="dsr_cal6"><i class="ico_loan06"></i><span>장기<br>카드대출</span></label>
 					</div>
-					<div class="radio ico_loan07">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal7">
-						<label for="dsr_cal7">학자금<br>대출</label>
+						<label for="dsr_cal7"><i class="ico_loan07"></i><span>학자금<br>대출</span></label>
 					</div>
-					<div class="radio ico_loan08">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal8">
-						<label for="dsr_cal8">신용대출</label>
+						<label for="dsr_cal8"><i class="ico_loan08"></i><span>신용대출</span></label>
 					</div>
-					<div class="radio ico_loan09">
+					<div class="radio">
 						<input type="radio" name="dsr_cal" id="dsr_cal9">
-						<label for="dsr_cal9">기타대출</label>
+						<label for="dsr_cal9"><i class="ico_loan09"></i><span>기타대출</span></label>
 					</div>
 				</div>
 
@@ -92,12 +92,30 @@
 				<div class="formItem">
 					<div class="input">
 						<label for="loan_cal_01">대출금액(상환금액을 제외한 대출잔액)<em class="required">(필수)</em></label>
-						<input type="text" name="" id="loan_cal_01" required="" placeholder="금액입력">
+						<input type="text" name="" id="loan_cal_01" required="" placeholder="대출금액을 입력해주세요.">
 						<span class="unit">만원</span>
 					</div>
 					<div class="hint">
-						<span>대출금액범위 : 1만원~1000억원</span>
-					</div> 
+						<span>대출금액범위 : 1만원 ~ 1000억원</span>
+						<span class="han">일천만원</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns">+100만</button>
+						<button type="button" class="btns">+500만</button>
+						<button type="button" class="btns">+1000만</button>
+						<button type="button" class="btns">+1억</button>
+					</div>
+				</div>
+
+				<div class="formItem">
+					<div class="input">
+						<label for="loan_cal_02">대출 이자율(연 이자율)<em class="required">(필수)</em></label>
+						<input type="text" name="" id="loan_cal_02" required="" placeholder="대출이자율을 입력해주세요.">
+						<span class="unit">%</span>
+					</div>
+					<div class="hint">
+						<span>대출이자율율범위 : 1% ~ 30%</span>
+					</div>
 					<div class="btns_wrap">
 						<button type="button" class="btns">+0.5%</button>
 						<button type="button" class="btns">+1.0%</button>
@@ -105,6 +123,27 @@
 						<button type="button" class="btns">+4.0%</button>
 					</div>
 				</div>
+
+				<!-- case. 주택담보대출 선택시에만 노출 -->
+				<div class="formItem">
+					<div class="input">
+						<label for="loan_cal_03">대출기간<em class="required">(필수)</em></label>
+						<input type="text" name="" id="loan_cal_03" required="" placeholder="대출기간을 입력해주세요.">
+						<span class="unit">개월</span>
+					</div>
+					<div class="hint">
+						<span>대출기간범위 : 6개월 ~ 600개월</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns">+1년</button>
+						<button type="button" class="btns">+2년</button>
+						<button type="button" class="btns">+3년</button>
+						<button type="button" class="btns">+10년</button>
+					</div>
+				</div>
+				<!-- //case. 주택담보대출 선택시에만 노출 -->
+					
+
 				<div class="btns_wrap">
 					<button type="button" class="btns lg primary">저장</button>
 				</div>

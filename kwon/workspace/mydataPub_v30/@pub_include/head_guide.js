@@ -29,7 +29,8 @@ str+='<script type="text/javascript" src="../../../src/assets_v40/js/slick.min.j
 
 
 // <!--[v4.0] plug-in 추가-->
-// str+='<script type="text/javascript" src="../../../src/assets_v40/js/lottie-player.js"></script>';
+//str+='<script type="text/javascript" src="../../../src/assets_v40/js/lottie-player.js"></script>';
+str+='<script type="text/javascript" src="../../../src/assets_v40/js/lottie.min-5.11.0.js"></script>';
 // str+='<script type="text/javascript" src="../../../src/assets_v40/js/chart.min.js"></script>';
 
 document.write(str);

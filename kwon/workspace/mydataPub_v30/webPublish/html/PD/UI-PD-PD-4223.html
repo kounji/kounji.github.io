@@ -36,120 +36,158 @@
 			
 			<!-- content --> 
 			<div id="content"> 
-				<div class="loan_cal">
+				<div class="loan_cal dsr_result">
 					<div class="tit_area">
 						<h2 class="headline"><strong>DSR 계산 결과입니다</strong></h2> 
 					</div>
 
 					<!--분류별 개요-->
-                    <div class="board_box wallet_outline">
+                    <div class="board_box loan_available">
                         <ul role="tablist" class="inner_tab">
                             <li class="on"><button type="button" role="tab" aria-selected="true">신용대출</button></li>
                             <li><button type="button" role="tab" aria-selected="false">주택담보대출</button></li>
                         </ul>
 
-                        <div class="details">
-                            <div class="analysis down">
-                                <p class="h_tit01">카드를 지난 달보다<br><em>적게</em>쓰고 있어요</p>
-                                <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                        <!-- [범위별 클래스 구분 - details 에 클래스 추가]
+                            10~40% 초록색 : down
+                            41~70% 노란색 : 없음
+                            71~    빨간색 : up
+                        -->
+                        <!-- case1. 낮음 : down  -->
+                        <div class="details down">
+                            <div class="analysis ">
+                                <p class="h_tit02">DSR 비율이 낮아서 <br>대출가능성이 <em>높아요</em></p>
+                                <p>내 예상 DSR <span class="num"><em>36.45</em>% </span></p>
                             </div>
-
-                            <!--
-                                <div class="analysis">
-                                    <p class="h_tit01">지난달<br>총지출과 <em>같아요</em></p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
-                                </div>
-
-                                <div class="analysis up">
-                                    <p class="h_tit01">카드를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
-                                </div>
-                            -->
-
-                            <div class="chart">
-                                <div class="word_bubble">
-                                    <p><em>Good</em></p>
-                                </div>
-                                <div class="bg"></div>
-                                <canvas id="wallet_outline"></canvas>
+                            <div class="bg">
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/bg_dsr_result_down.json" loop="" autoplay="" aria-hidden="true" class="bg_dsr_result" background="transparent"></lottie-player>
                             </div>
                         </div>
+                        <!-- //case1. 낮음 : down  -->
+                        <!-- case2. 중간 : 없음  -->
+                        <div class="details">
+                            <div class="analysis ">
+                                <p class="h_tit02">DSR 비율이 다소 높아 <br>대출가능성이 <em>낮아요</em></p>
+                                <p>내 예상 DSR <span class="num"><em>52.82</em>% </span></p>
+                            </div>
+                            <div class="bg">
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/bg_dsr_result.json" loop="" autoplay="" aria-hidden="true" class="bg_dsr_result" background="transparent"></lottie-player>
+                            </div>
+                        </div>
+                        <!-- //case2. 중간 : 없음  -->
+                        <!-- case3. 높음 : up -->
+                        <div class="details up">
+                            <div class="analysis ">
+                                <p class="h_tit02">DSR 비율이 높아 <br>대출가능성이 <em>낮아요</em></p>
+                                <p>내 예상 DSR <span class="num"><em>36.45</em>% </span></p>
+                            </div>
+                            <div class="bg">
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/bg_dsr_result_up.json" loop="" autoplay="" aria-hidden="true" class="bg_dsr_result" background="transparent"></lottie-player>
+                            </div>
+                        </div>
+                        <!-- //case3. 높음 : up  -->
                     </div> 
 
-                    <script>
-                        const colors =[
-                            [//equal
-                                [0,'#FFB301'],
-                                [0.3,'#FFF0A4']
-                            ],
-                            [//down
-                                [1,'#62FFD9'],
-                                [0,'#0196A2'],
-                                [0.6,'#35CDA8']
-                            ],
-                            [//up
-                                [0,'#FF929D'],
-                                [0.5,'#FFB67C'],
-                                [1,'#FF7459']
-                            ]
-                        ]
-                    
-                        const data = {
-                            numberOfParts: 1,
-                            parts:{"pt": null},//percentage of each parts 
-                            colors:{"cs": null }//color of each part
-                        };
+                    <div class="board_box condition">
+                        <p class="h_tit02">내 희망대출 조건은?</p>
+                        <div class="detail">
+                            <p class="income"><span class="tit">연소득</span><br><strong class="price">5,000</strong><span class="unit">만원</span></p>
+                            <p class="rate"><span class="tit">금리</span><strong class="percent">3.5%</strong></p>
+                        </div>
+                        <div class="gray_box">
+                            <ul>
+                                <li>
+                                    <span class="key">희망대출금액</span>
+                                    <span class="val">2,000만원</span>
+                                </li>
+                                <li>
+                                    <span class="key">대출기간</span>
+                                    <span class="val">60개월</span>
+                                </li>
+                            </ul>
+                            <div class="bottom_area">
+                                <p class="dotted_list">신용대출의 경우 대출기간은 5년으로 계산합니다</p>
+                            </div>
+                            
+                        </div>
+                    </div>
 
-                        var canvas  = document.getElementById("wallet_outline");
-                        var chart = canvas.getContext("2d");
-                        var drawDount = new drawdountChart(chart);
+                    <!-- 
+					[아이콘]
+					.ico_loan01 : 전세보증금 담보대출
+					.ico_loan02 : 주택 담보대출
+					.ico_loan03 : 비주택 담보대출
+					.ico_loan04 : 기타 담보대출
+					.ico_loan05 : 유가증권 담보대출
+					.ico_loan06 : 장기 카드대출
+					.ico_loan07 : 학자금 대출
+					.ico_loan08 : 신용대출
+					.ico_loan09 : 기타대출
+					-->
+                    <div class="board_box board_wrap">
+                        <div class="tit_area">
+                            <strong class="h_tit02">내가 보유하고 있는 대출은?</strong>
+                        </div>
+                        <div class="board_sec">
+                            <p class="sum">확인된 보유대출</p>
+                            <div class="cont">
+                                <i class="ico ico_loan06"></i>
+                                <p class="prod">장기 카드대출</p>
+                                <strong class="price">100,000,000원</strong>
+                                <p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+                            </div>
+                            <div class="cont">
+                                <i class="ico ico_loan01"></i>
+                                <p class="prod">전세보증금 담보대출</p>
+                                <strong class="price">100,000,000원</strong>
+                                <p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+                            </div>
+                        </div>
 
-                        drawDount.set(50, 50, 45, false, Math.PI*1.5, Math.PI*3.5, 10, "#f7f8fa", 2, 1.5);/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir*/
-                        drawDount.bgdraw();
-
-                        $(document).off('click.inner_tab').on('click.inner_tab', '.inner_tab button', function(e){        
-                            /*컨텐츠영역 열고 닫기 dummy*/                   
-                            var _now = $(this).parent().index();
-
-                            if(_now == 1){
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart").addClass('down');
-                                $(".wallet_outline .chart .word_bubble em").text('Best');
-                                data.parts.pt = [50];
-                                data.colors.cs = [colors[1]];
-                            }else if(_now == 2){
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart").addClass('up');
-                                $(".wallet_outline .chart .word_bubble em").text('Oops');
-                                data.parts.pt = [80];
-                                data.colors.cs = [colors[2]];
-                            }else {
-                                $(".wallet_outline .chart").removeClass('down').removeClass('up');
-                                $(".wallet_outline .chart .word_bubble em").text('Good');
-                                data.parts.pt = [30];
-                                data.colors.cs = [colors[0]];
-                            }
-
-                            /*//컨텐츠영역 열고 닫기 dummy*/   
-
-                            chart.clearRect(0, 0, 100, 100);
-                            drawDount.draw(data);
-                        });
-
-                       $("button", $('.inner_tab li').eq(0)).trigger('click');
-                    </script>
+                        <div class="board_sec">
+                            <p class="sum">내가 등록한 보유대출</p>
+                            <div class="cont">
+                                <i class="ico ico_loan05"></i>
+                                <p class="prod">유가증권 담보대출</p>
+                                <strong class="price">100,000,000원</strong>
+                                <p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+                            </div>
+                            <div class="cont">
+                                <i class="ico ico_loan01"></i>
+                                <p class="prod">전세보증금 담보대출</p>
+                                <strong class="price">100,000,000원</strong>
+                                <p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+                            </div>
+                        </div>
+                    </div>
 
 					<div class="gray_box">
-						<p class="dotted_list">고객님의 이해를 돕기 위한 자료이며, 상품가입을 위해서는 개별상담이 필요합니다.</p>
-					</div> 
+						<p class="dotted_list">현재 정부정책에 의한 DSR 규제비율 및 스트레스 금리를 꼭 확인해보세요</p>
+					</div>
+
+                    <div class="info_area">
+                        <strong class="h_tit01">스트레스 금리란?</strong>
+                        <p class="txt">향후, 금리상승시 고객이 과도한 이자를 부담하는 것을 에방하기 위해 고객의 DSR한도를 산출할 때 미래 금리상승 위험을 반영하여 가산하는 금리를 말합니다
+                            <br><span class="desc">(출처: 전국은행연합회)</span></p>
+                    </div>
+
 					<div class="banner_area">
 						<a href="#nolink" class="link_banner"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
 					</div>
+
+                    <details class="ico_noti">
+						<summary><strong>알아두세요</strong></summary>
+						<div class="cont">
+							<ul class="dotted_list">
+								<li>정확한 대출 가능여부 및 한도 확인은 농축협 영업점과 NH콕뱅크에서 실제 대출심사를 통해 확인하실 수 있습니다.</li>
+							</ul>
+						</div>
+					</details>
+
 					<div class="btns_wrap">
 						<button type="button" class="btns lg primary">다시계산하기</button>
 					</div>
 				</div>
-
 
 			</div>
 			<!--// content -->
