@@ -206,6 +206,7 @@
 		}
 
 		$(".btns.share").attr("disabled", true);
+		$(".play").attr("disabled", true);
 
 		$(".lotteryGames dl span").each(function(){
 			$(this).text('').removeClass();
@@ -230,6 +231,7 @@
 
 		setTimeout(function(){
 			$(".btns.share").attr("disabled", false);
+			$(".play").attr("disabled", false);
 		}, 3000)
 
 		

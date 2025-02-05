@@ -30,15 +30,17 @@
 
 			<div id="content">
 				
-				<section class="finance_cont">
+				<section class="fin_wrap">
+					
 					<div class="filter">
-						<strong>연령별 추천</strong>
-						<button type="button">전체</button>
+						<strong aria-hidden="true">연령별 추천</strong>
+						<button type="button"><span class="blind">연령별 추천 필터, 현재 선택:</span>전체</button>
 					</div>
+
 					<div class="category_tab">
 						<div class="scroller">
 							<ul role="tablist">
-								<!-- [D]: li에 메뉴별 클래스(menu01 ~ 13) 추가  -->
+								<!-- [D]: li에 메뉴별 클래스(menu01 ~ 12) 추가  -->
 								<li class="menu on"><a href="#nolink" role="tab" aria-selected="true">전체</a></li>
 								<li class="menu01"><a href="#nolink" role="tab" aria-selected="false">부동산</a></li>
 								<li class="menu02"><a href="#nolink" role="tab" aria-selected="false">자동차</a></li>
@@ -56,21 +58,100 @@
 						</div>
 					</div>
 
-					<a href="#nolink" class="cont">
-						<div class="tit">
+					<!-- menu01 : 부동산, menu02 : 자동차, menu03 : 투자, menu04 : 건강정보, menu05 : 아파트, menu06 : 전세대출, 
+						menu07 : 연금, menu08 : 절세, menu09 : 여행, menu10 : 신용정보, menu11 : 대출한도, menu12 : 세액공제 -->
+					<article class="menu01">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu01_01.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>부동산 계약이 아직 어려운<br>당신을 위한 팁 특약사항<br>확인하기</strong>
+								<span class="tag">#부동산초보</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu01_02.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>전세대출 보증 비율 1분기 내<br>90%로 축소</strong>
+								<span class="tag"></span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
 							<span>건강정보</span>
-							<strong>한 살 더 먹었는데<br>몸은 더 젊어졌네</strong>
-						</div>
-						<div class="tag">
-							<span>#저속노화</span>
-						</div>
-					</a>
+							<strong>쉽고 유익한 건강 정보로 매일을 채우세요</strong>
+						</a>
+					</article>
 
-					<a href="#nolink" class="banner">
-						<span>절세 꿀팁</span>
-						<strong>연말정산, 더 많이 받는 법 알아봐요</strong>
-					</a>
-					
+					<article class="menu04">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu04_01.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>한 살 더 먹었는데<br>몸은 더 젊어졌네</strong>
+								<span class="tag">#저속노화</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu04_02.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>감염병 예방으로<br>건강한 설 보내세요!</strong>
+								<span class="tag">#감염예방</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>건강정보</span>
+							<strong>쉽고 유익한 건강 정보로 매일을 채우세요</strong>
+						</a>
+					</article>
+
+					<article class="menu05">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu05_01.png" alt="">
+							<div class="info">
+								<span>아파트</span>
+								<strong>요즘 뜨는 아파트 매물<br>총 정리</strong>
+								<span class="tag"></span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu05_02.png" alt="">
+							<div class="info">
+								<span>아파트</span>
+								<strong>아파트관리비 납부하고<br>10,000원 캐시백 받기</strong>
+								<span class="tag">#관리비</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>아파트</span>
+							<strong>내가 원하는 아파트 목돈모으기 1일차</strong>
+						</a>
+					</article>
+
+					<article class="menu10">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu10_01.png" alt="">
+							<div class="info">
+								<span>신용정보</span>
+								<strong>저축은행 신용카드<br>2027년 완전히 사라진다구?</strong>
+								<span class="tag">#카드</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/banner/img_fin_menu10_02.png" alt="">
+							<div class="info">
+								<span>신용정보</span>
+								<strong>까다로운 디지털 고객<br>눈높이 맞추는 방법</strong>
+								<span class="tag"></span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>자산분석</span>
+							<strong>나의 자산관리스타일을 분석해드려요</strong>
+						</a>
+					</article>
+
 				</section>
 
 			</div>
