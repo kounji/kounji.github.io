@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>자산 | 자동차상세</title>
+	<title>자동차 목록 | 자산현황</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -15,16 +15,19 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header" class=" mydata2023">
-			<h1>자산</h1>
-			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
-			<div class="header_option">
-				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
-				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			<h1>자산현황</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
 		
 		<div class="content-view hasLNB mydata2023">
+			<!--[v4.0]
 			<div class="com_tabmenu_type01 menunum04">
 				<ul role="tablist">
 					<li><a href="#nolink">전체자산</a></li>
@@ -45,6 +48,22 @@
 					<li><a href="#nolink">기타</a></li>
 				</ul>
 			</div>
+			-->
+			<nav class="navi">
+				<div class="inner">
+					<!--자산현황 3depth-->
+					<ul role="navigation" aria-label="자산현황" class="depth1-1">
+						<li><a href="#"><span>예금</span></a></li>
+						<li><a href="#"><span>투자</span></a></li>
+						<li><a href="#"><span>연금</span></a></li>
+						<li><a href="#"><span>페이ㆍ포인트</span></a></li>
+						<li><a href="#"><span>보험</span></a></li>
+						<li><a href="#"><span>부동산</span></a></li>
+						<li><a href="#" aria-current="page"><span>자동차</span></a></li>
+						<li><a href="#"><span>기타</span></a></li>
+					</ul>
+				</div>
+			</nav>
 
 			<div id="content" class="renewal">
 				<div class="com_inner">
@@ -52,7 +71,20 @@
 						<div class="title">
 							<div class="text">
 								내 차 시세<br>
-								<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+								<!-- [v4.0] 25-02-07 잔액숨김 기능추가 -->
+								<!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show">잔액숨김</span>
+										<span class="hide">총 <em>911,025,286,300</em>원</span>
+									</div>
+								</div>
+								<!-- //[v4.0] 25-02-07 잔액숨김 기능추가 -->
 							</div>
 						</div>
 					</div>
@@ -71,7 +103,7 @@
 								</div>
 
 								<div class="car_pic">
-									<img src="../../../../src/assets_v30/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+									<img src="../../../../src/assets_v40/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
 								</div>
 
 								<div class="price_area">
@@ -118,7 +150,7 @@
 								</div>
 
 								<div class="car_pic">
-									<img src="../../../../src/assets_v30/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+									<img src="../../../../src/assets_v40/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
 								</div>
 
 								<div class="price_area">
@@ -165,7 +197,7 @@
 								</div>
 
 								<div class="car_pic">
-									<img src="../../../../src/assets_v30/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
+									<img src="../../../../src/assets_v40/images/img/car_img_2023.png" style="width:16.2rem;" alt="쉐보레(대우) 더 뉴 트랙스 1.4터보 블레이드">
 								</div>
 
 								<div class="price_area">
@@ -253,10 +285,10 @@
 
 					<div class="inner_banner">
 						<a href="javascript:void(0);" role="button">
-							<img src="../../../../src/assets_v30/images/banner/img_banner_05_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
+							<img src="../../../../src/assets_v40/images/banner/img_banner_05_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
 						</a>
 						<a href="javascript:void(0);" role="button">
-							<img src="../../../../src/assets_v30/images/banner/img_banner_07_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
+							<img src="../../../../src/assets_v40/images/banner/img_banner_07_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
 						</a>
 					</div>
 				</div>

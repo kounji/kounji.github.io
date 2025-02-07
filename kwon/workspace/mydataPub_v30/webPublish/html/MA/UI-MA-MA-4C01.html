@@ -28,40 +28,60 @@
 		<div class="content-view">
             <div id="content">
                 <section class="main_youth">
-					<!--개요-->
-					<div class="outline">
-                        <div class="assets">
-                            <input type="checkbox" title="금액노출" name="" id="sum_view_01" tabindex="0">
-                            <label for="sum_view_01">
-                                <span class="show">보기</span>
-                                <span class="hide">숨김</span>
-                            </label>
-                          
-                            <a href="#nolink" class="details">
-                                <div class="front">나의 자산을<br>확인해 보세요</div>
-                                <div class="back"><em>1,952,692,372</em>원</div>
-                            </a>
-                        </div>
-
-
-						<div class="wallet"></div>
+					<div class="update">
+						<span>조금전</span>
+						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
 					</div>
+
+					<!--개요-->
+					<dl class="outline">
+						<div>
+							<dt>나의 자산</dt>
+							<dd>
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show">쉿! 비밀이에요</span>
+										<span class="hide">1,952,692,372원</span>
+									</div>
+								</div>
+
+								<a href="#nolink">확인하기</a>
+							</dd>
+						</div>
+						<div>
+							<dt>나의 지출</dt>
+							<dd>
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_02">
+									<label for="sum_view_02" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show">쉿! 비밀이에요</span>
+										<span class="hide">1,952,692,372원</span>
+									</div>
+								</div>
+
+								<a href="#nolink">확인하기</a>
+							</dd>
+						</div>
+					</dl>
 
 					<!--주요서비스-->
-					<div class="staple_cont">
-						<a href="#nolink" class="gotolink">
-                            <em>버킷리스트 만들기</em>
-                            버킷리스트를 만들어 보세요
+					<div class="board_box_wrap banner">
+                        <a href="#nolink" class="board_box playground">
+                            <em>놀이터</em>
                         </a>
-						<a href="#nolink" class="gotolink">
-                            <em>내 또래들은 얼만큼 쓸까?</em>
-                            친구들과 지출을 비교해 보세요
+                        <a href="#nolink" class="board_box finance">
+                            <em>금융지식</em>
                         </a>
-						<a href="#nolink" class="gotolink">
-                            <em>친구 초대하기</em>
-                           친구와 같이 자산을 관리해요
-                        </a>
-					</div>
+                    </div>
                 </section>
 			</div>
 

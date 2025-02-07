@@ -216,37 +216,5 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
-        $(function() {
-           slick (); //슬릭
-       });
-
-       function slick () {
-           var $banner =  $(".slick_banner");
-           
-           $banner.each(function(){
-                let $this = $(this);
-
-                $(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
-                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
-                });
-
-                $(".inner", $this).slick({
-                    speed : 300,
-                    dots : false,
-                    adaptiveHeight: true,
-                    infinite: true,
-                    draggable: true,
-                    accessibility:true,
-                    arrows : true,
-                    cssEase:'linear',
-                    prevArrow:$(".controls .prev", $this),
-                    nextArrow:$(".controls .next", $this),
-                });
-
-           });
-       }
-   </script>
 </body>
 </html>

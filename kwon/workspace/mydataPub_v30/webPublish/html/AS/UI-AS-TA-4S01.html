@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>큰글모드 자산 메인</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+<div id="wrap" class="sticky-scroll">
+	<!-- header S -->
+	<header id="header">
+		<h1>리포트</h1>
+
+		<button type="button" class="prev"><span class="blind">이전</span></button>
+
+		<div class="option">
+			<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+		</div>
+	</header>
+	<!--// header E -->
+		
+	<div class="content-view">
+		<div id="content">
+			<section class="assets_main_senior">
+				<!--update-->
+				<div class="update">
+					<span>조금전</span>
+					<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+				</div>
+
+				<!--순자산-->
+				<div class="assets_net up"><!--늘은경우 up, ,줄은 경우 down class 추가-->
+					<div class="board_box">
+						<h2>순자산</h2>
+						<div class="toggle_money">
+							<input type="checkbox" title="금액노출" name="" id="sum_view_01">
+							<label for="sum_view_01" class="btns">
+								<span class="show">보기</span>
+								<span class="hide">숨김</span>
+							</label>
+							<div class="sum">
+								<span class="show">소중한 내 자산</span>
+								<span class="hide">1,952,692,372원</span>
+							</div>
+						</div>
+
+						<p class="analysis">
+							지난 달보다<span>5,095,452원</span><br><em>늘었어요</em>
+						</p>
+						<!--줄어든 경우
+						<p class="analysis">
+							지난 달보다<span>5,095,452원</span><br><em>줄었어요</em>
+						</p>
+						-->
+						<!--동일한 경우
+						<p class="analysis">
+							지난 달과 자산이<br><em>같아요</em>
+						</p>
+						-->
+
+						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
+						<!--
+							늘은경우 icon_asset_up.json
+							줄어든경우 icon_asset_down.json
+						-->
+					</div>
+				</div>
+
+				<!--금융자산-->
+				<div class="board_box assets_detail">
+					<details class="assets_toggle" open="">
+						<summary>
+							<div>
+								<span class="item">금융자산</span>
+							</div>
+							<div class="analysis">
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_02">
+									<label for="sum_view_02" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<em>*,***,***,***</em>원
+									</div>
+								</div>
+							</div>
+						</summary>
+						<div class="cont">
+							<ul class="assets_list">
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main deposit"></i>
+										<div>
+											<strong class="name">예금 <em>38</em></strong>
+										</div>
+										<strong class="num"><em>196,022,420</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main invest"></i>
+										<div>
+											<strong class="name">투자 <em>38</em></strong>
+										</div>
+										<strong class="num"><em>6,456</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main annuity"></i>
+										<div>
+											<strong class="name">연금 <em>38</em></strong>
+										</div>
+										<strong class="num"><em>6,456</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main point"></i>
+										<div>
+											<strong class="name">페이/포인트 <em>2</em></strong>
+										</div>
+										<strong class="num"><em>6,456</em>원</strong>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</details>
+				</div>
+
+				<!--실물자산-->
+				<div class="board_box assets_detail">
+					<details class="assets_toggle" open="">
+						<summary>
+							<div>
+								<span class="item">실물자산</span>
+							</div>
+							<div class="analysis">
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_03">
+									<label for="sum_view_03" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<em>*,***,***,***</em>원
+									</div>
+								</div>
+							</div>
+						</summary>
+						<div class="cont">
+							<ul class="assets_list">
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main house"></i>
+										<div>
+											<strong class="name">부동산 <em>1</em></strong>
+										</div>
+										<strong class="num"><em>196,022,420</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main car"></i>
+										<div>
+											<strong class="name">자동차 <em>2</em></strong>
+										</div>
+										<strong class="num"><em>6,456</em>원</strong>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</details>
+				</div>
+
+				<!--기타자산-->
+				<div class="board_box assets_detail">
+					<div>
+						<a href="#nolink" class="title">기타자산</a>
+					</div>
+					<div class="analysis">
+						<div class="toggle_money">
+							<input type="checkbox" title="금액노출" name="" id="sum_view_04" checked>
+							<label for="sum_view_04" class="btns">
+								<span class="show">보기</span>
+								<span class="hide">숨김</span>
+							</label>
+							<div class="sum">
+								<em>3,558,252,000</em>원
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--부채 -->
+				<div class="board_box assets_detail">
+					<details class="assets_toggle" open="">
+						<summary>
+							<div>
+								<span class="item">부채</span>
+							</div>
+							<div class="analysis">
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_05" checked>
+									<label for="sum_view_05" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<em>5,245,000</em>원
+									</div>
+								</div>
+							</div>
+						</summary>
+						<div class="cont">
+							<ul class="assets_list">
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main card"></i>
+										<div>
+											<strong class="name">카드 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main loan"></i>
+										<div>
+											<strong class="name">대출 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main installment"></i>
+										<div>
+											<strong class="name">할부금융 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main car_installment"></i>
+										<div>
+											<strong class="name">자동차할부 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main lease"></i>
+										<div>
+											<strong class="name">리스 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main borrow"></i>
+										<div>
+											<strong class="name">빌린돈 <em>3</em></strong>
+										</div>
+										<strong class="num"><em>3,245,000</em>원</strong>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</details>
+				</div> 
+
+
+				<!--보험료 월 납입료 -->
+				<div class="board_box assets_detail">
+					<details class="assets_toggle" open="">
+						<summary>
+							<div>
+								<span class="item">보험료 월 납입료</span>
+							</div>
+							<div class="analysis">
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_06" checked>
+									<label for="sum_view_06" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<em>45,000</em>원
+									</div>
+								</div>
+							</div>
+						</summary>
+						<div class="cont">
+							<ul class="assets_list">
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main in_insurance"></i>
+										<div>
+											<strong class="name">인보험 <em>1</em></strong>
+										</div>
+										<strong class="num"><em>22,420</em>원</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<i class="ico_assets_main mul_insurance"></i>
+										<div>
+											<strong class="name">물보험 <em>2</em></strong>
+										</div>
+										<strong class="num"><em>26,456</em>원</strong>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</details>
+				</div>
+
+				<!--금융지식-->
+				<div class="finlit">
+					<h2 class="h_tit01">금융지식</h2>
+					<a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+
+					<div class="scroller">
+						<ul>
+							<li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>진화하는 보이스 피싱</strong>
+									<span class="hash">#사고예방</span>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>나의 지출이 줄지 않는 이유?!</strong>
+									<span class="hash">#금융지식</span>
+								</a>
+							</li>
+							<!-- <li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>연금저축 및 IRP 가입하고<br>노후 자금 준비</strong>
+									<span class="hash">#40대</span>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>맞벌이 부부를 위한 세금<br>절약 노하우</strong>
+									<span class="hash">#30대</span>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+									<span class="hash">#20대</span>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+									<strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
+									<span class="hash">#10대</span>
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</div>
+
+			</section>
+
+		</div>
+
+		<aside class="tabbar block">
+			<nav>
+				<ul>
+					<li><a href="#nolink">홈</a></li>
+					<li class="on"><a href="#nolink" title="선택됨">자산</a></li>
+					<li><a href="#nolink">지출</a></li>
+					<li><a href="#nolink">연금/절세</a></li>
+					<li><a href="#nolink">추천</a></li>
+				</ul>
+			</nav>
+		</aside>
+	</div>
+	
+</div>
+</body>
+</html>

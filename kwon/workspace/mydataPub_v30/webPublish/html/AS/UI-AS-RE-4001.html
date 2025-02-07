@@ -15,7 +15,7 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header" class="mydata2023"><!-- 08/04 .mydata2023 위치 이동 -->
-			<h1>자산</h1>
+			<h1>자산현황</h1>
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 			<div class="option">
 				<button type="button" class="search"><span class="blind">검색</span></button>
@@ -47,7 +47,20 @@
 						<div class="title">
 							<div class="text">
 								우리 집 시세<br>
-								<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+								<!-- [v4.0] 25-02-07 잔액숨김 기능추가 -->
+								<!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show">잔액숨김</span>
+										<span class="hide">총 <em>911,025,286,300</em>원</span>
+									</div>
+								</div>
+								<!-- //[v4.0] 25-02-07 잔액숨김 기능추가 -->
 							</div>
 						</div>
 					</div>
@@ -250,7 +263,7 @@
 
 					<div class="inner_banner mt0"><!-- 08/25 mt30을 mt0으로 변경 -->
 						<a href="javascript:void(0);" role="button">
-							<img src="../../../../src/assets_v30/images/banner/img_banner_10_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
+							<img src="../../../../src/assets_v40/images/banner/img_banner_10_2023.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
 						</a>
 					</div>
 				</div>

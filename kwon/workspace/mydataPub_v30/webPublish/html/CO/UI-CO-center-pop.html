@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>레이아웃 정리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>레이아웃 정리</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- alert pupop S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<div class="center_popup" id="center_popup" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<p class="tit">타이틀타타이틀타이틀이틀<br><em>강조강조강조</em>타이틀타이틀</p>
+			<p class="txt">텍스트텍스트텍스트텍스트<br>텍스트텍스트텍스트텍스트</p>
+		</div>
+		<div class="popup_footer">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg">버튼</button>
+				<button type="button" class="btns lg primary">버튼</button>
+			</div>
+		</div>
+	</div>
+	<!--// alert popup E -->
+</body>
+</html>

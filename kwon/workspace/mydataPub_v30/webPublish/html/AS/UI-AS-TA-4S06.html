@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
 <head>
-	<title>인보험 | 자산</title>
+	<title>부동산 | 자산</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -34,68 +34,80 @@
 	<!-- 전체 팝업 시작 -->
 	<div class="full_popup" id="full_popup_01">
 		<div class="popup_header">
-			<h1>인보험</h1>
+			<h1>부동산</h1>
 		</div>	
 		<div class="popup_content">
 			<div class="assets_senior">
 
-				<div class="board_box">
-					<details class="assets_toggle" open="">
-						<summary>
-							<span class="item">인보험<em>4</em></span>
-							<span class="num"><em>8,155,556,224</em>원</span>
-						</summary>
-						<div class="cont">
-							<ul class="assets_list">
-								<li>
-									<a href="#nolink">
-										<i class="ico_bank C1AACZ0000"><span class="blind">메리츠화재</span></i>
-										<div>
-											<strong class="org">검진쏘옥NH용종진단보험(Self가입형,무배당)_2404</strong>
-											<p class="status"><span class="account">3522230203283</span><span>일시납</span></p>
-										</div>
-										<div>
-											<strong class="num"><em>16,456</em>원</strong>
-											<span class="pin green">정상</span><!--정상 : green, 만기 : red -->
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#nolink">
-										<i class="ico_bank ZVAAAI0000"><span class="blind">교보생명</span></i>
-										<div>
-											<strong class="org">(무) 알파Plus 보장보험1801</strong>
-											<p class="status"><span class="account">3522230203283</span><span>일시납</span></p>
-										</div>
-										<div>
-											<strong class="num"><em>16,456</em>원</strong>
-											<span class="pin green">정상</span><!--정상 : green, 만기 : red -->
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#nolink">
-										<i class="ico_bank C1AABS0000"><span class="blind">흥국생명</span></i>
-										<div>
-											<strong class="org">(무)건강하게 사는 간편암보험(21.06)</strong>
-											<p class="status"><span class="account">3522230203283</span><span>일시납</span></p>
-										</div>
-										<div>
-											<strong class="num"><em>16,456</em>원</strong>
-											<span class="pin green">정상</span><!--정상 : green, 만기 : red -->
-										</div>
-									</a>
-								</li>
-							</ul>
-							<a href="#nolink" class="btns lg">더보기</a>
-						</div>
-					</details>
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>자가</span>
+						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="name">
+						<strong >DMC센트럴자이(1단지)</strong>
+						<strong class="nickname">나의 드림 아파트</strong>
+					</p>
+					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
+					<p class="price">3억 1,157만원<span class="desc">한국부동산원</span></p>
+					<p class="latter up"><em class="num">1억 2,000만원</em></p><!-- 상승 : up, 하락 : down -->
 				</div>
 
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>자가</span>
+						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="name">
+						<strong >DMC센트럴자이(1단지)</strong>
+						<strong class="nickname">나의 드림 아파트</strong>
+					</p>
+					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
+					<p class="price">3억 1,157만원<span class="desc">한국부동산원</span></p>
+					<p class="latter down"><em class="num">1억 2,000만원</em></p><!-- 상승 : up, 하락 : down -->
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>토지</span>/<span>농지</span>
+						<i class="ico_bubble ground"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="name">
+						<strong >나대지</strong>
+					</p>
+					<p class="addr">3억 1,157만원<span class="desc">한국부동산원</span></p>
+				</div> 
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>전세</span>
+						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="name">
+						<strong >DMC센트럴자이(1단지)</strong>
+						<strong class="nickname">나의 드림 아파트</strong>
+					</p>
+					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
+				</div>
+
+				<!-- 신원확인 실패시 -->
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>전세</span>
+						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="desc">최근 시세정보가 없습니다.</p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>토지</span>/<span>농지</span>
+						<i class="ico_bubble ground"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+					</div> 
+					<p class="desc">최근 시세정보가 없습니다.</p>
+				</div>
+				<!-- //신원확인 실패시 -->
 			</div>
-				
-	
-		
 		</div>
 
 		<a href="#nolink;" class="btn_close"><span class="blind">팝업닫기</span></a>		
