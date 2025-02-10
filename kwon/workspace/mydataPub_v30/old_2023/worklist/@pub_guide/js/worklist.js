@@ -649,6 +649,8 @@ $(document).ready(function(){
 		$('#tab-menu').find('li:first-child').addClass('on');
 		
 		$('#tab-menu').append("<li><a href='guide/guide.html' target='_blank'>퍼블 Guide</a></li>");//가이드
+		$('#tab-menu').append("<li><a href='../../../old_2023/index.html' target='_blank'>2023 퍼블</a></li>");//2022 화면
+		$('#tab-menu').append("<li><a href='../../../old_2023/worklist/@pub_guide/worklist_other.html' target='_blank'>2023 타기관 마이데이터</a></li>");//2023 타기관 마이데이터 화면
 		$('#tab-menu').append("<li><a href='../../../old_2022/index.html' target='_blank'>2022 퍼블</a></li>");//2022 화면
 		$('#tab-menu').append("<li><a href='../../../old_2021/index.html' target='_blank'>2021 퍼블</a></li>");//2021 화면
 	}

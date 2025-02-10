@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>연금절세 메인</title>
+	<title>큰글모드 연금절세 메인</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -28,12 +28,7 @@
 		
 		<div class="content-view">
 			<div id="content">
-                <section class="pension_main">
-                    <!--배너-->
-                    <p class="top_banner">
-                        <a href="#nolink">연말정산으로<br>공제받을 수 있는 금액은?</a>
-                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
-                    </p>
+                <section class="pension_main pension_main_senior">
 
                     <!--update-->
                     <div class="update">
@@ -43,13 +38,9 @@
 
                     <!--개요-->
                     <!--연결된 연금이 있는 경우-->
-                    
-                    <div class="outline"><!--//25-02-10 상태값 추가 : 늘은경우 up class, 줄은 경우 down class-->
-                        <!--25-02-10 링크추가-->
-                        <h2><a href="#nolink">노후준비를 위해 모은 돈</a></h2>
-                        <!--//25-02-10 링크추가-->
+                    <div class="outline">
+                        <h2>노후준비를 위해 모은 돈</h2>
                         
-                        <!--25-02-10 금액숨김 수정-->
                         <div class="toggle_money">
                             <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
@@ -61,19 +52,8 @@
                                 <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
-                        <!--//25-02-10 금액숨김 수정-->
-                        
-                        <!--25-02-10 텍스트 수정-->
-                        <p class="txt">지난 달 이맘때와 동일해요.</p>        
 
-                        <!--늘은경우 
-                        <p class="txt">지난 달 이맘때보다 <em>4,250원</em> 늘었어요.</p>    
-                        -->
-                        
-                        <!--줄은경우
-                        <p class="txt">지난 달 이맘때보다 <em>4,250원</em> 늘었어요.</p>    
-                        -->
-                        <!--//25-02-10 텍스트 수정-->
+                        <p class="txt">지난 달보다 <em>4,250원</em> 늘었어요</p>
                     </div>
                     <!--//연결된 연금이 있는 경우-->
 
@@ -81,20 +61,16 @@
                     <div class="board_box pension_outline">
                         <div class="chart">
                             <div class="word_bubble">
-                                <p>국민연금 <em>30%</em></p><!--//25-02-10 텍스트 수정-->
+                                <p>공적연금 <em>30%</em></p>
                             </div>
-                            <!--25-01-23 애니메이션 이미지 추가-->
+                            <!--[v4.0] 25-01-23 애니메이션 이미지 추가-->
                             <lottie-player src="../../../../src/assets_v40/images/lottie/icon_pension.json"  loop autoplay aria-hidden="true" class="icon_pension" ></lottie-player>
-                            <!--
-                                초과인 경우 icon_wallet_up.json
-                                적게 쓸 경우 icon_wallet_down.json
-                            -->
-                            <!--//25-01-23 애니메이션 이미지 추가-->
+                            <!--//[v4.0] 25-01-23 애니메이션 이미지 추가-->
                             <canvas id="cate_outline_chart"></canvas>
                         </div>
                     
                         <ul role="tablist" class="inner_tab">
-                            <li class="on"><button type="button" role="tab" aria-selected="true">국민연금</button></li><!--//25-02-10 텍스트 수정-->
+                            <li class="on"><button type="button" role="tab" aria-selected="true">공적연금</button></li>
                             <li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
                             <li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
                         </ul>
@@ -175,10 +151,10 @@
                             $("button", $('.inner_tab li').eq(0)).trigger('click');
                         </script>
                         
-                        <!--국민연금-->
+                        <!--공적연금-->
                         <div class="details">
                             <ul>
-                                <li>국민연금<span class="total"><em>30,000,000</em>원</span></li><!--//25-02-10 텍스트 수정-->
+                                <li>공적연금<em>1</em><span class="total"><em>30,000,000</em>원</span></li>
                                 <li>
                                     <a href="#nolink">
                                         <i class="ico_bank PBAAVM0000"></i>
@@ -239,9 +215,8 @@
                     </div>
 
                     <!--금융지식-->
-                    <!--25-02-10 세대별 추가 -->
                     <div class="finlit">
-                        <h2 class="h_tit01">세대별 절세 노하우</h2>
+                        <h2 class="h_tit01">금융지식</h2>
                         <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
 
                         <div class="scroller">
@@ -249,67 +224,59 @@
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>절세형 보험 상품 활용하기</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#60대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_50.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>IRP와 연금저축 활용팁</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#50대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_40.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>연금저축 및 IRP 가입하고 노후 자금 준비</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#40대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_30.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>맞벌이 부부를 위한 세금 절약 노하우</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#30대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_20.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>첫 직장 생활에서의 소득공제 활용법</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#20대</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_10.png" alt="" />
-                                        <span class="gen">60대</span>
                                         <strong>첫 직장 생활에서의 소득공제 활용법</strong>
-                                        <span class="hash">#추천키워드</span>
+                                        <span class="hash">#10대</span>
                                     </a>
                                 </li>
                             </ul>
-                            <!--//25-02-10 세대별 추가 -->
                         </div>
                     </div>
 
                     <!--여러가지-->
-                    <!--25-02-10 텍스트 수정-->
                     <div class="move_banner">
                         <a href="#nolink" class="board_box rect old">
                             <em>나의 노후준비</em>
-                            안정적인 은퇴를 준비하세요.
+                            안정적인 은퇴를 준비하세요
                         </a>
 
                         <a href="#nolink" class="board_box rect tax">
                             <em>세금납부 확인</em>
-                            내가 낸 세금, 쉽게 확인하세요.
+                            내가 낸 세금, 쉽게 확인하세요
                         </a>
 
                         <a href="#nolink" class="board_box rect insure">
@@ -317,7 +284,6 @@
                             내 건강보험 가입내역을 확인하세요.
                         </a>
                     </div>
-                    <!--//25-02-10 텍스트 수정-->
 
                     <!--상품추천-->
                     <!--[v4.0] 25-01-23 추천 상품 컨텐츠 수정-->
@@ -339,9 +305,7 @@
                                             <span># 또래 인기상품</span>
                                             <span># 가입금액별 금리조정</span>
                                         </dd>
-                                        <!--25-02-10 금리 삭제
                                         <dd class="rate">최고 연<em>4.5%</em></dd>
-                                        -->
                                     </dl>
                                 </a>
                                 <a href="#nolink">
@@ -357,9 +321,7 @@
                                             <span># 0.7%p 우대금리</span>
                                             <span># 1만원부터</span>
                                         </dd>
-                                        <!--25-02-10 금리 삭제
-                                        <dd class="rate">최고 연<em>4.5%</em></dd>
-                                        -->
+                                        <dd class="rate">최고 연<em>4.2%</em></dd>
                                     </dl>
                                 </a>
                                 <a href="#nolink">
@@ -374,9 +336,7 @@
                                             <span># 일시납</span>
                                             <span># 확정이율</span>
                                         </dd>
-                                        <!--25-02-10 금리 삭제
-                                        <dd class="rate">최고 연<em>4.5%</em></dd>
-                                        -->
+                                        <dd class="rate">확정 이율<em>3.3%</em></dd>
                                     </dl>
                                 </a>
                             </div>
@@ -419,19 +379,7 @@
                         <!--//slick-->
                     </div>
                     <!--//[v4.0] 25-01-23 추천 상품 컨텐츠 수정-->
-                   
 
-                    <div class="board_box_wrap banner">
-                        <a href="#nolink" class="board_box calc1">
-                            <em>대출이자 계산기</em>
-                            쉽고 빠른<br>대출금 계산하기
-                        </a>
-                        <a href="#nolink" class="board_box calc2">
-                            <em>대출한도 계산기</em>
-                            DSR계산하고 대출<br>가능금액 확인하기
-                        </a>
-                    </div>
-                   
                 </section>
 
 			</div>

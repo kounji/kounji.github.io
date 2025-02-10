@@ -43,23 +43,36 @@
                     </div>
 
                     <!--개요-->
-                    <div class="outline">
+                    <!--25-02-10 상태값 추가 / 텍스트 수정 -->
+                    <div class="outline"><!--늘었을 경우 up class 추가, 줄었을 경우 down class 추가-->
                         <h2><a href="#nolink">11월 지출</a></h2>
                         
+                        <!--25-02-10 금액숨김 수정-->
                         <div class="toggle_money">
-                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
-                                <span class="show">보기</span>
-                                <span class="hide">숨김</span>
+                                <span class="hide" aria-hidden="true">보기</span>
+                                <span class="show" aria-hidden="true">숨김</span>
                             </label>
                             <div class="sum">
-                                <span class="show">쉿! 비밀이에요</span>
-                                <span class="hide">1,952,692,372원</span>
+                                <span class="hide">쉿! 비밀이에요</span>
+                                <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
+                        <!--//25-02-10 금액숨김 수정-->
 
-                        <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
+                        <p class="txt">지난달의 같은기간과 지출이 동일해요.</p>
+
+                        <!--늘은 경우
+                        <p class="txt">지난달의 같은기간보다 <em>100만원</em> 더 쓰고 있어요.</p>
+                        -->
+
+                         <!--줄은 경우
+                         <p class="txt">지난달의 같은기간보다 <em>100만원</em> 덜 쓰고 있어요.</p>
+                         -->
+                         <!--//25-02-10 상태값 추가 : 늘었을 경우 up class 추가, 줄었을 경우 down class 추가-->
                     </div>
+                     <!--//25-02-10 상태값 추가 / 텍스트 수정 -->
 
                     <!--분류별 개요-->
                     <div class="wallet_outline">
@@ -70,22 +83,25 @@
                                 <li><button type="button" role="tab" aria-selected="false">현금</button></li>
                             </ul>
 
+                           <!--25-02-10 텍스트 수정 -->
                             <!--카드 case-->
                             <div class="details"><!--적게 쓸경우 down, 초과인 경우 up class 추가-->
+                                <!-- <div class="analysis">
+                                    <p class="h_tit01">카드를 지난달 보다<br><em>적게</em> 쓰고 있어요.</p>
+                                    <p>이번 달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                </div> -->
+
+                               
                                 <div class="analysis">
-                                    <p class="h_tit01">카드를 지난 달보다<br><em>적게</em>쓰고 있어요</p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    <p class="h_tit01">지난달<br>총지출과 <em>같아요.</em></p>
+                                    <p>이번 달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
 
-                                <!--
-                                    <div class="analysis">
-                                        <p class="h_tit01">지난달<br>총지출과 <em>같아요</em></p>
-                                        <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
-                                    </div>
+                                 <!--
 
-                                    <div class="analysis">
-                                        <p class="h_tit01">카드를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
-                                        <p>이번달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    <div class="analysis up">
+                                        <p class="h_tit01">카드를 지난달보다<br><em>많이</em>쓰고 있어요.</p>
+                                        <p>이번 달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                     </div>
                                 -->
 
@@ -99,8 +115,8 @@
                             <!--페이
                             <div class="details up">
                                 <div class="analysis">
-                                    <p class="h_tit01">페이를 지난 달보다<br><em>많이</em>쓰고 있어요</p>
-                                    <p>이번달 페이 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    <p class="h_tit01">페이를 지난달 보다<br><em>많이</em>쓰고 있어요.</p>
+                                    <p>이번 달 페이 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
 
                                 <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_up.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
@@ -110,14 +126,15 @@
                             <!--현금
                             <div class="details down">
                                 <div class="analysis">
-                                    <p class="h_tit01">현금을 지난 달보다<br><em>잒[</em>쓰고 있어요</p>
-                                    <p>이번달 현금 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
+                                    <p class="h_tit01">현금을 지난달 보다<br><em>적게</em>쓰고 있어요.</p>
+                                    <p>이번 달 현금 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
 
                                 <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_down.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                             </div>
                             -->
                         </div> 
+                         <!--//25-02-10 텍스트 수정 -->
 
                         <div class="spend_history">
                             <!--카드 상세-->
@@ -197,9 +214,12 @@
                             </div>
                             <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
                                 <div>
+                                    <!--25-02-10 텍스트 수정 -->
                                     <p>
-                                       통신비 청구금액은 결제 예정금액으로 현재 총지출 금액에는 포홤되지 않으며 결제일 이후에 카드/페이/현금 결제 내역에서 확인 가능합니다.
+                                        결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
+                                        결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
                                     </p>
+                                    <!--//25-02-10 텍스트 수정 -->
 
                                     <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                 </div> 
@@ -243,7 +263,7 @@
 
                         <!--소비가 있는 경우-->
                         <div class="analysis">
-                            <p class="txt">쇼핑에  가장 많은 지출,<br><em>100만</em>을 썼어요</p>
+                            <p class="txt">쇼핑에  가장 많은 지출,<br><em>100만</em>을 썼어요.</p><!--//25-02-10 텍스트 수정 -->
 
                             <div class="gray_box">
                                 <p>주요 소비 중 지난 달 대비<br><em>카페/베이커리</em> 소비 변화가 많아요.</p>
@@ -253,8 +273,10 @@
                         <!--주요소비 상세-->
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <!--25-02-10 텍스트 수정 -->
+                                <span class="show">소비 분석 보기</span>
+                                <span class="hide">소비 분석 닫기</span>
+                                <!--//25-02-10 텍스트 수정 -->
                             </summary>
                             <div class="cont">
                                <div class="chart" aria-hidden="true">
@@ -335,16 +357,20 @@
                         <h2><a href="#nolink" class="title">정기 지출</a></h2>
 
                         <!--정기지출이 있는 경우-->
+                        <!--25-02-10 텍스트 수정 -->
                         <div class="analysis">
-                            <p class="txt">매월 나가는 지출이<br><em>12건</em>이 있습니다</p>
+                            <p class="txt">다가올 정기지출 12건 중<br><em>3건</em> 예정되어 있어요.</p>
                         </div>
+                        <!--//25-02-10 텍스트 수정 -->
 
                         <!--정기지출 상세-->
                         <details class="board_box_details">
+                            <!--25-02-10 텍스트 수정 -->
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">다가올 정기지출 보기</span>
+                                <span class="hide">다가올 정기지출 닫기</span>
                             </summary>
+                            <!--//25-02-10 텍스트 수정 -->
                             <div class="cont">
                                 <span class="total">다가올 지출 <span><em>2</em>건</span></span>
                                 <ul class="regularly_list">
@@ -373,29 +399,32 @@
                     <div class="board_box less_spend"><!--chart > now 막대의 width 85% 가 넘으면 초과임. 초과일 경우 up / 목표에 가까워지는 경우 nearby  class 추가-->
                         <h2><a href="#nolink" class="title">소비 줄이기</a></h2>
 
+                        <!--25-02-10 텍스트 수정 -->
                         <!--소비가 있는 경우-->
                         <div class="analysis">
-                            <p class="txt">현재, 목표 예산에서<br><em>안정적</em>이에요</p>
-                            <p class="txt2">지금처럼만 잘 유지해 주세요</p>
+                            <p class="txt">현재, 목표 예산에서<br><em>안정적</em>이에요.</p>
+                            <p class="txt2">지금처럼만 잘 유지해 주세요.</p>
                         </div>
 
                         <!-- <div class="analysis">
-                            <p class="txt">현재, 목표 예산과<br><em>가까워요</em></p>
-                            <p class="txt2">현명한 목표 예산을 달성해 주세요</p>
+                            <p class="txt">현재, 목표 예산과<br><em>가까워요.</em></p>
+                            <p class="txt2">현명한 목표 예산을 달성해 주세요.</p>
                         </div>
 
                         <div class="analysis">
-                            <p class="txt">현재, 목표 예산을<br><em>초과</em>했어요</p>
-                            <p class="txt2">지출한 금액을 한번 점검해 보세요</p>
+                            <p class="txt">현재, 목표 예산을<br><em>초과</em>했어요.</p>
+                            <p class="txt2">지출한 금액을 한번 점검해 보세요.</p>
                         </div> -->
-
+                        <!--//25-02-10 텍스트 수정 -->
 
                         <!--소비목표 상세-->
                         <details class="board_box_details">
+                            <!--25-02-10 텍스트 수정 -->
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">한 달 예산 분석 보기</span>
+                                <span class="hide">한 달 예산 분석 닫기</span>
                             </summary>
+                            <!--//25-02-10 텍스트 수정 -->
                             <div class="cont">
                                 <div class="chart">
                                     <div class="standard"><span>목표 : 4,000,000원</span></div>

@@ -35,15 +35,22 @@
 	<!-- 전체 팝업 시작 -->
 	<div class="full_popup mydata2023" id="full_popup_01"> 
 		<div class="popup_header">
-			<h1>거래내역 저장</h1>
+			<!--25-02-10 텍스트 수정 -->
+			<h1>거래내역 내려받기</h1>
+			<!--//25-02-10 텍스트 수정 -->
 		</div>
 		<div class="popup_content">
 			<div class="com_inner">
-                <strong class="titH1">저장하실 거래내역 조건을 선택해 주세요</strong>
+				<!--25-02-10 텍스트 수정 -->
+                <strong class="titH1">내려받을 거래내역 조건을 설정해 주세요.</strong>
+				<!--//25-02-10 텍스트 수정 -->
 
                 <div class="btn_radio_wrap">
 					<strong class="titH5">거래기간</strong>
-					<p class="check_text">최근 1년 이내, 최대 3개월까지 조회 가능합니다.</p>
+					<!--25-02-10 텍스트 수정 -->
+					<p class="check_text">최근 1년 이내 최대 3개월까지 조회할 수 있습니다.</p>
+					<!--//25-02-10 텍스트 수정 -->
+					
 
                     <div class="com_inputnum2 input_date">
                         <div class="com_input_type01" role="button" >
@@ -54,86 +61,90 @@
                         </div>
                     </div>
 
+					<!--25-02-10 aria 삭제 -->
 					<ul class="com_radio_type03">
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio1" id="radio1-1" aria-hidden="true">
-								<label for="radio1-1" aria-checked="false" role="radio">
+								<input type="radio" name="radio1" id="radio1-1" >
+								<label for="radio1-1">
 									<span>1주일</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio1" id="radio1-2" aria-hidden="true">
-								<label for="radio1-2" aria-checked="false" role="radio">
+								<input type="radio" name="radio1" id="radio1-2">
+								<label for="radio1-2">
 									<span>1개월</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio1" id="radio1-3" aria-hidden="true">
-								<label for="radio1-3" aria-checked="false" role="radio">
+								<input type="radio" name="radio1" id="radio1-3">
+								<label for="radio1-3">
 									<span>3개월</span>
 								</label>
 							</div>
 						</li>
 					</ul>
+					<!--//25-02-10 aria 삭제 -->
 				</div>
 
                 <div class="btn_radio_wrap">
 					<strong class="titH5">거래구분</strong>
+					<!--25-02-10 aria  삭제 -->
 					<ul class="com_radio_type03">
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-1" checked="checked" aria-hidden="true">
-								<label for="radio2-1" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-1" checked="checked">
+								<label for="radio2-1">
 									<span>전체</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-2" aria-hidden="true">
-								<label for="radio2-2" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-2">
+								<label for="radio2-2">
 									<span>신용카드</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-3" aria-hidden="true">
-								<label for="radio2-3" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-3">
+								<label for="radio2-3">
 									<span>체크카드</span>
 								</label>
 							</div>
 						</li>
                         <li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-4" aria-hidden="true">
-								<label for="radio2-4" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-4">
+								<label for="radio2-4">
 									<span>이체</span>
 								</label>
 							</div>
 						</li>
                         <li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-5" aria-hidden="true">
-								<label for="radio2-5" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-5">
+								<label for="radio2-5">
 									<span>페이머니</span>
 								</label>
 							</div>
 						</li>
                         <li>
 							<div class="btn_radio">
-								<input type="radio" name="radio2" id="radio2-6" aria-hidden="true">
-								<label for="radio2-6" aria-checked="false" role="radio">
+								<input type="radio" name="radio2" id="radio2-6">
+								<label for="radio2-6">
 									<span>선불카드</span>
 								</label>
 							</div>
 						</li>
 					</ul>
+					<!--//25-02-10 aria  삭제 -->
 
                     <span class="btn_checkbox">
                         <input type="checkbox" name="check01" id="check01">
@@ -145,24 +156,26 @@
 
                 <div class="btn_radio_wrap">
 					<strong class="titH5">내역정렬</strong>
+					<!--25-02-10 aria  삭제 -->
 					<ul class="com_radio_type02">
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio3" id="radio3-1" checked="checked" aria-hidden="true">
-								<label for="radio3-1" aria-checked="false" role="radio">
+								<input type="radio" name="radio3" id="radio3-1" checked="checked">
+								<label for="radio3-1">
 									<span>최신순</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" name="radio3" id="radio3-2" aria-hidden="true">
-								<label for="radio3-2" aria-checked="false" role="radio">
+								<input type="radio" name="radio3" id="radio3-2">
+								<label for="radio3-2">
 									<span>오래된순</span>
 								</label>
 							</div>
 						</li>
 					</ul>
+					<!--//25-02-10 aria  삭제 -->
                 </div>
 
                 <p class="stdMsg star mt15">거래내역 저장 서비스는 고객 편의를 위해 제공되는 서비스로 다운로드한 자료를 법적 자료로 사용하실 수 없습니다.</p>
@@ -170,7 +183,9 @@
 		</div>
         <div class="popup_footer fixed">
 			<div class="btn_full_box">
-				<a href="#nolink" class="btn btn_mint" role="button">저장</a>
+				<!--25-02-10 텍스트 수정 -->
+				<a href="#nolink" class="btn btn_mint" role="button">내려받기</a>
+				<!--//25-02-10 텍스트 수정 -->
 			</div>
 		</div>
 		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		

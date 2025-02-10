@@ -45,9 +45,11 @@
                     
                     <!--연결된 연금이 없는 경우-->
                     <div class="outline">
-                        <h2>노후준비를 위해 모은 돈</h2>
-                        <p class="em">연결된 연금이 없어요</p>
-                        <p class="txt">연금자산 연결하면 볼 수 있어요</p>
+                        <!--25-02-10 링크추가 / 텍스트 수정 / 버튼추가-->
+                        <h2><a href="#nolink">노후준비를 위해 모은 돈</a></h2>
+                        <p class="em">연결된 연금이 없어요 <button type="button" class="btns">연결</button></p>
+                        <p class="txt">연금자산 연결하면 확인할 수 있어요.</p>
+                        <!--//25-02-10 링크추가 / 텍스트 수정-->
                     </div>
                     <!--//연결된 연금이 없는 경우-->
 
@@ -56,7 +58,7 @@
                     <div class="board_box pension_outline">
                         <div class="chart">
                             <div class="word_bubble">
-                                <p class="em">아직<br><em>연결된 연금</em>이 없어요</p>
+                                <p class="em">아직<br><em>연결된 연금</em>이 없어요.</p><!--//25-02-10 텍스트 수정-->
                             </div>
                             <!--[v4.0] 25-01-23 애니메이션 이미지 추가-->
                             <lottie-player src="../../../../src/assets_v40/images/lottie/icon_pension_3.json"  loop autoplay aria-hidden="true" class="icon_pension" ></lottie-player>
@@ -65,14 +67,15 @@
                         </div>
                     
                         <ul role="tablist" class="inner_tab">
-                            <li><button type="button" role="tab" aria-selected="false" disabled>공적연금</button></li>
+                            <li><button type="button" role="tab" aria-selected="false" disabled>국민연금</button></li><!--//25-02-10 텍스트 수정-->
                             <li><button type="button" role="tab" aria-selected="false" disabled>개인연금</button></li>
                             <li><button type="button" role="tab" aria-selected="false" disabled>퇴직연금</button></li>
                         </ul>
-                        
+                        <!--25-02-10 텍스트 수정-->
                         <p class="guide">
-                            안락한 노후를 위한 첫걸음,<br>콕자산관리에서 준비해요.
+                            안락한 노후를 위한 첫걸음,<br>NH콕마이데이터(자산관리)에서 준비해요.
                         </p>
+                        <!--//25-02-10 텍스트 수정-->
 
                         <div class="bottom">
                             <button type="button" class="btn_connect">연금자산 연결하기</button>

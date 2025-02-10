@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>청소년모드 지출</title>
+	<title>청소년모드 지출 미연결</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -28,87 +28,42 @@
 		<div class="content-view">
             <div id="content">
                 <section class="wallet_youth">
-					<div class="update">
-						<span>조금전</span>
-						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
-					</div>
 
 					<!--개요-->
-                    <div class="outline"><!--늘은경우 up, ,줄은 경우 down class 추가, 0원인 경우 nil class 추가-->
+                    <div class="outline">
                         <div class="board_box">
-                            <h2><a href="#nolink">11월 지출</a></h2>
-
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
-                                <label for="sum_view_01" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="hide">쉿! 비밀이에요</span>
-                                    <span class="show">1,952,692,372원</span>
-                                </div>
-                            </div>
-
-                            <!--동일한 경우-->
-                            <p class="txt">지난 달 총지출과<br><em>같아요</em></p>
-
-                            <!--높은경우
-                            <p class="txt">지난 달보다<br><em>많이</em> 쓰고 있어요</p>
-                            -->
-
-                            <!--줄은경우
-                            <p class="txt">지난 달보다<br><em>적게</em> 쓰고 있어요</p>
-                            -->
-
-                            <!--0원인 경우
-                            <p class="txt">11월 지출 내역이 없어요</p>
-                            -->
-
+                            
+                            
                         </div>
-
-                        <a href="#nolink">지출분석 상세보기</a>
                     </div>
 
                     <!--카드-->
                     <div class="board_box wallet_spend">
                         <h2><a href="#nolink" class="title">카드 이용 금액</a></h2>
-                        <div class="card">
-                            <span class="num">14,070원</span>
-                            <span class="range up">7000원</span>
-                        </div>
-
-                        <!--내역이 없는 경우-->
-                        <div class="card">
-                            <p> 카드 이용 내역이 없어요</p>
+                       
+                         <!--미연결 경우-->
+                         <div>
+                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
                         </div>
                     </div>  
 
                     <!--페이-->
                     <div class="board_box wallet_spend">
                         <h2><a href="#nolink" class="title">페이 이용 금액</a></h2>
-                        <div class="pay">
-                            <span class="num">14,070원</span>
-                            <span class="range">7,000원</span>
-                        </div>
-
-                        <!--내역이 없는 경우-->
-                        <div class="pay">
-                            <p> 페이 이용 내역이 없어요</p>
+                       
+                        <!--미연결 경우-->
+                        <div>
+                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
                         </div>
                     </div>
 
                     <!--현금-->
                     <div class="board_box wallet_spend">
-                        <h2><a href="#nolink" class="title">현금 이용 금액</a></h2>
-                        <div class="cash">
-                            <span class="num">14,070원</span>
-                            <span class="range down">7000원</span>
-                        </div>
+                        <h2><a href="#nolink" class="title">현금 이용 금액</a></h2>                       
 
-                        <!--내역이 없는 경우-->
-                        <div class="cash">
-                            <p> 현금 이용 내역이 없어요</p>
+                        <!--미연결 경우-->
+                        <div>
+                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
                         </div>
                     </div>
                     

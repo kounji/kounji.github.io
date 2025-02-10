@@ -44,22 +44,36 @@
                     <!--개요-->
                     
                     <!--연결된 연금이 있는 경우-->
-                    <div class="outline">
-                        <h2>노후준비를 위해 모은 돈</h2>
+                    <div class="outline"><!--//25-02-10 상태값 추가 : 늘은경우 up class, 줄은 경우 down class-->
+                        <!--25-02-10 링크추가-->
+                        <h2><a href="#nolink">노후준비를 위해 모은 돈</a></h2>
+                        <!--//25-02-10 링크추가-->
                         
+                        <!--25-02-10 금액숨김 수정-->
                         <div class="toggle_money">
-                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
-                                <span class="show">보기</span>
-                                <span class="hide">숨김</span>
+                                <span class="hide" aria-hidden="true">보기</span>
+                                <span class="show" aria-hidden="true">숨김</span>
                             </label>
                             <div class="sum">
-                                <span class="show">쉿! 비밀이에요</span>
-                                <span class="hide">0원</span>
+                                <span class="hide">쉿! 비밀이에요</span>
+                                <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
+                        <!--//25-02-10 금액숨김 수정-->
+                        
+                        <!--25-02-10 텍스트 수정-->
+                        <p class="txt">지난 달 이맘때와 동일해요.</p>        
 
-                        <p class="txt">지난 달과 동일해요</p>
+                        <!--늘은경우 
+                        <p class="txt">지난 달 이맘때보다 <em>4,250원</em> 늘었어요.</p>    
+                        -->
+                        
+                        <!--줄은경우
+                        <p class="txt">지난 달 이맘때보다 <em>4,250원</em> 늘었어요.</p>    
+                        -->
+                        <!--//25-02-10 텍스트 수정-->
                     </div>
                     <!--//연결된 연금이 있는 경우-->
 
@@ -71,19 +85,23 @@
                             </div>
                             <!--[v4.0] 25-01-23 애니메이션 이미지 추가-->
                             <lottie-player src="../../../../src/assets_v40/images/lottie/icon_pension_2.json"  loop autoplay aria-hidden="true" class="icon_pension" ></lottie-player>
+                            <!--
+                                초과인 경우 icon_wallet_up.json
+                                적게 쓸 경우 icon_wallet_down.json
+                            -->
                             <!--//[v4.0] 25-01-23 애니메이션 이미지 추가-->
                             <canvas id="cate_outline_chart"></canvas>
                         </div>
                     
                         <ul role="tablist" class="inner_tab">
-                            <li class="on"><button type="button" role="tab" aria-selected="true">공적연금</button></li>
+                            <li class="on"><button type="button" role="tab" aria-selected="true">국민연금</button></li><!--//25-02-10 텍스트 수정-->
                             <li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
                             <li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
                         </ul>
                         
                         <!--공적연금-->
                         <div class="details">
-                            <p><a href="#nolink">공적연금 <em>얼만만큼 납입했을까?</em></a></p>
+                            <p><a href="#nolink">국민연금 <em>얼만만큼 납입했을까?</em></a></p><!--//25-02-10 텍스트 수정-->
                         </div>
 
                         <!--개인연금

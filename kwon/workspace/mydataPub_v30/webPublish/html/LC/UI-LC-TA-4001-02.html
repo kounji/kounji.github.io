@@ -43,23 +43,27 @@
                     </div>
 
                     <!--개요-->
-                    <div class="outline">
+                    <!--25-02-10 상태값 추가 / 텍스트 수정 -->
+                    <div class="outline down"><!--늘었을 경우 up class 추가, 줄었을 경우 down class 추가-->
                         <h2><a href="#nolink">11월 지출</a></h2>
                         
+                        <!--25-02-10 금액숨김 수정-->
                         <div class="toggle_money">
-                            <input type="checkbox" title="금액노출" name="" id="sum_view_01">
+                            <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
-                                <span class="show">보기</span>
-                                <span class="hide">숨김</span>
+                                <span class="hide" aria-hidden="true">보기</span>
+                                <span class="show" aria-hidden="true">숨김</span>
                             </label>
                             <div class="sum">
-                                <span class="show">쉿! 비밀이에요</span>
-                                <span class="hide">1,952,692,372원</span>
+                                <span class="hide">쉿! 비밀이에요</span>
+                                <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
+                        <!--//25-02-10 금액숨김 수정-->
 
-                        <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
+                        <p class="txt">지난달의 같은기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
                     </div>
+                    <!--//25-02-10 상태값 추가 / 텍스트 수정 -->
 
                     <!--분류별 개요-->
                     <div class="wallet_outline">
@@ -71,17 +75,19 @@
                             </ul>
 
                             <div class="details no">
+                                <!--25-02-10 텍스트 수정 -->
                                 <div class="analysis">
-                                    <p class="h_tit01">이번 달 카드 이용<br>내역이 없어요</p>
-                                    <p>이번달 카드 이용 금액<span class="num"><em>0</em>원</span></p>
+                                    <p class="h_tit01">이번 달 카드 이용<br>내역이 없어요.</p>
+                                    <p>이번 달 카드 이용 금액<span class="num"><em>0</em>원</span></p>
                                 </div>
+                                <!--//25-02-10 텍스트 수정 -->
 
                                 <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_no.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                             </div>
                         </div> 
 
                         <div class="spend_history">
-                            <p class="txt">내 카드 지출내역이 없어요</p>
+                            <p class="txt">내 카드 지출내역이 없어요.</p><!--//25-02-10 텍스트 수정 -->
                         </div>
                     </div>
 
@@ -97,9 +103,12 @@
                             </div>
                             <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
                                 <div>
-                                    <p>
-                                       통신비 청구금액은 결제 예정금액으로 현재 총지출 금액에는 포홤되지 않으며 결제일 이후에 카드/페이/현금 결제 내역에서 확인 가능합니다.
+                                     <!--25-02-10 텍스트 수정 -->
+                                     <p>
+                                        결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
+                                        결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
                                     </p>
+                                    <!--//25-02-10 텍스트 수정 -->
 
                                     <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                 </div> 

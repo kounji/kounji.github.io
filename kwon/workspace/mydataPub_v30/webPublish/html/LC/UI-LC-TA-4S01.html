@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>지출 메인(미가입)</title>
+	<title>큰글모드 지출 메인</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -28,59 +28,89 @@
 		
 		<div class="content-view">
 			<div id="content">
-                <section class="wallet_main">
+                <section class="wallet_main_senior">
+                    <div class="update">
+						<span>조금전</span>
+						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+					</div>
 
-                    <!--배너-->
-                    <p class="top_banner">
-                        <a href="#nolink">작은 시작이 만드는 큰 행복,<br>자산관리 시작하기</a>
-                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
-                    </p>
+                    <!--개요-->
+                    <div class="outline"><!--늘은경우 up, ,줄은 경우 down class 추가, 0원인 경우 zero class 추가-->
+                        <div class="board_box">
+                            <h2><a href="#nolink">11월 지출</a></h2>
 
-                    <!--가입유도-->
-                    <!--25-02-10 텍스트 수정-->
-                    <div class="plz_join">
-                        <div href="#nolink" class="board_box">
-                            <h2>소비분석</h2>
-                            <p>이번 달 지출 현황과 지난 달의<br>변화를 한눈에 비교해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
+                            <div class="toggle_money">
+                                <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
+                                <label for="sum_view_01" class="btns">
+                                    <span class="hide" aria-hidden="true">보기</span>
+                                    <span class="show" aria-hidden="true">숨김</span>
+                                </label> 
+                                <div class="sum">
+                                    <span class="hide">쉿! 비밀이에요</span> 
+                                    <span class="show"><em>1,952,692,372</em>원</span>
+                                </div>
+                            </div>
+
+                            <div class="details"><!--적게 쓴경우 down, 초과인 경우 up class 추가--> 
+                                <!-- 적게쓴 경우
+                                <div class="analysis">
+                                    <p>지난 달의 같은 기간보다<br>
+                                        <span class="num"><strong>1,367,020</strong>원</span><br>
+                                        <em>덜 쓰고 있어요.</em>
+                                    </p>
+                                </div>
+                                -->
+                                <div class="analysis">
+                                    <p>지난 달의 같은 기간과<br>
+                                        <em>동일해요.</em>
+                                    </p>
+                                </div>
+                                <!-- 많이 쓴 경우
+                                <div class="analysis">
+                                    <p>지난 달의 같은 기간보다<br>
+                                        <span class="num"><strong>1,367,020</strong>원</span><br>
+                                        <em>많이 쓰고 있어요.</em>
+                                    </p>
+                                </div>
+                                -->
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                <!--
+                                    초과인 경우 icon_wallet_up.json
+                                    적게 쓸 경우 icon_wallet_down.json
+                                -->
+                            </div>
+                        </div>
+                        <a href="#nolink"><em>내 지출 분석 내역</em><span>더보기</span></a>
+                    </div>
+
+                    <!--카드-->
+                    <div class="board_box wallet_spend">
+                        <h2>
+                            <a href="#nolink" class="title">카드 이용 금액</a>
+                        </h2>
+                        <div class="card">
+                            <span class="num"><em>14,070</em>원</span>
                         </div>
 
-                        <div href="#nolink" class="board_box">
-                            <h2>지출수단별 사용내역</h2>
-                            <p>카드, 페이, 현금 사용내역의<br>지출변화를 한눈에 확인해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
-                        </div>
-
-                        <div href="#nolink" class="board_box">
-                            <h2>최근소비</h2>
-                            <p>최근 나의 소비를<br>쉽고 빠르게 확인해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
-                        </div>
-
-                        <div href="#nolink" class="board_box">
-                            <h2>유형별 지출분석</h2>
-                            <p>나의 소비가 주로 어디에<br>사용되었는지 확인해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
-                        </div>
-
-                        <div href="#nolink" class="board_box">
-                            <h2>정기지출</h2>
-                            <p>이번 달 정기 지출<br>어디까지 나갔는지 확인해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
-                        </div>
-
-                        <div href="#nolink" class="board_box">
-                            <h2>소비 줄이기</h2>
-                            <p>계획적인 소비를 위한 지출 목표,<br>지금 설정하고 실천해 보세요.</p>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">예산 설정하기</span></a>
+                    </div>
+                    
+                    <!--카드-->
+                    <div class="board_box wallet_spend">
+                        <h2 class="title">카드 이용 금액</h2>
+                        <!--내역이 없는 경우-->
+                        <div class="card">  
+                            <p> 카드 이용 내역이 없어요</p>
                         </div>
                     </div>
-                    <!--//25-02-10 텍스트 수정-->
 
-                    <!--배너-->
-                    <a href="#nolink" class="gotoCok">
-                        <img src="../../../../src/assets_v40/images/banner/img_banner_goto_cok.png" alt="나의 꿈을 현실로 NH콕뱅킹이 함께 합니다!" />
-                    </a>
+                    <!--카드-->
+                    <div class="board_box wallet_spend">
+                        <h2 class="title">카드 이용 금액</h2>
+                        <!--미연결 경우-->
+                        <div>
+                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
+                        </div>
+                    </div>
 
                     <!--금융지식-->
                     <div class="finlit">
