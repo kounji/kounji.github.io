@@ -45,9 +45,9 @@
 				<div class="com_inner">
 					<div class="new_sub_info">
 						<div class="title">
+							<!-- [v4.0] 25-02-17 잔액숨김 기능추가, 툴팁이동 -->
 							<div class="text">
-								결제 예정인 돈<br>
-								<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+								<span>결제 예정인 돈</span>
 								<div class="custom_tooltip">
 									<div class="com_tooltip_type02 com_tooltip_type03">
 										<a href="#nolink" class="com_btn_info" role="button">
@@ -61,7 +61,22 @@
 										</div>
 									</div>
 								</div>
+
+								<br>
+
+								<div class="toggle_money">
+									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="hide" aria-hidden="true">보기</span>
+										<span class="show" aria-hidden="true">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+								</div>
 							</div>
+							<!-- //[v4.0] 25-02-17 잔액숨김 기능추가, 툴팁이동 -->
 						</div>
 					</div>
 					<div class="link_banner">

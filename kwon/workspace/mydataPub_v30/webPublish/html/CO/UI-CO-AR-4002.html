@@ -35,17 +35,17 @@
 	<div class="full_popup" id="full_popup_01">
 		<div class="popup_header">
 			<h1>자산연결</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<!--<button type="button" class="prev"><span class="blind">이전</span></button>-->
 		</div>
 		
 		<div class="popup_content">
 			<div class="asset_connect organ_sel">
 				<div class="tit_area">
-					<h2 class="headline sm"><strong>연결할 기관</strong>을 선택해 주세요</h2>
-					<span class="progress" aria-label="전체 4단계 중 현재 1단계"><em class="now">01</em><span class="total">04</span></span>
+					<h2 class="headline sm"><strong>연결할 기관</strong>을 선택해 주세요.</h2>
+					<span class="progress" role="progressbar" aria-valuetext="전체 4단계 중 1단계" aria-valuemax="4" aria-valuenow="1"><em class="now">01</em><span class="total">04</span></span>
 				</div>
 				<div class="input">
-					<input type="text" name="" id="input01" placeholder="기관명을 입력해주세요.">
+					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요.">
 					<button type="button" class="btn_search"><span class="blind">검색</span></button>
 				</div>
 
@@ -66,11 +66,17 @@
 					</div>
 
 					<div class="top_desc">
-						<div class="checkbox border checkFull">
-							<input type="checkbox" name="fullcheck" id="fullcheck" title="전체 동의">
-							<label for="fullcheck">전체</label>
+						<div>
+							<!-- 
+							<div class="checkbox border checkFull">
+								<input type="checkbox" name="fullcheck" id="fullcheck" title="전체 동의">
+								<label for="fullcheck">전체</label>
+							</div>
+							<a href="#nolink" class="com_txtinfo_type01">만료 예정 기관이 있어요.</a>
+							-->
+							<p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p>
 						</div>
-						<a href="#nolink" class="btn_recom"><span class="ico_line_down">추천기관</span></a>
+						<a href="#nolink" class="btn_recom" title="옵션 선택"><span class="ico_line_down"><span class="blind">현재옵션</span>추천기관</span></a>
 					</div>
 					
 					<div class="category_cont">
@@ -79,7 +85,7 @@
 								<strong class="institu_tit">은행 <em class="num">3</em></strong>
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree" id="checkall01" checked="checked">
-									<label for="checkall01">선택해제</label>
+									<label for="checkall01"><span class="blind">전체</span>선택해제</label>
 								</div>
 							</div>
 							<ul class="sel_list">
@@ -89,7 +95,7 @@
 										<label for="checkbox01_01">
 											<i class="ico_bank A1AABG0000"></i>
 											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결중</span>
+											<span class="txt_status">연결됨</span>
 										</label>
 									</div>
 								</li>
@@ -99,7 +105,7 @@
 										<label for="checkbox01_02">
 											<i class="ico_bank A1AABG0000"></i>
 											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결중</span>
+											<span class="txt_status">연결됨</span>
 										</label>
 									</div>
 								</li>
@@ -140,7 +146,7 @@
 										<label for="checkbox02_1">
 											<i class="ico_bank A1AABG0000"></i>
 											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결중</span>
+											<span class="txt_status">연결됨</span>
 										</label>
 									</div>
 								</li>
@@ -180,7 +186,7 @@
 										<label for="checkbox03_1">
 											<i class="ico_bank A1AABG0000"></i>
 											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결중</span>
+											<span class="txt_status">연결됨</span>
 										</label>
 									</div>
 								</li>
@@ -316,11 +322,19 @@
 						</div>
 					</div>
 				</div>
-
+				<!--
 				<div class="institu_desc">
-					<p class="txt">원하는 기관이 없다면<br>전체 기관에서 직접 선택해보세요</p>
+					<p class="txt">원하는 기관이 없다면<br>전체 기관에서 직접 선택해보세요.</p>
 					<a href="#nolink" class="link"><span>395개</span> 전체 기관 보기</a>
 				</div>
+				-->
+
+				<details class="ico_detail_noti" open="">
+					<summary><strong>알아두세요</strong></summary>
+					<div class="cont">
+						<p class="txt">자산 연결은 단순한 정보 조회이며, 신용평가에는 반영되지 않습니다. 또한, 강력한 보안 시스템을 통해 금융정보를 보호하니 안심하고 이용해 주세요.</p>
+					</div>
+				</details>
 			</div>
 
 		</div>

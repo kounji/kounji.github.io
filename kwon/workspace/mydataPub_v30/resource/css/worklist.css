@@ -73,14 +73,11 @@ table {border-collapse:collapse;width:100%;border-spacing:0;}
 
 .top_status{position:fixed;right:4px;top:4px;z-index: 99;}
 .top_status .stage {}
-.top_status .stage table:first-child {float:left;width:640px;margin-right:5px;}
-.top_status .stage table:last-child {width:160px;}
-.top_status .stage table:last-child th.rate {}
-.top_status .stage table:last-child th.conti {background-color:#bfbfbf;border-color:#bfbfbf;color:#000;}
-.top_status .stage table:last-child th.del {background-color:#ff3d3d;border-color:#ff3d3d;}
-.top_status .stage table th {width:calc(100% / 10); background:#e0f7f9; border:1px solid #e0f7f9;font-size:11px; text-align:center;color:#111; height:20px;border-right-color:#fff;}
+.top_status .stage table {table-layout: auto;}
+
+.top_status .stage table th {background:#e0f7f9; border:1px solid #e0f7f9;font-size:11px; text-align:center;color:#111; height:20px;border-right-color:#fff;}
 .top_status .stage table th:last-child {border-right-color:#e0f7f9;}
-.top_status .stage table td {text-align:center;border:1px solid #ccc;height:22px; font-size:12px;font-weight:bold;color:#000;background:#fff}
+.top_status .stage table td {text-align:center;border:1px solid #ccc;height:22px; font-size:12px;font-weight:bold;color:#000;background:#fff; width:100px;}
 
 .cont{position:relative;  padding-top:40px;}
 .cont h2 {position:relative; padding:10px 0 10px 15px; font-size:13px; border-top:1px solid #444; color:#111; font-weight:600; background:#e0f7f9;}
@@ -105,6 +102,7 @@ a:focus {color:#e30101}
 table thead th {padding:7px 3px;border:1px solid #ccc;background:#eee;font-size:13px; white-space: nowrap;}
 table tbody td {user-select:all;padding:7px 3px;background:#e5e5e5;border:1px solid #ccc;text-align:left;font-size:11px;color:#333;padding:0 5px;position:relative;}
 table tbody tr td {height:25px;box-sizing:border-box;display:table-cell;background:#fff;color:#444;vertical-align:middle;}
+table tbody tr td img {max-width:18rem;}
 table tbody tr:hover td {background:rgba(0,202,213,0.1);}
 table tbody td.center {text-align:center;padding:0;}
 table tbody tr.disabled {pointer-events:none;}

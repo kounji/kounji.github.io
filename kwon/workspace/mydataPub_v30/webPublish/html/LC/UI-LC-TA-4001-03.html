@@ -43,29 +43,25 @@
                     </div>
 
                     <!--개요-->
+                    <!--25-02-14 전체 미연결일 경우-->
                     <div class="outline">
-                        <h2><a href="#nolink">11월 지출</a></h2>
+                        <h2>11월 지출</h2>
                         
-                        <!--25-02-10 금액숨김 수정-->
-                        <div class="toggle_money">
-                            <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
-                            <label for="sum_view_01" class="btns">
-                                <span class="hide" aria-hidden="true">보기</span>
-                                <span class="show" aria-hidden="true">숨김</span>
-                            </label>
-                            <div class="sum">
-                                <span class="hide">쉿! 비밀이에요</span>
-                                <span class="show">1,952,692,372원</span>
-                            </div>
-                        </div>
-                        <!--//25-02-10 금액숨김 수정-->
-
-                        <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
+                        <p class="em">연결된 지출이 없어요. <button type="button" class="btns">연결</button></p>
+                        <p class="txt">결제 수단을 연결하면 확인할 수 있어요.</p>
                     </div>
+                    <!--//25-02-14 전체 미연결일 경우-->
 
                     <!--분류별 개요-->
                     <div class="wallet_outline">
                         <div class="board_box">
+                            <!--25-02-14 타이틀 추가-->
+                            <!--전체 미연결일 경우-->
+                            <h3 class="title">지출내역</a></h3>
+                            <!--일부 미연결일 경우-->
+                            <h3><a hhref="#" class="title">지출내역</a></h3>
+                            <!--//25-02-14 타이틀 추가-->
+
                             <ul role="tablist" class="inner_tab">
                                 <li class="on"><button type="button" role="tab" aria-selected="true">카드</button></li>
                                 <li><button type="button" role="tab" aria-selected="false">페이</button></li>
@@ -75,18 +71,18 @@
                             <div class="details not">
                                 <!--카드-->
                                 <div class="analysis">
-                                    <p class="h_tit01">카드 내역 확인하고<br>지출 관리 하세요</p>
+                                    <p class="h_tit01">카드 내역 확인하고<br>지출 관리 하세요.</p>
                                 </div>
 
                                 <!--페이
                                  <div class="analysis">
-                                    <p class="h_tit01">페이 내역 확인하고<br>지출 관리 하세요</p>
+                                    <p class="h_tit01">페이 내역 확인하고<br>지출 관리 하세요.</p>
                                 </div>
                                 -->
 
                                 <!--현금
                                  <div class="analysis">
-                                    <p class="h_tit01">현금 내역 확인하고<br>지출 관리 하세요</p>
+                                    <p class="h_tit01">현금 내역 확인하고<br>지출 관리 하세요.</p>
                                 </div>
                                 -->
                             </div>

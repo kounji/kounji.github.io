@@ -334,7 +334,7 @@ $(function(){
 	//	$('.slide_popup').animate({bottom:'0'});
 		$('body').addClass('scroll-off').on('scroll touchmove mousewheel', function(e) {e.preventDefault()});
 		$('#wrap').attr('aria-hidden', 'true').css('top', -scrollTop);
-		$(target).show().attr('aria-hidden', 'false').siblings('.slide_popup,.full_popup').attr('aria-hidden', 'true');
+		//$(target).show().attr('aria-hidden', 'false').siblings('.slide_popup,.full_popup').attr('aria-hidden', 'true');
 		self.addClass('layerPopupOpen');
 		$(target).find('.popup_header h1').attr('tabindex', 0).focus();
 		if(!$(target).find('div').hasClass('popup_header')){
@@ -465,6 +465,7 @@ $(function(){
 			var closeBtn = $('.target_money_wrap .tab_tooltip_wrap02 .com_btn_close');
 			closeBtn.on('click', function() {
 				$('.target_money_wrap .com_btn_info .arrow').hide();
+				setTimeout(function(){},0)
 			});
 		}
 
@@ -1793,6 +1794,15 @@ $(document).off('click.category_tab').on('click.category_tab', '.category_tab.ha
 	$(this).attr('aria-expanded', !isExpanded);
 	$tabList.toggleClass('open');
 });
+
+/*tooltip 닫기 후 focus 이동*/
+$(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_tooltip .com_btn_close', function(){
+	let $parent = $(this).parents('.custom_tooltip');
+
+	setTimeout(function(){
+		$(".com_btn_info", $parent).focus();
+	}, 0)
+})
 
 
 // aria-live test js

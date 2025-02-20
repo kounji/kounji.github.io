@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>대출 한도 계산기 | 연금절세</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>대출 한도 계산기</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view">
+			<!--
+			<ul role="tablist" class="tablist">
+				<li><button type="button" role="tab" aria-selected="false">맞춤상품 추천</button></li>
+				<li><button type="button" role="tab" aria-selected="false">대출이자 계산기</button></li>
+				<li class="on"><button type="button" role="tab" aria-selected="true">대출한도 계산기</button></li>
+			</ul>
+			-->
+			<!-- content -->
+			<div id="content">
+				<div class="loan_cal dsr">
+					<div class="tit_area">
+						<p class="sub_txt">대출계획이 필요하신가요?</p>
+						<h2 class="headline"><strong>대출한도를<br>간편하게 확인해보세요.</strong></h2>
+					</div>
+					<div class="btn_wrap">
+						<button type="button" class="btns gray">DSR이란?</button>
+					</div>
+					<div class="img_area">
+						<img src="../../../../src/assets_v40/images/img/img_dsr_cal.png" alt="">
+					</div>
+					<details class="ico_detail_noti">
+						<summary><strong>알아두세요</strong></summary>
+						<div class="cont">
+							<ul class="dotted_list">
+								<li>해당 계산결과는 실제대출로 상이할 수 있는 참고용 자료이므로, 정확한 대출 가능여부 및 한도 확인은 농축협 영업점과 NH콕뱅크에서 실제 대출심사를 통해 확인하실 수 있습니다.</li>
+								<li>본 대출한도(DSR) 계산기는 고객님의 자금운영을 돕기 위한 모의 계산서비스로, 사용 사실이 고객님의 신용정보에 영향을 주지 않으니 안심하시고 사용하셔도 됩니다.</li>
+							</ul>
+						</div>
+					</details>
+				</div>
+
+				<div class="loan_cal section">
+					<div class="tit_area">
+						<h3 class="headline sm"><strong>DSR 계산을 위한 소득 및<br>희망하는 대출정보가 필요해요.</strong></h3>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_01">연소득</label>
+						<span class="info_txt">연소득입력범위 : 100만원 ~ 1000억원</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_01" required="" placeholder="연소득을 입력해 주세요.">
+							<span class="unit">만원</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+100만</button>
+							<button type="button" class="btns">+500만</button>
+							<button type="button" class="btns">+1000만</button>
+							<button type="button" class="btns">+1억</button>
+						</div>
+						<span class="han"><span class="blind">입력금액확인</span>구천만원</span>
+						<span class="error_txt">100만원이상 입력해 주세요.</span>
+					</div>
+
+					<div class="formItem">
+						<span class="label">희망대출선택</span>
+						<div class="radio_box_group">
+							<div class="radio">
+								<input type="radio" name="loan_agree" id="loan_agree1">
+								<label for="loan_agree1">신용대출</label>
+							</div>
+							<div class="radio">
+								<input type="radio" name="loan_agree" id="loan_agree2">
+								<label for="loan_agree2">주택담보대출</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_02">희망대출금액</label>
+						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_02" required="" placeholder="희망대출금액을 입력해주세요.">
+							<span class="unit">만원</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+100만</button>
+							<button type="button" class="btns">+500만</button>
+							<button type="button" class="btns">+1000만</button>
+							<button type="button" class="btns">+1억</button> 
+						</div>
+						<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
+						<span class="error_txt">100만원이상 입력해 주세요.</span>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_03">대출기간</label>
+						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_03" required="" placeholder="대출기간을 입력해주세요.">
+							<span class="unit">개월</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+1년</button>
+							<button type="button" class="btns">+2년</button>
+							<button type="button" class="btns">+5년</button>
+							<button type="button" class="btns">+10년</button>
+						</div>
+						<span class="error_txt">6개월 이상 입력해 주세요.</span>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_04">대출이자율</label>
+						<span class="info_txt">대출이자율범위 : 1% ~ 30%</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_04" required="" placeholder="대출이자율을 입력해주세요.">
+							<span class="unit">%</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+0.5%</button>
+							<button type="button" class="btns">+1.0%</button>
+							<button type="button" class="btns">+2.0%</button>
+							<button type="button" class="btns">+4.0%</button>
+						</div>
+						<span class="error_txt">1% 이상 입력해 주세요.</span>
+					</div>
+				</div>
+
+				<div class="loan_cal section">
+					<div class="tit_area">
+						<h3 class="headline sm"><strong>보유중인 대출이에요.</strong></h3>
+					</div>
+					<!-- case1. 보유대출 있는 경우 
+					[아이콘]
+					.ico_loan01 : 전세보증금 담보대출
+					.ico_loan02 : 주택 담보대출
+					.ico_loan03 : 비주택 담보대출
+					.ico_loan04 : 기타 담보대출
+					.ico_loan05 : 유가증권 담보대출
+					.ico_loan06 : 장기 카드대출
+					.ico_loan07 : 학자금 대출
+					.ico_loan08 : 신용대출
+					.ico_loan09 : 기타대출
+					-->
+					<div class="board_box">
+						<p class="sum">확인된 보유대출</p>
+						<div class="cont">
+							<i class="ico ico_loan03"></i>
+							<p class="prod">비주택 담보대출</p>
+							<strong class="price">100,000,000원</strong>
+							<p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+						</div>
+						<div class="cont">
+							<i class="ico ico_loan01"></i>
+							<p class="prod">전세보증금 담보대출</p>
+							<strong class="price">100,000,000원</strong>
+							<p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+						</div>
+						<p class="info_txt">보유한 대출 중 보험대출의 경우 마지막 납부한 월의 이자율로 반영되므로 금액이 다를 수 있습니다.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btns md gray"><span class="icon_line_right sm">자산 연결하기</span></button>
+						</div>
+					</div>
+
+					<div class="board_box">
+						<p class="sum">내가 등록한 보유대출</p>
+						<div class="cont">
+							<i class="ico ico_loan05"></i>
+							<p class="prod">유가증권 담보대출</p>
+							<strong class="price">100,000,000원</strong>
+							<p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+							<div class="btns_wrap">
+								<button type="button" class="btns">수정</button>
+								<button type="button" class="btns">삭제</button>
+							</div>
+						</div>
+						<div class="cont">
+							<i class="ico ico_loan01"></i>
+							<p class="prod">전세보증금 담보대출</p>
+							<strong class="price">100,000,000원</strong>
+							<p class="info"><span class="interest">연 3.5%</span><span class="period">(60개월)</span></p>
+							<div class="btns_wrap">
+								<button type="button" class="btns">수정</button>
+								<button type="button" class="btns">삭제</button>
+							</div>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns md gray"><span class="icon_line_right sm">보유대출 등록하기</span></button>
+						</div>
+					</div>
+					<!-- //case1. 보유대출 있는 경우 -->
+					<!-- case2. 보유대출 없는 경우 -->
+					<div class="board_box">
+						<p class="sum black">확인된 보유대출이 없어요.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btn_add_dot">자산 연결하기</button>
+						</div>
+					</div>
+					<div class="board_box">
+						<p class="sum black">내가 등록한 대출이 없어요.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btn_add_dot">보유대출 등록하기</button>
+						</div>
+					</div>
+					<!-- //case2. 보유대출 없는 경우 -->
+
+					<div class="btns_wrap">
+						<button type="button" class="btns lg primary">DSR 계산하기</button>
+					</div> 
+				</div>
+
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+	</div>
+
+</body>
+</html>
+

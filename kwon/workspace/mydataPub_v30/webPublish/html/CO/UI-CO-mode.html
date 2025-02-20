@@ -49,9 +49,19 @@
 			<div class="popup_content">
 
 				<div class="mode_change">
-					<h2 class="h_tit01"><em>내게 맞는 모드</em>를 선택해 주세요.</h2>
+					<div class="head">
+						<h2 class="h_tit01"><em>내게 맞는 모드</em>를 선택해 주세요.</h2>
+					</div>
+
+					<!-- 청소년(만14~17세)일 경우 -->
+					<div class="head youth">
+						<h2 class="h_tit01"><em>지금은</em> 청소년모드만 볼 수 있어요.</h2>
+						<p>만18세부터 일반모드도 볼 수 있어요.</p>
+					</div>
+
 					<div class="board_box">
 						<ul role="tablist" class="inner_tab">
+							<!-- 청소년(만14~17세)일 경우 일반모드, 큰글모드 button에 disabled 추가해주세요. -->
 							<li class="on"><button type="button" role="tab" aria-selected="true">일반모드</button></li>
 							<li><button type="button" role="tab" aria-selected="false">큰글모드</button></li>
 							<li><button type="button" role="tab" aria-selected="false">청소년모드</button></li>

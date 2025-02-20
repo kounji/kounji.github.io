@@ -47,7 +47,7 @@
                     <div class="outline">
                         <!--25-02-10 링크추가 / 텍스트 수정 / 버튼추가-->
                         <h2><a href="#nolink">노후준비를 위해 모은 돈</a></h2>
-                        <p class="em">연결된 연금이 없어요 <button type="button" class="btns">연결</button></p>
+                        <p class="em">연결된 연금이 없어요. <button type="button" class="btns">연결</button></p>
                         <p class="txt">연금자산 연결하면 확인할 수 있어요.</p>
                         <!--//25-02-10 링크추가 / 텍스트 수정-->
                     </div>
@@ -55,16 +55,11 @@
 
 
                     <!--분류별 개요-->
+                    
                     <div class="board_box pension_outline">
-                        <div class="chart">
-                            <div class="word_bubble">
-                                <p class="em">아직<br><em>연결된 연금</em>이 없어요.</p><!--//25-02-10 텍스트 수정-->
-                            </div>
-                            <!--[v4.0] 25-01-23 애니메이션 이미지 추가-->
-                            <lottie-player src="../../../../src/assets_v40/images/lottie/icon_pension_3.json"  loop autoplay aria-hidden="true" class="icon_pension" ></lottie-player>
-                            <!--//[v4.0] 25-01-23 애니메이션 이미지 추가-->
-                            <canvas id="cate_outline_chart"></canvas>
-                        </div>
+                       <!--25-02-14 미연결 수정-->
+                       <lottie-player src="../../../../src/assets_v40/images/lottie/icon_pension_unconneted.json"  loop autoplay aria-hidden="true" class="icon_pension" ></lottie-player>
+                       <!--25-02-14 미연결 수정-->
                     
                         <ul role="tablist" class="inner_tab">
                             <li><button type="button" role="tab" aria-selected="false" disabled>국민연금</button></li><!--//25-02-10 텍스트 수정-->
@@ -82,16 +77,7 @@
                         </div>
                     </div>
 
-                    <script>
-                        var canvas  = document.getElementById("cate_outline_chart");
-                        var chart = canvas.getContext("2d");
-
-                        var drawDount = new drawdountChart(chart);
-
-                        drawDount.set(150, 140, 132, false, Math.PI, 0, 15, "#f7f8fa", 1);
-                        drawDount.bgdraw();
-                       
-                    </script>
+                    
                    
                 </section>
 

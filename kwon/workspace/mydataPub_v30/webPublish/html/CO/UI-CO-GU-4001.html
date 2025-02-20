@@ -26,69 +26,75 @@
 			<h1></h1>
 		</div>
 
-		<div class="popup_content">
-            <div class="mydata_outline">
-                <div class="slick">
-                    <div class="item">
-                        <div class="card">1</div>
-                    </div>
-                    <div class="item">
-                        <div class="card">2</div>
-                    </div>
-                    <div class="item">
-                        <div class="card">3</div>
-                    </div>
-                    <div class="item">
-                        <div class="card">4</div>
-                    </div>
-                </div>
-            </div>
+		<!-- <div class="popup_content">
+			<div class="mydata_outline">
+				<div class="slick">
+					<div class="item">
+						<div class="title">
+							<span>마이데이터</span>
+							<span>우리들의 자산 고민!</span>
+							<strong>새로워진<br>NH콕마이데이터 자산관리</strong>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="card">2</div>
+					</div>
+					<div class="item">
+						<div class="card">3</div>
+					</div>
+					<div class="item">
+						<div class="card">4</div>
+					</div>
+				</div>
+			</div>
 		</div>
-       
-        <div class="popup_footer fixed">
-            <div class="btn_full_box">
-                <button type="button" class="btn btn_mint">시작하기</button>
-                <button type="button" class="btn_txt">둘러보기</button>
-                <!-- <button type="button" class="btn btn_mint" disabled>확인</button> -->
-            </div>
-        </div>
-        
+	
+		<div class="popup_footer fixed">
+			<div class="btn_full_box btns_wrap">
+				<button type="button" class="btns lg primary">가입하고 시작하기</button>
+				<button type="button" class="btns_txt">체험하기</button>
+			</div>
+		</div> -->
+		
 		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
 		
 	</div>
 	<!--// full popup E -->
 
 
-    <script type="text/javascript">
-        $(function() {
-           slick (); //슬릭
-       });
+	<script type="text/javascript">
+		$(function() {
+		slick (); //슬릭
+	});
 
-       function slick () {
-           var $outline =  $('.mydata_outline .slick');
+	function slick () {
+		var $outline =  $('.mydata_outline .slick');
 
-           $outline.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-                   var i = (currentSlide ? currentSlide : 0 ) + 1 ;
-                   $(".open_data .paging").html('<em>'+i + '</em> / ' + slick.slideCount)
+		$outline.on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+			var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+			$(".open_data .paging").html('<em>'+i + '</em> / ' + slick.slideCount)
 
-           });
+			// $(slick.$slides[i-1]).attr("aria-hidden", false);
+		});
 
-           $outline.slick({
-               speed : 100,
-               dots : true,
-               adaptiveHeight: true,
-            //    autoplay:false,
-            //    autoplaySpeed:1000,
-               infinite: true,
-               draggable: true,
-               accessibility:true,
-               centerMode:true,
-               varialeWidth:false,
-               arrows : false,
-               cssEase:'linear'
-            //    centerPadding:'30px'
-           });
-       }
-   </script>
+		$outline.slick({
+			speed : 100,
+			dots : true,
+			// adaptiveHeight: true,
+			infinite: false,
+
+			slidesToShow: 1,
+            slidesToScroll: 1,		
+			draggable: true,
+			accessibility:true,
+			// centerMode:true,
+			// varialeWidth:false,
+			arrows : false,
+			cssEase:'linear'
+			//centerPadding:'30px'
+		});
+	}
+</script>
 </body>
 </html>

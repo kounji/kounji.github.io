@@ -42,17 +42,17 @@
 			<div class="asset_connect organ_sel">
 				<div class="tit_area">
 					<h2 class="headline">
-						자산목록을 조회했습니다<br>
-						<strong>연결할 자산을 선택</strong>해주세요
+						자산목록을 조회했습니다.<br>
+						<strong>관리하고 싶은 자산을<br> 선택</strong>해 주세요.
 					</h2>
 				</div>
 
 				<div class="sel_toggle_wrap">
 					<div class="top_desc">
-						<strong class="sel_toggle_tit">연결할 자산 12개</strong>
+						<strong class="sel_toggle_tit">연결할 자산 12</strong>
 						<div class="checkbox noicon checkGroup">
 							<input type="checkbox" name="allagree" id="allagree" checked="checked">
-							<label for="allagree">선택해제</label>
+							<label for="allagree"><span class="blind">전체</span>선택해제</label>
 						</div>
 					</div>
 
@@ -109,20 +109,73 @@
 							</div>
 						</details>
 					</div>
+
+					<div class="top_desc">
+						<strong class="sel_toggle_tit">연결 요청 실패 3</strong>
+						<button type="buitton" class="btns">연결 재시도</button>
+					</div>
+					<div class="connect_status retry">
+						<ul class="between_list">
+							<li>
+								<div>
+									<i class="ico_bank B1AABF0000"></i>
+									<strong class="bank_name">신한은행</strong>
+								</div>
+								<div>
+									<span class="status fail">실패</span>
+									<div class="custom_tooltip up">
+										<div class="com_tooltip_type02 com_tooltip_type03">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+											</a>
+										</div>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												해당 기관에 보유한 자산이 없습니다.<br>
+												(오류코드 <em>40403</em>)
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div>
+									<i class="ico_bank B1AABF0000"></i>
+									<strong class="bank_name">신한은행</strong>
+								</div>
+								<div>
+									<span class="status fail">실패</span>
+									<div class="custom_tooltip up">
+										<div class="com_tooltip_type02 com_tooltip_type03">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+											</a>
+										</div>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												해당 기관에 보유한 자산이 없습니다.<br>
+												(오류코드 <em>40403</em>)
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div> 
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="gray_box">
+						<p class="dotted_list">재연결이 가능한 기관에 한해 연결을 재시도 합니다.</p>
+					</div>
 				</div>
 
-				<div class="noti_wrap">
-					<strong class="noti_tit">알아두세요</strong>
-					<ul class="dotted_list">
-						<li>서비스 가입 전 신중히 고민하기</li>
-						<li>꼭 필요한 마이데이터 서비스만 가입하기</li>
-						<li>이용하지 않는 마이데이터 서비스는 해지하기</li>
-						<li>무분별한 마이데이터 서비스 가입은 개인신용정보의 남용을 초래할 수 있습니다. 마이데이터 서비스 이용현황은에서 확인하실 수 있습니다.</li>
-					</ul>
-				</div>
-
+				<details class="ico_detail_noti" open="">
+					<summary><strong>알아두세요</strong></summary>
+					<div class="cont">
+						<p class="txt">자산 연결은 단순한 정보 조회이며, 신용평가에는 반영되지 않습니다. 또한, 강력한 보안 시스템 적용으로 금융 정보를 보호하니 안심하고 이용해 주세요.</p>
+					</div>
+				</details>
 			</div>
-
 
 		</div>
 		<div class="popup_footer fixed">
@@ -138,11 +191,11 @@
 $(document).off('click.checkGroupAllCheck').on('click.checkGroupAllCheck','.checkGroup input[type=checkbox]', function(){
 	let checkItem = $('.checkbox input[type=checkbox]');
 	if($(this).prop('checked')){
-		$(this).next('label').text('선택해제');
+		$(this).next('label').html('<span class="blind">전체</span>선택해제');
 		$(this).prop('checked',true);
 		checkItem.prop('checked',true);
 	}else{
-		$(this).next('label').text('전체선택');
+		$(this).next('label').html('전체선택');
 		$(this).prop('checked',false);
 		checkItem.prop('checked',false);
 	};

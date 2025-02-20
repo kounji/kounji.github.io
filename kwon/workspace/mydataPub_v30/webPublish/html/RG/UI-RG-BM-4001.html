@@ -33,12 +33,12 @@
 				<section class="local_info bike">
 					<div class="mylocal">
 						<p class="txt">오늘 어디로<br>달릴까요?</p>
-						<p>행정안전부가 함께합니다</p>
+						<p>행정안전부가 함께합니다.</p> <!--[v4.0] 2025-02-13 마침표 추가 -->
 						<lottie-player src="../../../../src/assets_v40/images/lottie/bg_local_bike.json"  loop autoplay aria-hidden="true" class="local_lottie" ></lottie-player>
 					</div>
 					
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요" title="검색어를 입력하세요">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요" title="검색어"> <!--[v4.0] 2025-02-18 title 수정 -->
 						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
 						<button type="button" class="btn_search"><span class="blind">검색</span></button>
 					</div>
@@ -139,7 +139,7 @@
 								<li><a href="#navi14" role="tab" aria-selected="false">경남</a></li>
 								<li><a href="#navi14" role="tab" aria-selected="false">제주</a></li>
 							</ul>
-							<button type="button" class="btn_fold" aria-expanded="false"><span class="blind">토글 버튼</span></button>
+							<button type="button" class="btn_fold" aria-hidden="true"><span class="blind">토글 버튼</span></button> <!--[v4.0] 2025-02-18 버튼 속성 수정 -->
 						</div>
 						<div class="board_box">
 							<p class="sum">검색결과 총 <span class="num">12</span>개</p>
@@ -187,7 +187,7 @@
 
 					<!-- empty 케이스 -->
 					<div class="no_result">
-						<p class="text">검색결과가 없습니다</p>
+						<p class="text">검색결과가 없습니다.</p> <!--[v4.0] 2025-02-13 마침표 추가 -->
 					</div>
 					<!-- //empty 케이스 -->
 					

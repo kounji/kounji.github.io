@@ -155,7 +155,7 @@
 			if(nowDay.getDate() > setDay.getDate()){
 				lottery.count = 0;
 
-				alert('다음날');
+				//alert('다음날');
             }
 		}else{
 			lottery.count = 0;
@@ -234,7 +234,12 @@
 			$(".play").attr("disabled", false);
 		}, 3000)
 
-		
+		/*25-02-19 스크린리더 대응 포커스 이동*/
+		setTimeout(function(){
+			$(".lotteryGames").attr("tabIndex", 0);
+			$(".lotteryGames").focus();
+		}, 3100);
+		/*//25-02-19 스크린리더 대응 포커스 이동*/
 	}
 
 	let generatelottery = function(){

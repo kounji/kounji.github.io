@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>lottie test</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<link rel="stylesheet" href="../../../src/assets_v40/css/import.css">
+	<script type="text/javascript" src="../../../src/assets_v40/js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../resource/js/jquery.ui.touch-punch.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/common-ui-pub.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/pubUiComm.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/rMateChartH5/LicenseKey/rMateChartH5License.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/rMateChartH5/JS/rMateChartH5.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/slick.min.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/commonChart.js"></script>
+	<script type="text/javascript" src="../../../src/assets_v40/js/lottie-player.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+<style>
+section{position:relative; padding:0 2rem}
+section + section{border-top:4px dashed #111;}
+</style>
+</head>
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>pub test</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view">
+			<!-- content --> 
+			<div id="content"> 
+<!--  [memo] ====================================================================================================  -->
+<section>
+	<style>
+/* 알아두세요 영역 */
+.noti_wrap{margin:4rem -2rem 0; padding:3.4rem 2rem 0; border-top:0.6rem solid #f5f7fa;}
+.noti_wrap .noti_tit{padding-left:3rem; font-size:1.7rem; font-weight:600; color:var(--gray_02); line-height:2.4rem; background:url(../../../src/assets_v40/images/icon/icon_notice.png) no-repeat left 0.5rem center; background-size:1.8rem;}
+.noti_wrap .txt{margin-top:2rem; padding-left:0.5rem; line-height:2.2rem; font-size:1.5rem; color:var(--gray_03);}
+.noti_wrap .dotted_list{margin-top:2rem}
+.noti_wrap .dotted_list li{font-size:1.5rem;}
+	</style>
+
+	<div class="noti_wrap">
+		<strong class="noti_tit">알아두세요</strong>
+		<p class="txt">
+			마이데이터 서비스 가입 전 신중히 고민하고,
+			꼭 필요한 서비스만 가입해 주세요.
+			이용하지 않는 서비스는 해지를 권장합니다.
+		</p><!-- [v4.0] 25-02=11 문구수정 -->
+		<ul class="dotted_list">
+			<li><a href="#nolink" class="underline">내가 가입한 마이데이터 서비스 현황</a></li>
+			<li><a href="#nolink" class="underline">개인정보 처리방침</a></li>
+		</ul>
+	</div>
+</section>
+
+
+<!--  [lottie test] ====================================================================================================  -->
+<section>
+
+<style>
+.lottie_wrap{position:relative}
+
+</style>
+				<div class="lottie_wrap">
+					<lottie-player src="../../../src/assets_v40/images/lottie/test00.json"  background="transparent"  speed="1"  style="width:200px; height:200px;"  loop controls autoplay></lottie-player>
+					
+					<lottie-player src="../../../src/assets_v40/images/lottie/baby.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop controls autoplay></lottie-player>
+				</div>
+
+
+</section>
+<!--  [lotto test] ====================================================================================================  -->
+<section>
+				<style>
+					.btn_lotto{margin-bottom:10px; padding:10px 20px; border:0; background:#238789; color:#fff; border-radius:4px;}
+					.btn_clear{margin-bottom:10px; padding:10px 20px; border:0; background:#ddd; color:#333; border-radius:4px;}
+					.result {display:flex; justify-content:center;align-items:center;margin-top:5px; padding:5px 0;border:1px solid #238789;border-radius:4px;}
+					.result .number{display: inline-block; margin:5px; width:30px; height:30px; line-height:30px; text-align:center; font-size:18px; color:#fff; border-radius:50%;}
+				</style>
+				<div class="btn_area">
+					<button type="button" id="draw" class="btn_lotto">추첨</button>
+					<button type="button" id="clear" class="btn_clear">모두 삭제</button>
+				</div>
+		
+				<div id="resultWrap"></div>
+				<script>
+					const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+					let drawCount = 0; // 추첨 횟수 제한
+					
+					$(document).ready(function () {
+						loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+					});
+					// 추첨
+					$(document).off('click.lottoDraw').on('click.lottoDraw', '.btn_lotto', function() {
+						if (drawCount < 5) {
+							const newSet = generateNextSet(allPreviousSets);
+					
+							// 화면에 출력
+							const $resultDiv = $("<div>").addClass("result");
+							newSet.forEach(num => {
+								const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));
+								$resultDiv.hide().fadeIn(300).append($number);
+							});
+							$("#resultWrap").append($resultDiv);
+					
+							// 로컬 스토리지에 저장
+							allPreviousSets.push(newSet);
+							localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+					
+							drawCount++;
+						} else {
+							alert("5번까지만!");
+						}
+					});
+					// 모두 삭제
+					$(document).off('click.lottoClear').on('click.lottoClear', '.btn_clear', function() {
+						if (confirm("다 삭제?")) {
+							localStorage.removeItem('lottoNumbers');
+							$("#resultWrap").empty();
+							drawCount = 0;
+							alert("오케 다 삭제함");
+						}
+					});
+					
+					// 10 단위로 공색깔 변경
+					function getColor(number){
+						let color = "orange"; // 10 미만
+						if(number >=10 && number < 20){
+							color = "green"
+						}else if(number >=20 && number < 30){
+							color = "blue"
+						}else if(number >=30 && number < 40){
+							color = "red"
+						}else if(number >=40 && number < 50){
+							color = "purple"
+						}
+						return color;
+					}
+					
+					// 기존 로컬스토리지 데이터를 화면에 출력
+					function loadExistingResults() {
+					  allPreviousSets.forEach(set => {
+						const $resultDiv = $("<div>").addClass("result");
+						set.forEach(num => {
+						  const $number = $("<div>").addClass("number").text(num).css('background-color',getColor(num));
+						  $resultDiv.append($number);
+						});
+						$("#resultWrap").append($resultDiv);
+					  });
+					}
+					/*
+					function lottoNum (){
+					  let lotto = [];
+					  for(var i=0; i<6; i++){
+						let n = Math.floor(Math.random() * 45) + 1;
+						lotto.push(n);
+					  }  
+					  return lotto;
+					}
+					lottoNum ();
+					*/
+					function generateLottoNumbers() {
+					  const numbers = [];
+					  while (numbers.length < 6) {
+						const randNum = Math.floor(Math.random() * 45) + 1;
+						if (!numbers.includes(randNum)) {
+						  numbers.push(randNum);
+						}
+						console.log(numbers)
+					  }
+					  return numbers.sort((a, b) => a - b);
+					}
+					
+					function isValidSet(newSet, allSets) {
+					  for (const set of allSets) {
+						const commonNumbers = set.filter(num => newSet.includes(num));
+						if (commonNumbers.length > 5) {
+						  return false; // 기존 세트와 6개 이상 중복되면 실패
+						}
+					  }
+					  return true;
+					}
+					
+					function generateNextSet(allSets) {
+					  const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+					  let newSet;
+					
+					  do {
+						newSet = generateLottoNumbers();
+					  } while (!isValidSet(newSet, allSets));
+					
+					  return newSet;
+					}
+					
+					  
+					</script>
+					<!--
+					<script>
+						const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+					
+						function saveToLocalStorage() {
+						  localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+						}
+					
+						function loadExistingResults() {
+						  $("#results").empty();
+						  allPreviousSets.forEach((set, index) => {
+							addSetToDOM(set, index);
+						  });
+						}
+					
+						function addSetToDOM(set, index) {
+						  const $resultDiv = $("<div>").addClass("result").attr("data-index", index);
+						  set.forEach(num => {
+							const $number = $("<div>").addClass("number").text(num);
+							$resultDiv.append($number);
+						  });
+						  const $deleteBtn = $("<button>")
+							.addClass("delete-btn")
+							.text("삭제")
+							.click(function () {
+							  deleteSet(index);
+							});
+						  $resultDiv.append($deleteBtn);
+						  $("#results").append($resultDiv);
+						}
+					
+						function deleteSet(index) {
+						  allPreviousSets.splice(index, 1); // 배열에서 삭제
+						  saveToLocalStorage(); // 로컬 스토리지 갱신
+						  loadExistingResults(); // 화면 갱신
+						}
+					
+						function generateLottoNumbers() {
+						  const numbers = [];
+						  while (numbers.length < 6) {
+							const randNum = Math.floor(Math.random() * 45) + 1;
+							if (!numbers.includes(randNum)) {
+							  numbers.push(randNum);
+							}
+						  }
+						  return numbers.sort((a, b) => a - b);
+						}
+					
+						$(document).ready(function () {
+						  loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+					
+						  $("#draw").click(function () {
+							const newSet = generateLottoNumbers();
+					
+							allPreviousSets.push(newSet);
+							saveToLocalStorage(); // 로컬 스토리지에 저장
+							addSetToDOM(newSet, allPreviousSets.length - 1); // 화면에 추가
+						  });
+					
+						  $("#clear-all").click(function () {
+							if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+							  localStorage.removeItem('lottoNumbers');
+							  allPreviousSets.length = 0; // 배열 초기화
+							  $("#results").empty();
+							  alert("모든 데이터가 삭제되었습니다.");
+							}
+						  });
+						});
+					  </script>
+					
+					
+					<script>
+						const allPreviousSets = JSON.parse(localStorage.getItem('lottoNumbers')) || []; // 로컬 스토리지에서 기존 세트 가져오기
+						let drawCount = 0; // 추첨 횟수 제한
+					
+						// 기존 로컬스토리지 데이터를 화면에 출력
+						function loadExistingResults() {
+						  allPreviousSets.forEach(set => {
+							const $resultDiv = $("<div>").addClass("result");
+							set.forEach(num => {
+							  const $number = $("<div>").addClass("number").text(num);
+							  $resultDiv.append($number);
+							});
+							$("#results").append($resultDiv);
+						  });
+						}
+					
+						function generateLottoNumbers() {
+						  const numbers = [];
+						  while (numbers.length < 6) {
+							const randNum = Math.floor(Math.random() * 45) + 1;
+							if (!numbers.includes(randNum)) {
+							  numbers.push(randNum);
+							}
+						  }
+						  return numbers.sort((a, b) => a - b);
+						}
+					
+						function isValidSet(newSet, allSets) {
+						  for (const set of allSets) {
+							const commonNumbers = set.filter(num => newSet.includes(num));
+							if (commonNumbers.length > 5) {
+							  return false; // 기존 세트와 6개 이상 중복되면 실패
+							}
+						  }
+						  return true;
+						}
+					
+						function generateNextSet(allSets) {
+						  const allNumbers = Array.from({ length: 45 }, (_, i) => i + 1);
+						  let newSet;
+					
+						  do {
+							newSet = generateLottoNumbers();
+						  } while (!isValidSet(newSet, allSets));
+					
+						  return newSet;
+						}
+					
+						$(document).ready(function () {
+						  loadExistingResults(); // 기존 로컬 스토리지 데이터를 로드
+					
+						  $("#draw").click(function () {
+							if (drawCount < 5) {
+							  const newSet = generateNextSet(allPreviousSets);
+					
+							  // 화면에 출력
+							  const $resultDiv = $("<div>").addClass("result");
+							  newSet.forEach(num => {
+								const $number = $("<div>").addClass("number").text(num);
+								$resultDiv.append($number);
+							  });
+							  $("#results").append($resultDiv);
+					
+							  // 로컬 스토리지에 저장
+							  allPreviousSets.push(newSet);
+							  localStorage.setItem('lottoNumbers', JSON.stringify(allPreviousSets));
+					
+							  drawCount++;
+							} else {
+							  alert("추첨은 최대 5번까지만 가능합니다!");
+							}
+						  });
+					
+						  $("#clear").click(function () {
+							if (confirm("정말로 모든 데이터를 삭제하시겠습니까?")) {
+							  localStorage.removeItem('lottoNumbers');
+							  $("#results").empty();
+							  drawCount = 0;
+							  alert("로컬 스토리지 데이터가 삭제되었습니다.");
+							}
+						  });
+						});
+					  </script>
+					  -->
+</section>
+
+
+<!--  [chart test] ====================================================================================================  -->
+<section>
+	<div id="minwon-bar" class="progress-bar">
+		<div class="progress"> </div>
+	</div>
+	<div class="progress-bar2"></div>
+	<div class="progress-bar3"></div>
+	<div class="donut-container">
+		<div class="donut"> </div>
+	</div>
+	<div class="donut-container">
+		<div class="donut"> </div>
+	</div>
+<style>
+.progress-bar {
+width: 100%;
+height: 30px;
+background-color: #dedede;
+font-weight: 600;
+font-size: .8rem;
+margin-bottom: 1rem;
+}
+
+.progress-bar2,
+.progress-bar3 {
+width: 100%;
+height: 30px;
+font-weight: 600;
+font-size: .8rem;
+margin-bottom: 1rem;
+}
+
+.progress-bar .progress {
+width: 0;
+height: 30px;
+padding: 0;
+text-align: center;
+background-color: #4F98FF;
+color: #111;
+}
+
+.donut {
+width: calc(100% - 16px);
+padding-bottom: calc(100% - 16px);
+margin: 0 auto;
+border-radius: 50%;
+position: relative;
+text-align: center;
+}
+
+.donut::before {
+color: #fff;
+width: 70%;
+background: #264057;
+border-radius: 50%;
+position: absolute;
+left: 15%;
+top: 15%;
+display: block;
+content: attr(data-percent)'%';
+transform: skew(-0.03deg);
+margin: auto;
+font-weight: 800;
+font-size: 2vw;
+padding: calc(35% - 1.3vw) 0;
+}
+.donut-container {
+margin: 0 40vw 1rem 40vw;
+}
+</style>
+<script>
+const bar = document.querySelector("#minwon-bar .progress")  // 민원바
+const bar2 = document.querySelector(".progress-bar2")  // 민원바
+const bar3 = document.querySelector(".progress-bar3")  // 여러 색 민원바
+const donut = document.getElementsByClassName("donut")[0]
+const donut2 = document.getElementsByClassName("donut")[1]
+
+let totalMinwon = 72, resolveMinwon = 12
+let t = 0
+bar.style.width = 0
+const barAnimation = setInterval(() => {
+bar.style.width =  t + '%'
+t++ >= totalMinwon && clearInterval(barAnimation)
+}, 10)
+
+let t2 = 0
+const barAnimation2 = setInterval(() => {
+bar2.style.background = `linear-gradient(to right, #4F98FF 0 ${t2}%, #dedede ${t2}% 100% )`
+t2++ >= totalMinwon && clearInterval(barAnimation2)
+}, 10)
+
+let t3 = 0
+const barAnimation3 = setInterval(() => {
+bar3.style.background = totalMinwon > t3 ? `linear-gradient(to right, #4F98FF 0 ${t3}%, #dedede ${t3}% 100% )` : 
+totalMinwon + resolveMinwon > t3 ? `linear-gradient(to right, #4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${t3}%, #dedede ${t3}% 100%)` : 
+`linear-gradient(to right, #4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${totalMinwon + resolveMinwon}%, #dedede ${totalMinwon + resolveMinwon}% 100%)`
+t3++ >= totalMinwon + resolveMinwon && clearInterval(barAnimation3)
+}, 10)
+
+let t4 = 0
+const donutAnimation = setInterval(() => {
+donut.dataset.percent = t4
+donut.style.background = `conic-gradient(#4F98FF 0 ${t4}%, #DEDEDE ${t4}% 100% )`
+t4++ >= totalMinwon && clearInterval(donutAnimation)
+}, 10)
+
+let t5 = 0
+const donutAnimation2 = setInterval(() => {
+donut2.dataset.percent = t5
+donut2.style.background = totalMinwon > t5 ? `conic-gradient(#4F98FF 0 ${t3}%, #dedede ${t3}% 100% )` : 
+totalMinwon + resolveMinwon > t5 ? `conic-gradient(#4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${t3}%, #dedede ${t3}% 100%)` : 
+`conic-gradient(#4F98FF 0 ${totalMinwon}%, #f44336 ${totalMinwon}% ${totalMinwon + resolveMinwon}%, #dedede ${totalMinwon + resolveMinwon}% 100%)`
+t5++ >= totalMinwon + resolveMinwon && clearInterval(donutAnimation2)
+}, 10)
+
+const repeat = setInterval(() => {
+barAnimation() || barAnimation2() || barAnimation3()
+donutAnimation() || donutAnimation2()
+})
+</script>
+
+<svg id="color-gradient" width="400" height="400" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<defs>
+	<linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+	  <stop offset="0%" stop-color="red"/>
+	  <stop offset="50%" stop-color="blue" />
+	  <stop offset="100%" stop-color="yellow"/>
+	</linearGradient>
+</defs>
+  <circle cx="200" cy="200" r="100" fill="url(#gradient)"/>
+</svg>
+
+
+
+<svg style="width: 100px; height: 100px;">
+  <circle cx="50%" cy="50%" r="45" fill="none" stroke="grey" stroke-width="10%">
+
+  </circle>
+  <circle cx="50%" cy="50%" r="45" fill="none" stroke="orange" style="animation-name:  mat-progress-spinner-stroke-rotate-100; stroke-dashoffset: 197.92px; stroke-dasharray: 282.743px; stroke-width: 10%;">
+  </circle>
+</svg>
+<style>
+svg.svg {
+background: radial-gradient(ellipse at center, #ffffff 0%,#ffffff 56%,#bbbbbb 59%,#bbbbbb 100%);
+border-radius: 50%,
+}
+svg.svg circle{background: linear-gradient(249deg, #9D7CED 26.83%, #30CA82 93.73%);}
+</style>
+
+
+			  <div>
+				  <canvas id="myChart"></canvas>
+				</div>
+				
+				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+				
+				<script>
+				  const ctx = document.getElementById('myChart');
+				
+				  new Chart(ctx, {
+					type: 'doughnut',
+					data: {
+					  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+					  datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						borderWidth: 0.1
+					  }]
+					},
+					options: {
+					  scales: {
+						y: {
+						  beginAtZero: true
+						}
+					  }
+					}
+				  });
+				</script>
+				 
+
+</section>
+
+
+
+			</div>
+			<!--// content -->
+			
+		</div>
+	</div>
+
+</body>
+</html>
+

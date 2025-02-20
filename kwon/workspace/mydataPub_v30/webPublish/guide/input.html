@@ -26,20 +26,20 @@
 					<div class="input">
 						<input type="text" name="" id="input01" required title="이름" placeholder="이름을 입력해주세요."/>
 					</div>
-
+					<br><br>
 					<div class="input">
 						<label for="input02">이름<em class="required">(필수)</em></label>
 						<input type="text" name="" id="input02" required placeholder="이름을 입력해주세요."/>
 					</div>
-
+					<br><br>
 					<div class="input">
-						<input type="text" name="" id="input03" required title="이름" placeholder="이름을 입력해주세요."/>
+						<input type="number" name="" id="input03" required title="이름" placeholder="이름을 입력해주세요."/>
 						<span class="unit">만원</span>
 					</div>
-					
+					<br><br>
 					<div class="input">
 						<label for="input04">대출기간<em class="required">(필수)</em></label>
-						<input type="text" name="" id="input04" required placeholder="이름을 입력해주세요."/>
+						<input type="number" name="" id="input04" required placeholder="이름을 입력해주세요."/>
 						<span class="unit">개월</span>
 					</div>
 				</section>
@@ -51,32 +51,40 @@
 				<h3>02. 조합</h3>
 				<section class="source">
 					<div class="formItem">
+						<label for="loan_cal_01">희망대출금액</label>
+						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
 						<div class="input">
-							<label for="input04">대출기간<em class="required">(필수)</em></label>
-							<input type="text" name="" id="input04" required placeholder="이름을 입력해주세요."/>
-							<span class="unit">개월</span>
-						</div>
-						<div class="hint">
-							<span>대출기간범위 : 6개월 ~ 600개월</span>
-						</div>
-					</div>
-					
-					<div class="formItem">
-						<div class="input">
-							<label for="input04">대출기간<em class="required">(필수)</em></label>
-							<input type="text" name="" id="input04" required placeholder="이름을 입력해주세요."/>
-							<span class="unit">개월</span>
-						</div>
-						<div class="hint">
-							<span>대출기간범위 : 6개월 ~ 600개월</span>
-							<span class="han">일천만원</span>
+							<input type="text" name="" id="loan_cal_01" required="" placeholder="희망대출금액을 입력해 주세요.">
+							<span class="unit">만원</span>
 						</div>
 						<div class="btns_wrap">
-							<button type="button" class="btns">+100만원</button>
-							<button type="button" class="btns">+100만원</button>
-							<button type="button" class="btns">+100만원</button>
+							<button type="button" class="btns">+100만</button>
+							<button type="button" class="btns">+500만</button>
+							<button type="button" class="btns">+1000만</button>
+							<button type="button" class="btns">+1억</button>
 						</div>
-					</div>		
+						<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
+						<span class="error_txt">100만원이상 입력해 주세요.</span>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_02">대출기간</label>
+						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_02" required="" placeholder="대출기간을 입력해 주세요.">
+							<span class="unit">개월</span>
+						</div>
+						
+						<div class="btns_wrap">
+							<button type="button" class="btns">+1년</button>
+							<button type="button" class="btns">+2년</button>
+							<button type="button" class="btns">+3년</button>
+							<button type="button" class="btns">+10년</button> 
+						</div>
+						<span class="error_txt">6개월 이상 입력해 주세요.</span>
+					</div>
+
+					
 				</section>
 			</div>
 			<!-- //item -->
@@ -86,14 +94,25 @@
 				<h3>02. 버튼형</h3>
 				<section class="source">
 					<div class="input">
-						<input type="text" name="" id="input04" required placeholder="이름을 입력해주세요."/>
+						<input type="text" name="" id="input04_33" required placeholder="이름을 입력해주세요."/>
 						<button type="button" class="btn_search"><span class="blind">검색</span></button>
 					</div>
-
+					<br><br>
 					<div class="input">
-						<input type="text" name="" id="input04" required placeholder="이름을 입력해주세요."/>
+						<input type="text" name="" id="input04_333" required placeholder="이름을 입력해주세요."/>
 						<button type="button" class="btns">검색</button>
 					</div>
+					<br><br>
+					<div class="formItem">
+						<div class="input">
+							<label for="input04_334">거래 지점을 선택해 주세요.</label>
+							<input type="text" name="" id="input04_334" title="거래 지점" placeholder="직원명을 입력해 주세요.">
+							<button type="button" class="btns">검색</button>
+						</div>
+					</div>
+
+					
+
 				</section>
 			</div>
 			<!-- //item -->
@@ -102,36 +121,30 @@
 				<h3>03. Error</h3>
 				<section class="source">
 					<div class="input error">
-						<input type="text" name="" id="input01" required title="이름" value="잘못적음" placeholder="이름을 입력해주세요."/>
+						<input type="text" name="" id="input01_3454" required title="이름" value="잘못적음" placeholder="이름을 입력해주세요."/>
 					</div>
-
+					<br><br>
 					<div class="input error">
-						<label for="input02">이름<em class="required">(필수)</em></label>
-						<input type="text" name="" id="input02" required  value="잘못적음" placeholder="이름을 입력해주세요."/>
+						<label for="input02_1">이름<em class="required">(필수)</em></label>
+						<input type="text" name="" id="input02_1" required  value="잘못적음" placeholder="이름을 입력해주세요."/>
+					</div>
+					<br><br>
+					<div class="formItem error">
+						<label for="loan_cal_03">대출이자율</label>
+						<span class="info_txt">대출이자율 범위 : 1~30%</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_03" required="" placeholder="대출이자율을 입력해 주세요.">
+							<span class="unit">%</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+0.5%</button>
+							<button type="button" class="btns">+1.0%</button>
+							<button type="button" class="btns">+2.0%</button>
+							<button type="button" class="btns">+4.0%</button>
+						</div>
+						<span class="error_txt">1% 이상 입력해 주세요.</span>
 					</div>
 
-					<div class="formItem">
-						<div class="input error">
-							<label for="input04">대출기간<em class="required">(필수)</em></label>
-							<input type="text" name="" id="input04" required value="잘못적음" placeholder="이름을 입력해주세요."/>
-							<span class="unit">개월</span>
-						</div>
-						<div class="hint">
-							<span>대출기간범위 : 6개월 ~ 600개월</span>
-						</div>
-					</div>
-					
-					<div class="formItem">
-						<div class="input error">
-							<label for="input04">대출기간<em class="required">(필수)</em></label>
-							<input type="text" name="" id="input04" required value="잘못적음" placeholder="이름을 입력해주세요."/>
-							<span class="unit">개월</span>
-						</div>
-						<div class="hint">
-							<span>대출기간범위 : 6개월 ~ 600개월</span>
-							<span class="han">일천만원</span>
-						</div>
-					</div>	
 				</section>
 			</div>
 			<!-- //item -->
@@ -140,7 +153,15 @@
 				<h3>04. Readonly</h3>
 				<section class="source">
 					<div class="input">
-						<input type="text" name="" id="input01" required title="이름" value="홍길동" readonly placeholder="이름을 입력해주세요."/>
+						<input type="text" name="" id="input01_233" required title="이름" value="홍길동" readonly placeholder="이름을 입력해주세요."/>
+					</div>
+					<br><br>
+					<div class="formItem">
+						<div class="input">
+							<label for="input04_123">거래 지점을 선택해 주세요.</label>
+							<input type="text" name="" id="input04_123" title="거래 지점" value="의왕 농협" readonly placeholder="직원명을 입력해 주세요.">
+							<button type="button" class="btns">검색</button>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -150,11 +171,68 @@
 				<h3>05. Disabled</h3>
 				<section class="source">
 					<div class="input disabled">
-						<input type="text" name="" id="input01" required title="이름" value="홍길동" disabled placeholder="이름을 입력해주세요."/>
+						<input type="text" name="" id="input01_22" required title="이름" value="홍길동" disabled placeholder="이름을 입력해주세요."/>
+					</div>
+					<br><br>
+					<div class="formItem">
+						<div class="input">
+							<label for="input04_12333">거래 지점을 선택해 주세요.</label>
+							<input type="text" name="" id="input04_12333" title="거래 지점" value="의왕 농협" disabled placeholder="직원명을 입력해 주세요.">
+							<button type="button" class="btns">검색</button>
+						</div>
 					</div>
 				</section>
 			</div>
 			<!-- //item -->
+
+
+			<!-- item -->
+			<div class="item">
+				<h3>대출계산기</h3>
+				<section class="source">
+					<div class="loan_cal">
+						<div class="formItem">
+							<label for="loan_cal_01_1">희망대출금액</label>
+							<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
+							<div class="input">
+								<input type="text" name="" id="loan_cal_01_1" required="" placeholder="희망대출금액을 입력해 주세요.">
+								<span class="unit">만원</span>
+							</div>
+							<div class="btns_wrap">
+								<button type="button" class="btns">+100만</button>
+								<button type="button" class="btns">+500만</button>
+								<button type="button" class="btns">+1000만</button>
+								<button type="button" class="btns">+1억</button>
+							</div>
+							<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
+							<span class="error_txt">100만원이상 입력해 주세요.</span>
+						</div>
+	
+						<div class="formItem error">
+							<label for="loan_cal_03_1">대출이자율</label>
+							<span class="info_txt">대출이자율 범위 : 1~30%</span>
+							<div class="input">
+								<input type="text" name="" id="loan_cal_03_1" required="" placeholder="대출이자율을 입력해 주세요.">
+								<span class="unit">%</span>
+							</div>
+							<div class="btns_wrap">
+								<button type="button" class="btns">+0.5%</button>
+								<button type="button" class="btns">+1.0%</button>
+								<button type="button" class="btns">+2.0%</button>
+								<button type="button" class="btns">+4.0%</button>
+							</div>
+							<span class="error_txt">1% 이상 입력해 주세요.</span>
+						</div>
+	
+					</div>
+
+					
+				</section>
+			</div>
+			<!-- //item -->
+
+
+
 			<!-- item -->
 			<!-- <div class="item">
 				<h3>06. Textfield</h3>

@@ -48,23 +48,23 @@
 
 						<!--셋팅전-->
 						<div class="mylocal">
-							<p class="txt">우리 어디서<br>만날까요?</p>
-							<p>한국문화정보원이 함께합니다</p>
+							<p class="txt">전국의 문화시설을<br>확인할 수 있어요.</p> <!--[v4.0] 2025-02-17 문구수정 -->
+							<p>한국문화정보원이 함께합니다.</p> <!--[v4.0] 2025-02-13 마침표 추가 -->
 							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_local_culture.json"  loop autoplay aria-hidden="true" class="local_lottie" ></lottie-player> <!--[v4.0] 2025-01-24 배경이미지 로티json으로 변경 -->
 						</div>
 						<!--//셋팅전-->
 
 						<!--셋팅후-->
 						<div class="mylocal after">
-							<p class="txt">지금 <span>서울</span>을<br>만나러 갑니다</p>
-							<p>한국문화정보원이 함께합니다</p>
+							<p class="txt">지금 <span>서울</span>을<br>만나러 갑니다.</p> <!--[v4.0] 2025-02-13 마침표 추가 -->
+							<p>한국문화정보원이 함께합니다.</p> <!--[v4.0] 2025-02-13 마침표 추가 -->
 							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_local_culture_after.json"  loop autoplay aria-hidden="true" class="local_lottie" ></lottie-player> <!--[v4.0] 2025-02-07 로티json 파일명 변경 -->
 						</div>
 						<!--//셋팅후-->
 					</div>
 
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요($서울$지역)" title="검색어를 입력하세요($서울$지역)">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요($서울$지역)" title="검색어"> <!--[v4.0] 2025-02-18 title 수정 -->
 						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
 						<button type="button" class="btn_search"><span class="blind">검색</span></button>
 					</div>
@@ -74,8 +74,11 @@
 					</a>
 
 					<!-- empty 케이스 -->
-					<div class="no_result">
-						<p class="text">현재 관심지역이 미 설정 상태에요.<br>관심지역을 설정해보세요.</p>
+					<div class="board_box"> <!--[v4.0] 2025-02-17 박스 구조로 변경 -->
+						<p class="sum"><span class="local">전국</span> 검색결과 <span class="num">가나다</span>순</p>
+						<div class="no_result">
+							<p class="text">현재 관심지역을 설정하지 않았어요.<br>관심지역을 설정해 보세요.</p>
+						</div>
 					</div>
 					<!-- //empty 케이스 -->
 
@@ -87,11 +90,11 @@
 							<li><a href="#navi14" role="tab" aria-selected="false">미술관</a></li>
 							<li><a href="#navi14" role="tab" aria-selected="false">문예회관</a></li>
 						</ul>
-						<button type="button" class="btn_fold" aria-expanded="false"><span class="blind">토글 버튼</span></button>
+						<button type="button" class="btn_fold" aria-hidden="true"><span class="blind">토글 버튼</span></button> <!--[v4.0] 2025-02-18 버튼 속성 수정 -->
 					</div>
 					
 					<div class="board_box">
-						<p class="sum">검색결과 <span class="num">가나다</span>순</p>
+						<p class="sum"><span class="local">서울</span>지역 검색결과 <span class="num">가나다</span>순</p> <!--[v4.0] 2025-02-17 관심지역명 추가 -->
 						<ul class="cate_list ty_local">
 							<!-- [D]: 생활문화센터 : .local01, 문화의집 : .local02, 미술관 : .local03, 문예회관 : .local04 -->
 							<li class="local01">
@@ -130,7 +133,7 @@
 					<div class="board_box">
 						<h2 class="title">전국 인구현황</h2>
 						<div class="total_num">
-							<span class="pin purple">2022.10월 통계기준</span>
+							<span class="pin purple">2022년 10월 통계기준</span> <!--[v4.0] 2025-02-13 문구수정 -->
 							<p class="total">총 인구수 <span class="num">9,635,445</span>명</p>
 							<div class="box">
 								<p>남녀성비: <span class="num">1.05</span></p>

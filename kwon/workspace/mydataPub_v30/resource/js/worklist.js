@@ -605,6 +605,11 @@ $(document).ready(function(){
 	//[v4.0] insertList("탭ID","업무구분","depth2","depth3","depth4","화면명","화면ID","구분(수용,""삭제)","유형(화면,팝업,S팝업)","작업구분","오픈컨텐츠","작업자","완료일자","비고");
 	//function insertList(menuid,gubun,depth1,depth2,depth3,name,id,type,view,wtype,opencont,user,designer,writer,status,date,check,comment){
 	//[v4.0]
+	let count = 0; //전체
+	let count_change = 0; //AS-IS 건수
+	let done = 0; //완료건수
+	let del = 0;// 삭제건수
+
 	function insertList(menuid,depth1,depth2,depth3,depth4,name,id,type,wtype, opencont,writer,date,comment){
 		var cls = '';
 		
@@ -627,21 +632,52 @@ $(document).ready(function(){
 				// 	disabled = 'new';
 				// }
 
+				
+
 				switch(wtype){
 					case "신규":
 						disabled = 'new';
+						if(menuid != 'list00'){
+							count++;
+
+							if(date == '2025-01-10'){
+								count_change++;
+							}
+	
+							if(date != ''){
+								done++;
+							}
+						}
+						
+
+
 						break;
-					case "개선":
+					case "변경":
 						disabled = 'repair';
+						if(menuid != 'list00'){
+							count++;
+
+							if(date == '2025-01-10'){
+								count_change++;
+							}
+	
+							if(date != ''){
+								done++;
+							}
+						}
+						
 						break;
-					case "개편":
-						disabled = 'aaa';
-						break;
-					case "유지":
-						disabled = 'continue';
-						break;
+					// case "개편":
+					// 	disabled = 'aaa';
+					// 	count++;
+					// 	break;
+					// case "유지":
+					// 	disabled = 'continue';
+					// 	count++;
+					// 	break;
 					case "삭제":
 						disabled = 'disabled';
+						del++;
 						break;
 				};
 
@@ -692,7 +728,7 @@ $(document).ready(function(){
 			
 			if(typeof comment == 'object'){
 				for(var i = 0; i < comment.length; i++){
-					console.log(comment[i]);
+					//console.log(comment[i]);
 					comments += "<p>"+ comment[i]+"</p>";
 					//$("<p>"+ comment[i]+"</p").appendTo($(".comment", $(html)))
 				}
@@ -723,7 +759,41 @@ $(document).ready(function(){
 			$('#'+menuid).find('tbody').append(html);
 
 		}
+
+
+		
+
+		// <td aria-label="count-total"></td>
+		// 			<td aria-label="count-done"></td>
+		// 			<td aria-label="count-rate"></td>
+		// 			<td aria-label="count-asis"></td>
+		// 			<td aria-label="count-del"></td>
+
+
+		
+		/*
+		$('.stage').find('[aria-label=count]').eq(i).text(count +' / '+ arr);
+		$('.stage').find('[aria-label=count-total]').text((count2 - count4) +' / '+ (arr2 - count4));
+		*/
+
 	}
+
+	function setCount(){
+
+		console.log(count);
+		console.log(done);
+		console.log(count_change);
+		
+
+		var percent = Math.round(done / count * 100);
+
+		$('.stage').find('[aria-label=count-total]').text(count);
+		$('.stage').find('[aria-label=count-done]').text(done);
+		$('.stage').find('[aria-label=count-rate]').text(percent + '%');
+		$('.stage').find('[aria-label=count-asis]').text(count_change);
+		$('.stage').find('[aria-label=count-del]').text(del);
+	}
+
 	
 	function gridTab(){
 		var tabname = null;
@@ -825,7 +895,7 @@ $(document).ready(function(){
 	}
 
 	//화면 카운트
-	function setCount(){
+	function setCount2(){
 		var arr,
 				arr2 = 0,
 				arr3 = 0,
@@ -837,12 +907,16 @@ $(document).ready(function(){
 		$('.cont').each(function(i){
 			arr = $(this).find('#page').find('tr').not('.disabled').length;
 			arr2 = arr + arr2;
+			
 			count = $(this).find('#page').find('tr').not('.disabled').find('td[data-element=Y]').length;// + $(this).find('#page').find('tr').not('.disabled').find('td[data-element=M]').length;
+			
+			
 			count2 = count + count2;
 			arr3 = $(this).find('#page').find('tr.disabled').length;
 			count3 = arr3 + count3;
 			arr4 = $(this).find('#page').find('tr.continue').not('.disabled').length;
 			count4 = arr4 + count4;
+
 			$('.stage').find('[aria-label=count]').eq(i).text(count +' / '+ arr);
 			$('.stage').find('[aria-label=count-total]').text((count2 - count4) +' / '+ (arr2 - count4));
 		});

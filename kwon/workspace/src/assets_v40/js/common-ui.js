@@ -1673,11 +1673,19 @@ $(document).off('click.update').on('click.update', '.update .btn_update', functi
 /*category tab*/
 $(document).off('click.category_tab').on('click.category_tab', '.category_tab.has_btn .btn_fold', function() {
 	const $tabList = $(this).siblings('ul');
-	const isExpanded = $tabList.hasClass('open');
-
-	$(this).attr('aria-expanded', !isExpanded);
 	$tabList.toggleClass('open');
 });
+
+/*복붙시작영역 */
+
+/*tooltip 닫기 후 focus 이동*/
+$(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_tooltip .com_btn_close', function(){
+	let $parent = $(this).parents('.custom_tooltip');
+
+	setTimeout(function(){
+		$(".com_btn_info", $parent).focus();
+	}, 0)
+})
 
 function drawdountChart(canvas){
 	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;

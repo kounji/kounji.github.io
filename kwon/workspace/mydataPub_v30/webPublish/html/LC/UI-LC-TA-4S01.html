@@ -35,7 +35,7 @@
 					</div>
 
                     <!--개요-->
-                    <div class="outline"><!--늘은경우 up, ,줄은 경우 down class 추가, 0원인 경우 zero class 추가-->
+                    <div class="outline"><!--늘은경우 up, ,줄은 경우 down class 추가-->
                         <div class="board_box">
                             <h2><a href="#nolink">11월 지출</a></h2>
 
@@ -46,30 +46,29 @@
                                     <span class="show" aria-hidden="true">숨김</span>
                                 </label> 
                                 <div class="sum">
-                                    <span class="hide">쉿! 비밀이에요</span> 
+                                    <span class="hide">쉿! 비밀이에요.</span> 
                                     <span class="show"><em>1,952,692,372</em>원</span>
                                 </div>
                             </div>
 
                             <div class="details"><!--적게 쓴경우 down, 초과인 경우 up class 추가--> 
-                                <!-- 적게쓴 경우
+                               
+                                <!-- 작게 쓴 경우
                                 <div class="analysis">
-                                    <p>지난 달의 같은 기간보다<br>
-                                        <span class="num"><strong>1,367,020</strong>원</span><br>
-                                        <em>덜 쓰고 있어요.</em>
+                                    <p>지난달보다<br>
+                                        <em>적게</em> 쓰고 있어요.
                                     </p>
                                 </div>
                                 -->
+                                
                                 <div class="analysis">
-                                    <p>지난 달의 같은 기간과<br>
-                                        <em>동일해요.</em>
+                                    <p>지난달과 지출이<br><em>같아요.</em>
                                     </p>
                                 </div>
                                 <!-- 많이 쓴 경우
                                 <div class="analysis">
-                                    <p>지난 달의 같은 기간보다<br>
-                                        <span class="num"><strong>1,367,020</strong>원</span><br>
-                                        <em>많이 쓰고 있어요.</em>
+                                    <p>지난달보다<br>
+                                        <em>많이</em>  쓰고 있어요.
                                     </p>
                                 </div>
                                 -->
@@ -80,35 +79,39 @@
                                 -->
                             </div>
                         </div>
-                        <a href="#nolink"><em>내 지출 분석 내역</em><span>더보기</span></a>
+                        <a href="#nolink"><em>지출분석</em><span>상세보기</span></a>
                     </div>
 
                     <!--카드-->
                     <div class="board_box wallet_spend">
-                        <h2>
-                            <a href="#nolink" class="title">카드 이용 금액</a>
-                        </h2>
+                        <h2 class="title"><a href="#nolink">카드 이용 금액</a></h2>
                         <div class="card">
+                            <span class="num"><em>3,214,070</em>원</span>
+                        </div>
+                    </div>
+
+                    <!--페이-->
+                    <div class="board_box wallet_spend">
+                        <h2 class="title"><a href="#nolink">페이 이용 금액</a></h2>
+                        <div class="pay">
                             <span class="num"><em>14,070</em>원</span>
                         </div>
-
                     </div>
-                    
-                    <!--카드-->
+
+                    <!--현금-->
                     <div class="board_box wallet_spend">
-                        <h2 class="title">카드 이용 금액</h2>
-                        <!--내역이 없는 경우-->
-                        <div class="card">  
-                            <p> 카드 이용 내역이 없어요</p>
+                        <h2 class="title"><a href="#nolink">현금 이용 금액</a></h2>
+                        <div class="cash">
+                            <span class="num"><em>14,070</em>원</span>
                         </div>
                     </div>
 
-                    <!--카드-->
+                    <!--통신비-->
                     <div class="board_box wallet_spend">
-                        <h2 class="title">카드 이용 금액</h2>
-                        <!--미연결 경우-->
-                        <div>
-                            <a href="#" class="btns md gray"><span class="icon_line_right">내역 불러오기</span></a>
+                        <h2 class="title"><a href="#nolink">통신비 이용 금액</a></h2>
+                        <!--내역이 없는 경우-->    
+                        <div class="phone">  
+                            <span class="num"><em>14,070</em>원</span>
                         </div>
                     </div>
 

@@ -14,35 +14,32 @@
 <body>
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
-		<header id="header" class=" mydata2023">
-			<h1>자산</h1>
-			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
-			<div class="header_option">
-				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
-				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+		<header id="header">
+			<h1>부채관리</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
 		
 		<div class="content-view hasLNB mydata2023">
-			<div class="com_tabmenu_type01 menunum04">
-				<ul role="tablist">
-					<li><a href="#nolink">전체자산</a></li>
-					<li><a href="#nolink">자산현황</a></li>
-					<li class="on"><a href="#nolink">부채관리</a></li>
-					<li><a href="#nolink">자산진단</a></li>
-				</ul>
-			</div>
-			<div class="lnb">
-				<ul role="tablist">
-					<li><a href="#nolink">카드</a></li>
-					<li><a href="#nolink">대출</a></li>
-					<li><a href="#nolink">할부금융</a></li>
-					<li><a href="#nolink">자동차할부</a></li>
-					<li><a href="#nolink">리스</a></li>
-					<li class="on"><a href="#nolink">빌린돈</a></li>
-				</ul>
-			</div>
+			<nav class="navi">
+				<div class="inner">
+					<ul role="navigation" aria-label="부채관리" class="depth1-2">
+						<li><a href="#"><span>카드</span></a></li>
+						<li><a href="#"><span>대출</span></a></li>
+						<li><a href="#"><span>할부금융</span></a></li>
+						<li><a href="#"><span>자동차할부</span></a></li>
+						<li><a href="#"><span>학자금대출</span></a></li>
+						<li><a href="#"><span>리스</span></a></li>
+						<li><a href="#" aria-current="page"><span>빌린돈</span></a></li>
+					</ul>
+				</div>
+			</nav>
 
 			<div id="content" class="renewal">
 				<div class="com_inner">
@@ -50,7 +47,19 @@
 						<div class="title">
 							<div class="text">
 								빌린 돈<br>
-								<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+								<!-- [v4.0] 25-02-17 잔액숨김 기능추가 -->
+								<div class="toggle_money">
+									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="hide" aria-hidden="true">보기</span>
+										<span class="show" aria-hidden="true">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+								</div>
+								<!-- //[v4.0] 25-02-17 잔액숨김 기능추가 -->
 							</div>
 						</div>
 					</div>
