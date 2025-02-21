@@ -26,25 +26,57 @@
 			<h1></h1>
 		</div>
 
-		<!-- <div class="popup_content">
+		<div class="popup_content">
 			<div class="mydata_outline">
 				<div class="slick">
 					<div class="item">
-						<div class="title">
+						<div class="card">
 							<span>마이데이터</span>
-							<span>우리들의 자산 고민!</span>
-							<strong>새로워진<br>NH콕마이데이터 자산관리</strong>
+							<strong>새로워진<br>NH콕마이데이터<br>자산관리</strong>
+							<p>우리들의 자산 고민!</p>
 						</div>
-						<div class="img_wrap"></div>
 					</div>
 					<div class="item">
-						<div class="card">2</div>
+						<div class="card">
+							<span>자산이야기</span>
+							<strong>자산 흐름을 한 눈에!<br>지금 바로<br>체험해 보세요.</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
 					</div>
 					<div class="item">
-						<div class="card">3</div>
+						<div class="card">
+							<span>마이데이터</span>
+							<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
 					</div>
 					<div class="item">
-						<div class="card">4</div>
+						<div class="card">
+							<span>연금/절세</span>
+							<strong>연금 자산 분석하고<br>부족한 부분을<br>채워드립니다.</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="card">
+							<span>추천</span>
+							<strong>연금과 부동산<br>최선의 선택은?</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="card">
+							<span>지역</span>
+							<strong>지역 축제가<br>기다리고 있어요.</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="card">
+							<span>금융지식</span>
+							<strong>모르면 손해!<br>알아야<br>돈이 모인다!</strong>
+							<p>우리들의 자산 고민!</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -55,7 +87,7 @@
 				<button type="button" class="btns lg primary">가입하고 시작하기</button>
 				<button type="button" class="btns_txt">체험하기</button>
 			</div>
-		</div> -->
+		</div>
 		
 		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
 		
@@ -75,24 +107,22 @@
 			var i = (currentSlide ? currentSlide : 0 ) + 1 ;
 			$(".open_data .paging").html('<em>'+i + '</em> / ' + slick.slideCount)
 
-			// $(slick.$slides[i-1]).attr("aria-hidden", false);
+			$(slick.$slides[i-1]).attr("aria-hidden", false);
 		});
 
 		$outline.slick({
 			speed : 100,
 			dots : true,
-			// adaptiveHeight: true,
-			infinite: false,
-
-			slidesToShow: 1,
-            slidesToScroll: 1,		
-			draggable: true,
-			accessibility:true,
-			// centerMode:true,
-			// varialeWidth:false,
+			adaptiveHeight: true,
+			infinite : true,
+			// initialSlide : 1,
+			draggable : true,
+			accessibility : true,
+			centerMode : true,
+			centerPadding : '3rem',
+			varialeWidth : false,
 			arrows : false,
-			cssEase:'linear'
-			//centerPadding:'30px'
+			cssEase : 'linear'
 		});
 	}
 </script>

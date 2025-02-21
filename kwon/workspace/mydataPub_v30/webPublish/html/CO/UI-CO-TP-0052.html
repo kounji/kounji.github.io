@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>서비스 소개</title>
+	<title>[청소년] 서비스 이용가이드</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -31,11 +31,11 @@
 
 			<div class="service_intro theme youth">
 				<div class="slick">
-					<div class="item">
+					<div class="item on">
 						<div class="title">
 							<span>청소년</span>
 							<strong>통합메인</strong>
-							<p>게임, 간식, 쇼핑… 내 소비 패턴이 궁금하다면?<br>월별 지출과 사용 내역을 쉽게 체크할 수 있어요!</p>
+							<p>내 자산, 내 지출!<br>이제 쉽게 관리하고,똑똑하게 돈을 써보자!</p>
 						</div>
 						<div class="img_wrap"></div>
 					</div>
@@ -43,7 +43,7 @@
 						<div class="title">
 							<span>청소년</span>
 							<strong>나의 자산</strong>
-							<p>돈 관리, 더 똑똑하게!<br>내 자산 변화와 추천 서비스까지 한번에 확인하세요!</p>
+							<p>통장 잔액, 페이, 포인트 모두<br>한곳에서 쉽게 확인할 수 있어요.</p>
 						</div>
 						<div class="img_wrap"></div>
 					</div>
@@ -51,7 +51,7 @@
 						<div class="title">
 							<span>청소년</span>
 							<strong>나의 지출</strong>
-							<p>돈 관리, 어렵지 않아요!<br>월별 지출과 결제수단별 사용 내역을 한눈에 보여드릴게요!</p>
+							<p>내 소비 패턴이 궁금하다면?<br>월별 지출과 사용 내역을 쉽게 체크할 수 있어요!</p>
 						</div>
 						<div class="img_wrap"></div>
 					</div>
@@ -59,7 +59,7 @@
 						<div class="title">
 							<span>청소년</span>
 							<strong>금융지식</strong>
-							<p>궁금했던 금융 정보, 12가지 테마로 쉽게 알아보세요!<br>생활 속 금융 지식을 다양한 주제로 한눈에 확인할 수 있어요.</p>
+							<p>금융이 어렵지 않아요!<br>다양한 주제로 생활 속 금융 정보를 쉽게 배워보자!</p>
 						</div>
 						<div class="img_wrap"></div>
 					</div>
@@ -94,12 +94,13 @@
 				} else {
 					$('.service_intro').removeClass('theme');
 				}
+				$(slick.$slides[currentSlide]).addClass('on');
 			});
 
 			$intro.slick({
-				speed : 200,
+				speed : 400,
 				dots : true,
-				infinite: false,
+				infinite: true,
 				slidesToShow: 1,
 				slidesToScroll: 1,		
 				draggable: true,
