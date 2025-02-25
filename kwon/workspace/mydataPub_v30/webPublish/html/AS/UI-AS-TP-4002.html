@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>소액비활동성계좌 목록없음</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1>숨은자산</h1>
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+		</div>
+
+		<div class="popup_content">
+            <ul role="tablist" class="tablist">
+                <li class="on"><button type="button" role="tab" aria-selected="true">소액비활동성계좌</button></li>
+                <li><button type="button" role="tab" aria-selected="false">휴면예금</button></li>
+                <li><button type="button" role="tab" aria-selected="false">휴면보험금</button></li>
+            </ul>
+
+            <section class="sleep_account">
+                <!--update-->
+                <div class="update">
+                    <span>2025.07.31 15:02</span>
+                    <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+                </div>
+
+                <h2 class="h_tit03">소액 비활동성 계좌란?</h2>
+                <div class="custom_tooltip up">
+                    <div class="com_tooltip_type02 com_tooltip_type03">
+                        <a href="#nolink" class="com_btn_info" role="button">
+                            <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                        </a>
+                    </div>
+                    <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                        <div>
+                            <ul class="bl_dot_list">
+                                <li>1년 이상 사용하지 않은 잔액이 있는 비활동성 계좌 중 소액(100만원 이하)에 해당하는 계좌만 조회 가능합니다.</li>
+                                <li>계좌를 해지하여 잔액을 이전하거나, 서민금융진흥원에 기부할 수 있습니다.</li>
+                                <li>해지 처리가 완료된 이후 취소가 불가능합니다. </li>
+                            </ul>
+
+                            <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                        </div> 
+                    </div>
+                </div>
+
+                <!--계좌가 없을경우-->
+                <div class="no_result">
+                    <p class="text">조회 결과가 없어요.</p>
+                    <div class="bg">
+                        <lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+                    </div>
+                </div>
+            </section>
+		</div>
+
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		
+	</div>
+	<!--// full popup E -->
+
+
+</body>
+</html>
