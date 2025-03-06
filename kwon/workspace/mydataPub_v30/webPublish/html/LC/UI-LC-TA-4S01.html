@@ -51,27 +51,24 @@
                                 </div>
                             </div>
 
-                            <div class="details"><!--적게 쓴경우 down, 초과인 경우 up class 추가--> 
-                               
-                                <!-- 작게 쓴 경우
+                            <div class="details down"><!--적게 쓴경우 down, 초과인 경우 up class 추가--> 
+                                <!-- [v4.0] 25-02-28 문구 변경 -->
+                                <!-- 작게 쓴 경우-->
                                 <div class="analysis">
-                                    <p>지난달보다<br>
-                                        <em>적게</em> 쓰고 있어요.
-                                    </p>
+                                    <p>지난달보다 <span>100,000원</span> <em>덜 쓰고 있어요.</em></p>
                                 </div>
-                                -->
                                 
+                                <!-- 동일한 경우 
                                 <div class="analysis">
-                                    <p>지난달과 지출이<br><em>같아요.</em>
-                                    </p>
-                                </div>
-                                <!-- 많이 쓴 경우
-                                <div class="analysis">
-                                    <p>지난달보다<br>
-                                        <em>많이</em>  쓰고 있어요.
-                                    </p>
+                                    <p>지난달과 지출이 <em>동일해요.</em></p>
                                 </div>
                                 -->
+                                <!-- 많이 쓴 경우 
+                                <div class="analysis">
+                                    <p>지난달보다 <span>100,000원</span> <em>더 쓰고 있어요.</em></p>
+                                </div>
+                                -->
+                                <!-- //[v4.0] 25-02-28 문구 변경 -->
                                 <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                                 <!--
                                     초과인 경우 icon_wallet_up.json
@@ -192,8 +189,7 @@
                 </section>
 			</div>
 
-			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
-
+			<script src="../../../@pub_include/footer_senior.js"></script><!-- html용 footer_senior.js 개발팀 별도 적용 -->
 		</div>
 	</div>
 </body>

@@ -110,9 +110,17 @@
 							<button type="button" class="btns">검색</button>
 						</div>
 					</div>
-
-					
-
+					<br><br>
+					<div class="formItem flex">
+                        <label for="phone_id">주민등록번호</label>
+                        <div class="input">
+                            <input type="text" name="" id="phone_id" value="" placeholder="앞 6자리" > 
+                        </div>
+                        <span class="space">-</span>
+                        <div class="input">
+                            <input type="text" name="" id="phone_id_02" value="" placeholder="뒤 7자리"> 
+                        </div>
+                    </div>
 				</section>
 			</div>
 			<!-- //item -->
@@ -129,6 +137,17 @@
 						<input type="text" name="" id="input02_1" required  value="잘못적음" placeholder="이름을 입력해주세요."/>
 					</div>
 					<br><br>
+					<div class="formItem error">
+						<label for="account_02">계좌번호</label>
+						<div class="input">
+							<input type="text" name="" id="account_02" value="" placeholder="계좌번호 입력" title="계좌번호 입력"> 
+							<button type="button" class="btns">계좌확인</button>
+						</div>
+						<span class="error_txt">1% 이상 입력해 주세요.</span>
+					</div>
+
+					<br><br>
+
 					<div class="formItem error">
 						<label for="loan_cal_03">대출이자율</label>
 						<span class="info_txt">대출이자율 범위 : 1~30%</span>

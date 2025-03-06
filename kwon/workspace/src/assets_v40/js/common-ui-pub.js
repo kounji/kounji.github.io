@@ -1826,13 +1826,14 @@ $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_toolti
 // 	}, 10000);
 // });
 
-/* CHART */
+/* CHART - src/utils/canvas.js 로 이동 */
 function drawdountChart(canvas){
-	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;
+	this.x , this.y , this.dpr,this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir, this.lineCap = null;
 
-	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir){
+	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap){
 		this.x = x;
 		this.y = y;
+		this.dpr = 2;
 		this.radius = radius;
 		this.counterclockwise = counterclockwise;
 		this.from=from;
@@ -1845,6 +1846,12 @@ function drawdountChart(canvas){
 		}else{
 			this.dir = dir;
 		}
+		if(lineCap == null){
+			this.lineCap = "round";
+		}else{
+			this.lineCap = lineCap;
+		}
+
 		//console.log(" 시작방향이 어디야 : " + this.dir);
 	}
 
@@ -1853,47 +1860,41 @@ function drawdountChart(canvas){
 		canvas.beginPath();
 		canvas.lineWidth = this.lineWidth;
 		canvas.strokeStyle = this.strockStyle;
-		canvas.lineJoin = "bevel";
-		canvas.lineCap = "round";
+		canvas.lineJoin = "miter";
+		canvas.lineCap = this.lineCap;
 
-		canvas.arc(this.x , this.y , this.radius , this.from , this.to, this.counterclockwise);
+		canvas.arc(this.x, this.y , this.radius , this.from , this.to, this.counterclockwise);
 		canvas.stroke();
 	}
 
 	/*데이타 원 그리기*/
 	this.draw = function(data){
 		this.bgdraw();
-
-		console.log(data);
 		
-		var numberOfParts = data.numberOfParts;
+		//var numberOfParts = data.numberOfParts;
 		var parts = data.parts.pt;
 		var df = Math.PI * this.dir;
 
-		for(var i = 0; i<numberOfParts; i++){
+		for(var i = 0; i<parts.length; i++){
 			canvas.beginPath();
 			var colors = data.colors.cs[i];
 			var gradient = null;
 
 			gradient = canvas.createLinearGradient(this.x, this.y, df, df + (Math.PI * this.circle) * (parts[i] / 100));
-			//gradient = canvas.createRadialGradient(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100) - 0.1, this.radius + this.lineWidth + 5 );
 			
 			for(var j=0; j<colors.length; j++){
 			   gradient.addColorStop(colors[j][0], colors[j][1]);
-			   console.log(colors[j][0], colors[j][1]);
 			}
 			
 			canvas.strokeStyle = gradient;
-
-			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100), this.counterclockwise);
-			canvas.stroke();
-			
+			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100), this.counterclockwise);			
+			canvas.stroke();			
 			/*
 			console.log("시작점 " + i + " : " + df);
 			console.log("끝점 " + i + " : " + Math.PI*(1+ (parts[i] / 100))); 
 			*/
 
-			df += (Math.PI * 1) * (parts[i] / 100) ;
+			df += (Math.PI * this.circle) * (parts[i] / 100) ;
 		}
 	}
 }

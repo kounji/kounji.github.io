@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>[청소년]마이데이터 전체 개요</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>    
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup" id="full_popup_01"> 
+		<div class="popup_header">    
+			<h1></h1>
+		</div>
+
+		<div class="popup_content">
+			<div class="mydata_outline">
+				<div class="slick">
+					<div class="item">
+						<div class="card ty_01">
+							<span>마이데이터</span>
+							<strong>청소년을 위한<br>콕마이데이터(자산관리)<br>함께 하세요.</strong>
+							<p>나만의 자산관리 플래너</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="card ty_02">
+							<span>자산이야기</span>
+							<strong>자산 흐름을 한 눈에!<br>지금 바로<br>경험해 보세요.</strong>
+							<p>내 손 안에 자산리포트</p>
+						</div>
+					</div>
+					<div class="item">
+						<div class="card ty_03">
+							<span>소비이야기</span>
+							<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
+							<p>부자되는 지름길 함께해요.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div class="popup_footer fixed">
+			<div class="btn_full_box btns_wrap">
+				<button type="button" class="btns lg primary">가입하고 시작하기</button>
+				<button type="button" class="btns_txt">체험하기</button>
+			</div>
+		</div>
+		
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		
+	</div>
+	<!--// full popup E -->
+
+
+	<script type="text/javascript">
+		$(function() {
+		slick (); //슬릭
+	});
+
+	function slick () {
+		var $outline =  $('.mydata_outline .slick');
+
+		// $outline.on('afterChange', function(event, slick, currentSlide, nextSlide){
+		// 	$(slick.$slides[currentSlide]).addClass('on');
+		// });
+
+		$outline.slick({
+			speed : 200,
+			dots : true,
+			infinite : true,
+			draggable : true,
+			accessibility : true,
+			centerMode : true,
+			centerPadding : '3.1rem',
+			slidesToShow : 1,
+			arrows : false,
+			cssEase : 'linear'
+		});
+	}
+</script>
+</body>
+</html>

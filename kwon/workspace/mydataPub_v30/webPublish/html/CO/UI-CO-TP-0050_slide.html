@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>[일반] 서비스 이용가이드</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+<style>
+.full_popup:has(.service_intro) {--theme_bg:var(--primary);--tag_bg:#F0FFFA;--bg_trans:all 0.6s ease-in-out;}
+.full_popup:has(.service_intro) .popup_header,
+.full_popup:has(.service_intro) .popup_content,
+.full_popup:has(.service_intro) .popup_footer {transition:var(--bg_trans);}
+.full_popup:has(.service_intro) .popup_content {overflow:hidden;}
+.full_popup:has(.service_intro) .popup_content:has(+ .popup_footer.fixed) {padding-bottom:0;}
+.full_popup:has(.service_intro) .popup_footer {position:relative;background:#fff;}
+.full_popup:has(.service_intro) .popup_footer:before {content: "";position:absolute;top:0;left:2rem;width:calc(100% - 4rem);border-top:1px solid #F2F1F1;transition:var(--bg_trans);}
+.full_popup:has(.service_intro) .popup_footer button {transition:var(--bg_trans);}
+
+.full_popup:has(.service_intro.theme) .popup_header,
+.full_popup:has(.service_intro.theme) .popup_content,
+.full_popup:has(.service_intro.theme) .popup_footer {background:var(--theme_bg);}
+.full_popup:has(.service_intro.theme) .popup_header > h1 {color:#fff;}
+.full_popup:has(.service_intro.theme) .popup_header .prev {background-image:url("../images/icon/header/icon_prev_white.png");}
+.full_popup:has(.service_intro.theme) .btn_close {background-image:url("../images/icon/header/icon_close_white.png");}
+.full_popup:has(.service_intro.theme) .popup_footer:before {border-color:  rgba(242, 241, 241, 0.10);}
+.full_popup:has(.service_intro.theme) .btns {background-color:#fff;border-color:#fff;color:var(--gray_04);}
+
+.service_intro {position:relative;display:flex;flex-direction:column;flex:1;}
+.service_intro .title {display:flex;flex-direction:column;align-items:center;}
+.service_intro .title > span {opacity:0;padding:0.3rem 0.8rem;border-radius:0.8rem 0.8rem 0.8rem 0;font-size:1.4rem;font-weight:700;line-height:2rem;background-color:var(--tag_bg);color:var(--theme_bg);}
+.service_intro .title > strong {opacity:0;margin-top:0.7rem;font-size:2.4rem;font-weight:600;line-height:3.4rem;color:var(--theme_bg);}
+.service_intro .title > p {opacity:0;margin-top:1.5rem;text-align:center;font-size:1.4rem;font-weight:400;line-height:2rem;color:var(--gray_04);}
+.service_intro .img_wrap {opacity:0;flex:1;width:29.5rem;margin:0 auto;background-repeat:no-repeat;background-position:top center;background-size:100% auto;z-index:1;}
+.service_intro .slick, .service_intro .slick-list {display:flex;flex-direction:column;flex:1;}
+.service_intro .slick-track {display:flex;flex:1;}
+.service_intro .slick-dots {top:14.2rem;bottom:inherit;}
+.service_intro .slick-dots li {background:#8B939E;}
+.service_intro .slick-dots .slick-active {width:2.2rem;background:var(--primary);}
+.service_intro .slick-active .img_wrap {animation:fadeIn .4s ease-in-out forwards;}
+.service_intro .on .title > span {animation:fadeInUp .6s ease-in-out forwards;}
+.service_intro .on .title > strong {animation:fadeInUp .6s ease-in-out forwards;animation-delay:0.2s;}
+.service_intro .on .title > p {animation:fadeInUp .6s ease-in-out forwards;animation-delay:0.4s;}
+.service_intro .item {position:relative;display:flex;flex-direction:column;gap:7rem;}
+.service_intro .item:after {content:"";width:68rem;height:68rem;position:absolute;top:7.5rem;left:50%;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%, #DFFEFA 0%, rgba(223, 237, 254, 0.10) 70%, rgba(215, 234, 255, 0.00) 100%);z-index:-1;opacity:0.7;}
+
+.service_intro.theme .item:after {content:none;}
+.service_intro.theme .title > strong {color:#fff;}
+.service_intro.theme .title > p {color:#fff;}
+.service_intro.theme .slick-dots li {background:#CECECE;}
+.service_intro.theme .slick-dots .slick-active {background:#fff;}
+
+/* 서비스 가이드 [일반] */
+.service_intro .item[data-slick-index="0"] .img_wrap {background-image:url("../images/img/img_intro_01.png");}
+.service_intro .item[data-slick-index="1"] .img_wrap {background-image:url("../images/img/img_intro_02.png");}
+.service_intro .item[data-slick-index="2"] .img_wrap {background-image:url("../images/img/img_intro_03.png");}
+.service_intro .item[data-slick-index="3"] .img_wrap {background-image:url("../images/img/img_intro_04.png");}
+.service_intro .item[data-slick-index="4"] .img_wrap {background-image:url("../images/img/img_intro_05.png");}
+.service_intro .item[data-slick-index="5"] .img_wrap {background-image:url("../images/img/img_intro_06.png");}
+.service_intro .item[data-slick-index="6"] .img_wrap {background-image:url("../images/img/img_intro_07.png");}
+.service_intro .item[data-slick-index="7"] .img_wrap {background-image:url("../images/img/img_intro_08.png");}
+.service_intro .item[data-slick-index="8"] .img_wrap {background-image:url("../images/img/img_intro_09.png");}
+.service_intro .item[data-slick-index="9"] .img_wrap {background-image:url("../images/img/img_intro_10.png");}
+.service_intro .item[data-slick-index="10"] .img_wrap {background-image:url("../images/img/img_intro_11.png");}
+.service_intro .item[data-slick-index="11"] .img_wrap {background-image:url("../images/img/img_intro_12.png");}
+.service_intro .item[data-slick-index="12"] .img_wrap {background-image:url("../images/img/img_intro_13.png");}
+.service_intro .item[data-slick-index="13"] .img_wrap {background-image:url("../images/img/img_intro_14.png");}
+.service_intro .item[data-slick-index="14"] .img_wrap {background-image:url("../images/img/img_intro_15.png");}
+</style>
+</head>
+
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+
+	<!-- full popup S -->
+	<div class="full_popup " id="full_popup_01">
+		<div class="popup_header">
+			<h1>서비스 소개</h1>
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+		</div>
+
+		<div class="popup_content">
+
+			<div class="service_intro theme">
+				<div class="slick">
+					<div class="item on">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>리포트</strong>
+							<p>자산의 흐름을 한눈에!<br>재무 진단 받고 나의 금융스타일 확인해 보세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>나의 자산</strong>
+							<p>자산, 부채 변화를 한눈에 파악하고, <br>금융 지식을 쌓으며 스마트하게 자산관리 하세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>나의 지출</strong>
+							<p>돈 관리, 어렵지 않아요.<br>월별 지출과 카드, 페이, 현금 사용 내역을 한눈에 확인하세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>나의 연금/절세</strong>
+							<p>노후 준비를 위해 얼마나 모았을까?<br>연금자산 체크하고 절세 꿀팁 챙겨가세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>추천</strong>
+							<p>이벤트, 부동산, 마이카, 지역축제소식, <br>금융브리핑 다양한 컨텐츠 이용해 보세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>금융지식</strong>
+							<p>궁금했던 금융 정보, 12가지 테마로 쉽게 알아보세요!<br>생활 속 금융 지식을 다양한 주제로 한눈에 확인할 수 있어요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 지역축제</strong>
+							<p>신나는 축제 한가득.<br>한국관광공사와 함께 전국 축제 여행 떠나요!</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 지역문화시설</strong>
+							<p>특별한 문화 체험, 이제 쉽게 찾아보세요!<br>전국의 멋진 문화시설을 확인해 보세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 농촌여행</strong>
+							<p>농가에서 함께 생활하며, 농사도 배우고, <br>문화도 즐기고, 농촌의 매력을 느껴봐요!</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 자전거 국토종주</strong>
+							<p>자전거 여행 계획 중이라면<br>인기 코스부터 주변 시설까지 한눈에 알려드려요!</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 전국 둘레길</strong>
+							<p>한 걸음 한 걸음이 즐거운 길!<br>전국 둘레길 여행, 함께 떠나봐요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>NH지역정보 군장병 TMO 안내</strong>
+							<p>편한 이동을 위해! 군장병 TMO 이용법, <br>쉽고 빠르게 안내해 드려요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>로또복권 번호만들기</strong>
+							<p>매일매일~ 하루 다섯 번!<br>내 행운의 로또 번호 받아가세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>친구초대</strong>
+							<p>친구와 함께 금융 목표 달성!<br>자산관리도 이용해 보세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+					<div class="item">
+						<div class="title">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>나의 관심서비스</strong>
+							<p>내가 자주 찾는 서비스,<br>이제 전체메뉴에서 바로바로! 더 편리하게 이용하세요.</p>
+						</div>
+						<div class="img_wrap"></div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	
+		<div class="popup_footer fixed">
+			<div class="btn_full_box btns_wrap">
+				<button type="button" class="btns lg primary">닫기</button>
+			</div>
+		</div>
+		
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		
+	</div>
+	<!--// full popup E -->
+
+
+	<script type="text/javascript">
+		$(function() {
+			slick (); //슬릭
+		});
+
+		function slick () {
+			var $intro =  $('.service_intro .slick');
+			
+			$intro.on('afterChange', function(event, slick, currentSlide, nextSlide){
+				if (currentSlide === 0) {
+					$('.service_intro').addClass('theme');
+				} else {
+					$('.service_intro').removeClass('theme');
+				}
+				$(slick.$slides[currentSlide]).addClass('on');
+			});
+
+			$intro.slick({
+				speed : 400,
+				dots : true,
+				infinite: true,
+				slidesToShow: 1,
+				slidesToScroll: 1,		
+				draggable: true,
+				accessibility:true,
+				arrows : false,
+				cssEase:'linear'
+			});
+
+		}
+	</script>
+</body>
+</html>

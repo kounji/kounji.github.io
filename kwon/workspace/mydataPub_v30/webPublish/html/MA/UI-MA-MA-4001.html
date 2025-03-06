@@ -28,45 +28,112 @@
 		
 		<div class="content-view">
 			<div id="content">
+
 				<section class="united_main">
-
-                    <div class="update">
-						<span>조금전</span>
-						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+					<div class="title">
+						<h2><span>김농협</span> 고객님께 드리는<br><em>12월 자산관리 리포트입니다.</em></h2>
+						<div class="update">
+							<span>조금 전</span>
+							<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+						</div>
+						
+						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_mento.json"  loop autoplay aria-hidden="true" class="icon_united_me" ></lottie-player>
+						<!-- 140 x 130
+							금융멘토 icon_united_mento.json
+							디지털금융달인 icon_united_swell.json
+							저축왕 icon_united_savings_king.json
+							투자천재 icon_united_investment_genius.json
+							절약마스터 icon_united_saving_master.json
+							보험수호자 icon_united_insurance_guardian.json
+							신용지킴이 icon_united_credit_keeper.json
+							대출코치 icon_united_loan_coach.json -->
 					</div>
-					<!--진단-->
-					<div class="diagnosis_sheet">
 
-						<h2>
-							<span>김농협 고객님께 드리는<br><em>12월 자산관리 리포트입니다.</em></span>
-							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_me.json"  loop autoplay aria-hidden="true" class="icon_united_me" ></lottie-player>
-						</h2>
-
+					<!-- [나의 재무진단, 나의 금융스타일] -->
+					<div class="finance_sheet">
 						<div class="board_box">
 							<ul role="tablist" class="inner_tab green">
-								<li class="on"><button type="button" role="tab" aria-selected="false">나의 재무 진단</button></li>
+								<li class="on"><button type="button" role="tab" aria-selected="true">나의 재무 진단</button></li>
 								<li><button type="button" role="tab" aria-selected="false">나의 금융스타일</button></li>
 							</ul>
 
-							<!--나의 재무진단-->
-							<div></div>
+							<!-- [tab 01] 나의 재무진단 -->
+							<div class="analysis">
+								<!-- 적정 : 클래스 없음, 개선 : "down" 클래스 추가 -->
+								<ul>
+									<li>
+										<div class="graph"></div>
+										<strong>가계재무</strong>
+										<span class="bubble"></span>
+									</li>
+									<li>
+										<div class="graph"></div>
+										<strong>미래준비</strong>
+										<span class="bubble"></span>
+									</li>
+									<li class="down">
+										<div class="graph"></div>
+										<strong>부채관리</strong>
+										<span class="bubble"></span>
+									</li>
+								</ul>
+							</div>
 
-
-							<!--나의 금융스타일-->
-							<div></div>
-						</div>	
+							<!-- [tab 02] 나의 금융스타일 -->
+							<div class="style">
+								<p class="name">분산관리성향</p>
+								<div class="info">
+									<p>저축 및 투자 상품을 최소 1개씩 보유한</p>
+									<div class="label">
+										<span>저축 70%</span>
+										<span>투자 20%</span>
+									</div>
+								</div>
+								<canvas id="finance_style"></canvas>
+								<script>
+									const colors =[
+										[
+											[0,'#3fd999']
+										],
+										[
+											[0,'#6b75ff']
+										],
+										[
+											[0,'#F1F1F5']
+										]
+									]
+								
+									const data = {
+										parts:{"pt": [75 , 20, 5]},//percentage of each parts
+										colors:{"cs": colors }//color of each part
+									};
+			
+									var canvas  = document.getElementById("finance_style");
+									var chart = canvas.getContext("2d");									
+									var drawDount = new drawdountChart(chart);
+			
+									drawDount.set(50, 50, 40, false, Math.PI*1.5, Math.PI*3.5, 15, "#f7f8fa", 2, 1.5, "butt");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
+								
+									chart.clearRect(0, 0, 100, 100);
+									drawDount.draw(data);
+								</script>
+							</div>
+						</div>
 						
-						<details class="up"><!--늘은 경우 up , 줄은 경우 down class 추가-->
+						<details>
 							<summary>
 								<!--늘은경우-->
-								<p>지난달보다 자산이 늘었어요.</p>
+								<p>지난달보다 <strong>자산이 <em>늘었어요</em></strong></p>
+								<!-- 40 X 40 -->
+								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json"  loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
 
 								<!--동일한 경우
 								<p>지난달과 자산이 동일해요.</p>
 								-->
 
-								<!--줄은한 경우
+								<!--줄은 경우
 								<p>지난달보다 자산이 줄었어요.</p>
+								lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_down.json"  loop autoplay aria-hidden="true" class="icon_range" ></lottie-player>
 								-->
 							</summary>
 							<div>
@@ -75,35 +142,144 @@
 						</details>
 					</div>
 
-					<!--주가지수-->
+					<!-- [주가지수] -->
+					<div class="stock_sheet">
 
+					</div>
+					
+					<!-- [추천서비스] -->
+					<div class="promote_sheet">
 
+					</div>
 
-					<!--금융지식-->
+					<!-- [주요자산 변동내역] -->
+					<div class="asset_sheet">
+						<strong class="h_tit01">주요자산 변동내역</strong>
+						<input type="checkbox" id="asset_tog" class="toggle_btn">
+						<label for="asset_tog">전체열기</label>
+						
+						<ul class="asset_list">
+							<!-- menu01 : 예금, menu02 : 부동산, menu03 : 투자, menu04 : 연금, menu05 : 페이/포인트,
+								menu06 : 보험, menu07 : 카드, menu08 : 대출, menu09 : 자동차, menu10 : 기타자산, 
+								menu11 : 할부금융, menu12 : 자동차할부, menu13 : 학자금대출, menu14 : 리스, menu15 : 빌린돈 -->
+							<li class="menu02">
+								<div class="head">
+									<strong>부동산</strong>
+									<div class="link">
+										<span class="num"><em>1</em>건</span>
+									</div>
+								</div>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p>지난달보다 <span>1,000</span>원</p>
+								</div>
+							</li>
+							<li class="menu03">
+								<div class="head">
+									<strong>투자</strong>
+									<div class="link">
+										<span class="num"><em>1</em>건</span>
+									</div>
+								</div>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p>지난달보다 <span>1,000</span>원</p>
+								</div>
+							</li>
+							<li>
+								<div class="head">
+									<strong>연금</strong>
+									<div class="link">
+										<span class="num"><em>1</em>건</span>
+									</div>
+								</div>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p>지난달보다 <span>1,000</span>원</p>
+								</div>
+							</li>
+							<li>
+								<div class="head">
+									<strong>대출</strong>
+									<div class="link">
+										<span class="num"><em>1</em>건</span>
+									</div>
+								</div>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p>지난달보다 <span>1,000</span>원</p>
+								</div>
+							</li>
+							<li>
+								<div class="head">
+									<strong>자동차</strong>
+									<div class="link">
+										<span class="num"><em>1</em>건</span>
+									</div>
+								</div>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p>지난달보다 <span>1,000</span>원</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<!-- [자산분석을 통한 제안] -->
+					<div class="suggest_sheet">
 
+					</div>
+					
+					<!-- [신용과 건강] -->
+					<div class="credit_health_sheet">
+						<strong class="h_tit01">신용과 건강</strong>
+					</div>
+					
+					<!-- [건강, 연금/절세] -->
+					<div class="health_pension_sheet">
 
-					<!--주요자산 변동내역-->
+					</div>
 
+					<!-- [내가 연결한 자산] -->
+					<div class="connect_sheet">
+						<strong class="h_tit01">내가 연결한 자산</strong>
+						<div class="board_box">
+							<p class="txt"><strong>총 10개</strong> 기관에 연결되었습니다.</p>
+							<ul class="organ_list">
+								<li>
+									<div class="tit_area">
+										<strong class="tit">은행</strong>
+										<strong class="status">4</strong>
+									</div>
+									<div class="organ"><!-- 연결된 기관 2개까지 노출 -->
+										<span class="item"><i class="A1AAHJ0000"></i><span class="blind">카카오뱅크</span></span>
+										<span class="item"><i class="A1AAPF0000"></i><span class="blind">토스뱅크</span></span>
+									</div>
+								</li>
+								<li>
+									<div class="tit_area">
+										<strong class="tit">카드</strong>
+										<strong class="status">2</strong>
+									</div>
+									<div class="organ"> <!-- 연결된 기관 2개까지 노출 -->
+										<span class="item"><i class="E1AABJ0000"></i><span class="blind">하나카드</span></span>
+										<span class="item"><i class="ZVAAAF0000"></i><span class="blind">국민카드</span></span>
+									</div>
+								</li>
+							</ul>
+							<button type="button" class="btns md"><span class="icon_line_right">연결 기관 전체보기</span></button>
+						</div>
+					</div>
+					
+					<!-- [자산진단] -->
+					<div class="diagnosis_sheet">
+						<a href="#nolink" class="banner">
+							<p>한눈에 모아보는<br>자산 흐름 분석과 나의 자산진단</p>
+							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json" loop autoplay aria-hidden="true" class="lottie_bg" ></lottie-player>
+						</a>
+					</div>
 
-
-					<!--상품보기-->
-
-
-
-					<!--신용과 건강-->
-
-
-
-					<!-- 모르는 내용 연결 영역-->
-
-
-					<!-- 내가 연결한 자산-->
-					 
-
-					<!--배너-->
-
-
-					<!--나의 관심서비스-->
+					<!-- [나의 관심서비스] -->
 					<div class="favorite">
 						<h2 class="h_tit03">나의 관심서비스</h2>
 						<button type="button" class="btn_add">관심서비스 담기</button>
@@ -121,10 +297,13 @@
 						<p class="h_tit01">나의 관심서비스로<br>담아 놓고<br>빠르게 이동하세요.</p>
 					</div>
 
-
-					<!--설정-->
+					<div class="setting">
+						<button type="button">홈편집</button>
+						<button type="button">자산연결</button>
+					</div>
 
                 </section>
+
 			</div>
 
 			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->

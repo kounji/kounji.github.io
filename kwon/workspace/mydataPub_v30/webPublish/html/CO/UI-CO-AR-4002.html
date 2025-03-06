@@ -46,6 +46,7 @@
 				</div>
 				<div class="input">
 					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요.">
+					<button type="button" class="btn_delete"><span class="blind">삭제</span></button><!-- [v4.0] 25-02-28 삭제버튼 추가 -->
 					<button type="button" class="btn_search"><span class="blind">검색</span></button>
 				</div>
 
@@ -74,7 +75,7 @@
 							</div>
 							<a href="#nolink" class="com_txtinfo_type01">만료 예정 기관이 있어요.</a>
 							-->
-							<p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p>
+							<!-- [v4.0] 25-02-27 문구삭제 <p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p> -->
 						</div>
 						<a href="#nolink" class="btn_recom" title="옵션 선택"><span class="ico_line_down"><span class="blind">현재옵션</span>추천기관</span></a>
 					</div>
@@ -88,6 +89,7 @@
 									<label for="checkall01"><span class="blind">전체</span>선택해제</label>
 								</div>
 							</div>
+							<!--
 							<ul class="sel_list">
 								<li class="formItem">
 									<div class="checkbox border">
@@ -129,6 +131,15 @@
 									</div>
 								</li>
 							</ul>
+							-->
+							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+							<div class="no_result">
+								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
+								<div class="bg">
+									<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
 						</div>
 
 						<div class="institu_group" id="institu02">
@@ -139,6 +150,7 @@
 									<label for="allagree2">전체선택</label>
 								</div>
 							</div>
+							<!--
 							<ul class="sel_list">
 								<li class="formItem">
 									<div class="checkbox border">
@@ -169,6 +181,15 @@
 									</div>
 								</li>
 							</ul>
+							-->
+							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+							<div class="no_result">
+								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
+								<div class="bg">
+									<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
 						</div>
 
 						<div class="institu_group" id="institu03">
@@ -355,11 +376,11 @@ const observer_assetConnect = function(){
 		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ asset connect: ' + entries[0].isIntersecting);
 
 		if(!entries[0].isIntersecting){
-			$(".asset_connect .category_tab").addClass('fixed');
+			$(".organ_sel .category_tab").addClass('fixed');
 		}else{
-			$(".asset_connect .category_tab").removeClass('fixed');
+			$(".organ_sel .category_tab").removeClass('fixed');
 			
-			$.each($(".asset_connect .category_tab li"), function(i,obj){
+			$.each($(".organ_sel .category_tab li"), function(i,obj){
 				$("> a", $(obj)).attr('aria-selected', false);
 			});
 		}
@@ -376,43 +397,52 @@ const observer_assetConnect = function(){
 
 observer_assetConnect();
 
-let pop_nowScroll = 0; //초기 스크롤 위치
-
 var scroll_assetNav = function(idx){
-	const obj = $(".asset_connect .category_tab li").eq(idx);
+	const obj = $(".organ_sel .category_tab li").eq(idx);
 	const _left = $(obj).offset().left;
-	const _curLeft = $('.asset_connect .category_tab .scroller').scrollLeft();
+	const _curLeft = $('.organ_sel .category_tab .scroller').scrollLeft();
 
-	$(".asset_connect .category_tab .scroller").stop().animate({
+	$(".organ_sel .category_tab .scroller").stop().animate({
 		scrollLeft:_curLeft + _left - 20
 	}, 400);
 }
 
-$('.popup_content').off('scroll.poplayout').on('scroll.poplayout', function(){
-	$.each($(".institu_wrap .category_cont .institu_group"), function(idx, item){
-		let _top = $(item).position().top;
-		if(_top <= 90){
-			$.each($(".asset_connect .category_tab li"), function(i,obj){
-				$("> a", $(obj)).attr('aria-selected', false);
+
+$('.popup_content').each(function(){
+	let $parent = $(this);
+
+	$parent.off('scroll.poplayout').on('scroll.poplayout', function(){
+		$.each($(".institu_wrap .category_cont .institu_group"), function(idx, item){
+			let _top = $(item).position().top;
+			if(_top <= 90){
+				$.each($(".organ_sel .category_tab li"), function(i,obj){
+					$("> a", $(obj)).attr('aria-selected', false);
+				});
+
+				$(">a", $(".organ_sel .category_tab li").eq(idx)).attr('aria-selected', true);
+				scroll_assetNav(idx);
+			}	
+		});
+	});	
+
+
+	$( '.organ_sel .category_tab a', $parent ).each(function(){
+		$(this).click(function(){
+			const id = $(this).attr('href');
+			const _curTop =  $parent.scrollTop();
+			const _top = _curTop + $(id).position().top - $(".organ_sel .category_tab").outerHeight() - 15;
+			
+			$parent.stop().animate({
+				scrollTop : _top
+			},300, function(){
+				
 			});
-
-			$(">a", $(".asset_connect .category_tab li").eq(idx)).attr('aria-selected', true);
-			scroll_assetNav(idx);
-		}	
+		})
 	});
-});	
 
-$(document).off('click.asset_connect').on('click.asset_connect', '.asset_connect .category_tab a', function(){
-	const id = $(this).attr('href');
-	const _curTop = $('.popup_content').scrollTop();
-	const _top = _curTop + $(id).position().top - $(".asset_connect .category_tab").outerHeight() - 15;
-	
-	$('.popup_content').stop().animate({
-		scrollTop : _top
-	},300, function(){
-		
-	});
+
 });
+
 
 </script>
 </body>

@@ -23,7 +23,7 @@
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">    
-			<h1>소액비활동성계좌 계좌해지</h1>
+			<h1>계좌해지신청</h1>
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 		</div>
 
@@ -31,7 +31,7 @@
             <section class="close_account">
 
                 <div class="board_box">    
-                    <h3 class="title">해지대상 계좌</h3>        
+                    <h2 class="title">해지대상 계좌</h2>        
 
                     <div class="assets_info">
                         <i class="ico_bank D1AAJB0000"></i>
@@ -44,8 +44,8 @@
 
                     <details class="board_box_details">
                         <summary>
-                            <span class="show">자세히 보기</span>
-                            <span class="hide">닫기</span>
+                            <span class="show">계좌정보 더보기</span>
+                            <span class="hide">계좌정보 닫기</span>
                         </summary>
                         <div class="cont">
                             <ul class="sleep_list">
@@ -59,73 +59,106 @@
                     </details>
                 </div>
 
-                <h3>잔액 이전 방법</h3>
+                <div class="close_info">
+                    <h2>잔액 이전 방법</h2>
 
-                <div class="radio_round_group">
-                    <div class="radio round">
-                        <input type="radio" name="send_account" id="send_account1" checked>
-                        <label for="send_account1">
-                            <strong class="tit">내 계좌로 이체</strong>
-                        </label>
-                    </div>
-                    <div class="radio round">
-                        <input type="radio" name="send_account" id="send_account2">
-                        <label for="send_account2">
-                            <strong class="tit">서민금융진흥원에 기부</strong>
-                        </label>
-                    </div>
-                </div>
-
-                <h3>약관동의</h3>
-                <div class="view_cont">
-                    <ul class="agree_list">
-                        <li>
-                            <div class="checkbox">
-                                <input type="checkbox" name="agree1" id="check01_1" required="" title="고객 위임 동의">
-                                <button type="button" class="btn_detail ico_arrow">[필수] 고객 위임 동의<span class="blind">상세보기</span></button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <input type="checkbox" name="agree1" id="check01_2" required="" title="계좌통합관리서비스 이용약관">
-                                <button type="button" class="btn_detail ico_arrow">[필수] 계좌통합관리서비스 이용약관<span class="blind">상세보기</span></button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="checkbox">
-                                <input type="checkbox" name="agree1" id="check01_3" required="" title="개인정보 수집·이용에 관한 동의">
-                                <button type="button" class="btn_detail ico_arrow">[필수] 개인정보 수집·이용에 관한 동의 <span class="blind">상세보기</span></button>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <h3>잔액 이전 대상 계좌</h3>
-
-                <div class="formItem">
-                    <label for="account_01">받는 분</label>
-                    <button type="button" class="btns_select">은행 선택</button> 
-                    <div class="input">
-                        <input type="text" name="" id="account_01" placeholder="계좌번호 입력" title="계좌번호 입력">
+                    <div class="radio_round_group">
+                        <div class="radio round">
+                            <input type="radio" name="send_account" id="send_account1" checked>
+                            <label for="send_account1">
+                                <strong class="tit">내 계좌로 이체</strong>
+                            </label>
+                        </div>
+                        <div class="radio round">
+                            <input type="radio" name="send_account" id="send_account2">
+                            <label for="send_account2">
+                                <strong class="tit">서민금융진흥원에 기부</strong>
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-                <!--입력이 있는 경우-->
-                <div class="formItem">
-                    <label for="account_01">받는 분</label>
-                    <button type="button" class="btns_select" title="은행 선택하기"><span class="blind">현재선택</span>카카오카카오카카오</button>
-                    <div class="input">
-                        <input type="text" name="" id="account_01" value="214210757669" placeholder="계좌번호 입력" title="계좌번호 입력"> 
+                <div class="close_info">
+                    <h2>약관동의</h2>
+                    <div class="check_all">
+                        <div class="checkbox border">
+                            <input type="checkbox" name="allagree1" id="checkall1" required="">
+                            <label for="checkall1">전체동의</label>
+                        </div>
+                    </div>
+                    <div class="view_cont">
+                        <ul class="agree_list">
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="check01_1" id="check01_1" required="" title="고객 위임 동의">
+                                    <button type="button" class="btn_detail ico_arrow">[필수] 고객 위임 동의<span class="blind">상세보기</span></button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="check01_2" id="check01_2" required="" title="계좌통합관리서비스 이용약관">
+                                    <button type="button" class="btn_detail ico_arrow">[필수] 계좌통합관리서비스 이용약관<span class="blind">상세보기</span></button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="check01_3" id="check01_3" required="" title="개인정보 수집·이용에 관한 동의">
+                                    <button type="button" class="btn_detail ico_arrow">[필수] 개인정보 수집·이용에 관한 동의 <span class="blind">상세보기</span></button>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
+                <div class="close_info">
+                    <h2>이체</h2>
+
+                    <!--입력이 없는 경우-->
+                    <div class="formItem">
+                        <span class="label">은행</span>
+                        <button type="button" class="btns_select">은행 선택</button> 
+                    </div>
+
+                    <div class="formItem">
+                        <span class="label">계좌번호</span>
+                        <div class="input">
+                            <button type="button" class="account">계좌번호 입력</button>
+                            <button type="button" class="btns">계좌확인</button>
+                        </div>
+                    </div>
+
+                    <!--입력이 있는 경우-->
+                    <div class="formItem">
+                        <span class="label">은행</span>
+                        <button type="button" class="btns_select" title="은행 선택하기"><span class="blind">현재선택</span>카카오뱅크</button> 
+                    </div>
+
+                    <div class="formItem confirm">
+                        <span class="label">계좌번호</span>
+                        <div class="input">
+                            <button type="button" class="account" title="계좌번호 입력"><span class="blind">입력된 계좌</span><span class="num">2214210757669</span></button>                            
+                            <button type="button" class="btns" disabled>계좌확인</button>
+                        </div>
+                        <span class="error_txt">계좌확인이 완료되었어요.</span>
+                    </div>
+
+                    <!--입력하였으나 오류가 있는 경우-->
+                    <div class="formItem error">
+                        <span class="label">계좌번호</span>
+                        <div class="input">
+                            <button type="button" class="account" title="계좌번호 입력"><span class="blind">입력된 계좌</span><span class="num">2214210757669</span></button>
+                            <button type="button" class="btns">계좌확인</button>
+                        </div>
+                        <span class="error_txt">계좌번호를 다시 확인해주세요.</span>
+                    </div>
+                </div>
+                
                 <details class="ico_detail_noti" open>
-                    <summary><strong>꼭 확인해주세요.</strong></summary>
+                    <summary><strong>알아두세요</strong></summary>
                     <div class="cont">
                         <ul class="dotted_list">
                             <li>신청 후 취소 불가능합니다.</li>
-                            <li>본인의 수시입출금식 계좌로 이전 가능합니다.<br>(단, 증권사 계좌의 경우 종합매매 계좌만 가능합니다.</li>
+                            <li>본인의 수시입출금식 계좌로 이전 가능합니다.<br>(단, 증권사 계좌의 경우 종합매매 계좌만 가능합니다.)</li>
                         </ul>
                     </div>
                 </details>

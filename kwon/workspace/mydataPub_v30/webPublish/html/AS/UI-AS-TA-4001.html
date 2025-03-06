@@ -15,7 +15,7 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header">
-			<h1>자산</h1>
+			<h1>나의 자산</h1>
 
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 
@@ -38,15 +38,14 @@
 
                     <!--update-->
                     <div class="update">
-                        <span>조금전</span>
+                        <span>2025.07.31 15:20</span>
                         <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
                     </div>
 
                     <!--순자산-->
-                    <div class="assets_net"><!--늘은경우 up, ,줄은 경우 down class 추가-->
-                        <div class="board_box">
+                    <div class="assets_net up"><!--늘은경우 up,줄은 경우 down class 추가, 동일한 경우 클래스 없음 -->
+                        <div class="outline">
                             <h2>순자산</h2>
-
                             <div class="custom_tooltip up">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
                                     <a href="#nolink" class="com_btn_info" role="button">
@@ -66,12 +65,11 @@
                                         </ul>
                                         <p>자산 증감은 전월말 보유 자산과 현재 자산을 비교했어요.</p>
                                         
-
+    
                                         <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                     </div> 
                                 </div>
                             </div>
-
                             <!--25-02-10 금액숨김 수정--->
                             <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
@@ -84,22 +82,24 @@
                                     <span class="show">1,952,692,372원</span>
                                 </div>
                             </div>
-                            <!--25-02-10 금액숨김 수정-->
-
+                        </div>
+                        
+                        <!--25-02-10 금액숨김 수정-->
+                        <div class="board_box">
                             <!--25-02-24 문구수정-->
                             <p class="analysis">
-                                지난달보다 <span>5,095,452원</span> <br><em>늘었어요.</em>
+                                지난달보다 <span>5,095,452원</span> <em>늘었어요.</em>
                             </p>
 
                             <!--동일한 경우
-                            <p class="analysis">
-                                지난달과 자산이<br><em>같아요.</em>
+                            <p class="analysis"> 
+                                지난달과 <em>동일해요.</em>
                             </p>
                             -->
 
                             <!--줄은 경우
                             <p class="analysis">
-                                지난달보다 <span>5,095,452원</span> <br><em>줄어요.</em>
+                                지난달보다 <span>5,095,452원</span> <em>줄었어요.</em>
                             </p>
                             -->
 
@@ -108,24 +108,25 @@
                             <lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
                             <!--
                                 늘은경우 icon_asset_up.json
-                                줄은은경우 icon_asset_down.json
+                                줄은경우 icon_asset_down.json
+                                동일 icon_asset.json
                             -->
 
 
                             <div class="chart">
                                 <div class="bar">
-                                    <span class="asset_1" style="width:45.3%"></span><!--//금융-->
-                                    <span class="asset_2" style="width:10.5%"></span><!--//실물-->
-                                    <span class="asset_3" style="width:25.4%"></span><!--//기타-->
-                                    <span class="asset_4" style="width:18.8%"></span><!--//부채-->
+                                    <span class="asset_1" style="width:50%"></span><!--//금융-->
+                                    <span class="asset_2" style="width:20%"></span><!--//실물-->
+                                    <span class="asset_3" style="width:30%"></span><!--//기타-->
+                                    <!--25-03-06 부채 삭제 <span class="asset_4" style="width:18.8%"></span>--><!--//부채-->
                                 </div>
 
                                 <dl class="chart">
                                     <dt>나의 자산비율</dt>
-                                    <dd class="asset_1">금융<span>45.3%</span></dd>
-                                    <dd class="asset_2">실물<span>10.5%</span></dd>
-                                    <dd class="asset_3">기타<span>25.4%</span></dd>
-                                    <dd class="asset_4">부채<span>18.8%</span></dd>
+                                    <dd class="asset_1">금융<span>50%</span></dd>
+                                    <dd class="asset_2">실물<span>20%</span></dd>
+                                    <dd class="asset_3">기타<span>30%</span></dd>
+                                    <!--25-03-06 부채 삭제<dd class="asset_4">부채<span>18.8%</span></dd>-->
                                 </dl>
                             </div>
                         </div>
@@ -145,7 +146,7 @@
                     </div>
                     <!--//25-02-06 이벤트 있을경우 노출 배너 추가-->
 
-                    <!--금융자산-->
+                    <!-- 금융자산 -->
                     <div class="board_box assets_detail">
                         <h2>금융자산</h2>
                         
@@ -158,25 +159,39 @@
                                     <span class="show" aria-hidden="true">숨김</span>
                                 </label>
                                 <div class="sum">
-                                    *,***,***,***원
+                                    <span class="show">1,952,692,372원</span>
+                                    <span class="hide">금액숨김</span>
                                 </div>
                             </div>
                             <!--//25-02-10 금액숨김 수정-->
-
-                            <p class="latter">지난 달보다 <em class="num">**,***원</em></p>
+                            <!--늘은 경우 : analysis + up -->
+                            <p class="latter">지난달보다 <em class="num">12,223원</em> <em>늘었어요.</em></p>
+                                    
+                            <!--동일한 경우 : analysis 
+                            <p class="latter">지난달과 <em>동일해요.</em></p>
+                            -->
+                            <!--줄은 경우 : analysis + down 
+                            <p class="latter">지난달보다 <em class="num">12,223원</em> <em>줄었어요.</em></p>
+                            -->
                         </div>
 
                         <details class="board_box_details" open>
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">금융자산 보기</span>
+                                <span class="hide">금융자산 닫기</span>
                             </summary>
                             <div class="cont">
-                                <!--예금-->
-                               <details class="assets_toggle">
+                                <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+                                <a href="#nolink" class="unconnected">
+                                    <span class="item">예금</span>
+                                    <span class="txt">입출금, 예적금 확인하기</span>
+                                </a>
+                                <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
+                                <!--예금--> 
+                                <details class="assets_toggle">
                                     <summary>
                                         <span class="item">예금<em>34</em></span>
-                                        <span class="num">**,***,***원</span>
+                                        <span class="txt">금액숨김</span>
                                     </summary>
                                     <div class="cont">
                                         <ul class="assets_list">
@@ -185,9 +200,9 @@
                                                     <i class="ico_bank D1AAJB0000"></i>
                                                     <div>
                                                         <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
                                             <li>
@@ -195,9 +210,9 @@
                                                     <i class="ico_bank D1AAMW0000"></i>
                                                     <div>
                                                         <strong class="org">광주은행</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
                                             <li>
@@ -205,9 +220,9 @@
                                                     <i class="ico_bank D1AAHJ0000"></i>
                                                     <div>
                                                         <strong class="org">카카오뱅크</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
                                         </ul>
@@ -215,13 +230,13 @@
                                         <a href="#nolink" class="btns md">예금 전체보기</a>
                                         <!--//25-02-24 문구 수정-->
                                     </div>
-                               </details>
+                                </details>
 
-                               <!--투자-->
-                               <details class="assets_toggle">
+                                <!--투자-->
+                                <details class="assets_toggle">
                                     <summary>
                                         <span class="item">투자<em>1</em></span>
-                                        <span class="num">**,***,***원</span>
+                                        <span class="txt">금액숨김</span>
                                     </summary>
                                     <div class="cont">
                                         <ul class="assets_list">
@@ -230,9 +245,23 @@
                                                     <i class="ico_bank D1AAJB0000"></i>
                                                     <div>
                                                         <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#nolink"> 
+                                                    <i class="ico_bank D1AAJB0000"></i>
+                                                    <div>
+                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
+                                                        <strong class="account">3522230203283</strong>
+                                                    </div>
+                                                    <div class="num_wrap">
+                                                        <!-- case. 금액노출시 <strong class="num">22,668원</strong> -->
+                                                        <strong class="txt">금액숨김</strong>
+                                                        <span class="latter up"><em class="num">22,668원</em></span>
+                                                    </div>
                                                 </a>
                                             </li>
                                         </ul>
@@ -246,7 +275,7 @@
                                 <details class="assets_toggle">
                                     <summary>
                                         <span class="item">연금<em>1</em></span>
-                                        <span class="num">**,***,***원</span>
+                                        <span class="txt">금액숨김</span>
                                     </summary>
                                     <div class="cont">
                                         <ul class="assets_list">
@@ -255,13 +284,13 @@
                                                     <i class="ico_bank D1AAJB0000"></i>
                                                     <div>
                                                         <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
                                         </ul>
-                                         <!--3개 이상일 경우 노출 
+                                        <!--3개 이상일 경우 노출 
                                         <a href="#nolink" class="btns md">연금 전체보기</a>
                                         -->
                                     </div>
@@ -271,7 +300,7 @@
                                 <details class="assets_toggle">
                                     <summary>
                                         <span class="item">페이/포인트<em>1</em></span>
-                                        <span class="num">**,***,***원</span>
+                                        <span class="txt">금액숨김</span>
                                     </summary>
                                     <div class="cont">
                                         <ul class="assets_list">
@@ -279,15 +308,28 @@
                                                 <a href="#nolink">
                                                     <i class="ico_bank D1AAJB0000"></i>
                                                     <div>
-                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">***-**-****-***</strong>
+                                                        <strong class="org">페이페이페이</strong>
+                                                        <strong class="account">3522230203283</strong>
                                                     </div>
-                                                    <strong class="num">**,***,***원</strong>
+                                                    <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
+                                            <li>
+                                                <div>
+                                                    <i class="ico_bank D1AAJB0000"></i> 
+                                                    <div>
+                                                        <strong class="org">포인트포인트포인트</strong>
+                                                    </div>
+                                                    <div class="num_btns">
+                                                        <!-- case. 금액노출시 <strong class="num">22,668원</strong> -->
+                                                        <strong class="txt">금액숨김</strong>
+                                                        <button type="button" class="btns">입금신청</button>
+                                                    </div>
+                                                </div>
+                                            </li>
                                         </ul>
-                                         <!--3개 이상일 경우 노출 
-                                        <a href="#nolink" class="btns md">페이/푄트 전체보기</a>
+                                        <!--3개 이상일 경우 노출 
+                                        <a href="#nolink" class="btns md">페이/포인트 전체보기</a>
                                         -->
                                     </div>
                                 </details>
@@ -308,21 +350,37 @@
                                     <span class="show" aria-hidden="true">숨김</span>
                                 </label>
                                 <div class="sum">
-                                    1,952,692,372원
+                                    <span class="show">1,952,692,372원</span>
+                                    <span class="hide">금액숨김</span>
                                 </div>
                             </div>
                             <!--//25-02-10 금액숨김 수정-->
 
-                            <p class="latter">지난 달과 동일</p>
+                            <!--늘은 경우 : analysis + up
+                            <p class="latter">지난달보다 <em class="num">**,***원</em> <em>늘었어요.</em></p>
+                            -->
+                            <!--동일한 경우 : analysis -->
+                            <p class="latter">지난달과 <em>동일해요.</em></p>
+                            <!--줄은 경우 : analysis + down 
+                            <p class="latter">지난달보다 <em class="num">**,***원</em> <em>줄었어요.</em></p>
+                            -->
                         </div>
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">실물자산 보기</span>
+                                <span class="hide">실물자산 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
+                                    <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+                                    <li>
+                                        <a href="#nolink" class="unconnected">
+                                            <span class="item">부동산</span>
+                                            <span class="txt">최근 실거래는?</span>
+                                        </a>
+                                    </li>
+                                    <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
                                     <li>
                                         <a href="#nolink">
                                             <span class="item">부동산<em>1</em></span>
@@ -353,18 +411,26 @@
                                     <span class="show" aria-hidden="true">숨김</span>
                                 </label>
                                 <div class="sum">
-                                    1,952,692,372원
+                                    <span class="show">1,952,692,372원</span>
+                                    <span class="hide">금액숨김</span>
                                 </div>
                             </div>
                             <!--//25-02-10 금액숨김 수정-->
 
-                            <p class="latter">지난 달보다 <em class="num">5,092,236원</em></p>
+                            <!--늘은 경우 : analysis + up 
+                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
+                            -->
+                            <!--동일한 경우 : analysis 
+                            <p class="latter">지난달과 <em>동일해요.</em></p>
+                            -->
+                            <!--줄은 경우 : analysis + down -->
+                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em></p>
                         </div>
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">기타자산 보기</span>
+                                <span class="hide">기타자산 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
@@ -390,7 +456,7 @@
                         <h2>부채</h2>
                         
                         <div class="analysis down">
-                             <!--25-02-10 금액숨김 수정-->
+                            <!--25-02-10 금액숨김 수정-->
                             <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_05">
                                 <label for="sum_view_05" class="btns">
@@ -398,21 +464,37 @@
                                     <span class="show" aria-hidden="true">숨김</span>
                                 </label>
                                 <div class="sum">
-                                    1,952,692,372원
+                                    <span class="show">1,952,692,372원</span>
+                                    <span class="hide">금액숨김</span>
                                 </div>
                             </div>
-                             <!--//25-02-10 금액숨김 수정-->
+                            <!--//25-02-10 금액숨김 수정-->
 
-                            <p class="latter">지난 달보다 <em class="num">5,092,236원</em></p>
+                            <!--늘은 경우 : analysis + up 
+                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
+                            -->
+                            <!--동일한 경우 : analysis 
+                            <p class="latter">지난달과 <em>동일해요.</em></p>
+                            -->
+                            <!--줄은 경우 : analysis + down -->
+                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em></p>
                         </div>
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">부채 보기</span>
+                                <span class="hide">부채 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
+                                    <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+                                    <li>
+                                        <a href="#nolink" class="unconnected">
+                                            <span class="item">카드</span>
+                                            <span class="txt">카드 대출 내역확인</span>
+                                        </a>
+                                    </li>
+                                    <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
                                     <li>
                                         <a href="#nolink">
                                             <span class="item">카드<em>2</em></span>
@@ -466,8 +548,8 @@
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">납입 보험료 보기</span>
+                                <span class="hide">납입 보험료 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
@@ -568,8 +650,8 @@
                     <div class="bottom">
                         <!--25-02-24 문구수정-->
                         <a href="#nolink" class="btn_asset_edit">
-                           새로워진 NH콕뱅크 자산홈
-                           <strong>홍길동님의 관심자산별로 구성해보세요.</strong>
+                            새로워진 NH콕뱅크 자산홈
+                            <strong>김농협님의 관심자산별로 구성해보세요.</strong>
                         </a>
                         <!--//25-02-24 문구수정-->
                         <a href="#nolink" class="btn_connect left">더 연결할 자산이 있으신가요?</a>

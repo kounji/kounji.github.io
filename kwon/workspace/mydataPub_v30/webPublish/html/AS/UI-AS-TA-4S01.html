@@ -46,25 +46,26 @@
 								<span class="show" aria-hidden="true">숨김</span>
 							</label>
 							<div class="sum">
-								<span class="hide">소중한 내 자산</span>
+								<span class="hide">금액숨김</span><!-- 25-02-28 문구수정 -->
 								<span class="show"><em>1,952,692,372</em>원</span><!-- 25-02-19 em 태그추가 -->
 							</div>
 						</div>
 						<!-- //25-02-10 금액숨김 수정-->
+						<!-- 25-02-28 띄어쓰기수정 및 마침표추가 -->
 						<p class="analysis">
-							지난 달보다<span>5,095,452원</span><br><em>늘었어요</em>
+							지난달보다<span>5,095,452원</span> <em>늘었어요.</em>
 						</p>
 						<!--줄어든 경우
 						<p class="analysis">
-							지난 달보다<span>5,095,452원</span><br><em>줄었어요</em>
+							지난달보다<span>5,095,452원</span> <em>줄었어요</em>
 						</p>
 						-->
 						<!--동일한 경우
 						<p class="analysis">
-							지난 달과 자산이<br><em>같아요</em>
+							지난달과 <em>동일해요.</em>
 						</p>
 						-->
-
+						<!-- //25-02-28 띄어쓰기수정 및 마침표추가 -->
 						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset_up.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
 						<!--
 							늘은경우 icon_asset_up.json
@@ -89,8 +90,8 @@
 										<span class="show" aria-hidden="true">숨김</span>
 									</label>
 									<div class="sum">
-										<em>*,***,***,***</em>원
-									</div>
+										금액숨김
+									</div><!-- 25-02-28 아스타에서 문구로 변경 -->
 								</div>
 								<!-- //25-02-10 금액숨김 수정-->
 							</div>
@@ -103,7 +104,10 @@
 										<div>
 											<strong class="name">예금 <em>38</em></strong>
 										</div>
-										<strong class="num"><em>196,022,420</em>원</strong>
+										<!-- 25-02-28 아스타에서 문구로 변경 -->
+										<!--<strong class="num"><em>196,022,420</em>원</strong> -->
+										<strong class="txt">금액숨김</strong>
+										<!-- //25-02-28 아스타에서 문구로 변경 -->
 									</a>
 								</li>
 								<li>
@@ -112,7 +116,10 @@
 										<div>
 											<strong class="name">투자 <em>38</em></strong>
 										</div>
-										<strong class="num"><em>6,456</em>원</strong>
+										<!-- 25-02-28 아스타에서 문구로 변경 -->
+										<!--<strong class="num"><em>196,022,420</em>원</strong> -->
+										<strong class="txt">금액숨김</strong>
+										<!-- //25-02-28 아스타에서 문구로 변경 -->
 									</a>
 								</li>
 								<li>
@@ -121,7 +128,10 @@
 										<div>
 											<strong class="name">연금 <em>38</em></strong>
 										</div>
-										<strong class="num"><em>6,456</em>원</strong>
+										<!-- 25-02-28 아스타에서 문구로 변경 -->
+										<!--<strong class="num"><em>196,022,420</em>원</strong> -->
+										<strong class="txt">금액숨김</strong>
+										<!-- //25-02-28 아스타에서 문구로 변경 -->
 									</a>
 								</li>
 								<li>
@@ -130,7 +140,10 @@
 										<div>
 											<strong class="name">페이/포인트 <em>2</em></strong>
 										</div>
-										<strong class="num"><em>6,456</em>원</strong>
+										<!-- 25-02-28 아스타에서 문구로 변경 -->
+										<!--<strong class="num"><em>196,022,420</em>원</strong> -->
+										<strong class="txt">금액숨김</strong>
+										<!-- //25-02-28 아스타에서 문구로 변경 -->
 									</a>
 								</li>
 							</ul>
@@ -148,13 +161,13 @@
 							<div class="analysis">
 								<!-- 25-02-10 금액숨김 수정-->
 								<div class="toggle_money">
-									<input type="checkbox" title="금액숨김" name="" id="sum_view_03" checked>
+									<input type="checkbox" title="금액숨김" name="" id="sum_view_03">
 									<label for="sum_view_03" class="btns">
 										<span class="hide" aria-hidden="true">보기</span>
 										<span class="show" aria-hidden="true">숨김</span>
 									</label>
 									<div class="sum">
-										<em>*,***,***,***</em>원
+										<em>1,222,222</em>원
 									</div>
 								</div>
 								<!-- //25-02-10 금액숨김 수정-->
@@ -290,12 +303,12 @@
 				</div> 
 
 
-				<!--보험료 월 납입료 -->
+				<!--월 납입 보험료 -->
 				<div class="board_box assets_detail">
 					<details class="assets_toggle" open="">
 						<summary>
 							<div>
-								<span class="item">보험료 월 납입료</span>
+								<span class="item">월 납입 보험료</span><!-- 25-02-28 문구수정 -->
 							</div>
 							<div class="analysis">
 								<!-- 25-02-10 금액숨김 수정-->
@@ -394,17 +407,8 @@
 
 		</div>
 
-		<aside class="tabbar block">
-			<nav>
-				<ul>
-					<li><a href="#nolink">홈</a></li>
-					<li class="on"><a href="#nolink" title="선택됨">자산</a></li>
-					<li><a href="#nolink">지출</a></li>
-					<li><a href="#nolink">연금/절세</a></li>
-					<li><a href="#nolink">추천</a></li>
-				</ul>
-			</nav>
-		</aside>
+		<script src="../../../@pub_include/footer_senior.js"></script><!-- html용 footer_senior.js 개발팀 별도 적용 -->
+
 	</div>
 	
 </div>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>자산 | 리스</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>부채관리</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view hasLNB mydata2023">
+			<nav class="navi">
+				<div class="inner">
+					<ul role="navigation" aria-label="부채관리" class="depth1-2">
+						<li><a href="#"><span>카드</span></a></li>
+						<li><a href="#"><span>대출</span></a></li>
+						<li><a href="#"><span>할부금융</span></a></li>
+						<li><a href="#"><span>자동차할부</span></a></li>
+						<li><a href="#"><span>학자금대출</span></a></li>
+						<li><a href="#" aria-current="page"><span>리스</span></a></li>
+						<li><a href="#"><span>빌린돈</span></a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<div id="content" class="renewal">
+				<div class="com_inner">
+					<div class="new_sub_info">
+						<div class="title">
+							<div class="text">
+								갚을 돈<br>
+								<!-- [v4.0] 25-02-17 잔액숨김 기능추가 -->
+								<div class="toggle_money">
+									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
+									<label for="sum_view_01" class="btns">
+										<span class="hide" aria-hidden="true">보기</span>
+										<span class="show" aria-hidden="true">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+								</div>
+								<!-- //[v4.0] 25-02-17 잔액숨김 기능추가 -->
+							</div>
+						</div>
+					</div>
+					<div class="link_banner">
+						<a href="#nolink" role="button">
+							<img src="../../../../src/assets_v40/images/banner/link_banner_04.png" alt="내일 만기되는 우리전세자금대출을 콕콕신용대출로 변경하여 한도 혜택 받기">
+						</a>
+					</div>
+				</div>
+				
+				<hr class="hr02">
+
+				<div class="com_inner">
+					<div class="asset_link_box">
+						<ul class="list_type_01 debt_list"><!-- 08/28 .debt_list 추가 -->
+							<li>
+								<a href="#nolink">
+									<dl>
+										<dt>
+											<div>
+												<i class="H1AAPL0000"><span class="blind">NH농협</span></i>
+												<em class="prod_name">금융리스사 상품명</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">5,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+							<li>
+								<a href="#nolink">
+									<dl>
+										<dt>
+											<div>
+												<i class="H1AAPL0000"><span class="blind">NH농협</span></i>
+												<em class="prod_name">운용리스사 상품명</em>
+											</div>
+										</dt>
+										<dd>
+											<span class="com_price">
+												<em class="num">5,000,000</em><em class="unit">원</em>
+											</span>
+										</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+
+				<div class="new_add_register"><a href="#nolink" role="button"><span>더 연결할 자산이 있으신가요?</span></a></div>
+			</div>
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+		</div>
+	</div>
+	<script>
+		jQuery(document).ready(function(){
+			jQuery('.lnb [role=tablist] > li').each(function(){
+				// var lnb = jQuery('.lnb').not('.is_open');
+				// console.log(jQuery(this));
+				jQuery(this).on('click', function(){
+					// console.log(jQuery(this));
+					var scrollTo = jQuery(this).position().left - 100;
+					jQuery(this).parents(jQuery('.lnb').not('.is_open')).animate({'scrollLeft':scrollTo},500);
+					console.log(scrollTo);
+				});		
+			});
+		});
+	</script>
+</body>
+</html>

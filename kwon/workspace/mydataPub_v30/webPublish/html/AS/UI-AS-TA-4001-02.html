@@ -15,7 +15,7 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header">
-			<h1>자산</h1>
+			<h1>나의 자산</h1>
 
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 
@@ -32,7 +32,7 @@
 				<section class="assets_main">
                     <!--배너-->
                     <p class="top_banner">
-                        <a href="#nolink">작은 시작이 만드는 큰 행복,<br>자산관리 시작하기</a>
+                        <a href="#nolink">작은 시작이 만드는 큰 행복, 자산관리 시작하기</a>
                         <button type="button" class="btn_x"><span class="blind">삭제</span></button>
                     </p>
 
@@ -43,10 +43,9 @@
                     </div>
 
                     <!--순자산-->
-                    <div class="assets_net not">
-                        <div class="board_box">
+                    <div class="assets_net">
+                        <div class="outline">
                             <h2>순자산</h2>
-
                             <div class="custom_tooltip up">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
                                     <a href="#nolink" class="com_btn_info" role="button">
@@ -66,20 +65,43 @@
                                         </ul>
                                         <p>자산 증감은 전월말 보유 자산과 현재 자산을 비교했어요.</p>
                                         
-
+    
                                         <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                     </div> 
                                 </div>
                             </div>
+                            <p class="txt">연결한 자산이 없어요. <a href="#nolink" class="btns">연결</a></p>
+                        </div>
 
-                            <p class="txt">소중한 내 자산 <a href="#nolink" class="btns">연결</a></p>
-                            
-                            <lottie-player src="../../../../src/assets_v40/images/lottie/plz_asset_join.json"  loop autoplay aria-hidden="true" class="plz_asset_join" ></lottie-player>
+                        <div class="board_box">
+                            <p class="analysis"> 
+                                자산을 <br>연결해 보세요.
+                            </p>
+                            <lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
 
+                            <div class="chart">
+                                <div class="bar">
+                                    <span class="asset_1" style="width:0%"></span><!--//금융-->
+                                    <span class="asset_2" style="width:0%"></span><!--//실물-->
+                                    <span class="asset_3" style="width:0%"></span><!--//기타-->
+                                     <!--25-03-06 부채 삭제 <span class="asset_4" style="width:0%"></span>--><!--//부채-->
+                                </div>
+
+                                <dl class="chart">
+                                    <dt>나의 자산비율</dt>
+                                    <dd class="asset_1">금융<span>0%</span></dd>
+                                    <dd class="asset_2">실물<span>0%</span></dd>
+                                    <dd class="asset_3">기타<span>0%</span></dd>
+                                     <!--25-03-06 부채 삭제 <dd class="asset_4">부채<span>0%</span></dd> -->
+                                </dl>
+                            </div>
                         </div>
 
                         <div class="mystyle">
-                            <a href="#"><em>한번에 등록</em>하고 쉽게 관리해보세요</a>
+                            <a href="#">나의 금융 스타일, 콕 집어드려요!</a>
+                            <!--금액 노출된 경우 예시
+                            <a href="#">분산관리성향이 강한 <em>지출과다형</em></a>
+                            -->
                         </div>
                     </div>
 
@@ -88,23 +110,23 @@
                         <h2>금융자산</h2>
                         
                         <div class="analysis">
-                            <p class="txt">소중한 내 자산 <a href="#nolink" class="btns">연결</a></p>
+                            <p class="txt">금융자산이 없어요. <a href="#nolink" class="btns">연결</a></p>
                         </div>
 
                         <details class="board_box_details" open>
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">금융자산 보기</span>
+                                <span class="hide">금융자산 닫기</span>
                             </summary>
                             <div class="cont">
                                 <!--예금-->
                                 <a href="#nolink" class="unconnected">
                                     <span class="item">예금</span>
-                                    <span class="txt">문구 예시 필요</span>
+                                    <span class="txt">입출금, 예적금 확인하기</span>
                                 </a>
 
-                               <!--투자-->
-                               <a href="#nolink" class="unconnected">
+                                <!--투자-->
+                                <a href="#nolink" class="unconnected">
                                     <span class="item">투자</span>
                                     <span class="txt">수익률 확인하기</span>
                                 </a>
@@ -129,13 +151,13 @@
                         <h2>실물자산</h2>
                         
                         <div class="analysis">
-                            <p class="txt">소중한 내 자산 <a href="#nolink" class="btns">연결</a></p>
+                            <p class="txt">실물자산이 없어요. <a href="#nolink" class="btns">등록</a></p>
                         </div>
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">실물자산 보기</span>
+                                <span class="hide">실물자산 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
@@ -161,26 +183,26 @@
                         <h2>부채</h2>
                         
                         <div class="analysis down">
-                            <p class="txt">소중한 내 자산 <a href="#nolink" class="btns">연결</a></p>
+                            <p class="txt">부채는 없어요. <a href="#nolink" class="btns">연결</a></p>
                         </div>
 
                         <details class="board_box_details">
                             <summary>
-                                <span class="show">자세히 보기</span>
-                                <span class="hide">닫기</span>
+                                <span class="show">부채 보기</span>
+                                <span class="hide">부채 닫기</span>
                             </summary>
                             <div class="cont">
                                 <ul class="assets_list">
                                     <li>
                                         <a href="#nolink" class="unconnected">
                                             <span class="item">카드</span>
-                                            <span class="txt">최근 실거래는?</span>
+                                            <span class="txt">카드 대출 내역확인</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#nolink" class="unconnected">
                                             <span class="item">대출</span>
-                                            <span class="txt">꼼꼼히 관리하기</span>
+                                            <span class="txt">꼼꼼히 계획하고 관리하기</span>
                                         </a>
                                     </li>
                                     <li>
@@ -196,7 +218,7 @@
 
                     <!--보험료-->
                     <div class="board_box assets_detail insure">
-                        <h2>보험료 월 납입료</h2>
+                        <h2>월 납입 보험료</h2>
 
                         <div class="custom_tooltip up">
                             <div class="com_tooltip_type02 com_tooltip_type03">

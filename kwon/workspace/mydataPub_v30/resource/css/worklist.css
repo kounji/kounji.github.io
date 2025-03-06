@@ -69,7 +69,7 @@ table {border-collapse:collapse;width:100%;border-spacing:0;}
 .gnb .btns { padding:10px;}
 .gnb .btns > a{display:inline-block; padding:0.3rem 0.6rem;  font-size:1.3rem; color:#111; border:1px solid #999; border-radius:0.6rem; background:#fff; transition:all 20ms ease-in; }
 .gnb .btns > a:hover,
-.gnb .btns > a:focus{padding:0.1rem 0.6rem; color:#0196a2; border-color:#0196a2}
+.gnb .btns > a:focus{/* padding:0.1rem 0.6rem; */ color:#0196a2; border-color:#0196a2}
 
 .top_status{position:fixed;right:4px;top:4px;z-index: 99;}
 .top_status .stage {}
