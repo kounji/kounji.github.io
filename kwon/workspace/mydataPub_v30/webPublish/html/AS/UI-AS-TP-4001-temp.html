@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>해지 유의사항</title>
+	<title>이용약관동의</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -39,45 +39,76 @@
 	<!--// 팝업용 wrap 종료 -->
     <!-- full popup S -->
 	<div class="full_popup" id="full_popup_01">
+
 		<div class="popup_header">    
-			<h1>계좌 해지 유의사항
-			</h1>
+			<h1>이용약관동의</h1>
 		</div>
 
 		<div class="popup_content">
-            <section class="close_account">
-				<!-- 25-03-07 수정 -->
+            <section class="sleep_account">
 				<div class="tit_area">
-					<h2 class="headline">
-						해지 가능한 계좌입니다.<br>
-						아래 항목을 꼭 확인해 주세요.
+					<h2 class="headline">계좌 해지 가능 여부 확인을 위해<br>
+						이용약관에 동의해 주세요.	
 					</h2>
 				</div>
-				<!-- //25-03-07 수정 -->
 
+				<div class="agree_wrap active open"  data-ui-toggle="box">
+					<div class="check_all">
+						<div class="checkbox border">
+							<input type="checkbox" name="allagree1" id="checkall1" required="" title="전체동의">
+							<button type="button" class="btn_detail">전체동의<span class="blind">상세보기</span></button>
+						</div>
+						<button type="button" class="view_btn" aria-expanded="true"><span class="blind">필수약관</span></button>
+					</div>
+					<div class="view_cont">
+						<ul class="agree_list">
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_2" required="" title="개인정보 수집&middot;이용 동의">
+									<button type="button" class="btn_detail ico_arrow">[필수] 개인정보 수집&middot;이용 동의<span class="blind">상세보기</span></button>
+								</div>
+							</li>
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_1" required="" title="고객 위임 동의">
+									<button type="button" class="btn_detail ico_arrow">[필수] 고객 위임 동의<span class="blind">상세보기</span></button>
+								</div>
+							</li>
+							
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_3" required="" title="계좌통합관리서비스 이용약관">
+									<button type="button" class="btn_detail ico_arrow">[필수] 계좌통합관리서비스 이용약관 <span class="blind">상세보기</span></button>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<!--
                 <div class="check_all">
                     <div class="checkbox border">
                         <input type="checkbox" name="allagree1" id="checkall1" required="">
-                        <label for="checkall1">전체선택</label>
+                        <label for="checkall1">전체동의</label>
                     </div>
                 </div>
 
                 <div class="view_cont check_group">
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account1">
-                        <label for="close_account1">계좌해지는 처리가 완료된 이후 취소가 불가능합니다.</label><!-- 25-03-07 수정 -->
+                        <label for="close_account1">[필수] 개인정보 수집·이용 동의</label>
                     </div>
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account2">
-                        <label for="close_account2">계좌정보 및 해지예상금액 관련 세부사항은 해당 금융회사에 문의하시기 바랍니다.</label><!-- 25-03-07 수정 -->
+                        <label for="close_account2">계좌 정보 및 해지 예상금액 관련 세부사항은 해당 금융회사에 문의하시기 바랍니다.</label>
                     </div>
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account3">
-                        <label for="close_account3">다른 금융회사로 잔고이전 할 때에는 이체수수료가 발생할 수 있습니다.</label><!-- 25-03-07 수정 -->
+                        <label for="close_account3">다른 금융회사로 잔고 이전할 때에는 이체 수수료가 발생할 수 있습니다.</label>
                     </div>   
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account4">
-                        <label for="close_account4">계좌를 해지하는 경우 해당 계좌에 등록되어 있는 자동이체(신용&middot;체크카드 포함)가 해지됩니다.</label><!-- 25-03-07 수정 -->
+                        <label for="close_account4">계좌를 해지하는 경우 해당 계좌에 등록되어 있는 자동이체(신용〮체크카드 포함)가 해지됩니다. </label>
                     </div>   
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account5">
@@ -85,15 +116,16 @@
                     </div>   
                     <div class="checkbox">
                         <input type="checkbox" name="close_account" required="" id="close_account6">
-                        <label for="close_account6">예금보험공사는 1개 금융회사에 있는 1명의 모든 예금보호 대상 금융상품의 원금과 소정의 이자를 합하여 1인당 최고 5천만원까지 보호합니다.</label><!-- 25-03-07 수정 -->
+                        <label for="close_account6">예금보험공사는 1개 금융회사에 있는 1명의 모든 예금 보호 대상 금융상품의 원금과 소정의 이자를 합하여 1인당 최고 5천만원까지 보호합니다.</label>
                     </div>
                 </div>
+				-->
             </section>
 		</div>
 
         <div class="popup_footer fixed">
             <div class="btn_full_box">
-				<button type="button" class="btns lg primary">다음</button><!-- 25-03-07 수정 -->
+				<button type="button" class="btns lg primary" disabled>동의</button><!-- 활성화시 disabled 제거-->
             </div>
         </div>
 

@@ -57,39 +57,58 @@
 								<li><button type="button" role="tab" aria-selected="false">나의 금융스타일</button></li>
 							</ul>
 
-							<!-- [tab 01] 나의 재무진단 -->
+							<!-- Tab 01 나의 재무진단 -->
 							<div class="analysis">
-								<!-- 적정 : 클래스 없음, 개선 : "down" 클래스 추가 -->
 								<ul>
+									<!-- CASE 0% : 클래스 없음
+										
+										CASE1 적정
+										1-1. 34% : li에 "up_01" 클래스 추가
+										1-2. 67% : li에 "up_02" 클래스 추가
+										1-3. 100% : li에 "up" 클래스 추가
+
+										CASE2 개선
+										2-1. 34% : li에 "down_01" 클래스 추가
+										2-2. 67% : li에 "down_02" 클래스 추가
+										2-3. 100% : li에 "down" 클래스 추가
+									-->
 									<li>
-										<div class="graph"></div>
-										<strong>가계재무</strong>
-										<span class="bubble"></span>
+										<a href="#nolink">
+											<div class="graph"></div>
+											<strong>가계재무</strong>
+											<span class="bubble"></span>
+										</a>
 									</li>
-									<li>
-										<div class="graph"></div>
-										<strong>미래준비</strong>
-										<span class="bubble"></span>
+									<li class="up_01">
+										<a href="#nolink">
+											<div class="graph"></div>
+											<strong>미래준비</strong>
+											<span class="bubble"></span>
+										</a>
 									</li>
-									<li class="down">
-										<div class="graph"></div>
-										<strong>부채관리</strong>
-										<span class="bubble"></span>
+									<li class="down_02">
+										<a href="#nolink">
+											<div class="graph"></div>
+											<strong>부채관리</strong>
+											<span class="bubble"></span>
+										</a>
 									</li>
 								</ul>
 							</div>
 
-							<!-- [tab 02] 나의 금융스타일 -->
+							<!-- Tab 02 나의 금융스타일 -->
 							<div class="style">
-								<p class="name">분산관리성향</p>
-								<div class="info">
-									<p>저축 및 투자 상품을 최소 1개씩 보유한</p>
-									<div class="label">
-										<span>저축 70%</span>
-										<span>투자 20%</span>
+								<a href="#nolink">
+									<p class="name">분산관리성향</p>
+									<div class="info">
+										<p>저축 및 투자 상품을 최소 1개씩 보유한</p>
+										<div class="label">
+											<span>저축 70%</span>
+											<span>투자 25%</span>
+										</div>
 									</div>
-								</div>
-								<canvas id="finance_style"></canvas>
+									<canvas id="finance_style"></canvas>
+								</a>
 								<script>
 									const colors =[
 										[
@@ -97,22 +116,19 @@
 										],
 										[
 											[0,'#6b75ff']
-										],
-										[
-											[0,'#F1F1F5']
 										]
 									]
 								
 									const data = {
-										parts:{"pt": [75 , 20, 5]},//percentage of each parts
+										parts:{"pt": [75 , 25]},//percentage of each parts
 										colors:{"cs": colors }//color of each part
 									};
 			
 									var canvas  = document.getElementById("finance_style");
 									var chart = canvas.getContext("2d");									
 									var drawDount = new drawdountChart(chart);
-			
-									drawDount.set(50, 50, 40, false, Math.PI*1.5, Math.PI*3.5, 15, "#f7f8fa", 2, 1.5, "butt");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
+							
+									drawDount.set(50, 50, 40, false, Math.PI*0.5, Math.PI*2.5, 16, "#ebf1f9", 2, 1.5, "round");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
 								
 									chart.clearRect(0, 0, 100, 100);
 									drawDount.draw(data);
@@ -122,22 +138,34 @@
 						
 						<details>
 							<summary>
-								<!--늘은경우-->
-								<p>지난달보다 <strong>자산이 <em>늘었어요</em></strong></p>
-								<!-- 40 X 40 -->
-								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json"  loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
+								<!-- case1 증가 -->
+								<div class="head">
+									<p>지난달보다 <strong>자산이 <em>늘었어요</em></strong></p>
+									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json" loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
+								</div>
 
-								<!--동일한 경우
-								<p>지난달과 자산이 동일해요.</p>
-								-->
+								<!-- case2 동일 -->
+								<!-- <div class="head">
+									<p>지난달과 <em>동일해요</em></p>
+								</div> -->
 
-								<!--줄은 경우
-								<p>지난달보다 자산이 줄었어요.</p>
-								lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_down.json"  loop autoplay aria-hidden="true" class="icon_range" ></lottie-player>
-								-->
+								<!-- case3 감소 -->
+								<!-- <div class="head">
+									<p>지난달보다 <strong>자산이 <em>줄었어요</em></strong></p>
+									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_down.json" loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
+								</div> -->
+
+								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json" loop autoplay aria-hidden="true" class="icon_arrow"></lottie-player>
 							</summary>
-							<div>
-								총자산
+							<div class="cont">
+								<p class="sum_tit">총 자산</p>
+								<div class="sum">
+									<p>1,952,692,372<span>원</span></p>
+									<div class="update">
+										<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+									</div>
+								</div>
+								<p class="latter">지난달보다 <em class="num">800,000원</em> <em>늘었어요.</em></p>
 							</div>
 						</details>
 					</div>
@@ -302,7 +330,7 @@
 						<button type="button">자산연결</button>
 					</div>
 
-                </section>
+				</section>
 
 			</div>
 
