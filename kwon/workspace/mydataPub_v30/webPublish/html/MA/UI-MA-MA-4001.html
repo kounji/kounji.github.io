@@ -15,9 +15,10 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header">
-			<h1>리포트</h1>
-
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<div class="mode_toggle">
+				<input type="checkbox" id="head_toggle">
+				<label for="head_toggle">큰글</label>
+			</div>
 
 			<div class="option">
 				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
@@ -29,15 +30,26 @@
 		<div class="content-view">
 			<div id="content">
 
-				<section class="united_main">
-					<div class="title">
-						<h2><span>김농협</span> 고객님께 드리는<br><em>12월 자산관리 리포트입니다.</em></h2>
+				<section class="main_united">
+					<!-- [배너] -->
+					<p class="top_banner ty01">
+						<a href="#nolink">새로워진 NH콕마이데이터 이용안내</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+					<!-- <p class="top_banner">
+						<a href="#nolink">새로워진 NH콕마이데이터 (자산관리) 서비스 이용안내</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p> -->
+
+					<!-- [안내문구 및 최근 업데이트일시] -->
+					<div class="info">
+						<p class="title"><span>김농협</span> 고객님께 드리는<br><em>12월 자산관리 리포트입니다.</em></p>
 						<div class="update">
-							<span>조금 전</span>
+							<span>2025.07.31 15:20</span>
 							<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
 						</div>
 						
-						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_mento.json"  loop autoplay aria-hidden="true" class="icon_united_me" ></lottie-player>
+						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_mento.json" loop autoplay aria-hidden="true" class="icon_united_me"></lottie-player>
 						<!-- 140 x 130
 							금융멘토 icon_united_mento.json
 							디지털금융달인 icon_united_swell.json
@@ -46,7 +58,8 @@
 							절약마스터 icon_united_saving_master.json
 							보험수호자 icon_united_insurance_guardian.json
 							신용지킴이 icon_united_credit_keeper.json
-							대출코치 icon_united_loan_coach.json -->
+							대출코치 icon_united_loan_coach.json
+						-->
 					</div>
 
 					<!-- [나의 재무진단, 나의 금융스타일] -->
@@ -60,18 +73,6 @@
 							<!-- Tab 01 나의 재무진단 -->
 							<div class="analysis">
 								<ul>
-									<!-- CASE 0% : 클래스 없음
-										
-										CASE1 적정
-										1-1. 34% : li에 "up_01" 클래스 추가
-										1-2. 67% : li에 "up_02" 클래스 추가
-										1-3. 100% : li에 "up" 클래스 추가
-
-										CASE2 개선
-										2-1. 34% : li에 "down_01" 클래스 추가
-										2-2. 67% : li에 "down_02" 클래스 추가
-										2-3. 100% : li에 "down" 클래스 추가
-									-->
 									<li>
 										<a href="#nolink">
 											<div class="graph"></div>
@@ -138,150 +139,387 @@
 						
 						<details>
 							<summary>
-								<!-- case1 증가 -->
+								<!-- CASE1 증가 -->
 								<div class="head">
 									<p>지난달보다 <strong>자산이 <em>늘었어요</em></strong></p>
-									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json" loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
+									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json"loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
 								</div>
 
-								<!-- case2 동일 -->
+								<!-- CASE2 동일 -->
 								<!-- <div class="head">
 									<p>지난달과 <em>동일해요</em></p>
 								</div> -->
 
-								<!-- case3 감소 -->
+								<!-- CASE3 감소 -->
 								<!-- <div class="head">
 									<p>지난달보다 <strong>자산이 <em>줄었어요</em></strong></p>
-									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_down.json" loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
+									<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_down.json"loop autoplay aria-hidden="true" class="icon_range"></lottie-player>
 								</div> -->
 
-								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_up.json" loop autoplay aria-hidden="true" class="icon_arrow"></lottie-player>
+								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_arrow.json"loop autoplay aria-hidden="true" class="icon_arrow"></lottie-player>
 							</summary>
+
 							<div class="cont">
 								<p class="sum_tit">총 자산</p>
-								<div class="sum">
-									<p>1,952,692,372<span>원</span></p>
-									<div class="update">
-										<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+								<a href="#nolink" class="sum_select">1,952,692,372<span>원</span></a>
+
+								<div class="tooltip">
+									<!-- CASE1 증가 -->
+									<p class="latter up">지난달보다 <span class="num">800,000원</span> <em>늘었어요.</em></p>
+
+									<!-- CASE2 동일 -->
+									<!-- <p class="latter">지난달과 <em>동일해요.</em></p> -->
+									
+									<!-- CASE3 감소 -->
+									<!-- <p class="latter down">지난달보다 <span class="num">800,000원</span> <em>늘었어요.</em></p> -->
+									
+									<div class="custom_tooltip top">
+										<div class="com_tooltip_type02">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02">
+												<div>
+													<ul class="dotted_list">
+														<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일의 총자산을 비교했습니다.</li>
+														<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
-								<p class="latter">지난달보다 <em class="num">800,000원</em> <em>늘었어요.</em></p>
+
 							</div>
 						</details>
 					</div>
 
 					<!-- [주가지수] -->
 					<div class="stock_sheet">
-
+						<div class="slick_exchange">
+							<div class="inner">
+								<dl class="exchange">
+									<dt>KOSPI</dt>
+									<dd class="factor">
+										<span class="num">2,620.01</span>
+										<span class="range up">8.64%(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+								<dl class="exchange">
+									<dt>KOSDAQ</dt>
+									<dd class="factor">
+										<span class="num">2,620.01</span>
+										<span class="range down">8.64(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+								<dl class="exchange">
+									<dt>
+										<!--기본(icon) 국기명클래스(ico_JPY, ico_USD)-->
+										<i class="ico ico_USD"></i>
+										미국 USD
+									</dt>
+									<dd class="factor">
+										<span class="unit">KRW</span>
+										<span class="num">727.26</span>
+										<span class="range">0.00(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+								<dl class="exchange">
+									<dt>
+										<!--기본(icon) 국기명클래스(ico_JPY, ico_USD)-->
+										<i class="ico ico_JPY"></i>
+										일본 JPY
+									</dt>
+									<dd class="factor">
+										<span class="unit">KRW</span>
+										<span class="num">727.26</span>
+										<span class="range">0.00(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+							</div>
+	
+							<div class="controls">
+								<p class="paging"></p>
+								<button type="button" class="prev"><span class="blind">이전</span></button>
+								<button type="button" class="next"><span class="blind">다음</span></button>
+	
+								<button type="button" class="btn_play"><span class="blind">정지</span></button>
+							</div>
+						</div>
 					</div>
 					
 					<!-- [추천서비스] -->
 					<div class="promote_sheet">
-
+						<div class="scroller">
+							<ul>
+								<li>
+									<a href="#nolink">
+										<span>콕 자산관리서비스</span>
+										<strong>사용방법을 알려드려요</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>신나는 축제 한가득!</span>
+										<strong>지역별 특별한<br>문화 체험 소개</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>하루 다섯 번!</span>
+										<strong>로또복권 번호만들기</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>숨은 돈 찾기</span>
+										<strong>숨은예금,보험금<br>찾아볼까요?</strong><!--[v4.0] 2025-03-14 br 추가 -->
+									</a>
+								</li>
+							</ul>
+						</div>
 					</div>
 
 					<!-- [주요자산 변동내역] -->
 					<div class="asset_sheet">
 						<strong class="h_tit01">주요자산 변동내역</strong>
-						<input type="checkbox" id="asset_tog" class="toggle_btn">
-						<label for="asset_tog">전체열기</label>
 						
+						<button type="button" class="toggle_btn">전체열기</button>
+						<!-- <button type="button" class="toggle_btn" disabled>전체열기</button> -->
+
 						<ul class="asset_list">
-							<!-- menu01 : 예금, menu02 : 부동산, menu03 : 투자, menu04 : 연금, menu05 : 페이/포인트,
-								menu06 : 보험, menu07 : 카드, menu08 : 대출, menu09 : 자동차, menu10 : 기타자산, 
-								menu11 : 할부금융, menu12 : 자동차할부, menu13 : 학자금대출, menu14 : 리스, menu15 : 빌린돈 -->
+							<!-- CASE 기본 : li에 메뉴별 클래스 추가
+								
+								"menu01" 예금, "menu02" 부동산, "menu03" 투자, "menu04" 연금, "menu05" 페이/포인트,
+								"menu06" 보험, "menu07" 카드, "menu08" 대출, "menu09" 자동차, "menu10" 기타자산, 
+								"menu11" 할부금융, "menu12" 자동차할부, "menu13" 학자금대출, "menu14" 리스, "menu15" 빌린돈 -->
+
+							<!-- CASE 미등록 : li에 "nodata" 클래스 추가 -->
 							<li class="menu02">
-								<div class="head">
-									<strong>부동산</strong>
-									<div class="link">
-										<span class="num"><em>1</em>건</span>
-									</div>
-								</div>
-								<div class="cont">
+								<a href="#nolink" class="head">
+									<strong>부동산<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont down">
 									<p class="price"><span>1,595,800,000</span>원</p>
-									<p>지난달보다 <span>1,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
 								</div>
 							</li>
 							<li class="menu03">
-								<div class="head">
-									<strong>투자</strong>
-									<div class="link">
-										<span class="num"><em>1</em>건</span>
-									</div>
-								</div>
-								<div class="cont">
+								<a href="#nolink" class="head">
+									<strong>투자<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
 									<p class="price"><span>1,595,800,000</span>원</p>
-									<p>지난달보다 <span>1,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
 								</div>
 							</li>
-							<li>
-								<div class="head">
-									<strong>연금</strong>
-									<div class="link">
-										<span class="num"><em>1</em>건</span>
-									</div>
-								</div>
+							<li class="menu04">
+								<a href="#nolink" class="head">
+									<strong>연금<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
 								<div class="cont">
 									<p class="price"><span>1,595,800,000</span>원</p>
-									<p>지난달보다 <span>1,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>동일해요.</em></p>
 								</div>
 							</li>
-							<li>
-								<div class="head">
-									<strong>대출</strong>
-									<div class="link">
-										<span class="num"><em>1</em>건</span>
-									</div>
-								</div>
-								<div class="cont">
+							<li class="menu08">
+								<a href="#nolink" class="head">
+									<strong>대출<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
 									<p class="price"><span>1,595,800,000</span>원</p>
-									<p>지난달보다 <span>1,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
 								</div>
 							</li>
-							<li>
-								<div class="head">
-									<strong>자동차</strong>
-									<div class="link">
-										<span class="num"><em>1</em>건</span>
-									</div>
-								</div>
-								<div class="cont">
+							<li class="menu09 nodata">
+								<a href="#nolink" class="head">
+									<strong>자동차<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
 									<p class="price"><span>1,595,800,000</span>원</p>
-									<p>지난달보다 <span>1,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
 								</div>
 							</li>
 						</ul>
 					</div>
 					
 					<!-- [자산분석을 통한 제안] -->
-					<div class="suggest_sheet">
+					<div class="suggest_sheet"> <!--[v4.0] 2025-03-13 분류별 클래스 정리 -->
+						<div class="sheet">
+							<!-- dl에 메뉴별 클래스 추가
+								"item01" 예상연금, "item02" 연금진단, "item03" 지출
 
+								"item03" 분류별 추가 클래스
+								AS20000000 미분류
+								AS20000001 쇼핑
+								AS20000002 가구/침구
+								AS20000003 외식
+								AS20000004 카페/베이커리
+								AS20000005 생활/마트
+								AS20000006 자동차
+								AS20000007 교통
+								AS20000008 여행/숙박
+								AS20000009 문화/레저
+								AS20000010 의료/건강
+								AS20000011 뷰티/미용
+								AS20000012 교육
+								AS20000013 금융
+								AS20000014 주거/통신
+								AS20000015 자녀/육아
+								AS20000016 기타
+							-->
+							<dl class="item01">
+								<dt>
+									<span>6월 자산분석을 통한 제안1</span>
+									<strong>연금이 적은편이예요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">내 예상 연금은<br>월 <strong>161</strong>만원이예요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">나의 노후준비</a>
+								</dd>
+							</dl>
+							<dl class="item02">
+								<dt>
+									<span>6월 자산분석을 통한 제안2</span>
+									<strong>추가 저축이 필요해요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">월 <a href="#nolink" class="sel_btn">177만원</a>
+										을 받으려면<br>60세까지 월 <strong>290,909</strong>원이 필요해요.
+									</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">나의 노후준비</a>
+								</dd>
+							</dl>
+							<dl class="item03 AS20000004">
+								<dt>
+									<span>6월 자산분석을 통한 제안3</span>
+									<strong>지출 1위는, 카페/베이커리</strong>
+								</dt>
+								<dd>
+									<p class="txt">지출내역을 확인하고<br>예산에 맞는 소비를 계획하세요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">지출분석</a>
+								</dd>
+							</dl>
+						</div>
 					</div>
 					
 					<!-- [신용과 건강] -->
-					<div class="credit_health_sheet">
+					<div class="credit_sheet">
 						<strong class="h_tit01">신용과 건강</strong>
+						<div class="board">
+							<a href="#nolink">
+								<strong>신용점수</strong>
+
+								<!-- CASE1 신용점수 데이터 있을 경우 -->
+								<div class="cont data">
+									<span>KCB</span>
+									<strong>958</strong>
+									<p>상위 12%</p>
+								</div>
+
+								<!-- CASE2 신용점수 데이터 없을 경우 -->
+								<!-- <div class="cont">
+									<p>나의 신용점수를<br>알아보세요.</p>
+								</div> -->
+
+							</a>
+							<a href="#nolink">
+								<strong>건강정보</strong>
+								<div class="cont">
+									<p>매일의 건강한 습관<br>함께 만들어가요.</p>
+								</div>
+							</a>
+						</div>
 					</div>
 					
 					<!-- [건강, 연금/절세] -->
-					<div class="health_pension_sheet">
-
+					<div class="health_sheet">
+						<div class="sheet">
+							<!-- dl에 메뉴별 클래스 추가
+								"item01" 건강, "item02" 연말정산, "item03" 세금
+							-->
+							<dl class="item01">
+								<dt>
+									<span>건강에 대한 이야기</span>
+									<strong>건강보험료 납부내역을<br>확인하실 수 있어요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">연도별 건강보험료 납부<br>금액을 확인해보세요.</p> <!--[v4.0] 2025-03-13 문구수정 -->
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">건강보험료 납부내역보기</a>
+								</dd>
+							</dl>
+							<dl class="item02">
+								<dt>
+									<span>연말정산 이야기</span>
+									<strong>13월의 급여<br>나도 받을 수 있을까요?</strong>
+								</dt>
+								<dd>
+									<p class="txt">세금도 아끼고<br>소득공제까지</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">내가 받는 공제 알아보기</a>
+								</dd>
+							</dl>
+							<dl class="item03">
+								<dt>
+									<span>세금 현황 알아보기</span>
+									<strong>지방세, 국세, 관세<br>납부현황을 확인해 보세요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">세목별 납세증명을<br>확인할 수 있어요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">세금 납부 확인하기</a>
+								</dd>
+							</dl>
+						</div>
 					</div>
 
 					<!-- [내가 연결한 자산] -->
 					<div class="connect_sheet">
 						<strong class="h_tit01">내가 연결한 자산</strong>
 						<div class="board_box">
-							<p class="txt"><strong>총 10개</strong> 기관에 연결되었습니다.</p>
+							<p class="txt"><strong>총 1개</strong> 기관에 연결되었습니다.</p>
 							<ul class="organ_list">
 								<li>
 									<div class="tit_area">
 										<strong class="tit">은행</strong>
-										<strong class="status">4</strong>
+										<strong class="status">1</strong>
 									</div>
-									<div class="organ"><!-- 연결된 기관 2개까지 노출 -->
+									<div class="organ"><!-- 기관 2개까지 노출 -->
 										<span class="item"><i class="A1AAHJ0000"></i><span class="blind">카카오뱅크</span></span>
 										<span class="item"><i class="A1AAPF0000"></i><span class="blind">토스뱅크</span></span>
+										<!-- <span class="item nodata"><span class="blind">기관없음</span></span> -->
 									</div>
 								</li>
 								<li>
@@ -289,7 +527,7 @@
 										<strong class="tit">카드</strong>
 										<strong class="status">2</strong>
 									</div>
-									<div class="organ"> <!-- 연결된 기관 2개까지 노출 -->
+									<div class="organ"> <!-- 기관 2개까지 노출 -->
 										<span class="item"><i class="E1AABJ0000"></i><span class="blind">하나카드</span></span>
 										<span class="item"><i class="ZVAAAF0000"></i><span class="blind">국민카드</span></span>
 									</div>
@@ -303,7 +541,7 @@
 					<div class="diagnosis_sheet">
 						<a href="#nolink" class="banner">
 							<p>한눈에 모아보는<br>자산 흐름 분석과 나의 자산진단</p>
-							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json" loop autoplay aria-hidden="true" class="lottie_bg" ></lottie-player>
+							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json"loop autoplay aria-hidden="true" class="lottie_bg"></lottie-player>
 						</a>
 					</div>
 
@@ -325,9 +563,24 @@
 						<p class="h_tit01">나의 관심서비스로<br>담아 놓고<br>빠르게 이동하세요.</p>
 					</div>
 
+					<!-- [홈편집/자산연결] -->
 					<div class="setting">
 						<button type="button">홈편집</button>
 						<button type="button">자산연결</button>
+					</div>
+
+					<!-- [플로팅 배너] --> <!--[v4.0] 2025-03-14 플로팅 배너 추가 -->
+					<div class="float_link">
+						<div class="float" aria-label="플로팅 배너">
+							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_float_char.json" loop autoplay aria-hidden="true" class="icon_float"></lottie-player>
+						</div>
+						<ul class="list">
+							<li><a href="#nolink">1만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">10만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">100만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">1000만을 축하해! 이벤트 도착</a></li>
+						</ul>
+						<button type="button" class="close" aria-label="플로팅 배너 삭제"></button>
 					</div>
 
 				</section>
@@ -337,5 +590,90 @@
 			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
 		</div>        
 	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			slick (); //슬릭
+		});
+
+		function slick () {
+
+			// 자산분석을 통한 제안
+			var $suggest =  $('.main_united .suggest_sheet');
+			$suggest.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+
+			// 건강, 연금/절세
+			var $health =  $('.main_united .health_sheet');
+			$health.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+
+			// 주가지수
+			var $exchange =  $('.main_united .slick_exchange');
+			$exchange.each(function(){
+				let $this = $(this);
+
+				$(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+					var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+					$(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+				});
+
+				$(".inner", $this).slick({
+					speed : 300,
+					dots : false,
+					adaptiveHeight: true,
+					autoplay: true,
+					infinite: true,
+					draggable: true,
+					accessibility:true,
+					arrows : true,
+					cssEase:'linear',
+					prevArrow:$(".controls .prev", $this),
+					nextArrow:$(".controls .next", $this),
+				});
+
+				const constrols  = $(".btn_play", $this);
+
+				constrols.click(function(){
+					if($(this).hasClass('paused')){//정지상태
+						$(".inner", $this).slick('slickPlay');
+						$(this).removeClass('paused');
+						$(".blind", $(this)).text('정지');
+					}else{//자동재생 중
+						$(".inner", $this).slick('slickPause');
+						$(this).addClass('paused');
+						$(".blind", $(this)).text('재생');
+					}
+				});
+
+				$(".slick-arrow", $this).click(function(){
+					if(constrols.hasClass('paused')){}else{
+						$(".inner", $this).slick('slickPause');
+						constrols.addClass('paused');
+						$(".blind", constrols).text('재생');
+					}
+				})
+			});
+			
+		};
+</script>
 </body>
 </html>

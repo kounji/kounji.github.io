@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>APT 분양정보 | 부동산 청약 정보 상세</title>
+	<title>청약정보 모두보기 | NH콕부동산</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -23,22 +23,50 @@
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">
-			<h1 class="">APT 분양정보</h1>
+			<h1 class="">청약정보 모두보기</h1><!-- 25-03-13 문구수정-->
 		</div>
 		
 		<div class="popup_content">
 			<div class="com_inner">
 				<div class="apt_info">
+					<!-- 25-03-13 전체적으로 구조변경 -->
+					<!--
 					<div class="top_info">
 						<div class="company">롯데건설</div>
 						<div><button type="button" class="stdBtn innerType01">자세히 보기</button></div>
 					</div>
 					<div class="area">서울특별시 성북구(<span class="date">24.11.28</span>공고)</div>
-					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div><!-- [v4.0] 25-01-15 분양가 항목 추가 -->
+					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div><!-- [v4.0] 25-01-15 분양가 항목 추가 --
 					<div class="titH1">창결궁 롯데캐슬 시그니처(509세대)</div>
 					<div class="address">서울특별시 성북구 상성돈 2가 296번지 일원</div>
+					-->
+					<div class="tit">
+						<strong class="titH1">청약정보를<br> 모두 확인해주세요.</strong>
+					</div>
+					<div class="top_info">
+						<!-- badge 타입 구분
+							badge + type01 : 아파트, 무순위/잔여세대, 계약취소주택
+							badge + type02 : 도시형생활주택, 오피스텔, 민간임대, 공공지원민간임대
+							badge + type03 : 임의공급
+						-->
+						<div class="cate">
+							<span class="badge type01">아파트</span>
+							<span class="badge type02">도시형생활주택</span>
+							<span class="badge type03">임의공급</span>
+						</div>
+						<span class="date">24.11.28 공고</span>				
+					</div>
+					<div class="info">
+						<p class="titH2">창결궁 롯데캐슬 시그니처</p>
+						<p class="area">대구 동구 신천동 328-1</p>
+						<button type="button" class="stdBtn innerType01">자세히 보기</button>
+					</div>
+					
+					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div>
+					<!-- //25-03-13 전체적으로 구조변경 -->
+					
 					<div class="list_type_01">
-						<strong class="titH5">청약일정</strong>
+						<strong class="titH5">청약정보</strong><!-- 25-03-13 문구수정 -->
 						<ul class="list_type_2023">
 							<li>
 								<dl>
@@ -63,7 +91,21 @@
 									<dt>입주예정월</dt>
 									<dd>2027.04</dd>
 								</dl>
+							</li>
+							<!-- 25-03-13 항목 추가 -->
+							<li>
+								<dl>
+									<dt>규모</dt>
+									<dd>89세대</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>시공사</dt>
+									<dd>롯데건설(주)</dd>
+								</dl>
 							</li>				
+							<!-- //25-03-13 항목 추가 -->				
 						</ul>
 					</div>
 				</div>
@@ -73,17 +115,44 @@
 
 			<div class="com_inner">
 				<div class="apt_info">
+					<!-- 25-03-13 전체적으로 구조변경 -->
+					<!--
 					<div class="top_info">
 						<div class="company">롯데건설</div>
 						<div><button type="button" class="stdBtn innerType01">자세히 보기</button></div>
 					</div>
-					<div class="area">서울특별시 동대문구(<span class="date">24.11.28</span>공고)</div>
-					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div><!-- [v4.0] 25-01-15 분양가 항목 추가 -->
-					<div class="titH1">이문 월드 메르디앙 힐트리움 더 테라스(4세대)</div>
-					<div class="address">서울시 동대문구 이문동 348-11, 348-12</div>
+					<div class="area">서울특별시 성북구(<span class="date">24.11.28</span>공고)</div>
+					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div><!-- [v4.0] 25-01-15 분양가 항목 추가 --
+					<div class="titH1">창결궁 롯데캐슬 시그니처(509세대)</div>
+					<div class="address">서울특별시 성북구 상성돈 2가 296번지 일원</div>
+					-->
+					<div class="tit">
+						<strong class="titH1">청약정보를<br> 모두 확인해주세요.</strong>
+					</div>
+					<div class="top_info">
+						<!-- badge 타입 구분
+							badge + type01 : 아파트, 무순위/잔여세대, 계약취소주택
+							badge + type02 : 도시형생활주택, 오피스텔, 민간임대, 공공지원민간임대
+							badge + type03 : 임의공급
+						-->
+						<div class="cate">
+							<span class="badge type01">아파트</span>
+							<span class="badge type02">도시형생활주택</span>
+							<span class="badge type03">임의공급</span>
+						</div>
+						<span class="date">24.11.28 공고</span>				
+					</div>
+					<div class="info">
+						<p class="titH2">창결궁 롯데캐슬 시그니처</p>
+						<p class="area">대구 동구 신천동 328-1</p>
+						<button type="button" class="stdBtn innerType01">자세히 보기</button>
+					</div>
+					
+					<div class="price">분양가 <strong>2억9천만 ~ 3억7천5백</strong></div>
+					<!-- //25-03-13 전체적으로 구조변경 -->
 
 					<div class="list_type_01">
-						<strong class="titH5">청약일정</strong>
+						<strong class="titH5">청약정보</strong><!-- 25-03-13 문구수정 -->
 						<ul>
 							<li>
 								<dl>
@@ -108,7 +177,21 @@
 									<dt>입주예정월</dt>
 									<dd>2027.04</dd>
 								</dl>
+							</li>
+							<!-- 25-03-13 항목 추가 -->
+							<li>
+								<dl>
+									<dt>규모</dt>
+									<dd>89세대</dd>
+								</dl>
+							</li>
+							<li>
+								<dl>
+									<dt>시공사</dt>
+									<dd>롯데건설(주)</dd>
+								</dl>
 							</li>				
+							<!-- //25-03-13 항목 추가 -->				
 						</ul>
 					</div>
 				</div>

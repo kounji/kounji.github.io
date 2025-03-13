@@ -29,7 +29,12 @@
 		<div class="popup_content">
             <section class="close_account">
                 <p class="done">
-                    <strong>입출금 해지 완료</strong>
+					<!-- 25-03-10 수정-->
+					<!-- case1. 이체-->
+                    <strong>잔고 이전 및 계좌 해지 신청이<br>완료 되었습니다.</strong>
+					<!-- case2. 기부-->
+                    <strong>잔액 기부 및 계좌 해지 신청이<br>완료 되었습니다.</strong>
+					<!-- //25-03-10 수정-->
                     아래 내용을 확인해 주세요.
                 </p>
 
@@ -40,7 +45,16 @@
                         <li><em>해지계좌번호</em><span>-</span></li>
                         <li><em>예금주명</em><span>-</span></li>
                         <li><em>처리일자시간</em><span>-</span></li>
-                        <li><em>잔고이전방법</em><span>-</span></li>
+						<!-- 25-03-10 수정-->
+						<!-- case1. 잔고이전방법_이체-->
+                        <li><em>잔고이전방법</em><span class="bank">계좌이체 <span>(NH은행 123456789)</span></span></li>
+						<!-- case2. 잔고이전방법_기부-->
+						<li><em>잔고이전방법</em><span>서민금융진흥원 기부</span></li>
+						<!-- //25-03-10 수정-->
+						
+						<!-- 25-03-10 case. 기부선택시에만 노출-->
+                        <li><em>현금영수증 발급</em><span>발급</span></li>
+						<!-- //25-03-10 case. 기부선택시에만 노출-->
                     </ul>
                 </div>
 

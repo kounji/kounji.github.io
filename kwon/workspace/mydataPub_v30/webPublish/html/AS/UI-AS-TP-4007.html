@@ -29,6 +29,10 @@
 
 		<div class="popup_content">
             <section class="close_account">
+                <!-- 25-03-10 headline 추가 -->
+                <p class="headline">해지 및 잔고이전 여부 확인을 위해<br>아래 내용을 입력해주세요.</p>
+                <!-- //25-03-10 headline 추가 -->
+
                 <div class="board_box">    
                     <h2 class="title">해지대상 계좌</h2>        
 
@@ -43,8 +47,8 @@
 
                     <details class="board_box_details">
                         <summary>
-                            <span class="show">계좌정보 더보기</span>
-                            <span class="hide">계좌정보 닫기</span>
+                            <span class="show"><span class="blind">계좌정보</span> 자세히보기</span><!-- 25-03-10 문구수정 -->
+                            <span class="hide"><span class="blind">계좌정보</span> 닫기</span><!-- 25-03-10 문구수정 -->
                         </summary>
                         <div class="cont">
                             <ul class="sleep_list">
@@ -65,7 +69,7 @@
                         <div class="radio round">
                             <input type="radio" name="send_account" id="send_account1">
                             <label for="send_account1">
-                                <strong class="tit">내 계좌로 이체</strong>
+                                <strong class="tit">계좌 이체</strong><!-- 25-03-10 문구수정 -->
                             </label>
                         </div>
                         <div class="radio round">
@@ -77,8 +81,10 @@
                     </div>
                 </div>
 
+                
                 <div class="close_info">
                     <h2>약관동의</h2>
+                    <!-- 25-03-10 약관 수정
                     <div class="check_all">
                         <div class="checkbox border">
                             <input type="checkbox" name="allagree1" id="checkall1" required="">
@@ -113,6 +119,15 @@
                             </li>
                         </ul>
                     </div>
+                    -->
+
+                    <div class="check_box_group">
+                        <div class="checkbox">
+                            <input type="checkbox" name="check_123" required="" id="check_123" title="기부영수증 발급 및 소득공제 지원을 위한 개인정보 제3자(서민금융진흥원) 제공동의">
+                            <button type="button" class="btn_detail ico_arrow">[필수] 기부영수증 발급 및 소득공제 지원을 위한 개인정보 제3자(서민금융진흥원) 제공동의 <span class="blind">상세보기</span></button>
+                        </div>
+                    </div>
+                    <!-- //25-03-10 약관 수정 -->
                 </div>
 
 
@@ -135,15 +150,23 @@
                     <h2>실명번호</h2>
                     <p class="txt">860505-*******</p>
                 </div>
-                 <!--//기부영수증 발급 선택시 번호노출-->
+                <!--//기부영수증 발급 선택시 번호노출-->
             
                 <details class="ico_detail_noti" open>
                     <summary><strong>알아두세요</strong></summary>
                     <div class="cont">
+                        <!-- 25-03-10 문구수정 -->
                         <ul class="dotted_list">
-                            <li>신청 후 취소 불가능합니다.</li>
-                            <li>본인의 수시입출금식 계좌로 이전 가능합니다.<br>(단, 증권사 계좌의 경우 종합매매 계좌만 가능합니다.)</li>
+                            <li>어카운트인포 계좌통합관리 서비스로 소액 비활동성  계좌를 해지하고 잔액은 본인명의 수시 입출금식 계좌로 이전 또는 서민금융진흥원에 기부 할 수 있습니다.</li>    
+                            <li>계좌해지 신청 후 취소 불가능합니다.</li>
+                            <li>계좌이체 시 금융기관에 따라 이체수수료가 발생될 수 있습니다.</li>
+                            <li>계좌의 관련 세부사항은 해당 금융회사에 문의하시기 바랍니다.</li>
+                            <li>압류 및 가압류 계좌로 잔고를 이전하실 경우 해당 계좌로 입금된 잔고는 되찾으실 수 없습니다.</li>
+                            <li>마이너스 통장의 마이너스(-) 금액은 잔액이 '0'원으로 표기됩니다.</li>
+                            <li>비활동성 계좌는 1년 이상 입출금 거래가 없는 계좌(만기가 있는 경우 만기 후 1년이 지난 계좌)입니다.</li>
+                            <li>투자재산(주식,채권,파산상품 등), 세제혜택상품, 유효한 계약 상품(WRAP, 신탁 등)을 보유한 계좌는 활동성 계좌로 분류 됩니다.</li>
                         </ul>
+                        <!-- //25-03-10 문구수정 -->
                     </div>
                 </details>
 
@@ -154,7 +177,8 @@
         <div class="popup_footer fixed">
 			
             <div class="btn_full_box">
-				<button type="button" class="btns lg primary">확인</button>
+				<button type="button" class="btns lg primary">해지신청</button><!-- 25-03-10 문구수정 -->
+            </div>
             </div>
         </div>
 

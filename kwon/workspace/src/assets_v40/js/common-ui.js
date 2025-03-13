@@ -1660,9 +1660,9 @@ $(document).off('click.additional_util').on('click.additional_util', '.additiona
 });
 
 /*topbanner*/
-$(document).off('click.topbanner').on('click.topbanner', '.top_banner .btn_x', function(){
-	$(this).parent().remove();
-});
+// $(document).off('click.topbanner').on('click.topbanner', '.top_banner .btn_x', function(){
+// 	$(this).parent().remove();
+// });
 
 /*update*/
 $(document).off('click.update').on('click.update', '.update .btn_update', function(){
@@ -1676,7 +1676,33 @@ $(document).off('click.category_tab').on('click.category_tab', '.category_tab.ha
 	$tabList.toggleClass('open');
 });
 
-/*복붙시작영역 */
+//서비스이용가이드
+$(document).off('click.service_intro_acco').on('click.service_intro_acco', '.service_intro .btn_acco', function(){
+	if($(this).closest('.board_box').hasClass('open')){
+		//close
+		$(this).closest('.board_box').removeClass('open');
+		$(this).closest('.board_box').find('.cont').slideUp();
+	}else{
+		//open
+		$(this).closest('.board_box').addClass('open');
+		$(this).closest('.board_box').find('.cont').slideDown();
+	}
+});
+
+/****복붙시작영역 ****/
+
+/*tooltip 다시정의[개발]*/
+$(document).off('click.com_btn_info_tooltip').on('click.com_btn_info_tooltip', '.custom_tooltip .com_btn_info', function(){
+	$('.com_ballon_type01').hide();
+	$('.com_tooltip_type02 a > .arrow,.com_tooltip_type02 button > .arrow').hide();		
+	$(this).parent().next('.com_ballon_type01').show()	
+	$(this).next('.com_ballon_type01').show()			
+	$(this).children('.arrow').show();		
+});
+$(document).off('click.com_btn_close_tooltip').on('click.com_btn_close_tooltip', '.custom_tooltip .com_btn_close', function(){
+	$('.com_ballon_type01').hide();
+	$('.com_tooltip_type02 a > .arrow,.com_tooltip_type02 button > .arrow').hide();			
+});
 
 /*tooltip 닫기 후 focus 이동*/
 $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_tooltip .com_btn_close', function(){
@@ -1687,6 +1713,52 @@ $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_toolti
 	}, 0)
 })
 
+/* 약관 스크롤 애니 */
+$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani','.btn_agree_move', function(){
+	if (document.getElementsByClassName('.btn_agree_move') ) {
+		$(this).parent().closest('.full_popup').find('.pop_content').animate({
+			scrollTop: $(this).parent().closest('.full_popup').find('.pop_content')[0].scrollHeight
+		},500);
+		$(this).parent('.btn_agree_wrap').addClass('act');
+		//check toast
+		$(this).parent().closest('.full_popup').find('.error_message').addClass('on');
+		setTimeout(function(){
+			$('.btn_agree_move').parent().closest('.full_popup').find('.error_message').removeClass('on').addClass('off');
+		},2000)
+	}
+})
+
+
+/* 약관 스크롤 애니 
+let _scrollT = 0;
+let _scrollT_start = false;
+let check_scrollBottom = function($grand){
+	$('.popup_content', $grand).scroll(function(){
+
+		if(($(this).scrollTop() + $(this).outerHeight()) >= $('.terms_wrap',$grand).outerHeight() + 50){
+			$('.btn_move_hide', $grand).hide();
+			$('.btn_move_hide', $grand).next().show();
+		}else{
+			$('.btn_move_hide', $grand).show();
+			$('.btn_move_hide', $grand).next().hide();
+		}
+	})
+}
+
+
+$(document).off('click.btn_move_hide').on('click.btn_move_hide','.last_move .btn_move_hide', function(){
+	const $grand = $(this).closest('.full_popup');
+
+	if(!_scorllT_start){
+		check_scrollBottom($grand)
+	}
+
+	_scrollT += $('.popup_content', $grand).height();
+	$('.popup_content',$grand).animate({'scrollTop':_scrollT});
+
+	_scrollT_start = true;
+});
+*/ 
 function drawdountChart(canvas){
 	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;
 

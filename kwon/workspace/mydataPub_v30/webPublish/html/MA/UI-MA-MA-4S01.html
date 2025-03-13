@@ -15,12 +15,13 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header">
-			<h1>리포트</h1>
-
-			<button type="button" class="prev"><span class="blind">이전</span></button>
-
+			<div class="mode_toggle">
+				<input type="checkbox" title="모드선택" id="head_toggle" checked>
+				<label for="head_toggle">큰글</label>
+			</div>
 			<div class="option">
 				<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
@@ -28,7 +29,8 @@
 		<div class="content-view">
             <div id="content">
                 <section class="main_senior">
-					<!--개요-->
+
+					<!-- [계좌 영역] -->
 					<div class="outline">
 						<ul role="tablist" class="inner_tab green">
 							<li class="on"><button type="button" role="tab" aria-selected="false">자산</button></li>
@@ -37,12 +39,17 @@
 
 						<!--slick-->
 						<div class="slick">
-							<div class="details"><!--//늘은 경우 up, 줄은 경우 down class 추가-->
+							<div class="details">
 								<h2>나의 총 자산</h2>
+
+								<div class="update">
+									<span>조금 전</span>
+									<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+								</div>
 
 								<div class="toggle_money">
 									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
-									<label for="sum_view_01">
+									<label for="sum_view_01" class="btns">
 										<span class="show">보기</span>
 										<span class="hide">숨김</span>
 									</label>
@@ -52,13 +59,87 @@
 									</div>
 								</div>
 								
-								<p class="analysis">나의 총 자산을 확인해보세요</p>
-								<!-- <p class="analysis">나의 총 자산이 <em>동일해요</em></p> -->
+								<div class="analysis">
+									<!-- CASE1 증가 -->
+									<!-- <p class="latter up">나의 총 자산이 <em>늘었어요.</em></p> -->
+
+									<!-- CASE2 동일 -->
+									<!-- <p class="latter">나의 총 자산이 <em>동일해요.</em></p> -->
+									
+									<!-- CASE3 감소 -->
+									<!-- <p class="latter down">나의 총 자산이 <em>줄었어요.</em></p> -->
+
+									<!-- CASE4 금액숨김 -->
+									<p class="latter">나의 총 자산을 확인해보세요.</p>
+									
+									<div class="custom_tooltip top">
+										<div class="com_tooltip_type02">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02">
+												<div>
+													<ul class="dotted_list">
+														<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일의 총자산을 비교했습니다.</li>
+														<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>	
-							<div class="details down"><!--//늘은 경우 up, 줄은 경우 down class 추가-->
+							<div class="details">
 								<h2>12월 총 지출</h2>
-								<p class="num"><em>1,367,020</em>원</p>
-								<p class="analysis">나의 총 자산이 <em>줄었어요</em></p>
+
+								<div class="update">
+									<span>조금 전</span>
+									<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+								</div>
+
+								<div class="toggle_money">
+									<input type="checkbox" title="금액노출" name="" id="sum_view_02">
+									<label for="sum_view_02" class="btns">
+										<span class="show">보기</span>
+										<span class="hide">숨김</span>
+									</label>
+									<div class="sum">
+										<span class="show"><em>금액숨김</em></span>
+										<span class="hide"><em>1,952,692,372</em>원</span>
+									</div>
+								</div>
+								
+								<div class="analysis">
+									<!-- CASE1 증가 -->
+									<p class="latter up">나의 총 지출이 <em>늘었어요.</em></p>
+
+									<!-- CASE2 동일 -->
+									<!-- <p class="latter">나의 총 지출이 <em>동일해요.</em></p> -->
+									
+									<!-- CASE3 감소 -->
+									<!-- <p class="latter down">나의 총 지출이 <em>줄었어요.</em></p> -->
+
+									<!-- CASE4 금액숨김 -->
+									<!-- <p class="latter">나의 총 자산을 확인해보세요.</p> -->
+									
+									<div class="custom_tooltip top">
+										<div class="com_tooltip_type02">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02">
+												<div>
+													<ul class="dotted_list">
+														<li>마지막 업데이트 시점의 총 지출과 마지막 업데이트  전 월 말일 총지출을 비교했습니다.</li>
+														<li>오늘 업데이트 하셨으면 전 월 말일 총 지출과 비교한 결과입니다.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!--//slick-->
@@ -94,7 +175,7 @@
 						}
 					</script>
 
-					<!--주요서비스-->
+					<!-- [주요서비스] -->
 					<div class="staple_cont">
 						<a href="#nolink" class="gotolink">자산</a>
 						<a href="#nolink" class="gotolink">지출</a>
@@ -103,7 +184,7 @@
 						<a href="#nolink" class="phishing"><em>보이스피싱 예방 10계명</em>확인하고 함께 예방해요</a>
 					</div>
 
-					<!--금융지식-->
+					<!-- [금융지식] -->
 					<div class="finlit">
                         <h2 class="h_tit01">금융지식</h2>
                         <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
@@ -113,15 +194,15 @@
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
-                                        <strong>진화하는 보이스 피싱</strong>
-                                        <span class="hash">#사고예방</span>
+                                        <strong>부자의 첫걸음,<br>금리와 복리를 이해하라!</strong>
+                                        <span class="hash">#콕생각</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
-                                        <strong>나의 지출이 줄지 않는 이유?!</strong>
-                                        <span class="hash">#금융지식</span>
+                                        <strong>2025년 트렌드 키워드<br>10초 요약</strong>
+                                        <span class="hash">#일반/트렌드</span>
                                     </a>
                                 </li>
                                 <!-- <li>
@@ -156,7 +237,11 @@
                         </div>
                     </div>
 
-					<!--상담센터-->
+					<a href="#nolink" class="gotolink">
+						NH콕마이데이터(자산관리)<br>
+						큰글 서비스 이용안내
+					</a>
+					<!-- [상담센터] -->
 					<a href="tel:1600-2800" class="gotolink">
 						HN콕뱅크 상담센터
 						<span>1600-2800</span>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>화면 레이아웃</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<style type="text/css">
+		@-webkit-keyframes ripple {
+			to {
+				-webkit-transform: scale(1.8);
+				transform: scale(1.8);
+				opacity: 0;
+			}
+		}
+
+		@keyframes ripple {
+			to {
+				-webkit-transform: scale(1.8);
+				transform: scale(1.8);
+				opacity: 0;
+			}
+		}
+
+		.main-ctr {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		.screen-ctr {
+			background: white;
+			width: 360px;
+			height: 500px;
+			border: 1px solid #ddd;
+			position: relative;
+			margin: auto;
+			text-align: center;
+			padding: 20px 10px;
+			box-sizing: border-box;
+		}
+
+		.screen-ctr .ripple {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			-webkit-transform-origin: center center;
+			transform-origin: center center;
+			-webkit-transform: scale(0.9);
+			transform: scale(0.9);
+			-webkit-animation: 1.5s ripple ease infinite;
+			animation: 1.5s ripple ease infinite;
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			border: 1px solid #4285F4;
+			box-sizing: border-box;
+		}
+
+		.screen-ctr .ripple.off {
+			opacity: 0;
+		}
+
+		.screen-ctr .par-ctr {
+			margin-bottom: 30px;
+		}
+
+		.screen-ctr .par {
+			background: #eee;
+			width: 100%;
+			height: 20px;
+			margin-bottom: 10px;
+		}
+
+		.screen-ctr .par.half {
+			width: 50%;
+		}
+
+		.screen-ctr .img {
+			width: 100%;
+			height: 200px;
+			background: #eee;
+			margin-bottom: 30px;
+		}
+
+		.screen-ctr .img:last-child {
+			margin-bottom: 0;
+		}
+
+		.screen-ctr .nav {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 80px;
+		}
+
+		.screen-ctr .nav.active {
+			overflow: hidden;
+		}
+
+		.screen-ctr .fab-ctr {
+			z-index: 9;
+			width: 100%;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			-webkit-transform-origin: center center;
+			transform-origin: center center;
+			-webkit-transform: rotate(0) translateX(0) translateY(0);
+			transform: rotate(0) translateX(0) translateY(0);
+			padding: 10px;
+			will-change: transform;
+			transition: 0.25s all ease-in-out;
+		}
+
+		.screen-ctr .fab-ctr.active {
+			-webkit-transform: rotate(-45deg) translateX(-142.5px) translateY(7px);
+			transform: rotate(-45deg) translateX(-142.5px) translateY(7px);
+		}
+
+		.screen-ctr .fab-ctr.active .fab {
+			color: transparent;
+			box-shadow: none;
+		}
+
+		.screen-ctr .fab {
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			background: #4285F4;
+			float: right;
+			will-change: transform;
+			transition: 0.25s all ease-in-out;
+			cursor: pointer;
+			z-index: 999;
+			color: white;
+			line-height: 60px;
+			font-size: 20px;
+			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.35);
+		}
+
+		.screen-ctr .fab:hover {
+			background: #5a95f5;
+		}
+
+		.screen-ctr .fab.active {
+			-webkit-transform: scale(6.5);
+			transform: scale(6.5);
+			transition: 0.25s all ease-in-out;
+			pointer-events: none;
+		}
+
+		.screen-ctr .links {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			z-index: 999;
+			pointer-events: none;
+			opacity: 0;
+			transition: 0.3s all ease;
+			color: white;
+		}
+
+		.screen-ctr .links.active {
+			pointer-events: auto;
+			opacity: 1;
+		}
+
+		.screen-ctr .links li {
+			width: 25%;
+			height: 80px;
+			float: left;
+			background: transparent;
+			text-align: center;
+			line-height: 80px;
+			font-size: 26px;
+		}
+
+		.screen-ctr .links li.close {
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>레이아웃 정리</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view">
+			<nav class="navi">
+				<div class="inner">
+					<!--자산현황 3depth-->
+					<!--
+					<ul role="navigation" aria-label="자산현황" class="depth1-1">
+						<li><a href="#"><span>예금</span></a></li>
+						<li><a href="#"><span>투자</span></a></li>
+						<li><a href="#"><span>연금</span></a></li>
+						<li><a href="#"><span>페이ㆍ포인트</span></a></li>
+						<li><a href="#" aria-current="page"><span>보험</span></a></li>
+						<li><a href="#"><span>부동산</span></a></li>
+						<li><a href="#"><span>자동차</span></a></li>
+						<li><a href="#"><span>기타</span></a></li>
+					</ul>
+					-->
+
+					<!--부채관리 3depth-->
+					<!--
+					<ul role="navigation" aria-label="부채관리" class="depth1-2">
+						<li><a href="#" aria-current="page"><span>카드</span></a></li>
+						<li><a href="#"><span>대출</span></a></li>
+						<li><a href="#"><span>할부금융</span></a></li>
+						<li><a href="#"><span>자동차할부</span></a></li>
+						<li><a href="#"><span>학자금대출</span></a></li>
+						<li><a href="#"><span>리스</span></a></li>
+						<li><a href="#"><span>빌린돈</span></a></li>
+					</ul>
+					-->
+
+					<!--숨은자산 3depth-->
+					<!--
+					<ul role="navigation" aria-label="숨은자산" class="depth1-4">
+						<li><a href="#" aria-current="page"><span>휴면계좌</span></a></li>
+						<li><a href="#"><span>휴면보험금</span></a></li>
+					</ul>
+					-->
+
+					<!--슬기로운영농생활 3depth-->
+					<ul role="navigation" aria-label="슬기로운 영농생활" class="depth7-8">
+						<li><a href="#" aria-current="page"><span>영농달력</span></a></li>
+						<li><a href="#"><span>영농일지</span></a></li>
+						<li><a href="#"><span>농기계임대</span></a></li>
+						<li><a href="#"><span>손익분석</span></a></li>
+						<li><a href="#"><span>조합원</span></a></li>
+						<li><a href="#"><span>마이농가설정</span></a></li>
+					</ul>
+				</div>
+			</nav>
+
+			<div id="content">
+				<section class="main_united">
+					<div class="float_link">
+						<button type="button" class="open" aria-label="플로팅 배너 열기" aria-expanded="false">
+							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_float_char.json" loop autoplay aria-hidden="true" class="icon_float"></lottie-player>
+						</button>
+						<ul class="list" aria-hidden="true">
+							<li><a href="#nolink">1만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">10만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">100만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">1000만을 축하해! 이벤트 도착</a></li>
+						</ul>
+						<button type="button" class="close" aria-label="플로팅 배너 삭제"></button>
+					</div>
+				</section>
+			</div>
+
+			<aside class="tabbar block">
+				<!--toolbar-->
+				<nav>
+					<ul>
+						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
+						<li><a href="#nolink">자산</a></li>
+						<li><a href="#nolink">지출</a></li>
+						<li><a href="#nolink">연금/절세</a></li>
+						<li><a href="#nolink">추천</a></li>
+					</ul>
+				</nav>
+			</aside>
+		</div>
+	</div>
+</body>
+<script>
+	$(function () {
+		$(document).off('click.float').on('click.float', '.float_link button.open', function() {
+			if($(this).closest('.float_link').hasClass('is_active')){
+				$(this).attr('aria-expanded', false);
+				$(this).closest('.float_link').removeClass('is_active').find('>p').attr('aria-hidden', true);
+			} else{
+				$(this).attr('aria-expanded', true);
+				$(this).closest('.float_link').addClass('is_active').find('>p').attr('aria-hidden', false);
+			}
+			setTimeout(function () {
+				$('.float_link > p').fadeOut();
+			}, 5000);
+		})
+		.off('click.close').on('click.close', '.float_link button.close', function () {
+			$(this).closest('.float_link').remove();
+		});
+		
+	});
+</script>
+
+</html>

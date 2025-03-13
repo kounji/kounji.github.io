@@ -19,57 +19,120 @@
 
 			<div class="option">
 				<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
 		
 		<div class="content-view">
-            <div id="content">
-                <section class="main_youth">
-					<div class="update">
-						<span>조금전</span>
-						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+			<div id="content">
+
+				<section class="main_youth">
+					<div class="top_area">
+						<button type="button" class="btns">청소년</button>
+						<div class="update">
+							<span>2025.07.31 15:20</span>
+							<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+						</div>
 					</div>
 
-					<!--개요-->
+					<!-- [자산/지출] -->
+					<!-- CASE 기본 -->
 					<div class="outline">
-						<p class="assets">
-							<strong>나의 자산</strong>
-							
-						</p>
-						<p class="wallet">
-							<strong>나의 지출</strong>
-						</p>
+						<ul>
+							<li class="asset">
+								<strong class="tit">나의 자산</strong>
+								<div class="sum">
+									<em>123,456,789</em><span>원</span>
+								</div>
+								<div class="tooltip">
+									<span class="txt">지난달보다<br><em>늘었어요.</em></span>
+									<div class="custom_tooltip">
+										<div class="com_tooltip_type02">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02">
+												<div>
+													<ul class="dotted_list">
+														<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일의 총자산을 비교했습니다.</li>
+														<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btns">보기</button>
+							</li>
+							<li class="wallet">
+								<strong class="tit">나의 지출</strong>
+								<div class="sum">
+									<em>123,456,789</em><span>원</span>
+								</div>
+								<div class="tooltip">
+									<span class="txt">지난달보다<br><em>덜쓰고 있어요.</em></span>
+									<div class="custom_tooltip">
+										<div class="com_tooltip_type02">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02">
+												<div>
+													<ul class="dotted_list">
+														<li>마지막 업데이트 시점의 총 지출과 마지막 업데이트  전 월 말일 총지출을 비교했습니다.</li>
+														<li>오늘 업데이트 하셨으면 전 월 말일 총 지출과 비교한 결과입니다.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btns">보기</button>
+							</li>
+						</ul>
 					</div>
 
-					<!--주요서비스-->
+					<!-- CASE 미연결 -->
+					<!-- <div class="outline">
+						<ul>
+							<li class="asset nodata">
+								<strong class="tit">나의 자산을<br>확인해 보세요</strong>
+								<button type="button" class="btns">연결</button>
+							</li>
+							<li class="wallet nodata">
+								<strong class="tit">나의 지출을<br>확인해 보세요</strong>
+								<button type="button" class="btns">연결</button>
+							</li>
+						</ul>
+					</div> -->
+
+					<!-- [주요서비스] -->
 					<div class="move_banner">
-                        <a href="#nolink" class="board_box rect asset">
-                            <em>자산연결</em>
-                            금융자산 유형을 알려드려요.
-                        </a>
+						<a href="#nolink" class="board_box rect connect">
+							<em>자산연결</em>
+							자산과 지출 연결을 한번에!
+						</a>
 
-                        <a href="#nolink" class="board_box rect wallet">
-                            <em>지출분석</em>
-                            소비패턴을 분석했어요.
-                        </a>
+						<a href="#nolink" class="board_box rect fin">
+							<em>금융지식</em>
+							꼭 필요한 금융지식 콘텐츠
+						</a>
+						
+						<a href="#nolink" class="board_box rect youth">
+							<em>청소년 NH콕마이데이터</em>
+							용돈관리부터 소비습관까지!
+						</a>
+					</div>
+				</section>
 
-                        <a href="#nolink" class="board_box rect briefing">
-                            <em>데일리 금융브리핑</em>
-                            금융 브리핑을 정리했어요.
-                        </a>
-
-						<a href="#nolink" class="board_box rect briefing">
-                            <em>서비스 개요?</em>
-                            금융 브리핑을 정리했어요.
-                        </a>
-                    </div>
-                </section>
 			</div>
 
 			<script src="../../../@pub_include/footer_youth.js"></script><!-- html용 footer_youth.js 개발팀 별도 적용 -->
 		</div>
-        
+		
 	</div>
 </body>
 </html>

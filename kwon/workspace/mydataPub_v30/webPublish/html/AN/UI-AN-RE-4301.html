@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>청약 관심지역 설정 | 부동산 청약 정보 상세</title>
+	<title>아파트 청약 알림 지역 선택 | NH콕부동산</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -23,10 +23,168 @@
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">
-			<h1 class="">청약 관심지역 설정</h1>
+			<h1 class="">아파트 청약 알림 지역 선택</h1><!-- 25-03-13 문구수정 -->
 		</div>
 		
 		<div class="popup_content">
+			<!-- 25-03-13 전체적으로 레이아웃 수정 (신규코드) -->
+			<div class="com_inner">
+				<div class="wish_tit">
+					<div class="tit">
+						<strong class="titH1">PUSH 전송할 아파트 청약지역을 <br>선택해주세요.</strong>
+						<p class="com_txt_sub addExplan">전체 선택 시 전국으로 PUSH전송 됩니다.</p>
+					</div>
+					<div class="btn_checkbox noicon">
+						<input type="checkbox" name="allcheck" id="allcheck">
+						<label for="allcheck">
+							<span class="show">전체 선택</span>
+							<span class="hide">전체 해제</span>
+						</label>
+					</div>
+				</div>
+				
+				<ul class="wish_chk">
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk01">
+							<label for="wish_chk01">
+								<span>서울</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk02">
+							<label for="wish_chk02">
+								<span>강원</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk03">
+							<label for="wish_chk03">
+								<span>대전</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk04">
+							<label for="wish_chk04">
+								<span>충남</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk05">
+							<label for="wish_chk05">
+								<span>세종</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk06">
+							<label for="wish_chk06">
+								<span>충북</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk07">
+							<label for="wish_chk07">
+								<span>인천</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk08">
+							<label for="wish_chk08">
+								<span>경기</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk09">
+							<label for="wish_chk09">
+								<span>광주</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk10">
+							<label for="wish_chk10">
+								<span>전남</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk11">
+							<label for="wish_chk11">
+								<span>전북</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk12">
+							<label for="wish_chk12">
+								<span>부산</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk13">
+							<label for="wish_chk13">
+								<span>경남</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk14">
+							<label for="wish_chk14">
+								<span>울산</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk15">
+							<label for="wish_chk15">
+								<span>제주</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk16">
+							<label for="wish_chk16">
+								<span>대구</span>
+							</label>
+						</div>
+					</li>
+					<li>
+						<div class="btn_checkbox">
+							<input type="checkbox" name="wish_chk" id="wish_chk17">
+							<label for="wish_chk17">
+								<span>경북</span>
+							</label>
+						</div>
+					</li>
+				</ul>
+				
+			</div>
+
+			<!-- 25-03-13 전체적으로 레이아웃 수정 (기존코드)
 			<div class="com_inner">
 				<div class="wish_tit_area">
 					<strong class="titH2">현재 선택하신 지역</strong>
@@ -34,7 +192,7 @@
 					<button type="button" class="stdBtn innerType01">전체 해제</button>
 				</div>
 				
-				<!-- case1. 관심지역 1라도 있는 경우 -->
+				<!-- case1. 관심지역 1라도 있는 경우 --
 				<div class="wish_area">
 					<ul class="wish_area_list">
 						<li><div class="box"><span class="txt">서울 전체</span><button type="button" class="btn_del"><span class="blind">관심지역 삭제</span></button></div></li>
@@ -49,13 +207,13 @@
 						<li><div class="box empty">-</div></li>
 					</ul>
 				</div>
-				<!-- // case1. 관심지역 1라도 있는 경우 -->
-				 
-				 <!-- case2. 관심지역 없는 경우 -->
+				<!-- // case1. 관심지역 1라도 있는 경우 --
+
+				<!-- case2. 관심지역 없는 경우 --
 				<div class="wish_area no_area">
 					<p>관심 지역을 선택해 주세요</p>
 				</div>
-				<!-- // case2. 관심지역 없는 경우 -->
+				<!-- // case2. 관심지역 없는 경우 --
 			</div>
 
 			<div class="wish_area_chk">
@@ -206,6 +364,7 @@
 				</div>
 
 			</div>
+			-->
 		</div>
 		<div class="popup_footer fixed">
 			<div class="btn_full_box">

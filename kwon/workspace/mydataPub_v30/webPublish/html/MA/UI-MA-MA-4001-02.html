@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>통합메인_미연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<div class="mode_toggle">
+				<input type="checkbox" id="head_toggle">
+				<label for="head_toggle">큰글</label>
+			</div>
+
+			<div class="option">
+				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
+
+				<section class="main_united">
+					<!-- [배너] -->
+					<p class="top_banner ty01">
+						<a href="#nolink">새로워진 NH콕마이데이터 이용안내</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+					<!-- <p class="top_banner">
+						<a href="#nolink">새로워진 NH콕마이데이터 (자산관리) 서비스 이용안내</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p> -->
+
+					<!-- [안내문구 및 최근 업데이트일시] -->
+					<div class="info">
+						<p class="title"><span>김농협</span> 고객님께 드리는<br><em>12월 자산관리 리포트입니다.</em></p>
+						<div class="update">
+							<span>2025.07.31 15:20</span>
+							<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+						</div>
+						
+						<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_mento.json" loop autoplay aria-hidden="true" class="icon_united_me"></lottie-player>
+						<!-- 140 x 130
+							금융멘토 icon_united_mento.json
+							디지털금융달인 icon_united_swell.json
+							저축왕 icon_united_savings_king.json
+							투자천재 icon_united_investment_genius.json
+							절약마스터 icon_united_saving_master.json
+							보험수호자 icon_united_insurance_guardian.json
+							신용지킴이 icon_united_credit_keeper.json
+							대출코치 icon_united_loan_coach.json
+						-->
+					</div>
+
+					<!-- [나의 재무진단, 나의 금융스타일] -->
+					<div class="finance_sheet">
+						<div class="board_box">
+							<ul role="tablist" class="inner_tab green">
+								<li class="on"><button type="button" role="tab" aria-selected="true">나의 재무 진단</button></li>
+								<li><button type="button" role="tab" aria-selected="false">나의 금융스타일</button></li>
+							</ul>
+
+							<!-- Tab 01 나의 재무진단 -->
+							<div class="analysis empty">
+								<strong>내가 가진 연금 연결하면</strong>
+								<p>재무 진단 받고<br>은퇴 후 필요자금 확인할 수 있어요.</p>
+								<button type="button" class="btns md"><span class="icon_line_right">자산연결</span></button>
+							</div>
+
+							<!-- Tab 02 나의 금융스타일 -->
+							<div class="style empty">
+								<strong>나의 금융스타일은?</strong>
+								<p>분산관리형?<br>저축형? 투자형?</p>
+								<button type="button" class="btns md"><span class="icon_line_right">자산연결</span></button>
+							</div>
+						</div>
+						
+						<details>
+							<summary>
+								<div class="head">
+									<p>지금까지 모은 자산은 얼마일까요?</p>
+								</div>
+
+								<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_arrow.json"loop autoplay aria-hidden="true" class="icon_arrow"></lottie-player>
+							</summary>
+
+							<div class="cont">
+								<p class="cont_txt"><strong>흩어져있는 내 자산 연결하고</strong><br>한곳에서 관리하세요.</p>
+							</div>
+						</details>
+					</div>
+
+					<!-- [주가지수] -->
+					<div class="stock_sheet">
+						<div class="slick_exchange">
+							<div class="inner">
+								<dl class="exchange">
+									<dt>KOSPI</dt>
+									<dd class="factor">
+										<span class="num">2,620.01</span>
+										<span class="range up">8.64%(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+								<dl class="exchange">
+									<dt>KOSDAQ</dt>
+									<dd class="factor">
+										<span class="num">2,620.01</span>
+										<span class="range down">8.64(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+								<dl class="exchange">
+									<dt>
+										<!--기본(icon) 국기명클래스(ico_JPY, ico_USD)-->
+										<i class="ico ico_USD"></i>
+										미국 USD
+									</dt>
+									<dd class="factor">
+										<span class="unit">KRW</span>
+										<span class="num">727.26</span>
+										<span class="range">0.00(전일대비)</span>
+									</dd>
+									<dd class="basis">
+										<span>2025.02.04</span>
+										<span>15:.00:00 기준</span>
+									</dd>
+								</dl>
+							</div>
+	
+							<div class="controls">
+								<p class="paging"></p>
+								<button type="button" class="prev"><span class="blind">이전</span></button>
+								<button type="button" class="next"><span class="blind">다음</span></button>
+	
+								<button type="button" class="btn_play"><span class="blind">정지</span></button>
+							</div>
+						</div>
+					</div>
+					
+					<!-- [추천서비스] -->
+					<div class="promote_sheet">
+						<div class="scroller">
+							<ul>
+								<li>
+									<a href="#nolink">
+										<span>콕 자산관리서비스</span>
+										<strong>사용방법을 알려드려요</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>신나는 축제 한가득!</span>
+										<strong>지역별 특별한<br>문화 체험 소개</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>하루 다섯 번!</span>
+										<strong>로또복권 번호만들기</strong>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink">
+										<span>숨은 돈 찾기</span>
+										<strong>숨은예금,보험금<br>찾아볼까요?</strong> <!--[v4.0] 2025-03-14 br 추가 -->
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- [주요자산 변동내역] -->
+					<div class="asset_sheet">
+						<strong class="h_tit01">내가 연결한 자산</strong>
+						
+						<button type="button" class="toggle_btn" disabled>전체열기</button>
+
+						<ul class="asset_list">
+							<!-- CASE 기본 : li에 메뉴별 클래스 추가
+								
+								"menu01" 예금, "menu02" 부동산, "menu03" 투자, "menu04" 연금, "menu05" 페이/포인트,
+								"menu06" 보험, "menu07" 카드, "menu08" 대출, "menu09" 자동차, "menu10" 기타자산, 
+								"menu11" 할부금융, "menu12" 자동차할부, "menu13" 학자금대출, "menu14" 리스, "menu15" 빌린돈 -->
+
+							<!-- CASE 미등록 : li에 "nodata" 클래스 추가 -->
+							<li class="menu02 nodata">
+								<a href="#nolink" class="head">
+									<strong>부동산<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont down">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
+								</div>
+							</li>
+							<li class="menu03 nodata">
+								<a href="#nolink" class="head">
+									<strong>투자<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								</div>
+							</li>
+							<li class="menu04 nodata">
+								<a href="#nolink" class="head">
+									<strong>연금<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>동일해요.</em></p>
+								</div>
+							</li>
+							<li class="menu08 nodata">
+								<a href="#nolink" class="head">
+									<strong>대출<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								</div>
+							</li>
+							<li class="menu09 nodata">
+								<a href="#nolink" class="head">
+									<strong>자동차<span class="num">1</span></strong>
+									<span class="txt"></span>
+								</a>
+								<div class="cont up">
+									<p class="price"><span>1,595,800,000</span>원</p>
+									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+					<!-- [자산분석을 통한 제안] -->
+					<div class="suggest_sheet"> <!--[v4.0] 2025-03-13 분류별 클래스 정리 -->
+						<div class="sheet">
+							<!-- dl에 메뉴별 클래스 추가
+								"item40" 예상연금_없음, "item41" 연금진단_없음, "item42" 지출_없음
+							-->
+							<dl class="item40">
+								<dt>
+									<span>6월 자산분석을 통한 제안1</span>
+									<strong>내가 받을 연금은 얼마일까?</strong>
+								</dt>
+								<dd>
+									<p class="txt">연금자산 연결하면<br>내 예상 연금을 알려드려요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">국민연금 연결</a>
+								</dd>
+							</dl>
+							<dl class="item41">
+								<dt>
+									<span>6월 자산분석을 통한 제안2</span>
+									<strong>은퇴준비,얼마 필요할까?</strong>
+								</dt>
+								<dd>
+									<p class="txt">노후 생활에 필요한 월 생활비<br>시뮬레이션</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">지출분석</a>
+								</dd>
+							</dl>
+							<dl class="item42">
+								<dt>
+									<span>6월 자산분석을 통한 제안3</span>
+									<strong>내가 가장 많이 쓴곳은?</strong>
+								</dt>
+								<dd>
+									<p class="txt">보유 카드, 페이 등록하시면<br>지출 분석 해드려요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">지출분석</a>
+								</dd>
+							</dl>
+						</div>
+					</div>
+					
+					<!-- [신용과 건강] -->
+					<div class="credit_sheet">
+						<strong class="h_tit01">신용과 건강</strong>
+						<div class="board">
+							<a href="#nolink">
+								<strong>신용점수</strong>
+								<div class="cont">
+									<p>나의 신용점수를<br>알아보세요.</p>
+								</div>
+							</a>
+							<a href="#nolink">
+								<strong>건강정보</strong>
+								<div class="cont">
+									<p>매일의 건강한 습관<br>함께 만들어가요.</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					
+					<!-- [건강, 연금/절세] -->
+					<div class="health_sheet">
+						<div class="sheet">
+							<!-- dl에 메뉴별 클래스 추가
+								"item01" 건강, "item02" 연말정산, "item03" 세금
+							-->
+							<dl class="item01">
+								<dt>
+									<span>건강에 대한 이야기</span>
+									<strong>건강보험료 납부내역을<br>확인하실 수 있어요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">연도별 건강보험료 납부<br>금액을 확인해보세요.</p> <!--[v4.0] 2025-03-13 문구수정 -->
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">건강보험료 납부내역보기</a>
+								</dd>
+							</dl>
+							<dl class="item02">
+								<dt>
+									<span>연말정산 이야기</span>
+									<strong>13월의 급여<br>나도 받을 수 있을까요?</strong>
+								</dt>
+								<dd>
+									<p class="txt">세금도 아끼고<br>소득공제까지</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">내가 받는 공제 알아보기</a>
+								</dd>
+							</dl>
+							<dl class="item03">
+								<dt>
+									<span>세금 현황 알아보기</span>
+									<strong>지방세, 국세, 관세<br>납부현황을 확인해 보세요.</strong>
+								</dt>
+								<dd>
+									<p class="txt">세목별 납세증명을<br>확인할 수 있어요.</p>
+								</dd>
+								<dd>
+									<a href="#nolink" class="link">세금 납부 확인하기</a>
+								</dd>
+							</dl>
+						</div>
+					</div>
+
+					<!-- [내가 연결한 자산] -->
+					<div class="connect_sheet">
+						<strong class="h_tit01">내가 연결한 자산</strong>
+						<div class="board_box">
+							<p class="txt"><strong>총 1개</strong> 기관에 연결되었습니다.</p>
+							<ul class="organ_list">
+								<li>
+									<div class="tit_area">
+										<strong class="tit">은행</strong>
+										<strong class="status">1</strong>
+									</div>
+									<div class="organ"><!-- 기관 2개까지 노출 -->
+										<span class="item"><i class="A1AAHJ0000"></i><span class="blind">카카오뱅크</span></span>
+										<span class="item nodata"><span class="blind">기관없음</span></span>
+									</div>
+								</li>
+								<li>
+									<div class="tit_area">
+										<strong class="tit">카드</strong>
+										<strong class="status">0</strong>
+									</div>
+									<div class="organ"> <!-- 기관 2개까지 노출 -->
+										<span class="item nodata"><span class="blind">기관없음</span></span>
+									</div>
+								</li>
+							</ul>
+							<button type="button" class="btns md"><span class="icon_line_right">연결 기관 전체보기</span></button>
+						</div>
+					</div>
+					
+					<!-- [자산진단] -->
+					<div class="diagnosis_sheet">
+						<a href="#nolink" class="banner">
+							<p>한눈에 모아보는<br>자산 흐름 분석과 나의 자산진단</p>
+							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json"loop autoplay aria-hidden="true" class="lottie_bg"></lottie-player>
+						</a>
+					</div>
+
+					<!-- [나의 관심서비스] -->
+					<div class="favorite">
+						<h2 class="h_tit03">나의 관심서비스</h2>
+						<button type="button" class="btn_add">관심서비스 담기</button>
+
+						<ul class="attention_list">
+							<li class="AS100000"><a href="#nolink">나의 자산</a></li>
+							<li class="PD107000"><a href="#nolink">대출이자 계산기</a></li>
+							<li class="RG101000"><a href="#nolink">지역축제</a></li>
+							<li class="RG103000"><a href="#nolink">농촌여행</a></li>
+							<li class="RG104000"><a href="#nolink">자전거길 국토종주</a></li>
+							<li class="MR104000"><a href="#nolink">로또복권  번호만들기</a></li>
+						</ul>
+
+						<!--등록된 관심서비스가 없을 경우-->
+						<p class="h_tit01">나의 관심서비스로<br>담아 놓고<br>빠르게 이동하세요.</p>
+					</div>
+
+					<!-- [홈편집/자산연결] -->
+					<div class="setting">
+						<button type="button">홈편집</button>
+						<button type="button">자산연결</button>
+					</div>
+
+					<!-- [플로팅 배너] --> <!--[v4.0] 2025-03-14 플로팅 배너 추가 -->
+					<div class="float_link">
+						<div class="float" aria-label="플로팅 배너">
+							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_float_char.json" loop autoplay aria-hidden="true" class="icon_float"></lottie-player>
+						</div>
+						<ul class="list">
+							<li><a href="#nolink">1만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">10만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">100만을 축하해! 이벤트 도착</a></li>
+							<li><a href="#nolink">1000만을 축하해! 이벤트 도착</a></li>
+						</ul>
+						<button type="button" class="close" aria-label="플로팅 배너 삭제"></button>
+					</div>
+
+				</section>
+
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>        
+	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			slick (); //슬릭
+		});
+
+		function slick () {
+
+			// 자산분석을 통한 제안
+			var $suggest =  $('.main_united .suggest_sheet');
+			$suggest.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+
+			// 건강, 연금/절세
+			var $health =  $('.main_united .health_sheet');
+			$health.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+
+			// 주가지수
+			var $exchange =  $('.main_united .slick_exchange');
+			$exchange.each(function(){
+				let $this = $(this);
+
+				$(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+					var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+					$(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+				});
+
+				$(".inner", $this).slick({
+					speed : 300,
+					dots : false,
+					adaptiveHeight: true,
+					autoplay: true,
+					infinite: true,
+					draggable: true,
+					accessibility:true,
+					arrows : true,
+					cssEase:'linear',
+					prevArrow:$(".controls .prev", $this),
+					nextArrow:$(".controls .next", $this),
+				});
+
+				const constrols  = $(".btn_play", $this);
+
+				constrols.click(function(){
+					if($(this).hasClass('paused')){//정지상태
+						$(".inner", $this).slick('slickPlay');
+						$(this).removeClass('paused');
+						$(".blind", $(this)).text('정지');
+					}else{//자동재생 중
+						$(".inner", $this).slick('slickPause');
+						$(this).addClass('paused');
+						$(".blind", $(this)).text('재생');
+					}
+				});
+
+				$(".slick-arrow", $this).click(function(){
+					if(constrols.hasClass('paused')){}else{
+						$(".inner", $this).slick('slickPause');
+						constrols.addClass('paused');
+						$(".blind", constrols).text('재생');
+					}
+				})
+			});
+			
+		};
+</script>
+</body>
+</html>

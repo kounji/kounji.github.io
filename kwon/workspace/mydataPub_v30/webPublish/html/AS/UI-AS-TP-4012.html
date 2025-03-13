@@ -28,7 +28,9 @@
 
 		<div class="popup_content">
             <section class="close_account">
-
+                <!-- 25-03-10 headline 추가 -->
+                <p class="headline">잔액 이전이 가능한<br>해지 예상 금액이에요.</p>
+                <!-- //25-03-10 headline 추가 -->
                 <div class="board_box">    
                     <h3 class="title">해지 예상금액 확인</h3>        
 
@@ -43,8 +45,8 @@
 
                     <details class="board_box_details">
                         <summary>
-                            <span class="show">계좌정보 더보기</span>
-                            <span class="hide">계좌정보 닫기</span>
+                            <span class="show"><span class="blind">계좌정보</span> 자세히보기</span><!-- 25-03-10 문구수정 -->
+                            <span class="hide"><span class="blind">계좌정보</span> 닫기</span><!-- 25-03-10 문구수정 -->
                         </summary>
                         <div class="cont">
                             <ul class="sleep_list">
@@ -72,14 +74,26 @@
                             <li><em>기타세금</em><span>0원</span></li>
                             <li><em>과징금</em><span>0원</span></li>
                             <li><em>수수료</em><span>0원</span></li>
+                            <li><em>지급액</em><span>0원</span></li><!-- 25-03-10 항목추가 -->
                         </ul>
                     </div>
                 </div>
-
+                <!-- 25-03-10 잔액 이전 방법 수정 
                 <div class="close_info">
                     <h2>잔액 이전 방법</h2>
                     <p class="txt">서민금융진흥원 기부</p>
                 </div>
+                -->
+                <div class="close_info">
+                    <h2>잔액 이전 방법</h2>
+                    <div class="board_box">
+                        <ul class="sleep_list">
+                            <li><em>구분</em><span>서민금융진흥원 기부</span></li>
+                            <li><em>현금영수증</em><span>발급</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 25-03-10 잔액 이전 방법 수정 -->
 
 
                 <details class="ico_detail_noti" open>
@@ -95,9 +109,8 @@
 		</div>
 
         <div class="popup_footer fixed">
-			
             <div class="btn_full_box">
-				<button type="button" class="btns lg primary">해지신청</button>
+				<button type="button" class="btns lg primary">잔고 이전 및 해지신청</button><!-- 25-03-10 문구수정 -->
             </div>
         </div>
 

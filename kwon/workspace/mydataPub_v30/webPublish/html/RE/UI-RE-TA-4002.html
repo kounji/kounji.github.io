@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>주가지수 선택</title>
+	<title>주식종목 선택</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -21,31 +21,272 @@
 	<!--// wrap E -->
 
 	<!-- full popup S -->
-	<div class="full_popup" id="full_popup_01"> 
-		<div class="popup_header">    
-			<h1>주가지수 선택</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+	<div class="full_popup" id="full_popup_01">
+		<div class="popup_header">
+			<h1>주식종목 선택</h1>
 		</div>
 
 		<div class="popup_content">
-           <section class="index_setting">
-			</section>
-		</div>
-        
 
-        <div class="popup_footer">
-			<div class="btn_full_box btns_wrap">
+			<section class="index_setting">
+				<div class="title">
+					<h2>추천화면에 노출할<br>주식종목을 선택해주세요.<button type="button" class="btns">전체해제</button></h2>
+					<p>최대 4개 선택 가능해요.</p>
+				</div>
+
+				<!-- CASE1 선택 주식항목이 1개 이상 있는 경우 -->
+				<ul class="stock_data">
+					<li>
+						<span>KODEX 200</span>
+						<a href="#nolink" role="button" class="btn_del"><span class="blind">종목삭제</span></a>
+					</li>
+					<li>
+						<span>종목명</span>
+						<a href="#nolink" role="button" class="btn_del"><span class="blind">종목삭제</span></a>
+					</li>
+					<li>
+						<span>한 줄 이상 말줄임 한 줄 이상 말줄임</span>
+						<a href="#nolink" role="button" class="btn_del"><span class="blind">종목삭제</span></a>
+					</li>
+					<li class="nodata">
+						<span>-</span>
+						<a href="#nolink" role="button" class="btn_del"><span class="blind">종목삭제</span></a>
+					</li>
+				</ul>
+
+				<!-- CASE2 empty -->
+				<div class="stock_empty">
+					<p>추천에 노출할 주식종목을 선택해주세요.</p>
+				</div>
+
+				<div class="input">
+					<input type="search" class="inputClear" name="" id="input01" placeholder="검색어를 입력하세요.">
+					<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+					<button type="button" class="btn_search"><span class="blind">검색</span></button>
+				</div>
+
+				<div class="category_tab">
+					<ul role="tablist">
+						<li class="on"><a href="#navi11" role="tab" aria-selected="true">전체</a></li>
+						<li><a href="#navi12" role="tab" aria-selected="false">코스피</a></li>
+						<li><a href="#navi13" role="tab" aria-selected="false">코스닥</a></li>
+					</ul>
+				</div>
+
+				<table class="stock_table">
+					<caption>주식종목 테이블</caption>
+					<colgroup>
+						<col style="width:20%">
+						<col style="width:40%">
+						<col style="width:auto">
+						<col style="width:46px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">구분</th>
+							<th scope="col">종목명</th>
+							<th scope="col">2024.01.01 기준</th>
+							<th scope="col">선택</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th>코스피</th>
+							<td>
+								<p>삼성전자</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_01" checked="checked">
+									<label for="stock_sel_01"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스피</th>
+							<td>
+								<p>SK하이닉스</p>
+								<p class="range">0 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_02">
+									<label for="stock_sel_02"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>삼성바이오로직스</p>
+								<p class="range down">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_03">
+									<label for="stock_sel_03"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스피</th>
+							<td>
+								<p>LG에너지솔루션</p>
+								<p class="range down">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_04">
+									<label for="stock_sel_04"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>현대차</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_05">
+									<label for="stock_sel_05"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>종목명 두줄케이스 입니다. 종목명 두줄케이스 입니다.</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_06">
+									<label for="stock_sel_06"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스피</th>
+							<td>
+								<p>KODEX 200</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_07">
+									<label for="stock_sel_07"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>TIGE 미국S&P500</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_08">
+									<label for="stock_sel_08"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>KODEX CD 금리액</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_09">
+									<label for="stock_sel_09"></label>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>코스닥</th>
+							<td>
+								<p>TIGER 미국 나스닥100</p>
+								<p class="range up">90 (0.00%)</p>
+							</td>
+							<td>
+								<p class="price">1,000,000</p>
+							</td>
+							<td>
+								<div class="checkbox border">
+									<input type="checkbox" name="stock_sel" id="stock_sel_10">
+									<label for="stock_sel_10"></label>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+
+		</div>
+
+		<div class="popup_footer fixed">
+			<div class="btn_full_box">
 				<button type="button" class="btns lg primary">저장</button>
-            </div>
-        </div>
-        
-		<!-- 20211108 한별 접근성 role="button" 추가 S -->
-		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
-		<!--// 20211108 한별 접근성 role="button" 추가 E -->			
+			</div>
+		</div>
 		
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 
+	<script type="text/javascript">
+		/*
+			검색 필드 부분의 글자 입력시 x 버튼 활성화
+			입력 후 x 버튼 클릭시 글자 삭제
+		*/
+		$(function() {
+			var _inputBox = $('.inputClear '); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+	</script>
 
 </body>
 </html>

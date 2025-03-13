@@ -58,7 +58,7 @@
                                         <p>보유한 금융/실물/기타자산에 부채를 제외한 실제 자산을 의미해요.</p>
                                         
                                         <ul class="bl_dot_list">
-                                            <li>금융자산: 예금,투자,연금,페이/포인트</li>
+                                            <li>금융자산: 예금,투자,연금,페이/포인트</li> 
                                             <li>실물자산: 부동산 매매가 또는 보증금, 자동차 현재 시세</li>
                                             <li>기타자산: 직접 등록한 현금,외화,금,기타자산</li>
                                             <li>부채: 대출,할부금융,카드결제예정금액 등</li>
@@ -86,24 +86,76 @@
                         
                         <!--25-02-10 금액숨김 수정-->
                         <div class="board_box">
-                            <!--25-02-24 문구수정-->
-                            <p class="analysis">
-                                지난달보다 <span>5,095,452원</span> <em>늘었어요.</em>
-                            </p>
-
+                            <!--25-02-24 문구수정 / 25-03-11 툴팁 추가 -->
+                            <div class="analysis">
+                                <span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>늘었어요.</em>
+                                <div class="custom_tooltip">
+                                    <div class="com_tooltip_type02 com_tooltip_type03">
+                                        
+                                        <a href="#nolink" class="com_btn_info" role="button">
+                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+                                        </a>
+                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                            <div>
+                                                <ul class="dotted_list">
+                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+                                                </ul>
+                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
                             <!--동일한 경우
-                            <p class="analysis"> 
-                                지난달과 <em>동일해요.</em>
-                            </p>
+                            <div class="analysis"> 
+                                <span class="text">지난달과</span> <em>동일해요.</em>
+                                <div class="custom_tooltip">
+                                    <div class="com_tooltip_type02 com_tooltip_type03">
+                                        
+                                        <a href="#nolink" class="com_btn_info" role="button">
+                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+                                        </a>
+                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                            <div>
+                                                <ul class="dotted_list">
+                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+                                                </ul>
+                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             -->
 
                             <!--줄은 경우
-                            <p class="analysis">
-                                지난달보다 <span>5,095,452원</span> <em>줄었어요.</em>
-                            </p>
+                            <div class="analysis">
+                                <span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>줄었어요.</em>
+                                <div class="custom_tooltip">
+                                    <div class="com_tooltip_type02 com_tooltip_type03">
+                                        
+                                        <a href="#nolink" class="com_btn_info" role="button">
+                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+                                        </a>
+                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                            <div>
+                                                <ul class="dotted_list">
+                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+                                                </ul>
+                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             -->
 
-                            <!--//25-02-24 문구수정-->
+                            <!--//25-02-24 문구수정 / 25-03-11 툴팁 추가-->
 
                             <lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
                             <!--
@@ -141,7 +193,7 @@
 
                     <!--25-02-06 이벤트 있을경우 노출 배너 추가-->
                     <div class="temp_banner">
-                        <p>애니카다이렉트 개인용 만기 30일 전 이에요. 얼마 남지 않은 자동차 보험  만기를 꼭 챙기세요!</p>
+                        <a href="#nolink">애니카다이렉트 개인용 만기 30일 전 이에요. 얼마 남지 않은 자동차 보험  만기를 꼭 챙기세요!</a><!--25-03-10 태그변경 -->
                         <button type="button" class="btn_x"><span class="blind">삭제</span></button>
                     </div>
                     <!--//25-02-06 이벤트 있을경우 노출 배너 추가-->
@@ -289,6 +341,18 @@
                                                     <strong class="txt">금액숨김</strong>
                                                 </a>
                                             </li>
+                                            <!-- 25-03-12 국민연금케이스 추가 -->
+                                            <li>
+                                                <a href="#nolink">
+                                                    <i class="ico_bank PBAAVM0000"></i>
+                                                    <div>
+                                                        <strong class="org">국민연금</strong>
+                                                        <strong class="account">가입기간 160개월</strong>
+                                                    </div>
+                                                    <strong class="num">9,999,999원</strong>
+                                                </a>
+                                            </li>
+                                            <!-- //25-03-12 국민연금케이스 추가 -->
                                         </ul>
                                         <!--3개 이상일 경우 노출 
                                         <a href="#nolink" class="btns md">연금 전체보기</a>
@@ -315,17 +379,19 @@
                                                 </a>
                                             </li>
                                             <li>
+                                                <!-- 25-03-13 임금신청 구조변경-->
                                                 <div>
                                                     <i class="ico_bank D1AAJB0000"></i> 
                                                     <div>
                                                         <strong class="org">포인트포인트포인트</strong>
                                                     </div>
-                                                    <div class="num_btns">
-                                                        <!-- case. 금액노출시 <strong class="num">22,668원</strong> -->
-                                                        <strong class="txt">금액숨김</strong>
-                                                        <button type="button" class="btns">입금신청</button>
-                                                    </div>
+                                                    <!-- case. 금액노출시 <a href="#nolink" class="txt">금액숨김</a>  -->
+                                                    <a href="#nolink" class="num">22,668원</a><!-- 25-03-12 a태그로 변경 -->
                                                 </div>
+                                                <div class="num_btns">
+                                                    <a href="#nolink" class="btn_txt">입금신청</a><!-- 25-03-13 a태그로 변경 -->
+                                                </div>
+                                                <!-- //25-03-13 임금신청 구조변경-->
                                             </li>
                                         </ul>
                                         <!--3개 이상일 경우 노출 

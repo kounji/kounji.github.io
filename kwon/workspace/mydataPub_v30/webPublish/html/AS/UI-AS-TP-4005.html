@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>자동납부</title>
+	<title>이용약관동의</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -16,7 +16,7 @@
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
 		<header id="header">
-			<h1>숨은계좌</h1>
+			<h1>레이아웃 정리</h1>
 
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 
@@ -37,42 +37,64 @@
 		<!--// content-view S -->
 	</div>
 	<!--// 팝업용 wrap 종료 -->
+    <!-- full popup S -->
+	<div class="full_popup" id="full_popup_01">
 
-	<!-- 전체 팝업 시작 -->
-	<!-- slide popup S -->
-	<div class="dimmed" style="display: block;"></div>
-	<div class="popup_box">
-		<div aria-hidden="false" class="slide_popup">
-            <div class="popup_header">
-                <h1>자동납부</h1>
-            </div>
-            <div class="popup_content">
-                <section class="sleep_regular">
-                    <div class="gray_box sleep_list">
-                        <p><em>자동납부 건수</em><span class="num">2건</span></p>
-                    </div>
-                    
-                    <div class="board_box rect ">
-                        <ul class="sleep_list">
-                            <li><em>KB손해보험</em><span>매월 10일</span></li>
-                            <li><em>하나은행 주거래 하나통장</em><span>매월 25일</span></li>
-                        </ul>
-                    </div>
-                </section>
-                
-            </div>
+		<div class="popup_header">    
+			<h1>이용약관동의</h1>
+		</div>
 
-            <div class="popup_footer">
-				<div class="btn_group">
-					<button type="button" class="btns lg primary">확인</button>
+		<div class="popup_content">
+            <section class="sleep_account">
+				<div class="tit_area">
+					<h2 class="headline">계좌 해지 가능 여부 확인을 위해<br>
+						이용약관에 동의해 주세요.	
+					</h2>
 				</div>
-			</div>
 
-            <a href="#nolink" class="btn_close" role="button"><span class="">닫기</span></a>
-           
+				<div class="agree_wrap full_view">
+					<div class="check_all">
+						<div class="checkbox border">
+							<input type="checkbox" name="allagree1" id="checkall1" required="" title="전체동의">
+							<button type="button" class="btn_detail ico_arrow">전체동의<span class="blind">상세보기</span></button>
+						</div>
+					</div>
+					<div class="view_cont">
+						<ul class="agree_list">
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_2" required="" title="개인정보 수집&middot;이용 동의">
+									<button type="button" class="btn_detail ico_arrow">[필수] 개인정보 수집&middot;이용 동의<span class="blind">상세보기</span></button>
+								</div>
+							</li>
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_1" required="" title="고객 위임 동의">
+									<button type="button" class="btn_detail ico_arrow">[필수] 고객 위임 동의<span class="blind">상세보기</span></button>
+								</div>
+							</li>
+							
+							<li>
+								<div class="checkbox">
+									<input type="checkbox" name="agree1" id="check01_3" required="" title="계좌통합관리서비스 이용약관">
+									<button type="button" class="btn_detail ico_arrow">[필수] 계좌통합관리서비스 이용약관 <span class="blind">상세보기</span></button>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+            </section>
+		</div>
+
+        <div class="popup_footer fixed">
+            <div class="btn_full_box">
+				<button type="button" class="btns lg primary" disabled>동의</button><!-- 활성화시 disabled 제거-->
+            </div>
         </div>
+
+		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>		
 		
 	</div>
-	<!--// 전체 팝업 종료 -->
+	<!--// full popup E -->
 </body>
 </html>
