@@ -189,7 +189,85 @@ section + section{border-top:4px dashed #111;}
 </section>
 
 
+<pre>
+	set : function(target) {
+		var $btnToTop = $(target);
+		var $btnStickyBot = $('#kmsContents .btn-page-wrap .sticky-bottom');
+		if($btnStickyBot.length) {
+			$btnToTop.css({'bottom' : '72px'});
 
+			$(window).scroll(function() {
+				if($btnStickyBot.hasClass('sticky-active')) {
+					$btnToTop.css({'bottom' : '72px'});
+				}else{
+					$btnToTop.css({'bottom' : '18px'});
+				}
+			});
+		}
+	}
+}
+
+var _subMenuSelect = {
+	init : function($parentTgt) {
+		$parentTgt	= (!$parentTgt || !$parentTgt.length)?$('body'):$parentTgt;
+		
+		var $subMenuSelect = this;
+		var $subNavi = $('.sub-menu-wrap', $parentTgt);
+		$('#kmsHeader .page-title > button', $parentTgt).off('click.share').on('click.share', function() {
+			if($subNavi.is(':hidden')) {
+				$subMenuSelect.open();
+			}else{
+				$subMenuSelect.close();
+			}
+		});
+	},
+	open : function($parentTgt) {
+		$parentTgt	= (!$parentTgt || !$parentTgt.length)?$('body'):$parentTgt;
+		
+		var $subMenuSelect = this;
+		var $subNavi = $('.sub-menu-wrap', $parentTgt);
+		var $naviList = $('.sub-menu-list', $subNavi);
+		var $btnSubList = $('#kmsHeader .page-title > button');
+		var $btnGnb = $('#kmsHeader .btn-gnb');
+
+
+		$btnSubList.attr('aria-expanded', 'true');
+		$subNavi.prepend('<div class="layerMask" aria-hidden="true"></div>');
+		$naviList.attr('tabindex', '0');
+		$naviList.before('<div class="accessbilityFirst offscreen" tabindex="0" aria-hidden="true"></div>');
+		$naviList.after('<div class="accessbilityLast offscreen" tabindex="0" aria-hidden="true"></div>');
+
+		$('.accessbilityFirst', $subNavi).off('focusin.share').on('focusin.share',function() {
+			$subMenuSelect.close();
+			$btnSubList.focus();
+		});
+		$('.accessbilityLast', $subNavi).off('focusin.share').on('focusin.share',function() {
+			$subMenuSelect.close();
+			$btnGnb.focus();
+		});
+		$('.layerMask', $subNavi).off('click.share').on('click.share',function() {
+			$subMenuSelect.close();
+		});
+		$subNavi.show();
+		$naviList.focus();
+		$('body').addClass('mask');
+	},
+	close : function($parentTgt) {
+		$parentTgt	= (!$parentTgt || !$parentTgt.length)?$('body'):$parentTgt;
+		
+		var $subNavi = $('.sub-menu-wrap', $parentTgt);
+		var $btnSubList = $('#kmsHeader .page-title > button');
+
+		$btnSubList.attr('aria-expanded', 'false');
+		$('body').removeClass('mask');
+		$('.layerMask', $subNavi).remove();
+		$('.accessbilityFirst', $subNavi).remove();
+		$('.accessbilityLast', $subNavi).remove();
+		$subNavi.hide();
+	}
+}
+
+</pre>
 
 <!--  [알아두세요] ====================================================================================================  -->
 <section>

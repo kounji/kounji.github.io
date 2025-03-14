@@ -1638,7 +1638,6 @@ $(document).ready(function(){
 		}
 
 		if($(this).scrollTop() == ($(document).outerHeight() - $(window).outerHeight())){
-			console.log('scroll ending')
 			$("aside.tabbar").addClass('block');
 		}
 		lastScroll = nowScroll;
@@ -1679,7 +1678,7 @@ $(document).ready(function(){
 				}
 			});
 		}
-			*/
+		*/
 	});	
 });
 
@@ -1841,23 +1840,7 @@ $(document).off('click.toggle_btn').on('click.toggle_btn', '.asset_sheet .toggle
 		$(this).text('전체열기');
 	}
 });
-/*
-var scroll_agree = function(){
-	let btn_agree_move = document.querySelector('.btn_agree_move');
-	if (btn_agree_move){
-		//console.log( $('.popup_content')[0].scrollHeight)
-		$('.popup_content').animate({
-			scrollTop: $('.popup_content')[0].scrollHeight
-		}, 400);
-		$(this).parent('.btn_agree_wrap').addClass('act');
-		//check toast
-		$(this).parent().closest('.full_popup').find('.error_message').addClass('on');
-		setTimeout(function(){
-			$('.btn_agree_move').parent().closest('.full_popup').find('.error_message').removeClass('on').addClass('off');
-		},2000)
-	}
-}
-*/
+
 /****복붙시작영역 ****/
 
 
@@ -1885,37 +1868,77 @@ $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_toolti
 	}, 0)
 })
 
-/* 약관 스크롤 애니 */
+/* 약관 스크롤 애니 -scroll */
+$(document).ready(function () {
+	let $this = $('.terms_view');
+	let $fullPop = $this.closest('.full_popup');
+	let $popCont = $('.popup_content',$fullPop);
+
+	$popCont.off('scroll.full_popup_scroll').on('scroll.full_popup_scroll', function(){
+		let nowScroll = $popCont.scrollTop();
+	
+		if(!scrolling){
+			console.log(nowScroll,$popCont.height(), $this.height());
+		}
+		
+		/*scroll ending check */
+		if($this){
+			if((nowScroll + $popCont.height()) >= $this.height()){
+				console.log('pop_scroll ending')
+				scrollEnding = true;
+				if (document.getElementsByClassName('.btn_agree_move') ) {
+					$fullPop.find('.btn_agree_wrap').addClass('act');
+					//check toast
+					$fullPop.find('.error_message').addClass('on');
+					setTimeout(function(){
+						$fullPop.find('.error_message').removeClass('on').addClass('off');
+					},2000)
+				}
+			}else{
+				scrollEnding = false;
+			}	
+		}
+		
+	})
+
+});
+/* 약관 스크롤 애니 - click */
 $(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn_agree_move', function(){
-	if (document.getElementsByClassName('.btn_agree_move') ) {
-		//console.log( $('.popup_content')[0].scrollHeight)
-		$('.popup_content').animate({
-			scrollTop: $('.popup_content')[0].scrollHeight
-		}, 400);
-		$(this).parent('.btn_agree_wrap').addClass('act');
-		//check toast
-		$(this).parent().closest('.full_popup').find('.error_message').addClass('on');
-		setTimeout(function(){
-			$('.btn_agree_move').parent().closest('.full_popup').find('.error_message').removeClass('on').addClass('off');
-		},2000)
+	let $this = $('.btn_agree_move');
+	let $fullPop = $this.closest('.full_popup');
+	let $popCont = $('.popup_content', $fullPop);
+	let $termsView = $('.terms_view', $fullPop);
+
+	if ($popCont) {
+		let nowScroll = $popCont.scrollTop();
+	
+		if(!scrolling){
+			console.log(nowScroll,$popCont.height(),$termsView.height());
+		}
+		
+		if($this){
+			if((nowScroll + $popCont.height()) >= $termsView.height()){
+				scrollEnding = true;
+				$this.parent('.btn_agree_wrap').addClass('act');
+				//check toast
+				$fullPop.find('.error_message').addClass('on');
+				setTimeout(function(){
+					$fullPop.find('.error_message').removeClass('on').addClass('off');
+				},2000)
+			}else{
+				scrollEnding = false;
+				var num = 1000;
+				$popCont.animate({
+					//scrollTop: $('.popup_content')[0].scrollHeight
+					scrollTop: num
+				}, 400);
+				num = num + 1000
+				console.log(num)
+			}	
+		}
 	}
 });
 
-/*
-$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn_agree_move', function(){
-	if (document.getElementsByClassName('.btn_agree_move') ) {
-		$(this).parent().closest('.full_popup').find('.pop_content').animate({
-			scrollTop: $(this).parent().closest('.full_popup').find('.pop_content')[0].scrollHeight
-		},500);
-		$(this).parent('.btn_agree_wrap').addClass('act');
-		//check toast
-		$(this).parent().closest('.full_popup').find('.error_message').addClass('on');
-		setTimeout(function(){
-			$('.btn_agree_move').parent().closest('.full_popup').find('.error_message').removeClass('on').addClass('off');
-		},2000)
-	}
-})
-*/
 /* [개발대응] 약관 스크롤 애니 (as-is 수정한 소스 25-03-12 새로 만듬)
 let _scrollT = 0;
 let _scrollT_start = false;
