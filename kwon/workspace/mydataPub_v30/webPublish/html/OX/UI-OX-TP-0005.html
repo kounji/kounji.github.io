@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>OX퀴즈</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+	<script type="text/javascript" src="../../../resource/js/slick.min.js"></script>
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- wrap S -->
+	<div id="wrap">
+		<div>
+			<a href="#nolink" class="btn_pop_view" data-popup="slide_popup_01">팝업보기</a>
+		</div>
+	</div>
+	<!--// wrap E -->
+	<!-- alert pupop S -->
+	<div class="dimmed" style="display:block;"></div>	
+	<div class="center_popup" id="center_popup" style="display:block;"> <!-- 개발시 style="display:block;" 제거 -->
+		<div class="popup_content">
+			<div class="oxquiz_result">
+				<strong class="tit error">틀렸어요.</strong>
+				<span class="shape wrong_o"></span>
+				<p class="txt">정답 : X</p>
+				<p class="txt_sub">내일도 도전해 보세요.</p>
+			</div>
+		</div>
+		<div class="popup_footer">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg primary">확인</button>
+			</div>
+		</div>
+	</div>
+	<!--// alert popup E -->
+</body>
+</html>

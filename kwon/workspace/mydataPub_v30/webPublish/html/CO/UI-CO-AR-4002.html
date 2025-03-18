@@ -41,8 +41,9 @@
 		<div class="popup_content">
 			<div class="asset_connect organ_sel">
 				<div class="tit_area">
-					<h2 class="headline sm"><strong>연결할 기관</strong>을 선택해 주세요.</h2>
-					<span class="progress" role="progressbar" aria-valuetext="전체 4단계 중 1단계" aria-valuemax="4" aria-valuenow="1"><em class="now">01</em><span class="total">04</span></span>
+					<h2 class="headline"><strong>연결할 기관을 선택해 주세요.</strong></h2><!-- [v4.0] 25-03-17 코드 변경(폰트크기) -->
+					<!-- [v4.0] 25-03-17 progress 삭제 <span class="progress" role="progressbar" aria-valuetext="전체 4단계 중 1단계" aria-valuemax="4" aria-valuenow="1"><em class="now">01</em><span class="total">04</span></span> -->
+					<p class="txt">연결중 기관, 공공 기관은 자산 정보가 표시됩니다.</p><!-- [v4.0] 25-03-17 문구추가 -->
 				</div>
 				<div class="input">
 					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요.">
@@ -83,56 +84,146 @@
 					<div class="category_cont">
 						<div class="institu_group" id="institu01">
 							<div class="tit_area">
-								<strong class="institu_tit">은행 <em class="num">3</em></strong>
+								<strong class="institu_tit">은행 <em class="num">(<span>4</span>기관, <span>5</span>개 자산 선택)</em></strong>
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree" id="checkall01" checked="checked">
 									<label for="checkall01"><span class="blind">전체</span>선택해제</label>
 								</div>
 							</div>
-							<!--
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox01" id="checkbox01_01" checked="checked">
-										<label for="checkbox01_01">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결됨</span>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1" checked="checked">
+									<label for="checkbox_toggle_box1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+
+								<details class="select_detail" open><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1_1" checked>
+													<label for="checkbox_toggle_box1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협 (연금)신탁상품ABC</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1_2" checked>
+													<label for="checkbox_toggle_box1_2">
+														<span class="bank_wrap">
+															<strong class="bank_name">NH모여라통장</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1_3">
+													<label for="checkbox_toggle_box1_3">
+														<span class="bank_wrap">
+															<strong class="bank_name">상품명(넘치는 경우 줄바꿈 처리)상품명(넘치는 경우 줄바꿈 처리)</strong>
+															<!--<span class="txt_status">연결중</span> -->
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox01" id="checkbox01_02" checked="checked">
-										<label for="checkbox01_02">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결됨</span>
-										</label>
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box2" id="checkbox_toggle_box2" checked="checked">
+									<label for="checkbox_toggle_box2">
+										<i class="ico_bank A1AAAD0000"></i>
+										<strong class="bank_name">산업은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_box2" id="checkbox_toggle_box2_1" checked>
+													<label for="checkbox_toggle_box2_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">산업은행 (연금)신탁상품ABC</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_box2" id="checkbox_toggle_box2_2" checked>
+													<label for="checkbox_toggle_box2_2">
+														<span class="bank_wrap">
+															<strong class="bank_name">산업은행모여라통장</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox01" id="checkbox01_03" checked="checked">
-										<label for="checkbox01_03">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status end">만료예정</span>
-										</label>
-									</div>
-								</li>
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox01" id="checkbox01_04" checked="checked">
-										<label for="checkbox01_04">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
-									</div>
-								</li>
-							</ul>
-							-->
-							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box3" id="checkbox_toggle_box3">
+									<label for="checkbox_toggle_box3">
+										<i class="ico_bank A1AAEO0000"></i>
+										<strong class="bank_name">국민은행</strong>
+										<!--<span class="txt_status">연결중</span>-->
+									</label>
+								</div>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box4" id="checkbox_toggle_box4" checked>
+									<label for="checkbox_toggle_box4">
+										<i class="ico_bank A1AAEM0000"></i>
+										<strong class="bank_name">우리은행</strong>
+										<span class="txt_status end">만료예정</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
+							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 
 							<div class="no_result">
 								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
 								<div class="bg">
@@ -150,38 +241,157 @@
 									<label for="allagree2">전체선택</label>
 								</div>
 							</div>
-							<!--
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox02" id="checkbox02_1" checked="checked">
-										<label for="checkbox02_1">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-											<span class="txt_status">연결됨</span>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_gong1" id="checkbox_toggle_gong1" checked="checked">
+									<label for="checkbox_toggle_gong1">
+										<i class="ico_bank C1ABBG0000"></i>
+										<strong class="bank_name">국민연금공단</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">증명서</strong>
+										<span class="arr">
+											<span class="show">선택</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_gong1" id="checkbox_toggle_gong1_1" checked>
+													<label for="checkbox_toggle_gong1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">연금산정용 가입내역확인서</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox02" id="checkbox02_2">
-										<label for="checkbox02_2">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_gong2" id="checkbox_toggle_gong2" checked="checked">
+									<label for="checkbox_toggle_gong2">
+										<i class="ico_bank PBAAVM0000"></i>
+										<strong class="bank_name">국민건강보험공단</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">증명서</strong>
+										<span class="arr">
+											<span class="show">선택</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_gong2" id="checkbox_toggle_gong2_1" checked>
+													<label for="checkbox_toggle_gong2_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">건강&middot;장기요양보험료납부확인서(직장가입자)</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox02_2" id="checkbox02_3">
-										<label for="checkbox02_3">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_gong3" id="checkbox_toggle_gong3" checked="checked">
+									<label for="checkbox_toggle_gong3">
+										<i class="ico_bank PBAAVJ0000"></i>
+										<strong class="bank_name">행정안전부</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+
+								<details class="select_detail" open><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">증명서</strong>
+										<span class="arr">
+											<span class="show">선택</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_gong3" id="checkbox_toggle_gong3_1" checked>
+													<label for="checkbox_toggle_gong3_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">지방세납세증명서</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+													</label>
+												</div>
+											</li>
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_gong3" id="checkbox_toggle_gong3_2" checked>
+													<label for="checkbox_toggle_gong3_2">
+														<span class="bank_wrap">
+															<strong class="bank_name">지방세세목별과세(납세)증명서(재산세)</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+													</label>
+												</div>
+											</li>
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_gong3" id="checkbox_toggle_gong3_3">
+													<label for="checkbox_toggle_gong3_3">
+														<span class="bank_wrap">
+															<strong class="bank_name">지방세세목별과세(납세)증명서(자동차세)</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-							</ul>
-							-->
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_gong4" id="checkbox_toggle_gong4">
+									<label for="checkbox_toggle_gong4">
+										<i class="ico_bank PBAAVK0000"></i>
+										<strong class="bank_name">국세청</strong>
+										<!--<span class="txt_status">연결중</span>-->
+									</label>
+								</div>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box4" id="checkbox_toggle_gong5" checked>
+									<label for="checkbox_toggle_gong5">
+										<i class="ico_bank PBAAVN0000"></i>
+										<strong class="bank_name">관세청</strong>
+										<span class="txt_status end">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
 							<div class="no_result">
 								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
@@ -200,6 +410,9 @@
 									<label for="allagree3">전체선택</label>
 								</div>
 							</div>
+
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<!--
 							<ul class="sel_list">
 								<li class="formItem">
 									<div class="checkbox border">
@@ -230,6 +443,43 @@
 									</div>
 								</li>
 							</ul>
+							-->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_card1" id="checkbox_toggle_card1" checked="checked">
+									<label for="checkbox_toggle_card1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협카드</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_card1_1" id="checkbox_toggle_card1_1" checked>
+													<label for="checkbox_toggle_card1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</details>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 
 						<div class="institu_group" id="institu04">
@@ -240,6 +490,8 @@
 									<label for="allagree4">전체선택</label>
 								</div>
 							</div>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<!--
 							<ul class="sel_list">
 								<li class="formItem">
 									<div class="checkbox border">
@@ -250,8 +502,55 @@
 										</label>
 									</div>
 								</li>
-								
 							</ul>
+							-->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_in1" id="checkbox_toggle_in1" checked="checked">
+									<label for="checkbox_toggle_in1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_in1" id="checkbox_toggle_in1_1" checked>
+													<label for="checkbox_toggle_in1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_in1" id="checkbox_toggle_in1_2">
+									<label for="checkbox_toggle_in1_2">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 
 						<div class="institu_group" id="institu05">
@@ -262,18 +561,54 @@
 									<label for="allagree5">전체선택</label>
 								</div>
 							</div>
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox05" id="checkbox05_1" >
-										<label for="checkbox05_1">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_p1" id="checkbox_toggle_p1" checked="checked">
+									<label for="checkbox_toggle_p1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_in1" id="checkbox_toggle_p1_1" checked>
+													<label for="checkbox_toggle_in1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								
-							</ul>
+								</details>
+							</div>
+
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_in1" id="checkbox_toggle_in1_2">
+									<label for="checkbox_toggle_in1_2">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 
 						<div class="institu_group" id="institu06">
@@ -284,18 +619,53 @@
 									<label for="allagree6">전체선택</label>
 								</div>
 							</div>
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox06" id="checkbox06_1" >
-										<label for="checkbox06_1">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins1" id="checkbox_toggle_ins1" checked="checked">
+									<label for="checkbox_toggle_ins1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_ins1_1" id="checkbox_toggle_ins1_1" checked>
+													<label for="checkbox_toggle_ins1_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								
-							</ul>
+								</details>
+							</div>
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins1" id="checkbox_toggle_ins1_2">
+									<label for="checkbox_toggle_ins1_2">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 
 						<div class="institu_group" id="institu07">
@@ -306,18 +676,53 @@
 									<label for="allagree7">전체선택</label>
 								</div>
 							</div>
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox07" id="checkbox07_1" >
-										<label for="checkbox07_1">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins111" id="checkbox_toggle_ins111" checked="checked">
+									<label for="checkbox_toggle_ins111">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_ins111" id="checkbox_toggle_ins111_1" checked>
+													<label for="checkbox_toggle_ins111_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								
-							</ul>
+								</details>
+							</div>
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins111" id="checkbox_toggle_ins111_2">
+									<label for="checkbox_toggle_ins111_2">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 
 						<div class="institu_group" id="institu08">
@@ -328,18 +733,53 @@
 									<label for="allagree8">전체선택</label>
 								</div>
 							</div>
-							<ul class="sel_list">
-								<li class="formItem">
-									<div class="checkbox border">
-										<input type="checkbox" name="checkbox08" id="checkbox08_1" >
-										<label for="checkbox08_1">
-											<i class="ico_bank A1AABG0000"></i>
-											<strong class="bank_name">농협은행</strong>
-										</label>
+							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins222" id="checkbox_toggle_ins222" checked="checked">
+									<label for="checkbox_toggle_ins222">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								<details class="select_detail"><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<ul class="sel_list">
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_ins222" id="checkbox_toggle_ins222_1" checked>
+													<label for="checkbox_toggle_ins222_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+										</ul>
 									</div>
-								</li>
-								
-							</ul>
+								</details>
+							</div>
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_ins222" id="checkbox_toggle_ins222_2">
+									<label for="checkbox_toggle_ins222_2">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-03-17 박스형태로 변경 -->
 						</div>
 					</div>
 				</div>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>연결기관선택 | 자산연결</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+<style>
+/* 자산연결 */
+.asset_connect{padding:1.6rem 2rem 2.4rem;}
+.asset_connect > .tit_area.bg_char{min-height:7.2rem; background:url(../../assets_v40/images/img/img_connect_tit.png) no-repeat right bottom 0.4rem; background-size:11rem auto; }
+.asset_connect > .tit_area.bg_char .headline strong {color:var(--primary);}
+.asset_connect .shadow_box{padding:2rem; border-radius:1.6rem; background:#fff; box-shadow: 0.4rem 0.8rem 2.4rem 0 rgba(53, 55, 56, 0.14);}
+.organ_group{margin-top:4rem;}
+.organ_group .titH5{display:block; color:var(--gray_01); font-weight:600}
+.organ_group .btns_wrap{margin-top:3.2rem;}
+.organ_group .organ_list + .titH5{margin-top:4rem;}
+.organ_list {display:flex; flex-wrap:wrap; justify-content:space-between;} 
+.organ_list .shadow_box{position:relative; margin-top:1.6rem; width:calc(50% - 0.9rem);} 
+.organ_list .shadow_box .tit_area{display:flex; flex-wrap:wrap; justify-content:flex-start; gap:0 0.4rem; align-items:center;}
+.organ_list .shadow_box .tit_area .tit{display:inline-block; font-size:1.5rem; color:var(--gray_02); line-height:2.6rem;}
+.organ_list .shadow_box .tit_area .status{display:inline-block; font-size:1.6rem; color:var(--primary); font-weight:600;}
+.organ_list .shadow_box .organ{position:absolute; right:4.8rem; bottom:2rem; display:flex; height:2.8rem; justify-content:flex-end; z-index:0;}
+.organ_list .shadow_box .organ .item{position:relative; margin-right:-0.8rem;}
+.organ_list .shadow_box .organ .ico_bank{position:relative; top:0; left:0; margin-top:0; width:2.8rem; height:2.8rem; border-radius:1.4rem; background-size:auto 2.8rem; overflow:hidden;}
+.organ_list .shadow_box .organ .ico_cate{position:relative; display:inline-block; width:2.8rem; height:2.8rem; border-radius:1.4rem; border:1px solid var(--border_01); background-repeat:no-repeat; background-position:center center; background-color:#fff; background-size:2.8rem auto; overflow:hidden;}
+.organ_list .shadow_box .organ .ico_cate.house{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_01.png);}
+.organ_list .shadow_box .organ .ico_cate.car{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_02.png);}
+.organ_list .shadow_box .organ .ico_cate.cash{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_03.png);}
+.organ_list .shadow_box .organ .ico_cate.gold{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_04.png);}
+.organ_list .shadow_box .organ .ico_cate.foreign{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_05.png);}
+.organ_list .shadow_box .organ .ico_cate.machin{background-image:url(../../assets_v40/images/icon/ico_connect_28x28_06.png);}
+.organ_list .shadow_box .btn_area{position:relative; margin-top:1.6rem; height:2.8rem; text-align:right; z-index:1;}
+.organ_list .shadow_box .btn_add{display:inline-flex; gap:0; border-radius:1.4rem; background-color:rgb(243, 245, 248); overflow:hidden;}
+
+/* 자산연결_연결기관선택 */
+.asset_connect.organ_sel .tit_area{position:relative;}
+.asset_connect.organ_sel .tit_area .progress{position:absolute; top:0; right:0;}
+.asset_connect.organ_sel .tit_area + .input{margin-top:2.4rem;}
+
+.asset_connect.organ_sel .input input{padding-right:3.2rem;}
+.asset_connect.organ_sel .input .btn_delete{position:absolute; top:50%; right:4rem; margin:0; width:1.6rem; height:1.6rem; background:url(../images/icon/btn_input_close.png) no-repeat center / 100%; border-radius:50%; transform:translateY(-50%);}
+
+.asset_connect .checkbox.noicon input{position:absolute; top:0; right:0; width:0; height:0; background:none;}
+.asset_connect .checkbox.noicon input + label{margin-left:0; font-size:1.4rem; font-weight:500; color:var(--gray_03);}
+
+.sel_list {margin-top:1.6rem;}
+.sel_list li:not(:first-child) {margin-top:3.2rem;}
+.sel_list input + label{display:flex; margin:0; padding:0 0 0 4.4rem; min-height:3.2rem; align-items:center;}
+.sel_list input {position:absolute; top:50%; right:0; transform: translateY(-50%); }
+.sel_list .ico_bank{width:3.2rem; height:3.2rem; margin-top:-1.6rem; background-size:3.2rem auto;}
+.sel_list .bank_name{display:inline-block; font-size:1.6rem; color:var(--gray_01); font-weight:400;}
+.sel_list .txt_status{display:inline-block; margin-left:1rem; font-size:1.2rem; color:var(--gray_04);}
+.sel_list .txt_status.end{color:#e24949;}
+/*.sel_list .formItem + .formItem{margin-top:3.2rem;}*/
+
+.institu_wrap{--tab_h:4rem; margin:4rem -2rem 0; padding:0 2rem 0; border-top:var(--divline);}
+.institu_wrap .category_tab {margin:0 -2rem; background:#fff; z-index:100}
+.institu_wrap .category_tab.fixed .scroller {position:fixed; top:var(--header_h); left:0;}
+.institu_wrap .category_tab ul li a span{display:inline-block;}
+
+.institu_wrap .top_desc{display:flex; padding:4.4rem 0 0; justify-content:space-between; align-items:center;}
+.institu_wrap .btn_recom{display:inline-block; font-size:1.6rem; color:#52606d; }
+.institu_wrap .btn_recom .ico_line_down{position:relative;display:inline-block; padding-right:2.4rem; font-size:1.4rem;}
+.institu_wrap .btn_recom .ico_line_down:after{content:""; position:absolute; top:50%; right:0.4rem; margin-top:-0.4rem; display:block; width:1.2rem; height:0.7rem; background:url(../../assets_v40/images/icon/icon_line_up.png) no-repeat 0 0; background-size:1.2rem auto; transform:rotate(180deg);}
+.institu_wrap .institu_group + .institu_group{padding-top:6rem;}
+.institu_wrap .institu_group:first-child{padding-top:4rem;}
+.institu_wrap a.com_txtinfo_type01{padding-right:1.2rem; background: url(../images/new/ico_list_arrow.png) no-repeat right center; background-size: 0.6rem;}
+.institu_group .tit_area{margin-bottom:3.2rem; display:flex; justify-content:space-between; align-items:center;}
+.institu_group .institu_tit{font-size:1.6rem; color:var(--gray_01); font-weight:600;}
+
+.institu_desc{margin-top:6rem;}
+.institu_desc .txt{line-height:2.4rem; font-size:1.6rem; font-weight:600; color:var(--gray_01)}
+.institu_desc .link{position:relative; display:inline-block; margin-top:2.4rem; font-size:1.6rem; font-size:1.6rem; font-weight:400; color:var(--gray_02);}
+.institu_desc .link:before{content:""; display:block; position:absolute; bottom:0; left:0; width:100%; height:1px; border-bottom:1px solid var(--gray_02);}
+.institu_desc .link span{display:inline-block; color:var(--primary);}
+
+/* 자산연결_연결 결과 */
+.asset_connect.result{padding-top:0;}
+.asset_connect.result .result_box{position:relative; padding-top:19rem; text-align:center;}
+
+.asset_connect.result .result_box p{font-size:2.4rem; font-weight:600; color:var(--gray_01); }
+.asset_connect.result .result_box p.txt_sub{margin-top:1rem; line-height:2.4rem; font-size:1.6rem; font-weight:400; color:var(--gray_03)}
+.asset_connect.result .result_box .bg{position:absolute; top:0; left:50%; margin-left:-16.2rem; width:32.4rem; height:16.2rem; }
+.asset_connect.result .result_box.fail{margin-left:-2rem; margin-right:-2rem; padding-left:2rem; padding-right:2rem;}
+.asset_connect.result .result_box.fail .bg{margin-left:-50%; width:100%; min-height:12rem; }
+
+.asset_connect.result .gray_box{margin-top:4rem; padding:1.6rem 1.2rem; text-align:left;}
+.asset_connect.result .gray_box .dotted_list{font-size:1.2rem;}
+
+.connect_status{margin-top:4.4rem;}
+.connect_status .tit_area{padding-bottom:1.6rem; border-bottom:1px solid var(--border_02)}
+.connect_status .tit_area .tit{font-size:1.6rem; font-weight:600; color:var(--gray_01);}
+.connect_status .between_list li{position:relative; display:flex; margin-top:3.2rem; justify-content:space-between; align-items:center;}
+.connect_status .between_list li:first-child{margin-top:2rem;}
+.connect_status .between_list li .ico_bank{width:3.2rem; height:3.2rem; background-size:3.2rem; margin-top:-1.6rem;}
+.connect_status .between_list li .bank_name{padding-left:4.5rem; line-height:3.2rem; font-size:1.6rem; color:var(--gray_01);}
+.connect_status .between_list li .status{line-height:3.2rem; font-size:1.4rem; color:var(--gray_04);}
+.connect_status .between_list li .status.fail{line-height:3.2rem; font-size:1.4rem; color:#e24949;}
+.connect_status .custom_tooltip.up .com_ballon_type02{top:-7.4rem;}
+.connect_status .com_tooltip_type02.com_tooltip_type03{width:1.8rem; height:1.8rem;}
+.connect_status .com_tooltip_type02.com_tooltip_type03 > a{width:1.8rem; height:2rem;}
+
+.connect_status.retry{margin-top:0;}
+.connect_status.retry .titH3{color:var(--gray_01); font-weight:600;}
+.connect_status.retry .between_list{margin-top:3.2rem;}
+
+/* 자산연결_수집&middot;이용 동의 재확인 */
+.connect_recheck .recheck_group:first-child{margin-top:1.2rem;}
+.recheck_group{margin-top:3.2rem;}
+.recheck_group .recheck_tit{font-size:1.6rem; font-weight:600; color:var(--gray_01);}
+.recheck_group .gray_box {margin-top:1.6rem; text-align:left;}
+.recheck_group .gray_box .title{font-size:1.4rem; font-weight:400; color:var(--gray_03);}
+.recheck_group .gray_box .title .mark{margin-right:0.8rem;}
+.recheck_group .gray_box .detail{position:relative; margin-top:2rem; padding-left:6rem; min-height:4.8rem;}
+.recheck_group .gray_box .detail .ico{display:block; position:absolute; top:0; left:0; width:4.8rem; height:4.8rem; border-radius:1.6rem; background-repeat:no-repeat; background-position:center; background-color:#fff;}
+.recheck_group .gray_box .detail .ico.ico_recheck_apt{background-image:url(../images/icon/ico_recheck_apt.png); background-size:2.4rem auto;}
+.recheck_group .gray_box .detail .ico.ico_recheck_food{background-image:url(../images/icon/ico_recheck_food.png); background-size:2rem auto;}
+.recheck_group .gray_box .detail .ico.ico_recheck_chart{background-image:url(../images/icon/ico_recheck_chart.png); background-size:2.6rem auto;}
+.recheck_group .gray_box .detail ul{position:relative; padding-top:0.2rem;}
+.recheck_group .gray_box .detail li{display:flex; margin-top:0.6rem; justify-content:space-between; align-items: center;}
+.recheck_group .gray_box .detail li .key,
+.recheck_group .gray_box .detail li .val{font-size:1.2rem; color:var(--gray_02);}
+.recheck_group .gray_box .detail li.cate .key,
+.recheck_group .gray_box .detail li.cate .val{font-size:1.6rem; color:var(--gray_01); font-weight:600;}
+.recheck_group .gray_box .ext {display:inline-block; line-height:4.5rem; padding-left:2rem;}
+.recheck_group .gray_box .ext span {position:relative; display:inline-block; padding-left:1.6rem; font-size:1.4rem; color:var(--gray_01); font-weight:600;}
+.recheck_group .gray_box .ext span:before {content:''; display:inline-block; position:absolute; top:50%; left:0; width:0.6rem; height:0.6rem; margin-top:-0.4rem; border-radius:0.6rem;}
+.recheck_group .gray_box .ext span + span {margin-left:1.6rem;}
+.recheck_group .gray_box .ext span:nth-child(1):before {background-color:#ff894a;}
+.recheck_group .gray_box .ext span:nth-child(2):before {background-color:#ffc506;}
+.recheck_group .gray_box .ext span:nth-child(3):before {background-color:var(--gray_02);} 
+
+/* 자산연결_전송요구서 */
+/*.last_move .btns.btn_move_hide{display:flex; flex:1;}*/
+.terms_wrap {position:relative; margin-top:1.6rem;}
+.terms_wrap .tit_area{padding:0 2rem;}
+.terms_wrap .terms_tit{line-height:2.6rem; font-size:2rem; font-weight:600; color:var(--gray_01);}
+.terms_wrap .terms_txt{margin-top:0.8rem; line-height:2rem; font-size:1.4rem; font-weight:400; color:var(--gray_03);}
+.terms_wrap .terms_cont .terms_txt + dl,
+.terms_wrap .terms_cont dl + .terms_bold{margin-top:3.4rem;}
+.terms_wrap .terms_cont + .terms_cont{margin-top:6rem;}
+.terms_wrap .terms_cont dt{margin-top:3.2rem; line-height:2.6rem; font-size:1.6rem; font-weight:600; color:var(--gray_01);}
+.terms_wrap .terms_cont dd{margin-top:0.6rem; line-height:2rem; font-size:1.4rem; font-weight:400; color:var(--gray_03);}
+.terms_wrap .terms_cont dd .flex_box{display:flex; gap:0 1rem; justify-content:space-between;}
+.terms_wrap .terms_cont dd .flex_box > div{width:100%;}
+.terms_wrap .terms_cont dd .flex_box .btn_select{position:relative; display:block; width:100%; padding:0 3.2rem 0 0.8rem; line-height:4rem; font-size:1.8rem; font-weight:500; color:var(--gray_01); text-align:left; border-bottom:2px solid var(--border_01);}
+.terms_wrap .terms_cont dd .flex_box .btn_select:after{content:""; display:block; position:absolute; top:50%; right:0.8rem; width:2.4rem; height:2.4rem; margin-top:-1.2rem; background:url(../images/icon/icon_line_up.png) no-repeat center center; background-size:1.2rem auto; transform: rotate(180deg);}
+.terms_wrap .terms_cont .terms_txt_point{font-size:1.8rem; color:var(--primary); font-weight:400;}
+.terms_wrap .terms_cont .dotted_list > li{margin-top:0}
+.terms_wrap .terms_cont dl:first-child dt:first-child{margin-top:0;}
+.terms_wrap .terms_group + .terms_group{position:relative; margin-top:4rem; padding-top:4.6rem;}
+.terms_wrap .terms_group + .terms_group:before{content:""; display:block; position:absolute; top:0; left:-2rem; width:calc(100% + 4rem); border-top:var(--divline);}
+.terms_wrap .terms_group dl + .terms_tit{margin-top:3.4rem;}
+.terms_wrap .terms_group .radio_box_group + .radio_box_group{margin-top:0.8rem;}
+.terms_wrap .terms_group .radio_box_group + .dotted_list{margin-top:0.8rem;}
+.terms_wrap .terms_detail{margin-top:1.6rem; border-radius:1.6rem; border:1px solid var(--border_01);}
+.terms_wrap .terms_detail:first-child{margin-top:1.2rem;}
+.terms_wrap .terms_detail summary{position:relative; padding:2rem;}
+.terms_wrap .terms_detail summary:after{content:""; display:block; position:absolute; top:50%; right:1.6rem; width:2.4rem; height:2.4rem; margin-top:-1.2rem; background:url(../images/icon/icon_line_up.png) no-repeat center center; background-size:1.2rem auto; transform:rotate(180deg); transition:all 0.3s;}
+.terms_wrap .terms_detail summary strong{display:block; font-size:1.6rem; color:var(--gray_01); font-weight:600;}
+.terms_wrap .terms_detail summary p{margin-top:0.8rem; font-size:1.4rem; color:var(--gray_02);}
+.terms_wrap .terms_detail[open] summary:after{transform:rotate(0);}
+.terms_wrap .terms_detail[open] .cont{position:relative; padding:3rem 2rem 2rem 2rem;}
+.terms_wrap .terms_detail[open] .cont:before{content:""; position:absolute; top:0; left:2rem; width:calc(100% - 4rem); height:1px; border-top:1px solid #e8ecf2; }
+.terms_wrap .terms_detail[open] .cont p + dl{margin-top:3rem;}
+.terms_wrap .terms_detail dl > dt{margin-top:2rem; font-size:1.4rem; font-weight:600; color:var(--gray_01);}
+.terms_wrap .terms_detail dl > dt:first-child{margin-top:0;}
+.terms_wrap .terms_detail dl > dd{margin-top:0; line-height:2rem; font-size:1.4rem; font-weight:400; color:var(--gray_03);}
+
+.terms_wrap .terms_check{margin-top:6rem; }
+.terms_wrap .terms_check .checkbox_list > li{position:relative;}
+
+.terms_wrap .terms_check .error_message {position:absolute; top:-3rem; left:0; padding:1rem; background-color:#30374d; border-radius:1.2rem; opacity:0; transition:all .5s;}
+.terms_wrap .terms_check .error_message.on {opacity:0.96;}
+.terms_wrap .terms_check .error_message.off {display:none; opacity:0;}
+.terms_wrap .terms_check .error_message p {font-size:1.5rem; color:#fff; }
+.terms_wrap .terms_check .error_message em {color:transparent; font-size:.1rem; overflow:initial;}
+.terms_wrap .terms_check .error_message::after {content:''; position:absolute; left:2.5rem; bottom:-0.5rem; width:1rem; height:1rem; background-color:#30374d; opacity:0.96;transform:rotate(45deg);}
+
+.btns_wrap.btn_agree_wrap .btn_agree_move{display:block; flex:1;}
+.btns_wrap.btn_agree_wrap .btn_agree_stop{display:none;}
+
+.btns_wrap.btn_agree_wrap.act .btn_agree_move{display:none;}
+.btns_wrap.btn_agree_wrap.act .btn_agree_stop{display:block;}
+
+/* 자산연결_기관연결 완료 및 금융자산 선택*/
+.asset_connect .sel_toggle_wrap{margin-top:4rem;}
+.asset_connect .sel_toggle_wrap .top_desc{display:flex; margin-bottom:1.6rem; justify-content:space-between; align-items:center;}
+.asset_connect .sel_toggle_wrap .top_desc .sel_toggle_tit{font-size:1.6rem; font-weight:600; color:var(--gray_01);}
+.asset_connect .sel_toggle_wrap .sel_toggle_graoup{ border-top:1px solid var(--border_02);}
+.asset_connect .sel_toggle_wrap .sel_toggle_graoup + .top_desc{margin-top:6rem;}
+.asset_connect .sel_toggle_wrap .gray_box{margin-top:3.2rem; padding:2.4rem; text-align:left;}
+.asset_connect .sel_toggle_wrap .connect_status.retry{border-top:1px solid var(--border_02);}
+.asset_connect .sel_toggle_graoup .select_detail{position:relative;}
+.asset_connect .sel_toggle_graoup .select_detail + .select_detail{margin-top:0;}
+.asset_connect .sel_toggle_graoup .select_detail summary{position:relative; padding:2rem 2rem 2rem 4rem;}
+.asset_connect .sel_toggle_graoup .select_detail summary .tit{display:block; line-height:2.8rem; font-size:1.6rem; font-weight:600; color:var(--gray_01);}
+.asset_connect .sel_toggle_graoup .select_detail summary .ico_bank{width:2.8rem; height:2.8rem; margin-top:-1.4rem; background-size:auto 2.8rem; }
+.asset_connect .sel_toggle_graoup .select_detail summary:after{content:""; position:absolute; top:50%; right:0.4rem; margin-top:-0.4rem; display:block; width:1.2rem; height:0.7rem; background:url(../../assets_v40/images/icon/icon_line_up.png) no-repeat 0 0; background-size:1.2rem auto; transform:rotate(180deg); transition:all 0.3s;}
+.asset_connect .sel_toggle_graoup .select_detail[open] summary:after{transform:rotate(0);}
+.asset_connect .sel_toggle_graoup .select_detail .cont{padding-bottom:3.2rem;}
+.asset_connect .sel_toggle_graoup .sel_list{margin-top:0;}
+.asset_connect .sel_toggle_graoup .sel_list .formItem + .formItem{margin-top:1.6rem;}
+.asset_connect .sel_toggle_graoup .sel_list .checkbox input{right:2.4rem;}
+.asset_connect .sel_toggle_graoup .sel_list .checkbox input + label{display:block; padding:2.4rem; border-radius:1.6rem; box-shadow:0.4rem 0.8rem 2.4rem 0 rgba(53, 55, 56, 0.14);}
+.asset_connect .sel_toggle_graoup .sel_list .checkbox .bank_name{font-weight:600;}
+.asset_connect .sel_toggle_graoup .sel_list .checkbox .bank_num{display:block; font-size:1.4rem; color:var(--gray_04)}
+
+/* 자산연결_로딩 */
+.asset_load {padding-top:2rem;}
+.asset_load .lottie {width:26rem;height:26rem;}
+.asset_load .value {margin-top:1.2rem;text-align:center;}
+.asset_load .value .num {font-size:3.2rem;font-weight:700;line-height:4.4rem;color:var(--primary);}
+.asset_load .value > p {margin-top:0.4rem;font-size:1.6rem;font-weight:500;line-height:2.4rem;color:var(--gray_03);}
+
+</style>
+</head>
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup" id="full_popup_01">
+		<div class="popup_header">
+			<h1>자산연결</h1>
+			<!--<button type="button" class="prev"><span class="blind">이전</span></button>-->
+		</div>
+		
+		<div class="popup_content">
+			<div class="asset_connect organ_sel">
+				<div class="tit_area">
+					<h2 class="headline sm"><strong>연결할 기관</strong>을 선택해 주세요.</h2>
+					<span class="progress" role="progressbar" aria-valuetext="전체 4단계 중 1단계" aria-valuemax="4" aria-valuenow="1"><em class="now">01</em><span class="total">04</span></span>
+				</div>
+				<div class="input">
+					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요.">
+					<button type="button" class="btn_delete"><span class="blind">삭제</span></button><!-- [v4.0] 25-02-28 삭제버튼 추가 -->
+					<button type="button" class="btn_search"><span class="blind">검색</span></button>
+				</div>
+
+				<div class="institu_wrap">
+					<div class="category_tab">
+						<div class="scroller">
+							<ul role="tablist">
+								<li><a href="#institu01" role="tab" aria-selected="false">은행<span>10</span></a></li>
+								<li><a href="#institu02" role="tab" aria-selected="false">공공</a></li>
+								<li><a href="#institu03" role="tab" aria-selected="false">카드<span>1</span></a></li>
+								<li><a href="#institu04" role="tab" aria-selected="false">보험</a></li>
+								<li><a href="#institu05" role="tab" aria-selected="false">통신</a></li>
+								<li><a href="#institu06" role="tab" aria-selected="false">증권</a></li>
+								<li><a href="#institu07" role="tab" aria-selected="false">전자금융</a></li>
+								<li><a href="#institu08" role="tab" aria-selected="false">기타금융</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="top_desc">
+						<div>
+							<!-- 
+							<div class="checkbox border checkFull">
+								<input type="checkbox" name="fullcheck" id="fullcheck" title="전체 동의">
+								<label for="fullcheck">전체</label>
+							</div>
+							<a href="#nolink" class="com_txtinfo_type01">만료 예정 기관이 있어요.</a>
+							-->
+							<!-- [v4.0] 25-02-27 문구삭제 <p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p> -->
+						</div>
+						<a href="#nolink" class="btn_recom" title="옵션 선택"><span class="ico_line_down"><span class="blind">현재옵션</span>추천기관</span></a>
+					</div>
+					
+					<div class="category_cont">
+						<div class="institu_group" id="institu01">
+							<div class="tit_area">
+								<strong class="institu_tit">은행 <em class="num">3</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree" id="checkall01" checked="checked">
+									<label for="checkall01"><span class="blind">전체</span>선택해제</label>
+								</div>
+							</div>
+							<!--
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_01" checked="checked">
+										<label for="checkbox01_01">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결됨</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_02" checked="checked">
+										<label for="checkbox01_02">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결됨</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_03" checked="checked">
+										<label for="checkbox01_03">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status end">만료예정</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox01" id="checkbox01_04" checked="checked">
+										<label for="checkbox01_04">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+							-->
+							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+							<div class="no_result">
+								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
+								<div class="bg">
+									<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+						</div>
+
+						<div class="institu_group" id="institu02">
+							<div class="tit_area">
+								<strong class="institu_tit">공공 <em class="num">1</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree2" id="allagree2">
+									<label for="allagree2">전체선택</label>
+								</div>
+							</div>
+							<!--
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02" id="checkbox02_1" checked="checked">
+										<label for="checkbox02_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결됨</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02" id="checkbox02_2">
+										<label for="checkbox02_2">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox02_2" id="checkbox02_3">
+										<label for="checkbox02_3">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+							-->
+							<!-- [v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+							<div class="no_result">
+								<p class="text">연결 가능한 기관을 준비하고 있어요.</p>
+								<div class="bg">
+									<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-02-27 연결기관이 없는 케이스 추가 -->
+						</div>
+
+						<div class="institu_group" id="institu03">
+							<div class="tit_area">
+								<strong class="institu_tit">카드 <em class="num">1</em></strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree3" id="allagree3">
+									<label for="allagree3">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_1" checked="checked">
+										<label for="checkbox03_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+											<span class="txt_status">연결됨</span>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_2">
+										<label for="checkbox03_2">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox03" id="checkbox03_3">
+										<label for="checkbox03_3">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu04">
+							<div class="tit_area">
+								<strong class="institu_tit">보험</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree4" id="allagree4">
+									<label for="allagree4">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox04" id="checkbox04_1" >
+										<label for="checkbox04_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu05">
+							<div class="tit_area">
+								<strong class="institu_tit">통신</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree5" id="allagree5">
+									<label for="allagree5">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox05" id="checkbox05_1" >
+										<label for="checkbox05_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu06">
+							<div class="tit_area">
+								<strong class="institu_tit">증권</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree6" id="allagree6">
+									<label for="allagree6">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox06" id="checkbox06_1" >
+										<label for="checkbox06_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu07">
+							<div class="tit_area">
+								<strong class="institu_tit">전자금융</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree7" id="allagree7">
+									<label for="allagree7">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox07" id="checkbox07_1" >
+										<label for="checkbox07_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+
+						<div class="institu_group" id="institu08">
+							<div class="tit_area">
+								<strong class="institu_tit">기타금융</strong>
+								<div class="checkbox noicon checkGroup">
+									<input type="checkbox" name="allagree8" id="allagree8">
+									<label for="allagree8">전체선택</label>
+								</div>
+							</div>
+							<ul class="sel_list">
+								<li class="formItem">
+									<div class="checkbox border">
+										<input type="checkbox" name="checkbox08" id="checkbox08_1" >
+										<label for="checkbox08_1">
+											<i class="ico_bank A1AABG0000"></i>
+											<strong class="bank_name">농협은행</strong>
+										</label>
+									</div>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--
+				<div class="institu_desc">
+					<p class="txt">원하는 기관이 없다면<br>전체 기관에서 직접 선택해보세요.</p>
+					<a href="#nolink" class="link"><span>395개</span> 전체 기관 보기</a>
+				</div>
+				-->
+
+				<details class="ico_detail_noti" open="">
+					<summary><strong>알아두세요</strong></summary>
+					<div class="cont">
+						<p class="txt">자산 연결은 단순한 정보 조회이며, 신용평가에는 반영되지 않습니다. 또한, 강력한 보안 시스템을 통해 금융정보를 보호하니 안심하고 이용해 주세요.</p>
+					</div>
+				</details>
+			</div>
+
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg primary"><em>2</em>개 기관 연결하기</button>
+			</div>
+		</div>
+		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+
+<script type="text/javascript">
+const observer_assetConnect = function(){
+	const assetConnect = document.querySelector('.asset_connect .category_tab');
+
+	const stickyAssetNav = function(entries){
+		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ asset connect: ' + entries[0].isIntersecting);
+
+		if(!entries[0].isIntersecting){
+			$(".organ_sel .category_tab").addClass('fixed');
+		}else{
+			$(".organ_sel .category_tab").removeClass('fixed');
+			
+			$.each($(".organ_sel .category_tab li"), function(i,obj){
+				$("> a", $(obj)).attr('aria-selected', false);
+			});
+		}
+	}
+
+	const assetObserver = new IntersectionObserver(stickyAssetNav, {
+		root:null,
+		rootMargin :'-51px 0px 0px 0px',
+		threshold:1
+	});
+
+	assetObserver.observe(assetConnect);
+}
+
+observer_assetConnect();
+
+var scroll_assetNav = function(idx){
+	const obj = $(".organ_sel .category_tab li").eq(idx);
+	const _left = $(obj).offset().left;
+	const _curLeft = $('.organ_sel .category_tab .scroller').scrollLeft();
+
+	$(".organ_sel .category_tab .scroller").stop().animate({
+		scrollLeft:_curLeft + _left - 20
+	}, 400);
+}
+
+
+$('.popup_content').each(function(){
+	let $parent = $(this);
+
+	$parent.off('scroll.poplayout').on('scroll.poplayout', function(){
+		$.each($(".institu_wrap .category_cont .institu_group"), function(idx, item){
+			let _top = $(item).position().top;
+			if(_top <= 90){
+				$.each($(".organ_sel .category_tab li"), function(i,obj){
+					$("> a", $(obj)).attr('aria-selected', false);
+				});
+
+				$(">a", $(".organ_sel .category_tab li").eq(idx)).attr('aria-selected', true);
+				scroll_assetNav(idx);
+			}	
+		});
+	});	
+
+
+	$( '.organ_sel .category_tab a', $parent ).each(function(){
+		$(this).click(function(){
+			const id = $(this).attr('href');
+			const _curTop =  $parent.scrollTop();
+			const _top = _curTop + $(id).position().top - $(".organ_sel .category_tab").outerHeight() - 15;
+			
+			$parent.stop().animate({
+				scrollTop : _top
+			},300, function(){
+				
+			});
+		})
+	});
+
+
+});
+
+
+</script>
+</body>
+</html>

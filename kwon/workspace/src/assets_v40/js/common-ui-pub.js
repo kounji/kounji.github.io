@@ -1929,8 +1929,8 @@ $(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn
 				scrollEnding = false;
 				var num = 1000;
 				$popCont.animate({
-					//scrollTop: $('.popup_content')[0].scrollHeight
-					scrollTop: num
+					scrollTop: $('.popup_content')[0].scrollHeight
+					//scrollTop: num
 				}, 400);
 				num = num + 1000
 				console.log(num)

@@ -38,11 +38,18 @@
 		</div>	
 		<div class="popup_content">
 			<div class="assets_senior">
-
+				<!-- 25-03-17 ico_bubble 아이콘 종류
+					apt : home
+					단독주택 : single_home
+					오피스텔 : officetel
+					농지나 토지일때 : ground 
+					상가 : downtown 
+					기타 : etc 
+				-->
 				<div class="board_box house">
 					<div class="cate">
-						<span>아파트</span>/<span>자가</span>
-						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<span>아파트</span>/<span>자가</span>/<span>임대중</span><!-- 25-03-17 임대중 추가 -->
+						<i class="ico_bubble home"></i>
 					</div> 
 					<p class="name">
 						<strong >DMC센트럴자이(1단지)</strong>
@@ -55,8 +62,8 @@
 
 				<div class="board_box house">
 					<div class="cate">
-						<span>아파트</span>/<span>자가</span>
-						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<span>아파트</span>/<span>자가</span>/<span>임대중</span> 
+						<i class="ico_bubble home"></i>
 					</div> 
 					<p class="name">
 						<strong >DMC센트럴자이(1단지)</strong>
@@ -67,21 +74,73 @@
 					<p class="latter down"><em class="num">1억 2,000만원</em></p><!-- 상승 : up, 하락 : down -->
 				</div>
 
+				<!-- 25-03-17 case 추가 -->
 				<div class="board_box house">
 					<div class="cate">
-						<span>토지</span>/<span>농지</span>
-						<i class="ico_bubble ground"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<span>아파트</span>/<span>자가</span>/<span>임대중</span> 
+						<i class="ico_bubble home"></i>
 					</div> 
 					<p class="name">
-						<strong >나대지</strong>
+						<strong >DMC센트럴자이(1단지)</strong>
+						<strong class="nickname">나의 드림 아파트</strong>
 					</p>
-					<p class="addr">3억 1,157만원<span class="desc">한국부동산원</span></p>
-				</div> 
+					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
+					<p class="price">3억 1,157만원<span class="desc">매매금액</span></p>
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
 
 				<div class="board_box house">
 					<div class="cate">
 						<span>아파트</span>/<span>전세</span>
-						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<i class="ico_bubble home"></i>
+					</div> 
+					<p class="name">
+						<strong >DMC센트럴자이(1단지)</strong>
+					</p>
+					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
+					<p class="price">3억 1,157만원<span class="desc">보증금</span></p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>주택</span>/<span>자가</span>
+						<i class="ico_bubble single_home"></i>
+					</div> 
+					<p class="name">
+						<strong >나의 주택</strong>
+					</p>
+					<p class="price">3억 1,157만원<span class="desc">매매금액</span></p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>오피스텔</span>/<span>전세</span>
+						<i class="ico_bubble officetel"></i>
+					</div> 
+					<p class="name">
+						<strong >나의 오피스텔</strong>
+					</p>
+					<p class="price">3억 1,157만원<span class="desc">보증금</span></p>
+				</div>
+				<!-- //25-03-17 case 추가 -->
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>토지</span>/<span>농지</span>
+						<i class="ico_bubble ground"></i>
+					</div> 
+					<p class="name">
+						<strong >나대지</strong>
+					</p>
+					<p class="area">경기도 광주시 경안동</p>
+					<p class="price">3억 1,157만원<span class="desc">매매금액</span></p><!-- 25-03-17 수정 -->
+				</div> 
+
+				<!-- 25-03-17 이동 
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>전세</span>
+						<i class="ico_bubble home"></i>
 					</div> 
 					<p class="name">
 						<strong >DMC센트럴자이(1단지)</strong>
@@ -89,23 +148,95 @@
 					</p>
 					<p class="size"><em class="num">154.3</em>m<sup class="sup_text">2</sup></p>
 				</div>
+				-->
+
+				<!-- 25-03-17 case 추가 -->
+				<div class="board_box house">
+					<div class="cate">
+						<span>상가</span>
+						<i class="ico_bubble downtown"></i>
+					</div> 
+					<p class="name">
+						<strong >나의 상가</strong>
+					</p>
+					<p class="price">3억 1,157만원<span class="desc">매매금액</span></p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>기타</span>
+						<i class="ico_bubble etc"></i>
+					</div> 
+					<p class="name">
+						<strong >나의 기타자산</strong>
+					</p>
+					<p class="price">3억 1,157만원<span class="desc">매매금액</span></p>
+				</div>
+				<!-- //25-03-17 case 추가 -->
 
 				<!-- 신원확인 실패시 -->
+				<!-- 25-03-17 case 추가 -->
+				<div class="board_box house">
+					<div class="cate">
+						<span>아파트</span>/<span>자가</span>/<span>임대중</span>
+						<i class="ico_bubble home"></i>
+					</div> 
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
+				<!-- //25-03-17 case 추가 -->
+				
 				<div class="board_box house">
 					<div class="cate">
 						<span>아파트</span>/<span>전세</span>
-						<i class="ico_bubble home"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<i class="ico_bubble home"></i>
 					</div> 
-					<p class="desc">최근 시세정보가 없습니다.</p>
+					<p class="txt_info">최근 시세정보가 없습니다.</p><!-- 25-03-17 클래스 수정 -->
 				</div>
+
+				<!-- 25-03-17 case 추가 -->
+				<div class="board_box house">
+					<div class="cate">
+						<span>주택</span>/<span>자가</span>
+						<i class="ico_bubble single_home"></i>
+					</div> 
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>오피스텔</span>/<span>전세</span>
+						<i class="ico_bubble officetel"></i>
+					</div> 
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
+				<!-- //25-03-17 case 추가 -->
 
 				<div class="board_box house">
 					<div class="cate">
 						<span>토지</span>/<span>농지</span>
-						<i class="ico_bubble ground"></i><!-- 집일때 : home, 농지나 토지일때 : ground -->
+						<i class="ico_bubble ground"></i>
 					</div> 
-					<p class="desc">최근 시세정보가 없습니다.</p>
+					<p class="txt_info">최근 시세정보가 없습니다.</p><!-- 25-03-17 클래스 수정 -->
 				</div>
+
+				<!-- 25-03-17 case 추가 -->
+				<div class="board_box house">
+					<div class="cate">
+						<span>상가</span>
+						<i class="ico_bubble downtown"></i>
+					</div> 
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
+
+				<div class="board_box house">
+					<div class="cate">
+						<span>기타</span>
+						<i class="ico_bubble etc"></i>
+					</div> 
+					<p class="txt_info">최근 시세정보가 없습니다.</p>
+				</div>
+				<!-- //25-03-17 case 추가 -->
+
 				<!-- //신원확인 실패시 -->
 			</div>
 		</div>

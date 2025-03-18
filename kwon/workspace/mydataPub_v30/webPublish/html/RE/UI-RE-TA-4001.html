@@ -89,36 +89,36 @@
 					<!-- [통합 배너] -->
 					<div class="slick_exchange">
 						<div class="inner">
-							<!-- KOSPI 지수배너 -->
+							<!-- KOSPI 지수 배너 -->
 							<dl class="exchange">
 								<dt>KOSPI</dt>
 								<dd class="factor">
 									<span class="num">2,506.02</span>
-									<span class="range up">0.00(전일대비)</span>
+									<span class="range up">1.03% (전일대비)</span>
 								</dd>
 								<dd class="basis">
 									<span>2025.02.04 기준</span>
 								</dd>
 							</dl>
-							<!-- KOSDAQ 지수배너 -->
+							<!-- KOSDAQ 지수 배너 -->
 							<dl class="exchange">
 								<dt>KOSDAQ</dt>
 								<dd class="factor">
 									<span class="num">727.26</span>
-									<span class="range">1.00(전일대비)</span>
+									<span class="range">0.00% (전일대비)</span>
 								</dd>
 								<dd class="basis">
 									<span>2025.02.04 기준</span>
 								</dd>
 							</dl>
-							<!-- 선택한 주식종목 -->
+							<!-- 선택한 주식종목 배너 -->
 							<dl class="exchange stock">
 								<dt>삼성전자 한 줄 넘을 경우 말줄임 삼성전자 한 줄 넘을 경우 말줄임
 									<button type="button" class="btn_setting"><span class="blind">주식종목 설정</span></button>
 								</dt>
 								<dd class="factor">
 									<span class="num">75,000</span>
-									<span class="range down">8.64(전일대비)</span>
+									<span class="range down">8.64% (전일대비)</span>
 								</dd>
 								<dd class="basis">
 									<span>2025.02.04 기준</span>
@@ -128,8 +128,8 @@
 							<dl class="exchange">
 								<dt>
 									<!--기본(icon) 국기명클래스(ico_JPY, ico_USD)-->
-									<i class="ico ico_IDR"></i>
-									인도네시아(IDR)
+									<i class="ico ico_USD"></i>
+									미국 USD
 									<button type="button" class="btn_setting"><span class="blind">환율 알림 설정</span></button>
 								</dt>
 								<dd class="factor">
@@ -149,6 +149,11 @@
 							<button type="button" class="btn_play"><span class="blind">정지</span></button>
 						</div>
 					</div>
+
+					<!-- CASE Empty -->
+					<a href="#nolink" class="select_empty">
+						<p>노출할 주식 종목을 선택해 주세요.</p>
+					</a>
 
 					<!-- [지역 축제] -->
 					<div class="local_promotion">
@@ -178,6 +183,7 @@
 							</li>
 							<li>
 								<a href="#nolink">
+									<!-- 지역문화 고정 이미지1 -->
 									<img src="../../../../src/assets_v40/images/img/img_local_promotion_03.png" alt="" />
 									<div class="info">
 										<span class="cate">지역문화</span>
@@ -188,6 +194,7 @@
 							</li>
 							<li>
 								<a href="#nolink">
+									<!-- 지역문화 고정 이미지2 -->
 									<img src="../../../../src/assets_v40/images/img/img_local_promotion_04.png" alt="" />
 									<div class="info">
 										<span class="cate">지역문화</span>
@@ -198,6 +205,7 @@
 							</li>
 							<li>
 								<a href="#nolink">
+									<!-- 이미지 없을경우 -->
 									<img src="../../../../src/assets_v40/images/img/img_local_promotion_empty.png" alt="이미지를 불러올 수 없어요." />
 									<div class="info">
 										<span class="cate">지역축제</span>
@@ -215,36 +223,40 @@
 						<div class="slick_banner">
 							<div class="inner">
 								<a href="#nolink">
+									<dl class="deposit purple">
+										<dt>
+											<strong>인터넷예적금담보대출</strong>
+										</dt>
+										<dd class="txt">비대면으로 간편하게<br>예적금담보대출 실행</dd>
+										<dd class="tag">
+											<span>#예적금담보</span>
+											<span>#모바일</span>
+										</dd>
+									</dl>
+								</a>
+								<a href="#nolink">
 									<dl class="deposit green">
 										<dt>
 											<strong>주머니금리쇼핑예금(복리식정기예탁금)</strong>
 										</dt>
-										<!-- <dd class="type">(복리식정기예탁금)</dd> -->
 										<dd class="txt">가입금액을 가입금액단위별(주머니)로 구분가입,<br>주머니별 해지 가능</dd>
 										<dd class="tag">
-											<span># 또래 인기상품</span>
-											<span># 가입금액별 금리조정</span>
+											<span>#또래 인기상품</span>
+											<span>#가입금액별 금리조정</span>
 										</dd>
-										<!--
-										<dd class="rate">최고 연<em>4.5%</em></dd>
-										-->
 									</dl>
 								</a>
 								<a href="#nolink">
 									<dl class="deposit blue">
 										<dt>
-											<strong>주머니(money)정기적금(오픈뱅깅 이용시 우대금리)</strong>
+											<strong>주머니(money)정기적금(오픈뱅킹 이용시 우대금리)</strong>
 										</dt>
-										<!-- <dd class="type">(오픈뱅깅 이용시 우대금리)</dd> -->
 										<dd class="txt">중도해지 걱정없이 목돈 만들기!<br>오픈뱅킹 이용하면 0.7%p 우대금리는 덤~</dd>
 										<dd class="tag">
-											<span># 목돈만들기</span>
-											<span># 0.7%p 우대금리</span>
-											<span># 1만원부터</span>
+											<span>#목돈만들기</span>
+											<span>#0.7%p 우대금리</span>
+											<span>#1만원부터</span>
 										</dd>
-										<!--
-										<dd class="rate">최고 연<em>4.5%</em></dd>
-										-->
 									</dl>
 								</a>
 								<a href="#nolink">
@@ -252,19 +264,14 @@
 										<dt>
 											<strong>삼성생명 행복연금보험(무배당)</strong>
 										</dt>
-										<!-- <dd class="type">(무배당)</dd> -->
 										<dd class="txt">가입 후 5년<br>확정이율 적용</dd>
 										<dd class="tag">
-											<span># 일시납</span>
-											<span># 확정이율</span>
+											<span>#일시납</span>
+											<span>#확정이율</span>
 										</dd>
-										<!--
-										<dd class="rate">최고 연<em>4.5%</em></dd>
-										-->
 									</dl>
 								</a>
 							</div>
-
 							<div class="controls">
 								<p class="paging"></p>
 								<button type="button" class="prev"><span class="blind">이전</span></button>
@@ -404,17 +411,14 @@
 				$(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
 					var i = (currentSlide ? currentSlide : 0 ) + 1 ;
 					$(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
-
-					/*25-02-17 event slick - centerMode:true_infinite:false 버그 해결*/
 					$(slick.$slides[i-1]).attr("aria-hidden", false);
-					/*//25-02-17 event slick - centerMode:true_infinite:false 버그 해결*/
 				});
 
 				$(".inner", $this).slick({
 					speed : 300,
 					dots : false,
-					adaptiveHeight: false, //
-					infinite: false, //
+					adaptiveHeight: false,
+					infinite: false,
 					draggable: true,
 					accessibility:false,
 					arrows : true,
