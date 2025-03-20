@@ -176,12 +176,16 @@ aside.tabbar.block .marketing_popup_box {bottom:7.5rem;}
 .full_popup .popup_header {display:flex; gap:0 1.6rem; height:var(--header_h); padding:1.3rem 5.6rem 1.3rem 2rem; text-align:left;}
 .full_popup .popup_header > h1 {color: var(--gray_01); font-size: 1.8rem; line-height: 2.4rem; font-weight: 600;}
 .full_popup .popup_header .prev,  .full_popup .popup_header .btn_back {position:static; width:2.4rem; height:2.4rem; display:block; order:-1; background-image:url(../images/icon/header/icon_prev.png); background-repeat:no-repeat; background-position:center; background-size:2.4rem; }
-.full_popup .popup_header, .full_popup > .popup_footer.fixed, .full_popup > .bottom_box  {position:static; }
+.full_popup > .popup_footer.fixed, .full_popup > .bottom_box  {position:static; }
+.full_popup .popup_header{position:fixed; top:0; left:0;}
+.full_popup > .popup_footer.fixed{position:fixed; }
 .full_popup > .popup_footer.fixed, .full_popup > .bottom_box {height:12rem; margin-top:-4rem; padding:4rem 2rem 2.4rem; background: linear-gradient(0deg, #FFF 0%, #FFF 60%, rgba(255, 255, 255, 0.00) 100%);}
-.full_popup .popup_content {flex:1; position:static; padding: 0 0 2rem 0; overflow-x:hidden; padding-top:var(--pop_content_gap); }
-.full_popup .popup_content:has(+ .popup_footer.fixed)  {padding-bottom:7rem;}
+/*.full_popup .popup_content {flex:1; position:static; padding: 0 0 2rem 0; overflow-x:hidden; padding-top:var(--pop_content_gap); }*/
+.full_popup .popup_content {flex:1; position:relative; top:0; padding: 0 0 2rem 0; overflow-x:hidden; }
+/*.full_popup .popup_content:has(+ .popup_footer.fixed)  {padding-bottom:7rem;}*/
 .full_popup .btn_close {width:2.4rem; height:2.4rem; background:url(../images/icon/header/icon_close.png) no-repeat center/2.4rem; right:1.6rem; top:1.3rem;}
-
+.full_popup:has(.popup_footer.fixed){padding-bottom:10rem;}
+.full_popup:has(.popup_header){padding-top:5.6rem;}
 
 /*팝업의 fixed 버튼 유무에 따라 .popup_content에 추가 되었었으나 모두 초기화 함*/
 .full_popup.renewal .popup_content,
@@ -3028,8 +3032,8 @@ ul.attention_list li a {line-height:2.1rem; color:var(--gray_02); font-size:1.6r
 .friend_intro .proc_list ol li:nth-child(3):after {background-image:url("../images/img/img_friend_proc03.png");}
 
 /* OX퀴즈 */
-.full_popup.oxquiz::after{display: block;content: ''; position: absolute;top:0;left:0;right:0;bottom:0;background:url("../images/img/bg_oxquiz_.png") no-repeat;background-size:100% auto;background-position:center top;z-index: -1;}
-.full_popup.oxquiz.type::after{background:url("../images/img/bg_oxquiz.png") no-repeat;background-size:100% auto;background-position:center top;}
+.full_popup.oxquiz::after{display: block;content: ''; position: absolute;top:0;left:0;right:0;bottom:0;background:#e9ecdc url("../images/img/bg_oxquiz_.png") no-repeat;background-size:100% auto;background-position:center top;z-index: -1;}
+.full_popup.oxquiz.type::after{background:#dde4b6 url("../images/img/bg_oxquiz.png") no-repeat;background-size:100% auto;background-position:center top;}
 .full_popup.oxquiz.type, .full_popup.oxquiz .popup_header, .full_popup.oxquiz.type .popup_header{background-color: transparent;}
 .full_popup.oxquiz .popup_content, .full_popup.oxquiz.type .popup_content{background-color: transparent;padding-top: 0;}
 .full_popup.oxquiz > .popup_footer.fixed{background: transparent;}
@@ -3043,7 +3047,7 @@ ul.attention_list li a {line-height:2.1rem; color:var(--gray_02); font-size:1.6r
 .slide_popup .oxquiz_question .tit{font-size: 2rem;margin-bottom: 2.4rem;}
 .slide_popup .oxquiz_question .correct_txt{font-size: 2rem;font-size: 20px;font-weight: 700;line-height: 3rem;letter-spacing: -0.05rem;color:#17A47A;display:block;margin-bottom: 1.6rem;}
 .slide_popup .oxquiz_question .gray_box{font-size: 1.4rem;text-align: left;line-height:2rem;}
-.oxquiz_question .dotted_list{text-align: left;margin-top: 1.8rem;}
+.oxquiz_question .dotted_list{text-align: left;margin-top:5.6rem;}
 .oxquiz_question .dotted_list>li{margin-top: 0;line-height: 1.8rem;}
 .oxquiz_question .dotted_list>li::before{top:.7rem}
 .oxquiz_question .btn_ox{display: flex;margin:3.2rem 4.6rem 2.4rem;text-align: center;align-items:center;justify-content:center;gap: 2rem;}
@@ -3062,19 +3066,27 @@ ul.attention_list li a {line-height:2.1rem; color:var(--gray_02); font-size:1.6r
 .center_popup .popup_content .oxquiz_result .txt{font-size: 1.8rem;font-weight: 600;line-height: 2.6rem;letter-spacing: -0.045rem;color:#132333}
 .center_popup .popup_content .oxquiz_result .txt_sub{font-size: 1.6rem;font-weight: 500;line-height: 2.4rem;letter-spacing: -0.04rem;color:#646D7A;margin-top: .6rem;}
 .full_popup.oxquiz.type .popup_content{text-align: center;}
-.full_popup.oxquiz .period{font-size: 1.4rem;line-height: 2rem;letter-spacing: -0.035rem;margin-bottom: 3.2rem;color: #646D7A;}
+.full_popup.oxquiz .period{font-size: 1.4rem;line-height: 2rem;letter-spacing: -0.035rem;color: #646D7A;}
 .full_popup.oxquiz .tit{display: block; font-size: 2.2rem;font-weight:600;line-height: 3.2rem;letter-spacing: -0.05rem; padding-bottom: 0;color: #132333;margin-bottom: 1rem;word-break:keep-all;}
-.full_popup.oxquiz .oxquiz_status{text-align: center;/*background:url("../images/img/bg_oxquiz.png") no-repeat;background-size:100% auto;background-position:center -5rem;*/}
-.full_popup.oxquiz .oxquiz_status ul{display: flex;flex-wrap: wrap; gap: 5.5vw; margin: 0 2rem;background:url("../images/img/bg_oxquix_line.png") no-repeat;background-size:100% auto;background-position:center 9rem ;}
-.oxquiz_status ul li:nth-child(4), .oxquiz_status ul li:nth-child(10), .oxquiz_status ul li:nth-child(16),.oxquiz_status ul li:nth-child(22), .oxquiz_status ul li:nth-child(28), .oxquiz_status ul li:nth-child(34){margin-left: 8.5vw;}
-.full_popup.oxquiz .oxquiz_status ul button{display: flex; position: relative; flex-direction:column; justify-content:center; width: 23.5vw;height: 23.5vw;background-color: #fff;border:1px solid #EBF1F9;border-radius: 50%;margin-top: 5vh;}
-.full_popup.oxquiz .oxquiz_status ul button::after{display: block;content: '';width: 6.4vw; height: 6.4vw;position: absolute; bottom:0; right: 0;border-radius: 50%; background:#17A47A url("../images/icon/ico_arrow_right.png") no-repeat;background-size:91% 91%;background-position:right center;}
-.full_popup.oxquiz .oxquiz_status ul button[disabled]{background-color:#F1F1F5;border:.6rem solid #fff;}
-.full_popup.oxquiz .oxquiz_status ul button[disabled]::after{background:#8B939E url("../images/icon/ico_key_w.png") no-repeat;background-size:91% 91%;background-position:center;}
-.full_popup.oxquiz .oxquiz_status ul button .date{font-size: 1.4rem;line-height: 2rem; letter-spacing: -0.035rem;color:#8B939E;}
-.full_popup.oxquiz .oxquiz_status ul button em{display: block; font-size: 1.8rem;line-height: 2.6rem;color:#4579FF;font-weight: 700;letter-spacing: -0.045rem;}
-.full_popup.oxquiz .oxquiz_status ul button em.error{color:#FA2666}
-
+.full_popup.oxquiz .top_msg .tit{margin-top: 3.2rem;}
+.oxquiz_status{position:relative;text-align: center;/*padding-bottom:8.2rem;background:url("../images/img/bg_oxquiz.png") no-repeat;background-size:100% auto;background-position:center -5rem;*/}
+/* .oxquiz_status::after{display: block;content: '';height: 8.2rem;position: absolute;left:2rem;right:2rem;bottom: 0;background:url("../images/img/bg_oxquix_line_bottom.png") no-repeat;background-size:37.5rem auto;background-position:center bottom;} */
+.oxquiz_status ul{display: flex;position: relative; width: 37.5rem; flex-wrap: wrap; gap:2rem; margin: 0 auto;background:url("../images/img/bg_oxquix_line.png"); background-repeat:repeat-y; background-size:37.5rem auto;background-position:center top;justify-content:center}
+/* .oxquiz_status ul::before {display: block; content:'';height: 10rem;position: absolute; top:0;left:0;right:0;background:linear-gradient(to bottom, rgba(211, 244, 255, 1), rgba(255, 255, 255, 0));} */
+/* .oxquiz_status ul::after {display: block; content:'';height: 10rem;position: absolute; bottom:0;left:0;right:0;background:linear-gradient(to top, rgba(222, 229, 183, 1), rgba(255, 255, 255, 0));} */
+.oxquiz_status ul li{display: flex;justify-content:flex-start;}
+.oxquiz_status ul li:nth-child(6n + 4){margin-left: 3.1rem;}
+.oxquiz_status ul li:nth-child(6n + 4), .oxquiz_status ul li:nth-child(6n + 5), .oxquiz_status ul li:nth-child(6n + 6){justify-content:flex-end !important}
+.oxquiz_status .btn{display: flex; position: relative; flex-direction:column; justify-content:center; width:8.8rem;height:8.8rem;background-color: #fff;border:1px solid #EBF1F9;border-radius: 50%;margin-top: 3.6rem;}
+.oxquiz_status ul li:nth-child(1) .btn,.oxquiz_status ul li:nth-child(2) .btn, .oxquiz_status ul li:nth-child(3) .btn{margin-top:3.6rem;}
+.oxquiz_status .btn.no{border-width: .6rem;border-color: #F7F8FA;}
+.oxquiz_status .btn::after{display: block;content: '';width:2.4rem; height:2.4rem;position: absolute; bottom:0; right: 0;border-radius: 50%; background:#17A47A url("../images/icon/ico_arrow_right.png") no-repeat;background-size:2rem auto;background-position:right center;}
+.oxquiz_status .btn[disabled]{background-color:#F1F1F5;border:.6rem solid #fff;}
+.oxquiz_status .btn[disabled]::after{background:#8B939E url("../images/icon/ico_key_w.png") no-repeat;background-size:2rem auto;background-position:center;}
+.oxquiz_status .btn .date{font-size: 1.4rem;line-height: 2rem; letter-spacing: -0.035rem;color:#8B939E;}
+.oxquiz_status .btn em{display: block; font-size: 1.8rem;line-height: 2.6rem;color:#4579FF;font-weight: 700;letter-spacing: -0.045rem;}
+.oxquiz_status .btn.no em{color:#8B939E}
+.oxquiz_status .btn em.error{color:#FA2666}
 
 
 

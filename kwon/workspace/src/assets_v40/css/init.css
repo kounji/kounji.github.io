@@ -1,4 +1,8 @@
 @charset "utf-8";
+body, html, .full_popup{
+	overscroll-behavior: none;
+}
+
 /* [v4.0] Spoqa 폰트에서 Pretendard 폰트로 변경 - 배포 이슈로 기존 폰트명 유지 
 /*
 @font-face {

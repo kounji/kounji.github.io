@@ -1,0 +1,102 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 추천, 연금절세 신규 */
+/* 2414 line에 추가 */
+.goods_for_you .empty {margin-top:2rem}
+.goods_for_you .empty > p {position:relative;padding-bottom:7.2rem;font-size:2rem;font-weight:700;line-height:3rem;color:var(--gray_01)}
+.goods_for_you .empty > p:after {content:"";position:absolute;right:1.6rem;bottom:2.8rem;width:8rem;height:8rem;background:url("../images/img/img_recom_empty.png") no-repeat center/100%}
+.goods_for_you .empty .link {width:100%;display:inline-flex;justify-content:center;align-items:center;gap:0.2rem;padding-top:2rem;border-top:1px solid var(--border_02);font-size:1.4rem;font-weight:500;line-height:2rem;color:var(--gray_03)}
+.goods_for_you .empty .link:after {content:"";width:2rem;height:2rem;background:url("../images/icon/icon_arrow_2_20.png") no-repeat center / 100%}
+.goods_for_you .empty:has(.link) {padding-bottom:2.4rem}
+
+/* OX퀴즈 */
+/* 3030 line에 추가 */
+.full_popup.oxquiz::after{display:block;content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:#e9ecdc url("../images/img/bg_oxquiz_.png") no-repeat;background-size:100% auto;background-position:center top;z-index:-1}
+.full_popup.oxquiz.type::after{background:#dde4b6 url("../images/img/bg_oxquiz.png") no-repeat;background-size:100% auto;background-position:center top}
+.full_popup.oxquiz.type, .full_popup.oxquiz .popup_header, .full_popup.oxquiz.type .popup_header{background-color:transparent}
+.full_popup.oxquiz .popup_content, .full_popup.oxquiz.type .popup_content{background-color:transparent;padding-top:0}
+.full_popup.oxquiz.type .popup_content:has(+ .popup_footer.fixed){padding-bottom:2rem}
+.full_popup.oxquiz > .popup_footer.fixed{background:transparent}
+.full_popup.oxquiz.type > .popup_footer.fixed{background:linear-gradient(0deg, #DDE5B6 0%, #DDE5B6 70%, rgba(221, 229, 182, 0) 100%)}
+.oxquiz_question{margin:3.2rem 2rem 0;text-align:center}
+.slide_popup .oxquiz_question{text-align:left;margin:1.6rem 0 0}
+.oxquiz_question .badge{display:inline-block;height:3.2rem;padding:.4rem 1.6rem;margin-bottom:1.2rem;background-color:#17A47A;border-radius:10rem;font-size:1.6rem;font-weight:600;line-height:2.6rem;letter-spacing:-0.04rem;color:#fff}
+.slide_popup .oxquiz_question .badge{background-color:#E9FBF4;color:#17A47A}
+.oxquiz_question .date{font-size:1.2rem;line-height:1.8rem;letter-spacing:-0.03rem;margin-bottom:2.4rem;color:#646D7A}
+.oxquiz_question .tit{display:block;font-size:2rem;font-weight:700;line-height:3rem;letter-spacing:-0.05rem;padding-bottom:0;color:#132333;margin-bottom:3.2rem;word-break:keep-all}
+.slide_popup .oxquiz_question .tit{font-size:2rem;margin-bottom:2.4rem}
+.slide_popup .oxquiz_question .correct_txt{font-size:2rem;font-size:20px;font-weight:700;line-height:3rem;letter-spacing:-0.05rem;color:#17A47A;display:block;margin-bottom:1.6rem}
+.slide_popup .oxquiz_question .gray_box{font-size:1.4rem;text-align:left;line-height:2rem}
+.oxquiz_question .dotted_list{text-align:left;margin-top:5.6rem}
+.oxquiz_question .dotted_list>li{margin-top:0;line-height:1.8rem}
+.oxquiz_question .dotted_list>li::before{top:.7rem}
+.oxquiz_question .btn_ox{display:flex;margin:3.2rem 4.6rem 2.4rem;text-align:center;align-items:center;justify-content:center;gap:2rem}
+.oxquiz_question .btn_ox>li>button{width:13rem;height:18.6rem;background:url("../images/img/bg_btn_ox_yes.png") no-repeat;background-size:100% auto}
+.oxquiz_question .btn_ox>li:last-child>button{background:url("../images/img/bg_btn_ox_no.png") no-repeat;background-size:100% auto}
+.oxquiz_question .btns_txt{font-size:1.6rem;line-height:1.8rem;color:#646D7A}
+.oxquiz_question .btns_txt>span{line-height:1.8rem;border-color:#646D7A}
+.oxquiz_question .badge{display:inline-block;height:3.2rem;padding:.4rem 1.6rem;margin-bottom:1.2rem;background-color:#17A47A;border-radius:10rem;font-size:1.6rem;font-weight:600;line-height:2.6rem;letter-spacing:-0.04rem;color:#fff}
+.center_popup .popup_content .oxquiz_result .tit{display:block;font-size:2.4rem;font-weight:700;line-height:3.4rem;letter-spacing:-0.06rem;color:#17A47A;margin-top:0;padding-bottom:3.2rem}
+.center_popup .popup_content .oxquiz_result .tit.error{color:#FA2666}
+.center_popup .popup_content .oxquiz_result .shape{display:block;width:16rem;height:17.4rem;margin:0 auto 1.2rem;background-repeat:no-repeat;background-size:100%;background-position:center}
+.center_popup .popup_content .oxquiz_result .shape.correct_o{background-image:url("../images/img/img_oxquiz_correct_o.png")}
+.center_popup .popup_content .oxquiz_result .shape.correct_x{background-image:url("../images/img/img_oxquiz_correct_x.png")}
+.center_popup .popup_content .oxquiz_result .shape.wrong_o{background-image:url("../images/img/img_oxquiz_wrong_o.png")}
+.center_popup .popup_content .oxquiz_result .shape.wrong_x{background-image:url("../images/img/img_oxquiz_wrong_x.png")}
+.center_popup .popup_content .oxquiz_result .txt{font-size:1.8rem;font-weight:600;line-height:2.6rem;letter-spacing:-0.045rem;color:#132333}
+.center_popup .popup_content .oxquiz_result .txt_sub{font-size:1.6rem;font-weight:500;line-height:2.4rem;letter-spacing:-0.04rem;color:#646D7A;margin-top:.6rem}
+.full_popup.oxquiz.type .popup_content{text-align:center}
+.full_popup.oxquiz .period{font-size:1.4rem;line-height:2rem;letter-spacing:-0.035rem;color:#646D7A}
+.full_popup.oxquiz .tit{display:block;font-size:2.2rem;font-weight:600;line-height:3.2rem;letter-spacing:-0.05rem;padding-bottom:0;color:#132333;margin-bottom:1rem;word-break:keep-all}
+.full_popup.oxquiz .top_msg .tit{margin-top:3.2rem}
+.oxquiz_status{position:relative;text-align:center}
+.oxquiz_status::before{display:block;content:'';height:3.2rem;position:fixed;left:0;right:0;top:5rem;background:linear-gradient(0deg, rgba(220, 248, 255, 0.00) 4.41%, #DBF8FF 100%);z-index:20}
+.oxquiz_status ul{display:flex;position:relative;width:37.5rem;flex-wrap:wrap;gap:2rem;margin:0 auto;justify-content:center}
+.oxquiz_status ul::before, .oxquiz_status ul::after{display:block;content:'';position:absolute;left:0;right:0;z-index:0}
+.oxquiz_status ul::before {height:28.8rem;top:0;background-image:url("../images/img/rotate_line.png");background-repeat:repeat-y;background-size:37.5rem auto;background-position:center top}
+.oxquiz_status ul.end::before{background-image:url("../images/img/rotate_line_.png")}
+.oxquiz_status ul::after {top:28.8rem;bottom:0;background-image:url("../images/img/rotate_line.png");background-repeat:repeat-y;background-size:37.5rem auto;background-position:center top}
+.oxquiz_status ul li{display:flex;justify-content:flex-start;z-index:1}
+.oxquiz_status ul li:nth-child(6n + 4){margin-left:3.1rem}
+.oxquiz_status ul li:nth-child(6n + 4), .oxquiz_status ul li:nth-child(6n + 5), .oxquiz_status ul li:nth-child(6n + 6){justify-content:flex-end !important}
+.oxquiz_status .btn{display:flex;position:relative;flex-direction:column;justify-content:center;width:8.8rem;height:8.8rem;background-color:#fff;border:1px solid #EBF1F9;border-radius:50%;margin-top:3.6rem}
+.oxquiz_status ul li:nth-child(1) .btn,.oxquiz_status ul li:nth-child(2) .btn, .oxquiz_status ul li:nth-child(3) .btn{margin-top:3.6rem}
+.oxquiz_status .btn.no{border-width:.6rem;border-color:#F7F8FA}
+.oxquiz_status .btn::after{display:block;content:'';width:2.4rem;height:2.4rem;position:absolute;bottom:0;right:0;border-radius:50%;background:#17A47A url("../images/icon/ico_arrow_right.png") no-repeat;background-size:2rem auto;background-position:right center}
+.oxquiz_status .btn[disabled]{background-color:#F1F1F5;border:.6rem solid #fff}
+.oxquiz_status .btn[disabled]::after{background:#8B939E url("../images/icon/ico_key_w.png") no-repeat;background-size:2rem auto;background-position:center}
+.oxquiz_status .btn .date{font-size:1.4rem;line-height:2rem;letter-spacing:-0.035rem;color:#8B939E}
+.oxquiz_status .btn em{display:block;font-size:1.8rem;line-height:2.6rem;color:#4579FF;font-weight:700;letter-spacing:-0.045rem}
+.oxquiz_status .btn.no em{color:#8B939E}
+.oxquiz_status .btn em.error{color:#FA2666}
