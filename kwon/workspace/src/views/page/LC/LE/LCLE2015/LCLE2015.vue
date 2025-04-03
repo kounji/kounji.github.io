@@ -1,0 +1,33 @@
+<!--
+/*************************************************************************
+* @ 서비스경로 : 지출 > 지출내역 > 선불결제내역 > 상세정보
+* @ 페이지설명 : 지출 > 지출내역 > 선불결제내역 > 상세정보 슬라이드 팝업
+* @ 파일명     : src/views/page/LC/LE/LCLE2015/LCLE2015.vue
+* @ 작성자     : CS533571
+* @ 작성일     : 2023-07-26
+************************** 수정이력 ****************************************
+* 날짜                    작업자                 변경내용
+*_________________________________________________________________________
+* 2023-07-26              CS533571              최초작성
+*************************************************************************/
+-->
+
+<template>
+    <cmm-xps-detail-info typeProp="PPAY" subtypeProp="PPAY" />
+</template>
+
+<script>
+import CmmXpsDetailInfo from '@/components/LC/LE/CMM/CmmXpsDetailInfo'
+import apiService from '@/service/apiService'
+
+export default {
+    name: "LCLE2015",
+    mounted() {
+        //PFM로그 처리 화면접속이력 등록 POST
+        apiService.pfmLogSend(this.$options.name)
+    },
+    components: {
+        CmmXpsDetailInfo
+    }
+}
+</script>

@@ -1,0 +1,11 @@
+
+/* *:focus{border:solid 1px ! important;} */
+
+.fade-enter-active, .fade-leave-active {transition: opacity 0.3s linear;}
+.fade-enter, .fade-leave-to {opacity: 0;}
+
+/* .modalfade-enter-active, .modalfade-leave-active {transition: opacity 0.5s linear;}
+.modalfade-enter, .modalfade-leave-to {opacity: 0;} */
+
+.modalfade-enter-active, .modalfade-leave-active {transition: opacity 1s;}
+.modalfade-enter, .modalfade-leave-to {opacity: 0;}
