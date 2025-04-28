@@ -1,56 +1,142 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-	<meta name="format-detection" content="telephone=no">
-    
-	<title>Kwon jiyeoun</title>
-	
-	<meta content="퍼블리셔 권지연" name="title">
-	<meta content="퍼블리셔, 웹퍼블리셔, 권지연" name="keywords">
-	<meta content="Copyright©2024 Citigroup Inc." name="copyright">
-	
-	<link rel="Shortcut Icon" href="img/favicon.ico">
-
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="css/common.css">
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-	<script src="js/jquery-3.6.0.min.js"></script>
-	<script src="js/ui.front.js"></script>
-
-	<style>
-.html{font-size:62.5% /* 62.5% of 16px = 10px */;}
-.container{padding:2rem;}
-section{margin-top:2rem;}
-.info p{}
-	</style>
+  <meta charset="UTF-8">
+  <title>Scroll Tabs (Full jQuery Version)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .tabs {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      z-index: 100;
+      border-bottom: 1px solid #ddd;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+    .tab {
+      cursor: pointer;
+      padding: 8px 12px;
+      border: none;
+      background: none;
+      font-size: 16px;
+      white-space: nowrap;
+      flex: 0 0 auto;
+    }
+    .tab.active {
+      font-weight: bold;
+      color: blue;
+    }
+    .section {
+      height: 100vh;
+      padding: 80px 20px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-
 <body>
 
+  <!-- 탭 버튼 -->
+  <div class="tabs" id="tabs">
+    <button class="tab" data-target="section1">Section 1</button>
+    <button class="tab" data-target="section2">Section 2</button>
+    <button class="tab" data-target="section3">Section 3</button>
+    <button class="tab" data-target="section4">Section 4</button>
+    <button class="tab" data-target="section5">Section 5</button>
+    <button class="tab" data-target="section6">Section 6</button>
+  </div>
 
-<!-- wrapper(s) -->
-<div class="wrapper">
+  <!-- 스크롤 섹션 -->
+  <div id="section1" class="section"><h2>Section 1</h2><p>내용 1</p></div>
+  <div id="section2" class="section"><h2>Section 2</h2><p>내용 2</p></div>
+  <div id="section3" class="section"><h2>Section 3</h2><p>내용 3</p></div>
+  <div id="section4" class="section"><h2>Section 4</h2><p>내용 4</p></div>
+  <div id="section5" class="section"><h2>Section 5</h2><p>내용 5</p></div>
+  <div id="section6" class="section"><h2>Section 6</h2><p>내용 6</p></div>
 
+  <script>
+    $(document).ready(function() {
+      const $tabs = $('.tab');
+      const $sections = $('.section');
 
-	<div class="container">
-		<div id="content">
-			<h1 class="h1">Caret</h1>
-			<!-- info -->
-			<section class="info">
-				<p>캐럿(Caret) (때때로 "텍스트 커서(text cursor)"라고도 함)은 텍스트 입력이 삽입될 위치를 나타내기 위해 화면에 표시되는 표시기</p>
-			</section>
+      // 탭 클릭시 스크롤 이동 + 탭 가운데로 이동
+      $tabs.on('click', function() {
+        const targetId = $(this).data('target');
+        const $target = $('#' + targetId);
 
-			
-			
-		</div><!--// content -->
-	</div><!--// container(e) -->
+        if ($target.length) {
+          $('html, body').animate({
+            scrollTop: $target.offset().top
+          }, 500);
+        }
 
-</div><!--// wrapper(e) -->
+        // 탭 가운데로 이동
+        const $tabsContainer = $('#tabs');
+        const containerWidth = $tabsContainer.width();
+        const tabLeft = $(this).position().left + $tabsContainer.scrollLeft();
+        const tabWidth = $(this).outerWidth();
+
+        const scrollPos = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+
+        $tabsContainer.stop().animate({
+          scrollLeft: scrollPos
+        }, 300);
+      });
+
+      // 스크롤 시 현재 섹션 감지 + 탭 활성화 + 탭 가운데 이동
+      $(window).on('scroll', function() {
+        const scrollPos = $(window).scrollTop();
+        let currentSectionId = '';
+
+        $sections.each(function() {
+          const sectionTop = $(this).offset().top;
+          const sectionHeight = $(this).outerHeight();
+
+          if (scrollPos >= sectionTop - 100 && scrollPos < sectionTop + sectionHeight - 100) {
+            currentSectionId = $(this).attr('id');
+            return false;
+          }
+        });
+
+        if (currentSectionId) {
+          $tabs.each(function() {
+            const isActive = $(this).data('target') === currentSectionId;
+            $(this).toggleClass('active', isActive);
+
+            if (isActive) {
+              const $tabsContainer = $('#tabs');
+              const containerWidth = $tabsContainer.width();
+              const tabLeft = $(this).position().left + $tabsContainer.scrollLeft();
+              const tabWidth = $(this).outerWidth();
+
+              const scrollPos = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+
+              $tabsContainer.stop().animate({
+                scrollLeft: scrollPos
+              }, 300);
+            }
+          });
+        }
+      });
+
+      // 처음 로딩시에도 탭 active 처리
+      $(window).trigger('scroll');
+    });
+  </script>
 
 </body>
 </html>
