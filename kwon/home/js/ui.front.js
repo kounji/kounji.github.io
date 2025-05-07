@@ -79,6 +79,27 @@ $(document).ready(function () {
           left: left
         });
       }
+      setSliderCss: function () {
+  if (this.currentTab) {
+    var width = this.currentTab.outerWidth();
+    var left = this.currentTab.position().left;
+    $('.et-hero-tab-slider').css({
+      width: width,
+      left: left
+    });
+
+    // 탭이 보이도록 스크롤
+    var container = $('.et-hero-tabs-container');
+    var tabLeft = this.currentTab.offset().left;
+    var containerLeft = container.offset().left;
+    var scrollLeft = container.scrollLeft();
+    var diff = tabLeft - containerLeft;
+
+    container.animate({
+      scrollLeft: scrollLeft + diff - 20 // 약간의 여유
+    }, 300);
+  }
+}
     }
   };
 
