@@ -76,6 +76,83 @@ new StickyNavigation();
 
 
 
+/*
+$(document).ready(function () {
+  var currentId = null;
+  var currentTab = null;
+  var tabContainerHeight = 70;
+
+  function onTabClick(event, element) {
+    event.preventDefault();
+    var scrollTop = $(element.attr('href')).offset().top - tabContainerHeight + 1;
+    $('html, body').animate({ scrollTop: scrollTop }, 600);
+  }
+
+  function onScroll() {
+    checkTabContainerPosition();
+    findCurrentTabSelector();
+  }
+
+  function onResize() {
+    if (currentId) {
+      setSliderCss();
+    }
+  }
+
+  function checkTabContainerPosition() {
+    var offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - tabContainerHeight;
+    if ($(window).scrollTop() > offset) {
+      $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+    } else {
+      $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
+    }
+  }
+
+  function findCurrentTabSelector() {
+    var newCurrentId;
+    var newCurrentTab;
+
+    $('.et-hero-tab').each(function () {
+      var id = $(this).attr('href');
+      var offsetTop = $(id).offset().top - tabContainerHeight;
+      var offsetBottom = $(id).offset().top + $(id).height() - tabContainerHeight;
+
+      if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+        newCurrentId = id;
+        newCurrentTab = $(this);
+      }
+    });
+
+    if (currentId !== newCurrentId || currentId === null) {
+      currentId = newCurrentId;
+      currentTab = newCurrentTab;
+      setSliderCss();
+    }
+  }
+
+  function setSliderCss() {
+    if (currentTab) {
+      var width = currentTab.css('width');
+      var left = currentTab.offset().left;
+      $('.et-hero-tab-slider').css({
+        width: width,
+        left: left
+      });
+    }
+  }
+
+  // 이벤트 바인딩
+  $('.et-hero-tab').click(function (event) {
+    onTabClick(event, $(this));
+  });
+
+  $(window).on('scroll', onScroll);
+  $(window).on('resize', onResize);
+});
+*/
+
+
+
 //share.js
 
 var _gnbFnc = {
