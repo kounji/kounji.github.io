@@ -1,3 +1,91 @@
+/*
+$(document).ready(function () {
+  var StickyNavigation = {
+    currentId: null,
+    currentTab: null,
+    tabContainerHeight: 70,
+
+    init: function () {
+      var self = this;
+
+      $('.et-hero-tab').click(function (event) {
+        self.onTabClick(event, $(this));
+      });
+
+      $(window).on('scroll', function () {
+        self.onScroll();
+      });
+
+      $(window).on('resize', function () {
+        self.onResize();
+      });
+    },
+
+    onTabClick: function (event, element) {
+      event.preventDefault();
+      var scrollTop = $(element.attr('href')).offset().top - this.tabContainerHeight + 1;
+      $('html, body').animate({ scrollTop: scrollTop }, 600);
+    },
+
+    onScroll: function () {
+      this.checkTabContainerPosition();
+      this.findCurrentTabSelector();
+    },
+
+    onResize: function () {
+      if (this.currentId) {
+        this.setSliderCss();
+      }
+    },
+
+    checkTabContainerPosition: function () {
+      var offset = $('.et-hero-tabs').offset().top + $('.et-hero-tabs').height() - this.tabContainerHeight;
+      if ($(window).scrollTop() > offset) {
+        $('.et-hero-tabs-container').addClass('et-hero-tabs-container--top');
+      } else {
+        $('.et-hero-tabs-container').removeClass('et-hero-tabs-container--top');
+      }
+    },
+
+    findCurrentTabSelector: function () {
+      var self = this;
+      var newCurrentId = null;
+      var newCurrentTab = null;
+
+      $('.et-hero-tab').each(function () {
+        var id = $(this).attr('href');
+        var offsetTop = $(id).offset().top - self.tabContainerHeight;
+        var offsetBottom = $(id).offset().top + $(id).height() - self.tabContainerHeight;
+
+        if ($(window).scrollTop() > offsetTop && $(window).scrollTop() < offsetBottom) {
+          newCurrentId = id;
+          newCurrentTab = $(this);
+        }
+      });
+
+      if (this.currentId !== newCurrentId || this.currentId === null) {
+        this.currentId = newCurrentId;
+        this.currentTab = newCurrentTab;
+        this.setSliderCss();
+      }
+    },
+
+    setSliderCss: function () {
+      if (this.currentTab) {
+        var width = this.currentTab.css('width');
+        var left = this.currentTab.offset().left;
+        $('.et-hero-tab-slider').css({
+          width: width,
+          left: left
+        });
+      }
+    }
+  };
+
+  StickyNavigation.init();
+});
+*/
+
 class StickyNavigation {
 	
 	constructor() {
