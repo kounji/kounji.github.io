@@ -47,7 +47,8 @@
 									<div class="com_tooltip_type02 com_tooltip_type03">
 										<a href="#nolink" role="button" class="com_btn_info">
 											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
-											<span class="arrow" style="display:none"></span>
+											<!-- [v4.0] 25-04-23 툴팁 화살표 삭제
+											<span class="arrow" style="display:none"></span> -->
 										</a>
 									</div>
 									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -169,17 +170,26 @@
 			</div>
 		</div>
 		<div class="popup_footer fixed">
-			<!-- 단건 -->
-			<!-- <div class="com_btnhalfbox_type02">
+			<!--[v4.0] 25-04-25 버튼영역 마크업 변경-->
+			<!-- 단건 --
+			<div class="com_btnhalfbox_type02">
 				<a href="#nolink" role="button" class="btn btn_mint_gray">삭제</a>
 				<a href="#nolink" role="button" class="btn btn_mint">수정</a>
-			</div> -->
+			</div>
 			<!-- //단건 -->
-			<!-- 다건 -->
+			<!-- 다건 --
 			<div class="btn_full_box">
 				<a href="#nolink" role="button" class="btn btn_mint">자산 모두 삭제</a>
 			</div>
 			<!-- //다건 -->
+			<div class="btns_wrap">
+				<button type="button" class="btns lg">삭제</button>
+				<button type="button" class="btns lg primary">수정</button>
+			</div>
+			<div class="btns_wrap">
+				<button type="button" class="btns lg primary">자산 모두 삭제</button>
+			</div>
+			<!-- //[v4.0] 25-04-25 버튼영역 마크업 변경-->
 		</div>
 		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>		
 	</div>

@@ -19,12 +19,18 @@
 		</div>
 		
 		<div class="popup_content">
+            <div class="com_inner">
+                <div class="tit">
+                    <strong class="titH1">청약정보를<br> 모두 확인해주세요.</strong>
+                </div>
+            </div>
+
             <template v-for="(rlestSbp, idx) in rlestSbpList">
                 <div class="com_inner" :key="idx">
                     <div class="apt_info">
-                        <div class="tit">
+                        <!-- <div class="tit">
                             <strong class="titH1">청약정보를<br> 모두 확인해주세요.</strong>
-                        </div>
+                        </div> -->
                         <div class="top_info">
                             <!-- badge 타입 구분
                                 badge + type01 : 아파트, 무순위/잔여세대, 계약취소주택
@@ -32,7 +38,7 @@
                                 badge + type03 : 임의공급
                             -->
                             <div class="cate">
-                                <span :class="typeMap[rlestSbp.hseKdDsc]">{{typeText[rlestSbp.hseKdDsc]}}</span>
+                                <span :class="typeMap[rlestSbp.hseKdDsc]">{{typeText[rlestSbp.hseKdDsc == '02' ? rlestSbp.hseKdDsc + rlestSbp.hseDtlKdDsc : rlestSbp.hseKdDsc]}}</span>
                             </div>
                             <span class="date">{{convertToDate(rlestSbp.rcrtNtfyDt) }} 공고</span>				
                         </div>
@@ -44,10 +50,10 @@
                         
                         <div class="price">분양가 <strong>
                             <template v-if="rlestSbp.hseDtlKdDsc === '04' || rlestSbp.hseDtlKdDsc === '06'"> <!-- [v4.0] 25-01-15 분양가 항목 추가 -->
-                                {{numberToKorean(rlestSbp.maxAm * 10000)}}
+                                {{fn_hanValue(rlestSbp.maxAm)}}
                             </template>
                             <template v-else>
-                                {{ numberToKorean(rlestSbp.minAm * 10000)}} ~ {{numberToKorean(rlestSbp.maxAm * 10000)}}
+                                {{ fn_hanValue(rlestSbp.minAm)}} ~ {{fn_hanValue(rlestSbp.maxAm)}}
                             </template>
                             </strong>
                         </div>
@@ -115,12 +121,6 @@
             </template>
 		</div>
 
-        <!--TEST 더보기(Start)-->	
-		<div class="com_inner">
-			<div class="com_btn_area02"><a href="javascript:void(0);" role="button" class="com_btn_more" @click.prevent="showMoreList(pageNo)" :style="this.nxDataYn == 'N' ? 'display : none' : ''"><span>더보기</span></a></div>
-		</div>
-		<!--TEST 더보기(End)-->	
-
 		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>		
 	</div>
 	<!--// full popup E -->
@@ -146,7 +146,7 @@ export default {
 
             nxDataYn		    : "",		    // 다음페이지 존재여부
 			pageNo			    : 1,		    // 페이지넘버(서비스에서 페이징 처리하기로 해서 페이지 넘버로 보냄, 최초 1)
-            pageCount           : 5,            // 한번에 보여줄 목록 갯수
+            pageCount           : 3,            // 한번에 보여줄 목록 갯수
 
             typeMap: {'01':'badge type01',
 					'09':'badge type01',
@@ -160,12 +160,17 @@ export default {
             typeText: {'01':'아파트',
 					'09':'아파트',
 					'10':'아파트',
-					'04':'아파트',
-					'06':'아파트',
-					'02':'도시형생활주택',
-					'03':'도시형생활주택',
+					'04':'무순위/잔여세대',
+					'06':'계약취소주택',
+					'0201':'도시형생활주택',
+                    '0202':'오피스텔',
+                    '0203':'민간임대',
+                    '0204':'생활형숙박시설',
+					'03':'공공지원민간임대',
 					'11':'임의공급',
             },
+
+            loading             : false,            // 로딩 상태
 		}
 	},
 	created() {
@@ -199,11 +204,12 @@ export default {
                 url : "/an/re/01r01",
                 data : {
                     mydtCusno       : this.getUserInfo("mydtCusno"),
-                    hseKdDsc        : this.hseKdDsc,
-                    hseSpyaaStaC    : this.hseSpyaaStaC,
-                    pageCount       : this.pageCount,
-                    pageNo		    : this.pageNo,		    	 	// 페이지번호
-                    inqDsc          : "N"                           // 상세조회
+                    hseKdDsc        : this.hseKdDsc.length == 0 ? [] : this.hseKdDsc,
+                    
+                    // hseSpyaaStaC    : this.hseSpyaaStaC,
+                    // pageCount       : this.pageCount,
+                    // pageNo		    : this.pageNo,		    	 	// 페이지번호
+                    // inqDsc          : "N"                           // 상세조회
                 }
             }
             apiService.call(config).then(response =>{
@@ -241,58 +247,24 @@ export default {
 
 			return result;
         },
-        // 입력받은 금액을 한글로 변환
-		numberToKorean(num) {
-			if(!num) return '';
-			
-			const units = ['', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
-			const levels = ['', '십', '백', '천'];
-			let number = Number(num);
-			let result = '';
-			let temp = '';
-			let level = 0;
-			
-            number = Math.round(number / (100 * 10000)) * 100 * 10000;
+        // 한글금액표시
+        fn_hanValue(amount) {
+            const koreanUnits = ['', '만', '억', '조']
+            let han_amount = parseInt((String(amount).replace(/[,]/g, '')) || 0) * 10000 // 만원 단위 화면
+            let answer     = ''
+            let unit       = 10000
+            let index      = 0
+            let division   = Math.pow(unit, index)
 
-            number /= 10000;
-			if(number >= 10000){	// 억 이상 단위
-				let tempNumber = Math.floor(number / 10000);
-				
-				while(tempNumber){
-					if(tempNumber % 10){
-						temp = (tempNumber % 10) + levels[level] + temp;
-					}
-
-					tempNumber = Math.floor(tempNumber / 10);
-					level++;
-				}
-				temp += '억'
-
-				result += temp;
-				number %= 10000;
-			}
-
-			temp = '';
-			level = 0;
-
-			if(number){
-				let tempNumber = number;
-
-				while(tempNumber){
-					if(tempNumber % 10){
-						temp = (tempNumber % 10) + levels[level] + temp;
-					}
-
-					tempNumber = Math.floor(tempNumber / 10);
-					level++;
-				}
-				temp += '만'
-
-				result += temp;
-			}
-
-			result += '원';
-			return result;
+            while (Math.floor(han_amount / division) > 0) {
+                const mod = Math.floor(han_amount % (division * unit) / division)
+                if (mod) {
+                    const modToString = mod.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
+                    answer = `${modToString}${koreanUnits[index]} ` + answer
+                }
+                division = Math.pow(unit, ++index)
+            }
+            return (answer + "원").replace(" 원", "원")
         },
         openDetailPop(url) {
             const config = {
@@ -312,10 +284,10 @@ export default {
                 data : {
                     mydtCusno       : this.getUserInfo("mydtCusno"),
                     hseKdDsc        : this.hseKdDsc,
-                    hseSpyaaStaC    : this.hseSpyaaStaC,
-                    pageCount       : this.pageCount,
-                    pageNo		    : this.pageNo,		    	 	// 페이지번호
-                    inqDsc          : "N"                           // 상세조회
+                    // hseSpyaaStaC    : this.hseSpyaaStaC,
+                    // pageCount       : this.pageCount,
+                    // pageNo		    : this.pageNo,		    	 	// 페이지번호
+                    // inqDsc          : "N"                           // 상세조회
                 }
             };
             apiService.call(config).then(response =>{
@@ -332,7 +304,6 @@ export default {
                 }
             });
         },
-
     },
 }
 </script>

@@ -159,7 +159,7 @@
 					</div>
 				</template>
 				<div class="com_textarea_type01">
-					<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="메모를 입력하세요" :value="memoCntn" maxlength="100" @keyup="fn_checkWord($event, 100, 'memoCntn')" ref="memoCntn"></textarea>
+					<textarea name="" id="txt00" class="com_txtarea_type02" cols="10" rows="2" required placeholder="메모를 입력하세요" :value="memoCntn" maxlength="100" @keyup="fn_checkWord($event, 100, 'memoCntn')" ref="memoCntn"></textarea>
 					<label for="txt00"><span class="txt_label_x">메모</span></label>
 				</div>
 			</div>
@@ -675,7 +675,7 @@ export default {
 						if(response.totPrcCn > 0){
 							modalService.alert("삭제 완료되었습니다.").then(() => {
 								console.log('삭제 완료 콘솔')
-								if(this.reqFlag === 'LCLE2104'){
+								if(this.reqFlag === 'LCLE4104'){
 									this.close('complete')
 								}else{
 									this.closeAllData('complete')

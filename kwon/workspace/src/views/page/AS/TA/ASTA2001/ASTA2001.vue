@@ -80,7 +80,7 @@ ________________________________________________________________________
 					<ul class="list_type_01">
 						<!-- 예금 -->
 						<li>
-							<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASAC2001')">
+							<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASAC4001')">
 								<dl>
 									<dt>
 										<div>
@@ -100,7 +100,7 @@ ________________________________________________________________________
 						<!-- 투자 -->
 						<li>
 							<template v-if="asetFnIvTtcn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIV2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIV4001')">
 									<dl>
 										<dt>
 											<div>
@@ -134,7 +134,7 @@ ________________________________________________________________________
 						<!-- 연금 -->
 						<li>
 							<template v-if="asetFnPnsTtcn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASPS2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASPS4001')">
 									<dl>
 										<dt>
 											<div>
@@ -152,7 +152,7 @@ ________________________________________________________________________
 								</a>
 							</template>
 							<template v-else>
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('PDRT2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('PDRT4001')">
 									<dl>
 										<dt>
 											<div>
@@ -168,7 +168,7 @@ ________________________________________________________________________
 						<!-- 페이/포인트 -->
 						<li>
 							<template v-if="asetFnPayPntTtcn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASPT2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASPT4001')">
 									<dl>
 										<dt>
 											<div>
@@ -254,7 +254,7 @@ ________________________________________________________________________
 					<ul class="list_type_01">
 						<li>
 							<template v-if="asetRlthRlestCn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASRE2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASRE4001')">
 									<dl>
 										<dt>
 											<div>
@@ -273,7 +273,7 @@ ________________________________________________________________________
 							</template>
 							<!-- 부동산(없을 때) -->
 							<template v-else>
-								<a href="javascript:void(0)" role="button" @click.prevent="openRlAssetPop('CORE2201')">
+								<a href="javascript:void(0)" role="button" @click.prevent="openRlAssetPop('CORE4201')">
 									<dl>
 										<dt>
 											<div>
@@ -288,7 +288,7 @@ ________________________________________________________________________
 						</li>
 						<li>
 							<template v-if="asetRlthCarCn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCA2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCA4001')">
 									<dl>
 										<dt>
 											<div>
@@ -327,7 +327,7 @@ ________________________________________________________________________
 				<!-- 기타자산 -->
 				<template v-if="asetEtcTtcn > 0">
 					<div class="com_box_type01 custom_list">
-						<a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA2001')">
+						<a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA4001')">
 							<div class="tit"><span>기타자산</span></div>
 							<span class="total_price ico_arrow">
 								<em class="num">{{asetEtcAmSum | numberFilter}}</em><em class="unit">원</em>
@@ -468,7 +468,7 @@ ________________________________________________________________________
 						<!-- 카드 -->
 						<li>
 							<template v-if="dbtCdTcn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCD2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCD4001')">
 									<dl>
 										<dt>
 											<div>
@@ -503,7 +503,7 @@ ________________________________________________________________________
 						<!-- 대출 -->
 						<li>
 							<template v-if="dbtLonTtcn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLN2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLN4001')">
 									<dl>
 										<dt>
 											<div>
@@ -538,7 +538,7 @@ ________________________________________________________________________
 						<!-- 할부금융 -->
 						<li>
 							<template v-if="dbtIstCn > 0">
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIT2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIT4001')">
 									<dl>
 										<dt>
 											<div>
@@ -594,7 +594,7 @@ ________________________________________________________________________
 						<!-- 리스 -->
 						<template v-if="dbtLeasCn > 0">
 							<li>
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLS2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLS4001')">
 									<dl>
 										<dt>
 											<div>
@@ -615,7 +615,7 @@ ________________________________________________________________________
 						<!-- 빌린돈 -->
 						<template v-if="dbtCshCn > 0">
 							<li>
-								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASBR2001')">
+								<a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASBR4001')">
 									<dl>
 										<dt>
 											<div>
@@ -664,7 +664,7 @@ ________________________________________________________________________
 								</div>
 							</li>
 							<li class="right">
-								<a href="javascript:void(0)" title="보험목록 이동" @click.prevent="fn_movePage('ASIS2001')">
+								<a href="javascript:void(0)" title="보험목록 이동" @click.prevent="fn_movePage('ASIS4001')">
 									<span class="total_price ico_arrow">
 										<em class="num">{{isrPymIsrfeTt | numberFilter}}</em><em class="unit">원</em>
 									</span>
@@ -766,7 +766,7 @@ ________________________________________________________________________
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001' // 자산등록
     import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002' // 기관선택
 
-    import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201' // 부동산등록
+    import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201' // 부동산등록
     import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101' // 자동차등록
     import COOA2003 from '@/views/page/CO/OA/COOA2003/COOA2003' // 빌린돈
     
@@ -1023,7 +1023,7 @@ ________________________________________________________________________
 					name: menu
                 }
 				
-                if (menu === 'ASRE2001') {
+                if (menu === 'ASRE4001') {
                     config.params = {
                         rlestTtAm : this.asetRlthRlestAm
                     }
@@ -1082,8 +1082,8 @@ ________________________________________________________________________
             openRlAssetPop(popId) {
                 let popName = ""
                 switch(popId) {
-                    case 'CORE2201':
-                        popName = CORE2201	// 부동산
+                    case 'CORE4201':
+                        popName = CORE4201	// 부동산
                         break
                     case 'COCA2101':
                         popName = COCA2101	// 자동차

@@ -26,6 +26,20 @@
 					_par.find('.bottomBtn').text('접기');
 				};
 			});
+			//[v4.0]해지계좌 show/hide
+			$(document).off('click.btn_cancel_acc_toggle').on('click.btn_cancel_acc_toggle', '.cancel_acc_box .btn_toggle', function(){
+				var can_acc_box = $(this).closest('.cancel_acc_box');
+				if(can_acc_box.hasClass('open')){
+					can_acc_box.find('.cont_area').slideUp(300);
+					can_acc_box.removeClass('open');
+					$(this).find('span').text('열기')
+				}else{
+					can_acc_box.addClass('open');
+					can_acc_box.find('.cont_area').slideDown(300);
+					$(this).find('span').text('접기')
+				}
+			})
+
 		});
 	//-->
 	</script>
@@ -90,7 +104,7 @@
 						</div>
 						<!--// 은행 -->
 						<!-- 농협은행 -->
-						<div class="com_box_type01 bottomBtnType">
+						<div class="com_box_type01 bottomBtnType open">
 							<div class="tit">
 								<i class="I1AAAZ0000"><span class="blind">NH농협은행</span></i>
 								<div class="btn_check">
@@ -151,6 +165,31 @@
 										</span>
 									</li>
 								</ul>
+								<!--[v4.0] 25-04-11 해지계좌 추가(운영 적용) -->
+								<div class="cancel_acc_box">
+									<div class="tit_area">
+										<strong class="list_stitle01">해지계좌</strong>
+										<button class="btn_toggle"><span class="blind">열기</span></button>
+									</div>
+									
+									<div class="cont_area">
+										<ul class="list_type_01">
+											<li>
+												<dl>
+													<dt><em class="prod_name">(은행)신한 신탁/ISA</em></dt>
+													<dd><em class="bank_num">0031254865896</em></dd>
+												</dl>
+											</li>
+											<li>
+												<dl>
+													<dt><em class="prod_name">(은행)신한 신탁/ISA</em></dt>
+													<dd><em class="bank_num">0031254865896</em></dd>
+												</dl>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!--//[v4.0] 25-04-11 해지계좌 추가(운영 적용) -->
 							</div>
 							<button class="bottomBtn">더보기</button>
 						</div>

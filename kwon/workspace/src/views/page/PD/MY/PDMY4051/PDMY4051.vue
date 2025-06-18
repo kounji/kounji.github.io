@@ -43,7 +43,7 @@
 				<strong>버킷 리스트 등록 완료!</strong>
                 <div class="txt">당신의 꿈을 현실로 만들기 위한 여정이 시작 되었습니다.<br>앞으로 하나씩 실현해 나가는 그 순간까지,<br>함께 달려가요!</div>
 
-                <a href="javascript:void(0);" @click="openWebBrowser()" v-if="this.getUserInfo('chnl') === '386'">
+                <a href="javascript:void(0);" @click="moveCokBnk('CBFEP2000R')" v-if="this.getUserInfo('chnl') === '386'">
                     <img src="@/assets_v40/images/banner/img_banner_bucket_trip.png" alt="소중한 분께 마을을 담아 외환선물하기" />
 				</a>
             </div>
@@ -87,6 +87,7 @@
 <script>
 
 import apiService from '@/service/apiService'
+import appService from '@/service/appService'
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 
@@ -106,8 +107,8 @@ export default {
 		popClose(){
 			this.closeAllData('reSelect');
 		},
-		openWebBrowser(url) {
-            appService.cokBankOpenPopupWebBrowser(url);
+		moveCokBnk(url) {
+            appService.cokBankGoMove(url);
         },
     },
     mounted() {

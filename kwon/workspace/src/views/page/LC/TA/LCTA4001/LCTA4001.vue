@@ -17,364 +17,358 @@
         <div id="content" class="renewal expenDecom">
             <section class="wallet_main">
                 <!--배너-->
-                <cmm-flot-banner bnnrExpsDsVal="43"/>
+                <cmm-flot-banner bnnrExpsDsVal="43" @reload="initComponent"/>
 
                 <!--update-->
                 <div class="update" @click.prevent="fn_refreshApiCall()">
                     <template v-if="!isMyAssetGathering">
-                        <span>{{ assetUpdateDtm }}</span>
+                        <span>{{ lastUpdateDtm }}</span>
                         <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
                     </template>                        
                     <span v-else class="ml5 num lsp0">자산 업데이트 중</span>
                 </div>    
                 <!--개요 : 자산연결기관(은행업권, 카드업권, 전자금융업권이 없는 경우 -->
-                <div v-if="assetConnCnt == 0" class="outline">
+                <div v-if="orgConCnt == 0" class="outline">
                     <h2>{{basMm|numberFilter}}월 지출</h2>
                     
-                    <p class="em">연결된 지출이 없어요. <button type="button" class="btns" @click.prevent="fn_movePage('COAS2001')">연결</button></p>
+                    <p class="em">연결된 지출이 없어요. <button type="button" class="btns" @click.prevent="fn_openAssetPage()">연결</button></p>
                     <p class="txt">결제 수단을 연결하면 확인할 수 있어요.</p>                
                 </div>
                 <!--개요 : 자산연결기관(은행업권, 카드업권, 전자금융업권이 있는 경우-->
-                <div v-else class="outline">                                                
+                <div v-else :class="cmprXpsAmUpDown(cusMmtpXpsOut.bmmCmprXpsAm, 'outline')">
                     <h2><a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP4001')"><em>{{basMm|numberFilter}}</em>월 지출</a></h2>
                     <!--금액숨김 수정-->
-                    <div class="toggle_money">
-                        <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
-                        <label for="sum_view_01" class="btns">
-                            <span class="hide" aria-hidden="true">보기</span>
-                            <span class="show" aria-hidden="true">숨김</span>
-                        </label>
+                    <div class="toggle_money" :class="amtHiddenYn === true ? 'on' : ''">
                         <div class="sum">
                             <span class="hide">쉿! 비밀이에요.</span>
                             <span class="show"><em>{{cusMmtpXpsOut.xpsAm0 | numberFilter}}</em>원</span>
                         </div>
+                        <button type="button" class="btns" @click="fn_amtHidden(!amtHiddenYn)">
+                            <span class="blind">금액</span>
+                            <span class="hide">보기</span>
+                            <span class="show">숨김</span>
+                        </button>
                     </div>
                     
                     <div class="txt">
-                        <template v-if="cusMmtpXpsOut.bmmCmprXpsAm > 0">
+                        <template v-if="cusMmtpXpsOut.xpsAm0 > 0 && cusMmtpXpsOut.bmmCmprXpsAm > 0">
                             <span class="text">지난달보다</span> <span class="num">{{Math.abs(cusMmtpXpsOut.bmmCmprXpsAm) | numberFilter}}원</span> <em>더 쓰고 있어요.</em>
                         </template>
-                        <template v-if="cusMmtpXpsOut.bmmCmprXpsAm < 0">
+                        <template v-if="cusMmtpXpsOut.xpsAm0 > 0 && cusMmtpXpsOut.bmmCmprXpsAm < 0">
                             <span class="text">지난달보다</span> <span class="num">{{Math.abs(cusMmtpXpsOut.bmmCmprXpsAm) | numberFilter}}원</span> <em>덜 쓰고 있어요.</em>
                         </template>
-                        <template v-if="cusMmtpXpsOut.bmmCmprXpsAm === 0">
-                            <span class="txt">지난달과 지출이 동일해요.</span>
+                        <template v-if="cusMmtpXpsOut.xpsAm0 > 0 && cusMmtpXpsOut.bmmCmprXpsAm === 0">
+                            <span class="text">지난달과 지출이</span> <em>동일해요.</em>
                         </template>
-                    </div>
-                </div>
-
-                <!--분류별 개요 : 자산연결기관(은행업권, 카드업권, 전자금융업권이 없는 경우-->
-                <div v-if="assetConnCnt == 0">
-                    <div class="wallet_outline">
-                        <div class="board_box">
-                            <!--25-02-14 타이틀 추가-->
-                            <!--전체 미연결일 경우-->
-                            <h3><a hhref="javascript:void(0);" class="title">지출내역</a></h3>
-                            <!--//25-02-14 타이틀 추가-->
-                            <ul role="tablist" class="inner_tab">
-                                <li role="tab" aria-controls="tab_01" :class="selectTab === 'CARD' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CARD' ? 'true' : 'false'" @click.prevent="fn_selectTab('CARD')">카드</button></li>
-                                <li role="tab" aria-controls="tab_02" :class="selectTab === 'PAY'  ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'PAY'  ? 'true' : 'false'" @click.prevent="fn_selectTab('PAY' )">페이</button></li>
-                                <li role="tab" aria-controls="tab_03" :class="selectTab === 'CASH' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CASH' ? 'true' : 'false'" @click.prevent="fn_selectTab('CASH')">현금</button></li>
-                            </ul>
-
-                            <div class="details not">
-                                <!--카드 / 페이 / 현금 선택 -->
-                                <div class="analysis">
-                                    <p class="h_tit01">{{xpsMns}} 내역 확인하고<br>지출 관리 하세요.</p>
-                                </div>
-                            </div>
-                        </div> 
-
-                        <div class="spend_history">
-                            <!--카드 / 페이 / 현금 선택 -->
-                            <a href="#nolink">{{xpsMns}} 연결 하기</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!--분류별 개요 : 자산연결기관(은행업권, 카드업권, 전자금융업권이 있는 경우-->                    
-                <div v-else>                        
-                    <div class="wallet_outline">
-                        <div class="board_box">
-                            <!--25-02-14 타이틀 추가-->
-                            <h3><a href="javascript:void(0);" @click.prevent="fn_movePage('LCLE4001')" class="title">지출내역</a></h3>
-                            <!--//25-02-14 타이틀 추가-->
-                            <ul role="tablist" class="inner_tab">
-                                <li role="tab" aria-controls="tab_01" :class="selectTab === 'CARD' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CARD' ? 'true' : 'false'" @click.prevent="fn_selectTab('CARD')">카드</button></li>
-                                <li role="tab" aria-controls="tab_02" :class="selectTab === 'PAY'  ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'PAY'  ? 'true' : 'false'" @click.prevent="fn_selectTab('PAY' )">페이</button></li>
-                                <li role="tab" aria-controls="tab_03" :class="selectTab === 'CASH' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CASH' ? 'true' : 'false'" @click.prevent="fn_selectTab('CASH')">현금</button></li>
-                            </ul>
-            
-                            <!--카드 case-->
-                            <div :class="`details ${xpsUpDownClass}`"><!-- 같은 경우 detail, 적게 쓸경우 down, 초과인 경우 up class 추가   -->
-                                <div v-if="xpsUpDownDsc !='' " class="analysis">
-                                    <p class="h_tit01">{{xpsMns}} 지난 달보다<br><em>{{xpsUpDownDsc}}</em> 쓰고 있어요.</p>
-                                    <p>이번달 {{xpsMns}} 이용 금액<span class="num"><em> {{xpsMnsAm | numberFilter}}</em>원</span></p>
-                                </div>
-                                <div v-if="xpsUpDownDsc =='' " class="analysis">
-                                    <p class="h_tit01">지난달<br>지출과 <em>같아요.</em></p>
-                                    <p>이번달 {{xpsMns}} 이용 금액<span class="num"><em> {{xpsMnsAm | numberFilter}}</em>원</span></p>                                    
-                                </div>
-
-                                <!-- 로또 로티애니매이션 -->
-                                <!--
-                                    초과인 경우  icon_wallet_up.json        ../../../../src/assets_v40/images/lottie/icon_wallet_up.json
-                                    적게 쓸 경우 icon_wallet_down.json      ../../../../src/assets_v40/images/lottie/icon_wallet_down.json
-                                -->                                        
-                                <div v-if="xpsUpDownClass == 'down'">
-                                    <lottie-animation :animationData="require('@/assets_v40/images/lottie/icon_wallet_down.json')" 
-                                                    ref="anim"
-                                                    :loop="true"
-                                                    :auto-play="true" 
-                                                    :speed="1"
-                                                    aria-hidden="true" 
-                                                    class="icon_wallet" 
-                                                    >
-                                    </lottie-animation>                                          
-                                </div>
-                                <div v-else>
-                                    <lottie-animation :animationData="require('@/assets_v40/images/lottie/icon_wallet_up.json')" 
-                                                    ref="anim"
-                                                    :loop="true"
-                                                    :auto-play="true" 
-                                                    :speed="1"
-                                                    aria-hidden="true" 
-                                                    class="icon_wallet" 
-                                                    >
-                                    </lottie-animation>
-                                </div>
-                            </div>               
-                        </div> 
-                        <!--카드 상세-->
-                        <div class="spend_history"  v-if="cardCn > 0 && selectTab == 'CARD'">
-                            <details>
-                                <!-- 25-03-17 보기/닫기로 수정 -->  
-                                <summary>내 카드 지출 내역 
-                                    <span class="show">보기</span>
-                                    <span class="hide">닫기</span>
-                                </summary>
-                                <!-- //25-03-17 보기/닫기로 수정 -->  
-                                <div class="cont">
-                                    <ul v-if="cardList.length > 0" class="payment_list">
-                                        <li v-for="(item,index) in cardList" :key="'card_' + index">
-                                            <a @click.prevent="openCardDetail(item)" href="javascript:void(0);" role="button">
-                                                <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
-                                                <div>
-                                                    <span class="name">{{item.cdcoCdWrsnm}}</span>
-                                                    <span class="num">{{item.cdUgUsAm | numberFilter}}<em class="unit">원</em></span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>
-                        </div> 
-                        <!--페이 상세-->
-                        <div class="spend_history"  v-if="(payMnyCn + ppayCdCn) > 0 && selectTab == 'PAY'">                            
-                            <details>
-                                <summary>내 페이 지출 내역 <span>더보기</span></summary>
-                                <div class="cont">
-                                    <ul v-if="payMnyList.length > 0" class="payment_list">
-                                        <li v-for="(item, index) in payMnyList" :key="'payMny_' + index">
-                                            <a @click.prevent="openPayMnyDetail(item)" href="javascript:void(0);" role="button">
-                                                <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
-                                                <div>
-                                                    <span class="name">{{item.faceOnm}}</span>
-                                                    <span class="num">{{item.ppayTram | numberFilter}}<em class="unit">원</em></span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <ul v-if="ppayCdList.length > 0" class="payment_list">
-                                        <li v-for="(item, index) in ppayCdList" :key="'ppayCd_' + index">
-                                            <a  @click.prevent="openPpayCdDetail(item)" href="javascript:void(0);" role="button">
-                                                <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
-                                                <div>
-                                                    <span class="name">{{item.cdcoCdWrsnm}}</span>
-                                                    <span class="num">{{item.cdUgUsAm | numberFilter}}<em class="unit">원</em></span>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>       
-                        </div>
-
-                        <!--현금 상세-->
-                        <div class="spend_history"  v-if="cashCn > 0 && selectTab == 'CASH'">
-                            <details>
-                                <summary>내 현금 지출 내역 <span>더보기</span></summary>
-                                <div class="cont">
-                                    <ul v-if="cashList.length > 0" class="payment_list">
-                                        <li v-for="(item, index) in cashList" :key="'cash_' + index">
-                                            <a  @click.prevent="openCashDetail(item)" href="javascript:void(0);" role="button">
-                                                <dl>
-                                                    <dt>
-                                                        <div>
-                                                            <i class="icon_money"></i>
-                                                            <em v-if="item.chsvKdnm == '이체'" class="prod_name">계좌 이체로 쓴 금액</em>
-                                                            <em v-if="item.chsvKdnm == '현금'" class="prod_name">직접 등록한 지출 금액</em>
-                                                        </div>
-                                                    </dt>
-                                                    <dd>
-                                                        <span class="com_price">
-                                                            <em class="num">{{item.tram | numberFilter}}</em><em class="unit">원</em>
-                                                        </span>
-                                                    </dd>
-                                                </dl>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </details>
-                        </div>  
-                    </div>                 
-
-                    <!--통신비-->
-                    <div v-if="rqsCn > 0" class="board_box phonebill">
-                        <h2><a @click.prevent="moveMobilePay()" href="javascript:void(0);" class="title">통신비 청구 금액 </a></h2>
-                        <div class="custom_tooltip up">
+                        <template v-if="cusMmtpXpsOut.xpsAm0 === 0 ">
+                            <span class="text">{{basMm|numberFilter}}월 지출내역이 없어요.</span>
+                        </template>
+                        <div class="custom_tooltip">
                             <div class="com_tooltip_type02 com_tooltip_type03">
                                 <a href="javascript:void(0);" class="com_btn_info" role="button">
-                                    <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                                    <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                 </a>
-                            </div>
-                            <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                <div>                                    
-                                    <p>
-                                        결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
-                                        결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
-                                    </p>
-                                    <!--//25-02-10 텍스트 수정 -->
-                                    <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>                                    
-                                </div> 
-                            </div>
-                        </div>
-
-                        <!--금액이 있는 경우-->
-
-                        <div v-if="modifiedRqsList.length > 0">
-                            <ul v-for="item in modifiedRqsList" :key="'rqsOrg_' + item.infOfrmnOrgC">
-                                <li>{{item.infOfrmnOrgCNm}}<span class="num">{{item.comuRqsAmSum | numberFilter}}원</span></li>
-                            </ul>
-                        </div>                                              
-                    </div>           
-
-                    <!--최근소비-->
-                    <div v-if="rcnXpsList.length > 0" class="board_box lately_spend">
-                        <h2><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')" class="title">최근 소비</a></h2>
-                        
-                        <span class="date">{{rcnXpsDd}}일(일)</span>
-                        <ul class="lately_list">
-                            <li v-for="(item, index) in rcnXpsList" :key="'rcnXps_' + index">
-                                <i :class="`expIcon ${item.asetAmnCtgrId}`"><span class="blind">{{item.ctgrnm}}</span></i>
-                                <div>
-                                    <span class="name">{{item.mchtnm}}</span>
-                                    <span class="pay">{{item.cdcoCdWrsnm}}</span>
+                                <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                    <div>
+                                        <ul class="dotted_list">
+                                            <li>마지막 업데이트 시점의 총 지출과 마지막 업데이트 전 월 말일 총지출을 비교했습니다.</li>
+                                            <li>오늘 업데이트 하셨으면 전 월 말일 총 지출과 비교한 결과입니다.</li>
+                                        </ul>
+                                        <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                    </div>
                                 </div>
-                                <span class="num">{{item.revXpsAm | numberFilter}}원</span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>                        
                     </div>
-                    <!--최근소비-->
-                    <div v-if="rcnXpsList.length == 0" class="board_box lately_spend">
-                        <h2><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')" class="title">최근 소비</a></h2>                        
-                        <p class="txt">최근 나의 소비가<br>없어요</p>
-                    </div>                    
-
-                    <!--주요소비-->
-                    <div v-if="ctgrList.length > 0" class="board_box staple_spend">
-                        <h2><a href="javascript:void(0);" class="title" @click.prevent="openPop('LCIP2002TAB')">주요 소비</a></h2>
-                        <!--소비가 있는 경우-->
-                        <div class="analysis">
-                            <p class="txt">{{top1XpsCtgrNm}}에  가장 많은 지출,<br><em>{{top1XpsAm / 10000 | numberFilter}}만원</em>을 썼어요</p>
-
-                            <div class="gray_box">
-                                <p>주요 소비 중 지난 달 대비<br><em>{{cmprTop1CtrgNm}}</em> 소비 변화가 많아요.</p>
+                </div>
+                      
+                <div class="wallet_outline">
+                    <div class="board_box">
+                        <!--25-02-14 타이틀 추가-->
+                        <h3><a href="javascript:void(0);" @click.prevent="fn_movePage('LCLE4001')" class="title">지출내역</a></h3>
+                        <!--//25-02-14 타이틀 추가-->
+                        <ul role="tablist" class="inner_tab">
+                            <li aria-controls="tab_01" :class="selectTab === 'CARD' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CARD' ? 'true' : 'false'" @click.prevent="fn_selectTab('CARD')">카드</button></li>
+                            <li aria-controls="tab_02" :class="selectTab === 'PAY'  ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'PAY'  ? 'true' : 'false'" @click.prevent="fn_selectTab('PAY' )">페이</button></li>
+                            <li aria-controls="tab_03" :class="selectTab === 'CASH' ? 'on' : ''"><button type="button" role="tab" :aria-selected="selectTab === 'CASH' ? 'true' : 'false'" @click.prevent="fn_selectTab('CASH')">현금</button></li>
+                        </ul>
+        
+                        <!--카드 case-->
+                        <div :class="`details ${xpsUpDownClass}`"><!-- 같은 경우 detail, 적게 쓸경우 down, 초과인 경우 up class 추가   -->
+                            <div v-if="xpsUpDownClass === 'up' || xpsUpDownClass === 'down'" class="analysis">
+                                <p class="h_tit01">{{xpsMns2}} 지난 달보다<br><em>{{xpsUpDownDsc}}</em> 쓰고 있어요.</p>
+                                <p>이번달 {{xpsMns}} 이용 금액<span class="num"><em> {{xpsMnsAm | numberFilter}}</em>원</span></p>
                             </div>
+                            <div v-else-if="xpsUpDownClass === '' " class="analysis">
+                                <p class="h_tit01">지난달<br>지출과 <em>같아요.</em></p>
+                                <p>이번달 {{xpsMns}} 이용 금액<span class="num"><em> {{xpsMnsAm | numberFilter}}</em>원</span></p>                                    
+                            </div>
+                            <div v-else-if="xpsUpDownClass === 'no' " class="analysis">
+                                <p class="h_tit01">이번 달 {{xpsMns}} 이용<br><em>내역이 없어요.</em></p>
+                                <p>이번달 {{xpsMns}} 이용 금액<span class="num"><em> {{xpsMnsAm | numberFilter}}</em>원</span></p>                                    
+                            </div>
+                            <div v-else-if="xpsUpDownClass === 'not' " class="analysis">
+                                <p class="h_tit01">{{xpsMns}} 내역 확인하고<br>지출 관리 하세요.</p>                                   
+                            </div>
+                            <!-- 로또 로티애니매이션 -->
+                            <!--
+                                초과인 경우  icon_wallet_up.json        ../../../../src/assets_v40/images/lottie/icon_wallet_up.json
+                                동일한 경우  icon_wallet_up.json        ../../../../src/assets_v40/images/lottie/icon_wallet_up.json
+                                적게 쓸 경우 icon_wallet_down.json      ../../../../src/assets_v40/images/lottie/icon_wallet_down.json
+                                0원인 경우   icon_wallet_down.json      ../../../../src/assets_v40/images/lottie/icon_wallet_no.json
+                            -->                
+                            <lottie-animation v-show="xpsUpDownClass == 'down'" :animationData="require('@/assets_v40/images/lottie/icon_wallet_down.json')" ref=walletDown :loop="false" :auto-play="false"  :speed="1" aria-hidden="true" class="icon_wallet"></lottie-animation>
+                            <lottie-animation v-show="xpsUpDownClass == 'up'"   :animationData="require('@/assets_v40/images/lottie/icon_wallet_up.json')"   ref=walletUp   :loop="false" :auto-play="false"  :speed="1" aria-hidden="true" class="icon_wallet"></lottie-animation>
+                            <lottie-animation v-show="xpsUpDownClass == ''"     :animationData="require('@/assets_v40/images/lottie/icon_wallet.json')"      ref=wallet     :loop="false" :auto-play="false"  :speed="1" aria-hidden="true" class="icon_wallet"></lottie-animation>
+                            <lottie-animation v-show="xpsUpDownClass == 'no'"   :animationData="require('@/assets_v40/images/lottie/icon_wallet_no.json')"   ref=walletNo   :loop="false" :auto-play="false"  :speed="1" aria-hidden="true" class="icon_wallet"></lottie-animation>
                         </div>
-
-                        <!--주요소비 상세-->
-                        <details  class="board_box_details">
-                            <summary>
-                                <!--25-02-10 텍스트 수정 -->
-                                <span class="show">소비 분석 보기</span>
-                                <span class="hide">소비 분석 닫기</span>
-                                <!--//25-02-10 텍스트 수정 -->
+                    </div> 
+                    <!--카드 상세-->
+                    <div class="spend_history" v-if="cardConCnt === 0 && selectTab == 'CARD'">
+                        <a href="javascript:void(0);" @click.prevent="fn_openAssetPage()">{{xpsMns}} 연결 하기</a>
+                    </div>                         
+                    <div class="spend_history" v-if="cardConCnt > 0 && cardXpsCn > 0 && selectTab == 'CARD'" @click.prevent="setAssetDtl('card')">
+                        <details :key="selectTab" :open="getAssetDtl('card') === true ? 'open' : null">
+                        <!-- <details> -->
+                            <!-- 25-03-17 보기/닫기로 수정 -->  
+                            <summary>내 카드 지출 내역 
+                                <span class="show">보기</span>
+                                <span class="hide">닫기</span>
                             </summary>
+                            <!-- //25-03-17 보기/닫기로 수정 -->  
                             <div class="cont">
-                            <div class="chart" aria-hidden="true">
-                                <div class="bar">
-                                    <!--1위/2위/3위순이고, 전달대비 증가폭이 큰 경우 up class 추가 -->
-                                    <div :class="top1XpsAmUpDown" :style="{height: top1ChartRto  + '%'}"><span>{{top1XpsCtgrNm}}</span></div>
-                                    <div :class="top2XpsAmUpDown" :style="{height: top2ChartRto  + '%'}"><span>{{top2XpsCtgrNm}}</span></div>
-                                    <div :class="top3XpsAmUpDown" :style="{height: top3ChartRto  + '%'}"><span>{{top3XpsCtgrNm}}</span></div>
-                                </div>  
-
-                                <!-- CANVAS 공통콤퍼넌트로 변경 -->
-                                <cmm-canvas canvaMode="line" :linedata=linedata :pos="[184, 92, 16, 0, 60]" ></cmm-canvas>
-
-                                <div class="model">
-                                    <span class="this">{{top1BasYm.substr(4,2)|numberFilter}}월</span>
-                                    <span class="prev">{{top1Bf1Ym.substr(4,2)|numberFilter}}월</span>
-                                </div>
-                            </div>         
-
-                            <div class="scroller">
-                                    <ul>
-                                        <li v-for="(item, index) in ctgrList" :key="'ctgr_' + index" class="box_spend ">
-                                            <strong><span :class="item.xpsOrd == 1 ? 'pin lg purple' : 'pin lg'">{{item.xpsOrd}}위</span>{{item.xpsCtgrNm}}</strong>
-                                            <i :class="item.xpsCtgrC"></i>
-                                            <span :class="item.bmmCmprXpsAm >= 0 ? 'range up' : 'range down'">{{item.bmmCmprXpsAm | numberFilter}}원</span>
-                                            <span class="num">{{item.xpsAm | numberFilter}}원</span>
-                                            <span class="hash sm">{{item.xpsRto | numberFilter}}%</span>
-                                        </li>
-                                    </ul>
+                                <ul v-if="cardXpsList.length > 0" class="payment_list">
+                                    <li v-for="(item,index) in cardXpsList" :key="'card_' + index">
+                                        <a @click.prevent="openCardDetail(item)" href="javascript:void(0);" role="button">
+                                            <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <div>
+                                                <span class="name">{{item.cdcoCdWrsnm}}</span>
+                                                <span class="num">{{item.cdUgUsAm | numberFilter}}<em class="unit">원</em></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>                              
+                        </details>
+                    </div> 
+                    <!--페이 상세-->
+                    <div class="spend_history"  v-if="payConCnt === 0 && selectTab == 'PAY'" >  
+                        <a href="javascript:void(0);" @click.prevent="fn_openAssetPage()">{{xpsMns}} 연결 하기</a>
+                    </div>
+                    <div class="spend_history"  v-if="payConCnt > 0 && (payMnyCn + ppayCdCn) > 0 && selectTab == 'PAY'" @click.prevent="setAssetDtl('pay')">                            
+                        <!-- <details :key="selectTab" :open="selectTab === 'PAY' ? null : null"> -->
+                        <details :key="selectTab" :open="getAssetDtl('pay') === true ? 'open' : null">
+                            <summary>내 페이 지출 내역 
+                                <span class="show">보기</span>
+                                <span class="hide">닫기</span>
+                            </summary>                                
+                            <div class="cont">
+                                <ul v-if="payMnyList.length > 0" class="payment_list">
+                                    <li v-for="(item, index) in payMnyList" :key="'payMny_' + index">
+                                        <a @click.prevent="openPayMnyDetail(item)" href="javascript:void(0);" role="button">
+                                            <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <div>
+                                                <span class="name">{{item.faceOnm}}</span>
+                                                <span class="num">{{item.ppayTram | numberFilter}}<em class="unit">원</em></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul v-if="ppayCdList.length > 0" class="payment_list">
+                                    <li v-for="(item, index) in ppayCdList" :key="'ppayCd_' + index">
+                                        <a  @click.prevent="openPpayCdDetail(item)" href="javascript:void(0);" role="button">
+                                            <i :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <div>
+                                                <span class="name">{{item.cdcoCdWrsnm}}</span>
+                                                <span class="num">{{item.cdUgUsAm | numberFilter}}<em class="unit">원</em></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
+                        </details>       
+                    </div>
+
+                    <!--현금 상세-->
+                    <div class="spend_history" v-if="bankConCnt === 0 && selectTab == 'CASH'">
+                        <a href="javascript:void(0);" @click.prevent="fn_openAssetPage()">{{xpsMns}} 연결 하기</a>
+                    </div>
+                    <div class="spend_history" v-if="bankConCnt > 0 && cashCn > 0 && selectTab == 'CASH'" @click.prevent="setAssetDtl('cash')">
+                        <details :key="selectTab" :open="getAssetDtl('cash') === true ? 'open' : null">
+                        <!-- <details :key="selectTab" :open="selectTab === 'CASH' ? null : null"> -->
+                            <summary>내 현금 지출 내역 
+                                <span class="show">보기</span>
+                                <span class="hide">닫기</span>
+                            </summary>                                    
+                            <div class="cont">
+                                <ul v-if="cashList.length > 0" class="payment_list">
+                                    <li v-for="(item, index) in cashList" :key="'cash_' + index">
+                                        <a  @click.prevent="openCashDetail(item)" href="javascript:void(0);" role="button">
+                                            <dl>
+                                                <dt>
+                                                    <div>
+                                                        <i class="icon_money"></i>
+                                                        <em v-if="item.chsvKdnm == '이체'" class="prod_name">계좌 이체로 쓴 금액</em>
+                                                        <em v-if="item.chsvKdnm == '현금'" class="prod_name">직접 등록한 지출 금액</em>
+                                                    </div>
+                                                </dt>
+                                                <dd>
+                                                    <span class="com_price">
+                                                        <em class="num">{{item.tram | numberFilter}}</em><em class="unit">원</em>
+                                                    </span>
+                                                </dd>
+                                            </dl>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
                         </details>
+                    </div>  
+                </div>
+
+                <!--최근소비-->
+                <div v-if="rcnXpsList.length > 0" class="board_box lately_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')" class="title">최근 내역</a></h2>
+                    
+                    <span class="date">{{rcnXpsDd}}일({{rcnXpsDayName}})</span>
+                    <ul class="lately_list">
+                        <li v-for="(item, index) in rcnXpsList" :key="'rcnXps_' + index">
+                            <i :class="`expIcon ${item.asetAmnCtgrId}`"><span class="blind">{{item.ctgrnm}}</span></i>
+                            <div>
+                                <span class="name">{{item.mchtnm}}</span>
+                                <span class="pay">{{item.cdcoCdWrsnm}}</span>
+                            </div>
+                            <span class="num">{{item.revXpsAm | numberFilter}}원</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--최근소비-->
+                <div v-if="rcnXpsList.length == 0" class="board_box lately_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')" class="title">최근 내역</a></h2>                        
+                    <p class="txt">이번 달 최근 내역이<br>없어요.</p>
+                </div>                    
+
+                <!--주요소비-->
+                <div v-if="ctgrList.length > 0" class="board_box staple_spend">
+                    <h2><a href="javascript:void(0);" class="title" @click.prevent="openPop('LCIP2002TAB')">주요 소비</a></h2>
+                    <!--소비가 있는 경우-->
+                    <div class="analysis">
+                        <p class="txt">{{top1XpsCtgrNm}}에  가장 많은 지출,<br><em>{{top1XpsAm / 10000 | numberFilter}}만원</em>을 썼어요.</p>
+
+                        <div class="gray_box">
+                            <p>주요 소비 중 지난 달 대비<br><em>{{cmprTop1CtrgNm}}</em> 소비 변화가 많아요.</p>
+                        </div>
                     </div>
-                    <div v-if="ctgrList.length == 0" class="board_box staple_spend">
-                        <h2><a href="javascript:void(0);" @click.prevent="openPop('LCIP2002TAB')" class="title">주요 소비</a></h2>
 
-                        <!--소비가 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">이번 달 지출 내역이<br>없어요</p>
-                        </div>
-                    </div>          
+                    <!--주요소비 상세-->
+                    <details  class="board_box_details">
+                        <summary>
+                            <!--25-02-10 텍스트 수정 -->
+                            <span class="show">소비 분석 보기</span>
+                            <span class="hide">소비 분석 닫기</span>
+                            <!--//25-02-10 텍스트 수정 -->
+                        </summary>
+                        <div class="cont">
+                        <div class="chart" aria-hidden="true">
+                            <div class="bar">
+                                <!--1위/2위/3위순이고, 전달대비 증가폭이 큰 경우 up class 추가 -->
+                                <div :class="top1XpsAmUpDown" :style="{height: top1ChartRto  + '%'}"><span>{{top1XpsCtgrNm}}</span></div>
+                                <div :class="top2XpsAmUpDown" :style="{height: top2ChartRto  + '%'}"><span>{{top2XpsCtgrNm}}</span></div>
+                                <div :class="top3XpsAmUpDown" :style="{height: top3ChartRto  + '%'}"><span>{{top3XpsCtgrNm}}</span></div>
+                            </div>  
 
-                    <!--25-02-10 통신비 수정 -->
-                    <div v-if="rqsCn == 0" class="board_box phonebill">
-                        <h2><a href="#nolink" class="title">통신비 청구 금액</a></h2>
+                            <!-- CANVAS 공통콤퍼넌트로 변경 -->
+                            <cmm-canvas canvaMode="line" :linedata=linedata :pos="[184, 92, 16, 0, 60]" ></cmm-canvas>
 
-                        <div class="custom_tooltip up">
-                            <div class="com_tooltip_type02 com_tooltip_type03">
-                                <a href="javascript:void(0);" class="com_btn_info" role="button">
-                                    <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
-                                </a>
+                            <div class="model">
+                                <span class="this">{{top1BasYm.substr(4,2)|numberFilter}}월</span>
+                                <span class="prev">{{top1Bf1Ym.substr(4,2)|numberFilter}}월</span>
                             </div>
-                            <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                <div>
-                                    
-                                    <p>
-                                        결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
-                                        결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
-                                    </p>
-                                    <!--//25-02-10 텍스트 수정 -->
+                        </div>         
 
-                                    <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                </div> 
-                            </div>
+                        <div class="scroller">
+                                <ul>
+                                    <li v-for="(item, index) in ctgrList" :key="'ctgr_' + index" class="box_spend ">
+                                        <strong><span :class="item.xpsOrd == 1 ? 'pin lg purple' : 'pin lg'">{{item.xpsOrd}}위</span>{{item.xpsCtgrNm}}</strong>
+                                        <i :class="item.xpsCtgrC"></i>
+                                        <span :class="item.bmmCmprXpsAm >= 0 ? 'range up' : 'range down'">{{Math.abs(item.bmmCmprXpsAm) | numberFilter}}원</span>
+                                        <span class="num">{{item.xpsAm | numberFilter}}원</span>
+                                        <span class="hash sm">{{item.xpsRto | numberFilter}}%</span>
+                                    </li>
+                                </ul>
                         </div>
-                        <!--금액이 없는 경우-->
-                        <p>이번달 통신비 청구 금액이 없어요</p>
-                    </div>       
+                        </div>
+                    </details>
+                </div>
+                <div v-if="ctgrList.length == 0" class="board_box staple_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="openPop('LCIP2002TAB')" class="title">주요 소비</a></h2>
 
-                    <!--정기지출-->
-                    <div v-if="fxtmList.length > 0" class="board_box regular_spend">
-                        <h2><a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="title">정기 지출</a></h2>
+                    <!--소비가 없는 경우-->
+                    <div class="analysis">
+                        <p class="txt">이번 달 지출 내역이<br>없어요.</p>
+                    </div>
+                </div>          
 
-                        <!--정기지출이 있는 경우-->
+                <!--25-02-10 통신비 수정 -->
+                <div v-if="rqsCn == 0" class="board_box phonebill">
+                    <h2><a @click.prevent="moveMobilePay()" href="javascript:void(0);" class="title">통신비 청구 금액</a></h2>
+
+                    <div class="custom_tooltip up">
+                        <div class="com_tooltip_type02 com_tooltip_type03">
+                            <a href="javascript:void(0);" class="com_btn_info" role="button">
+                                <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                            </a>
+                        </div>
+                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                            <div>                                    
+                                <p>
+                                    결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
+                                    결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
+                                </p>
+                                <!--//25-02-10 텍스트 수정 -->
+
+                                <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                            </div> 
+                        </div>
+                    </div>
+                    <!--금액이 없는 경우-->
+                    <p>이번달 통신비 청구 금액이 없어요.</p>
+                </div>       
+
+                <!--통신비-->
+                <div v-if="rqsCn > 0" class="board_box phonebill">
+                    <h2><a @click.prevent="moveMobilePay()" href="javascript:void(0);" class="title">통신비 청구 금액 </a></h2>
+                    <div class="custom_tooltip up">
+                        <div class="com_tooltip_type02 com_tooltip_type03">
+                            <a href="javascript:void(0);" class="com_btn_info" role="button">
+                                <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                            </a>
+                        </div>
+                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                            <div>                                    
+                                <p>
+                                    결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
+                                    결제일 이 후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
+                                </p>
+                                <!--//25-02-10 텍스트 수정 -->
+                                <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>                                    
+                            </div> 
+                        </div>
+                    </div>
+                    <!--금액이 있는 경우-->
+                    <div v-if="modifiedRqsList.length > 0">
+                        <ul v-for="item in modifiedRqsList" :key="'rqsOrg_' + item.infOfrmnOrgC">
+                            <li>{{item.infOfrmnOrgCNm}}<span class="num">{{item.comuRqsAmSum | numberFilter}}원</span></li>
+                        </ul>
+                    </div>                                              
+                </div>
+
+                <!--정기지출이 있는 경우-->
+                <div v-if="fxtmCn > 0" class="board_box regular_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="title">정기 지출</a></h2>
+
+                    <!--다가올 정기지출이 있는 경우-->
+                    <div v-if="fxtmSt01Cn > 0">
                         <div class="analysis">
                             <p class="txt">다가올 정기지출 {{fxtmCn}}건 중<br><em>{{fxtmSt01Cn}}건</em> 예정되어 있어요.</p>
                         </div>                        
@@ -391,97 +385,108 @@
                                     <li v-for="(item, index) in fxtmList.filter((el,idx)=>idx < fxtmSt01Cn)" :key="`item1_${index}`">
                                         <i :class="`expIcon ${item.xpsCtgrC}`"></i>
                                         <div>
-                                            <span class="name">{{item.prcMchtnm}}</span>
+                                            <span class="name">{{item.mchtnm}}</span>
                                             <span class="num">{{item.xpsAm | numberFilter}}원</span>
                                         </div>
-                                        <span class="due">{{item.trDt}}일 예정</span><!-- {{item.trDt.substr(6, 2)}} -->
+                                        <span class="due">{{getYmd(item.trDt, 'DD')}}일 {{xpsStNm(item.xpsSt)}}</span><!-- {{item.trDt.substr(6, 2)}} -->
                                     </li>
                                 </ul>
                             </div>
-                        </details>
-                    </div>                        
-                    <!-- 정기 지출 정보가 없는 경우 -->
-                    <div v-else class="board_box regular_spend">
-                        <h2><a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="title">정기 지출</a></h2>
-                        <!--정기지출이 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">예상되는 정기지출을<br>찾을 수 없어요</p>
-                            <p class="txt2">결제 계좌나 카드를 연결하거나<br>정기지출을 추가해서 현명한 지출 관리 하세요</p>
-                            <a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="btns md gray">정기지출 추가하기</a>
-                        </div>
+                        </details>                        
                     </div>
-                    <!--// 정기 지출 정보가 없는 경우 --> 
+                    <div v-else>
+                        <div class="analysis">
+                            <p class="txt">현재 예정된 <br>정기 지출이 없어요.</p>
+                        </div>                        
+                    </div>
+                </div>                        
+                <!-- 정기 지출 정보가 없는 경우 -->
+                <div v-else class="board_box regular_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="title">정기 지출</a></h2>
+                    <!--정기지출이 없는 경우-->
+                    <div class="analysis">
+                        <p class="txt">예상되는 정기지출을<br>찾을 수 없어요.</p><!--25-04-01 마침표추가-->
+                        <p class="txt2">결제 계좌나 카드를 연결하거나<br>정기지출을 추가해서 현명한 지출 관리 하세요.</p><!--25-04-01 마침표추가-->
+                        <a href="javascript:void(0);" @click.prevent="openPopFxtm()" class="btns md gray">정기지출 추가하기</a>
+                    </div>                    
+                </div>
 
-                    <!--소비 줄이기-->
-                    <div v-if="xpsTotAmt > 0" class="board_box less_spend">
-                        <!--chart > now 막대의 width 85% 가 넘으면 초과임. 초과일 경우 up / 목표에 가까워지는 경우 nearby  class 추가-->
-                        <h2><a href="javascript:void(0);" @click.prevent="openPopTarget()" class="title">소비 줄이기</a></h2>
+                <!--소비 줄이기-->
+                <div v-if="xpsObt.xpsObtAm > 0" :class="`board_box less_spend ${xpsObtClass}`">
+                    <!--chart > now 막대의 width 85% 가 넘으면 초과임. 초과일 경우 up / 목표에 가까워지는 경우 nearby  class 추가-->
+                    <h2><a href="javascript:void(0);" @click.prevent="openPopTarget()" class="title">소비 줄이기</a></h2>
 
-                        <!--소비가 있는 경우-->
-                        <div v-if="xpsObtRto <= 85" class="analysis">
-                            <p class="txt">현재, 목표 예산에서<br><em>안정적</em>이에요</p>
-                            <p class="txt2">지금처럼만 잘 유지해 주세요</p>
-                        </div>
+                    <!--소비가 있는 경우-->
+                    <div v-if="xpsObtRto <= 85" class="analysis">
+                        <p class="txt">현재, 목표 예산에서<br><em>안정적</em>이에요.</p>
+                        <p class="txt2">지금처럼만 잘 유지해 주세요.</p>
+                    </div>
 
-                        <div v-if="xpsObtRto >= 86 && xpsObtRto <= 100" class="analysis">
-                            <p class="txt">현재, 목표 예산과<br><em>가까워요</em></p>
-                            <p class="txt2">현명한 목표 예산을 달성해 주세요</p>
-                        </div>
+                    <div v-if="xpsObtRto >= 86 && xpsObtRto <= 100" class="analysis">
+                        <p class="txt">현재, 목표 예산과<br><em>가까워요.</em></p>
+                        <p class="txt2">현명한 목표 예산을 달성해 주세요.</p>
+                    </div>
 
-                        <div v-if="xpsObtRto > 100" class="analysis">
-                            <p class="txt">현재, 목표 예산을<br><em>초과</em>했어요</p>
-                            <p class="txt2">지출한 금액을 한번 점검해 보세요</p>
-                        </div>
+                    <div v-if="xpsObtRto > 100" class="analysis">
+                        <p class="txt">현재, 목표 예산을<br><em>초과</em>했어요.</p>
+                        <p class="txt2">지출한 금액을 한번 점검해 보세요.</p>
+                    </div>
 
-                        <!--소비목표 상세-->
-                        <details class="board_box_details">
-                            <summary>
-                                <span class="show">한 달 예산 분석 보기</span>
-                                <span class="hide">한 달 예산 분석 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <div class="chart">
-                                    <div class="standard"><span>목표 : {{xpsObt.xpsObtAm | numberFilter}}원</span></div>
-                                    <div class="now" :style="{width: xpsObtBarRto  + '%'}"><span><span class="blind">현재</span> {{xpsObt.xpsRzsAm | numberFilter}}원</span></div>
-                                </div>
-                                <!--소비가 있는 경우-->
-                                <div v-if="xpsObtRto <= 100" class="gray_box">
-                                    <p>오늘까지 총 예산금액 내 <em>{{xpsObtRto | numberFilter}}%</em>지출하고 있어요.<br><em>{{xpsObt.xpsObtAm | numberFilter}}원</em> 이내로 지출해 보세요!</p>
-                                </div>
-
-                                <div v-if="xpsObtRto > 100" class="gray_box">
-                                    <p>오늘까지 <em>{{xpsObt.xpsRzsAm - xpsObt.xpsObtAm | numberFilter}}원</em> 이 초과 되었어요.</p>
-                                </div>
-
+                    <!--소비목표 상세-->
+                    <details class="board_box_details">
+                        <summary>
+                            <span class="show">한 달 예산 분석 보기</span>
+                            <span class="hide">한 달 예산 분석 닫기</span>
+                        </summary>
+                        <div class="cont">
+                            <div class="chart">
+                                <div class="standard"><span>목표 : {{xpsObt.xpsObtAm | numberFilter}}원</span></div>
+                                <div :class="xpsObtBarRto > 50 ? 'now' : 'now left'" :style="{width: xpsObtBarRto  + '%'}"><span><span class="blind">현재</span> {{xpsObt.xpsRzsAm | numberFilter}}원</span></div>
                             </div>
-                        </details>
-                    </div>
-                    <div  v-if="xpsTotAmt == 0" class="board_box less_spend">
-                        <h2><a href="#nolink" class="title">소비 줄이기</a></h2>
+                            <!--소비가 있는 경우-->
+                            <div v-if="xpsObtRto <= 100" class="gray_box">
+                                <p>오늘까지 총 예산금액 내 <em>{{xpsObtRto | numberFilter}}%</em> 지출하고 있어요.<br><em>{{xpsObt.xpsObtAm | numberFilter}}원</em> 이내로 지출해 보세요!</p>
+                            </div>
 
-                        <!--소비가 없는 경우-->
-                        <div class="analysis">
-                            <p class="txt">계획적인 소비를 위한<br>지출목표</p>
-                            <p class="txt2">지금 설정하고 실천해보세요</p>
-                            <a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY4032')" class="btns md gray">예산 설정하기</a>
+                            <!-- <div v-if="xpsObtRto >= 86 && xpsObtRto <= 100" class="gray_box">
+                                <p>오늘까지 총 예산금액 내 <em>{{xpsObtRto | numberFilter}}%</em> 지출하고 있어요.<br><em>{{xpsObt.xpsObtAm | numberFilter}}원</em> 이내로 지출해 보세요!</p>
+                            </div> -->
+
+                            <div v-if="xpsObtRto > 100" class="gray_box">
+                                <p>오늘까지 <em>{{xpsObt.xpsRzsAm - xpsObt.xpsObtAm | numberFilter}}원</em> 이 초과 되었어요.</p>
+                                <p>조금 더 절약해야 해요!</p>
+                            </div>
+
                         </div>
-                    </div>    
-                </div>                   
+                    </details>
+                </div>
+                <div v-else class="board_box less_spend">
+                    <h2><a href="javascript:void(0);" @click.prevent="openPopPDMY()" class="title">소비 줄이기</a></h2>
+                    <!--소비가 없는 경우-->
+                    <div class="analysis">
+                        <p class="txt">계획적인 소비를 위한<br>지출목표</p>
+                        <p class="txt2">지금 설정하고 실천해 보세요.</p><!--25-04-01 마침표, 띄어쓰기 수정-->
+                        <a href="javascript:void(0);" @click.prevent="openPopPDMY()" class="btns md gray">예산 설정하기</a>
+                    </div>
+                </div>    
+                                   
                 <!--배너-->
-                <a href="#nolink" class="gotoCok">
+                <a href="javascript:void(0);" class="gotoCok" @click.prevent="fn_movePage('PDMY4001')">
                     <img src="@/assets_v40/images/banner/img_banner_goto_cok.png" alt="나의 꿈을 현실로 NH콕뱅킹이 함께 합니다!" />
+                </a>
+
+                <a href="javascript:void(0);" class="img_banner" @click.prevent="fn_movePage('LCFD4001')"> <!--[v4.0] 2025-05-30 배너 추가 -->
+                    <img src="@/assets_v40/images/banner/img_banner_spend.png" alt="월별 소비내역을 다운로드 받을 수 있어요">
                 </a>
 
                 <!--금융지식-->
                 <div class="finlit" v-if="financeKlList.length > 0">
-					<h2 class="h_tit01">금융지식</h2>
-					<a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')"><span class="blind">더보기</span></a>
-
+                    <a href="javascript:void(0);" class="h_tit01" role="button" @click.prevent="fn_movePage('COCT4001')">금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 					<div class="scroller">
 						<ul>
 							<li v-for="(item, idx) in financeKlList" :key="idx">
 								<a href="javascript:void(0);" @click.prevent="fn_openFncKlDtl(item.cntzId)">
-									<img :src="item.thmnlImgUrlnm" alt="" @error="emptyImg">
+                                    <img :src="`/assets/images/fin_cont/${item.thmnlImgUrlnm}`" alt="" @error="emptyImg" />
 									<strong>{{item.cntzTinm}}</strong>
 									<span class="hash" v-if="!!item.rcmKwrdCntn">#{{item.rcmKwrdCntn}}</span>
 								</a>
@@ -504,7 +509,7 @@ import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
-import {dateFormat, monthAdd, dayDiff} from '@/utils/date'
+import {dateFormat,getDayDowCName, monthAdd, dayDiff} from '@/utils/date'
 
 import {mapActions, mapGetters} from 'vuex'
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007' // 정기 지출
@@ -516,7 +521,9 @@ import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002' // 카드 지출내�
 import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003' // 페이머니 지출내역
 import LCLE4004 from '@/views/page/LC/LE/LCLE4004/LCLE4004' // 선불카드 지출내역
 import LCLE4104 from '@/views/page/LC/LE/LCLE4104/LCLE4104' // 현금 지출내역
-import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002' // 자산연결
+import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001' // 자산연결
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002' // 자산연결
+import COCT4011 from '@/views/page/CO/CT/COCT4011/COCT4011'
 import LCLE2107 from '@/views/page/LC/LE/LCLE2107/LCLE2107'
 
 import {drawlineChart}  from '@/utils/canvas' //Import 선언
@@ -563,14 +570,11 @@ export default {
 
             fxtmCn : 0 ,
             fxtmSt01Cn : 0 ,
-
             
-            
-            xpsObt : '', 			// 나의 목표(지출 목표)
-
-            tmp: '',
-
+            xpsObt          : '', 			// 나의 목표(지출 목표)
+            tmp             : '',
             selectTab		: "CARD",	// Tab(0:카드, 1:페이, 2:현금)
+            oldTab          : "",
 
             mydtCusno		: "",		// 마이데이터고객번호
             inqYm			: "",		// 조회년월
@@ -588,7 +592,7 @@ export default {
             bmmPpayCdApvSam : 0,    	// 전월선불카드승인금액합계
             rqsSam			: 0,		// 통신요금청구금액합계
             xpsObtAm		: 0,		// 지출목표금액
-            cardCn			: 0,		// 카드목록건수
+            cardXpsCn   	: 0,		// 카드목록건수
             cashCn			: 0,		// 현금목록건수
             ppayCn			: 0,		// 선불목록건수
             payMnyCn		: 0,		// 페이머니목록건수
@@ -601,7 +605,7 @@ export default {
 
             // 각 목록 정렬기준
             // 카드 : 카드명, 기타 : 이체 -> 현금 순서, 페이머니 : 권면명칭, 선불결제 : 페이명
-            cardList		: [],		// 카드목록
+            cardXpsList		: [],		// 카드목록
             cashList		: [],   	// 현금목록
             ppayList		: [],   	// 선불목록
             payMnyList		: [],		// 페이머니목록
@@ -613,15 +617,15 @@ export default {
             fxtmList        : [],       // 다가올 지출(정기지출)
 
             rcnXpsDd        : 0,
-
-            xpsUpDownClass  : '',       // detail, detail up, detail down
+            rcnXpsDayName   : '',       // 요일
+            xpsUpDownClass  : '',       // detail, detail up, detail down, detail no, detail not
             xpsMns          : '',       // 카드, 페이, 현금
+            xpsMns2         : '',       // 카드를, 페이를, 현금을
             xpsUpDownDsc    : '',       // 많이, 적게, 같게
             xpsMnsAm        : 0,        //                
 
             // 주요소비
             cmprTop1CtrgNm  : '',       // 전월대비 최고변동 카테고리
-
             
             top1BasYm             : '',
             top1XpsCtgrC          : '',
@@ -672,11 +676,11 @@ export default {
             top3BmmCmprXpsOrd     : 0,
             top3BmmCmprAbsXpsAm   : 0,
             top3BmmCmprAbsXpsOrd  : 0,
-            top3XpsAmUpDown       : '',  
-            
+            top3XpsAmUpDown       : '',            
             
             xpsObtRto       : 0, // 소비줄이기
             xpsObtBarRto    : 0, // 소비줄이기
+            xpsObtClass     : "", //소비줄이기 class
             linedata        : [],       // 최근소비목록
             finalUpdateDtm  : '',
             basDtm          : '',
@@ -688,6 +692,7 @@ export default {
 
 
             //////// 연결자산 관련 데이터
+            nacfAccList     : [],       // v4 농.축협 계좌 리스트
             userAsetList    : [], // 개인신용정보전송요구내역
             /* 은행 */
             bankList        : [], // 은행업권 데이터
@@ -713,42 +718,37 @@ export default {
 				{"codeVal":"telecom", 	"codeNm":"통신"		},
             ],  
 
-            assetConnCnt   : 0,  // 은행, 카드, 전자금융 건수 합계
+            assetConnCnt    : 0,  // 은행, 카드, 전자금융 건수 합계
+            amtHiddenYn     : false,    // 금액 보기/숨김 구분(true:숨김, false:보기)
+
+            cardYn : false,
+            payYn  : false, 
+            cashYn : false,
+            nacfAccCnt : 0,
         }
     },
     computed : {
         ...mapGetters('myassets', [
-            'isMyAssetGathering','lastUpdateDtm','myAssetsBzRgCnt','myAssetInfo'
+            'isMyAssetGathering','lastUpdateDtm','myAssetsBzRgCnt','myAssetInfo','myAssetsBzrgList'
         ]), 
-        assetUpdateDtm(){
-            /* 자산 업데이트 5분 체크 start */
-            //this.finalUpdateDtm = dateFormat(new Date(), "YYYY.MM.DD HH:mm:ss")
-            let lastUpdateDate  = dateFormat(new Date(this.lastUpdateDtm), "YYYY.MM.DD HH:mm:ss")
 
-            console.log("this.lastUpdateDtm --------------------- ", this.lastUpdateDtm)
-            console.log("this.finalUpdateDtm================", this.finalUpdateDtm)
-            console.log("this.lastUpdateDate================", lastUpdateDate)
+        // 자산연결 기관 개수
+        orgConCnt(){
+            return ( this.nacfAccCnt > 0 ? 1 : 0 ) + this.bankCnt + this.cardCnt + this.efinCnt || 0
+        },
+        // 자산연결 기관 개수
+        cardConCnt(){
+            return this.cardCnt || 0
+        },
+        // 자산연결 기관 개수
+        payConCnt(){
+            return this.efinCnt || 0
+        },
+        // 자산연결 기관 개수
+        bankConCnt(){
+            return ( this.nacfAccCnt > 0 ? 1 : 0 ) + this.bankCnt || 0
+        },                        
 
-            let currDate = new Date()
-            let lastDate = new Date(this.lastUpdateDtm)
-            let diffSec = currDate.getTime() - lastDate.getTime()
-
-            console.log("this.currDate================", currDate)
-            console.log("this.lastDate================", lastDate)
-            console.log("this.diffSec================", diffSec)
-            
-            let diffMm = Math.floor(diffSec %(1000*60*60)) / (1000*60)
-
-            if (diffMm < 1) {
-                this.finalUpdateDtm = '조금전'
-            } else {
-                this.finalUpdateDtm = this.lastUpdateDtm
-            }
-            
-            console.log("diffMm --------------------- ", diffMm)
-            /* 자산 업데이트 5분 체크  end */
-            return this.finalUpdateDtm
-        },            
     },
     watch: {
         isMyAssetGathering (value) {
@@ -777,7 +777,7 @@ export default {
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
 
-        this.slick (); //슬릭
+        this.slick () //슬릭
     },
     methods: {
         ...mapActions('myassets', [
@@ -789,61 +789,27 @@ export default {
             this.currYm     = dateFormat(new Date(), 'YYYYMM')
             this.inqYm      = dateFormat(new Date(), 'YYYYMM')      // 조회년월(초기세팅은 현재년월)
             
-            /* 자산연결 데이터 조회 */
-			// Promise.all([
-            //     this.initData(),
-            //     this.getAssetConnData(),  
-			// ])         
-                this.initData()
-                this.getAssetConnData()
-   
+            // 금액 숨김
+            this.amtHiddenYn = this.getSecretAmInfo().includes('LC')
 
-            /* 지출 데이터 조회 */
-            //this.getAssetData()
-            //this.getData()
+            /* 자산연결 데이터 조회 */
+            this.initData()
+            this.getAssetConnData()
 
             if(this.routeParams?.openPopup === 'LCIP2007') {
                 this.openPopFxtm()
             }
 
-            this.fn_selectTab("CARD")
-
-            /* 자산 업데이트 5분 체크 start */
-            //this.finalUpdateDtm = dateFormat(new Date(), "YYYY.MM.DD HH:mm:ss")
-            let lastUpdateDate  = dateFormat(new Date(this.lastUpdateDtm), "YYYY.MM.DD HH:mm:ss")
-
-            console.log("this.lastUpdateDtm --------------------- ", this.lastUpdateDtm)
-            console.log("this.finalUpdateDtm================", this.finalUpdateDtm)
-            console.log("this.lastUpdateDate================", lastUpdateDate)
-
-            let currDate = new Date()
-            let lastDate = new Date(this.lastUpdateDtm)
-            let diffSec = currDate.getTime() - lastDate.getTime()
-
-            console.log("this.currDate================", currDate)
-            console.log("this.lastDate================", lastDate)
-            console.log("this.diffSec================", diffSec)
-            
-            let diffMm = Math.floor(diffSec %(1000*60*60)) / (1000*60)
-
-            if (diffMm < 5) {
-                this.finalUpdateDtm = '조금전'
-            } else {
-                this.finalUpdateDtm = this.lastUpdateDtm
-            }
-            
-            console.log("diffMm --------------------- ", diffMm)
-            /* 자산 업데이트 5분 체크  end */
         },
         slick () {
-           var $banner =  $(".slick_banner");
+           var $banner =  $(".slick_banner")
            
            $banner.each(function(){
-                let $this = $(this);
+                let $this = $(this)
 
                 $(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
-                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+                    var i = (currentSlide ? currentSlide : 0 ) + 1 
+                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount)  
                 });
 
                 $(".inner", $this).slick({
@@ -875,32 +841,95 @@ export default {
         fn_selectTab(gbn){
             if(this.selectTab != gbn) {
                 this.selectTab = gbn
-            }	
+            }	            
 
             if (gbn == "CARD")	{
-                this.xpsMns         = "카드"
-                this.xpsMnsAm       = this.cardApvSam
-                this.bmmXpsMnsAm    = this.bmmCardApvSam                
+
+                this.xpsMns  = "카드"
+                this.xpsMns2 = "카드를"
+
+                if ( this.cardConCnt > 0 ) {
+                    this.xpsMnsAm       = this.cardApvSam
+                    this.bmmXpsMnsAm    = this.bmmCardApvSam  
+                    this.xpsUpDownClass = "" 
+                } else {
+                    this.xpsUpDownClass = "not"
+                }
+
+                
             } else if (gbn == "PAY") {
-                this.xpsMns         = "페이"
-                this.xpsMnsAm       = this.payMnySam + this.ppayCdApvSam
-                this.bmmXpsMnsAm    = this.bmmPayMnySam + this.bmmPpayCdApvSam                
+                
+                this.xpsMns  = "페이"
+                this.xpsMns2 = "페이를"
+
+                if ( this.payConCnt > 0 ) {
+                    this.xpsMnsAm       = this.payMnySam + this.ppayCdApvSam
+                    this.bmmXpsMnsAm    = this.bmmPayMnySam + this.bmmPpayCdApvSam  
+                    this.xpsUpDownClass = "" 
+                } else {
+                    this.xpsUpDownClass = "not"
+                }                
+  
             } else if (gbn == "CASH") {
-                this.xpsMns         = "현금"
-                this.xpsMnsAm       = this.cashXpsSam
-                this.bmmXpsMnsAm    = this.bmmCashXpsSam                
+                
+                this.xpsMns  = "현금"
+                this.xpsMns2 = "현금을"
+
+                if ( this.bankConCnt > 0 ) {
+                    this.xpsMnsAm       = this.cashXpsSam
+                    this.bmmXpsMnsAm    = this.bmmCashXpsSam   
+                    this.xpsUpDownClass = ""
+                } else {
+                    this.xpsUpDownClass = "not"
+                }                
+                  
+            }            
+
+            if (this.xpsUpDownClass != "not") {
+
+                if (this.xpsMnsAm > 0) {
+                    if (this.xpsMnsAm > this.bmmXpsMnsAm || this.bmmXpsMnsAm == undefined) {
+                        this.xpsUpDownDsc   = "많이"
+                        this.xpsUpDownClass = "up"
+                    } else if (this.xpsMnsAm < this.bmmXpsMnsAm) {
+                        this.xpsUpDownDsc   = "적게"
+                        this.xpsUpDownClass = "down"
+                    } else if (this.xpsMnsAm == this.bmmXpsMnsAm) {
+                        this.xpsUpDownDsc   = ""
+                        this.xpsUpDownClass = ""
+                    }
+                } else  if (this.xpsMnsAm == 0) {
+                        this.xpsUpDownDsc   = ""
+                        this.xpsUpDownClass = "no"               
+                }
             }
 
-            if (this.xpsMnsAm > this.bmmXpsMnsAm) {
-                this.xpsUpDownDsc   = "많이"
-                this.xpsUpDownClass = "up"
-            } else if (this.xpsMnsAm < this.bmmXpsMnsAm) {
-                this.xpsUpDownDsc   = "적게"
-                this.xpsUpDownClass = "down"
-            } else if (this.xpsMnsAm == this.bmmXpsMnsAm) {
-                this.xpsUpDownDsc   = ""
-                this.xpsUpDownClass = ""
-            }
+           this.$nextTick(()=>{
+                if (this.xpsMnsAm > 0) {
+                    if (this.xpsMnsAm > this.bmmXpsMnsAm) {
+                        
+                        if (this.$refs.walletUp != undefined) {
+                            this.$refs.walletUp.stop()
+                            this.$refs.walletUp.play()
+                        }
+                    } else if (this.xpsMnsAm < this.bmmXpsMnsAm) {
+                        if (this.$refs.walletDown != undefined) {
+                            this.$refs.walletDown.stop()
+                            this.$refs.walletDown.play()
+                        }                        
+                    } else if (this.xpsMnsAm == this.bmmXpsMnsAm) {
+                        if (this.$refs.wallet != undefined) {
+                            this.$refs.wallet.stop()
+                            this.$refs.wallet.play()
+                        }
+                    }
+                } else if (this.xpsMnsAm == 0) {    
+                        if (this.$refs.walletNo != undefined) {
+                            this.$refs.walletNo.stop()
+                            this.$refs.walletNo.play()
+                        }
+                }
+            })
 
             console.log("this.xpsMns : ", this.xpsMns)
             console.log("this.xpsMnsAm : ", this.xpsMnsAm)
@@ -931,114 +960,132 @@ export default {
          * 자산 연결 데이터 조회
          */             
         getAssetConnData() {
+            console.log("myAssetsBzrgList=======",this.myAssetsBzrgList)
 
-            // 개인신용정보 전송요구내역 조회
-            const config_con = {
-                url : "/co/am/08r02",
-                data : {
-                    "mydtCusno" : this.getUserInfo('mydtCusno')
+            // 은행업권
+            this.bankList = [];
+            this.bankExprList = [];
+            this.bankCnt      = 0
+            let tmpBankList	= (typeof _.find(this.myAssetsBzrgList, {"comnCVal":"bank"}) !== "undefined") ? _.find(this.myAssetsBzrgList, {"comnCVal":"bank"}).orgList : []
+            for(let i=0; i<tmpBankList.length; i++) {
+                tmpBankList[i].orgBizDsc = "bank"
+                if(tmpBankList[i].acsTokenDusDtm == '0' && dayDiff(tmpBankList[i].tmsEdDt, this.currentDate) >= 0) {
+                    // 토큰만료일자가 0이고, 전송종료일자가 현재일자보다 크거나 같을경우 연결목록에 포함
+                    this.bankList.push(tmpBankList[i]);
+                    this.bankCnt = this.bankList.length;
+                } else {
+                    // 그 외 경우 만료로 판단
+                    this.bankExprList.push(tmpBankList[i])
+                }
+            }                 
+
+            // 카드업권
+            this.cardList = [];
+            this.cardExprList = [];
+            let tmpCardList 	= (typeof _.find(this.myAssetsBzrgList, {"comnCVal":"card"}) !== "undefined") 	? _.find(this.myAssetsBzrgList, {"comnCVal":"card"}).orgList : []
+            this.cardCnt = 0;
+            for(let i=0; i<tmpCardList.length; i++) {
+                tmpCardList[i].orgBizDsc = "card"
+                if(tmpCardList[i].acsTokenDusDtm == '0' && dayDiff(tmpCardList[i].tmsEdDt, this.currentDate) >= 0) {
+                    this.cardList.push(tmpCardList[i])
+                    this.cardCnt = this.cardList.length;
+                } else {
+                    this.cardExprList.push(tmpCardList[i])
                 }
             }
-            apiService.call(config_con).then(response => {
-                console.log('개인신용정보 전송요구내역 조회() ======> response', JSON.parse(JSON.stringify(response)))
-                this.userAsetList = response.bzrgList || []
 
-                // 은행업권
-                this.bankList     = []
-                this.bankExprList = []
-                let tmpBankList	  = (typeof _.find(this.userAsetList, {"comnCVal":"bank"}) !== "undefined") 	? _.find(this.userAsetList, {"comnCVal":"bank"}).orgList : []
-                this.bankCnt      = tmpBankList.length
-                for(let i=0; i<tmpBankList.length; i++) {
-                    tmpBankList[i].orgBizDsc = "bank"
-                    if(tmpBankList[i].acsTokenDusDtm == '0' && this.fn_dayDiff(tmpBankList[i].tmsEdDt, this.currentDate) >= 0) {
-                        // 토큰만료일자가 0이고, 전송종료일자가 현재일자보다 크거나 같을경우 연결목록에 포함
-                        this.bankList.push(tmpBankList[i])
-                    } else {
-                        // 그 외 경우 만료로 판단
-                        this.bankExprList.push(tmpBankList[i])
-                    }
+            // 전자금융업권
+            this.efinList = [];
+            this.efinExprList = [];
+            let tmpEfinList 	= (typeof _.find(this.myAssetsBzrgList, {"comnCVal":"efin"}) !== "undefined") 	? _.find(this.myAssetsBzrgList, {"comnCVal":"efin"}).orgList : []
+            this.efinCnt      = 0            
+            for(let i=0; i<tmpEfinList.length; i++) {
+                tmpEfinList[i].orgBizDsc = "efin"
+                if(tmpEfinList[i].acsTokenDusDtm == '0' && dayDiff(tmpEfinList[i].tmsEdDt, this.currentDate) >= 0) {
+                    this.efinList.push(tmpEfinList[i])
+                    this.efinCnt = this.efinList.length
+                } else {
+                    this.efinExprList.push(tmpEfinList[i])
                 }
-                console.log("this.tmpBankList.length =============>",tmpBankList.length)
-                console.log("this.bankList =============>",this.bankList)
-                console.log("this.bankExprList =============>",this.bankExprList)
-                console.log("this.bankList.length =============>",this.bankList.length)
-                console.log("this.bankExprList.length =============>",this.bankExprList.length)
+            }  
 
-                // 카드업권
-                this.cardList     = []
-                this.cardExprList = []
-                let tmpCardList   = (typeof _.find(this.userAsetList, {"comnCVal":"card"}) !== "undefined") 	? _.find(this.userAsetList, {"comnCVal":"card"}).orgList : []
-                this.cardCnt      = tmpCardList.length
-                for(let i=0; i<tmpCardList.length; i++) {
-                    tmpCardList[i].orgBizDsc = "card"
-                    if(tmpCardList[i].acsTokenDusDtm == '0' && this.fn_dayDiff(tmpCardList[i].tmsEdDt, this.currentDate) >= 0) {
-                        this.cardList.push(tmpCardList[i])
-                    } else {
-                        this.cardExprList.push(tmpCardList[i])
-                    }
+            // 통신업권
+            this.telecomList = [];
+            this.telecomExprList = [];
+            let tmpTelecomList	= (typeof _.find(this.myAssetsBzrgList, {"comnCVal":"telecom"}) !== "undefined")? _.find(this.myAssetsBzrgList, {"comnCVal":"telecom"}).orgList : []
+            this.telecomCnt      = 0
+            for(let i=0; i<tmpTelecomList.length; i++) {
+                tmpTelecomList[i].orgBizDsc = "telecom"
+                if(tmpTelecomList[i].acsTokenDusDtm == '0' && dayDiff(tmpTelecomList[i].tmsEdDt, this.currentDate) >= 0) {
+                    this.telecomList.push(tmpTelecomList[i])
+                    this.telecomCnt = this.telecomList.length
+                } else {
+                    this.telecomExprList.push(tmpTelecomList[i])
                 }
-                console.log("this.tmpCardList.length =============>",tmpCardList.length)
-                console.log("this.cardList =============>",this.cardList)
-                console.log("this.cardList.length =============>",this.cardList.length)
-                console.log("this.cardExprList =============>",this.cardExprList)
-                console.log("this.cardExprList.length =============>",this.cardExprList.length)
+            } 
 
-
-                // 전자금융업권
-                this.efinList     = []
-                this.efinExprList = []
-                let tmpEfinList   = (typeof _.find(this.userAsetList, {"comnCVal":"efin"}) !== "undefined") 	? _.find(this.userAsetList, {"comnCVal":"efin"}).orgList : []
-                this.efinCnt      = tmpEfinList.length
-                for(let i=0; i<tmpEfinList.length; i++) {
-                    tmpEfinList[i].orgBizDsc = "efin"
-                    if(tmpEfinList[i].acsTokenDusDtm == '0' && this.fn_dayDiff(tmpEfinList[i].tmsEdDt, this.currentDate) >= 0) {
-                        this.efinList.push(tmpEfinList[i])
-                    } else {
-                        this.efinExprList.push(tmpEfinList[i])
-                    }
+            // 사용자 중앙회 계좌 조회
+            const config = {
+                url : "/co/am/08r03", 
+                data : {
+                    mydtCusno : this.getUserInfo("mydtCusno")
                 }
-                console.log("this.tmpEfinList.length =============>",tmpEfinList.length)
-                console.log("this.efinList.length =============>",this.efinList.length)
-                console.log("this.efinExprList.length =============>",this.efinExprList.length)
-                console.log("this.efinList =============>",this.efinList)
-                console.log("this.efinExprList =============>",this.efinExprList)
+            }
+            apiService.call(config).then(response => {
+                this.nacfAccList = response.nacfAccList || []                
+                this.nacfAccCnt  = response.nacfAccCnt || 0
 
-
-                // 통신업권
-                this.telecomList     = []
-                this.telecomExprList = []
-                let tmpTelecomList   = (typeof _.find(this.userAsetList, {"comnCVal":"telecom"}) !== "undefined")? _.find(this.userAsetList, {"comnCVal":"telecom"}).orgList : []
-                this.telecomCnt      = tmpTelecomList.length
-                for(let i=0; i<tmpTelecomList.length; i++) {
-                    tmpTelecomList[i].orgBizDsc = "telecom"
-                    if(tmpTelecomList[i].acsTokenDusDtm == '0' && this.fn_dayDiff(tmpTelecomList[i].tmsEdDt, this.currentDate) >= 0) {
-                        this.telecomList.push(tmpTelecomList[i])
-                    } else {
-                        this.telecomExprList.push(tmpTelecomList[i])
-                    }
-                }
-                console.log("this.tmpTelecomList.length =============>",tmpTelecomList.length)
-                console.log("this.telecomList.length =============>",this.telecomList.length )
-                console.log("this.telecomExprList.length  =============>",this.telecomExprList.length )
-                console.log("this.telecomList =============>",this.telecomList)
-                console.log("this.telecomExprList =============>",this.telecomExprList)
+                this.bankCnt =  this.bankCnt + this.nacfAccCnt;
 
                 /*은행, 카드, 전자금융 업권의 자산연결 건수 > 0 지출 데이터 조회*/
-                this.assetConnCnt = this.bankCnt + this.cardCnt + this.efinCnt
-                console.log("this.assetConnCnt =============>",this.assetConnCnt)
+                this.assetConnCnt = this.bankCnt + this.cardCnt + this.efinCnt;
                 
                 /* 지출 데이터 조회 */
-                //this.getAssetData()
                 this.getData() 
                 // 금융지식 조회           
-                this.getFinanceKlList()
-            })
-        }, 
+                this.getFinanceKlList()                
+            })                   
+        },
+        /**
+         * 금액 숨김/보기 처리
+         */
+        fn_amtHidden(type) {
+            this.amtHiddenYn = type
+            this.setSecretAmInfo('LC', this.amtHiddenYn)
+        },
+        /**
+         * 카드/페이/현금 상세내역 펼침상태 설정
+         */
+        setAssetDtl(chkTab){
+            let chkYn = false
+            if (chkTab === 'card') {
+                this.cardYn  = this.cardYn === false ? true : false
+            } else if (chkTab === 'pay') {
+                this.payYn  = this.payYn === false ? true : false
+            } else if (chkTab === 'cash') {
+                this.cashYn  = this.cashYn === false ? true : false                
+            }            
+        },
+        /**
+         * 카드/페이/현금 탭 상세내역 펼침상태 조회
+         */
+        getAssetDtl(chkTab){
+            let tabChkYn = false
+            if (chkTab === 'card') {
+                tabChkYn = this.cardYn
+            } else if (chkTab === 'pay') {
+                tabChkYn = this.payYn
+            } else if (chkTab === 'cash') {
+                tabChkYn = this.cashYn
+            }
+
+            return tabChkYn
+        },
 		/**
 		 * 금융지식 컨텐츠 조회
 		 */
         getFinanceKlList(){ 
-            this.getFinanInfo('ASTA4001', 4, false).then(response => {
+            this.getFinanInfo('LCTA4001', 6, false).then(response => {
                 this.financeKlList = response
                 // *출력값
                 // -썸네일이미지URL명  = thmnlImgUrlnm
@@ -1047,18 +1094,22 @@ export default {
                 // -추천연령 = asetAgLrgDsnm
             })
         }, 
+		/**
+		 * 금융지식 이미지가 없는 경우
+		 */        
 		emptyImg(e) {
 			e.target.src = new URL("@/assets_v40/images/event/ev_noimg.png", import.meta.url).href
-		},       
+		},  
+		/**
+		 * 날자 차이
+		 */ 
         fn_dayDiff(to, from){
 			return dayDiff(to , from)
 		},             
         /*
-         * 데이터 조회
+         * 지출내역 데이터 조회
          */
-        getData() {
-            console.log("getData()===============================================")
-
+        getData() {         
             const config = {
                 url: '/lc/ta/01r01', 
                 data: {
@@ -1069,27 +1120,23 @@ export default {
                     inqEndDt  : this.basDt,
                 }
             }
-            this.executeCnt++
-            
-            console.log("getData() config ========", config)
-
+            this.executeCnt++; 
             apiService.call(config).then(response =>{
                 console.log('getData() ======> response', JSON.parse(JSON.stringify(response)))
                 
                 this.mydtCusno        = response.mydtCusno || ''
-                this.inqYm            = response.inqYm || ''
+                this.inqYm            = response.inqYm || this.basYm || ''
 
                 // 고객월별지출
                 this.cusMmtpXpsOut    = response.cusMmtpXpsOut || ''
 
                 this.xpsTotAmt        = response.xpsTotAmt || 0
 
-
                 // 카드
                 this.cardApvSam       = response.cardApvSam || 0
                 this.bmmCardApvSam    = response.bmmCardApvSam || 0
-                this.cardCn           = response.cardCn || 0
-                this.cardList         = response.cardList || []
+                this.cardXpsCn        = response.cardCn || 0
+                this.cardXpsList      = response.cardList || []
 
                 // 페이머니
                 this.payMnySam        = response.payMnySam || 0
@@ -1109,6 +1156,14 @@ export default {
                 this.cashCn           = response.cashCn || 0
                 this.cashList         = response.cashList || []
 
+                // 연결금융기관수 = 연결금융기관수 + 현금건수가 0 이상이면 1
+                this.bankCnt = this.bankCnt + (this.cashList.length > 0 ? 1 : 0)
+
+                //chsvKdnm: '현금'
+                //let tmpCash =  this.cashList.find(el => el.chsvKdnm === '현금')
+                //console.log("tmpCash-----------------------------------------------------",tmpCash)
+
+
                 // 통신
                 this.rqsSam           = response.rqsSam || 0
                 this.rqsCn            = response.rqsCn || 0
@@ -1117,7 +1172,6 @@ export default {
                 // 최근소비
                 this.rcnXpsList       = response.rcnXpsList || []
 
-
                 // 주요소비
                 this.ctgrCn           = response.ctgrCn || 0
                 this.ctgrList         = response.ctgrList || []
@@ -1125,14 +1179,24 @@ export default {
                 // 정기지출
                 this.fxtmCn           = response.fxtmCn || 0
                 this.fxtmSt01Cn       = response.fxtmSt01Cn
+                
                 this.fxtmList         = response.fxtmList || []
 
                 // 소비줄이기 (금융 지출목표)
                 this.xpsObt           = response.xpsObt
+                
                 if (this.xpsObt != null) {
                     //this.xpsObtAm         = this.xpsObt.xpsObtAm
                     this.xpsObtRto        = (this.xpsObt.xpsRzsAm / this.xpsObt.xpsObtAm) * 100
                     this.xpsObtBarRto     = this.xpsObtRto * 0.86 >= 99 ? 99 : this.xpsObtRto * 0.86
+
+                    if (this.xpsObtRto <= 85) {
+                        this.xpsObtClass = ""
+                    } else if (this.xpsObtRto > 85 && this.xpsObtRto <= 100) {
+                        this.xpsObtClass = "nearby"
+                    } else if (this.xpsObtRto >  100) {
+                        this.xpsObtClass = "up"
+                    }
                 }
 
                 // 통신 : 기관별로 묶음
@@ -1144,11 +1208,9 @@ export default {
                 if (this.rcnXpsList.length > 0)
                 {
                     rcnTrDt         = this.rcnXpsList[0].trDt
-                    this.rcnXpsDd   = dateFormat(rcnTrDt, "DD");
+                    this.rcnXpsDd   = dateFormat(rcnTrDt, "DD")
+                    this.rcnXpsDayName = getDayDowCName(rcnTrDt)
                 }
-
-                // 카드 Tab 선택
-                this.fn_selectTab("CARD")
 
                 // 주요소비
                 if (this.ctgrCn > 0)
@@ -1160,7 +1222,7 @@ export default {
                         {
                             this.xpsCtgrTop1Nm        = this.ctgrList[i].xpsCtgrNm
                             this.xpsCtgrTop1Rto       = this.ctgrList[i].xpsRto
-                            this.xpsCtgrTop1UpDown    = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm)
+                            this.xpsCtgrTop1UpDown    = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm, '')
                                                       
                             this.xpsCtgrTop1Am        = this.ctgrList[i].xpsAm
                             this.xpsCtgrTop1Bf1Am     = this.ctgrList[i].bf1XpsAm
@@ -1185,7 +1247,7 @@ export default {
                             this.top1BmmCmprAbsXpsOrd = this.ctgrList[i].bmmCmprAbsXpsOrd
                             this.top1XpsTopAm         = this.ctgrList[i].xpsTopAm
 
-                            this.top1XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm)
+                            this.top1XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm, '')
 
                         } else if (this.ctgrList[i].xpsOrd == 2) {
                             this.top2XpsCtgrC         = this.ctgrList[i].xpsCtgrC
@@ -1203,7 +1265,7 @@ export default {
                             this.top2BmmCmprAbsXpsAm  = this.ctgrList[i].bmmCmprAbsXpsAm
                             this.top2BmmCmprAbsXpsOrd = this.ctgrList[i].bmmCmprAbsXpsOrd
 
-                            this.top2XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm)
+                            this.top2XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm, '')
 
                         } else if (this.ctgrList[i].xpsOrd == 3) {
                             this.top3XpsCtgrC         = this.ctgrList[i].xpsCtgrC
@@ -1221,7 +1283,7 @@ export default {
                             this.top3BmmCmprAbsXpsAm  = this.ctgrList[i].bmmCmprAbsXpsAm
                             this.top3BmmCmprAbsXpsOrd = this.ctgrList[i].bmmCmprAbsXpsOrd
 
-                            this.top3XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm)
+                            this.top3XpsAmUpDown      = this.cmprXpsAmUpDown(this.ctgrList[i].bmmCmprXpsAm, '')
 
                         }
 
@@ -1246,6 +1308,9 @@ export default {
 
 
             }).then(()=>{
+                // 카드 Tab 선택
+                this.fn_selectTab("CARD")
+
                 //주요소비 - 챠트 그리기
                 /**/
                 //const linedata = [100, 50, 60]; //이번달 1위, 2위, 3위 항목순 비율
@@ -1267,70 +1332,20 @@ export default {
 				params: cntzId
 			}
 			modalService.openPopup(config)
-		},        
-        // getAssetData() {
-		// 	const config = {
-		// 		url : "/co/ar/02r01",
-		// 		data : {
-		// 			"mydtCusno" : this.getUserInfo("mydtCusno"),
-		// 			"ofrAttcMethC" : "01"
-		// 		}
-		// 	}
-		// 	apiService.call(config).then(response => {
-
-		// 		this.bank_list      = response.bank_org || []		// 은행업권 리스트
-        //         this.card_list      = response.card_org || []		// 카드업권 리스트
-        //         this.efin_list      = response.efin_org || []		// 선불업권 리스트
-
-
-		// 		// 체크 활성화 및 많이 이용하는 기관 필터링
-		// 		this.fn_filterAmnCOrgList()
-
-		// 		// 연결됨인 기관 상단 노출되도록 sort
-		// 		this.bank_list 		= this.sortArray(this.bank_list)
-		// 		this.card_list 		= this.sortArray(this.card_list)
-		// 		this.efin_list 		= this.sortArray(this.efin_list)			
-
-		// 	})
-		// }, 
-		// /**
-		//  * 체크 활성화 및 많이 이용하는 기관 필터링
-		//  */
-		// fn_filterAmnCOrgList() {
-		// 	let tmpBankList 	= _.filter(this.bank_list	, (a => a.scrnMrkYn === '1', b => b.amnOrgCYn === '1')),
-		// 		tmpCardList 	= _.filter(this.card_list	, (a => a.scrnMrkYn === '1', b => b.amnOrgCYn === '1')),
-		// 		tmpEfinList 	= _.filter(this.efin_list	, (a => a.scrnMrkYn === '1', b => b.amnOrgCYn === '1'))
-				
-
-		// 	if(tmpBankList.length > 0) 		{ this.amnCOrgList.push(...tmpBankList) }
-		// 	if(tmpCardList.length > 0) 		{ this.amnCOrgList.push(...tmpCardList) }
-		// 	if(tmpEfinList.length > 0) 		{ this.amnCOrgList.push(...tmpEfinList) }
-		// },        
-		/**
-		 * 기관별 연결됨 기관일 경우 상단 노출되도록 sort
-		 */
-		sortArray(objArray) {
-			const list = objArray || []
-
-			const result = _.chain(list)
-				.orderBy('colYn', 'desc')
-				.value()
-			
-			return result
 		},               
         /**
          * 
          */
-        cmprXpsAmUpDown(cmprXpsAm){
+        cmprXpsAmUpDown(cmprXpsAm, className){
             let upDown = ''
 
             if (cmprXpsAm > 0)
             {
-                upDown =  'up' 
+                upDown =  className + " " + 'up' 
             } else if (cmprXpsAm < 0) {
-                upDown =  'down' 
+                upDown =  className + " " + 'down' 
             } else {
-                upDown =  ''
+                upDown =  className
             }
 
             return upDown
@@ -1356,70 +1371,52 @@ export default {
         },   
 
         /*
-         * list 객체를 size 크기만큼 채운다.
-         * 단, list 객체의 length가 0인 경우에는 채우지 않는다.
-         */
-        // fn_arrPad(list, size) {
-        //     if (list.length == 0) return list
-        //     for (let i = 0; i < size; i++) {
-        //         if (i < list.length) {
-        //             list[i]['nodata'] = 'N'
-        //         } else {
-        //             list.push({ nodata: 'Y' })
-        //         }
-        //     }
-        //     return list
-        // },
-        
-        /*
          * 기준일 이동 및 재조회 이벤트
          */
         btn_moveMonth(dsc) {
-            this.fn_moveMonth(dsc);
-            this.getData();
+            this.fn_moveMonth(dsc)
+            this.getData()
         },
         /*
          * 기준일자 계산
          */
         fn_moveMonth(dsc) {
             if (this.monPrev && dsc == "P") {
-                this.basYm = monthAdd(-1, this.basYm, "YYYYMM");
+                this.basYm = monthAdd(-1, this.basYm, "YYYYMM")
             }
 
             if (this.monNext && dsc == "N") {
-                this.basYm = monthAdd(1, this.basYm, "YYYYMM");
+                this.basYm = monthAdd(1, this.basYm, "YYYYMM")
             }
 
-            this.basYy = dateFormat(this.basYm, "YYYY");
-            this.basMm = dateFormat(this.basYm, "M");
+            this.basYy = dateFormat(this.basYm, "YYYY")
+            this.basMm = dateFormat(this.basYm, "M")
             console.log("기준년월 : "+this.basMm )
 
-            this.befBasYm = dateFormat(monthAdd(-1, this.basYm), 'YYYYMM'); // 선택한 월의 지난달
-            this.befBasYy = dateFormat(this.befBasYm, "YYYY");
-            this.befBasMm = dateFormat(this.befBasYm, "M");
+            this.befBasYm = dateFormat(monthAdd(-1, this.basYm), 'YYYYMM') // 선택한 월의 지난달
+            this.befBasYy = dateFormat(this.befBasYm, "YYYY")
+            this.befBasMm = dateFormat(this.befBasYm, "M")
 
             // 다음달 조회 가능여부
-            let maxMonth = this.initBasYm ? this.initBasYm : dateFormat(monthAdd(0), 'YYYYMM');
-            this.monNext = this.basYm < maxMonth ? true : false;
+            let maxMonth = this.initBasYm ? this.initBasYm : dateFormat(monthAdd(0), 'YYYYMM')
+            this.monNext = this.basYm < maxMonth ? true : false
 
             // 이전달 조회 가능여부
-            let minMonth = this.initBasYm ? dateFormat(monthAdd(-12, this.initBasYm), 'YYYYMM') : dateFormat(monthAdd(-12), 'YYYYMM');
-            this.monPrev = this.basYm > minMonth ? true : false;
+            let minMonth = this.initBasYm ? dateFormat(monthAdd(-12, this.initBasYm), 'YYYYMM') : dateFormat(monthAdd(-12), 'YYYYMM')
+            this.monPrev = this.basYm > minMonth ? true : false
         },
         /*
          * 팝업
          */
         openPop(viewName) {
-            let compName;
-console.log("openPop : ", viewName)
-
+            let compName
             if (viewName == 'LCIP2007') compName = LCIP2007 // 정기지출          
             if (viewName == 'LCIP2002TAB') compName = LCIP2002TAB // 정기지출 리포트
             if (viewName == 'PDMY4032') compName = PDMY4032 // 지출목표 등록
 
             if (compName == null) {
                 modalService.alert("미적용")
-                return;
+                return
             }
 
             let param = { "pBasYm" : this.basYm }
@@ -1428,7 +1425,7 @@ console.log("openPop : ", viewName)
                 component: compName,
                 params : param
             }
-console.log("openPop config: ", config)
+
             modalService.openPopup(config).then(() => {
                 // if (viewName == 'PDMY2005') {
                 if (viewName == 'PDMY4032') {    
@@ -1449,7 +1446,7 @@ console.log("openPop config: ", config)
          */
         openPopPDMY() {
             const config = {
-                component: PDMY2032
+                component: PDMY4032
             }
             modalService.openPopup(config).then((response) => {
                 if (response == "reSelect") {
@@ -1461,21 +1458,26 @@ console.log("openPop config: ", config)
          * 결제수단별 팝업
          */
         openPopLCLE(viewName) {
-            let compName;
+            let compName
 
-            if (viewName == 'LCLE2002') compName = LCLE2002 // 카드 
-            if (viewName == 'LCLE2003') compName = LCLE2003 // 페이
-            if (viewName == 'LCLE2104') compName = LCLE2104 // 현금
+            if (viewName == 'LCLE4002') compName = LCLE4002 // 카드 
+            if (viewName == 'LCLE4003') compName = LCLE4003 // 페이
+            if (viewName == 'LCLE4104') compName = LCLE4104 // 현금
 
             // selectList ALL 카드상세화면 호출시 전체카드로 표기용
             // inqDsc     ALL 기타상세화면 호출시 전체로 표기용
-            var param = { "mydtCusno": this.mydtCusno, "inqYm": this.basYm, "cdcoCdWrsnm": "전체카드", "infOfrmnOrgC": "", "mydtCdId": "" }
+            var param = { "mydtCusno": this.mydtCusno
+                            , "inqYm": this.basYm
+                            , "cdcoCdWrsnm": "전체카드"
+                            , "infOfrmnOrgC": ""
+                            , "mydtCdId": "" 
+                        }
             const config = {
                 component: compName,
                 params : param
             }
             modalService.openPopup(config).then(() => {
-                //this.getData();
+                //this.getData()
             })
         },
         // 년월 슬라이드팝업 호출
@@ -1498,13 +1500,13 @@ console.log("openPop config: ", config)
             modalService.openSlideSelectMonth(config).then(response => {
                 this.basYm = response
                 this.fn_moveMonth('')
-                this.getData();
+                this.getData()
             })
         },
 
         openCardConnect() {
             const config = {
-                component : COAR2002,
+                component : COAR4002,
                 params : {
                     isExternal: true,
                     orgDsc: 'card'
@@ -1513,7 +1515,7 @@ console.log("openPop config: ", config)
             console.log(config)
             
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
         },
 
@@ -1529,12 +1531,12 @@ console.log("openPop config: ", config)
                 component : LCLE4104,
                 params : {
                     mydtCusno		: this.mydtCusno,
-                    inqYm 			: this.inqYm,
+                    inqYm 			: this.basYm,
                     inqDsc
                 }
             }
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
         },
         openPayMnyDetail(obj) {
@@ -1542,7 +1544,7 @@ console.log("openPop config: ", config)
                 component : LCLE4003,
                 params : {
                     mydtCusno		: this.mydtCusno,
-                    inqYm 			: this.inqYm,
+                    inqYm 			: this.basYm,
                     infOfrmnOrgC	: (obj==="ALL")?'':obj.infOfrmnOrgC,
                     faceNo			: (obj==="ALL")?'':obj.faceNo,
                     faceOnm         : (obj==="ALL")?'':obj.faceOnm,
@@ -1550,7 +1552,7 @@ console.log("openPop config: ", config)
                 }
             }
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
 
         },
@@ -1560,14 +1562,14 @@ console.log("openPop config: ", config)
                 component : LCLE4004,
                 params : {
                     mydtCusno		: this.mydtCusno,
-                    inqYm 			: this.inqYm,
+                    inqYm 			: this.basYm,
                     infOfrmnOrgC	: (obj==="ALL")?'':obj.infOfrmnOrgC,
                     cdcoCdWrsnm		: (obj==="ALL")?'':obj.cdcoCdWrsnm,
                     mydtCdId		: (obj==="ALL")?'':obj.mydtCdId,
                 }
             }
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
         },
         // 지출내역 : 통신
@@ -1576,33 +1578,46 @@ console.log("openPop config: ", config)
                 component: LCLE2107,
                 params : {
                     mydtCusno	: this.mydtCusno,
-                    inqYm		: this.inqYm,
+                    inqYm		: this.basYm,
                 }
             }
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
         },
 
         /*
-         * 자산등록 팝업
-         */
-        fn_openAssetPage() {
-            const config = {
-                component: COAR2002,
-            }
-            modalService.openPopup(config).then(() => {
-                //this.getData()
-            })
-        },
-        /*
         * 자산등록화면이동
         */
         fn_openAssetPage() {
+            // 팝업
+            let compName = ""
+            let params = {}
+
+            if (this.xpsMns === "카드") {
+                compName = COAR4002
+                params = {
+                        isExternal : true,
+                        orgDsc : 'card'
+                }
+            } else if (this.xpsMns === "페이") {
+                compName = COAR4002
+                params = {
+                        isExternal : true,
+                        orgDsc : 'efin'
+                }
+            } else {
+                // compName = COAR4001 
+                compName = COAR4002
+                params = {
+                        isExternal : true,
+                        orgDsc : 'bank'
+                }                
+            }
             //자산등록
             const config = {
-                component: COAR2001,
-                params : {}
+                component: compName,
+                params : params
             }
             modalService.openPopup(config).then(response => {
                 console.log(JSON.stringify(response))
@@ -1618,34 +1633,50 @@ console.log("openPop config: ", config)
             const config = {
                 name : pageId
             }
-            commonService.movePage(config);
+            commonService.movePage(config)
         },
-            /*
-            * v4.0 지출목표조회 팝업
-            */
-            openPopTarget() {
-                var param = { "stYm": this.currentYear + '' + this.currentMonth, "preXpsAm": this.xpsObtAm}
-                const config = {
-                    component: PDMY4033,
-                    params : param
-                }
-                modalService.openPopup(config).then(() => {
-                    this.getData()
-                })
-            },        
+        /*
+        * v4.0 지출목표조회 팝업
+        */
+        openPopTarget() {
+            var param = { "stYm": this.basYm, "preXpsAm": this.xpsObt.xpsObtAm}
+            const config = {
+                component: PDMY4033,
+                params : param
+            }
+            modalService.openPopup(config).then(() => {
+                this.getData()
+            })
+        },       
+        getYmd(trDt){
+            return dateFormat(trDt, 'DD')
+        },
+        xpsStNm(xpsSt){
+            let xpsStNm = ''
+            if (xpsSt == 'EXPSTSC01') {
+                xpsStNm = '완료'
+            } else if (xpsSt == 'EXPSTSC02') {
+                xpsStNm = '미확인'
+            } else if (xpsSt == 'EXPSTSC03') {
+                xpsStNm = '예정'
+            } else if (xpsSt == 'EXPSTSC04') {
+                xpsStNm = '해당없음'
+            }
+            return xpsStNm
+        },
         openCardDetail(obj){
             const config = {
                 component: LCLE4002,
                 params : {
                     mydtCusno		: this.mydtCusno,
-                    inqYm 			: this.inqYm,
+                    inqYm 			: this.basYm,
                     infOfrmnOrgC	: (obj==="ALL")?'':obj.infOfrmnOrgC,
                     mydtCdId		: (obj==="ALL")?'':obj.mydtCdId,
                     cdcoCdWrsnm		: (obj==="ALL")?'전체카드':obj.cdcoCdWrsnm,
                 }
             }
             modalService.openPopup(config).then(() => {
-                this.getData();
+                this.getData()
             })
         },
 
@@ -1712,6 +1743,13 @@ console.log("openPop config: ", config)
                 }
             });
         },
+
+        lottiePlay(){
+            
+            const lottiePlayer = this.$refs.anim; //lottie ELEMENT
+            console.log("lottiePlayerlottiePlayerlottiePlayerlottiePlayerlottiePlayerlottiePlayer", lottiePlayer);
+            lottiePlayer.play(1,true);
+        },    
     },
     mixins: [
         commonMixin

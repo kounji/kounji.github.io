@@ -30,13 +30,13 @@
                             <strong class="titH3" v-else>변화가 없어요</strong>
 							<div class="custom_tooltip">
 								<div class="com_tooltip_type02 com_tooltip_type03">
-									<a href="#nolink" class="com_btn_info" role="button">
+									<a href="javascript:void(0);" class="com_btn_info" role="button">
 										<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
 									</a>
 									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
 										<div>
 											<p>자산진단 결과는 연결한 지난달 말일 자산과 현재 자산을 비교 분석한 결과예요.</p>
-											<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
 										</div> 
 									</div>
 								</div>
@@ -87,7 +87,7 @@
                             <strong class="titH3">나의 재무 진단</strong>
                             <div class="custom_tooltip">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
-                                    <a href="#nolink" class="com_btn_info" role="button">
+                                    <a href="javascript:void(0);" class="com_btn_info" role="button">
                                         <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                     </a>
                                     <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -96,7 +96,7 @@
                                             <p>가계재무 미래준비 및 부채관리 상태를 점검해 재무 전반 관리의 적정 여부를 확인할 수 있어요.</p>
                                             <p>가계재무, 미래준비 상태는 2개, 부채관리 상태는 3개의 세부 지표 충족 여부에 따라 적정 상태를 결정해요.</p>
 											<!--// 09/12 jlee 문구 수정 -->
-                                            <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                         </div> 
                                     </div>
                                 </div>
@@ -138,7 +138,7 @@
 						</div>
 						<ul class="assetSolutionList">
                             <li class="list pensi">
-								<a href="javascript:void(0);" role="button" @click.prevent="proxyPage('PDMY2032')">
+								<a href="javascript:void(0);" role="button" @click.prevent="proxyPage('PDMY4032')">
 									<span class="assetListIcon"></span>
 									<strong class="txt">지출관리</strong>
 									<p class="subTxt">{{fnaRcmSvcTxt1}}</p>
@@ -174,8 +174,8 @@
                             <p class="com_txt_sub point">소득 및 자산을 연결하면<br>전문 재무 진단을 받을 수 있어요</p>
                         </div>
                         <div class="btn_half_box2">
-                            <a href="#nolink" class="btn btn_gray_line" role="button" @click="fn_moveJoinPop() ">소득 정보 연결</a>
-                            <a href="#nolink" class="btn btn_gray_line" role="button" @click="proxyPage('COAR2002')" >자산 연결</a>
+                            <a href="javascript:void(0);" class="btn btn_gray_line" role="button" @click="fn_moveJoinPop() ">소득 정보 연결</a>
+                            <a href="javascript:void(0);" class="btn btn_gray_line" role="button" @click="proxyPage('COAR2002')" >자산 연결</a>
                         </div> 
                         </div>
                  
@@ -219,7 +219,7 @@
 				</div>
                 <div class="com_box_type01">
                     <div class="accountBanner" @click='fn_getASIP2009()'>
-                        <a href="#nolink" class="" title="또래 부자들의 금융생활 이동">
+                        <a href="javascript:void(0);" class="" title="또래 부자들의 금융생활 이동">
                             <p class="subTxt">또래 부자들의 인기상품은?</p>
                             <p class="titH5">부자들의 금융생활</p>
                         </a>
@@ -255,10 +255,10 @@
     import ASIP2010 from '@/views/page/AS/IP/ASIP2010/ASIP2010'
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
     import ASIP2007 from '@/views/page/AS/IP/ASIP2007/ASIP2007' 
-    import PDRT2001 from '@/views/page/PD/RT/PDRT2001/PDRT2001'
-    import PDPD1001 from '@/views/page/PD/PD/PDPD1001/PDPD1001'
-    // import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032'
-    // import PDMY2001 from '@/views/page/PD/MY/PDMY2001/PDMY2001'
+    import PDRT4001 from '@/views/page/PD/RT/PDRT4001/PDRT4001'
+    import PDPD4001 from '@/views/page/PD/PD/PDPD4001/PDPD4001'
+    // import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032'
+    // import PDMY4001 from '@/views/page/PD/MY/PDMY4001/PDMY4001'
     // import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038'
     import PDMY2040 from '@/views/page/PD/MY/PDMY2040/PDMY2040'
 
@@ -631,13 +631,24 @@
 
             
             proxyPage(pageId) {
+
+                console.log("pageId>>",pageId)
+                
+                if(pageId === 'PDPD1001'){
+                    pageId = 'PDPD4001'
+                }else if(pageId === 'PDMY2032'){
+                    pageId = 'PDMY4032'
+                }else if(pageId === 'PDRT2001'){
+                    pageId = 'PDRT4001'
+                }
+
                 // 페이지 정의
                 let cdArr = [{
-                    id:'PDRT2001', type:'page'  // 재무관리솔루션 [노후준비]
+                    id:'PDRT4001', type:'page'  // 재무관리솔루션 [노후준비]
                 },{
-                    id:'PDPD1001', type:'page'  // 재무관리솔루션 [맞춤상품]
+                    id:'PDPD4001', type:'page'  // 재무관리솔루션 [맞춤상품]
                 },{
-                    id:'PDMY2032', type:'page'  // 재무관리솔루션 [지출관리]
+                    id:'PDMY4032', type:'page'  // 재무관리솔루션 [지출관리]
                 },{
                     id:'PDMY2038', type:'page'  // 재무관리솔루션 [투자설계]
                 },{
@@ -666,18 +677,18 @@
                     params: params
                 }
             
-                if(pageId == "PDRT2001"){
-                    config.component = PDRT2001;
-				} else if (pageId == "PDPD1001"){
-                    config.component = PDPD1001;
-				} else if (pageId == "PDMY2032"){
-                    config.name = 'PDMY2001'
+                if(pageId == "PDRT4001"){
+                    config.component = PDRT4001;
+				} else if (pageId == "PDPD4001"){
+                    config.component = PDPD4001;
+				} else if (pageId == "PDMY4032"){
+                    config.name = 'PDMY4001'
                     config.params.type = "00"; // 지출관리
 				} else if (pageId == "PDMY2038"){
-                    config.name = 'PDMY2001'
+                    config.name = 'PDMY4001'
                     config.params.type = "01"; // 목돈마련
 				} else if (pageId == "PDMY2040"){
-                    config.name = 'PDMY2001'
+                    config.name = 'PDMY4001'
                     config.params.type = "02"; // 투자설계
                 }  
                 // console.log(config)
@@ -723,7 +734,7 @@
                     // 나의목표로 이동
                     if(response == 'reSelect') {
                         const menu = {
-                            name: 'PDMY2001',
+                            name: 'PDMY4001',
                             params : {}
                         }
                         commonService.movePage(menu)

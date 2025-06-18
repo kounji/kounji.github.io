@@ -30,7 +30,7 @@
 		<div class="popup_content">
             <section class="close_account">
                 <p class="headline">본인 확인을 위해<br>인증을 해주세요.</p>
-
+                <!--25-03-28 휴대폰 인증 삭제 
                 <div class="close_info">
                     <h2>휴대폰 인증</h2>
 
@@ -52,6 +52,7 @@
                         </div>
                     </div>
                 </div>
+                -->
 
                 <div class="close_info">
                     <h2>약관동의</h2>
@@ -83,14 +84,14 @@
                             </li>
                             <li>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="check01_4" id="check01_4" title="본인확인서비스 이용약관 동의">
-                                    <button type="button" class="btn_detail ico_arrow">통신사 이용약관 동의  <span class="blind">상세보기</span></button>
+                                    <input type="checkbox" name="check01_4" id="check01_4" required="" title="본인확인서비스 이용약관 동의"><!--25-03-28 required(필수) 추가 -->
+                                    <button type="button" class="btn_detail ico_arrow">[필수]통신사 이용약관 동의  <span class="blind">상세보기</span></button><!--25-03-28 [필수] 추가 -->
                                 </div>
                             </li>
                             <li>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="check01_5" id="check01_5" title="개인정보 제3자 동의 ">
-                                    <button type="button" class="btn_detail ico_arrow">개인정보 제3자 동의 <span class="blind">상세보기</span></button>
+                                    <input type="checkbox" name="check01_5" id="check01_5" required="" title="개인정보 제3자 동의 "><!--25-03-28 required(필수) 추가 -->
+                                    <button type="button" class="btn_detail ico_arrow">[필수]개인정보 제3자 동의 <span class="blind">상세보기</span></button><!--25-03-28 [필수] 추가 -->
                                 </div>
                             </li>
                         </ul>

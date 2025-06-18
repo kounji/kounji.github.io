@@ -66,23 +66,23 @@
 			getMovePageName(type) {
 				console.log('getMovePageName type ::: ', type)
 				///////////// 자산 //////////////////////
-				if (type === 'AC') return 'ASAC2001' // 계좌(ASAC1101 -> ASAC2001로 변경)
-				if (type === 'IV') return 'ASIV2001' // 투자
-				if (type === 'PAY') return 'ASPT2001' // 페이머니(=선불)
-				if (type === 'PS') return 'ASPS2001' // 연금
+				if (type === 'AC') return 'ASAC4001' // 계좌(ASAC1101 -> ASAC2001 -> ASAC4001로 변경)
+				if (type === 'IV') return 'ASIV4001' // 투자
+				if (type === 'PAY') return 'ASPT4001' // 페이머니(=선불)
+				if (type === 'PS') return 'ASPS4001' // 연금
 				// if (type === 'AN') return 'ASAN0001' // 
-				if (type === 'IS') return 'ASIS2001' // 보험
-				if (type === 'RA1') return 'ASRE2001' // 부동산
-				if (type === 'RA2') return 'ASCA2001' // 자동차(ASRA1103 -> ASCA2201로 변경)
-				if (type === 'RA3') return 'ASOA2001' // 기타
+				if (type === 'IS') return 'ASIS4001' // 보험
+				if (type === 'RA1') return 'ASRE4001' // 부동산
+				if (type === 'RA2') return 'ASCA4001' // 자동차(ASRA1103 -> ASCA2201로 변경)
+				if (type === 'RA3') return 'ASOA4001' // 기타
 
 				///////////// 부채 //////////////////////
-				if (type === '01') return 'ASLN2001'	// 대출 // ASIS - ASLN1101
-				if (type === '02') return 'ASCL2001'	// 자동차
-				if (type === '03') return 'ASCD2001'	// 카드(ASLN1103-> ASCD2001로 변경)
-				if (type === '05') return 'ASIT2001'	// 할부금융
-				if (type === '06') return 'ASLS2001'	// 리스
-				if (type === '07') return 'ASBR2001'	// 빌린돈
+				if (type === '01') return 'ASLN4001'	// 대출 // ASIS - ASLN1101
+				if (type === '02') return 'ASCL4001'	// 자동차
+				if (type === '03') return 'ASCD4001'	// 카드(ASLN1103-> ASCD4001로 변경)
+				if (type === '05') return 'ASIT4001'	// 할부금융
+				if (type === '06') return 'ASLS4001'	// 리스
+				if (type === '07') return 'ASBR4001'	// 빌린돈
 				return ''
 			}
 		},

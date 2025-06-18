@@ -34,21 +34,26 @@
                     설정한 순서는 큰글모드에서도 동일하게 적용됩니다.
                 </p>
 
-                <ul class="list_edit">
+                <ul class="list_edit"> <!-- [v4.0] 25-03-19 edit_btn 추가 -->
                     <li>
                         <span class="finance">금융자산</span>
+                        <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
                     </li>
                     <li>
                         <span class="real">실물자산</span>
+                        <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
                     </li>
                     <li>
                         <span class="etc">기타자산</span>
+                        <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
                     </li>
                     <li>
                         <span class="debt">부채</span>
+                        <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
                     </li>
                     <li>
-                        <span class="insure">보험료 월 납입료</span>
+                        <span class="insure">월 납입 보험료</span><!--25-04-28 문구수정-->
+                        <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
                     </li>
                 </ul>
             </section>
@@ -69,11 +74,15 @@
 	<!--// full popup E -->
 
     <script>
+        //[v4.0] 25-03-19 edit_btn 으로 수정
         $(document).ready(function(){
-            $(".list_edit").each(function(){
-                $(this).sortable();
+            $('.list_edit').each(function(){
+                $(this).sortable({
+                    handle :'button.edit_btn',
+	                cancel :'li > span',
+                });
             });
-
+            
         });
     </script>
 </body>

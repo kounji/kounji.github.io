@@ -85,7 +85,7 @@ import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
 
 // import ASAC1003 from '@/views/page/AS/AC/ASAC1003/ASAC1003'
-import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
 import COCO1105 from '@/views/page/CO/CO/COCO1105/COCO1105'
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'
 
@@ -369,7 +369,7 @@ export default {
 				// 알림구분 :: 신용점수 또는 공지사항일 경우
 				let compName = ""
 				if(anc.asetAmnAncDsc == "03" || anc.asetAmnAncDsc == "23") {
-					compName = ASCR1101
+					compName = ASCR4101
 				} else if(anc.asetAmnAncDsc == "04" || anc.asetAmnAncDsc == "11") {
 					compName = COCO1105 //해당 공지 SEQ ????
 				}

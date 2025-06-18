@@ -48,7 +48,7 @@
     import modalService from '@/service/modalService'
     import commonService from '@/service/commonService'
 
-    import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+    import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
     import COCO1105 from '@/views/page/CO/CO/COCO1105/COCO1105'
 
     export default {
@@ -143,7 +143,7 @@
                  */
                 if (anc.asetAmnAncDsc == "03" || anc.asetAmnAncDsc == "04") {
                     const config = {
-                        component : anc.asetAmnAncDsc == "03" ? ASCR1101 : COCO1105,
+                        component : anc.asetAmnAncDsc == "03" ? ASCR4101 : COCO1105,
                         params    : {
                             ofancId   : anc.ofancId,
                             ofancTinm : anc.ancCntn,

@@ -31,18 +31,17 @@
                         <div class="board_box">
                             <h2><a href="javascript:void(0);" @click.prevent="fn_showPnsSlide">모은연금</a></h2>
 
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="amtHiddenYn" @change="fn_amtHidden()">
-                                <label for="sum_view_01" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label> 
+                            <div class="toggle_money" :class="amtHiddenYn ? 'on':''">
                                 <div class="sum">
                                     <span class="hide">쉿! 비밀이에요.</span> 
                                     <span class="show"><em>{{allPnsTts| numberFilter}}</em>원</span>
                                 </div>
+                                <button type="button" class="btns" @click="fn_amtHidden(!amtHiddenYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
                             </div>
-
 
                             <div class="details" :class="pnsDeltaBacSum > 0 ? 'up' : pnsDeltaBacSum < 0 ? 'down' : 'no_spending'"><!--적게 쓴경우 down, 초과인 경우 up class 추가, 0원인 경우 no_spending class 추가--> 
                                 <div class="analysis">
@@ -50,7 +49,7 @@
                                         <template v-if="pnsDeltaBacSum > 0 || pnsDeltaBacSum < 0">
                                             <span class="text">지난달보다</span>
                                             <span class="num"><strong>{{Math.abs(pnsDeltaBacSum) | numberFilter}}</strong>원</span>
-                                            <em>{{pnsDeltaBacSum > 0 ? '늘었어요.' : '줄었어요.'}}늘었어요.</em>
+                                            <em>{{pnsDeltaBacSum > 0 ? '늘었어요.' : '줄었어요.'}}</em>
                                         </template>
                                         <template v-else>
                                             <span class="text">지난달과</span>
@@ -59,7 +58,7 @@
 
                                         <div class="custom_tooltip">
                                             <div class="com_tooltip_type02 com_tooltip_type03">
-                                                <a href="#nolink" class="com_btn_info" role="button">
+                                                <a href="javascript:void(0);" class="com_btn_info" role="button">
                                                     <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                                 </a>
                                                 <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
@@ -68,7 +67,7 @@
                                                             <li>마지막 업데이트 시점의 총 연금과 마지막 업데이트 전 월 말일 총연금을 비교했습니다.</li>
                                                             <li>오늘 업데이트 하셨으면 전 월 말일 총 연금과 비교한 결과입니다.</li>
                                                         </ul>
-                                                        <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                                        <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +133,7 @@
                 <template v-else>
                     <div class="outline nil">
                         <div class="board_box">
-                            <h2><a href="javascript:void(0);" @click.prevent="fn_openConAset()">모은연금</a></h2>
+                            <h2><a href="javascript:void(0);" @click.prevent="fn_showPnsSlide">모은연금</a></h2>
 
                             <p class="em">연결된 연금이 없어요. <button type="button" class="btns" @click.prevent="fn_openConAset()">연결</button></p>
 
@@ -196,8 +195,8 @@
                     </details>
                 </div>
                 
-                <div class="board_box pension_spend" v-else>
-                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset()">국민연금</a></h2>
+                <div class="board_box pension_spend" v-else-if="unConnShow">
+                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset('public')">국민연금</a></h2>
                     <div class="cont">  
                         <p>얼만큼 납입했을까?</p>
                     </div>
@@ -238,8 +237,8 @@
                     </details>
                 </div>
                 
-                <div class="board_box pension_spend" v-else>
-                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset()">개인연금</a></h2>
+                <div class="board_box pension_spend" v-else-if="unConnShow">
+                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset('bank')">개인연금</a></h2>
                     <div class="cont">  
                         <p>세액공제 예상하기</p>
                     </div>
@@ -270,8 +269,8 @@
                     </details>
                 </div>
                 
-                <div class="board_box pension_spend" v-else>
-                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset()">퇴직연금</a></h2>
+                <div class="board_box pension_spend" v-else-if="unConnShow">
+                    <h2 class="title"><a href="javascript:void(0);" @click.prevent="fn_openConAset('bank')">퇴직연금</a></h2>
                     <div class="cont">  
                         <p>내가 받을 연금액</p>
                     </div>
@@ -305,8 +304,8 @@
                         안정적인 은퇴를 준비하세요.
                     </a>
 
-                    <a href="javascript:void(0);" class="board_box rect tax" @click.prevent="fn_movePage('PDTX2004')">
-                        <em>세금납부 확인</em>
+                    <a href="javascript:void(0);" class="board_box rect tax" @click.prevent="fn_movePage('PDTX4004')">
+                        <em>세금 납부 확인</em>
                         내가 낸 세금,<br>
                         쉽게 확인하세요.
                     </a>
@@ -319,13 +318,19 @@
                 </div>
 
                 <!--추천상품-->
-                <div class="goods_for_you" v-show="wrsRcmList.length > 0">
+                <div class="goods_for_you" v-if="wrsRcmList.length > 0">
                     <h2 class="h_tit01">안락한 노후를 위한 추천상품</h2>
 
+                    <!-- 약관 동의 내역이 없는 경우 노출 -->
+                    <div class="board_box empty" v-if="!isShowStltAgrYn">
+                        <p>{{getUserInfo('cusnm')}}님!<br>꼭 맞는 상품<br>추천해 드려요.</p>
+                        <button type="button" class="link" @click.prevent="openWrsStltPop()">상품추천 조회 동의</button>
+                    </div>
+
                     <!--slick-->
-                    <div class="slick_banner">
+                    <div class="slick_banner" v-else-if="isShowStltAgrYn && wrsRcmList.length > 0">
                         <div class="inner pns_slick">
-                            <a href="javascript:void(0);" v-for="(item, idx) in wrsRcmList" :key="'rcm_'+idx">
+                            <a href="javascript:void(0);" v-for="(item, idx) in wrsRcmList" :key="'rcm_'+idx" @click.prevent="openWrsDtlInfo(item.wrsDtlUrlnm)">
                                 <dl class="deposit green">
                                     <dt>
                                         <span class="target">{{item.wrsGrTpc == 'RVGTP' ? '적금' : item.wrsGrTpc == 'DFFM' ? '예금' : '대출'}}</span>
@@ -361,6 +366,7 @@
 import Page from '@/views/layout/Page.vue'
 import FootersV2 from '@/views/layout/FootersV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
+import appService from '@/service/appService'
 import apiService from '@/service/apiService'
 import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
@@ -370,9 +376,10 @@ import LottieAnimation from 'lottie-web-vue'
 
 import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002'
 import COCT4011 from '@/views/page/CO/CT/COCT4011/COCT4011'
+import PDPD1002 from '@/views/page/PD/PD/PDPD1002/PDPD1002'
 import ASPS2002 from '@/views/page/AS/PS/ASPS2002/ASPS2002'
 import ASPS2004 from '@/views/page/AS/PS/ASPS2004/ASPS2004'
-import ASIS2013 from '@/views/page/AS/IS/ASIS2013/ASIS2013'
+import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
 import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
 import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
 import PDTA4S02 from '@/views/page/PD/TA/PDTA4S02/PDTA4S02'
@@ -410,9 +417,12 @@ export default {
 
             financeKlList       : [],   // 금융지식 컨텐츠 목록
             wrsRcmList          : [],   // 금융상품 추천목록
+            stltAgrYnList       : [],   // 약관 동의 여부 목록
+            isShowStltAgrYn     : '',   // 약관 동의따른 show/hide
 
             //////// 연결자산 관련 데이터
             ntpsAssetYn			: "N", 	// 국민연금 연결 여부
+            unConnShow          : true, // 미연결 영역 노출여부
 
             //////// 연금 슬라이드팝업 관련 데이터
             sPnsXpcAm 			: 0,	// 연금예상금액(국민연금(예상연금월액표))
@@ -479,11 +489,16 @@ export default {
             //금액 숨김/보기 처리
             this.amtHiddenYn = this.getSecretAmInfo().includes('ISR')
 
-            this.getData()
+            // this.getData()
 
             // this.fn_getFinanceKlList()
-            this.fn_getWrsRcmList()
-        
+            // this.fn_getWrsRcmList()
+            Promise.all([
+                this.getData(),
+                this.getInfoData(),
+                this.fn_getFinanceKlList(),
+                this.getStltAgrYn(),
+            ])
         },
 
         /*
@@ -492,18 +507,25 @@ export default {
         getData() {
             console.log("getData()===============================================")
 
-            //국민연결 여부 
+            //국민연결 유효 여부 
 			this.ntpsAssetYn = 'N'
 
 			if(typeof this.myAssetsBzrgList != "undefined") {
 				let publicAsset = this.myAssetsBzrgList.filter(item => item.comnCVal === 'public') || []
 				if(publicAsset.length > 0) {
 					let publicAssetList = this.myAssetsBzrgList.find(item => item.comnCVal === 'public').orgList || []
-					if(publicAssetList.length > 0){
-						this.ntpsAssetYn = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVM0000') ? 'Y' : 'N'		// 국민연금
-					}
+					if(publicAssetList.length > 0) {
+                        let tmpPublicAssetList = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVM0000')
+                        if(tmpPublicAssetList?.acsTokenDusDtm == '0') {
+                            this.ntpsAssetYn = 'Y'
+                        } else {
+                            this.ntpsAssetYn = 'N'
+                        }
+                    }
 				}
-			}
+			} else {
+                this.ntpsAssetYn = 'N'
+            }
 
             const config = {
                 url: '/pd/rt/01r02',
@@ -556,6 +578,11 @@ export default {
                 this.ntpsPct    = this.fn_PnsPct(this.sNtpsTotAm)        // 국민연금%
                 this.ppnsPct    = this.fn_PnsPct(this.sPpnsTts)          // 개인연금%
                 this.rtrpnsPct  = this.fn_PnsPct(this.sRtrpnsTotAcEvlam) // 퇴직연금%
+
+                // 국민연금, 개인연금, 퇴직연금 목록영역 노출여부 설정
+                this.unConnShow = 
+                    (this.ntpsAssetYn == 'Y' || (this.pnsvInsuList.length + this.pnsvFundList.length > 0) || this.sDcList.length > 0) ?
+                    true : false
 
                 // 연금 카테고리 최초 말풍선 설정
                 this.$nextTick(() => {
@@ -663,10 +690,9 @@ export default {
                 }
 
                 // 연금 금액관련 정보 조회
-                this.getInfoData()
+                // this.getInfoData()
             })
         },
-
         /**
          * 연금 종합정보 조회
          */
@@ -684,7 +710,6 @@ export default {
                 this.pnsDeltaBacSum = response.acDeltaBacTot || 0
             })
         },
-
         // 금융지식 컨텐츠 조회
         fn_getFinanceKlList(){ 
             this.getFinanInfo('PDTA4001', 0, true).then(response =>{
@@ -696,7 +721,6 @@ export default {
                 // -추천연령 = asetAgLrgDsnm
             })
         },
-
         // 금융지식 컨텐츠 상세조회
         fn_openFncKlDtl(cntzId) {
             const config = {
@@ -705,7 +729,6 @@ export default {
             }
             modalService.openPopup(config)
         },
-
         // 추천상품목록 조회
         fn_getWrsRcmList(){
             this.wrsRcmList         = []       // 금융상품 추천 목록
@@ -726,14 +749,48 @@ export default {
                 })
             })
         },
+        /**
+         * 약관동의여부 조회
+         */
+        getStltAgrYn() {
+            this.stltAgrYnList = []    // 약관 동의 여부 목록
 
+            // 개인자산관리_정보_제공_동의_내역 테이블에서 약관 동의 여부 조회
+            const config = {
+                url: '/co/at/01r01',
+                data: {}
+            }
+            apiService.call(config).then(response => {
+                const stltList = response.stltList || [];
+                const wrsStlt = stltList.find((tmp) => tmp.stltTpc == 'PFM006') || [];
+
+                const config2 = {
+                    url : '/co/at/02ra1',
+                    data : {
+                        "stltTpc"   : wrsStlt.stltTpc,                          // 약관유형코드
+                        "sqno"      : wrsStlt.sqno,                             // 일련번호
+                        "mydtCusno" : this.getUserInfo('mydtCusno'),            // 마이데이터고객번호
+                    }
+                }
+                apiService.call(config2).then(response => {
+                    this.stltAgrYnList = response || [] // 약관 동의 여부 목록
+
+                    if(this.stltAgrYnList.agrDtm) { // As-Is에서 동의 여부를 동의일시 데이터 있는지에 따라 판단함(COAT0005 참조)
+                        this.isShowStltAgrYn = true     // 약관 동의따른 show/hide
+                    } else {
+                        this.isShowStltAgrYn = false    // 약관 동의따른 show/hide
+                    }
+
+                    this.fn_getWrsRcmList()
+                })
+            })
+        },
         /**
          * 연금 퍼센티지 산출
          */
         fn_PnsPct(amount){
 			return this.allPnsTts > 0 ? Math.round( (amount/this.allPnsTts) * 100) : 0
 		},
-
         /**
          * 그래프 선택 말풍선 act class 설정
          */
@@ -742,7 +799,6 @@ export default {
             $(targetEl).addClass('act')
             $(targetEl).siblings().removeClass('act')
         },
-
         /**
          * 총 연금 개요슬라이드 호출
          */
@@ -762,7 +818,6 @@ export default {
             }
             modalService.openSlidePagePopup(config)
         },
-
         /**
          * 연금항목별 상세팝업 이동
          */
@@ -783,7 +838,7 @@ export default {
                     params = {objAccInfo: obj}
                     break
                 case 'PSIS':    // 연금저축보험
-                    compName = ASIS2013
+                    compName = ASIS2012
                     params = {
                         infOfrmnOrgC: obj.infOfrmnOrgC,
                         isrSctsNo: obj.isrSctsNo,
@@ -810,14 +865,13 @@ export default {
                 this.getData()
             })
         },
-
         /**
          * 금액 show/hide 설정
          */
-        fn_amtHidden() {
+        fn_amtHidden(type) {
+            this.amtHiddenYn = type
             this.setSecretAmInfo('ISR', this.amtHiddenYn)
         },
-
         /**
          * 화면 이동
          */
@@ -829,17 +883,19 @@ export default {
 
             })
         },
-
         /**
          * 자산 연결 팝업 오픈
          */
-        fn_openConAset() {
+        fn_openConAset(orgDsc='bank') {
             const config = {
-                component: COAR4002
+                component: COAR4002,
+                params: {
+                    isExternal: true,
+                    orgDsc: orgDsc
+                }
             }
             modalService.openPopup(config).then(() => {})
         },
-
         /**
          * 국민연금 가입 내역 팝업오픈
          */
@@ -848,6 +904,25 @@ export default {
                 component: PDSC4001
             }
             modalService.openPopup(config)
+        },
+        /**
+         * 약관 슬라이드 팝업 오픈
+         */
+        openWrsStltPop() {
+            const config = {
+                component: PDPD1002,        // 약관 팝업
+                params : {
+                }
+            }
+            modalService.openPopup(config).then((response) => {
+                if(response == 'refresh') {
+                    this.initComponent();
+                }
+            });
+        },
+        // 추천상품 안내화면 이동
+        openWrsDtlInfo(dtlUrlnm) {
+            appService.moveFinancialProductPage(dtlUrlnm)
         },
         emptyImg(e) {
             e.target.src = new URL("@/assets_v40/images/event/ev_noimg.png", import.meta.url).href

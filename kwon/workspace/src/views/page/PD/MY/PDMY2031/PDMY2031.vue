@@ -22,7 +22,7 @@
         <div class="popup_content com_bg_type00"><!-- 하단 버튼 없을때 com_no_bottom -->
 			<div class="com_inner" :class="goalCheck">
 				<div class="mygoal_title_area">
-					<p class="pointColor green">나의 워라벨, 설레는 여행!</p>
+					<p class="pointColor green">나의 워라밸, 설레는 여행!</p>
 					<strong class="titH1">{{obtnm}}</strong>
 					<p class="sub_text">{{trvDsnNm}}<span class="dot_text">{{pers}}명</span><span class="dot_text">{{trvPrdDscNm}}</span></p>
 				</div>
@@ -259,8 +259,8 @@ import {round, roundNumberWithDot} from '@/utils/number'
 import {fncSlick_travel_simple} from '@/utils/slick'
 import _ from 'lodash'
 
-import PDMY2025 from '@/views/page/PD/MY/PDMY2025/PDMY2025'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4025 from '@/views/page/PD/MY/PDMY4025/PDMY4025'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import PDMY2044 from '@/views/page/PD/MY/PDMY2044/PDMY2044'
 
 export default {
@@ -458,7 +458,7 @@ export default {
             })
         },
         goExpensePerpose() {
-            var compName = PDMY2025
+            var compName = PDMY4025
 
             var param = {"fncObtDsc":this.fncObtDsc, "sqno": this.sqno, "prgStsCd":this.prgStsCd}
 
@@ -475,7 +475,7 @@ export default {
         },
         // 목표등록화면으로 이동
         goPerposePage() {
-            var compName = PDMY2005
+            var compName = PDMY4005
 
             var param = {}
 

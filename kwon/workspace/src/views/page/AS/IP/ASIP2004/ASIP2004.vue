@@ -30,7 +30,8 @@
 								</div>
 							
 						</template>		
-						<template v-else-if="ixSatCnt === 1">								
+						<!-- v4 추가 ixSatCnt == 2 : safeN -->
+						<template v-else-if="ixSatCnt === 2">								
 							<div class="donutBox safeN">
 								<div class="donutCh">
 									<span>{{ctgrDgnRztTxt}}</span>
@@ -46,7 +47,7 @@
 							</div>	
 						</template>						
 
-						<template v-else>								
+						<template v-else-if="ixSatCnt === 1">							
 							<div class="donutBox Nsafe">
 								<div class="donutCh">
 									<span>{{ctgrDgnRztTxt}}</span>

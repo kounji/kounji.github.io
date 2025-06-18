@@ -212,7 +212,7 @@ export default {
                         // 페이머니일 경우
                         case SUBTYPE_PAYMONEY:
                             // 페이머니 지출내역에서 호출된 경우
-                            if(this.calledId == "LCLE2003") {
+                            if(this.calledId == "LCLE4003") {
                                 url = "/lc/le/09r02"
                             // 선불(선불카드 아님) 지출내역에서 호출된 경우
                             }else if(this.calledId == "LCLE2006") {

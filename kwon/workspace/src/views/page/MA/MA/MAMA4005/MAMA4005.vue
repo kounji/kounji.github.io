@@ -1,7 +1,7 @@
 <!--
 /*************************************************************************
-* @ 서비스경로 : 홈 > 홈화면 편집
-* @ 페이지설명 : 홈 > 홈화면 편집
+* @ 서비스경로 : 홈 > 캐릭터 설정
+* @ 페이지설명 : 홈 > 캐릭터 설정
 * @ 파일명     : src/views/page/MA/MA/MAMA4005/MAMA4005.vue
 * @ 작성자     : CS540687
 * @ 작성일     : 2025-03-06
@@ -11,173 +11,86 @@
 * 2025-03-06              CS540687              최초작성
 *************************************************************************/
 -->
-<template>      
+<template>
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01">
 		<div class="popup_header">
-			<h1>홈화면 순서 편집</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<h1>캐릭터 설정</h1>
 		</div>
-
 		<div class="popup_content">
-			<section class="assets_edit">
-				<p><strong>홈 화면에서 보이는 순서를<br>원하는 대로 바꿀 수 있어요.</strong></p>
-                <!-- [v4.0] 25-03-18 클래스아이디 수정 -->
-                <ul class="list_edit">
-                    <template v-for="(item) in tabsList">
-                        <li class="list_item" :id="item.id" :key="item.id">
-                            <span :class="item.id">{{item.name}}</span>
-                            <button type="button" class="edit_btn"><span class="blind">순서편집</span></button>
-                        </li>
-                    </template>
-                </ul>
-                <!-- //[v4.0] 25-03-18 클래스아이디 수정 -->				
-		<!--
-				<ul class="list_edit">
-					<template v-for="(item) in tabsList" >
-					<li :id="item.id" :key="item.id" class="list_item" :class="fn_getTabsClass(item.id)">
-						<span :class="item.id">{{item.name}}</span>
-					</li>
-					</template>
-				</ul>	
-		-->
-				<!-- [D]
-					item01 주가지수
-					item02 추천서비스
-					item03 주요자산 변동내역
-					item04 자산분석을 통한 제안
-					item05 신용과 건강
-					item06 건강, 연금/절세
-					item07 내가 연결한 자산
-					item08 자산진단
-					item09 나의 관심서비스
+			<section class="set_cont">
+				<h2 class="headline"><strong>나만의 캐릭터를<br>프로필로 설정해 보세요.</strong></h2>
+				<div class="char_list">
+					<ul>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId01" :checked="myAvatarId === 'myAvatarId01'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId01')">
+							<label for="myAvatarId01">
+								<strong>금융멘토</strong>
+								<span>안정적이고 지속적인 성장</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId02" :checked="myAvatarId === 'myAvatarId02'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId02')">
+							<label for="myAvatarId02">
+								<strong>디지털금융달인</strong>
+								<span>신속, 정확한 금융달인</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId03" :checked="myAvatarId === 'myAvatarId03'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId03')">
+							<label for="myAvatarId03">
+								<strong>저축왕</strong>
+								<span>작은 돈이 큰 돈 된다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId04" :checked="myAvatarId === 'myAvatarId04'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId04')">
+							<label for="myAvatarId04">
+								<strong>투자천재</strong>
+								<span>미래를 키우는 투자</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId05" :checked="myAvatarId === 'myAvatarId05'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId05')">
+							<label for="myAvatarId05">
+								<strong>절약마스터</strong>
+								<span>아낄수록 더 풍요롭게</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId06" :checked="myAvatarId === 'myAvatarId06'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId06')">
+							<label for="myAvatarId06">
+								<strong>보험수호자</strong>
+								<span>예상 밖을 대비한다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId07" :checked="myAvatarId === 'myAvatarId07'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId07')">
+							<label for="myAvatarId07">
+								<strong>신용지킴이</strong>
+								<span>신용이 곧 재산이다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="myAvatar" id="myAvatarId08" :checked="myAvatarId === 'myAvatarId08'" @change.prevent="fn_myAvatarChoice($event, 'myAvatarId08')">
+							<label for="myAvatarId08">
+								<strong>대출코치</strong>
+								<span>똑똑하게 빌리고 갚자</span>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</section>
 
-				<ul class="list_edit">
-					<li>
-						<span class="item01">주가지수</span>
-					</li>
-					<li>
-						<span class="item02">추천서비스</span>
-					</li>
-					<li>
-						<span class="item03">주요자산 변동내역</span>
-					</li>
-					<li>
-						<span class="item04">자산분석을 통한 제안</span>
-					</li>
-					<li>
-						<span class="item05">신용과 건강</span>
-					</li>
-					<li>
-						<span class="item06">건강, 연금/절세</span>
-					</li>
-					<li>
-						<span class="item07">내가 연결한 자산</span>
-					</li>
-					<li>
-						<span class="item08">자산진단</span>
-					</li>
-					<li>
-						<span class="item09">나의 관심서비스</span>
-					</li>
-				</ul>
-				-->
-			</section>
-			<section class="assets_check">
-				<p><strong>주요자산 변동 내역.<br>홈 화면에서 자산을 선택하세요.</strong>최대 5개 선택할 수 있어요.</p>
-				<!-- [D]
-					item01 예금
-					item02 부동산
-					item03 투자
-					item04 연금
-					item05 페이/포인트
-					item06 보험
-					item07 카드
-					item08 대출
-					item09 자동차
-					item10 기타자산
-					item11 할부금융
-					item12 자동차할부
-					item13 학자금대출
-					item14 리스
-					item15 빌린돈
-				-->
-				<ul>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASAC4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASAC4001') &gt; -1" ref="ASAC4001" @change.prevent="chkValidate($event, 'ASAC4001')" />
-						<label for="ASAC4001" class="item01">예금</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASRE4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASRE4001') &gt; -1" ref="ASRE4001" @change.prevent="chkValidate($event, 'ASRE4001')" />
-						<label for="ASRE4001" class="item02">부동산</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASIV4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASIV4001') &gt; -1" ref="ASIV4001" @change.prevent="chkValidate($event, 'ASIV4001')" />
-						<label for="ASIV4001" class="item03">투자</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASPS4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASPS4001') &gt; -1" ref="ASPS4001" @change.prevent="chkValidate($event, 'ASPS4001')" />
-						<label for="ASPS4001" class="item04">연금</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASPT4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASPT4001') &gt; -1" ref="ASPT4001" @change.prevent="chkValidate($event, 'ASPT4001')" />
-						<label for="ASPT4001" class="item05">페이/포인트</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASIS4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASIS4001') &gt; -1" ref="ASIS4001" @change.prevent="chkValidate($event, 'ASIS4001')" />
-						<label for="ASIS4001" class="item06">보험</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASCD4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASCD4001') &gt; -1" ref="ASCD4001" @change.prevent="chkValidate($event, 'ASCD4001')" />
-						<label for="ASCD4001" class="item07">카드</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASLN4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASLN4001') &gt; -1" ref="ASLN4001" @change.prevent="chkValidate($event, 'ASLN4001')" />
-						<label for="ASLN4001" class="item08">대출</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASCA4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASCA4001') &gt; -1" ref="ASCA4001" @change.prevent="chkValidate($event, 'ASCA4001')" />
-						<label for="ASCA4001" class="item09">자동차</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASOA4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASOA4001') &gt; -1" ref="ASOA4001" @change.prevent="chkValidate($event, 'ASOA4001')" />
-						<label for="ASOA4001" class="item10">기타자산</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASIT4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASIT4001') &gt; -1" ref="ASIT4001" @change.prevent="chkValidate($event, 'ASIT4001')" />
-						<label for="ASIT4001" class="item11">할부금융</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASCL4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASCL4001') &gt; -1" ref="ASCL4001" @change.prevent="chkValidate($event, 'ASCL4001')" />
-						<label for="ASCL4001" class="item12">자동차할부</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASEL4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASEL4001') &gt; -1" ref="ASEL4001" @change.prevent="chkValidate($event, 'ASEL4001')" />
-						<label for="ASEL4001" class="item13">학자금대출</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASLS4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASLS4001') &gt; -1" ref="ASLS4001" @change.prevent="chkValidate($event, 'ASLS4001')" />
-						<label for="ASLS4001" class="item14">리스</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="ASBR4001" :checked="myAssetWrsList.findIndex(el=>el == 'ASBR4001') &gt; -1" ref="ASBR4001" @change.prevent="chkValidate($event, 'ASBR4001')" />
-						<label for="ASBR4001" class="item15">빌린돈</label>
-					</li>
-				</ul>
-			</section>
 		</div>
 
 		<div class="popup_footer fixed">
 			<div class="btns_wrap">
-				<button type="button" class="btns lg" @click.prevent="close()">취소</button>
-				<button type="button" class="btns lg primary" @click.prevent="fn_saveEvent">저장</button>
+				<button type="button" class="btns lg primary" @click.prevent="setData()">저장하기</button>
 			</div>
 		</div>
 
-		<!-- 20211108 한별 접근성 role="button" 추가 S -->
 		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
-		<!--// 20211108 한별 접근성 role="button" 추가 E -->
-
 	</div>
 	<!--// full popup E -->
 </template>
@@ -188,142 +101,51 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
 
-import {sortTabs} from '@/utils/slick'
 
-export default {
-	name : "MAMA4005",
-	data: () => {
-		return {
-		tabsList : [],	
-		tabsList2: [
-				{id:'item01', hidden:'N', name: '주가지수'},
-				{id:'item02', hidden:'N', name: '추천서비스'},
-				{id:'item03', hidden:'N', name: '주요자산 변동내역'},
-				{id:'item04', hidden:'N', name: '자산분석을 통한 제안'},
-				{id:'item05', hidden:'N', name: '신용과 건강'},
-				{id:'item06', hidden:'N', name: '건강, 연금/절세'},
-				{id:'item07', hidden:'N', name: '내가 연결한 자산'},
-				{id:'item08', hidden:'N', name: '자산진단'},
-				{id:'item09', hidden:'N', name: '나의 관심서비스'},
-			],
-
-            fvrList  : [],       // 선택된 관심서비스
-            myAssetWrsList : [],		
-		 		
-		}
-	},
-	mixins: [
-		commonMixin,
-		popupMixin
-	],
-	computed : {
-	},
-	watch: {
-		tabsList(value) {
-			console.log('watch tabsList', value)
-		}
-	},
-	created() {
-		// 상단 탭 영역
-		this.tabsList = JSON.parse(JSON.stringify(commonService.getStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'tabsV4') || []))
-		
-		console.log('created this.tabsList.length : ', this.tabsList.length)
-		if (this.tabsList.length === undefined) {
-			this.tabsList = this.tabsList2
-			console.log('created tabsList 2 ', this.tabsList)			
-		 }
-		console.log("tabsList======================>", this.tabsList)	
-	},		
-	mounted() {
-		this.initComponent()
-        $(document).ready(function () {
-			$('.list_edit').each(function(){
-                $(this).sortable({
-                    handle :'button.edit_btn',
-	                cancel :'li > span',
-                });
-            });
-
-		});		
-
-		sortTabs()
-	},
-	methods: {
-		initComponent() {
-			this.myAssetWrsList = commonService.getStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'myAssetWrs')
-
-            if(!this.myAssetWrsList || !this.myAssetWrsList.length || this.myAssetWrsList.length === 0 )  // || this.myAssetWrsList.length > 6
-            {
-				this.myAssetWrsList = ['ASAC4001','ASRE4001','ASIV4001','ASPS4001','ASPT4001']
-                commonService.setStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'myAssetWrs', this.myAssetWrsList)
-			}
-		}, 
-		fn_saveEvent() {
-			// 탭 순서 저장
-			let tabsId = []
-			let tabs   = []
-			$('.list_item').each(function() {
-				let $this = $(this)
-				tabsId.push($this.attr('id'))
-				
-			});
-
-			// this.tabsList에서 상세 정보 획득
-			tabsId.forEach(el => {
-				let foundTab = this.tabsList?.find(tab => tab.id === el)
-				if (foundTab && tabs.filter(el => el.id === foundTab.id).length === 0) tabs.push(foundTab)
-			})
-
-			// localstorage에 등록
-			commonService.setStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'tabsV4', tabs)
-
-			let tabSeq = commonService.getStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'tabsV4')
-			console.log("tab list ====================>", tabSeq)
-
-			// 자산변동내역
-            commonService.setStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'myAssetWrs', this.myAssetWrsList)
-			let tmpList = commonService.getStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'myAssetWrs')
-			console.log("tmpList=================", tmpList)
-
-			// Close
-			this.close({isSave: true})
-		},
-
-		fn_getTabsClass(id) {
-			return  id === 'item01' ? 'mainTab01' 
-				  : id === 'item02' ? 'mainTab02'
-				  : id === 'item03' ? 'mainTab03'
-				  : id === 'item04' ? 'mainTab04'
-				  : id === 'item05' ? 'mainTab05'
-				  : id === 'item06' ? 'mainTab06'
-				  : id === 'item07' ? 'mainTab07'
-				  : id === 'item08' ? 'mainTab08'
-				  : id === 'item09' ? 'mainTab09' : ''
-		},
-
-
-        // 선택 항목 6개 초과 체크
-        chkValidate(e, targetId, _this) {
-            let tmp = e.target.checked ? 1 : -1; // 1:체크,-1:체크해제
-            
-            if(this.myAssetWrsList.length + tmp > 6) {
-                modalService.alert("주요 변동 내역은 최대 5개까지 선택할 수 있습니다.").then(() => {e.target.checked = false});
-                return;
-            }
-            
-            if(tmp == 1) { // 체크한 경우
-                if(this.myAssetWrsList.findIndex(el=>el == targetId) < 0) { // 기존 조회된 서비스는 push 안되게 막음
-                    this.myAssetWrsList.push(targetId)
-                }
-            } else {
-                this.myAssetWrsList.splice(this.myAssetWrsList.findIndex(el=>el == targetId), 1)
+    export default {
+        name : "MAMA4005",
+        data: () => {
+            return {
+				myAvatarId : 'myAvatarId01',
             }
         },
+        mixins: [
+            commonMixin,
+            popupMixin
+        ],
+        computed : {
+        },
+        mounted() {
+            this.initComponent()
+        },
+        methods: {
+            initComponent() {
+				// 나의 캐릭터 
+				let tmpMyAvatarId = this.getMyAvatar();
+				
+				if (tmpMyAvatarId !== undefined) {
+					this.myAvatarId = tmpMyAvatarId
+				} else  {
+					this.myAvatarId = 'myAvatarId01'
+				}				
+            },
 
-		// 페이지 이동
-		fn_close() {
-			this.close({isSave: false})
-		},
-	}
-}
+			// 나의 아바타 저장
+			setData(){								
+				this.setMyAvatar(this.myAvatarId)
+				this.close({isSave: true})
+			},
+
+			// 아바타 선택
+			fn_myAvatarChoice(e, targetId){
+				let tmp = e.target.checked ? 1 : -1; // 1:체크,-1:체크해제
+				this.myAvatarId = targetId;
+			},
+
+			// 페이지 이동
+            fn_close() {
+                this.close({isSave: false})
+            },
+        }
+    }
 </script>

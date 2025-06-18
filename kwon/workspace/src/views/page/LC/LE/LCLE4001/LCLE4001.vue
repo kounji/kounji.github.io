@@ -22,6 +22,10 @@
                     <a title="년월선택" class="year_month" href="javascript:console.log('월');" @click.prevent="selectMonth"><span class="num">{{inqYm | dateFilter('YYYY')}}</span>년 <span class="num">{{inqYm | dateFilter('M')}}</span>월 </a>
                     <button class="cal_btn cal_next" :class="disabledButton" aria-label="한달 후 이동" @click.prevent="moveMonth('NEXT')" :disabled="currYm===inqYm" :title="currYm===inqYm ? '선택불가' : ''" style="padding:1px 6px;"></button>
                 </div>
+
+                <!--[v4.0] 25-04-02 불러오기 추가-->
+                <button type="button" class="stdBtn innerType01 refresh"><em>{{inqYm | dateFilter('M')}}</em>월 불러오기</button>
+                <!--//[v4.0] 25-04-02 불러오기 추가 -->                
                 
                 <div class="new_sub_info" v-if="totListCn >= 0">
                     <div class="text">
@@ -42,9 +46,9 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>카드 </span><span class="com_icon_num custom">{{cardCn}}</span></div>
+                                <div class="tit"><span>카드 </span><span class="com_icon_num custom">{{cardCn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{cardApvSam | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><i class="blind">금액</i>{{cardApvSam | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
@@ -102,9 +106,9 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>페이 </span><span class="com_icon_num custom">{{payMnyCn + ppayCdCn}}</span></div>
+                                <div class="tit"><span>페이 </span><span class="com_icon_num custom">{{payMnyCn + ppayCdCn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{(payMnySam + ppayCdApvSam) | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><i class="blind">금액</i>{{(payMnySam + ppayCdApvSam) | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
@@ -255,12 +259,12 @@
                         </li>
                     </ul>
                 </div>
-
-                <div v-if="totListCnWithRqs == 0" class="no_data_box no_data_box01 grayExclamationType">
+                <!-- v4 삭제 -->
+                <!-- <div v-if="totListCnWithRqs == 0" class="no_data_box no_data_box01 grayExclamationType">
                     <div class="no_data_list">
                         <p class="txt_sub">조회된 정보가 없습니다.</p>
                     </div>
-                </div>		
+                </div>		 -->
 
                 <div class="subSvcBannerArea fixType">
                     <div class="com_box_type01 bannerCard expd">
@@ -301,15 +305,15 @@ import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002'     // 카드 지출
 import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003'     // 페이머니 지출내역
 import LCLE4004 from '@/views/page/LC/LE/LCLE4004/LCLE4004'     // 선불카드 지출내역
 import LCLE4104 from '@/views/page/LC/LE/LCLE4104/LCLE4104'     // 기타 지출내역
-import LCLE4114 from '@/views/page/LC/LE/LCLE2114/LCLE2114'     // 선불 결제내역   -- 대상 삭제
+//import LCLE2114 from '@/views/page/LC/LE/LCLE2114/LCLE2114'     // v4 선불 결제내역   -- 대상 삭제
 import LCLE2107 from '@/views/page/LC/LE/LCLE2107/LCLE2107'     // 통신요금
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'     // 목표등록
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'     // 정기지출
-import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'     // 연결 기관 선택
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002'     // 연결 기관 선택
 
 export default {
     name : "LCLE4001",
     data: () => {
+
         return {
             mydtCusno		: "",		// 마이데이터고객번호
             inqYm			: "",		// 조회년월
@@ -526,7 +530,7 @@ export default {
 /*        
         openPpayDetail() {
             const config = {
-                component : LCLE4114,
+                component : LCLE2114,
                 params : {
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
@@ -592,7 +596,7 @@ export default {
 
         openCardConnect() {
             const config = {
-                component : COAR2002,
+                component : COAR4002,
                 params : {
                     isExternal: true,
                     orgDsc: 'card'
@@ -626,24 +630,6 @@ export default {
             }
             modalService.openPopup(config).then(() => {
                 this.getData();
-            })
-        },
-
-        fn_openExpensePop() {
-            const config = {
-                component : PDMY2005,
-            }
-            modalService.openPopup(config).then(response => {
-                //this.getData();
-                // 배너이미지를 통하여 목표등록을 하였을 경우
-                if(response == 'reSelect') {
-                    const menu = {
-                        // name: 'PDMY2001',
-                        name: 'PDMY2001',
-                        params : {}
-                    }
-                    commonService.movePage(menu)
-                }
             })
         },
 
@@ -689,7 +675,7 @@ export default {
     components : {
         Page,
         FootersV2,
-        LcCategoryV2
+        //LcCategoryV2
     }
 }
 

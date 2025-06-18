@@ -12,13 +12,8 @@
 *************************************************************************/
 -->
 <template>
-    <!-- full popup S -->
-	<div class="full_popup" id="full_popup_01"> 
-		<div class="popup_header">    
-			<h1></h1>
-		</div>
-
-		<div class="popup_content">
+    <page class="content-view">
+		<div id="content">
 			<div class="mydata_outline">
 				<div class="slick">
 					<div class="item">
@@ -72,28 +67,27 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	
-		<div class="popup_footer fixed">
-			<div class="btn_full_box btns_wrap">
+
+			<div class="btns_wrap fixed">
 				<button type="button" class="btns lg primary" @click.prevent="fnOpenStart()">가입하고 시작하기</button>
-				<button type="button" class="btns_txt">체험하기</button>
+				<button type="button" class="btns_txt" @click.prevent="movePage('MAMA4U01')">체험하기</button>
 			</div>
+
 		</div>
-		
-		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
-		
-	</div>
-	<!--// full popup E -->
+	</page>
 </template>
 
 <script>
 import COAS4001 from '@/views/page/CO/AS/COAS4001/COAS4001' // 서비스 가입
+// import MAMA4U01 from '@/views/page/MA/MA/MAMA4U01/MAMA4U01' // 서비스 가입
 
+import Page from '@/views/layout/Page.vue'
+import FootersV2 from '@/views/layout/FootersV2.vue'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
+import commonService from '@/service/commonService'
 import $ from 'jquery'
 
 export default {
@@ -101,6 +95,7 @@ export default {
     data: () => {
         return {
             rcmCd : "",     // 추천인 코드
+			param : {}
         }
     },
     mounted() {
@@ -114,13 +109,10 @@ export default {
     ],
     methods: {
         initComponent(params) {
+			this.param = params || {}
             this.slick()
             
-            if(Object.keys(params).length == 0) {
-                this.rcmCd = "DK38GKS95HB"
-            } else {
-                this.rcmCd = params.rcmCd
-            }
+			this.rcmCd = this.param.rcmCd
         },
         /**
          * 서비스 가입 팝업 호출
@@ -134,7 +126,21 @@ export default {
             }
             modalService.openPopup(config).then({})
         },
-
+		fnOpenNoRegisterStart() {
+			const config = {
+                component: MAMA4U01, 
+                params: {}
+            }
+            modalService.openPopup(config).then((response) => {
+                console.log("MAMA4U01 close popup", response)
+            })
+		},
+		movePage(pageName) {
+			const config = {
+				name: pageName
+			}
+			commonService.movePage(config)
+		},
         slick() {
             var $outline =  $('.mydata_outline .slick');
 
@@ -154,7 +160,11 @@ export default {
                 arrows : false,
                 cssEase : 'linear'
             });
-        }
-    }
+        },
+    },
+	components: {
+		Page,
+        FootersV2
+	},
 }
 </script>

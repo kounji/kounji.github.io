@@ -48,6 +48,7 @@
 							<div class="text">
 								빌린 돈<br>
 								<!-- [v4.0] 25-02-17 잔액숨김 기능추가 -->
+								<!--[v4.0] #접근성# 마크업수정 
 								<div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -59,6 +60,19 @@
 										<span class="show">총 <em>1,025,286,300</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								<!-- //[v4.0] 25-02-17 잔액숨김 기능추가 -->
 							</div>
 						</div>
@@ -71,20 +85,20 @@
 					<div class="asset_link_box">
 						<ul class="list_type_01">
 							<li>
-								<a href="#nolink">
+								<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
 									<dl class="borrowed_money">
 										<dt class="name">쌀집아저씨</dt>
 										<dt class="date">빌린 날 <em class="num">2021.03.29</em></dt>
-										<dd class="price"><em class="num">50,000</em>원</dd>
+										<dd class="price"><em class="num"><span class="blind">금액</span>50,000</em>원</dd><!--[v4.0] #접근성# 대체텍스트 -->
 									</dl>
 								</a>
 							</li>
 							<li>
-								<a href="#nolink">
+								<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
 									<dl class="borrowed_money">
 										<dt class="name">김농협</dt>
 										<dt class="date">빌린 날 <em class="num">2021.03.29</em></dt>
-										<dd class="price"><em class="num">50,000</em>원</dd>
+										<dd class="price"><em class="num"><span class="blind">금액</span>50,000</em>원</dd><!--[v4.0] #접근성# 대체텍스트 -->
 									</dl>
 								</a>
 							</li>

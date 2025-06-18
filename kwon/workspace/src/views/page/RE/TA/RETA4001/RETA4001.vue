@@ -12,22 +12,22 @@
 *************************************************************************/
 -->
 <template>
-    <page id="content" class="content-view">
-        <div>
+    <div class="content-view">
+        <div id="content">
             <section class="promote_main">
                 <!--이벤트-->
                 <!--slick-->
                 <div class="slick_event" v-if="eventList.length > 0 && eventList">
                     <div class="inner">
-                        <a href="#nolink" v-for="(item, idx) in eventList" :key="idx" @click.prevent="fnEventDetail(item.mydtEvtSqno, item.evtStsc)">
+                        <a href="javascript:void(0);" role="button" v-for="(item, idx) in eventList" :key="idx" @click.prevent="fnEventDetail(item.mydtEvtSqno, item.evtStsc)">
                             <div class="event">
-                                <!-- <img src="@/assets_v40/images/banner/img_banner_event_01.png" alt="" @error="emptyImg"/>  -->
-                                <img :src="`/assets_v40/images/event/banner/${item.evtBnnrImgnm}`" alt="" @error="emptyImg"/> 
-                                <div class="info">
+                                <!-- <img :src="`/assets/images/event/banner/${item.evtBnnrImgnm}`" :alt="'이벤트 ' + item.evtTinm + ' ' + item.stDt + '~' + item.edDt" /> -->
+                                <img :src="`/assets/images/event/banner/${item.evtBnnrImgnm}.png`" :alt="'이벤트 ' + item.evtTinm + ' ' + item.stDt + '~' + item.edDt" />
+                                <!-- <div class="info">
                                     <span>이벤트</span>
                                     <strong>{{item.evtTinm}}</strong>
                                     <span class="date">{{item.stDt | dateFilter("YYYY.MM.DD")}} ~ {{item.edDt | dateFilter("YYYY.MM.DD")}}</span>
-                                </div>
+                                </div> -->
                             </div>
                         </a>
                     </div>
@@ -40,101 +40,68 @@
                 </div>
                 <!--//slick-->
 
+                <!--친구초대-->
+                <a href="javascript:void(0);" class="invite" role="button" @click.prevent="fnMoveService('MREV4041', 'P')">
+                    <img src="@/assets_v40/images/banner/img_banner_invite.png" alt="NH콕마이데이터 친구 초대하기" />
+                </a>
+
                 <!--링크배너(고정)-->
                 <div class="board_box_wrap banner">
-                    <a href="#nolink" class="board_box house" @click.prevent="fnMoveService('ANRE4201','M')">
-                        내 집 마련의 시작
-                        <em>NH콕부동산</em>
+                    <a href="javascript:void(0)" class="board_box alert" role="button" @click.prevent="fn_curc()">
+                        관심환율 알림설정
+                        <em>환율알림</em>
                     </a>
-                    <a href="#nolink" class="board_box car" @click.prevent="fnMoveService('ANCA4201','M')">
-                        스마트한 내 차 관리
-                        <em>NH콕마이카</em>
+                    <a href="javascript:void(0)" class="board_box calc2" role="button" @click.prevent="fn_stockList()">
+                        관심주식 확인하기
+                        <em>주식설정</em>
                     </a>
                 </div>
-                
-                <!-- [통합 배너] -->
-                <div class="slick_exchange" :key="'key_'+itemIndex">
-                    <div class="inner">
-                        <!-- KOSPI 지수 배너 -->
-                        <dl class="exchange" v-for="(item, idx) in kosIdxList" :key="'kosIdx_'+idx">
-                            <dt>{{item.stprDsc}}</dt>
-                            <dd class="factor">
-                                <span class="num">{{addComma(item.stprIxEpr)}}</span>
-                                <span class="range" :class="upDown(item.stprIxEpr)">{{Number(item.bdCmprRnf).toFixed(2)}}%&nbsp;(전일대비)</span>
-                            </dd>
-                            <dd class="basis">
-                                <span>{{item.basDt | dateFilter('YYYY.MM.DD')}} 기준</span>
-                            </dd>
-                        </dl>
 
-                        <!-- 선택한 주식종목 배너 -->
-                        <!-- todo... 아직 정해지지 않았음... 3/18 문의답변...
-                        <dl class="exchange stock">
-                            <dt>삼성전자 한 줄 넘을 경우 말줄임 삼성전자 한 줄 넘을 경우 말줄임
-                                <button type="button" class="btn_setting"><span class="blind">주식종목 설정</span></button>
-                            </dt>
-                            <dd class="factor">
-                                <span class="num">75,000</span>
-                                <span class="range down">8.64% (전일대비)</span>
-                            </dd>
-                            <dd class="basis">
-                                <span>2025.02.04 기준</span>
-                            </dd>
-                        </dl>
-                        -->
-                        <!-- 통화환율 배너 -->
-                        <dl class="exchange" v-for="(item, idx) in xcrtList" :key="'xcrt_'+idx">
-                            <dt>
-                                <!--기본(icon) 국기명클래스(ico_JPY, ico_USD)-->
-                                <i class="ico" :class="'ico_'+item.curc"></i>
-                                {{item.curcCont}} {{item.curc}}
-                                <button type="button" class="btn_setting" @click.prevent="fn_curc()"><span class="blind">환율 알림 설정</span></button>
-                            </dt>
-                            <dd class="factor">
-                                <span class="unit">KRW</span>
-                                <span class="num">{{addComma(Number(item.dlbsrt))}}</span>
-                                <span class="range" :class="upDown(item.subDlbsrt)">{{Number(item.subDlbsrt).toFixed(2)}}&nbsp;(전일대비)</span>
-                            </dd>
-                            <dd class="basis">
-                                <span>{{item.rgDt | dateFilter('YYYY.MM.DD')}} 기준</span>
-                            </dd>
-                        </dl>
-
-                    </div>
-                    <div class="controls">
-                        <p class="paging"></p>
-                        <button type="button" class="prev"><span class="blind">이전</span></button>
-                        <button type="button" class="next"><span class="blind">다음</span></button>
-                        <button type="button" class="btn_play"><span class="blind">정지</span></button>
-                    </div>
+                <div class="bg_banner">
+                    <a href="javascript:void(0)" class="mycar" role="button" @click.prevent="fnMoveService('ANCA4201','M')">
+                        <div class="tit">
+                            <span>스마트한 내차관리</span>
+                            <strong>NH콕마이카</strong>
+                        </div>
+                    </a>
+                    <a href="javascript:void(0)" class="house" role="button" @click.prevent="fnMoveService('ANRE4201','M')">
+                        <div class="tit">
+                            <span>내 집 마련의 시작</span>
+                            <strong>NH콕부동산</strong>
+                        </div>
+                    </a>
                 </div>
 
-                <!-- CASE Empty -->
-				<!-- 
-                <a href="#nolink" class="select_empty">
-					<p>노출할 주식 종목을 선택해 주세요.</p>
-				</a> 
-                -->
+                <div class="board_box_wrap banner">
+                    <a href="javascript:void(0)" class="board_box farm1" role="button" @click.prevent="fnMoveService('SZFC4101','M')">
+                        영농일지로 관리
+                        <em>슬기로운 영농생활</em>
+                    </a>
+                    <a href="javascript:void(0)" class="board_box farm2" role="button" @click.prevent="fnMoveService('ANFM4001','M')">
+                        성공적인 농촌정착
+                        <em>귀농귀촌의 꿈</em>
+                    </a>
+                </div>
 
                 <!--지역 축제-->
                 <div class="local_promotion">
-                    <h2 class="h_tit01">지역 축제 문화 Pick!</h2>
-                    <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
-
+                    <a href="javascript:void(0);" class="h_tit01" role="button" @click.prevent="fnMoveService('RGTA4001', 'M')">지역 축제 문화 Pick!</a> 
                     <ul>
                         <li v-for="(item, idx) in festList" :key="'fest_'+idx">
-                            <a href="#nolink" @click.prevent="fnLocalDetail('1', festList[idx])">
-                                <img :src="item.thmnlImgUrlnm ? item.thmnlImgUrlnm : emptyImg " alt="" @error="emptyImg"/> 
+                            <a href="javascript:void(0);" role="button" @click.prevent="fnLocalDetail('1', festList[idx])">
+                                <img :src="item.otxtImgUrlnm ? item.otxtImgUrlnm : emptyImg " alt="" @error="emptyImg"/> 
                                 <div class="info">
                                     <span class="cate">지역축제</span>
-                                    <strong>{{item.cntzTinm}}</strong>
-                                    <span class="addr">{{item.adr}}</span>
+                                    <div class="bg">    
+                                        <strong>{{item.cntzTinm}}</strong>
+                                        <span class="addr">{{item.adr}}</span>
+                                    </div>
                                 </div>
                             </a>
                         </li>
-                        <li v-for="(item, idx) in cultureList" :key="'culture_'+idx">
-                            <a href="#nolink" @click.prevent="fnLocalDetail('2', cultureList[idx])">
-                                <img v-if="idx == 0" src="@/assets_v40/images/img/img_local_promotion_03.png" alt="" @error="emptyImg"/> 
+                        <li v-for="(item, idx) in cultureList" :key="'culture_'+idx" >
+                            <a href="javascript:void(0);" role="button" @click.prevent="fnLocalDetail('2', cultureList[idx])">
+                                <img v-if="idx == 0" src="@/assets_v40/images/img/img_local_promotion_03.png" alt="" @error="emptyImg" /> 
                                 <img v-else src="@/assets_v40/images/img/img_local_promotion_04.png" alt= "" @error="emptyImg"/> 
                                 <div class="info">
                                     <span class="cate">지역문화</span>
@@ -154,7 +121,7 @@
                     <!-- <div class="slick_banner" v-if="resultRcmList.length > 0 && resultRcmList"> -->
                     <div class="slick_banner" v-if="isShowStltAgrYn">
                         <div class="inner">
-                            <a href="javascript:void(0);" v-for="(item, idx) in resultRcmList" :key="idx" @click.prevent="fnRcmDetail(item.wrsDtlUrlnm)">
+                            <a href="javascript:void(0);" role="button" v-for="(item, idx) in resultRcmList" :key="idx" @click.prevent="fnRcmDetail(item.wrsDtlUrlnm)">
                                 <dl class="deposit" :class="item.wrsGrTpc == 'DFFM' ? 'green' : item.wrsGrTpc == 'RVGTP' ? 'blue' : 'orange'"> 
                                     <dt>
                                         <strong>{{item.acWrsnm}}</strong>
@@ -187,17 +154,17 @@
 
                 <!--여러가지 안내-->
                 <div class="move_banner">
-                    <a href="#nolink" class="board_box rect asset" @click.prevent="fnMoveService('ASIP2001', 'M')">
+                    <a href="javascript:void(0);" class="board_box rect asset" role="button" @click.prevent="fnMoveService('ASIP4001', 'M')">
                         <em>자산진단</em>
                         금융자산 유형을 알려드려요.
                     </a>
 
-                    <a href="#nolink" class="board_box rect wallet" @click.prevent="fnMoveService('LCIP2001', 'M')">
+                    <a href="javascript:void(0);" class="board_box rect wallet" role="button" @click.prevent="fnMoveService('LCIP4001', 'M')">
                         <em>지출분석</em>
                         소비패턴을 분석했어요.
                     </a>
 
-                    <a href="#nolink" class="board_box rect briefing" @click.prevent="fnMoveService('PDBF4001', 'M')">
+                    <a href="javascript:void(0);" class="board_box rect briefing" role="button" @click.prevent="fnMoveService('PDBF4001', 'M')">
                         <em>데일리 금융브리핑</em>
                         금융 브리핑을 정리했어요.
                     </a>
@@ -219,24 +186,25 @@
                     </p>
                 </div>
 
-                <!--친구초대-->
-                <a href="#nolink" class="invite" @click.prevent="fnMoveService('MREV4041', 'P')">
-                    <img src="@/assets_v40/images/banner/img_banner_invite.png" alt="" />
-                </a>
             </section>
         </div>
         <footersV2 type="an" />
-    </page>
+    </div>
 </template>
 
 <script>
 import Page from '@/views/layout/Page.vue'
 import FootersV2 from "@/views/layout/FootersV2.vue"
 
-import PDBF4002 from '@/views/page/PD/BF/PDBF4002/PDBF4002'
 import RGFT4003 from '@/views/page/RG/FT/RGFT4003/RGFT4003' // 지역축제 상세 팝업  
 import RGCL4003 from '@/views/page/RG/CL/RGCL4003/RGCL4003' // 지역문화 상세 팝업  
 import PDPD1002 from '@/views/page/PD/PD/PDPD1002/PDPD1002' // 약관 슬라이드 팝업
+
+import MREV2010 from '@/views/page/MR/EV/MREV2010/MREV2010' // 일반이벤트 상세팝업(신규가입)
+import MREV2011 from '@/views/page/MR/EV/MREV2011/MREV2011' // 일반이벤트 상세팝업(추석소원빌기)
+import MREV2012 from '@/views/page/MR/EV/MREV2012/MREV2012' // 일반이벤트 상세팝업(발렌타인)
+import MREV2030 from '@/views/page/MR/EV/MREV2030/MREV2030' // 퀴즈이벤트 상세팝업(콕마이데이터)
+import MREV2031 from '@/views/page/MR/EV/MREV2031/MREV2031' // 퀴즈이벤트 상세팝업(600만)
 
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
@@ -251,6 +219,9 @@ import {defineAsyncComponent, nextTick} from 'vue'
 import {fncSlick_briefing, fncSlick_briefing2} from '@/utils/slick'
 import _ from 'lodash'
 
+import RETA4002 from '@/views/page/RE/TA/RETA4002/RETA4002'  // 주식 선택 팝업
+import PDBF4002 from '@/views/page/PD/BF/PDBF4002/PDBF4002' // 환율 팝업
+
 export default {
     name : "RETA4001",
     data: () => {
@@ -261,9 +232,7 @@ export default {
             inqMm		  : "",   // 테마이슈 현재월
 
             eventList      : [],   // 진행중인 이벤트 목록
-            kosIdxList     : [],   // 코스피,코스닥 지수 목록
             inteList       : [],   // 관심서비스 목록
-            xcrtList       : [],   // 나의통화환율 목록
 
             festList       : [],   // 지역축제 목록
             cultureList    : [],   // 지역문화 목록
@@ -274,14 +243,11 @@ export default {
             stltAgrYnList    : [],       // 약관 동의 여부 목록
             isShowStltAgrYn  : '',       // 약관 동의따른 show/hide
             
-            inteRgnCultCd    : ''   // 관심지역 문화지역코드
-
+            inteRgnCultCd    : '',       // 관심지역 문화지역코드
+            eventOxInfo      : {}        // OX 퀴즈
         }
     },
 	computed: {
-        itemIndex() {
-            return this.isNull(this.kosIdxList.length + this.xcrtList.length) ? 0 : this.kosIdxList.length + this.xcrtList.length
-        }
     },
     mounted() {
         this.initComponent()
@@ -303,14 +269,13 @@ export default {
             this.curDt = dateFormat(new Date(), 'YYYYMMDD')
             this.inqMm = dateFormat(new Date(), 'MM')
 
-            this.getEventList()     // 이벤트목록 가져오기
-            this.getKosIdxList()    // 코스피코스닥 지수 가져오기
-            this.getInteList()      // 관심서비스 가져오기
-            this.getXcrtList()      // 추천상품 및 통화환율 가져오기        
+            this.getEventList()     // 이벤트목록 가져오기             
             
             this.getInterestRegion() //관심지역 조회
-            this.getFestList()      // 관심축제목록 가져오기
+            this.getFestList()      // 관심축제목록 가져오기        
+            this.getInteList()      // 관심서비스 가져오기
             
+            this.getEventOXInfo()   // OX퀴즈
             this.getStltAgrYn()     // 약관 동의 여부 조회
 
         },
@@ -320,7 +285,7 @@ export default {
             const config = {
                 url: '/mr/ev/12r01', 
                 data: {
-                    "evtStsc" : '1',    //전체 : 2 / 진행중 : 1 / 종료 : 0
+                    "evtStsc" : '1',    // 전체 : 2 / 진행중 : 1 / 종료 : 0
                     "pageNo"  : 3 ,     // 3개씩 call
                     "isGetWinner" : "0",
                 },
@@ -337,7 +302,7 @@ export default {
         },
 
         // 이벤트 이동
-        fnEventDetail(sqno, evtStsc) {
+        fnEventDetail(sqno, evtStsc) { //마이데이터 이벤트 일련번호, 이벤트상태코드
             console.log("이벤트 팝업 이동...")
 
             if(evtStsc != 0){
@@ -349,11 +314,15 @@ export default {
                     evtComponent = { '1' : 'MREV2010'     //일반(신규가입)
                                     , '4' : 'MREV2030'    //퀴즈(콕마이데이터)
                                     , '10' : 'MREV2011'   //일반(추석 소원)
+                                    , '11' : 'MREV2012'   //일반(발렌타인)
+                                    , '12' : 'MREV2031'   //일반(600만)
                     }
                 }else{
                     evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
                                     , '49' : 'MREV2030'    //퀴즈(콕마이데이터)
                                     , '50' : 'MREV2011'    //일반(추석 소원)
+                                    , '51' : 'MREV2012'   //일반(발렌타인)
+                                    , '60' : 'MREV2031'   //일반(600만)
                     }
                 }
 
@@ -363,9 +332,17 @@ export default {
                     component = MREV2030
                 }else if(evtComponent[sqno] === 'MREV2011'){
                     component = MREV2011
-                }else{
-                    modalService.alert('이벤트 준비중')
-                    return;
+                }else if(evtComponent[sqno] === 'MREV2012'){
+                    component = MREV2012
+                }else if(evtComponent[sqno] === 'MREV2031'){
+                    component = MREV2031
+                }else{               
+                    if(this.mydtCusno == "2000006853" && import.meta.env.VITE_ENV != 'R') { // 이벤트 팝업 노출 테스트 케이스: 조하천
+                        component = MREV2010
+                    } else {
+                        modalService.alert('이벤트 준비중')
+                        return;
+                    }       
                 }
 
                 let config = {
@@ -376,46 +353,96 @@ export default {
             }
         },
 
-
-        // 코스피, 코스닥 지수목록 가져오기
-        getKosIdxList() {
-            const config = {
-                url: '/re/si/01r01', 
-                data: {
-                    "basDt" : '20250318', //오늘 날짜   
-                },
-            }
-
-            apiService.call(config).then(response => {
-                console.log("getKosIdxList :: ", response)
-                this.kosIdxList = response.korStcIdxList;               
-                this.$nextTick(() => {
-                    $('.slick_exchange').filter('.slick-initialized').slick('unslick');	
-                    this.slick(); 
-                })
-            })
-        },
-        
-        // 지수 상승하락 확인
-        upDown(index) {
-            return Number(index) > 0 ? 'up' : Number(index) == 0 ? '0' : 'down'
-        },
-
         // 지역축제 목록
         getFestList() {
+
             const config = {
                 url: '/rg/ft/01r01',
                 data: {		
-                    "mydtCusno" : this.getUserInfo('mydtCusno'),
+                    "mydtCusno" : this.mydtCusno,
                     "rgnDsc" : this.getInteRgnInfo('01') == 1 ? "01" : '' //관심 지역 사용 유무
                 }
             }
 
             apiService.call(config).then(response => {
                 console.log("getFestList :: ",response)
-                this.festList = response.festivalList.slice(0,2)
+
+                let tempList = this.fnMix(response.festivalList);
+
+                console.log("tempList :: ",tempList)
+
+                var tempReturn = tempList.some((item) => {   
+                    if(item.otxtImgUrlnm != '' && item.otxtImgUrlnm != null) { 
+                        this.festList.push(item)
+                    }
+                    return this.festList.length == 2
+				})
+
+                if(tempReturn) { // this.festList.length == 2
+                    console.log("this.festList :: ", this.festList)
+
+                    this.festList = this.festList.map(item=>({
+                        ...item,
+                        name : item.cntzTinm,
+                        lttdCrdnVal : item.gpsYcdnNo,
+                        lgtdCrdnVal : item.gpsXcdnNo,
+                        evtStDt : this.formatDateSt(item.evtStDt),
+                        evtEdDt : this.formatDateSt(item.evtEdDt),
+                        otxtImgUrlnm : item.otxtImgUrlnm,
+                    }))
+
+                } else { // this.festList.length != 2 , 전국
+                    this.getAllFestList()
+                }
             })
         },
+
+        // 지역축제전체 목록
+        getAllFestList() {
+            const config = {
+                url: '/rg/ft/01r01',
+                data: {		
+                    "mydtCusno" : this.mydtCusno,
+                    "rgnDsc" : '' //관심 지역 사용 유무
+                }
+            }
+
+            apiService.call(config).then(response => {
+                console.log("getAllFestList :: ",response)
+
+                let tempAllList = this.fnMix(response.festivalList);
+                
+                var tempReturn = tempAllList.some((item) => {   
+                    if(item.otxtImgUrlnm != '' && item.otxtImgUrlnm != null) { //
+                        this.festList.push(item)
+                    }
+                    return this.festList.length == 2
+				})
+
+                this.festList = this.festList.map(item=>({
+					...item,
+					name : item.cntzTinm,
+					lttdCrdnVal : item.gpsYcdnNo,
+					lgtdCrdnVal : item.gpsXcdnNo,
+					evtStDt : this.formatDateSt(item.evtStDt),
+					evtEdDt : this.formatDateSt(item.evtEdDt),
+					otxtImgUrlnm : item.otxtImgUrlnm,
+				}))
+            })
+        },
+
+
+        // 랜덤 정렬
+        fnMix(list) {
+            for(let i = list.length - 1; i>0; i--) {
+                const j = Math.floor(Math.random()*(i+1))
+                let temp  = list[i]
+                list[i] = list[j]
+                list[j] = temp
+            }
+            return list;
+        },
+
 
         // 지역문화 목록
         getCultList() {         		
@@ -423,22 +450,25 @@ export default {
 				url: '/rg/cl/01r01',
 				data: {
 					"orgnm" : "", // 시설 이름
-					"ccwC" : this.inteRgnCultCd ? this.inteRgnCultCd : ''  //관심 지역 사용 유무
+					"ccwC" : this.getInteRgnInfo('01') == 1 ? this.inteRgnCultCd : ''  // 관심 지역 사용 유무 1 : 사용 => 지역코드사용
 				}
 			}
+
+            console.log("config",  config )
             apiService.call(config).then(response => {
                 console.log("getCultList :: ",response)
-                if(response && response.cultureList) {
+                if(response.cultureList && response.cultureList.length > 0) {
                     // 랜덤하게 지역문화 2개 택
                     for(var i = 0; i < 2 ; i++) {
                         let list = response.cultureList.splice(Math.floor(Math.random()*response.cultureList.length),1)[0]
                         this.cultureList.push(list)				
                     }
+ 
                 }
             })
         },  
 
-        // 지역축제/문화 상세 띄우기 (todo... 문화)
+        // 지역축제/문화 상세 띄우기 
         fnLocalDetail(flag, list) {
             // flag 1:축제, 2:문화
             let component = flag == 1 ? RGFT4003 : RGCL4003
@@ -454,6 +484,7 @@ export default {
                     "orgnm" : list.orgnm,
 				    "adr"   : list.adr,
 				    "pbcYy" : list.pbcYy,
+                    "name"  : list.orgnm,
                 }
             }
 
@@ -465,42 +496,13 @@ export default {
 
         },
 
-        // 통화환율
-        getXcrtList() {
-
-            const config = {
-                url: '/pd/bf/01r02',
-                data: {
-                    "mydtCusno": this.mydtCusno           // 마이데이터고객번호
-                    ,"rgDt"    : this.curDt               // 현재일자
-                    ,"chnl"    : this.getUserInfo('chnl') // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
-                    ,"inqMm"   : this.inqMm               // 기준월
-                }
-            };
-            
-            apiService.call(config).then(response => {
-                console.log("getXcrtList :: ", response)
-                this.xcrtList = response.xcrtList ?  response.xcrtList : []     
-                /**
-			    * wrsGrTpd(상품군유형코드) 에 따라 필터링
-			    * RVGTP :: 적금(적립식)
-			    * DFFM	:: 예금(거치식)
-                * LN    ::대출
-			    */
-                this.$nextTick(() => {
-                    $('.slick_exchange').filter('.slick-initialized').slick('unslick');	
-                    this.slick()
-                })
-                
-            });
-        },
 
         // 추천상품
         getRcmList() {
             const config = {
                 url : "/pd/pd/02ra1",
                 data : {
-                    mydtCusno       : this.getUserInfo('mydtCusno'),        // 마이데이터 고객번호
+                    mydtCusno       : this.mydtCusno,        // 마이데이터 고객번호
                     chnl            : this.getUserInfo('chnl')              // 채널구분
                 }
             }
@@ -509,7 +511,7 @@ export default {
                 this.resultRcmList = response.wrsRcmList || []  
                 this.$nextTick(() => {
                     $('.slick_banner').filter('.slick-initialized').slick('unslick');	
-                    this.slickBanner()           
+                    this.slickBanner()         
                 })
                 
             });
@@ -521,12 +523,42 @@ export default {
             appService.moveFinancialProductPage(url)
         },
 
+        // OX퀴즈 정보 조회
+        getEventOXInfo(){
+            const config = {
+                url: '/mr/ev/19r01', 
+                data: {
+                    "bltnDt" : dateFormat(new Date(), 'YYYYMMDD'),
+                },
+                disableLoading : true,
+            }
+            apiService.call(config).then(response =>{
+                console.log('response : ', response)
+                this.eventOxInfo = response
+
+                const config2 = {
+                    url: '/mr/ev/17r01', 
+                    data: {
+                        "mydtCusno" : this.mydtCusno,
+                        "bltnDt" : dateFormat(new Date(), 'YYYYMMDD'),
+                    },
+                    // disableLoading : true,
+                }
+                apiService.call(config2).then(response =>{
+                    console.log('response : ', response)
+                    //오늘퀴즈참여여부
+                    this.eventOxInfo.quizPrgYn = response.quizPrgYn
+                })
+            })
+        },
+
+
         // 관심서비스 가져오기
         getInteList() {
             const config = {
                 url : '/co/co/51r01',
                 data : {
-                    mydtCusno : this.getUserInfo("mydtCusno"),
+                    mydtCusno : this.mydtCusno,
                     vernm     : "V4"                           // 버전명
                 }
             }
@@ -567,7 +599,8 @@ export default {
                 commonService.movePage(config);
             } else {            // 팝업(P)
                 let component
-                
+                let param
+
                 if(scrId == "MRLO4001") {         // 로또복권번호만들기
                     component = defineAsyncComponent(() => import("@/views/page/MR/LO/MRLO4001/MRLO4001"))
                 } else if(scrId == "ASCR4101") {  // 나의신용점수올리기
@@ -578,10 +611,27 @@ export default {
                     component = defineAsyncComponent(() => import("@/views/page/CO/CO/COCO4351/COCO4351"))
                 }  else if(scrId == "MREV2000") {  // 이벤트
                     component = defineAsyncComponent(() => import("@/views/page/MR/EV/MREV2000/MREV2000"))
+                } else if(scrId == "OXTP0001") {  // OX퀴즈
+                    if(!this.eventOxInfo.bltnDt){
+                        modalService.alert("OX퀴즈를 준비하고 있어요.")
+                        return
+                    }else{
+                        param = this.eventOxInfo
+                        if(this.eventOxInfo.quizPrgYn === '1'){ // 도전현황
+                            component = defineAsyncComponent(() => import("@/views/page/OX/TP/OXTP0006/OXTP0006"))
+                        }else{                                  // OX퀴즈
+                            component = defineAsyncComponent(() => import("@/views/page/OX/TP/OXTP0001/OXTP0001"))
+                        } 
+                    }
+
+                } else {
+                    modalService.alert("화면 준비중입니다.")
+                    return
                 }
 
                 const config = {
-                    component: component
+                    component : component,
+                    params   : param
                 }
                 
 				modalService.openPopup(config).then((response) => {
@@ -589,49 +639,17 @@ export default {
                         if(response == "refresh") {
                             this.getInteList()
                         }
-                    }
+                    } else if(scrId === "OXTP0001" && response === "ok"){
+                        this.eventOxInfo.quizPrgYn = '1'    //참여
+                        this.fnOpenPopYn("OXTP0001")
+					}
                 });
             }
-        },
-
-        fn_curc() {
-            const config = {
-                component: PDBF4002
-            }
-            modalService.openPopup(config).then((response) => {
-                if(response == 'success') { // PDBF4002 화면에서 등록 버튼을 누른 경우
-                    this.getXcrtList();
-                }
-            })
         },
 
         // 약관 동의 여부 조회 (PDPD1001 -> PDPD4001)
-       getStltAgrYn() {
+        getStltAgrYn() {
             this.stltAgrYnList      = [];           // 약관 동의 여부 목록
-
-            // 개인자산관리_약관동의_기본 테이블에서 약관 동의 여부 조회
-            /* const config = {
-                url : "/pd/pd/01ra1",
-                data : {
-                    mydtCusno       : this.getUserInfo('mydtCusno'),        // 마이데이터 고객번호
-                    stltTpc         : 'PFM006',                             // 약관유형코드(상품추천 약관유형코드 : PFM006)
-                    agrYn           : '1'                                   // 동의여부(0:미동의, 1:동의)
-                }
-            }
-            apiService.call(config).then(response => {
-                //console.log("약관동의여부 조회 ", response)
-                this.stltAgrYnList = response.stltAgrYnList || [];          // 약관 동의 여부 목록
-
-                if(this.stltAgrYnList.length > 0) {
-                    this.isShowStltAgrYn = true;                            // 약관 동의따른 show/hide
-                } else {
-                    this.isShowStltAgrYn = false;                           // 약관 동의따른 show/hide
-                }
-
-                this.$nextTick(() => {
-                    this.getWrsRcmList();       // 상품추천 금융상품 추천 목록 조회
-                });
-            }) */
 
             // 개인자산관리_정보_제공_동의_내역 테이블에서 약관 동의 여부 조회
             const config = {
@@ -686,56 +704,10 @@ export default {
             return nStr.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
         },
 
-        slick() {
-            $(".slick_exchange").each(function(){
-                let $this = $(this);
-
-                $(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
-                    var i = (currentSlide ? currentSlide : 0 ) + 1 ;
-                    $(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
-                });
-
-                $(".inner", $this).slick({
-                    speed : 300,
-                    dots : false,
-                    adaptiveHeight: true,
-                    autoplay:true,
-                    infinite: true,
-                    draggable: true,
-                    accessibility:true,
-                    arrows : true,
-                    cssEase:'linear',
-                    prevArrow:$(".controls .prev", $this),
-                    nextArrow:$(".controls .next", $this),
-                });
-
-                const constrols  = $(".btn_play", $this);
-
-                constrols.click(function(){
-                    if($(this).hasClass('paused')){//정지상태
-                        $(".inner", $this).slick('slickPlay');
-                        $(this).removeClass('paused');
-                        $(".blind", $(this)).text('정지');
-                    }else{//자동재생 중
-                        $(".inner", $this).slick('slickPause');
-                        $(this).addClass('paused');
-                        $(".blind", $(this)).text('재생');
-                    }
-                });
-
-                $(".slick-arrow", $this).click(function(){
-                    if(constrols.hasClass('paused')){}else{
-                        $(".inner", $this).slick('slickPause');
-                        constrols.addClass('paused');
-                        $(".blind", constrols).text('재생');
-                    }
-                })
-
-           });
-
-        },
-
-
+        formatDateSt(resSt){
+			const resData = `${resSt.substring(0,4)}.${resSt.substring(4,6) }.${resSt.substring(6,8)}`
+			return resData;
+		},
 
         slickBanner() {
             $(".slick_banner").each(function(){
@@ -811,7 +783,8 @@ export default {
 			};
 
 			apiService.call(config).then(response => {
-				this.inteRgnCultCd = this.changeRegionCode(response.provC);				
+                this.inteRgnCultCd = this.changeRegionCode(response.provC);				
+                console.log("this.inteRgnCultCd:: ", this.inteRgnCultCd)
 			}).then(() => {
                 this.getCultList();
 			});
@@ -833,12 +806,12 @@ export default {
 				"7"  : "31", // 울산
 				"8"  : "36", // 세종
 				"31" : "41", // 경기
-				"32" : "42", // 강원
+				"32" : "51", // 강원
 				"33" : "43", // 충북
 				"34" : "44", // 충남
 				"35" : "47", // 경북
 				"36" : "48", // 경남
-				"37" : "45", // 전북
+				"37" : "52", // 전북
 				"38" : "46", // 전남
 				"39" : "50"  // 제주
 			};
@@ -847,7 +820,37 @@ export default {
 		},
 
         emptyImg(e) {
-            e.target.src = new URL("@/assets_v40/images/img/img_local_promotion_empty.png", import.meta.url).href            
+            e.target.src = new URL("@/assets_v40/images/img/img_local_promotion_empty.png", import.meta.url).href
+        },
+        // 관심 주식 종목 선택 팝업 
+        fn_stockList() {
+            const config = {
+                component: RETA4002
+            }
+            modalService.openPopup(config).then((response) => {
+                if(response == 'move') { // RETA4002 화면에서 등록 버튼을 누른 경우
+                    const data = {
+                        name : 'PDBF4001',
+                    }			
+                    commonService.movePage(data)
+                }
+            })
+        },
+
+        // 관심 국가 선택 팝업
+        fn_curc() {
+            const config = {
+                component: PDBF4002
+            }
+            modalService.openPopup(config).then((response) => {
+                if(response == 'success') { // PDBF4002 화면에서 등록 버튼을 누른 경우
+                   const data = {
+                        name : 'PDBF4001',
+
+                    }			
+                    commonService.movePage(data)
+                }
+            })
         },
         
     },
@@ -857,7 +860,7 @@ export default {
     },
     destroyed() {
         this.getMyBizRegInfo()  //연결기관정보 조회/갱신
-    }
+    },
 }
 
 </script>

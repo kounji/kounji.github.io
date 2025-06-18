@@ -7,6 +7,7 @@ import store from '@/store'
 import constant from '@/common/config/constants'
 
 import modalService from '@/service/modalService'
+import routerService from '@/service/routerService'
 import appService from '@/service/appService'
 import {clearSessionTimer} from '@/utils/date'
 
@@ -49,16 +50,13 @@ export default {
 		return new Promise((resolve, reject) => {
 
 			const currentPage = store.getters['layout/pageInfo']
-			//console.log('currentPage', currentPage, constant.MAIN_PAGE )
 			const page = this.findPageItem(data)
-			//console.log('page', page)
+			
 			page.params = data.params || {}
 			page.title = data.title || page.title // 화면 이동시 title이 넘어오면 넘어온 값을 사용하고 없으면 config.json 내용을 사용
 			
 			const isValid = this.validMovePage(page, currentPage)
-			//console.log('isValid', isValid)
 			const disableHistory = !!currentPage.disableHistory // 최근에 로드된 페이지정보
-			//console.log('disableHistory', disableHistory)
 
 			if (isValid) {
 				// :: S :: 21.07.02. 헤더가 숨겨져있을경우 페이지 이동시 초기화처리
@@ -74,10 +72,20 @@ export default {
 				if(page.name == constant.MAIN_PAGE || page.name == constant.MAIN_PAGE_S || page.name == constant.MAIN_PAGE_C) {
 					store.dispatch('layout/removeAllPage')
 				}
+
+				// v4 뒤로가기 시 전체메뉴 포함
+				// 이전페이지, 현재페이지, 다음페이지 중 현재페이지 disableHistory: true, 이전/다음 페이지가 동일한 케이스 대응
+				// const pageList = store.getters['layout/pageList']
+				// const beforePage = store.getters['layout/beforePageInfo']
+				// const isAllMenu = store.getters['layout/isAllMenu']
+				// if(pageList.length > 1 && isAllMenu && (page.name == beforePage.name)) {
+				// 	// 현재페이지가 전체메뉴 이면서 이전, 다음페이지가 동일한 경우
+				// 	routerService.movePrev()
+				// 	return
+				// }
 				/////////////////////////////
 
 				// dispatch layout store
-				// !page.disableHistory && store.dispatch('layout/setPageInfo', page)
 				store.dispatch('layout/setPageInfo', page)
 
 				// router replace or push
@@ -113,6 +121,12 @@ export default {
 		// 현제 페이지와 이동할 페이지가 같은지 체크
 		if (page.name === currentPage.name) {
 			console.error('같은 페이지 입니다.')
+
+			// 같은 페이지일경우 현재 페이지 스크롤 상단 set
+			$('html, body').stop().animate({
+				scrollTop : 0
+			},700)
+
 			return false
 		}
 		return true

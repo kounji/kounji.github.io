@@ -1,6 +1,8 @@
 <template>
   <div @focus="focusHandler">
-    
+    <br>
+    <button @click="goOpenNoti">오픈안내페이지 이동 테스트</button>
+    <br>
     <br>
 		<span>=========== Toggle ============</span>
 		<br>
@@ -141,6 +143,7 @@
   import CmmCalendar from '@/components/CmmCalendar'
   //import CmmCalendarMy from '@/components/CmmCalendarMy'
   import modalService from '@/service/modalService'
+  import commonService from '@/service/commonService'
 
   export default {
     name: 'SampleComponents',
@@ -177,6 +180,12 @@
       }
     },    
     methods: {
+      goOpenNoti() {
+        const config = {
+          name: 'COCO4118'
+        }
+        commonService.movePage(config)
+      },
       focusHandler() {
         console.log('focus ###############')
       },

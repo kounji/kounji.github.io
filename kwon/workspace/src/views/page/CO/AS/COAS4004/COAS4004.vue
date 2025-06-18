@@ -19,8 +19,15 @@
 			<!-- <button type="button" class="prev"><span class="blind">이전</span></button> -->
 		</div>		
 		<div class="popup_content"  id="terms_popup">
-			<div class="terms_view slide">
+            <!-- 다건 약관 상세의 경우 stltArray가 있고 단건(개별)인 경우 stltArray가 비어있기 때문 -->
+			<div class="terms_view slide" v-if="stltArray.length &gt; 0">
 				<div v-for="(item, idx) in stltDtlArray" :key="idx">
+					<strong class="terms_tit">{{item.stltTinm}}</strong>
+					<div class="terms_cont" v-html="item.stltCntn"></div>
+				</div>
+			</div>
+            <div class="terms_view" v-else>
+            	<div v-for="(item, idx) in stltDtlArray" :key="idx">
 					<strong class="terms_tit">{{item.stltTinm}}</strong>
 					<div class="terms_cont" v-html="item.stltCntn"></div>
 				</div>
@@ -34,11 +41,11 @@
 			<!-- //복수 : 전체동의 -->
 			<!-- 개별 -->
 			<div class="btns_wrap" v-else @click.prevent="fn_agreeTerm()">
-				<a href="#nolink" class="btns lg primary">동의</a>
+				<a href="javascript:void(0);" class="btns lg primary">동의</a>
 			</div>
 			<!-- //개별 -->
 		</div>
-		<a href="#nolink" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>		
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>		
 	</div>
 	<!--// full popup E -->
 </template>
@@ -99,10 +106,9 @@
                     this.stltArray      = this.params.stltArray || []       // 약관목록
                     this.stltDtlArray   = this.params.stltDtlArray || []    // 약관상세목록
 
-                    setTimeout(() => {
-                        this.slickIdx = 0
-                        fncSlick_Terms(500, this.fn_slickCallBack, this.slickIdx)
-                    }, 500)
+                    this.$nextTick(() => {
+                        this.fnSlick()
+                    })
                 } else {
                     let stltTpc     = this.params.stltTpc || ""
                     let sqno        = this.params.sqno || ""        
@@ -132,6 +138,19 @@
                 let $content = $("#terms_popup")
 
                 $content[0].scrollTop = 0
+            },
+
+            fnSlick() {
+                $('.terms_view.slide').slick({
+                    dots:true, // [v4.0] dot nav 추가
+                    slidesToShow: 1,
+                    infinite: false,
+                    adaptiveHeight:true,
+                    height:'auto',
+                    customPaging:function(slider,i){
+                        return '<button type="button">총'+slider.$slides.length+'개의 슬라이드중 '+ (i+1) +'번째 슬라이드</button>';
+                    }
+                });
             },
 
             /* 전체동의 */

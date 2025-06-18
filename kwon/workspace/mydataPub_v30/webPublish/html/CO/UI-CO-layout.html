@@ -20,9 +20,10 @@
 			<button type="button" class="prev"><span class="blind">이전</span></button>
 
 			<div class="option">
-				<a href="#nolink" class="bank"><span class="blind">뱅크</span></a>
+				<button type="button" class="bank sbank"><span class="blind">스마트뱅킹</span></button><!-- 스마트뱅킹일경우 케이스 추가-->
+				<button type="button" class="bank"><span class="blind">콕뱅크</span></button>
 				<button type="button" class="search"><span class="blind">검색</span></button>
-				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+				<button type="button" class="menu"><span class="blind">전체메뉴</span></button>
 			</div>
 		</header>
 		<!--// header E -->
@@ -31,7 +32,6 @@
 			<nav class="navi">
 				<div class="inner">
 					<!--자산현황 3depth-->
-					<!--
 					<ul role="navigation" aria-label="자산현황" class="depth1-1">
 						<li><a href="#"><span>예금</span></a></li>
 						<li><a href="#"><span>투자</span></a></li>
@@ -42,10 +42,9 @@
 						<li><a href="#"><span>자동차</span></a></li>
 						<li><a href="#"><span>기타</span></a></li>
 					</ul>
-					-->
+
 
 					<!--부채관리 3depth-->
-					<!--
 					<ul role="navigation" aria-label="부채관리" class="depth1-2">
 						<li><a href="#" aria-current="page"><span>카드</span></a></li>
 						<li><a href="#"><span>대출</span></a></li>
@@ -55,15 +54,19 @@
 						<li><a href="#"><span>리스</span></a></li>
 						<li><a href="#"><span>빌린돈</span></a></li>
 					</ul>
-					-->
+
 
 					<!--숨은자산 3depth-->
-					<!--
 					<ul role="navigation" aria-label="숨은자산" class="depth1-4">
 						<li><a href="#" aria-current="page"><span>휴면계좌</span></a></li>
 						<li><a href="#"><span>휴면보험금</span></a></li>
 					</ul>
-					-->
+
+					<!--도전목표챌린지 3depth-->
+					<ul role="navigation" aria-label="도전 목표 챌린지" class="depth5-1">
+						<li><a href="#" aria-current="page"><span>버킷리스트</span></a></li>
+						<li><a href="#"><span>금융목표</span></a></li>
+					</ul>
 
 					<!--슬기로운영농생활 3depth-->
 					<ul role="navigation" aria-label="슬기로운 영농생활" class="depth7-8">

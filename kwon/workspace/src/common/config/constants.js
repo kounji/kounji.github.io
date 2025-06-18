@@ -33,6 +33,7 @@ export default {
     END_SCRAPING: '자산 업데이트가 완료되었습니다.',
     START_GATHER_ASSETS: '자산 업데이트가 진행 중입니다.',
     END_GATHER_ASSETS: '자산 업데이트가 완료되었습니다.',
+    DURING_GATHER_ASSETS: '자산 업데이트가 진행 중입니다. 잠시만 기다려주세요.',
     ERROR_GATHER_ASSETS: '자산 업데이트시 오류가 발생하였습니다.',
   },
   
@@ -47,6 +48,19 @@ export default {
   MAIN_PAGE_S: 'MAMA4S01', // 큰글모드 통합메인
   MAIN_PAGE_C: 'MAMA4C01', // 청소년모드 통합메인
   MAIN_PAGE_U: 'MAMA4U01', // 미가입자 통합메인 
+
+  /**
+   * 상호금융 NH콕마이데이터 4.0
+   * 전체메뉴
+   */
+  // ALL_MENU: 'MRMR4001',
+  // ALL_MENU_S: 'MRMR4S01',
+  // ALL_MENU_C: 'MRMR4C01',
+  ALL_MENU: [
+    'MRMR4001',
+    'MRMR4S01',
+    'MRMR4C01',
+  ],
 
   APP_ERROR_PAGE: 'COCO1125', // APP 오류 페이지
   SERVICE_ERROR_PAGE: 'COCO1114', // 서비스 오류 페이지
@@ -64,4 +78,8 @@ export default {
     AUTH_TYPE: '1',         // 본인확인 이용 여부  [0: 본인확인기관 이용, 1: 전자서명인증사업자이용]
     CONSENT_TYPE: '1',      // 전자서명 유형       [0:전자서명 원문에 서명(본인확인기관기본값), 1:전송요구내역 해시값에 서명(전자서명인증 사업자 기본값) ]
   },
+  COK_AOS_APP_VERSION : '2.0.00', // 콕뱅 마이데이터 서비스 앱 최소버전 (aos)
+  COK_IOS_APP_VERSION : '2.0.00', // 콕뱅 마이데이터 서비스 앱 최소버전 (ios)
+  SB_AOS_APP_VERSION : '4.0.8', // 스뱅 마이데이터 서비스 앱 최소버전 (aos)
+  SB_IOS_APP_VERSION : '2.2.1', // 스뱅 마이데이터 서비스 앱 최소버전 (ios)
 }

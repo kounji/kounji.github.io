@@ -30,13 +30,16 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in bankIvList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop(item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<strong class="account">{{item.mydtAcno}}</strong>
 										</div>
 										<strong class="num"><em>{{item.acNowBac | numberFilter}}</em>원</strong>
 										<p class="latter" :class="item.strmPftrt === 0 ? '' : item.strmPftrt > 0 ? 'up' : 'down'">
+                                            <i class="blind" :class="item.strmPftrt === 0 ? '' : item.strmPftrt > 0 ? 'up' : 'down'">
+                                                {{item.strmPftrt === 0 ? '변동없음' : item.strmPftrt > 0 ? '상승' : '하락'}}
+                                            </i>
                                             <em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
                                         </p>
 									</a>
@@ -60,7 +63,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in bankTsIsaList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop(item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<strong class="account">{{item.mydtAcno}}</strong>
@@ -87,7 +90,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in efinIvList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop(item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.fncIvAcOnm}}</strong>
 											<strong class="account">{{item.mydtAcno}}</strong>
@@ -117,6 +120,7 @@
 										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
 										<div>
 											<strong class="org">{{item.p2PWrsTpcNm}}</strong>
+                                            <strong class="account">{{item.ivCtrno}}</strong>
 										</div>
 										<strong class="num"><em>{{item.rmAm | numberFilter}}</em>원</strong>
 									</a>

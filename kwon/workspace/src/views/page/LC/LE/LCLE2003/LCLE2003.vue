@@ -25,7 +25,7 @@ export default {
         apiService.pfmLogSend(this.$options.name)
     },
     components: {
-        CmmXpsDetail: () => import('@/components/LC/LE/CMM/CmmXpsDetail')
+        CmmXpsDetail: () => import('@/components/LC/LE/CMM/CmmXpsDetailV4')
     }
 }
 </script>

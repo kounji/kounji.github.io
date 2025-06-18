@@ -43,7 +43,9 @@
 
 <script>
 import popupMixin from '@/common/mixins/popupMixin'
-  import {mapGetters} from 'vuex'
+import commonMixin from '@/common/mixins/commonMixin'
+import modalService from '@/service/modalService'
+import {mapGetters} from 'vuex'
 export default {
     name: 'WebSharePopup',
     computed: {
@@ -67,7 +69,11 @@ export default {
         default: () => ({})
       }
     },
-		mixins: [ popupMixin ],    
+		mixins: [ 
+      popupMixin,
+      commonMixin
+    ],    
+    
     created() {
       
     },
@@ -80,9 +86,6 @@ export default {
     methods: {
       initComponent() {
         //CommonMix Web Share Api Check
-        if ( !navigator.canShare ) {
-          return modalService.alert("공유하기가 지원되지 않습니다.");
-        }
       },
 
     //Web Share Api URL공유 2025-02-03
@@ -110,10 +113,28 @@ export default {
     }, 
 
     kakao() {
-      
+      this.shareKakao(this.params)
+      this.close()
     },
     cpClipBoard() {
+      let url = 'https://nhcokbank.nonghyup.com/service/html/cbgateway.html?WEB=Y&SRV_ID=CBCOP9997R&screenId='  
+                  + this.params.screenId
+                  + '&cus=' + this.getUserInfo('cus')
+                  + '&mydtEvtSqno=0'
+                  + '&chnl=' + this.getUserInfo('chnl')
 
+      // 친구 카테고리인 경우 초대코드 포함
+      if (this.params.category == 2) {
+        url = url + '&inviteCd=' + this.params.inviteCd
+      }
+
+      console.log('복사 URL')
+      console.log(url)
+
+      navigator.clipboard.writeText(url)
+      modalService.toast("복사되었습니다.")
+
+      this.close()
     },
 
     //Web Share Api File 공유 2025-02-03

@@ -23,7 +23,7 @@
 
                 <div class="popup_content">
                     <div class="finance_tip">
-                        <p>금융 TIP, 앱에 다시 들어오시면<br>확인할 수 있어요.</p>
+                        <p>NH콕마이데이터(자산관리)의 <br>추천 콘텐츠 안내를 숨겨 드릴까요?</p>
                     </div>
                 </div>
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>건강보험 가입내역</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+</head>
+
+<body>
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>건강보험 가입내역</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+
+		<div class="content-view">
+			<div id="content">
+
+				<!--case. 건강보험 미연결시-->
+				<div class="health_no_connect">
+					<div class="cont">
+						<div class="bg">
+							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_connect_fail.json" loop="false" autoplay="" aria-hidden="true" class="bg_connect_fail" background="transparent"></lottie-player><!--25-04-18 loop 속성 false로-->
+						</div>
+						<p class="txt"><strong>자산을 연결하면</strong> 건강보험료 납부내역을 확인하실 수 있어요.</p>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns line md">자산 연결하기</button><!--25-04-18 버튼 클래스 변경 -->
+					</div>
+				</div>
+				<!--//case. 건강보험 미연결시-->
+
+			</div>
+
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+	</div>  
+</body>
+</html>

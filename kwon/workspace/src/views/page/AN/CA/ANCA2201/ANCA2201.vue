@@ -177,7 +177,7 @@
 									<strong>맞춤 견적 받고</strong>
 									<strong class="arrow">신차 구매하기</strong>
 								</a>
-								<a href="javascript:void(0)" class="ico04" role="button" @click.prevent="fn_goPopPage('PDMY2005')">
+								<a href="javascript:void(0)" class="ico04" role="button" @click.prevent="fn_goPopPage('PDMY4005')">
 									<strong>차근차근 모아</strong>
 									<strong class="arrow">드림카 마련하기</strong>
 								</a>
@@ -189,7 +189,7 @@
 					<template v-else>
 						<div class="car_inner">
 							<div class="inner_banner">
-								<a href="javascript:void(0);" role="button" @click.prevent="fn_goPopPage('PDMY2005')">
+								<a href="javascript:void(0);" role="button" @click.prevent="fn_goPopPage('PDMY4005')">
 									<!-- bg class 변경예정 -->
 									<!-- <div class="com_box_type03 bg27">
 										<div class="text">차근차근 모아<br>
@@ -344,10 +344,10 @@
 					<!-- 자동차 점검 -->
 					<div class="car_inner">
 						<!-- 정비정보 (ancList.mtncHdngList) -->
-						<!-- 타이어(06)일 경우에는 ANCA2202 타이어 Tab, 종합 Tab 호출 -->
+						<!-- 타이어(06)일 경우에는 ANCA4202 타이어 Tab, 종합 Tab 호출 -->
 						<div class="com_box_type01 com_box_list01">
 							<div class="list_type_box">
-								<a href="javascript:void(0);" role="button" @click.prevent="fn_goCarMgmtPage('ANCA2202', 'COM')">
+								<a href="javascript:void(0);" role="button" @click.prevent="fn_goCarMgmtPage('ANCA4202', 'COM')">
 									<div class="new_tit_area">
 										<div class="tit"><span>자동차 점검</span></div>
 									</div>
@@ -356,7 +356,7 @@
 								<template v-if="gridList.length > 0">
 									<div class="list_type_01">
 										<template v-for="(gridInfo, index) in gridList">
-											<a href="javascript:void(0)" role="button" class="cal_pop_info_wrap custom_icon" :key="'key1_' + index" @click.prevent="gridInfo.carMtncHdngC == '06' ? fn_goCarMgmtPage('ANCA2202', 'TRE') :  fn_goCarMgmtPage('ANCA2202', 'COM')">
+											<a href="javascript:void(0)" role="button" class="cal_pop_info_wrap custom_icon" :key="'key1_' + index" @click.prevent="gridInfo.carMtncHdngC == '06' ? fn_goCarMgmtPage('ANCA4202', 'TRE') :  fn_goCarMgmtPage('ANCA4202', 'COM')">
 												<div class="car_pop_bar_area">
 													<div class="com_box_type01 goal_warp no-stroke no-shadow">
 														<i class="icons" :class="fn_getclass(gridInfo.carMtncHdngC)"></i>
@@ -401,10 +401,10 @@
 								<strong>튼튼한 자동차 관리를</strong> 위한<br/><strong>11가지 점검</strong>을 시작해보세요!<!-- 2022-08-31 br 추가 -->
 							</span>
 							<div class="check_icon_list">
-								<a href="javascript:void(0)" role="button" class="icon01" @click.prevent="fn_goCarMgmtPage('ANCA2202', 'ISR')">보험</a>
-								<a href="javascript:void(0)" role="button" class="icon02" @click.prevent="fn_goCarMgmtPage('ANCA2202', 'TAX')">세금</a>
-								<a href="javascript:void(0)" role="button" class="icon03" @click.prevent="fn_goCarMgmtPage('ANCA2202', 'ISP')">검사</a>
-								<a href="javascript:void(0)" role="button" class="icon04" @click.prevent="fn_goCarMgmtPage('ANCA2202', 'RCL')">리콜</a>
+								<a href="javascript:void(0)" role="button" class="icon01" @click.prevent="fn_goCarMgmtPage('ANCA4202', 'ISR')">보험</a>
+								<a href="javascript:void(0)" role="button" class="icon02" @click.prevent="fn_goCarMgmtPage('ANCA4202', 'TAX')">세금</a>
+								<a href="javascript:void(0)" role="button" class="icon03" @click.prevent="fn_goCarMgmtPage('ANCA4202', 'ISP')">검사</a>
+								<a href="javascript:void(0)" role="button" class="icon04" @click.prevent="fn_goCarMgmtPage('ANCA4202', 'RCL')">리콜</a>
 							</div>
 						</div>
 					</div>
@@ -605,13 +605,13 @@ import {numberFormat} from '@/utils/number'
 import PDCA1102 from '@/views/page/PD/CA/PDCA1102/PDCA1102' // 자동차정보상세
 
 // 신규
-import ANCA2202 from '@/views/page/AN/CA/ANCA2202/ANCA2202' // 자동차점검
+import ANCA4202 from '@/views/page/AN/CA/ANCA4202/ANCA4202' // 자동차점검
 import ANCA2002 from '@/views/page/AN/CA/ANCA2002/ANCA2002' // 신차검색
 import ANCA2204 from '@/views/page/AN/CA/ANCA2204/ANCA2204'	// 신차 상세정보
 import ANCA2001 from '@/views/page/AN/CA/ANCA2001/ANCA2001' // 중고차검색
 import ANCA2003 from '@/views/page/AN/CA/ANCA2003/ANCA2003' // 차계부지출내역
 
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' // 나의목표등록화면  
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005' // 나의목표등록화면  
 import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101' // 자산등록(자동차)
 
 export default {
@@ -1141,21 +1141,22 @@ export default {
 			// openGbn에 따른 URL분기처리
             switch(openGbn) {
                 case "CARSELL" :		// 내차 판매하기(내차팔기)
-					url = "https://nhcok.cardong.co.kr/mycarsell"
+					url = "https://nhcok.carnoon.co.kr/mycarsell"
                     break
                 case "CERTUSEDCAR" :	// 인증중고차 구매(인증중고차)
-					url = "https://nhcok.cardong.co.kr/usedcar/list"
+					url = "https://nhcok.carnoon.co.kr/usedcar/list"
 					break
                 //case "LOAN" :			// 우대 금리 대출상품
 				//	url = "https://smartcenter.nonghyup.com/shbranch/el40000876_r.html"
 				//	break
                 case "USEDCAR" :		// 중고차(인증중고차)
-					url = "https://nhcok.cardong.co.kr" + cnctLkNm
-					//url = "https://nhcok.cardong.co.kr/usedcar/list"					
+					url = "https://nhcok.carnoon.co.kr" + cnctLkNm
+					//url = "https://nhcok.carnoon.co.kr/usedcar/list"					
 					break
-                // url = "https://nhcok.cardong.co.kr/estimate/start"
+				case "NEWCAR" :			// 신차 구매하기(견적내기)  
+                	// url = "https://nhcok.carnoon.co.kr/estimate/start"
           //2025.02.03 사업부서 요청 url 수정
-					url = "https://nhcok.cardong.co.kr/home"
+					url = "https://nhcok.carnoon.co.kr/home"
 					break
                 case "AGRIIS" :			// 아그리즈 쇼핑몰
 					url = "https://m.agriis.co.kr/m/mall/main_m.php"					
@@ -1190,8 +1191,8 @@ export default {
 
 			let compName = ""
 
-			if(viewName == 'PDMY2005') {
-				compName = PDMY2005
+			if(viewName == 'PDMY4005') {
+				compName = PDMY4005
 			} else if(viewName == 'COCA2101') {
 				compName = COCA2101
 			}
@@ -1204,7 +1205,7 @@ export default {
 			modalService.openPopup(config).then(response => {
 
 				// 배너이미지를 통하여 목표등록을 하였을 경우
-                if(compName == PDMY2005 && response == 'reSelect') {
+                if(compName == PDMY4005 && response == 'reSelect') {
                     const menu = {
                         name: 'PDMY1101',
                         params : {}
@@ -1259,8 +1260,8 @@ export default {
 			let tapType  = ''				// 자동차점검 內 업무 Tab
 			let vhcnoVal = this.vhcnoVal	// 차량번호 값 
 
-			if(viewName == 'ANCA2202') {    // 자동차점검
-				compName = ANCA2202
+			if(viewName == 'ANCA4202') {    // 자동차점검
+				compName = ANCA4202
 				if(dtl != '' ){
 					tapType  = dtl
 				}
@@ -1304,7 +1305,8 @@ export default {
 		},
 		fn_setImgUrl(imgPathnm){
 			// 24.07.05, sungchul, 해당 기관 서버 느려서 도메인 변경
-			//return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			// 25.03.28, sungchul, 유효한 도메인이며, 이미지는 이 도메인에서 가져온다함
+			//return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 			return 'https://www.carpan.co.kr/img/' + imgPathnm;
 		},
 
@@ -1317,7 +1319,7 @@ export default {
 			// 스뱅일경우
 			if(this.getUserInfo('chnl') === '385') {
 				// 스뱅
-				let url = 'WEB=Y%26serviceId=BFBCA0020R%26psnFncWrsC=40000876%26naac_dsc=2%26nhType=2'
+				let url = 'WEB=Y%26serviceId=SFBCA0020R%26psnFncWrsC=40000876%26naac_dsc=2%26nhType=2'
 				appService.moveFinancialProductPage(url)
 			} else {
 				// 콕뱅

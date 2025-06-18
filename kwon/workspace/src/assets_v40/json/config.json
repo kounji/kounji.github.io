@@ -452,15 +452,29 @@
 			"path": "/ASEL4001",
 			"disableHistory": true,
 			"componentPath": "views/page/AS/EL/ASEL4001/ASEL4001.vue"
-		}
-
-	],
-	"sample": [
+		},
 		{
-			"title": "",
-			"name": "sample",
-			"path": "/sample",
+			"title": "나의자산",
+			"name": "ASLN4001",
+			"path": "/ASLN4001",
+			"desc" : "나의자산 > 부채 > 메인(대출)",
+			"componentPath": "views/page/AS/LN/ASLN4001/ASLN4001.vue"
+		},
+		{
+			"title": "지출",
+			"desc" : "지출 > 달력",
+			"name": "LCFD4001",
+			"path": "/LCFD4001",
+			"disableHistory": true,
+			"componentPath": "views/page/LC/FD/LCFD4001/LCFD4001.vue"
+		},
+		{
+			"title": "샘플",
+			"desc" : "샘플페이지",
+			"name": "Sample",
+			"path": "/Sample",
+			"disableHistory": true,
 			"componentPath": "views/page/XX/sample/Sample.vue"
-    }
+		}
 	]
 }

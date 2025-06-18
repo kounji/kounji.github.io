@@ -24,15 +24,15 @@
 				<li>
 					<div>
 						<!-- <div><em><strong class="com_point_darkblue">알림공지</strong>NH모바일바로 대출 신청 일시 중단 안내 (2020/9/02~00:10~01:10)</em></div> -->
-                        <div><em>{{title}}</em></div>
-						<span>{{regdate | dateFilter('YYYY.MM.DD')}}</span>
+                        <div><em>{{pofancTinm}}</em></div>
+						<span>{{paplStDt | dateFilter('YYYY.MM.DD')}}</span>
 					</div>
 				</li>
 			</ul>
 
             <div class="list_detail"> <!--공지사항 상세영역 내용 현재 pre스타일로 임시로 작업해놓았습니다. 추후 개발방향에 따라 대응 예정-->
                 <!-- <div class="content">{{content}}</div> -->
-                <div class="content" v-html="content"></div>
+                <div class="content" v-html="pofancCntn"></div>
             </div>
         </div>
 
@@ -57,15 +57,6 @@ export default {
         }
     },
     computed: {
-        title() {
-            return this.params.ofancTinm || ''
-        },
-        content() {
-            return this.pofancCntn || ''
-        },
-        regdate() {
-            return this.params.aplStDt || ''
-        },
     },
     mounted() {
         this.initComponent()
@@ -84,8 +75,6 @@ export default {
         getData() {
         
            this.pofancId   = this.params.ofancId
-           this.pofancTinm = this.params.ofancTinm
-           this.paplStDt   = this.params.aplStDt
 
             const config = {
                 url: '/co/co/05r01',
@@ -95,6 +84,8 @@ export default {
             }
             apiService.call(config).then(response => {
                 this.pofancCntn = response.ofancCntn || '';
+                this.pofancTinm = response.ofancTinm || '';
+                this.paplStDt   = response.aplStDt || '';
             });           
         },
     }

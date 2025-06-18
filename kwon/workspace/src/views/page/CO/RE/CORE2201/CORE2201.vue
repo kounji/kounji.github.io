@@ -353,11 +353,11 @@ import {checkWord} from '@/utils/data'
 import {dateFormat} from '@/utils/date' //monthAdd
 import _ from 'lodash'
 
-import CORE1202 from '@/views/page/CO/RE/CORE1202/CORE1202' // 아파트 검색
-import CORE1203 from '@/views/page/CO/RE/CORE1203/CORE1203' // 면적 선택
+import CORE4202 from '@/views/page/CO/RE/CORE4202/CORE4202' // 아파트 검색
+import CORE4203 from '@/views/page/CO/RE/CORE4203/CORE4203' // 면적 선택
 import CORE1204 from '@/views/page/CO/RE/CORE1204/CORE1204' // 주거형태 선택(자가, 전세, 월세)
 import CORE1205 from '@/views/page/CO/RE/CORE1205/CORE1205' // 부동산유형 선택(주택, 오피스텔, 토지, 상가, 기타)
-import CORE2206 from '@/views/page/CO/RE/CORE2206/CORE2206' // 다음 넘어가서 아파트 시세 및 구입가격입력 단계
+import CORE4206 from '@/views/page/CO/RE/CORE4206/CORE4206' // 다음 넘어가서 아파트 시세 및 구입가격입력 단계
 import COCO2201 from '@/views/page/CO/CO/COCO2201/COCO2201' // 자산 등록완료 화면
 import COCO1002 from '@/views/page/CO/CO/COCO1002/COCO1002' // 계좌 없을 때의 슬라이드 팝업
 //import COCO1109 from '@/views/page/CO/CO/COCO1109/COCO1109' // 자산 등록완료 화면(AS-IS)
@@ -718,7 +718,7 @@ export default {
                 srchKwrd : this.aptNm,
             }
             const config = {
-                component: CORE1202,
+                component: CORE4202,
                 params : param
             }
             modalService.openPopup(config).then(response => {
@@ -760,7 +760,7 @@ export default {
                         selArea : this.newPytpAreaCntn,
                     },
                     renderer : {
-                        component : CORE1203
+                        component : CORE4203
                     }
                 }
                 modalService.openSlidePagePopup(config1).then(response => {
@@ -836,7 +836,7 @@ export default {
                 dueDtRevn       : this.dueDtRevn            // 세입자 만기일자
             }
             const config = {
-                component: CORE2206,
+                component: CORE4206,
                 params : param
             }
             modalService.openPopup(config).then(response => {
@@ -1012,7 +1012,7 @@ export default {
                 }
                 modalService.openPopup(config).then((response) => {
                     //바이패스
-                    console.log("CORE1202 close popup", response)
+                    console.log("CORE4202 close popup", response)
                 })
             }
         },

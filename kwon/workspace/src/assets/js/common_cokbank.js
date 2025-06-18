@@ -9,13 +9,15 @@ var $SMNATIVE = {
 	*/
 	BRIDGE_CALLBACK : function(resObj){
 		console.log('BRIDGE_CALLBACK', JSON.stringify(resObj));
-		if(typeof resObj === "string")
+		if(typeof resObj === "string") {
 			resObj = JSON.parse(resObj);
+			console.log('BRIDGE_CALLBACK::[resObj] IS STRING...JSON.parsing...');
+		}
 
 		//var bridgeObj = this.getOS("A") ? resObj : JSON.parse(resObj);
 		var bridgeObj = resObj; //resObj.request Mydata용으로 수정됨
 
-		console.log('bridgeObj ', bridgeObj);
+		console.log('BRIDGE_CALLBACK::bridgeObj(JSON.parsed or not) > ', bridgeObj);
 
 		var _FUNCTION_INFO = "";
 		var _FUNCTION = "";
@@ -111,6 +113,27 @@ var $SMNATIVE = {
 		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"closeCommWebView","callBack": function(){}});
 		$SMNATIVE.execute(JSON.stringify({method:"closeCommWebView", params:[{}], callback:"window.$SMNATIVE.BRIDGE_CALLBACK"}));
 	},
+  // 엑셀 내보내기
+	exportExcel: function(callback, params) {
+		console.log('common_cokbank:::exportExcel => ', params)
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"excelExport","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({method:"excelExport", params: params, callback:"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	showVoice : function(callback){
+		console.log('common_cokbank:::showVoice')
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"showVoice","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"showVoice", params:[{}], "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	reqVoiceAuth : function(callback){
+		console.log('common_cokbank:::reqVoiceAuth')
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"reqVoiceAuth","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"reqVoiceAuth", params:[{}], "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	closeVoice : function(callback) {
+		console.log('common_cokbank:::closeVoice')
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"closeVoice","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"closeVoice", params:[{}], "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
 	// 인증서 가져오기.
 	getCertList : function(callback){
 		// console.log('getCertList', callback)
@@ -193,7 +216,7 @@ var $SMNATIVE = {
 	openPopupWebView : function(callback, url){
 		console.log('openPopupWebView', callback, url)
 		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"openPopupWebView","callBack": callback});
-		$SMNATIVE.execute(JSON.stringify({"method":"openPopupWebView", params:[url], "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+		$SMNATIVE.execute(JSON.stringify({"method":"openPopupWebView", params:url, "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
 	},
 	// 앱 띄우기(개별인증)
 	authAppToApp : function(callback, params){
@@ -218,6 +241,26 @@ var $SMNATIVE = {
 		console.log('showMenu', callback)
 		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"showMenu","callBack": callback});
 		$SMNATIVE.execute(JSON.stringify({"method":"showMenu", params:[{}], "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	checkNHCert : function(callback, params){
+		console.log('checkNHCert >> ', callback, params)
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"checkNHCert","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"checkNHCert", params:params, "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	openNHCert : function(callback, params){
+		console.log('openNhCert >> ', callback, params)
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"openNHCert","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"openNHCert", params:params, "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	getUuid : function(callback){
+		console.log('getUuid >> ', callback)
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"getUuid","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"getUuid", params: null, "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
+	},
+	getAppVersion : function(callback){
+		console.log('getAppVersion >> ', callback)
+		$SMNATIVE.CALLBACK_FUNCTION.push({"method":"getAppVersion","callBack": callback});
+		$SMNATIVE.execute(JSON.stringify({"method":"getAppVersion", params: null, "callback":"window.$SMNATIVE.BRIDGE_CALLBACK"}));
 	},
 }
 

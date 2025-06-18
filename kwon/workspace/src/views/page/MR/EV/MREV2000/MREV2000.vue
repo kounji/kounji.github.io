@@ -22,8 +22,8 @@
         <div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
 			<div class="com_tabmenu_type01">
 				<ul role="tablist">
-					<li :class="tabIndex == 0 ? 'on' : ''" @click="tabChange(0)"><a href="javascript:void(0);">이벤트 목록</a></li>
-					<li :class="tabIndex == 1 ? 'on' : ''" @click="tabChange(1)"><a href="javascript:void(0);">당첨자 발표</a></li>
+					<li :class="tabIndex == 0 ? 'on' : ''" @click="tabChange(0)"><a href="javascript:void(0);" role="tab" :aria-selected="tabIndex == 0 ? 'true': 'false'" :title="tabIndex == 0 ? '선택됨': null">이벤트 목록</a></li>
+					<li :class="tabIndex == 1 ? 'on' : ''" @click="tabChange(1)"><a href="javascript:void(0);" role="tab" :aria-selected="tabIndex == 1 ? 'true': 'false'" :title="tabIndex == 1 ? '선택됨': null">당첨자 발표</a></li>
 				</ul>
 			</div>
             <MREV2006 v-if="tabIndex == 0"/>

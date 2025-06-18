@@ -27,9 +27,9 @@
             </div>
 
             <div class="com_inner bucket_account">
-				
-				<a href="javascript:void(0);" @click="openWebBrowser(url)">
-					<img src="@/assets_v40/images/banner/img_banner_simple_cok_account.png" alt="간편한 농협콕뱅킹 통장 - 목표 달성의 첫걸음을 내딛으세요! 자세히 보기" />
+								
+				<a href="javascript:void(0);" @click="openCokBk('SFBCA0000R')" v-if="this.getUserInfo('chnl') === '386'">
+					<img src="@/assets_v40/images/banner/img_banner_simple_cok_account.png" alt="금융상품몰에서 나에게 꼭 맞는 통장을 골라보세요. 금융이 더 쉬워집니다! 자세히 보기" />
 				</a>
 				
 				<!-- 보유계좌 있을 경우 -->
@@ -75,6 +75,7 @@
 <script>
 
 import apiService from '@/service/apiService'
+import appService from '@/service/appService'
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import modalService from '@/service/modalService'
@@ -82,7 +83,6 @@ import {keyupNumFormat, numberFormat} from '@/utils/number'
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'
 import PDMY4051 from '@/views/page/PD/MY/PDMY4051/PDMY4051'
 import _ from 'lodash'
-import Template from '../../../XX/template/template.vue'
 
 export default {
     name : "PDMY4050",
@@ -267,13 +267,9 @@ export default {
 		remove(value) {
 			return (typeof value === "string") ? value.split(".").join("").split("-").join("").split(",").join("") : value
 		},
-		openWebBrowser(url) {
-            if (this.getUserInfo('chnl') === '385') {
-                appService.executeBrowser(url);
-            } else {
-                appService.cokBankOpenPopupWebBrowser(url);
-            }
-        },
+		openCokBk(url) {
+			appService.cokBankGoMove(url)
+		}
     },
     mounted() {
 		this.initComponent(this.params)
@@ -324,10 +320,6 @@ export default {
     created() {
 
     },
-    components: {
-        Template      
-
-    }
 
 }
 </script>

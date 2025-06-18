@@ -20,11 +20,11 @@
 
         <div class="popup_content com_bg_type00">
 			<div class="com_inner">
-                <strong class="titH1">나의 워라벨, 설레는 여행!</strong>
+                <strong class="titH1">나의 워라밸, 설레는 여행!</strong>
 
                 <ul class="com_slide_check_type02 place_link">
 					<li v-for="(placeCommInfo, index) in placeCommList" :key="'key1_' + index">
-                        <a @click.prevent="fn_goPDMY2025(index)" href="javascript:void(0);"><!-- 클릭시 PDMY2025 화면으로 return 여행장소코드/여행장소명/여행기간코드/여행기간명 -->
+                        <a @click.prevent="fn_goPDMY4025(index)" href="javascript:void(0);"><!-- 클릭시 PDMY4025 화면으로 return 여행장소코드/여행장소명/여행기간코드/여행기간명 -->
                             <dl>
                                 <dt><i :class="setProgressBarClass(index)"><span class="blind">{{placeCommInfo.comnCExpl}}</span></i></dt>
                                 <dd><span>{{placeCommInfo.comnCExpl}}</span></dd>
@@ -101,7 +101,7 @@
 
                 return setClass
             },
-            fn_goPDMY2025(index) {
+            fn_goPDMY4025(index) {
 
                 this.trvDsnC    = this.placeCommList[index].comnCVal  || ''
                 this.trvDsnNm   = this.placeCommList[index].comnCExpl || ''
@@ -122,7 +122,7 @@
 
                     this.pers = response.comnCVal || 0 // 인원수
 
-                    // 인원수, 여행지 선택완료시 PDMY2025화면으로 이동
+                    // 인원수, 여행지 선택완료시 PDMY4025화면으로 이동
                     const rtnParam = {
                         trvDsnC    : this.trvDsnC    , // 여행장소코드
                         trvDsnNm   : this.trvDsnNm   , // 여행장소명

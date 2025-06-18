@@ -35,32 +35,31 @@
 					</div>
 
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요" title="검색어를 입력하세요" v-model="searchCond">
-						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" @keyup.enter="fn_search" placeholder="검색어를 입력하세요" title="검색어를 입력하세요" v-model="searchCond" ref="searchRef">
+						<button type="button" class="com_btn_delete" @click="clearSearch()"><span class="blind">삭제</span></button>
 						<button type="button" class="btn_search" @click="fn_search"><span class="blind">검색</span></button>
 					</div>
 
 					<div class="board_box">
-						<p class="sum">검색결과 <span class="num">가나다</span>순</p>
+						<p class="sum">검색결과 <span class="num">{{ tmoList.length }}</span>개</p>
 						<ul class="cate_list ty_local">
 							<!--
 							<li>
-								<a href="#nolink" class="item" @click.prevent="fn_goPopDetailPage()">
+								<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopDetailPage()">
 									<p class="name">서울 <span class="tel">033-641-9690</span></p>
 									<p class="text">3번 출구2시 방향 여자화장실 옆</p>
 								</a>
 							</li>
 							-->
-							<li v-for="(item, index) in tmoList.slice(0, visibleCount)" :key="index">
-								<a href="#nolink" class="item" @click.prevent="fn_goPopDetailPage(item)">
-									<p class="name">{{ item.plcnm }}<span class="tel">{{ item.ctcplTelno }}</span></p>
+							<li v-for="(item, index) in tmoList" :key="index">
+								<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopDetailPage(item)">
+									<p class="name">{{ item.plcnm }}<span class="tel" v-if="item.ctcplTelno !== '없음'">{{ item.ctcplTelno !== '없음' ? item.ctcplTelno : ''}}</span></p>
 									<p class="text">{{ item.plcCntn }}</p>
 								</a>
 							</li>
 							
 						</ul>
 
-						<button type="button" class="list_more" :class="{ open: isOpenTmo }" v-if="visibleCount < tmoList.length" @click="fn_moreItem">검색결과</button>
 						<div class="no_result" v-if="tmoList.length == 0">
 							<p class="text">검색결과가 없습니다.</p>
 						</div>
@@ -70,22 +69,10 @@
 
 			</div>
 
-			<aside class="tabbar block">
-				<!--toolbar-->
-				<nav>
-					<ul>
-						<li class="on"><a href="#nolink" title="선택됨">홈</a></li>
-						<li><a href="#nolink">자산</a></li>
-						<li><a href="#nolink">지출</a></li>
-						<li><a href="#nolink">연금/절세</a></li>
-						<li><a href="#nolink">추천</a></li>
-					</ul>
-				</nav>
-			</aside>
+			<!-- Footer -->
+            <footersV2 type="" />
 
 		</div>
-			<!-- Footer -->
-            <footersV2 type="an" />
 	</div>
 	
 
@@ -108,7 +95,6 @@ export default {
 			return {
 				searchCond: '',
 				tmoList: [],
-				visibleCount: 5,
 			}
 		},
         mounted() {
@@ -128,7 +114,7 @@ export default {
 					method : 'post',
                 	url : '/rg/mm/01r01',
                 	data : {
-						searchCond: null
+						searchCond: ''
                 	}
             	}
 
@@ -137,6 +123,10 @@ export default {
 						this.tmoList = response.tmoList
 					}
 				})
+			},
+
+			clearSearch() {
+				this.searchCond = ''
 			},
 		  	/* 군장병 TMO 상세 팝업 */
         	fn_goPopDetailPage(p) {
@@ -151,18 +141,10 @@ export default {
 				modalService.openPopup(config).then(() => {})	 
 			},
 
-			fn_moreItem() {
-				this.visibleCount += 4
-			},
 
 			fn_search() {
-				if (this.searchCond.length < 2) {
-					console.log("두 글자 이상으로 입력해주세요.")
-					modalService.alert('검색어는 최소 2글자 이상<br>입력해주세요.')
-					return
-				}
-
-				this.visibleCount = 5
+				
+				this.$refs.searchRef.blur()
 				
 				const apiConfig = {
 					method : 'post',
@@ -180,11 +162,6 @@ export default {
 			},
 		},
 
-		computed: {
-			isOpenTmo() {
-				return this.visibleCount > this.tmoList.length
-			}
-		},
        
         components : {
             Page,

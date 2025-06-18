@@ -41,8 +41,8 @@
                 <div v-if="orgPrdCnt > 0 || isEndDate || cardPayDate" class="box_border_link iconType01">
                     <!-- <a href="javascript:void(0);" v-if="orgExprCnt > 0" role="button" @click="fn_movePage('MRAM2001')"><span class="arrow"><em class="num">{{ orgExprCnt }}</em>개 기관 자산 조회 기간이 만료됐어요</span></a> -->
                     <a href="javascript:void(0);" v-if="orgPrdCnt > 0" role="button" @click="fn_movePage('MRAM2001')"><span class="arrow"><em class="num">{{ orgPrdCnt }}</em>개 기관 자산 연결이 만료돼요</span></a>
-                    <a href="javascript:void(0);" v-else-if="isEndDate" role="button" @click="fn_movePage('ASIP2001')"><span class="arrow">이번 달 자산을 진단해 드릴게요</span></a>
-                    <a href="javascript:void(0);" v-else-if="!!closeCardPayDate" role="button" @click="fn_movePage('ASCD2001')"><span class="arrow">{{ closeCardPayDate | dateFilter('MM월DD일') }} 카드값 내는 날이에요</span></a>
+                    <a href="javascript:void(0);" v-else-if="isEndDate" role="button" @click="fn_movePage('ASIP4001')"><span class="arrow">이번 달 자산을 진단해 드릴게요</span></a>
+                    <a href="javascript:void(0);" v-else-if="!!closeCardPayDate" role="button" @click="fn_movePage('ASCD4001')"><span class="arrow">{{ closeCardPayDate | dateFilter('MM월DD일') }} 카드값 내는 날이에요</span></a>
                 </div>
                 <div class="layoutBox wAuto rBtn top">
                     <div class="left">
@@ -101,7 +101,7 @@
                                 <button class="btnLink" @click.prevent="fn_movePage('ASTA2001')"><span class="blind">전체자산</span></button>
                             </li>
                         </ul> -->
-                        <a href="javascript:void(0);" class="btnLink blockType" title="전체자산 열기" @click.prevent="fn_movePage('ASTA2001')">
+                        <a href="javascript:void(0);" class="btnLink blockType" title="전체자산 열기" @click.prevent="fn_movePage('ASTA4001')">
                             <strong v-if="astIndSum > 0" class="titH3">지난 달보다 자산이 늘었어요</strong>
                                 <strong v-else-if="astIndSum < 0" class="titH3">지난 달보다 자산이 줄었어요</strong>
                                 <strong v-else class="titH3">지난 달과 자산이 같아요</strong>
@@ -127,7 +127,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="javascript:void(0);" v-if="prdStyCdNm && finStyCdNm" class="assetAnalyTxt btnLink blockType" @click="()=>{fn_movePage('ASIP2001'); fn_moveOpenPage('ASIP2010')}">
+                        <a href="javascript:void(0);" v-if="prdStyCdNm && finStyCdNm" class="assetAnalyTxt btnLink blockType" @click="()=>{fn_movePage('ASIP4001'); fn_moveOpenPage('ASIP2010')}">
                             <p class="Txt">나의 금융자산 유형</p>
                             <strong class="com_txt_sub01">{{ prdStyCdNm }}</strong>
                             <span class="potTxt">{{ finStyCdNm }}형</span>
@@ -141,10 +141,10 @@
                                     <strong class="titH3">나의 재무진단</strong>
                                 </li>
                                 <li class="right">
-                                    <button class="btnLink" @click="fn_movePage('ASIP2001')"><span class="blind">자산진단 연결</span></button>
+                                    <button class="btnLink" @click="fn_movePage('ASIP4001')"><span class="blind">자산진단 연결</span></button>
                                 </li>
                             </ul> -->
-                            <a href="javascript:void(0);" class="btnLink blockType" title="자산진단 열기" @click="fn_movePage('ASIP2001')"><strong class="titH3">나의 재무진단</strong></a>
+                            <a href="javascript:void(0);" class="btnLink blockType" title="자산진단 열기" @click="fn_movePage('ASIP4001')"><strong class="titH3">나의 재무진단</strong></a>
                             <div class="financGrp layoutBox">
                                 <div class="left">
                                     <ul class="grp">
@@ -200,10 +200,10 @@
                                 <strong class="titH3">{{ currMm }}월 쓴 돈</strong>
                             </li>
                             <li class="right">
-                                <button class="btnLink" @click="fn_movePage('LCLE2001')"><span class="blind">지출내역 연결</span></button>
+                                <button class="btnLink" @click="fn_movePage('LCLE4001')"><span class="blind">지출내역 연결</span></button>
                             </li>
                         </ul> -->
-                        <a href="javascript:void(0);" class="btnLink blockType" title="지출내역 열기" @click="fn_movePage('LCLE2001')"><strong class="titH3">{{ currMm }}월 쓴 돈</strong></a>
+                        <a href="javascript:void(0);" class="btnLink blockType" title="지출내역 열기" @click="fn_movePage('LCLE4001')"><strong class="titH3">{{ currMm }}월 쓴 돈</strong></a>
                         <p class="com_txt_sub">{{(cusMmtpXpsOut.bmmCmprXpsAm) > 0 ? '지난 달 보다 더 쓰고 있어요' : cusMmtpXpsOut.bmmCmprXpsAm === 0 ? '지난 달과 변화가 없어요' : '지난 달 보다 덜 쓰고 있어요'}}</p>
                         <p v-if="cusMmtpXpsOut.bmmCmprXpsAm && cusMmtpXpsOut.bmmCmprXpsAm != 0" :class="`amount ${(cusMmtpXpsOut.bmmCmprXpsAm) > 0 ? 'up' : cusMmtpXpsOut.bmmCmprXpsAm === 0 ? 'amount' : 'down'}`">{{Math.abs(cusMmtpXpsOut.bmmCmprXpsAm) | numberFilter}}원</p><!-- 증가amount up, 감소amount down, 증감없음amount -->
                         <!-- 차트영역 -->
@@ -217,10 +217,10 @@
                                 <strong class="titH5"><span class="pointTxt">{{xpsStyle.xpsCtgrNm}}</span>에서 제일 많이 썼어요</strong>
                             </li>
                             <li class="right">
-                                <button class="btnLink" @click="fn_movePage('LCIP2001')"><span class="blind">지출분석 연결</span></button>
+                                <button class="btnLink" @click="fn_movePage('LCIP4001')"><span class="blind">지출분석 연결</span></button>
                             </li>
                         </ul> -->
-                        <a v-if="xpsStyle.xpsCtgrNm" href="javascript:void(0);" class="btnLink blockType" title="지출분석 열기" @click="fn_movePage('LCIP2001')"><p class="titH5"><strong class="pointTxt">{{xpsStyle.xpsCtgrNm}}</strong>에서 제일 많이 썼어요</p></a>
+                        <a v-if="xpsStyle.xpsCtgrNm" href="javascript:void(0);" class="btnLink blockType" title="지출분석 열기" @click="fn_movePage('LCIP4001')"><p class="titH5"><strong class="pointTxt">{{xpsStyle.xpsCtgrNm}}</strong>에서 제일 많이 썼어요</p></a>
                         <hr aria-hidden="true">
                         <!-- 정기지출 정보가 없는 경우 -->
                         <template v-if="fxtmList.length < 1">
@@ -232,7 +232,7 @@
                                     <button class="btnLink" @click="fn_moveOpenPage('LCIP2007')"><span class="blind">정기지출 연결</span></button>
                                 </li>
                             </ul> -->
-                            <a href="javascript:void(0);" class="btnLink blockType" title="정기지출 열기" @click="fn_movePage('LCIP2001', {openPopup: 'LCIP2007'})"><strong class="titH3">다가올 지출 <i>{{fxtmList.length || 0}}</i>건</strong></a>
+                            <a href="javascript:void(0);" class="btnLink blockType" title="정기지출 열기" @click="fn_movePage('LCIP4001', {openPopup: 'LCIP2007'})"><strong class="titH3">다가올 지출 <i>{{fxtmList.length || 0}}</i>건</strong></a>
                             <div class="gray_box_m">
                                 <p>예상되는 정기지출을<br>찾을 수 없어요</p>
                             </div>
@@ -240,13 +240,13 @@
                         <!--// 정기지출 정보가 없는 경우 -->
                         <!-- 정기지출 정보가 있는 경우 -->
                         <template v-else-if="fxtmList.length > 0">
-                            <a href="javascript:void(0);" class="btnLink blockType" title="정기지출 열기" @click="fn_movePage('LCIP2001', {openPopup: 'LCIP2007'})"><strong class="titH3">다가올 지출 <i>{{fxtmList.length || 0}}</i>건</strong></a>
+                            <a href="javascript:void(0);" class="btnLink blockType" title="정기지출 열기" @click="fn_movePage('LCIP4001', {openPopup: 'LCIP2007'})"><strong class="titH3">다가올 지출 <i>{{fxtmList.length || 0}}</i>건</strong></a>
                             <!-- <ul class="layoutBox wAuto rBtn">
                                 <li class="left">
                                     <strong class="titH3">다가올 지출 <i>{{ fxtmList.length }}</i>건</strong>
                                 </li>
                                 <li class="right">
-                                    <button class="btnLink" @click="() => {fn_movePage('LCIP2001'); fn_moveOpenPage('LCIP2007')}"><span class="blind">정기지출 연결</span></button>
+                                    <button class="btnLink" @click="() => {fn_movePage('LCIP4001'); fn_moveOpenPage('LCIP2007')}"><span class="blind">정기지출 연결</span></button>
                                 </li>
                             </ul> -->
                             <!-- 정기지출목록 -->
@@ -276,7 +276,7 @@
                                 <li class="right"></li>
                             </ul>
                             <p class="nonMyTargetTitle">이루고 싶은 목표를 정하고<br>도전하세요!</p>
-                            <button type="button" class="stdBtn full" @click="fn_movePage('PDMY2001',{type: 'reg'})">도전 목표 정하기</button>
+                            <button type="button" class="stdBtn full" @click="fn_movePage('PDMY4001',{type: 'reg'})">도전 목표 정하기</button>
                         </div>
                         <!--// 등록한 목표가 없는 경우 -->
                         <!-- 나의 목표 -->
@@ -366,7 +366,7 @@
             </div>
             <!--// 부가 서비스 배너 -->
             <div class="setBtnBox">
-                <button class="com_btn_round viewSet" @click="fn_moveOpenPage('MAMA2004')">화면 설정</button>
+                <button class="com_btn_round viewSet" @click="fn_moveOpenPage('MAMA4004')">화면 설정</button>
                 <button class="com_btn_round linkSet" @click="fn_movePage('MRAM2001')">연결 관리</button>
             </div>
         </div>
@@ -409,12 +409,12 @@ import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'   // 연결 기관 �
 // import MAMA1003 from '@/views/page/MA/MA/MAMA1003/MAMA1003'   // 금융생활 영역 슬라이트 화면
 // import MAMA1004 from '@/views/page/MA/MA/MAMA1004/MAMA1004'   // 제휴서비스 영역 슬라이트 화면
 
-import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'   // 신용정보
+import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'   // 신용정보
 import ASAC1003 from '@/views/page/AS/AC/ASAC1003/ASAC1003'   // 계좌잔액예측 리포트
 import ASIP2010 from '@/views/page/AS/IP/ASIP2010/ASIP2010'   // 금융스타일
 
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'   // 목표등록 메인
-// import PDMY2033 from '@/views/page/PD/MY/PDMY2033/PDMY2033'   // 지출목표 상세
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'   // 목표등록 메인
+// import PDMY4033 from '@/views/page/PD/MY/PDMY4033/PDMY4033'   // 지출목표 상세
 // import PDMY2039 from '@/views/page/PD/MY/PDMY2039/PDMY2039'   // 돈모으기 상세
 // import PDMY2041 from '@/views/page/PD/MY/PDMY2041/PDMY2041'   // 투자목표 상세
 // import PDMY2029 from '@/views/page/PD/MY/PDMY2029/PDMY2029'   // 내집마련 상세
@@ -427,14 +427,14 @@ import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'   // 목표등록 �
 import PDPD1107 from '@/views/page/PD/PD/PDPD1107/PDPD1107'   // 대출한도조회
 
 import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101'   // 자산등록(자동차)
-import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'   // 자산등록(부동산)
+import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'   // 자산등록(부동산)
 // import LCIP2007 from '@/components/category/LCIP2007'   // 정기지출 리포트
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'   // 정기지출 리포트
 
-import MAMA2002 from '@/views/page/MA/MA/MAMA2002/MAMA2002'   // 미존재 자산연결 팝업
+import MAMA4002 from '@/views/page/MA/MA/MAMA4002/MAMA4002'   // 미존재 자산연결 팝업
 import PDRT2009 from '@/views/page/PD/RT/PDRT2009/PDRT2009' // 은퇴준비 진단 추가(20230711)
-import MAMA2004 from '@/views/page/MA/MA/MAMA2004/MAMA2004'
-import MREV2001 from '@/views/page/MR/EV/MREV2001/MREV2001' // 오픈 이벤트 슬라이드 팝업
+import MAMA4004 from '@/views/page/MA/MA/MAMA4004/MAMA4004'
+import MREV4001 from '@/views/page/MR/EV/MREV4001/MREV4001' // 오픈 이벤트 슬라이드 팝업
 import STCK2001 from '@/views/page/MR/ST/STCK2001/STCK2001' // 시스템 점검 슬라이드 팝업
 
 import MREV2010 from '@/views/page/MR/EV/MREV2010/MREV2010' // 일반이벤트 상세팝업(신규가입)
@@ -464,7 +464,7 @@ export default {
 
             psnCrdevlScrVal       : "",	 //신용점수
             crdevlUpAcmCsttRtoVal : "",  //신용등급
-            popCORE2201Cnt        : 0,   //부동산 등록 카운트
+            popCORE4201Cnt        : 0,   //부동산 등록 카운트
             isDebugLog            : false,
 
             //////// 연결자산 관련 데이터
@@ -766,7 +766,8 @@ export default {
         },
         // 건강보험공단 연결 여부
         isConnectedAssetDigs () {
-            return !!this.publicList.find(el => el.infOfrmnOrgC === 'PBAAVN0000')
+            return true
+            //return !!this.publicList.find(el => el.infOfrmnOrgC === 'PBAAVN0000')
         },
         assetUpdateDtm(){
             /* 자산 업데이트 5분 체크 start */
@@ -832,9 +833,9 @@ export default {
 
         //url param(screen)이 팝업페이지로 들어왔을경우
         this.screen = this.userInfo.screen
-        if(this.userInfo.screen == 'ASCR1101'){     //신용정보 팝업
+        if(this.userInfo.screen == 'ASCR4101'){     //신용정보 팝업
             const config = {
-                component: ASCR1101,
+                component: ASCR4101,
                 params : {}
             }
             modalService.openPopup(config).then(() => {
@@ -1169,7 +1170,7 @@ export default {
                     if(commonService.getStorage('noSeeEventExp'+this.getUserInfo('chnl')) !== savedDate && res.evtList.length > 0) {      //쿠키체크
                         const config_evt = {
                             params : res.evtList,
-                            renderer : {component : MREV2001}
+                            renderer : {component : MREV4001}
                         }
                         modalService.openSlidePagePopup(config_evt).then(response => {
                             console.log('response', response)
@@ -1266,7 +1267,7 @@ export default {
         // 지출목표 상세이동
         detailMove1(stYm) {
 
-            // let compName = PDMY2033
+            // let compName = PDMY4033
 
             let asetAmnCtgrId = this.expenseList[0].asetAmnCtgrId || ''
             let flag
@@ -1280,13 +1281,13 @@ export default {
 
             let param = {type:'update', stYm:stYm, modifyYn:"Y", preXpsAm: this.xpsAm, flag : flag}
 
-            this.fn_movePage('PDMY2001', param)
+            this.fn_movePage('PDMY4001', param)
         },
         // 금융목표 상세이동
         goalDetailMove(fncObtDsc, sqno, prgStsCd, carGrdNo, carCtrimNo, basyy, basmm) {
 
             let param = {type:'update', "fncObtDsc":fncObtDsc, "sqno": sqno, "prgStsCd":prgStsCd, "carGrdNo":carGrdNo, "carCtrimNo":carCtrimNo, "basyy":basyy, "basmm":basmm}
-            this.fn_movePage('PDMY2001', param)
+            this.fn_movePage('PDMY4001', param)
             
         },
 
@@ -1318,7 +1319,7 @@ export default {
             let params = {}
             
             // if 신차중고차 및 내차관리
-            if (pageId == 'ANCA2201') {
+            if (pageId == 'ANCA4201') {
                 // if 내차관리 else 신차중고차
                 if (param) {
                     params = { viewSvc: 'CARCARE', vhcnoVal: param }
@@ -1333,12 +1334,12 @@ export default {
             //     params = {}
             // }
 
-            // 연금진단: PDRT2001
-            // 상품추천: PDPD1001
-            // 신용점수: ASCR1101
+            // 연금진단: PDRT4001
+            // 상품추천: PDPD4001
+            // 신용점수: ASCR4101
             // 세금현황: PDTX2004
-            // 콕부동산: ANRE2201
-            // 콕마이카: ANCA2201
+            // 콕부동산: ANRE4201
+            // 콕마이카: ANCA4201
             const config = {
                 name : pageId,
                 params : params
@@ -1374,13 +1375,13 @@ export default {
             }
 
             // 신용정보
-            if (pageId === "ASCR1101") {
-                compName = ASCR1101
+            if (pageId === "ASCR4101") {
+                compName = ASCR4101
             }
 
             // 목표등록
-            if (pageId === 'PDMY2005') {
-                compName = PDMY2005
+            if (pageId === 'PDMY4005') {
+                compName = PDMY4005
             }
 
             // 대출한도 조회
@@ -1394,11 +1395,11 @@ export default {
             }
 
             // 자산등록(부동산)
-            if (pageId === "CORE2201") {
-                compName = CORE2201
+            if (pageId === "CORE4201") {
+                compName = CORE4201
                 popParams = {
                     isUpt : false,              // 등록
-                    popId : 'ANRE2201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
+                    popId : 'ANRE4201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
                     isTitleHide : false         // 부동산 등록 시 아파트/직접입력 타이틀 hide 여부(true:숨김, false:보임)
                 }
             }
@@ -1423,8 +1424,8 @@ export default {
                 compName = PDRT2009
             }
 
-            if (pageId === 'MAMA2004') {
-                compName = MAMA2004
+            if (pageId === 'MAMA4004') {
+                compName = MAMA4004
             }
             if (pageId === 'COAR2002') {
                 compName = COAR2002
@@ -1465,8 +1466,8 @@ export default {
                     this.fn_newAlarm()
                 }
                 
-                if(pageId === "PDMY2005" || pageId === "PDMY2033") {
-                    console.log('PDMY2005 return response', response)
+                if(pageId === "PDMY4005" || pageId === "PDMY4033") {
+                    console.log('PDMY4005 return response', response)
                     // this.fn_refreshApiCall()
                     if (response === 'reSelect') {
                         this.fn_getGoalData()
@@ -1481,7 +1482,7 @@ export default {
                 }
 
                 // 화면 설정 후
-                if(pageId == "MAMA2004") {
+                if(pageId == "MAMA4004") {
                     console.log('response.isSave ::: ', response?.isSave)
                     if (response?.isSave) {
                         this.banners = []
@@ -1491,13 +1492,13 @@ export default {
                 }
                 
                 // 부동산 등록 완료 시
-                if(pageId === "CORE2201") {
-                    if (response == 'refresh' || response.uptCom == true || this.popCORE2201Cnt > 0) {
-                        this.popCORE2201Cnt = 0
+                if(pageId === "CORE4201") {
+                    if (response == 'refresh' || response.uptCom == true || this.popCORE4201Cnt > 0) {
+                        this.popCORE4201Cnt = 0
                         this.fn_refreshApiCall()
-                    } else if(response == 'ANRE2201') {
-                        this.popCORE2201Cnt++
-                        this.fn_moveOpenPage('CORE2201')
+                    } else if(response == 'ANRE4201') {
+                        this.popCORE4201Cnt++
+                        this.fn_moveOpenPage('CORE4201')
                     }
                 }
             })
@@ -1594,7 +1595,7 @@ export default {
                     params: { // 파라미터
                     },
                     renderer : {
-                        component : MAMA2002 //자산연결안내팝업
+                        component : MAMA4002 //자산연결안내팝업
                     }
                 }
                 modalService.openSlidePagePopup(config).then(response => {
@@ -1858,12 +1859,12 @@ export default {
             if(!this.banners || !this.banners.length || this.banners.length === 0) {
                 // 최초 접속하는 경우 기본 값으로 설정 처리
                 this.banners = [
-                    {id:'rt', name: '연금진단', desc: '매월 내 연금은?', hidden: 'N', class: 'pens', pageId: 'PDRT2001', type: 'page'},
-                    {id:'pd', name: '상품추천', desc: '맞춤 금융상품', hidden: 'N', class: 'prod', pageId: 'PDPD1001', type: 'page'},
-                    {id:'cr', name: '신용점수', desc: '더 높일 수 있어요', hidden: 'N', class: 'cred', pageId: 'ASCR1101', type: 'popup'},
+                    {id:'rt', name: '연금진단', desc: '매월 내 연금은?', hidden: 'N', class: 'pens', pageId: 'PDRT4001', type: 'page'},
+                    {id:'pd', name: '상품추천', desc: '맞춤 금융상품', hidden: 'N', class: 'prod', pageId: 'PDPD4001', type: 'page'},
+                    {id:'cr', name: '신용점수', desc: '더 높일 수 있어요', hidden: 'N', class: 'cred', pageId: 'ASCR4101', type: 'popup'},
                     {id:'tx', name: '세금현황', desc: '꼼꼼한 세금 관리', hidden: 'N', class: 'tax', pageId: 'PDTX2004', type: 'page'},
-                    {id:'re', name: '콕부동산', desc: '우리집 시세는 얼마?', hidden: 'N', class: 'cok', pageId: 'ANRE2201', type: 'page'},
-                    {id:'ca', name: '콕마이카', desc: '종합 자동차관리', hidden: 'N', class: 'car', pageId: 'ANCA2201', type: 'page'},
+                    {id:'re', name: '콕부동산', desc: '우리집 시세는 얼마?', hidden: 'N', class: 'cok', pageId: 'ANRE4201', type: 'page'},
+                    {id:'ca', name: '콕마이카', desc: '종합 자동차관리', hidden: 'N', class: 'car', pageId: 'ANCA4201', type: 'page'},
                 ]
                 commonService.setStorage('main' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'bannersV2', this.banners)
             }

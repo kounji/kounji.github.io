@@ -73,6 +73,8 @@
 								모으고 있는 돈<br>
 								<!-- [v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
 								<!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong><!-- 0908 counter 삭제 -->
+								<!--[v4.0] #접근성# 마크업수정 -->
+								<!--
 								<div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -84,15 +86,30 @@
 										<span class="show">총 <em>1,952,692,372</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,952,692,372</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--//[v4.0] #접근성# 마크업수정 -->
 								<!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정-->
 							</div>
 						</div>
 					</div>
+					<!--[v4.0] 25-04-30 배너 삭제 
 					<div class="link_banner">
 						<a href="#nolink" role="button">
 							<img src="../../../../src/assets_v40/images/banner/link_banner_01.png" alt="신한세배드림적금으로 높은이자 받기">
 						</a>
 					</div>
+					-->
 					<!-- <div class="new_float_popover_wrap">
 						<div class="float_popover custom_float_popover">
 							<div class="text">
@@ -110,17 +127,22 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>입출금</span> <span class="com_icon_num custom">3</span></div>
+									<div class="tit"><span>입출금</span> <span class="com_icon_num custom">3<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
-							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
-							<!-- //[v4.0] 정렬 버튼 추가 -->
+							<!-- [v4.0] 25-05-27 송금하기 버튼 추가로 마크업 변경 -->
+							<div class="list_top_btns">
+								<!-- [v4.0] 정렬 버튼 추가 -->
+								<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
+								<!-- //[v4.0] 정렬 버튼 추가 -->
+								<button type="button" class="stdBtn innerType01">송금하기</button>
+							</div>
+							<!-- //[v4.0] 25-05-27 송금하기 버튼 추가 -->
 						</div>
 						
 						<ul class="view_cont list_type_01">
@@ -135,24 +157,24 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
 								</a>
 
-								<!-- [v4.0] 버튼 추가 -->
+								<!-- [v4.0] 버튼 추가 / 25-05-27 송금버튼 삭제 --
 								<div class="exe_btns">
 									<button type="button" class="stdBtn innerType01">송금</button>
-									<!--[v4.0] 2025-03-13 내용 삭제 -->
-									<!-- <button type="button" class="stdBtn innerType01">계좌관리</button> -->
+									!--[v4.0] 2025-03-13 내용 삭제 -->
+									<!-- <button type="button" class="stdBtn innerType01">계좌관리</button> --
 								</div>
-								<!-- //[v4.0] 버튼 추가 -->
+								!-- //[v4.0] 버튼 추가 -->
 							</li>
 							<li>
 								<a href="#nolink" role="button">
@@ -165,21 +187,21 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
 								</a>
-								<!-- [v4.0] 버튼 추가 -->
+								<!-- [v4.0] 버튼 추가 / 25-05-27 송금버튼 삭제--
 								<div class="exe_btns">
 									<button type="button" class="stdBtn innerType01">송금</button>
 								</div>
-								<!-- //[v4.0] 버튼 추가 -->
+								!-- //[v4.0] 버튼 추가 -->
 							</li>
 							<li>
 								<a href="#nolink" role="button">
@@ -192,21 +214,21 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
 								</a>
-								<!-- [v4.0] 버튼 추가 -->
+								<!-- [v4.0] 버튼 추가 / 25-05-27 송금버튼 삭제 --
 								<div class="exe_btns">
 									<button type="button" class="stdBtn innerType01">송금</button>
 								</div>
-								<!-- //[v4.0] 버튼 추가 -->
+								!-- //[v4.0] 버튼 추가 -->
 							</li>
 							<!-- [v4.0] 마이너스 통장 케이스 추가 -->
 							<li>
@@ -219,15 +241,20 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">-550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>-550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
 								</a>
+								<!-- [v4.0] 버튼 추가 / 25-05-27 송금버튼 삭제 --
+								<div class="exe_btns">
+									<button type="button" class="stdBtn innerType01">송금</button>
+								</div>
+								!-- //[v4.0] 버튼 추가 -->
 								<span class="com_txtinfo_type01">마이너스 통장 대출잔액은 대출에서만 합산됩니다.</span>
 							</li>
 							<!-- //[v4.0] 마이너스 통장 케이스 추가 -->
@@ -251,16 +278,16 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="false">
 								<div class="new_tit_area">
-									<div class="tit"><span>예금</span> <span class="com_icon_num custom">1</span></div>
+									<div class="tit"><span>예금</span> <span class="com_icon_num custom">1<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
 							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
+							<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
 							<!-- //[v4.0] 정렬 버튼 추가 -->
 						</div>
 						<ul class="view_cont list_type_01">
@@ -275,12 +302,12 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -295,16 +322,16 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>적금</span> <span class="com_icon_num custom">2</span></div>
+									<div class="tit"><span>적금</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
 							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
+							<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
 							<!-- //[v4.0] 정렬 버튼 추가 -->
 						</div>
 						<ul class="view_cont list_type_01">
@@ -319,12 +346,12 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -343,12 +370,12 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -370,16 +397,16 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>외화</span> <span class="com_icon_num custom">9</span></div>
+									<div class="tit"><span>외화</span> <span class="com_icon_num custom">9<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
 							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
+							<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
 							<!-- //[v4.0] 정렬 버튼 추가 -->
 						</div>
 						<ul class="view_cont list_type_01">
@@ -394,12 +421,12 @@
 										</dt>
 										<!-- [v4.0] 계좌번호 추가 -->
 										<dd>
-											<span class="prod_num">714285558805</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>714285558805</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<!-- //[v4.0] 계좌번호 추가 -->
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>

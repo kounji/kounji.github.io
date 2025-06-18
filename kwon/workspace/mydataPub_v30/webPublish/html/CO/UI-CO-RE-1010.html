@@ -24,11 +24,11 @@
 	<div class="full_popup renewal" id="full_popup_01"> 
 		<div class="popup_header">
 			<h1 class="">소재지설정</h1>
-			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
+			<a href="#nolink" class="prev"><span class="blind">이전화면</span></a><!--[v4.0] 25-04-02 클래스 변경-->
 		</div>
 		
 		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
-			<div class="custom_check_list">
+			<div class="custom_check_list sel_local"><!--[v4.0] 25-04-02 클래스 추가-->
 				<!-- 시도선택 -->
 				<div class="com_inner">
 					<strong class="com_cont_tit01">시/도 선택</strong>
@@ -174,6 +174,7 @@
 				<!-- //시도선택 -->
 				<!-- 구군선택 -->
 				<div class="com_inner">
+					<!--[v4.0] 25-04-02 구조변경 
 					<ul class="com_radio_type01">
 						<li>
 							<div class="btn_radio">
@@ -184,6 +185,16 @@
 							</div>
 						</li>
 					</ul>
+					-->
+					<div class="com_radio_type01">
+						<div class="btn_radio">
+							<input type="radio" id="radio-1" disabled checked>
+							<label for="radio-1">
+								<span>강원도</span>
+							</label>
+						</div>
+					</div>
+					<!--[v4.0] 25-04-02 구조변경 -->
 					
 					<strong class="com_cont_tit01">구/군 선택</strong>
 					<ul class="com_radio_type03">
@@ -328,25 +339,44 @@
 				<!-- //구군선택 -->
 				<!-- 읍면동선택 -->
 				<div class="com_inner">
+					<!--[v4.0] 25-04-02 구조변경 
 					<ul class="com_radio_type01">
 						<li>
 							<div class="btn_radio">
-								<input type="radio" id="radio-1" disabled checked>
-								<label for="radio-1">
+								<input type="radio" id="radio-1" disabled="" checked="" aria-hidden="true">
+								<label for="radio-1" aria-checked="false" role="radio">
 									<span>강원도</span>
 								</label>
 							</div>
 						</li>
 						<li>
 							<div class="btn_radio">
-								<input type="radio" id="radio-2" disabled checked>
-								<label for="radio-2">
+								<input type="radio" id="radio-2" disabled="" checked="" aria-hidden="true">
+								<label for="radio-2" aria-checked="false" role="radio">
 									<span>강원도</span>
 								</label>
 							</div>
 						</li>
 					</ul>
-					
+					-->
+					<div class="com_radio_type01">
+						<div class="btn_radio">
+							<input type="radio" id="radio-1" disabled checked>
+							<label for="radio-1">
+								<span>강원도</span>
+							</label>
+						</div>
+					</div>
+					<div class="com_radio_type01">
+						<div class="btn_radio">
+							<input type="radio" id="radio-2" disabled checked>
+							<label for="radio-2">
+								<span>강원도</span>
+							</label>
+						</div>
+					</div>
+					<!--[v4.0] 25-04-02 구조변경 -->
+								
 					<strong class="com_cont_tit01">읍/면/동 선택</strong>
 					<ul class="com_radio_type03">
 						<li>

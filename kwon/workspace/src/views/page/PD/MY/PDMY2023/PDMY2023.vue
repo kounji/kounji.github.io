@@ -147,7 +147,7 @@ import modalService from '@/service/modalService'
 import {keyupNumFormat, numberFormat} from '@/utils/number'
 import {checkWord} from '@/utils/data'
 import {monthAdd, dateFormat, monthDiff, isValidDate} from '@/utils/date'
-import CORE1203 from '@/views/page/CO/RE/CORE1203/CORE1203'
+import CORE4203 from '@/views/page/CO/RE/CORE4203/CORE4203'
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'
 import PDMY2045 from '@/views/page/PD/MY/PDMY2045/PDMY2045'		// 아파트 등록
 import _ from 'lodash'
@@ -461,7 +461,7 @@ export default {
 							selArea : this.newPytpAreaCntn,
 						},
 						renderer : {
-							component : CORE1203
+							component : CORE4203
 						}
 					}
 					modalService.openSlidePagePopup(config1).then(response => {

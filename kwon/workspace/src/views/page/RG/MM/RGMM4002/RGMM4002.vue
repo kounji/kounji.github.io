@@ -16,7 +16,7 @@
 	<!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->
@@ -49,9 +49,9 @@
 							<dt class="ico_star">위치설명</dt>
 							<dd>{{ detailInfo.plcCntn }}</dd>
 						</div>
-                        <div>
+                        <div v-if="!!detailInfo.rmk">
 							<dt class="ico_star04">비고</dt>
-							<dd>{{ !!detailInfo.rmk ? detailInfo.rmk : '' }}</dd>
+							<dd>{{ detailInfo.rmk }}</dd>
 						</div>
 					</dl>
 				</div>

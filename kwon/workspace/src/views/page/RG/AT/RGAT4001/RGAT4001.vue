@@ -25,12 +25,12 @@
                     <!-- 앱 설치 여부에 따라 앱 실행 혹은 앱 설치 화면으로 이동 -->
                     <!-- <a href="https://farm.nonghyup.com/comm/link/comm1020.do" target="_blank" title="새창열기"> -->
                     <a href="javascript:void(0);" @click.prevent="openWebBrowser('https://farm.nonghyup.com/comm/link/comm1020.do')" target="_blank" title="새창열기">
-                        <img src="@/assets_v40/images/banner/img_farm_banner_02.png" class="img" alt="농협이 만든 종합영농정보 플랫 NH오농">
+                        <img src="@/assets_v40/images/banner/img_farm_banner_02.png" class="img" alt="농협이 만든 종합영농정보 플랫폼 NH오농">
                     </a>					
                 </div>
             </section>
         </div>
-        <footersV2 type="pd" />
+        <footersV2 type="" />
 
     </page>
 </template>

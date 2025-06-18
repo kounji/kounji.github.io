@@ -345,8 +345,8 @@ import ANRE2202 from '@/views/page/AN/RE/ANRE2202/ANRE2202'     // 나의 자산
 import ANRE2203 from '@/views/page/AN/RE/ANRE2203/ANRE2203'     // 부동산 상세(iframe)
 import ANRE2204 from '@/views/page/AN/RE/ANRE2204/ANRE2204'     // 지도검색(iframe)
 import ANRE2205 from '@/views/page/AN/RE/ANRE2205/ANRE2205'     // 부동산 추천(iframe)
-import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'     // 자산 > 부동산 등록
-import ANRE2207 from '@/views/page/AN/RE/ANRE2207/ANRE2207'     // 관심부동산 등록
+import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'     // 자산 > 부동산 등록
+import ANRE4207 from '@/views/page/AN/RE/ANRE4207/ANRE4207'     // 관심부동산 등록
 import COET1003 from '@/views/page/CO/ET/COET1003/COET1003'     // 부동산 이벤트 응모팝업
 
 export default {
@@ -536,7 +536,7 @@ export default {
         // 부동산 등록 팝업 오픈
         openInsRlestPop() {
             const config = {
-                component: CORE2201,        // 나의자산 > 부동산 등록
+                component: CORE4201,        // 나의자산 > 부동산 등록
                 params : {
                     isUpt : false,          // 등록
                     popId : 'ANRE2201',     // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
@@ -560,7 +560,7 @@ export default {
         // 관심부동산 자산등록 팝업 오픈
         openInteInsRlestPop() {
             const config = {
-                component: CORE2201,        // 나의자산 > 부동산 등록
+                component: CORE4201,        // 나의자산 > 부동산 등록
                 params : {
                     isUpt               : false,                                                // 등록
                     isData              : true,                                                 // 넘겨주는 데이터 있는지 여부
@@ -620,7 +620,7 @@ export default {
         // 관심부동산 등록 팝업 오픈
         openInsInteRlestPop() {
             const config = {
-                component: ANRE2207,
+                component: ANRE4207,
                 params : {}
             };
             modalService.openPopup(config).then((response) => {
@@ -906,7 +906,7 @@ export default {
             }
             modalService.openPopup(config_evtPop).then(response => {
                 //바이패스 (응모 도중 팝업 닫을 시 완료팝업에서 팝업닫기 기능과 같은 역할)
-                console.log("CORE2201 close popup", response)
+                console.log("CORE4201 close popup", response)
 
                 if(response == 'refresh') {
                     this.initComponent();

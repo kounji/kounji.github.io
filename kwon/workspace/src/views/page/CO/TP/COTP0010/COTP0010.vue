@@ -80,12 +80,12 @@ export default {
 
         },
 		getData() {
-			this.ageList.push({'comnCId':'ASET_AG_LRG_DSC', 'comnCVal':'00', 'comnCExpl':'전체', 'sortSq':0, 'delYn':'0'})
+			this.ageList.push({'comnCId':'FNKI_AG_LRG_DSC', 'comnCVal':'00', 'comnCExpl':'전체', 'sortSq':0, 'delYn':'0'})
 
 			const config = {
                 url: '/co/co/00r01',
                 data: {
-                    comnCId   : "ASET_AG_LRG_DSC", // 자산연령대구분코드(연령대)
+                    comnCId   : "FNKI_AG_LRG_DSC", // 금융지식연령대구분코드(연령대)
 					delYn     : '0'                // 삭제여부
                 }
             }

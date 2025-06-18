@@ -16,7 +16,7 @@
     <!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->
@@ -34,6 +34,7 @@
 					<strong>{{ roadInfo.bkphNm }}</strong>
 					<p><em>국토종주 자전거길</em>을 소개합니다.</p>
 				</div>
+			
 				<p class="date">마지막 업데이트 기준 <span>{{ roadInfo.lschgDtm }}</span></p>
 
                 <!-- 네이버 지도 영역 -->
@@ -49,12 +50,26 @@
 				mapMode : polyLine | retina
 				mapInfoList
 				-->
-				<cmm-naverMap :mapInfoList.sync="mapInfoList" mapMode="polyLine"></cmm-naverMap>
+				<div v-if="!mapError && !!params.gpsList" class="board_box"> <!--[v4.0] 2025-04-08 지도 UI 변경 -->
+					<div class="head bg02">
+						<strong>지도</strong>
+						<p>지도를 확대/축소해서<br>더 상세한 코스를 확인해 보세요.</p>
+					</div>
+					<!-- 네이버 지도 영역 -->
+					<div>
+						<cmm-naverMap 
+							:mapInfoList.sync="params.gpsList" 
+							mapMode="bicycle" 
+							@map-error="mapError = true"
+						></cmm-naverMap>
+					</div>
+					<!-- // -->
+				</div>
 			</section>
 
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 
@@ -78,18 +93,22 @@ export default {
         return {
             roadInfo: {},
 			mapInfoList: [],
+			mapError: false,
 		}
 	},
 	computed: {
 	},
 	created() {
+		apiService.addLoading({})
 		//console.log("■■ ■ ■ ■  created", this.params);
 		this.roadInfo = this.params
 		this.mapInfoList = this.roadInfo.gpsList
 
-		console.log('mapInfoList')
+		console.log('mapInfoList update')
 		console.log(this.mapInfoList)
-		
+		console.log('addLoading')
+
+
 	},	
     mounted() {
         //this.initComponent()
@@ -97,8 +116,11 @@ export default {
 		//console.log("this.roadInfo", this.roadInfo)
 		
         //PFM로그 처리 화면접속이력 등록 POST
-        this.initComponent()
+        console.log('*** RGBM4005_SCROLL_POS ***')
+		console.log(document.body.scrollTop)
+		this.initComponent()
 		apiService.pfmLogSend(this.$options.name)
+		setTimeout(() => apiService.removeLoading({}), 200)
 
     },
     mixins: [
@@ -129,7 +151,6 @@ export default {
 			}
 			modalService.openPopup(config).then(() => {})
 		},
-
     },
     components: {
 		Page,
@@ -137,13 +158,5 @@ export default {
 		CmmNaverMap
 	},
 
-	watch:{
-		/*
-		params(){
-			const vm = this;
-			vm.mapInfoList = vm.params.gpsList
-		}
-		*/
-    }	
 }
 </script>

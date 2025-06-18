@@ -128,7 +128,7 @@ import modalService from '@/service/modalService'
 import _ from 'lodash'
 
 export default {
-    name : "ASLN2004",
+    name : "ASLN4004",
     data: () => {
 		return {
 

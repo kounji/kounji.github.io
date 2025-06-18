@@ -92,7 +92,7 @@ export default {
 
     let chnl = userInfo.chnl
     // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
-    // console.log('chnl ::: ', chnl)
+    console.log('chnl ::: ', chnl)
     if(import.meta.env.VITE_ENV !== 'R' && window.location.host.indexOf('localhost') > -1 ) {
       location.href = '/login.html'
     }else{
@@ -206,20 +206,41 @@ export default {
   },
 
   /**
-   * 스마트뱅킹 - 음성인식 마이크 권한확인
-   */
-  requestPermission(params={}) {
-    return scrapingService.execute('mydata.PFMView', 'requestPermission', {"permission": "RECORD_AUDIO"})
-  },
-  /**
    * 스마트뱅킹 - 음성인식
   */
-  showVoice(params={}) {
-    return scrapingService.execute('mydata.SBPFMVoice', 'showVoice', {})
-  },
+  showVoice() {
+    return new Promise((resolve) => {
+      const callback = response => {
+        response = scrapingService.parseResponse(response)
 
+        if ( response.resultCode === 1 ) {
+          response.result = response.errorMessage
+        }
+
+        resolve(response)
+      }
+
+      window.fg.of.exec(callback,'SBSTT','startSTT', null)
+    })
+
+    //return scrapingService.execute('SBSTT', 'startSTT', null)
+  },
   /**
-   * 스마트뱅킹 - 권한 요청
+   * 스마트뱅킹 - 음성인식 권한 요청
+   * params {}
+   * return { code: String, msg: String }
+  */
+  reqVoiceAuth() {
+    return scrapingService.execute('mydata.PFMView', 'reqVoiceAuth', null)
+  },
+  /**
+   * 스마트뱅킹 - 음성인식 끄기
+  */
+  closeVoice() {
+    return scrapingService.execute('mydata.PFMView', 'closeVoice', null)
+  },
+  /**
+   * 스마트뱅킹 - 앱 단에서 엑셀 파일 내리기
    */
   exportExcel(params={}) {
     return scrapingService.execute('mydata.PFMView', 'excelExport', params)
@@ -272,11 +293,112 @@ export default {
     return scrapingService.execute('mydata.PFMSign', 'requestSignPass', params)
   },
   /**
-   * NHCert 사설인증서 전자서명 요청
-   * 2025.03.20, sungchul,
+   * NHCert 사설인증서(외부앱) 전자서명 요청
+   * 2025.03.20, sungchul, 농협 내 signing임에 따라 사용 안함
    */
   requestSignNHCert(params={}){
     return scrapingService.execute('mydata.PFMSign', 'requestSignNHCert', params)
+  },
+
+  /**
+   * NHCert 인증서 조회
+   * 유효한 인증서 보유 여부 확인 (WebView -> SDK )
+   * 2025.04.30, sungchul,
+   * @input { RA_CERT_DCD: String, RQST_CHNL_DCD: String } 인증서 정책번호(001 고정), 채널구분 코드(올원:NHAB 스뱅:NHSP 콕뱅:NHSP)
+   * @output { resultCode: (통신결과코드: 0:성공, 1:실패)
+   *           result: {
+   *                      resultCode: (결과코드 0:성공, 1:실패)
+   *                      result: (정상일때) { "CUST_ID", "DCRD_YN", ... (인증서 정보들) }
+   *                              (비정상일때) { code: (에러코드), msg: (에러내용) }
+   *                    } 
+   *         } 
+   * 
+   * SAMPLE INPUT
+   * params.RA_CERT_DCD = "001"    // 인증서 정책번호 001 고정
+   * params.RQST_CHNL_DCD = "NHSB" // 채널구분 코드 올원:NHAB 스뱅:NHSP 콕뱅:NHSP
+   * 
+   * 주의
+   * 콕뱅이랑 스뱅 output 다름, 스뱅은 result로 한번 더 감싸있음!!
+   * 
+   * 
+  **/
+  checkNHCert(params={}) {
+    // AOS 에러 발생 시, errorMessage에 담김;;
+    // IOS 정상/비정상 모두 reuslt에 담김
+    return new Promise((resolve) => {
+      const callback = response => {
+        response = scrapingService.parseResponse(response)
+
+        if ( response.resultCode === 1 ) {
+          // SB AOS는 result.errorMessage.errorMessage 이렇게 들어오고,
+          // SB IOS는 result.result 로 들어옴;;
+          try {
+            if ( response.errorMessage ) {
+              response.result = { "result": response.errorMessage.errorMessage }
+            }
+          } catch (e) { }
+        }
+
+        resolve(response)
+      }
+
+      window.fg.of.exec(callback,'SBNHMobileCert','checkCert', params)
+    })
+  },
+
+  /**
+   * NHCert 마이데이터 인증 화면 호출 및 서명
+   * 마이데이터 인증을 위한 화면 호출(WebView -> SDK )
+   * 2025.03.20, sungchul,
+   * @input { type: String, uid: String, chn:String, locale: String }
+   * @output { resultCode: String } 결과코드 0:성공, 1:실패
+   *
+   * SAMPLE INPUT
+	 * params["type"] = "AC";                   // 고정값 : 3자 인증
+	 * params["uid"] = " 20241231001122TEST ";	// 토큰 발행 시 셋팅한 기기 ID
+	 * params["chn"] = "001";                   // 토큰 발생 시 셋팅한 채널코드(001:올원, 002:스뱅, 003:콕뱅크)
+	 * params["locale"]="ko_KR";                // 앱 다국어 언어 설정
+   * params["accessToken"] = "=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJOSE1DUyIsImV……";	// requestToken의 결과값중에 accessToken 설정
+   * 
+  **/
+  openNHCert(params={}) {
+    return new Promise((resolve) => {
+      const callback = response => {
+        response = scrapingService.parseResponse(response)
+
+        if ( response.resultCode === 1 ) {
+          try {
+            if ( response.errorMessage ) {
+              response.result = { "result": response.errorMessage.errorMessage }
+            }
+          } catch (e) { }
+        }
+
+        resolve(response)
+      }
+
+      window.fg.of.exec(callback,'SBNHMobileCert','openNHCert', params)
+    })
+  },
+  /**
+   * NHCert 마이데이터 용 UUID GET
+   * 2025.05.02, sungchul,
+   * @input { }
+   * @output { result: { uuid: String } } string or ""
+   * 
+  **/
+  getUuid() {
+    return scrapingService.execute('mydata.PFMView', 'getUuid', null)
+  },
+  /**
+   * appVersion get
+   * 2025.05.29, sungchul,
+   * @input { }
+   * @output { result: { app: String, os: String, versionName: String, versionCode: String } } string or ""
+   * 
+  **/
+  getAppVersion() {
+    return scrapingService.execute('mydata.PFMView', 'getAppVersion', null)
   },
   /**
    * PASS 앱 설치 링크 URL 스뱅
@@ -504,6 +626,7 @@ export default {
       window.$SMNATIVE.showKeyboard(callback)
     })
   },
+
   /**
    * 콕뱅크 인증서 비밀번호 확인.
    */
@@ -515,51 +638,74 @@ export default {
       window.$SMNATIVE.getCertPassConfirm(callback, params)
     })
   },
+
   /*
   * 콕뱅크 엑셀 내보내기
-  * params{ title: String, data: String(base64), toastYn: String}
+  * params{ title: String, data: String(base64), toastYn: String }
   * return{ Success: String }
   */
   cokBankExportExcel(params={}){
     return new Promise((resolve) => {
       const callback = response => {
-          resolve(response)
+        resolve(response)
       }
+      
       window.$SMNATIVE.exportExcel(callback, params)
     })
   },
+
   /*
   * 콕뱅크 STT
-  * params{ title: String, data: String(base64), toastYn: String}
+  * params{ }
   * return{ Success: String }
   */
   cokBankShowVoice(params={}){
     return new Promise((resolve) => {
       const callback = response => {
-        if(response.result){
-          jsonRes = JSON.parse(response.result)
-          resolve(jsonRes)
+        if(response.result){       
+          resolve(response)
         }else if(response.errorMessage){
-          jsonRes = JSON.parse(response.errorMessage)
-          reject(jsonRes)
+          reject(response)
         }          
       }
       window.$SMNATIVE.showVoice(callback)
     })
   },
+
   /*
-  * 콕뱅크 권한 체크하기
-  * params{ title: String, data: String(base64), toastYn: String}
-  * return{ Success: String }
+  * 콕뱅크 음성인식 권한 요청
+  * params{ }
+  * return{ code: String, msg: String }
   */
-  cokBankRequestPermission(params={}){
+  cokBankReqVoiceAuth(params={}) {
     return new Promise((resolve) => {
       const callback = response => {
+        if(response.result){       
           resolve(response)
+        }else if(response.errorMessage){
+          reject(response)
+        }          
       }
-      window.$SMNATIVE.requestPermission(callback)
+      window.$SMNATIVE.reqVoiceAuth(callback)
     })
   },
+
+  /*
+  * 콕뱅크 음성인식 끄기
+  * params{ }
+  * return{ }
+  */
+  cokBankCloseVoice() {
+    const callback = response => {
+      if(response.result){       
+        resolve(response)
+      }else if(response.errorMessage){
+        reject(response)
+      }          
+    }
+    window.$SMNATIVE.closeVoice(callback)
+  },
+
   /*
   * 콕뱅크 전자서명.
   */
@@ -571,6 +717,7 @@ export default {
       window.$SMNATIVE.requestSign(callback, params)
     })
   },
+
   /*
   * 로딩바 show
   */
@@ -582,6 +729,7 @@ export default {
       window.$SMNATIVE.showProgress(callback)
     })
   },
+
   /*
   * 로딩바 hide
   */
@@ -619,6 +767,7 @@ export default {
       window.$SMNATIVE.goMove(callback, url)
     })
   },
+
   /*
   * 콕뱅 추가 웹뷰 호출
   */
@@ -630,43 +779,38 @@ export default {
       }
       window.$SMNATIVE.openPopupWebView(callback, url)
     })
-    // console.log('openPopupWebView', url)
-    // return scrapingService.execute('mydata.PFMView', 'openPopupWebView', url)
   },
+
   /*
   * 콕뱅 앱 호출(개별인증)
   */
- 
- cokBankOpenAuthAppToApp(params={}){
-  console.log('appservice 앱 호출 서비스')
-  return new Promise((resolve) => {
-    const callback = response => {
-        resolve(response)
-    }
+  cokBankOpenAuthAppToApp(params={}){
+    console.log('appservice 앱 호출 서비스')
+    return new Promise((resolve) => {
+      const callback = response => {
+          resolve(response)
+      }
     window.$SMNATIVE.authAppToApp(callback, params)
   })
-  // console.log('openPopupWebView', url)
-  // return scrapingService.execute('mydata.PFMView', 'openPopupWebView', url)
-},
+  },
+
   /*
   * 콕뱅 외부브라우저 호출
   */
- cokBankOpenPopupWebBrowser(url){
-  console.log('appservice 외부브라우저 호출 서비스')
-  return new Promise((resolve) => {
-    const callback = response => {
-        resolve(response)
-    }
-    window.$SMNATIVE.openPopupWebBrowser(callback, url)
-  })
- 
-  // console.log('openPopupWebView', url)
-  // return scrapingService.execute('mydata.PFMView', 'openPopupWebView', url)
+  cokBankOpenPopupWebBrowser(url){
+    console.log('appservice 외부브라우저 호출 서비스')
+    return new Promise((resolve) => {
+      const callback = response => {
+          resolve(response)
+      }
+      window.$SMNATIVE.openPopupWebBrowser(callback, url)
+    })
   },
+  
   /*
   * 콕뱅 사설인증 웹뷰 호출
   */
- cokBankOpenPFMOFPFinCert(params={}){
+  cokBankOpenPFMOFPFinCert(params={}) {
     console.log('콕뱅 appservice 사설인증 웹뷰')
     return new Promise((resolve) => {
       const callback = response => {
@@ -677,7 +821,7 @@ export default {
     })
   },
 
- /*
+  /*
   * PASS 콕뱅 사설인증 웹뷰 호출
   * kimhc_20220722
   */
@@ -690,46 +834,69 @@ export default {
       window.$SMNATIVE.requestFinCertPass(callback, params)
     })
   },
+
   /**
-   * NHCert 사설인증서 전자서명 요청
-   * 2025.03.20, sungchul,
+   * NHCert 사설인증서 목록 요청
+   * 2025.04.30, sungchul,
+   * 
+   * params { "RA_CERT_DCD" : "001", // 고정
+              "RQST_CHNL_DCD": 스뱅은 => "NHSP", 콕뱅은 => "NHSB",
+            }
+   * return {
+              method: "checkNHCert"
+              resultCode: 0(정상), 1(비정상),
+              result: (정상일때) { "CUST_ID", "DCRD_YN", ... (인증서 정보들)}
+                      (비정상일때) { "code": (에러코드) , "msg": (에러내용) }
+            }
+   * 
+   * 함수 사용시 OS별 파싱 주의!! AOS는 result 값 JSON.parse가 필요하고, IOS는 불필요함!! 
+   * 
    */
-  cokBankRequestSignNHCert(params={}){
-    console.log('콕뱅 appservice:::cokBankRequestSignNHCert')
+  cokBankCheckNHCert(params={}){
+    console.log('콕뱅 appservice:::cokBankCheckNHCert')
     return new Promise((resolve) => {
       const callback = response => {
-        if(response.result){
-          jsonRes = JSON.parse(response.result)
-          resolve(jsonRes)
-        }else if(response.errorMessage){
-          jsonRes = JSON.parse(response.errorMessage)
-          reject(jsonRes)
-        }          
-      }
-      window.$SMNATIVE.requestSignNHCert(callback, params)
+        resolve(response)
+    }
+      window.$SMNATIVE.checkNHCert(callback, params)
+    })
+  },
+
+  cokBankGetUuid(){
+    console.log('콕뱅 appservice:::cokBankGetUuid')
+    return new Promise((resolve) => {
+      const callback = response => {
+        resolve(response)
+    }
+      window.$SMNATIVE.getUuid(callback)
+    })
+  },
+
+  cokBankGetAppVersion() {
+    console.log('콕뱅 appservice:::cokBankGetAppVersion')
+    return new Promise((resolve) => {
+      const callback = response => {
+        resolve(response)
+    }
+      window.$SMNATIVE.getAppVersion(callback)
     })
   },
 
   /**
    * NHCert 사설인증서 전자서명 요청
    * 2025.03.20, sungchul,
-   */
- cokBankRequestSignNHCert(params={}){
-    console.log('콕뱅 appservice:::cokBankRequestSignNHCert')
+  */
+  cokBankOpenNHCert(params={}){
+    console.log('콕뱅 appservice:::cokBankOpenNHCert')
     return new Promise((resolve) => {
       const callback = response => {
-        if(response.result){
-          jsonRes = JSON.parse(response.result)
-          resolve(jsonRes)
-        }else if(response.errorMessage){
-          jsonRes = JSON.parse(response.errorMessage)
-          reject(jsonRes)
-        }          
-      }
-      window.$SMNATIVE.requestSignNHCert(callback, params)
+        resolve(response)
+    }
+      window.$SMNATIVE.openNHCert(callback, params)
     })
   },
- /*
+
+  /*
   * PASS 앱 설치 링크 URL 
   * kimhc_20220722
   */
@@ -746,31 +913,30 @@ export default {
   /*
   * 콕뱅 세션연장.
   */
- cokBankRefreshSession(){
-  console.log('appservice 콕뱅 서비스 cokBankRefreshSession 호출')
-  return new Promise((resolve) => {
-    const callback = response => {
-        resolve(response)
-    }
-    window.$SMNATIVE.refreshSession(callback)
-  })
- },  
+  cokBankRefreshSession(){
+    console.log('appservice 콕뱅 서비스 cokBankRefreshSession 호출')
+    return new Promise((resolve) => {
+      const callback = response => {
+          resolve(response)
+      }
+      window.$SMNATIVE.refreshSession(callback)
+    })
+  },  
 
   /*
   * 콕뱅 햄버거 메뉴 오픈
   */
- cokShowMenu(){
-  console.log('appservice 햄버거 메뉴클릭')
-  return new Promise((resolve) => {
-    const callback = response => {
-        resolve(response)
-    }
-    window.$SMNATIVE.showMenu(callback)
-  })
- },  
+  cokShowMenu(){
+    console.log('appservice 햄버거 메뉴클릭')
+    return new Promise((resolve) => {
+      const callback = response => {
+          resolve(response)
+      }
+      window.$SMNATIVE.showMenu(callback)
+    })
+  },  
 
-  //Application Session Check
-  applicationSessionCheck(){
+  applicationSessionCheck() {
     console.log('######## applicationSessionCheck ############')
     const chnl = store.state.user.userInfo.chnl //스뱅 385, 콕뱅 386
     if (chnl !== undefined && store.state.user.userInfo.initialSessionTime !== undefined)
@@ -804,16 +970,6 @@ export default {
     }else{
       return true
     }
-  },
-  getSbAppVersion() {
-    return new Promise((resolve) => {
-      const callback = response => {
-          response = scrapingService.parseResponse(response)
-          resolve(response)
-      }
-      
-      window.fg.of.exec(callback, "NHCApp", "getVersion", [])
-    })
   },
   parseQueryString() {
     const params  = location.search.replace("?","")

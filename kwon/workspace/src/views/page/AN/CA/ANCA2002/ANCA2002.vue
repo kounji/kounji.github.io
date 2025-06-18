@@ -1208,7 +1208,8 @@ export default {
         },
         fn_setImgUrl(imgPathnm){
             // 24.07.05, sungchul, 해당 기관 서버 느려서 도메인 변경
-			//return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+            // 25.03.28, sungchul, 유효한 도메인이며, 이미지는 이 도메인에서 가져온다함
+			//return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 			return 'https://www.carpan.co.kr/img/' + imgPathnm;
         },
         emptyImg(e) {

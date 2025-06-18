@@ -15,7 +15,7 @@
 	<!-- 전체 팝업 시작 -->
 	<div class="full_popup " id="full_popup_01">
 		<div class="popup_header">
-			<h1>자산연결</h1>
+			<h1>{{txRqInfo.termsTitle}}</h1>
 		</div>		
 		<div class="popup_content">
 			<div class="terms_wrap">
@@ -24,7 +24,7 @@
 				</div>
 				<div class="terms_view">
 					<div>
-						<div class="terms_cont">
+						<div v-if="selectedBzrgTerms.length > 0" class="terms_cont">
 							<div class="terms_group">
 								<strong class="terms_tit">전송요구 및 개인(신용)정보<br> 수집&middot;이용 동의</strong>
 								<p class="terms_txt">농업협동조합중앙회는 신용정보의 이용 및 보호에 관한 법률, 개인정보 보호법 등 관련 법령에 따라 다음과 같이 고객님의 개인(신용)정보를 처리합니다.</p>
@@ -51,13 +51,13 @@
 									<dt>전송을 요구하는 개인신용 정보</dt>
 									<dd>
 										<ul class="dotted_list">
-											<li v-for="(item, idx) in selectedScopeTerms" :key="idx">{{scopeTerm[item].scopeName}} : {{scopeTerm[item].trxTerm}}</li>
+											<li v-for="(item, idx) in selectedBzrgTerms" :key="idx">{{bzrgTerm[item].bzrgName}} : {{bzrgTerm[item].trxTerm}}</li>
 										</ul>
 									</dd>
 								</dl>
 							</div>
 
-							<div class="terms_group">
+							<!-- <div class="terms_group">
 								<strong class="terms_tit">수집&middot;이용 정보</strong>
 								<dl>
 									<dt>개인식별정보</dt>
@@ -65,24 +65,26 @@
 
 									<dt>신용거래정보</dt>
 									<dd>
-										<details v-for="(item, idx) in selectedScopeTerms" :key="idx" class="terms_detail">
-											<summary>
-												<strong>{{scopeTerm[item].scopeName}}</strong>
-												<p>{{scopeTerm[item].creditTerm[0].subTitle}}</p>
-											</summary>
-											<div class="cont">
-												<p>{{scopeTerm[item].creditTerm[0].content}}</p>
-												<dl>
-													<template v-for="(termItem, idx) in scopeTerm[item].creditTerm.slice(1)">
-														<dt :key="'dt' + idx">{{termItem.subTitle}}</dt>
-														<dd :key="'dd' + idx">{{termItem.content}}</dd>
-													</template>
-												</dl>
-											</div>
-										</details>
+										<template v-for="(item, idx) in selectedBzrgTerms">
+											<details v-if="bzrgTerm[item].creditTerm.length > 0" :key="idx" class="terms_detail">
+												<summary>
+													<strong>{{bzrgTerm[item].bzrgName}}</strong>
+													<p>{{bzrgTerm[item].creditTerm[0].subTitle}}</p>
+												</summary>
+												<div class="cont">
+													<p>{{bzrgTerm[item].creditTerm[0].content}}</p>
+													<dl>
+														<template v-for="(termItem, idx) in bzrgTerm[item].creditTerm.slice(1)">
+															<dt :key="'dt' + idx">{{termItem.subTitle}}</dt>
+															<dd :key="'dd' + idx">{{termItem.content}}</dd>
+														</template>
+													</dl>
+												</div>
+											</details>
+										</template>
 									</dd>
 								</dl>
-							</div>
+							</div> -->
 						</div>
 
 						<div class="terms_cont">
@@ -105,12 +107,12 @@
 									<dd><strong class="terms_txt_point">본인 확인 및 개인신용정보의 전송 목적 달성시까지</strong></dd>
 
 									<dt>제공항목</dt>
-									<dd><strong class="terms_txt_point">본인 확인 및 개인신용정보의 전송</strong></dd>
+									<dd><strong class="terms_txt_point">전자서명, CI, 인증서, 전송요구서</strong></dd>
 								</dl>
 
 								<dl>
 									<dt>정보를 받는 곳</dt>
-									<dd>{{sendPublicOrgName}}</dd>
+									<dd>한국신용정보원</dd>
 
 									<dt>목적</dt>
 									<dd><strong class="terms_txt_point">마이데이터서비스 가입현황 안내, 전송 요구내역 통합조회 서비스 제공</strong></dd>
@@ -124,25 +126,53 @@
 							</div>
 
 							<div class="terms_group">
+								<strong class="terms_tit">수집&middot;이용 정보</strong>
 								<dl>
+									<dt>개인식별정보</dt>
+									<dd>전자서명, 접근토큰, 인증서, 전송요구서</dd>
+
+									<dt>신용거래정보</dt>
+									<dd>
+										<template v-for="(item, idx) in selectedBzrgTerms">
+											<details v-if="bzrgTerm[item].creditTerm.length > 0" :key="idx" class="terms_detail">
+												<summary>
+													<strong>{{bzrgTerm[item].bzrgName}}</strong>
+													<p>{{bzrgTerm[item].creditTerm[0].subTitle}}</p>
+												</summary>
+												<div class="cont">
+													<p>{{bzrgTerm[item].creditTerm[0].content}}</p>
+													<dl>
+														<template v-for="(termItem, idx) in bzrgTerm[item].creditTerm.slice(1)">
+															<dt :key="'dt' + idx">{{termItem.subTitle}}</dt>
+															<dd :key="'dd' + idx">{{termItem.content}}</dd>
+														</template>
+													</dl>
+												</div>
+											</details>
+										</template>
+									</dd>
+
 									<dt>정기적 전송여부</dt>
 									<dd>
 										<div class="radio_box_group">
 											<div v-for="(item, idx) in scheduledItems" :key="idx" class="radio">
-												<input type="radio" v-model="selectedScheduled" :value="item.value" name="transfer_agree" :id="'transfer_agree_' + idx">
+												<input type="radio" v-model="selectedScheduled" :value="item.value" name="transfer_agree" :id="'transfer_agree_' + idx" @change="fn_setTxPrd()">
 												<label :for="'transfer_agree_' + idx">{{item.name}}</label>
 											</div>
 										</div>
-										<div v-if="selectedScheduled" class="radio_box_group">
+									</dd>
+									<dd>
+										<div v-show="selectedScheduled && !isOnlyPublic" class="radio_box_group">
 											<div v-for="(item, idx) in txPrdItems" :key="idx" class="radio">
 												<input type="radio" v-model="selectedTxPrd" :value="item.value" name="period_agree" :id="'period_agree_' + idx">
 												<label :for="'period_agree_' + idx">{{item.name}}</label>
 											</div>
 										</div>
 										<ul class="dotted_list sm">
-											<li>공공정보는 월 1회, 금융정보는 주 단위로 선택 가능합니다.</li>
+											<li>금융정보는 1주 단위로 선택 할 수 있습니다.</li>
+											<li v-if="publicOrgName != ''">공공정보는 1개월 주기로 가져옵니다.</li>
 											<li>정기적 전송에 "예" 선택 하시면, NH콕마이데이터에 들어오지 않아도 선택한 주기에 따라 자동으로 자산 업데이트 됩니다.</li>
-											<li>6개월동안 들어오지 않으면 자동 업데이트는 중단됩니다.</li>
+											<li>6개월 동안 미 접속 시 자동 업데이트는 중단되며 1년간 미 접속 시 개인신용정보는 모두 삭제되고 서비스는 해지 됩니다.</li><!-- [v4.0]25-04-28 문구수정 -->
 										</ul>
 									</dd>
 
@@ -154,8 +184,11 @@
 												<label :for="'effect_agree_' + idx">{{item.name}}</label>
 											</div>
 										</div>
+										<ul class="dotted_list sm" v-if="publicOrgName != ''">
+											<li>공공정보는 1년까지만 가져옵니다.</li>
+										</ul>
 									</dd>
-									<template v-if="txRqInfo.isShowRegion">
+									<template v-if="isShowRegion">
 										<dt>재산세 납세 기관</dt>
 										<dd>
 											<div class="flex_box">
@@ -168,40 +201,45 @@
 											</div>
 										</dd>
 									</template>
-
-									<dt>선택 정보</dt>
-									<dd>
-										<div class="border_box">
-											<p>실제 구매한 상품이 아닌 해당 상품의 13가지 항목의 카테고리가 포함되어 있습니다. 본인의 소비생활 등에 관련된 상세한 정보가 포함되어 있습니다.</p>
-										</div>
-									</dd>
 								</dl>
 							</div>
 						</div>
 
 						<div class="terms_check">
+							<strong v-if="isShowTermAccount" class="terms_check_tit">선택정보의 전송동의</strong>
 							<ul class="checkbox_list">
 								<li v-if="isShowTermAccount">
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree3" v-model="isAgreeAccountInfo">
-										<label for="terms_agree3">[선택]계좌 출처&middot;메모 표시</label>
+										<label for="terms_agree3">
+											<strong class="tit">[선택]계좌 출처&middot;메모 표시</strong>
+											<span class="txt">송금인/수취인명 정보 등 본인의 사생활 및 경제활동 등에 관련된 상세한 정보가 포함되어 있습니다.</span>
+										</label>
 									</div>
 								</li>
 								<li v-if="isShowTermFranchise">
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree4" v-model="isAgreeFranchiseInfo">
-										<label for="terms_agree4">[선택]가맹점명/사업자등록번호 표시</label>
+										<label for="terms_agree4">
+											<strong class="tit">[선택]가맹점명/사업자등록번호 표시</strong>
+											<span class="txt">실제 구매한 상품이 아닌 해당 상품의 13가지 항목의 카테고리가 포함되어 있습니다.</span>
+										</label>
 									</div>
 								</li>
 								<li v-if="isShowTermCategory">
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree5" v-model="isAgreeCategoryInfo">
-										<label for="terms_agree5">[선택]구매한 상품 카테고리 표시</label>
+										<label for="terms_agree5">
+											<strong class="tit">[선택]구매한 상품 카테고리 표시</strong>
+											<span class="txt">본인의 소비생활 등에 관련된 상세한 정보가 포함되어 있습니다.</span>
+										</label>
 									</div>
 								</li>
+							</ul>
+							<ul class="checkbox_list">
 								<li>
 									<div class="checkbox">
-										<input type="checkbox" name="terms_agree" required="" id="terms_agree1" v-model="isAgreeCollect">
+										<input type="checkbox" name="terms_agree" id="terms_agree1" v-model="isAgreeCollect">
 										<label for="terms_agree1">[필수]개인(신용)정보 수집&middot;이용 동의</label>
 									</div>
 									<div class="error_message" aria-live="polite" >
@@ -211,7 +249,7 @@
 								</li>
 								<li>
 									<div class="checkbox">
-										<input type="checkbox" name="terms_agree" required="" id="terms_agree2" v-model="isAgreeSupply">
+										<input type="checkbox" name="terms_agree" id="terms_agree2" v-model="isAgreeSupply">
 										<label for="terms_agree2">[필수]개인(신용)정보 제공 동의</label>
 									</div>
 								</li>
@@ -222,12 +260,12 @@
 
 			</div>
 		</div>
-		<div class="popup_footer fixed last_move">
-			<div class="btns_wrap">
-				<button type="button" class="btn btns lg primary btn_move_hide">
-					<span class="btn_down_arrow">끝까지 내려 보기</span>
+		<div class="popup_footer fixed">
+			<div class="btns_wrap btn_agree_wrap">
+				<button type="button" class="btn btns lg primary btn_agree_move">
+					<span class="btn_down_arrow">아래로 내려 보기</span>
 				</button>
-				<button type="button" class="btn btns lg primary" @click="fn_nextProcess()">동의하고 계속하기</button>
+				<button type="button" class="btn btns lg primary btn_agree_stop" @click="fn_nextProcess()">동의하고 계속하기</button>
 			</div>
 		</div>
 		<a href="javascript:void(0)" class="btn_close" @click="fn_close()"><span class="blind">팝업닫기</span></a>
@@ -279,15 +317,16 @@ export default {
 			],
 
 			sendOrgName: "",
-			sendPublicOrgName: "",
+			publicOrgName: "",
 
-			scopeTerm: {},
-			selectedScopeTerms: [],
+			bzrgTerm: {},
+			selectedBzrgTerms: [],
 
 			isShowRegion: false,
 			isShowTermAccount: false,
 			isShowTermFranchise: false,
 			isShowTermCategory: false,
+			isOnlyPublic: false,
 
 			selectedScheduled: false,
 			selectedTxPrd: "",
@@ -317,6 +356,7 @@ export default {
 				is_consent_trans_memo: false,
 				is_consent_merchant_name_regno: false,
 				is_consent_trans_category: false,
+				selectedRegion: "",
 			},
 			
         }
@@ -329,7 +369,74 @@ export default {
     mounted() {
 		this.initComponent(this.params);
         //PFM로그 처리 화면접속이력 등록 POST
-        apiService.pfmLogSend(this.$options.name);    
+        apiService.pfmLogSend(this.$options.name);
+
+		let lastScroll = 0; //초기 스크롤 위치
+		let scrolling;
+		let scrollEnding = false;
+
+		$(document).ready(function() {
+			let $termsCon = $('.terms_view');
+			let $fullPop = $termsCon.closest('.full_popup');
+			let $popCont = $('.popup_content',$fullPop);
+			
+			$popCont.off('scroll.full_popup_scroll').on('scroll.full_popup_scroll', function(){
+				let nowScroll = $popCont.scrollTop();
+
+				/*scroll ending check */
+				if($termsCon){
+					if((nowScroll + $popCont.height()) >= $termsCon.height()){
+						scrollEnding = true;
+						if (document.getElementsByClassName('.btn_agree_move') ) {
+							$fullPop.find('.btn_agree_wrap').addClass('act');
+
+							//check toast
+							$fullPop.find('.error_message').addClass('on');
+							setTimeout(function(){
+								$fullPop.find('.error_message').removeClass('on').addClass('off');
+							},2000)
+						}
+					}else{
+						scrollEnding = false;
+					}	
+				}
+			})
+		});
+
+		//약관 스크롤 애니 - click
+		$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn_agree_move', function() {
+
+			let $btnTerms = $('.btn_agree_move');
+			let $fullPop = $btnTerms.closest('.full_popup');
+			let $popCont = $('.popup_content',$fullPop);
+			let $termsCont = $('.terms_view',$fullPop);
+			let nowScroll = $popCont.scrollTop();
+			var posScroll = 0;
+
+			$btnTerms.each(function(){
+				if((nowScroll + $popCont.height()) >= $termsCont.height()){
+					scrollEnding = true;
+					$btnTerms.parent('.btn_agree_wrap').addClass('act');
+
+					//check toast
+					$fullPop.find('.error_message').addClass('on');
+					setTimeout(function(){
+						$fullPop.find('.error_message').removeClass('on').addClass('off');
+					},2000)
+				}else{
+					scrollEnding = false;
+					if($btnTerms.hasClass('go_last')){
+						$popCont.animate({
+							scrollTop: $popCont[0].scrollHeight //맨아래로 바로
+						}, 400);
+					}else{
+						$popCont.animate({
+							scrollTop: nowScroll + $popCont.height() // 조금조금 이동
+						}, 400);
+					}
+				}	
+			})
+		});
     },
 
     mixins: [
@@ -387,27 +494,32 @@ export default {
         },
 
         getData() {
-			this.scopeTerm = this.fn_getScopeTerm();
-			this.selectedScopeTerms = [...new Set(this.txRqInfo.selectedOrgList.map(t => t.orgBzrgC))];
+			this.bzrgTerm = this.fn_getBzrgTerm();
+			this.selectedBzrgTerms = [...new Set(this.txRqInfo.selectedOrgList.map(t => t.orgBzrgC))];
 			this.sendOrgName = this.txRqInfo.selectedOrgList.map(t => t.orgnm).join(", ");
-			let orgName = this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC == "public")
+			this.publicOrgName = this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC == "public")
 													   .map(t => t.orgnm).join(", ");
-			this.sendPublicOrgName = "한국신용정보원" + (orgName != "" ? ", " : "") + orgName;
-			if (orgName != '') {
-				this.scopeTerm.public.trxTerm = this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC == "public")
-																			.map(t => t.assets.map(k => k.key).join(", "))
+			if (this.publicOrgName != '') {
+				this.bzrgTerm.public.trxTerm = this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC == "public")
+																			.map(t => t.assets.map(k => k.prod_name).join(", "))
 																			.join(", ");
 			}
 
 			this.isShowRegion = Boolean(this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC == "public")
 																	.find(t => t.assets.find(k => k.key == "L161")));
-			this.isShowTermAccount = Boolean(this.selectedScopeTerms.find(t => t.orgBzrgC == 'bank' || t.orgBzrgC == 'efin' || t.orgBzrgC == 'invest'));
-			this.isShowTermFranchise = Boolean(this.selectedScopeTerms.find(t => t.orgBzrgC == 'card' || t.orgBzrgC == 'efin' || t.orgBzrgC == 'telecom'));
-			this.isShowTermCategory = Boolean(this.selectedScopeTerms.find(t => t.orgBzrgC == 'efin'));
+			this.isShowTermAccount = Boolean(this.selectedBzrgTerms.find(t => t == 'bank' || t == 'efin' || t == 'invest'));
+			this.isShowTermFranchise = Boolean(this.selectedBzrgTerms.find(t => t == 'card' || t == 'efin' || t == 'telecom'));
+			this.isShowTermCategory = Boolean(this.selectedBzrgTerms.find(t => t == 'efin'));
+			if (this.txRqInfo.selectedOrgList.filter(t => t.orgBzrgC != "public").length == 0) {
+				this.isOnlyPublic = true;
+				this.selectedExprPrd = dateFormat(moment().add("365", "days"), "YYYY-MM-DD");
+				this.exprPrdDateItems = this.exprPrdDateItems.filter(t => t.value == dateFormat(moment().add("365", "days"), "YYYY-MM-DD"));
+			} else {
+				this.selectedExprPrd = dateFormat(moment().add((365 * 5).toString(), "days"), "YYYY-MM-DD");
+			}
 
 			this.selectedScheduled = true;
 			this.selectedTxPrd = "1/1w";
-			this.selectedExprPrd = dateFormat(moment().add((365 * 5).toString(), "days"), "YYYY-MM-DD");
 
 			this.$nextTick(() => {
 				// 웹접근성관련 호출
@@ -415,10 +527,10 @@ export default {
 			});
 		},
 
-		fn_getScopeTerm() {
+		fn_getBzrgTerm() {
 			return {
 				bank: {
-					scopeName: "은행",
+					bzrgName: "은행",
 					trxTerm: "계좌(수신/펀드/신탁/ISA/대출) 목록,퇴직연금(개인형IRP) 목록, 퇴직연금(DC형) 목록, 선불카드 목록, 수신계좌 정보, 펀드상품 정보, 대출상품 정보, 신탁/ISA상품 정보, 개인형  IRP 정보, DB형 퇴직연금 정보, 선불카드 정보, 휴면예금 정보",
 					creditTerm: [{subTitle: "수신계좌 정보",
 								content: "기본정보(통화코드, 저축방법, 계좌개설일자, 만기일, 약정액, 월 납입액), 추가정보(통화코드, 현재잔액, 출금 가능액, 계약금리, 최종납입회차), 거래내역(거래일시, 거래번호, 거래유형, 거래구분, 통화코드, 거래금액, 거래 후 잔액, 납입회차) 계좌지정 자동이체 등록정보(자동이체기관(코드), 자동이체계좌번호, 자동이체금액, 자동이체주기, 자동이체주기 상세, 적요)"}
@@ -435,10 +547,10 @@ export default {
 								, {subTitle: "선불카드 정보",
 								content: "잔액정보(총잔액, 충전포인트 잔액, 적립포인트 잔액, 적립예정, 소멸예정), 거래내역(거래유형, 거래일시, 거래번호, 거래금액, 거래 후 잔액, 거래상대기관, 거래상대 식별값), 결제내역(승인번호, 승인일시, 결제상태, 정정 또는 승인취소 일시, 가맹점명, 가맹점 사업자등록번호, 이용금액, 정정 후 금액, 전체할부회차)"}
 								, {subTitle: "휴면예금 정보",
-								content: "기관명, 상품명, 계좌번호, 잔액, 소멸시효만료일, 계좌상태, 거래메모, 최종 거래일"}]
+								content: "계좌번호, 전송요구여부, 회차번호, 상품명, 숨은금융자산구분코드 통화코드, 계좌잔액, 소멸시효완성일"}]
 				},
 				card: {
-					scopeName: "카드",
+					bzrgName: "카드",
 					trxTerm: "카드 목록 및 선불카드 목록, 카드 정보 및 선불카드 정보, 포인트 정보, 청구.결제 정보 및 리볼빙 정보,대출상품 정보",
 					creditTerm: [{subTitle: "카드 정보",
 								content: "카드 목록(카드번호, 카드식별자, 카드상품명, 본인/가족 구분(코드), 카드구분(코드)), 카드기본정보(교통 기능(여부), 현금카드기능(여부), 결제은행(코드), 결제계좌번호, 카드브랜드(코드), 상품 연회비, 발급일자)"}
@@ -452,7 +564,7 @@ export default {
 								content: "단기대출 이용정보(이용일시, 이용금액(취급앱), 단기대출잔액, 결제예정일, 이자율, 상환기관(코드), 상환계좌번호), 장기대출 이용정보(대출번호, 대출일시 또는 대출일자, 일자의 대출회차, 대출종류, 상품명, 이용금액, 이자율, 만기일, 장기대출 잔액, 상환방법(코드), 상환액 중 이자, 상환기관(코드), 상환 계쫘번호), 장기대출 거래내역 정보(거래일시 또는 거래일자, 거래번호, 거래유형, 통화코드, 거래금액, 거래 후 대출잔액, 거래금액 중 원금, 거래금액 중 이자"}]
 				},
 				invest: {
-					scopeName: "증권(금융투자)",
+					bzrgName: "증권(금융투자)",
 					trxTerm: "계좌목록, 퇴직연금(개인형IRP/DC형)목록, 계좌 정보, 개인형IRP정보, DB형 퇴직연금 정보, DC형 퇴직연금 정보",
 					creditTerm: [{subTitle: "계좌 정보",
 								content: "계좌목록(계좌번호, 계좌명, 계좌종류(코드), 계좌개설일, 세제혜택 적용여부(계좌), CMA상품포함여부, 주식거래가능여부, 은행예수금방식계좌여부), 잔액정보(기준일자, 통화코드, 예수금, 신용 융자, 대출금, 출금가능금액), 거래내역(종목명(상품명), 종목코드(상품코드), 거래일시 또는 거래일자, 거래번호, 거래종류(코드), 거래종류 상세, 거래수량, 수량단위명, 거래단가, 거래금액, 정산금액, 거래후잔액, 통화코드, 적요, 거래소코드)"}
@@ -466,7 +578,7 @@ export default {
 								content: "기본정보(계좌잔액, 계좌평가금액, 사용자부담금, 가입자부담금, 개설일, 최초입금일, 최초 제도 가입일, 연금개시 시작(예정)일, 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율"}]
 				},
 				insu: {
-					scopeName: "보험",
+					bzrgName: "보험",
 					trxTerm: "(계약자) 보험증권 목록, (계약자) 대출계좌목록, (계약자)퇴직연금)(개인형IRP/DC형)목록, (피보험자) 보험증권 목록, (계약자) 보험 정보, (계약자) 대출 상품정보, (계약자) 계약형 IRP 정보, (계약자)DB형 퇴직연금 정보, (계약자) DC형 퇴직연금 정보, (피보험자) 보험정보, 휴면보험금/미청구보험금 정보",
 					creditTerm: [{subTitle: "보험 정보",
 								content: "보험료납입 기본정보(납입기간구분, 납입주기, 총 납입 횟 수, 납입기관, 납입계좌번호, 납입일자, 납입종료일자, 납입 보험료, 통화코드, 자동대출납입 신청 여부), 납입내역(납입 일자, 납입연월, 납입회차, 실납입 보험료, 통화코드, 수금방법)"}
@@ -491,10 +603,12 @@ export default {
 								, {subTitle: "개인형IRP 정보",
 								content: "기본정보(계좌잔액, 계좌평가금액, 사용자부담금, 가입자부담금, 개설일, 최초입금일, 최초 제도 가입일, 연금개시 시작(예정)일, 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율"}
 								, {subTitle: "휴면보험금 정보",
-								content: "보험사명, 증권번호, 상품명, 업권구분, 기관명, 대표전화번호, 통화코드, 휴면계좌금액, 소멸시효완성일, 거래메모, 미청구보험금금액, 원금산출기준일, 이자산출기준일, 계약체결일, "}]
+								content: "보험증권번호, 전송요구여부, 상품명, 숨은금융자산구분코드, 보험구분코드 업권구분코드, 기관명, 대표전화번호, 통화코드, 휴면계좌금액, 소멸시효완성일, 부가정보"}
+								, {subTitle: "미청구보험금 정보",
+								content: "상품구분코드, 통화코드, 미청구보험금, 원금산출기준, 이자산출기준, 계약체결일, 부가정보"}]
 				},
 				efin: {
-					scopeName: "페이(전자금융)",
+					bzrgName: "페이(전자금융)",
 					trxTerm: "선불전자지급수단 목록 및 계정목록, 선불전자 지급수단 정보 결제 정보",
 					creditTerm: [{subTitle: "선불발행정보",
 								content: "선불잔액정보(총잔액, 충전포인트 잔액, 적립포인트 잔액, 출금가능액, 적립예정, 소멸예정), 자동충전정보(충전지불 수단 기관, 충전지불수단 식별키, 충전조건, 기준날짜, 기준 금액, 충전금액)"}
@@ -506,7 +620,7 @@ export default {
 								content: "결제유형, 주문번호, 결제일시, 결제번호, 통화코드, 결제금 액, 결제수단 기관, 결제수단 식별코드, 결제수단 식별키, 카 드승인번호, 카드명, 할부개월, 거래메모, 가맹점명, 가맹점 사업자등록번호, 상품제목, 상품분류, 결제방법"}]
 				},
 				capital: {
-					scopeName: "할부금융",
+					bzrgName: "할부금융",
 					trxTerm: "계좌(대출/운용리스)목록, 대출상품 정보, 운용리스 정보",
 					creditTerm: [{subTitle: "대출상품 정보",
 								content: "계좌정보(계좌번호,회차번호,상품명,계좌구분(코드),계좌상태(코드)), 기본정보(대출일,만기일,최종적용금리,월상환일,상환방식(코드),자동이체 기관(코드),상환계좌번호(자동이체)), 잔액정보(통화코드,대출잔액,대출원금,다음 이자 상환일), 거래내역(거래일시,거래번호,거래유형(코드),통화코드,거래금액,거래 후 대출잔액,거래금액 중 원금,거래금액 중 이자,환출이자,이자적용수,이자적용목록,이자적용시작일,이자적용종료일,적용이율,이자금액,이자종류(코드))"}
@@ -514,13 +628,13 @@ export default {
 								content: "기본정보(대출일,만기일,월상환일,상환방식(코드),자동이체 기관(코드),상환계좌번호(자동이체),다음 납입예정일), 거래내역(거래일시,거래번호,거래유형(코드),거래금액)"}]
 				},
 				telecom: {
-					scopeName: "통신 정보",
+					bzrgName: "통신 정보",
 					trxTerm: "통신계약목록",
 					creditTerm: [{subTitle: "통신 정보",
 								content: "기본정보(계약관리번호,가입번호,통신구분 (코드),가입구분 (코드)), 청구정보(청구년월,청구금액,납부예정일자), 납부정보(납부년월,납부금액,납부수단 (코드)), 결제정보(이용일시,결제금액,가맹점명,결제상품명)"}]
 				},
 				public: {
-					scopeName: "공공기관",
+					bzrgName: "공공기관",
 					trxTerm: "",
 					creditTerm: [],
 				},
@@ -536,6 +650,8 @@ export default {
 				if (res.comnCVal) {
 					this.selectedCity = res.comnCVal;
 					this.selectedCityName = res.comnCExpl;
+					this.selectedRegion = "";
+					this.selectedRegionName = "구/군 선택";
 					if(this.selectedCity) this.fn_openRegionPopup();
 				}
 			});
@@ -564,7 +680,7 @@ export default {
 		},
 
 		fn_nextProcess() {
-			if (this.isShowRegion && this.existPublicScope) {
+			if (this.isShowRegion) {
 				if(!this.selectedCity) {
 					modalService.alert('시/도 지역을 선택해주세요.');
 					return;
@@ -580,6 +696,7 @@ export default {
 				modalService.alert('필수 동의를 해주세요.');
 				return;
 			} else {
+				this.termsInfo.selectedRegion = this.selectedRegion;
 				const isShowTermAccount = Boolean(this.isShowTermAccount ^ this.isAgreeAccountInfo)
 					, isShowTermFranchise = Boolean(this.isShowTermFranchise ^ this.isAgreeFranchiseInfo)
 					, isShowTermCategory = Boolean(this.isShowTermCategory ^ this.isAgreeCategoryInfo);
@@ -606,6 +723,12 @@ export default {
 				} else {
 					this.fn_close(this.termsInfo);
 				}
+			}
+		},
+
+		fn_setTxPrd() {
+			if (this.selectedScheduled) {
+				this.selectedTxPrd = "1/1w";
 			}
 		},
 

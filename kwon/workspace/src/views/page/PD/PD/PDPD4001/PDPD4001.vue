@@ -101,7 +101,7 @@
                                                             <span class="subTit">{{wrsRcmRvgtp.rcmWrsBrfCntn}}</span>
                                                         </span>
                                                     </div>
-                                                    <div class="flex_gray_wrap custom_box_ptb15 middle_line custom_box_pb16">
+                                                    <!-- <div class="flex_gray_wrap custom_box_ptb15 middle_line custom_box_pb16">
                                                         <div class="re_flex">
                                                             <span class="list_price num list01">
                                                                 <span class="text_info list_name">가입기간</span>
@@ -112,7 +112,7 @@
                                                                 <em><span class="unit">연</span> {{wrsRcmRvgtp.otmItr}}%</em>
                                                             </span>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </a>
                                             </div>
                                         </div>

@@ -12,88 +12,78 @@
 </head>
 
 <body>
-	<!-- wrap S -->
-	<div id="wrap">
-		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
-		</div>    
-	</div>
-	<!--// wrap E -->
+	<div id="wrap" class="sticky-scroll"> <!--[v4.0] 2025-03-25 바닥페이지로 변경 -->
+		<!-- header S -->
+		<header id="header">
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
 
-	<!-- full popup S -->
-	<div class="full_popup" id="full_popup_01"> 
-		<div class="popup_header">    
-			<h1></h1>
-		</div>
-
-		<div class="popup_content">
-			<div class="mydata_outline">
-				<div class="slick">
-					<div class="item">
-						<div class="card ty_01">
-							<span>마이데이터</span>
-							<strong>새로워진<br>NH콕마이데이터<br>(자산관리)</strong>
-							<p>나만의 자산관리 플래너</p>
+				<div class="mydata_outline">
+					<div class="slick">
+						<div class="item">
+							<div class="card ty_01">
+								<span>마이데이터</span>
+								<strong>새로워진<br>NH콕마이데이터<br>(자산관리)</strong>
+								<p>나만의 자산관리 플래너</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_02">
-							<span>자산이야기</span>
-							<strong>자산 흐름을 한 눈에!<br>지금 바로<br>체험해 보세요.</strong>
-							<p>내 손 안에 자산리포트</p>
+						<div class="item">
+							<div class="card ty_02">
+								<span>자산이야기</span>
+								<strong>자산 흐름을 한 눈에!<br>지금 바로<br>체험해 보세요.</strong>
+								<p>내 손 안에 자산리포트</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_03">
-							<span>소비이야기</span>
-							<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
-							<p>부자되는 지름길 함께해요.</p>
+						<div class="item">
+							<div class="card ty_03">
+								<span>소비이야기</span>
+								<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
+								<p>부자되는 지름길 함께해요.</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_04">
-							<span>연금/절세</span>
-							<strong>연금 자산 분석하고<br>부족한 부분을<br>채워드립니다.</strong>
-							<p>공제한도 알아보기</p>
+						<div class="item">
+							<div class="card ty_04">
+								<span>연금/절세</span>
+								<strong>연금 자산 분석하고<br>부족한 부분을<br>채워드립니다.</strong>
+								<p>공제한도 알아보기</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_05">
-							<span>추천</span>
-							<strong>연금과 부동산<br>최선의 선택은?</strong>
-							<p>우리들의 노후 고민</p>
+						<div class="item">
+							<div class="card ty_05">
+								<span>추천</span>
+								<strong>연금과 부동산<br>최선의 선택은?</strong>
+								<p>우리들의 노후 고민</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_06">
-							<span>지역</span>
-							<strong>지역 축제가<br>기다리고 있어요.</strong>
-							<p>어디로 가볼까요?</p>
+						<div class="item">
+							<div class="card ty_06">
+								<span>지역</span>
+								<strong>지역 축제가<br>기다리고 있어요.</strong>
+								<p>어디로 가볼까요?</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_07">
-							<span>금융지식</span>
-							<strong>모르면 손해!<br>알아야<br>돈이 모인다!</strong>
-							<p>쉽고 재미있는 금융 지식</p>
+						<div class="item">
+							<div class="card ty_07">
+								<span>금융지식</span>
+								<strong>모르면 손해!<br>알아야<br>돈이 모인다!</strong>
+								<p>쉽고 재미있는 금융 지식</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	
-		<div class="popup_footer fixed">
-			<div class="btn_full_box btns_wrap">
-				<button type="button" class="btns lg primary">가입하고 시작하기</button>
-				<button type="button" class="btns_txt">체험하기</button>
-			</div>
-		</div>
-		
-		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
-		
-	</div>
-	<!--// full popup E -->
 
+				<div class="btns_wrap fixed">
+					<button type="button" class="btns lg primary">가입하고 시작하기</button>
+					<button type="button" class="btns_txt">체험하기</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		$(function() {
@@ -102,10 +92,6 @@
 
 	function slick () {
 		var $outline =  $('.mydata_outline .slick');
-
-		// $outline.on('afterChange', function(event, slick, currentSlide, nextSlide){
-		// 	$(slick.$slides[currentSlide]).addClass('on');
-		// });
 
 		$outline.slick({
 			speed : 200,

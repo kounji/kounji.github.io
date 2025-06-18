@@ -16,37 +16,23 @@
 	<div class="full_popup" id="full_popup_01">
 
 		<div class="popup_header">
-			<h1>자산연결</h1>
+			<h1>인증방법선택</h1>
 		</div>
 
 		<div class="popup_content">
 
 			<div class="certi_cont">
 				<h2 class="headline">
-					자산연결을 위해<br>
+					{{parameters.subTitle}}<br>
 					<strong>인증 방법을 선택해 주세요.</strong>
 				</h2>
 
 				<ul class="certi_list">
-					<li>
-						<a href="#nolink" class="item nh">
-							<p class="title">NH모바일인증서</p>
-						</a>
-					</li>
-					<li>
-						<a href="#nolink" class="item pass">
-							<p class="title">PASS인증서</p>
-						</a>
-					</li>
-					<li>
-						<a href="#nolink" class="item joint">
-							<p class="title">공동인증서</p>
-							<span class="tag blue">있음</span>
-						</a>
-					</li>
-					<li>
-						<a href="#nolink" class="item finance">
-							<p class="title">금융인증서</p>
+					<li v-for="(item, idx) in parameters.useCertList" :key="idx">
+						<a href="javascript:void(0);" :class="'item ' + item" role="button" @click="fn_nextProcess(item)">
+							<p class="title">{{certs[item].certNm}}</p>
+							<span v-if="item == 'joint'" class="tag blue">{{jointCertGbnName}}</span>
+							<span v-else-if="item == 'nh'" class="tag blue">{{nhMobileCertGbnName}}</span>
 						</a>
 					</li>
 				</ul>
@@ -54,7 +40,7 @@
 
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click="fn_close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 </template>
@@ -65,71 +51,46 @@ import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
 import modalService from '@/service/modalService'
 import apiService from '@/service/apiService'
-import {dayDiff, dateFormat} from '@/utils/date'
+import appService from '@/service/appService'
+import {dateFormat} from '@/utils/date'
 
-import LottieAnimation from 'lottie-web-vue'
-import {mapGetters} from 'vuex'
 import _ from 'lodash'
 
-import COAR4009 from '@/views/page/CO/AR/COAR4009/COAR4009.vue'
-import COAR4042 from '@/views/page/CO/AR/COAR4042/COAR4042.vue'
+import COAR2011 from '@/views/page/CO/AR/COAR2011/COAR2011.vue'
+import COAR2012 from '@/views/page/CO/AR/COAR2012/COAR2012.vue'
+import COAR2018 from '@/views/page/CO/AR/COAR2018/COAR2018.vue'
+import COAR4037 from '@/views/page/CO/AR/COAR4037/COAR4037.vue'
+import COAR4038 from '@/views/page/CO/AR/COAR4038/COAR4038.vue'
+
+// import COAR4043 from '@/views/page/CO/AR/COAR4043/COAR4043.vue'
 
 export default {
-    name : "COAR4002",
+    name : "COAR4003",
     data: () => {
         return {
-			MAX_ORG_CN: 50,
-			CURR_DATE: dateFormat(new Date(), 'YYYYMMDD'),
 
-			orgList: [{"scope": "bank", "scopeName": "은행", "scrmode": "UNSC",
-							"orgKey": "bank_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "card", "scopeName": "카드", "scrmode": "UNSC",
-							"orgKey": "card_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "insu", "scopeName": "보험", "scrmode": "UNS",
-							"orgKey": "insu_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "telecom", "scopeName": "통신", "scrmode": "UNS",
-							"orgKey": "tele_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "invest", "scopeName": "증권", "scrmode": "UNS",
-							"orgKey": "invest_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "efin", "scopeName": "페이", "scrmode": "UNSC",
-							"orgKey": "efin_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "public", "scopeName": "공공", "scrmode": "UNS",
-							"orgKey": "public_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}
-						, {"scope": "capital", "scopeName": "할부금융", "scrmode": "UNS",
-							"orgKey": "capi_org", "orgCn": 0, "orgs": [],
-							"selectedOrgs": []}],
-			selectedScopeList: [],
+			parameters: {
+				title: "",
+				subTitle: "",
+				useCertList: ["joint", "nh", "finance", "pass"],
+			},
 
-			srchKeyword: "",
-			isOnKeyword: false,
-			filterOpt: {"code": "all", "name": "전체선택"},
-			isOnFilter: false,
+			certs: {
+				"joint": {"certDsc": "joint", "certNm": "공동인증서"},
+				"nh": {"certDsc": "nh", "certNm": "NH모바일인증서"},
+				"finance": {"certDsc": "finance", "certNm": "금융인증서"},
+				"pass": {"certDsc": "pass", "certNm": "PASS인증서"},
+			},
 
-			// 파라메터
-			orgDsc		: '',
-			isExternal	: false,
+			jointCertList: [],
+			jointCertGbn: "2",	// 인증서 보유 여부에 따른 구분 (1 : 보유중, 2 : 미보유, 3 : 기간만료) - 20221114 아이폰 인증서 오류 대응으로 default 미보유 설정
 
-			// 팝업 호출 파라메터
-			selectedOrgList: [],
-			moduleList: [],	// 다음 프로세스 파라미터용 기관 목록
+			nhMobileCertGbn: "2",
+			nhMobileCustNo: "",	// NH모바일인증용 고객번호
 
-			// 팝업 수신 데이터
-			certDsc: "", // 인증방법구분 (공동인증 : joint, 금융인증 : finance, 패스인증 : pass)
+			certDsc: "",
 
-
-			///////////////// 연결기관관리 팝업 파라미터 ///////////////// 
-			isMramNew	: false,// '연결기관관리' 팝업에서 신규추가로 넘어온 여부
-			isMramMod	: "",// '연결기관관리' 팝업에서 변경으로 넘어온 여부
-			orgDsc		: '',	// 업권
-			mramSelList : [],	// '연결기관관리'에서 선택한 기관 리스트
-			////////////////////////////////////////////////////////////
+			isLocal : window.location.host.indexOf('localhost') > -1 ? true : false,
         }
 	},
 	beforeMount() {
@@ -138,369 +99,270 @@ export default {
     mounted() {
 		this.initComponent(this.params);
         // PFM로그 처리 화면접속이력 등록 POST
-        apiService.pfmLogSend(this.$options.name)     ;
+        apiService.pfmLogSend(this.$options.name);
     },
     mixins: [
 		commonMixin,
         popupMixin
 	],
 	computed:{
-		selectedOrgCn() {
-			return this.orgList.map(t => { return { "scope": t.scope, "cn": t.selectedOrgs.length}});
-		},
-
-		selectedFilterdOrgCn() {
-			if (this.isOnFilter || this.isOnKeyword) {
-				return this.orgList.map(t => {
-					return { "scope": t.scope,
-							"cn": t.orgs.filter(o => o.displayYn == '1'
-													&& t.selectedOrgs.findIndex(p => p == o.orgC) >= 0).length };
-				});
-			} else {
-				return this.selectedOrgCn;
+		jointCertGbnName() {
+			let r = "";
+			switch (this.jointCertGbn) {
+				case "1":
+					r = "보유중";
+					break;
+				case "2":
+					r = "미보유";
+					break;
+				default:
+					r = "기간만료";
+					break;
 			}
+			return r;
 		},
 
-		selectedOrgAllCn() {
-			let i = 0;
-			this.orgList.forEach(t => {i += t.selectedOrgs.length;});
-			return i;
+		nhMobileCertGbnName() {
+			let r = "";
+			switch (this.nhMobileCertGbn) {
+				case "1":
+					r = "보유중";
+					break;
+				case "2":
+					r = "미보유";
+					break;
+				default:
+					r = "기간만료";
+					break;
+			}
+			return r;
 		},
-
-		connectOrgBtn() {
-			return this.selectedOrgAllCn > 0 ? "개 기관 연결하기" : "선택한 기관이 없습니다";
-		},
-
-		cbtType() {
-            return this.getUserInfo('tobeType') || false;
-        },
-
-		scrmode() {
-			return this.getScrmode().mode || 'N';
-		}
 	},
     methods: {
-        initComponent(param = {}) {
-			this.orgDsc = param.orgDsc || 'bank';
-			this.isMramNew = param.isMramNew || false;
-			this.isMramMod = param.isMramMod || "";
-			this.mramSelList = param.mramSelList || [];
-			this.isExternal = param.isExternal || false;
+        initComponent(params = {}) {
+			this.parameters = {...this.parameters, ...params};
 
 			this.getData();
         },
 
         getData() {
-			const config = {
-				url : "/co/ar/02r01",
-				data : {
-					"mydtCusno" : this.getUserInfo("mydtCusno"),
-					"ofrAttcMethC" : "01"
-				}
+			if (this.parameters.useCertList.includes("joint")) {
+				this.fn_getCertList();
 			}
-
-			apiService.call(config).then(response => {
-				let selectedOrgCn = this.selectedOrgAllCn;
-
-				this.orgList.forEach(t => {
-					t.orgs = response[t.orgKey] || [];
-					t.orgCn = t.orgs.length;
-					// 중앙회 연결처리
-
-					let scpoedOrg = this.myAssetsBzrgList.find(o => o.comnCVal == t.scope);
-					let assetList = [];
-					if (scpoedOrg != undefined && scpoedOrg.orgList != undefined) {
-						assetList = scpoedOrg.orgList;
-					}
-
-					t.orgs.forEach(o => {
-						o.displayYn = "1";
-
-						if (t.scope == "bank") {
-							if (o.orgC === "A4AAAZ0000") {
-								o.colYn = "1";
-							}
-						}
-
-						if (assetList.length > 0) {
-							let asset = assetList.find(p => p.infOfrmnOrgC == o.orgC);
-							if (asset != undefined) {
-								o.exprYn = (dayDiff(asset.tmsEdDt, this.CURR_DATE) >= 0
-												&& dayDiff(asset.tmsEdDt, this.CURR_DATE) <= 30)
-												|| (dayDiff(asset.tmsEdDt, this.CURR_DATE) < 0) ? "1" : "0";
-							}
-						}
-
-						if (!this.isExternal) {
-							let orgDsc = this.orgDsc;
-							if (orgDsc == "all") {
-								orgDsc = t.scope;
-							}
-							if (t.scope == orgDsc) {
-								if (o.amnOrgCYn == "1") {
-									if (this.selectedOrgAllCn < this.MAX_ORG_CN) {
-										t.selectedOrgs.push(o.orgC);
-									}
-									selectedOrgCn++;
-								}
-							}
-						}
-					});
-
-					t.orgs = _.chain(t.orgs).orderBy('colYn', 'desc').value();
-				});
-
-				if (selectedOrgCn > this.MAX_ORG_CN) {
-					modalService.alert("안전한 자산 연결을 위해<br> 최대 50개까지 선택 가능해요.");
-				}
-
-				this.$nextTick(() => {
-					this.fn_observerOrgConnect();
-					// 웹접근성관련 호출
-					this.callJQueryWebAccessibility();
-				});
-
-			});
-
-
+			if (this.parameters.useCertList.includes("nh")) {
+				this.fn_checkNhMobileCert();
+			}
 		},
 
-		// 업권과 기관 자동 연결 화면제어
-		fn_observerOrgConnect() {
-			const orgConnect = document.querySelector('.asset_connect .category_tab');
+		fn_getCertList() {
+			if (window.location.host.indexOf('localhost') > -1) {
+				this.jointCertList = [
+				];
 
-			const stickyOrgNav = function(entries){
-				if(!entries[0].isIntersecting){
-					$(".asset_connect .category_tab").addClass('fixed');
-				}else{
-					$(".asset_connect .category_tab").removeClass('fixed');
-					
-					$.each($(".asset_connect .category_tab li"), function(i,obj){
-						// $("> a", $(obj)).attr('aria-selected', false);
-					});
+				// 인증서 보유 여부 판단
+				this.jointCertGbn = (this.jointCertList.length > 0) ? "1" : "2";
+				
+				// 전체 인증서 만료 판단
+				if (this.jointCertList.length > 0) {
+					let certExprCnt = 0;
+					for (const certItem of this.jointCertList) {
+						if (certItem.today >= certItem.expireDate) {
+							certExprCnt++;
+						}
+					}
+					this.jointCertGbn = (certExprCnt === this.jointCertList.length) ? "3" : this.jointCertGbn;
 				}
-			}
-
-			const orgObserver = new IntersectionObserver(stickyOrgNav, {
-				root:null,
-				rootMargin :'-51px 0px 0px 0px',
-				threshold:1
-			});
-
-			orgObserver.observe(orgConnect);
-
-			$('.popup_content').each(function(){
-				let $parent = $(this);
-				$parent.off('scroll.poplayout').on('scroll.poplayout', function() {		
-					$.each($(".institu_wrap .category_cont .institu_group"), function(idx, item) {
-						let _top = $(item).position().top;
-						if(_top <= 90){
-							$.each($(".organ_sel .category_tab li"), function(i,obj) {
-								$("> a", $(obj)).attr('aria-selected', false);
-							});
-
-							$(">a", $(".organ_sel .category_tab li").eq(idx)).attr('aria-selected', true);
-							fn_scrollOrgNav(idx);
-						}	
-					});
-				});
-
-
-				$(".organ_sel .category_tab a", $parent).each(function(){
-					$(this).click(function(){
-						const id = $(this).attr('href');
-						const _curTop = $parent.scrollTop();
-						const _top = _curTop + $(id).position().top - $(".organ_sel .category_tab").outerHeight() - 15;
+			} else {
+				if (this.getUserInfo('chnl') === '385') {
+					// 스뱅
+					appService.getCertList().then(response => {
+						this.jointCertList = response.result || [];
+						this.jointCertList = this.fn_filterMyCert(this.jointCertList) || [];
+						if (this.jointCertList.length > 0) {
+							for (let i=0; i<this.jointCertList.length; i++) {
+								this.jointCertList[i].notAfter = dateFormat(this.jointCertList[i].notAfter.replace(/[^0-9]/gi, ''), 'YYYY년 MM월 DD일' );
+							}
+						}
+						this.jointCertGbn = (this.jointCertList.length > 0) ? "1" : "2";
 						
-						 $parent.stop().animate({
-							scrollTop : _top
-						}, 300, function() {
-							
-						});
-					})
-				})
-			});			
-
-			function fn_scrollOrgNav(idx) {
-				const obj = $(".organ_sel .category_tab li").eq(idx);
-				const _left = $(obj).offset().left;
-				const _curLeft = $('.organ_sel .category_tab .scroller').scrollLeft();
-
-				$(".organ_sel .category_tab .scroller").stop().animate({
-					scrollLeft:_curLeft + _left - 20
-				}, 400);
-			}
-		},
-
-		// 모든 팝업 닫기 (isExternal = true인 경우 현재 팝업만 닫기)
-		fn_close() {
-			if (this.isExternal) {
-				this.close();
-			} else {
-				this.closeAll();
-			}
-		},
-
-		fn_openSearchSlide() {
-			const config = {
-				renderer: {
-					component: COAR4042,
-					cdata : {
-						"filterOpt": this.filterOpt
-					}
-				}
-			};
-
-			modalService.openSlidePagePopup(config).then(response => {
-				if (response != undefined) {
-					this.filterOpt = response;
-					let f;
-					switch (this.filterOpt.code) {
-						case "all":
-							f = (o) => { return true; };
-							break;
-						case "rec":
-							f = (o) => { return o.amnOrgCYn == "1"; };
-							break;
-						case "expr":
-							f = (o) => { return (dayDiff(o.tmsEdDt, this.CURR_DATE) >= 0
-												&& dayDiff(o.tmsEdDt, this.CURR_DATE) <= 30)
-												|| (dayDiff(o.tmsEdDt, this.CURR_DATE) < 0); };
-							break;
-						case "conn":
-							f = (o) => { return o.colYn == "1"; };
-							break;
-						case "unConn":
-							f = (o) => { return o.colYn == "0"; };
-							break;
-						default:
-							f = (o) => { return o.orgBzrgC == this.filterOpt.code && o.amnOrgCYn == "1"; };
-							break;
-					}
-					this.fn_filterOrgList(f);
-					if (this.filterOpt.code == "all") {
-						this.isOnFilter = false;
-					} else {
-						this.isOnFilter = true;
-					}
-					this.$forceUpdate();
-				}
-			});
-		},
-
-		fn_searchKeyword() {
-			if (this.isNull(this.srchKeyword)) {
-				modalService.alert("기관명을 입력하세요.").then(() => { return; });
-				return false;
-			}
-			let existSrchResult = this.fn_filterOrgList((o) => {
-				return o.orgnm.includes(this.srchKeyword.toUpperCase()) || o.orgnm.includes(this.srchKeyword.toLowerCase());
-			});
-
-			this.isOnKeyword = true;
-			this.$forceUpdate();
-		},
-
-		fn_resetKeyword() {
-			this.srchKeyword = "";
-			this.fn_filterOrgList((o) => { return true; });
-			this.isOnKeyword = false;
-		},
-
-		fn_filterOrgList(f) {
-			let existFilteredData = false;
-			this.orgList.forEach(t => {
-				t.orgs.forEach(o => {
-					if (f(o)) {
-						o.displayYn = "1";
-						existFilteredData = true;
-					} else {
-						o.displayYn = "0";
-					}
-				});
-			});
-			return existFilteredData;
-		},
-
-		fn_checkAll(scope) {
-			let tScope = this.orgList.find(t => t.scope == scope);
-			console.log(this.selectedFilterdOrgCn[this.orgList.findIndex(t => t.scope == scope)]);
-			if (this.selectedFilterdOrgCn[this.orgList.findIndex(t => t.scope == scope)].cn == 0)  {
-				let selectedOrgCn = this.selectedOrgAllCn;
-				tScope.orgs.filter(t => t.displayYn == "1" && t.scrnMrkYn == "1")
-							.forEach(t => {
-								if (this.selectedOrgAllCn < this.MAX_ORG_CN) {
-									tScope.selectedOrgs.push(t.orgC);
+						// 전체 인증서 만료 판단
+						if (this.jointCertList.length > 0) {
+							let certExprCnt = 0;
+							for (const certItem of this.jointCertList) {
+								if (certItem.today >= certItem.expireDate) {
+									certExprCnt++;
 								}
-								selectedOrgCn++;
-							});
-				if (selectedOrgCn > this.MAX_ORG_CN) {
-					modalService.alert("안전한 자산 연결을 위해<br> 최대 50개까지 선택 가능해요.");
+							}
+							this.jointCertGbn = (certExprCnt === this.jointCertList.length) ? "3" : this.jointCertGbn;
+						}
+					});
+				} else {
+					// 콕뱅
+					appService.cokBankGetCertList().then(response => {
+						this.jointCertList = JSON.parse(response.result) || [];
+						this.jointCertList = this.fn_filterMyCert(this.jointCertList) || [];
+						this.jointCertGbn = (this.jointCertList.length > 0) ? "1" : "2";
+						
+						// 전체 인증서 만료 판단
+						if (this.jointCertList.length > 0) {
+							let certExprCnt = 0;
+							for (const certItem of this.jointCertList) {
+								if (certItem.today >= certItem.expireDate) {
+									certExprCnt++;
+								}
+							}
+							this.jointCertGbn = (certExprCnt === this.jointCertList.length) ? "3" : this.jointCertGbn;
+						}
+					});
 				}
-			} else {
-				tScope.selectedOrgs = tScope.selectedOrgs.filter(t => tScope.orgs.findIndex(p => p.displayYn == "0" && p.scrnMrkYn == "1") >= 0)
 			}
 		},
-
-		fn_checkOne(scope, orgC) {
-			if (this.selectedOrgAllCn > this.MAX_ORG_CN) {
-				modalService.alert("안전한 자산 연결을 위해<br> 최대 50개까지 선택 가능해요.").then(() => {
-					let tList = this.orgList.find(t => t.scope == scope).selectedOrgs;
-					tList.pop();
-					return false;
-				});
-				return false;
-			} else {
-				return true;
-			}
-		},
-
-		fn_nextProcess() {
-			this.selectedOrgList = [];
-			this.orgList.forEach(t => {
-				this.selectedOrgList = this.selectedOrgList.concat([...t.orgs].filter(o => t.selectedOrgs.includes(o.orgC))
-																			  .map(o => ({
-																					"orgBzrgC": o.orgBzrgC,
-																					"orgC": o.orgC,
-																					"orgnm": o.orgnm,
-																			  }))
-				);
-			});
-
-
-			const existNewOrg = Boolean(this.selectedOrgList.find(t => t.colYn != '1'));
-			const existPublic = Boolean(this.selectedOrgList.find(t => t.orgBzrgC == 'public'));
-			const existConnOrg = Boolean(this.selectedOrgList.find(t => t.colYn == '1' && t.orgC != 'A4AAAZ0000'));
-			const isOnlyConnOrg = this.selectedOrgList.length == this.selectedOrgList.filter(t => t.colYn == '1' && t.orgC != 'A4AAAZ0000').length;
+		
+		fn_filterMyCert(response) {
+            const isProduct = import.meta.env.VITE_ENV === 'R';	// 운영
+            const jointCertList = response || []; // App 에서 받은 인증서 리스트
+            const userName = this.getUserInfo('cusnm') || ''; // 로그인 사용자 이름
+			let filterList = [];
 			
-			const isShowRegion = false;
-			const isShowTermAccount = Boolean(this.selectedOrgList.find(t => t.orgBzrgC == 'bank' || t.orgBzrgC == 'pay'));
-			const isShowTermFranchise = Boolean(this.selectedOrgList.find(t => t.orgBzrgC == 'bank' || t.orgBzrgC == 'efin'));
-			const isShowTermCategory = Boolean(this.selectedOrgList.find(t => t.orgBzrgC == 'invest'));
-
-			const config = {
-				component : COAR4009,
-				params : {
-					txRqInfo: {
-						termsTitle: "자산연결",
-						isShowRegion: existPublic,
-						isShowTermAccount: isShowTermAccount,
-						isShowTermFranchise: isShowTermFranchise,
-						isShowTermCategory: isShowTermCategory,
-						selectedOrgList: this.selectedOrgList,
-					},
-				}
+			if (isProduct) {
+				// 운영
+				filterList = jointCertList
+				.map(d => {
+					return {
+						...d,
+						today: dateFormat(new Date(), 'YYYYMMDD'),
+						expireDate: (d.notAfter || '').replace(/[^0-9]/gi, '') // '2020년 09월 11일' -> '20200911'
+					}
+				})
+				.filter(d => (d.subjectDn || '').includes(userName)); // 본인 인증서 체크
+			} else {
+				filterList = jointCertList
+				.map(d => {
+					return {
+						...d,
+						today: dateFormat(new Date(), 'YYYYMMDD'),
+						expireDate: (d.notAfter || '').replace(/[^0-9]/gi, '') // '2020년 09월 11일' -> '20200911'
+					}
+				});
 			}
 
-			modalService.openPopup(config).then(response => {
-				console.log(response);
+            return filterList;
+		},
+
+		fn_checkNhMobileCert() {
+			if (window.location.host.indexOf('localhost') > -1) {
+
+			} else {
+				const params = {
+					"RA_CERT_DCD" : "001",
+					"RQST_CHNL_DCD": this.getUserInfo('chnl') === '385'? "NHSP" : "NHSB",
+				};
+	
+				if(this.getUserInfo('chnl') === '385') { // 스뱅
+					appService.checkNHCert(params).then(response => {
+						let result = response.result.result;
+						// AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+						// AOS는 될거고, IOS는 catch로 빠짐
+						// 스뱅만 result로 한번 더 묶여 있음
+						try { result = JSON.parse(response.result.result); } catch (e) { }
+	
+						if (response.result.resultCode === 0 ) {
+							this.nhMobileCertGbn = "1";
+							this.nhMobileCustNo = result?.CUST_NO || this.getUserInfo('crmCusno')
+							// modalService.alert("존재 > " + result.CUST_NAME);
+						} else {
+							// 실제 사용할때는 resultCode가 '1'면 모두 '인증서가 없습니다' 팝업으로 찍으세요~
+							// modalService.alert("appService::(SB)checkNHCert error > " + result.msg);
+						}
+						
+					});
+				} else { // 콕뱅
+					appService.cokBankCheckNHCert(params).then(response => {
+						let result = response.result;
+						// AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+						// AOS는 될거고, IOS는 catch로 빠짐
+						try { result = JSON.parse(response.result); } catch (e) { }
+	
+						if ( response.resultCode == 0 ) {
+							this.nhMobileCertGbn = "1";
+							this.nhMobileCustNo = result?.CUST_NO || this.getUserInfo('crmCusno')
+							// modalService.alert("존재 > " + result.CUST_NAME);
+						} else {
+							// 실제 사용할때는 resultCode가 '1'면 모두 '인증서가 없습니다' 팝업으로 찍으세요~
+							// modalService.alert("appService::(CB)checkNHCert error > " + result.msg);
+						}
+					});
+				}
+				
+			}
+		},
+
+		fn_close(response = {}) {
+			this.close(response);
+		},
+
+		fn_nextProcess(certDsc) {
+			this.certDsc = certDsc;
+			let component = "";
+			switch (certDsc) {
+				case "nh": 
+					if(this.nhMobileCertGbn == '1') {
+						component = COAR4038;
+					} else {
+						component = COAR4037;
+					}
+
+					break;
+				case "joint":
+					if (this.jointCertGbn == "1") {
+						component = COAR2011;
+					} else {
+						if (this.isLocal) {
+							component = COAR2011;
+						} else {
+							component = COAR2018;
+						}
+					}
+					break;
+				case "finance":
+					component = COAR2011;
+					break;
+				case "pass":
+					component = COAR2012;
+					break;
+				default:
+					break;
+
+			}
+			this.fn_openCertTermSlide({
+				"renderer": {"component": component},
+				"params": {"certDsc": certDsc},
+			});
+		},
+
+		fn_openCertTermSlide(config) {
+			modalService.openSlidePagePopup(config).then(response => {
+				if (this.certDsc == "joint" || this.certDsc == "finance") {
+					if (response == "OK") {
+						this.fn_close({ "certDsc": this.certDsc });
+					}
+				} else if(this.certDsc == "nh") {
+					if (response == "OK") {
+						this.fn_close({ "certDsc": this.certDsc, "custNo": this.nhMobileCustNo });
+					}
+				} else if (this.certDsc == "pass") {
+					if (response == "agree") {
+						this.fn_close({ "certDsc": this.certDsc });
+					}
+				}
 			});
 		},
 
     },
+
     components : {
-		LottieAnimation
-    }
+		
+    },
 }
 
 

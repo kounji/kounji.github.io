@@ -73,10 +73,36 @@
 							</ul>
 
 							<!-- Tab 01 나의 재무진단 -->
+							<div class="analysis load"> <!--[v4.0] 2025-04-24 load case 추가 -->
+								<p><span>고객님의</span> <span>자산을</span> <span><em>분석중</em>이에요.</span></p>
+							</div>
+
 							<div class="analysis empty">
-								<strong>내가 가진 연금 연결하면</strong>
-								<p>재무 진단 받고<br>은퇴 후 필요자금 확인할 수 있어요.</p>
-								<button type="button" class="btns md"><span class="icon_line_right">자산연결</span></button>
+								<strong>내가 가진 자산 연결하고<br>다양한 재무 진단 받기</strong> <!--[v4.0] 2025-05-28 문구 위치 수정 -->
+								<div class="tooltip">
+									<span class="text">(국민건강보험공단 연결 필수)</span> <!--[v4.0] 2025-05-28 문구 위치 수정 -->
+									<div class="custom_tooltip">
+										<div class="com_tooltip_type02 com_tooltip_type03">
+											<a href="#nolink" class="com_btn_info" role="button">
+												<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+											</a>
+											<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+												<div>
+													<ul class="dotted_list">
+														<li>건강보험공단 소득정보를 기반으로 재무를 진단합니다.</li>
+														<li>직장가입자는 과세 표준 소득, 지역가입자는 보험료 산정 기준에 따른 점수 및 자산/소득을 참고 합니다.</li>
+														<li>소득의 일정 비율 이상이 부채 또는 고정지출이라면 재무 건전성이 낮을 수 있습니다.</li>
+														<li>건강보험공단 기관 연결하고, 금융자산 연결하면 더 정확한 진단이 가능합니다.</li>
+														<li>재무진단은 한국FP학회가 고안한 가계재무상태평가지표와 연구 논문을 기반으로 객관적으로 선정한 지표를 활용합니다.</li> <!--[v4.0] 2025-05-08 툴팁 오타 수정 -->
+														<li>연결한 금융자산을 기준 일부 추정치 금액을 반영하여 평가한 결과로 참고용으로 활용하세요.</li>
+													</ul>
+													<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<button type="button" class="btns md"><span class="icon_line_right">국민건강보험공단 연결</span></button> <!--[v4.0] 2025-05-14 문구수정 -->
 							</div>
 
 							<!-- Tab 02 나의 금융스타일 -->
@@ -110,7 +136,7 @@
 									<dt>KOSPI</dt>
 									<dd class="factor">
 										<span class="num">2,620.01</span>
-										<span class="range up">8.64%(전일대비)</span>
+										<span class="range up"><i class="blind">상승</i>8.64%(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -121,7 +147,7 @@
 									<dt>KOSDAQ</dt>
 									<dd class="factor">
 										<span class="num">2,620.01</span>
-										<span class="range down">8.64(전일대비)</span>
+										<span class="range down"><i class="blind">하락</i>8.64(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -137,7 +163,7 @@
 									<dd class="factor">
 										<span class="unit">KRW</span>
 										<span class="num">727.26</span>
-										<span class="range">0.00(전일대비)</span>
+										<span class="range"><i class="blind">동일</i>0.00(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -161,25 +187,25 @@
 						<div class="scroller">
 							<ul>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>콕 자산관리서비스</span>
 										<strong>사용방법을 알려드려요</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>신나는 축제 한가득!</span>
 										<strong>지역별 특별한<br>문화 체험 소개</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>하루 다섯 번!</span>
 										<strong>로또복권 번호만들기</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>숨은 돈 찾기</span>
 										<strong>숨은예금,보험금<br>찾아볼까요?</strong> <!--[v4.0] 2025-03-17 br 추가 -->
 									</a>
@@ -192,7 +218,7 @@
 					<div class="asset_sheet">
 						<strong class="h_tit01">내가 연결한 자산</strong>
 						
-						<button type="button" class="toggle_btn" disabled>전체열기</button>
+						<!-- <button type="button" class="toggle_btn" disabled>전체열기</button> --> <!--[v4.0] 2025-04-08 자산 없을 경우 버튼 미노출 -->
 
 						<ul class="asset_list">
 							<!-- CASE 기본 : li에 메뉴별 클래스 추가
@@ -202,54 +228,74 @@
 								"menu11" 할부금융, "menu12" 자동차할부, "menu13" 학자금대출, "menu14" 리스, "menu15" 빌린돈 -->
 
 							<!-- CASE 미등록 : li에 "nodata" 클래스 추가 -->
-							<li class="menu02 nodata">
-								<a href="#nolink" class="head">
-									<strong>부동산<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont down">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
+							<li class="menu02 nodata"> <!--[v4.0] 2025-04-01 하나씩 열리게 구조 수정 -->
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>부동산<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt"></a>
+									</div>
+									<div class="cont down">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
+									</div>
 								</div>
 							</li>
 							<li class="menu03 nodata">
-								<a href="#nolink" class="head">
-									<strong>투자<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>투자<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt"></a>
+									</div>
+									<div class="cont up">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+									</div>
 								</div>
 							</li>
 							<li class="menu04 nodata">
-								<a href="#nolink" class="head">
-									<strong>연금<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>동일해요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>연금<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt"></a>
+									</div>
+									<div class="cont">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>동일해요.</em></p>
+									</div>
 								</div>
 							</li>
 							<li class="menu08 nodata">
-								<a href="#nolink" class="head">
-									<strong>대출<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>대출<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt"></a>
+									</div>
+									<div class="cont up">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+									</div>
 								</div>
 							</li>
 							<li class="menu09 nodata">
-								<a href="#nolink" class="head">
-									<strong>자동차<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>자동차<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt"></a>
+									</div>
+									<div class="cont up">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+									</div>
 								</div>
 							</li>
 						</ul>
@@ -304,13 +350,13 @@
 					<div class="credit_sheet">
 						<strong class="h_tit01">신용과 건강</strong>
 						<div class="board">
-							<a href="#nolink">
+							<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 								<strong>신용점수</strong>
 								<div class="cont">
 									<p>나의 신용점수를<br>알아보세요.</p>
 								</div>
 							</a>
-							<a href="#nolink">
+							<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 								<strong>건강정보</strong>
 								<div class="cont">
 									<p>매일의 건강한 습관<br>함께 만들어가요.</p>
@@ -331,7 +377,7 @@
 									<strong>건강보험료 납부내역을<br>확인하실 수 있어요.</strong>
 								</dt>
 								<dd>
-									<p class="txt">연도별 건강보험료 납부<br>금액을 확인해보세요.</p> <!--[v4.0] 2025-03-13 문구수정 -->
+									<p class="txt">연도별 건강보험료 납부<br>금액을 확인해 보세요.</p> <!--[v4.0] 25-05-29 띄어쓰기 수정 -->
 								</dd>
 								<dd>
 									<a href="#nolink" class="link">건강보험료 납부내역보기</a>
@@ -375,19 +421,20 @@
 										<strong class="tit">은행</strong>
 										<strong class="status">1</strong>
 									</div>
-									<div class="organ"><!-- 기관 2개까지 노출 -->
+									<!--[v4.0] 2025-05-22 기관 마크업 수정 -->
+									<div class="organ" role="img" aria-label="연결된 기관 카카오뱅크, 이 외 기관 더있음">
+										<!-- 기관 4개까지 노출 -->
 										<span class="item"><i class="A1AAHJ0000"></i><span class="blind">카카오뱅크</span></span>
-										<span class="item nodata"><span class="blind">기관없음</span></span>
+										<span class="item etc"><span class="blind">이 외 기관 더있음</span></span>
 									</div>
+									<!--//[v4.0] 2025-05-22 기관 마크업 수정 -->
 								</li>
 								<li>
 									<div class="tit_area">
 										<strong class="tit">카드</strong>
 										<strong class="status">0</strong>
 									</div>
-									<div class="organ"> <!-- 기관 2개까지 노출 -->
-										<span class="item nodata"><span class="blind">기관없음</span></span>
-									</div>
+									<span class="nodata">연결한 카드가 없어요</span> <!--[v4.0] 2025-05-22 empty case 수정 -->
 								</li>
 							</ul>
 							<button type="button" class="btns md"><span class="icon_line_right">연결 기관 전체보기</span></button>
@@ -396,7 +443,7 @@
 					
 					<!-- [자산진단] -->
 					<div class="diagnosis_sheet">
-						<a href="#nolink" class="banner">
+						<a href="#nolink" class="banner" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 							<p>한눈에 모아보는<br>자산 흐름 분석과 나의 자산진단</p>
 							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json"loop autoplay aria-hidden="true" class="lottie_bg"></lottie-player>
 						</a>
@@ -406,16 +453,16 @@
 					<div class="favorite">
 						<h2 class="h_tit03">나의 관심서비스</h2>
 						<button type="button" class="btn_add">관심서비스 담기</button>
-
+						<!-- 25-04-01 메뉴아이디 수정-->
 						<ul class="attention_list">
-							<li class="AS100000"><a href="#nolink">나의 자산</a></li>
-							<li class="PD107000"><a href="#nolink">대출이자 계산기</a></li>
-							<li class="RG101000"><a href="#nolink">지역축제</a></li>
-							<li class="RG103000"><a href="#nolink">농촌여행</a></li>
-							<li class="RG104000"><a href="#nolink">자전거길 국토종주</a></li>
-							<li class="MR104000"><a href="#nolink">로또복권  번호만들기</a></li>
+							<li class="AB100000"><a href="#nolink">나의 자산</a></li>
+							<li class="TB107000"><a href="#nolink">대출이자 계산기</a></li>
+							<li class="RB101000"><a href="#nolink">지역축제</a></li>
+							<li class="RB103000"><a href="#nolink">농촌여행</a></li>
+							<li class="RB104000"><a href="#nolink">자전거길 국토종주</a></li>
+							<li class="EV102000"><a href="#nolink">로또복권  번호만들기</a></li>
 						</ul>
-
+						<!-- //25-04-01 메뉴아이디 수정-->
 						<!--등록된 관심서비스가 없을 경우-->
 						<p class="h_tit01">나의 관심서비스로<br>담아 놓고<br>빠르게 이동하세요.</p>
 					</div>

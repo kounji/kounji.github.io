@@ -18,7 +18,7 @@
         <div class="popup_box">
             <div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
                 <div class="popup_header">
-                    <h1>옵션 선택</h1>
+                    <h1>기관 필터</h1>
                 </div>
                 <div class="popup_content">
                     <div class="radio_group">
@@ -58,13 +58,13 @@ export default {
                 , {"code": "expr", "name": "만료예정 기관", "scrmode": "UNSC",}
                 , {"code": "conn", "name": "연결기관", "scrmode": "UNSC",}
                 , {"code": "unConn", "name": "연결기관 제외", "scrmode": "UNSC",}
-                , {"code": "bank", "name": "은행 추천", "scrmode": "UNSC",}
-                , {"code": "card", "name": "카드사 추천", "scrmode": "UNSC",}
-                , {"code": "insu", "name": "보험사 추천", "scrmode": "UNS",}
-                , {"code": "telecom", "name": "통신업 추천", "scrmode": "UNS",}
-                , {"code": "invest", "name": "증권 추천", "scrmode": "UNS",}
-                , {"code": "efin", "name": "페이 추천", "scrmode": "UNSC",}
-                , {"code": "public", "name": "공공 추천", "scrmode": "UNS",}
+                // , {"code": "bank", "name": "은행 추천", "scrmode": "UNSC",}
+                // , {"code": "card", "name": "카드사 추천", "scrmode": "UNSC",}
+                // , {"code": "insu", "name": "보험사 추천", "scrmode": "UNS",}
+                // , {"code": "telecom", "name": "통신업 추천", "scrmode": "UNS",}
+                // , {"code": "invest", "name": "증권 추천", "scrmode": "UNS",}
+                // , {"code": "efin", "name": "페이 추천", "scrmode": "UNSC",}
+                // , {"code": "public", "name": "공공 추천", "scrmode": "UNS",}
             ],
             resData: {},
             filterOptCode: ""

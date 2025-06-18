@@ -46,7 +46,7 @@
 				<!-- 아파트 등록시 부동산 별칭란 추가 -->
 				<template>
 					<div class="com_input_type01 necessary">
-                        <input type="text" id="com_input01" :value="rlestNm" ref="rlestNm" required placeholder="부동산 별칭을 입력하세요" title="부동산 별칭 입력" @keyup="fn_checkWord($event, 30), setVisible('rlestNm')" @keyup.enter="moveNextTag($event)">
+                        <input type="text" id="com_input01" v-model="rlestNm" ref="rlestNm" required placeholder="부동산 별칭을 입력하세요" title="부동산 별칭 입력" @keyup="fn_checkWord($event, 30), setVisible('rlestNm')" @keyup.enter="moveNextTag($event)">
                         <label for="com_input01">
                             <em><span class="blind">필수입력</span></em>
                             <span class="txt_label_x">부동산 별칭</span>
@@ -305,6 +305,7 @@ import modalService from '@/service/modalService'
 import apiService from '@/service/apiService'
 import {keyupNumFormat, numberFormat} from '@/utils/number'
 import {dateFormat} from '@/utils/date' // monthAdd
+import {checkWord} from '@/utils/data'
 import _ from 'lodash'
 
 import COCO2201 from '@/views/page/CO/CO/COCO2201/COCO2201' 	// 자산 등록완료 화면
@@ -315,7 +316,7 @@ import COET1002 from '@/views/page/CO/ET/COET1002/COET1002'     // 부동산 이
 import COET1003 from '@/views/page/CO/ET/COET1003/COET1003'     // 부동산 이벤트 응모팝업
 
 export default {
-    name : "CORE2206",
+    name : "CORE4206",
     data : () => {
         return {
 			/*--- 부모창 전달 파라미터 start ---*/
@@ -327,6 +328,7 @@ export default {
 			aptHscxIdvdc    : '',        	// 아파트단지개별코드
 			aptNm           : '',           // 아파트명
 			newPytpAreaCntn : '',     		// 면적(신평형면적내용)
+			rlestTngDsc		: '',			// 부동산 유형
 
 			rlestNm			: '',			// 부동산명
 
@@ -352,6 +354,7 @@ export default {
 
 			rlestInstArr    : [], // 대출상품 리스트
 			msgFlag         : 0,  
+			rlestInstCnt	: 0,
 			btnMsg          : "부동산대출 선택하기",
 			
 			// on/off 버튼 체크여부
@@ -366,13 +369,16 @@ export default {
 			
 			uitiList 		: [], 			// 위티 아파트 실거래 목록
 			uitiTrPr 		: 0,			// 위티 실거래가
-			uitiLyno		: ''			// 위티 층수
+			uitiLyno		: '',			// 위티 층수
+
+			flag                : true, // 부동산 별칭 글자수 확인
         }
     },
     computed: {
 		// 버튼 활성/비활성 이벤트
 		btnOnOff() {
-			if(this.rlestRsdFormDsc == '1') { 			// 자가
+			if(this.rlestNm === "") return "btn_off";
+			else if(this.rlestRsdFormDsc == '1') { 			// 자가
 				// 매매가격, 매매일자
 				if(this.rlestTrPr <= 0 || this.dlDt == '')
 					return "btn_off";
@@ -402,7 +408,7 @@ export default {
             }
             if(this.isCheckedLoan == 'checked') { // 대출
                 // 대출목록
-                if(this.rlestInstArr == '' || this.rlestInstArr.length <= 0)
+                if(this.rlestInstArr.length <= 0)
                     return "btn_off";
             }
 
@@ -449,6 +455,7 @@ export default {
 			this.aptNm           = param.aptNm || '';             									// 아파트명
 			this.newPytpAreaCntn = param.newPytpAreaCntn || '';   									// 면적(신평형면적내용)
 			this.aptHfisArea	 = param.aptHfisArea || "";											// 아파트 분양면적
+			this.rlestTngDsc	 = param.rlestTngDsc || "";
 
 			this.rlestHldSqno    = param.rlestHldSqno || '';      									// 부동산보유일련번호
 			this.rlestTrPr       = param.rlestTrPr != 0 ? numberFormat(param.rlestTrPr) : '';       // 매매가격
@@ -563,32 +570,52 @@ export default {
                     return false;
                 }
             }
-
+			if(this.rlestRsdFormDsc === "1") {   // 자가
+				this.rlestTrPr       = this.rlestTrPr != "" ? this.rlestTrPr.toString().replace(/[,]/g, '') : ""   				// 부동산거래가격
+				this.grmy            = this.isCheckedRevn ? (insGrmy != "" || insGrmy != 0 ? insGrmy : '') : 0                 	// 보증금
+				this.mmr             = this.isCheckedRevn ? (insMmr != "" || insMmr != 0 ? insMmr : '') : 0                    	// 월세
+				this.dlDt            = this.dlDt.replace(/[-]/g, '')                                                           	// 계약일자
+				this.commQtart       = this.isCheckedInv == 'checked' ? this.commQtart : 100                                    // 공통투자 지분
+				this.ctrDt           = this.isCheckedRevn ? (insCtrDt != "" ? insCtrDt.replace(/[-]/g, '') : '') : ""          	// 계약일자
+				this.dueDt           = this.isCheckedRevn ? (insDueDt != '' ? insDueDt.replace(/[-]/g, '') : '') : ""           // 만기일자
+				this.revnMnEn        = this.isCheckedRevn == 'checked' ? '1' : '0'                 								// 세입자여부(1:여, 0:부)
+			} else if(this.rlestRsdFormDsc === "2" || this.rlestRsdFormDsc === "3") {     // 전세, 월세
+				this.rlestTrPr       = 0   																						// 부동산거래가격
+				this.grmy            = insGrmy != "" || insGrmy != 0 ? insGrmy : ''                 							// 보증금
+				this.mmr             = insMmr != "" || insMmr != 0 ? insMmr : ''                    							// 월세
+				this.dlDt            = ""                         																// 매매일자
+				this.commQtart       = 0                                          												// 공동지분율
+				this.ctrDt           = insCtrDt != "" ? insCtrDt.replace(/[-]/g, '') : '',          							// 계약일자
+				this.dueDt           = insDueDt != '' ? insDueDt.replace(/[-]/g, '') : '',          							// 만기일자
+				this.revnMnEn        = '0'                  																	// 세입자여부(1:여, 0:부)
+			}
+			
             const config0 = {
                 url : "/co/re/01sa1",
                 data : {
-                    mydtCusno       : this.getUserInfo("mydtCusno"),                                // 마이데이터고객번호
-                    rlestHldSqno    : this.rlestHldSqno || null,                                    // 부동산보유일련번호(새로등록 : null, 수정 : 해당 부동산 일련번호)
-
-                    rlestNm         : this.rlestNm,                                                 // 부동산명
-                    rlestTngDsc     : '1',                                             				// 부동산물건구분코드(1:아파트, 5:주택, 2:오피스텔, 6:토지, 7:상가, 9:기타)
-                    mmoInpYn        : '0',                                                          // 수기입력여부(1: 직접입력, 0: 아파트입력)
-                    rlestRsdFormDsc : this.rlestRsdFormDsc,                                         // 부동산거주형태구분코드(1:자가,2:전세,3:월세)
-                    aptHscxIdvdc    : this.aptHscxIdvdc,                                            // 아파트단지개별코드
-                    newPytpAreaCntn : this.newPytpAreaCntn,                                         // 신평형면적내용
-                    rlestTrPr       : this.rlestTrPr != "" ? this.rlestTrPr.toString().replace(/[,]/g, '') : "",   // 부동산거래가격
-                    grmy            : insGrmy != "" || insGrmy != 0 ? insGrmy : '',                 // 보증금
-                    mmr             : insMmr != "" || insMmr != 0 ? insMmr : '',                    // 월세
-                    ctrDt           : insCtrDt != "" ? insCtrDt.replace(/[-]/g, '') : '',           // 계약일자
-                    dlDt            : this.dlDt.replace(/[-]/g, '') || '',                          // 매매일자
-                    commQtart       : this.commQtart || 0,                                          // 공동지분율
-                    dueDt           : insDueDt != '' ? insDueDt.replace(/[-]/g, '') : '',           // 만기일자
-                    revnMnEn        : this.isCheckedRevn == 'checked' ? '1' : '0',                  // 세입자여부(1:여, 0:부)
-                    provC           : '',                                             				// 시도코드(아파트 입력 시 사용X)
-                    ccwC            : '',                                              				// 시군구코드(아파트 입력 시 사용X)
-                    ttvC            : '',                                              				// 읍면동코드(아파트 입력 시 사용X)
-                    dtlAdr          : '',                                                           // 상세주소(입력은 하지않고 테이블 컬럼만 존재)
-                    rlestCnctAcList : this.rlestInstArr.filter(d => d.checked==true),               // 연결계좌목록
+                    mydtCusno       : this.getUserInfo("mydtCusno"),                                				// 마이데이터고객번호
+                    rlestHldSqno    : this.rlestHldSqno || null,                                    				// 부동산보유일련번호(새로등록 : null, 수정 : 해당 부동산 일련번호)
+				
+                    rlestNm         : this.rlestNm,                                                 				// 부동산명
+                    rlestTngDsc     : this.rlestTngDsc,                                             				// 부동산물건구분코드(1:아파트, 5:주택, 2:오피스텔, 6:토지, 7:상가, 9:기타)
+                    mmoInpYn        : '0',                                                          				// 수기입력여부(1: 직접입력, 0: 아파트입력)
+                    rlestRsdFormDsc : this.rlestRsdFormDsc,                                         				// 부동산거주형태구분코드(1:자가,2:전세,3:월세)
+                    aptHscxIdvdc    : this.aptHscxIdvdc,                                            				// 아파트단지개별코드
+                    newPytpAreaCntn : this.newPytpAreaCntn,                                         				// 신평형면적내용
+                    rlestTrPr       : this.rlestTrPr,                                               				// 부동산거래가격
+                    grmy            : this.grmy,                                                    				// 보증금
+                    mmr             : this.mmr,                                                     				// 월세
+                    ctrDt           : this.ctrDt,                                                   				// 계약일자
+                    dlDt            : this.dlDt,                                                    				// 매매일자
+                    commQtart       : this.commQtart || 0,                                          				// 공동지분율
+                    dueDt           : this.dueDt,                                                   				// 만기일자
+                    revnMnEn        : this.revnMnEn,                  												// 세입자여부(1:여, 0:부)
+                    provC           : this.provC || '',                                             				// 시도코드
+                    ccwC            : this.ccwC || '',                                              				// 시군구코드
+                    ttvC            : this.ttvC || '',                                              				// 읍면동코드
+                    dtlAdr          : '',                                                           				// 상세주소(입력은 하지않고 테이블 컬럼만 존재)
+                    //rlestCnctAcList : this.rlestInstArr.filter(d => d.checked==true),             				// 연결계좌목록
+					rlestCnctAcList : this.isCheckedLoan ? this.rlestInstArr.filter(d => d.checked==true) : [],		// 연결계좌목록
                 }
             }
 
@@ -782,6 +809,7 @@ export default {
         },
         // 대출상품 선택 팝업 오픈
         openSelectRlestInst(content) {
+			console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@ content -> ", content);
 			if(content.length > 0) {
 				const config = {
 					params : {
@@ -802,6 +830,7 @@ export default {
 				modalService.openSlidePagePopup(config).then(response => {
 					this.rlestInstArr = []
 					this.msgFlag = 0
+					this.rlestInstCnt = 0
 					for(let i=0; i<response.length; i++) {
 						const tmpArray = {
 							"infOfrmnOrgC"  :response[i].orgC,
@@ -813,7 +842,10 @@ export default {
 							"checked"       :response[i].checked
 						}
 						this.rlestInstArr.push(tmpArray)
-						if(tmpArray.checked == true) { this.msgFlag++ }
+						if(tmpArray.checked == true) { 
+							this.msgFlag++
+							this.rlestInstCnt++
+						}
 					}
 					
 					this.chkSelect = true   // 부동산 대출 상품 선택 완료
@@ -844,7 +876,10 @@ export default {
             }
             modalService.confirm(config).then(text => {
                 if(text == "예") {
-                    if(!this.isUpt) this.closeAllData(true);
+                    if(!this.isUpt) {
+						if(this.popId === "Rlest") this.close({"isCloseAll" : false})
+						else this.closeAllData(true);
+					}
                     else this.closeAll();
                 }
             })
@@ -1040,10 +1075,10 @@ export default {
                 }
 
                 this.revnMnEn   = ''; // 세입자여부
-                this.ctrDtRevn  = ''; // 계약일
-                this.dueDtRevn  = ''; // 만기일
-                this.grmyRevn   = ''; // 세입자 보증금(전월세 시 보증금과 동일)
-                this.mmrRevn    = ''; // 세입자 월세(전월세 시 월세와 동일)
+                // this.ctrDtRevn  = ''; // 계약일
+                // this.dueDtRevn  = ''; // 만기일
+                // this.grmyRevn   = ''; // 세입자 보증금(전월세 시 보증금과 동일)
+                // this.mmrRevn    = ''; // 세입자 월세(전월세 시 월세와 동일)
             }
             
             /* 대출 */
@@ -1056,7 +1091,7 @@ export default {
                     this.isShowLoan = true;     // 현재 체크해제된 상태이면, 하위항목 show
                 }
 
-                this.rlestInstArr = []; // 대출목록
+                // this.rlestInstArr = []; // 대출목록
             }
 
             /* 초기화 */
@@ -1152,7 +1187,34 @@ export default {
 					}
 				}
 			})
-		}
+		},
+		// visible 세팅, 초기에만 hide 그 이후는 값을 지워도 hide로 전환하지 않기 위함
+        setVisible(objNm) {
+            switch(objNm) {
+                case 'rlestNm' :
+                    this.rlestNmShow = true;
+                    break;
+            }
+        },
+		// 글자수 체크
+        fn_checkWord(event, maxByte) {
+			let newValue = event.target.value;
+
+            const validValue = newValue.replace(/[^ㄱ-ㅎ가-힣a-zA-Z0-9\s_`~!@#$%^&*()\-–—+=;:,.<>\[\]{}|?\\/]/g, '');
+            let rtnObj = checkWord(validValue, maxByte)
+
+            if(rtnObj.flag) {this.$refs.rlestNm.blur()}   // 알럿 중복 방지
+
+            event.target.value = rtnObj.value
+            this.rlestNm = event.target.value
+        },
+		moveToNextTag() {
+            this.$nextTick(()=>{
+                //      별칭 입력           별칭 2자리 이상 입력        등록일 경우 주거형태 팝업화면으로 넘어감
+                if(this.rlestNm != '' && !this.isUpt && this.flag)
+                    this.openRlestAreaPop();		// 이벤트 팝업 및 자산등록 완료 팝업 오픈
+            })
+        },
     },
     components:{
     }

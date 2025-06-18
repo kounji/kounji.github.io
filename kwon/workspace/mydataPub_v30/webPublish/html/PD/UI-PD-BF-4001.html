@@ -41,7 +41,7 @@
 			
 			<div id="content" class="sub_main renewal">
 				<div class="com_inner financial_briefing">
-					<!--[v4.0] 공공데이타-->
+					<!--[v4.0] 공공데이타 / 25-06-13 삭제 
 					<div class="open_data">
 						<div>
 							<div>
@@ -72,6 +72,7 @@
 						<p class="paging"></p>
 						<button type="button" title="정지" class="btn_controls"></button>
 					</div>
+					-->
 
 					<!--
 					[신문사/기관명] 원문 제목, 배포 일자
@@ -261,10 +262,67 @@
 							</div>
 						</div>
 					</div>
-					 <!--//25-02-13 KRW 위치 수정 / 시간표현 수정 /목표가 없을 경우 추가  / counter 삭제-->
+					<!--//25-02-13 KRW 위치 수정 / 시간표현 수정 /목표가 없을 경우 추가  / counter 삭제-->
 					<!--// 가장 최근 고시 환율 정보 Slide -->
 
-                    <!--[v4.0] 25-02-25 배너추가--->
+					<!-- [v4.0] 25-05-15 지수 슬라이드 추가(스크립트도 추가)  -->
+					<div class="slick_exchange">
+						<div class="inner">
+							<!--KOSPI 지수 배너 -->
+							<dl class="exchange">
+								<dt>KOSPI</dt>
+								<dd class="factor">
+									<span class="num">2,506.02</span>
+									<span class="range up" role="img" aria-label="상승 8.64%(전일대비)"><i class="blind">상승</i>8.64%(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
+								</dd>
+								<dd class="basis">
+									<span>2025.02.04 기준</span>
+								</dd>
+							</dl>
+							<!--KOSDAQ 지수 배너 -->
+							<dl class="exchange">
+								<dt>KOSDAQ</dt>
+								<dd class="factor">
+									<span class="num">727.26</span>
+									<span class="range" role="img" aria-label="동일 0.00(전일대비)"><i class="blind">동일</i>0.00(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
+								</dd>
+								<dd class="basis">
+									<span>2025.02.04 기준</span>
+								</dd>
+							</dl>
+							<!--선택한 주식종목 배너 -->
+							<dl class="exchange stock">
+								<dt>삼성전자 한 줄 넘을 경우 말줄임 삼성전자 한 줄 넘을 경우 말줄임
+									<button type="button" class="btn_setting"><span class="blind">주식종목 설정</span></button>
+								</dt>
+								<dd class="factor">
+									<span class="num">75,000</span>
+									<span class="range down" role="img" aria-label="하락 8.64%(전일대비)"><i class="blind">하락</i>8.64(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
+								</dd>
+								<dd class="basis">
+									<span>2025.02.04 기준</span>
+								</dd>
+							</dl>
+							
+							<div class="exchange">
+								<!--CASE Empty -->
+								<a href="#nolink" class="select_empty">
+									<p>노출할 주식 종목을 선택해 주세요.</p>
+								</a>
+							</div>
+						</div>
+						<!--
+						<div class="controls">
+							<p class="paging"></p>
+							<button type="button" class="prev"><span class="blind">이전</span></button>
+							<button type="button" class="next"><span class="blind">다음</span></button>
+							<button type="button" class="btn_play"><span class="blind">정지</span></button>
+						</div>
+						-->
+					</div>
+					<!-- //[v4.0] 25-05-15 지수 슬라이드(스크립트도 추가)  -->
+					
+	                <!--[v4.0] 25-02-25 배너추가--->
                     <a href="#" class="mt20">
                         <img src="../../../../src/assets_v40/images/banner/img_banner_exchange_pocket.png" alt="환율 목표금액에 도달했나요? 목표금액으로 환전해 보세요.">
                     </a>
@@ -377,6 +435,31 @@
 				}
 				//slick-arrow
 			})
+
+			//25-05-15 스크립트 추가
+			$(".slick_exchange").each(function(){
+				let $this = $(this);
+
+				$(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+					var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+					$(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+				});
+
+				$(".inner", $this).slick({
+					speed : 300,
+					dots : true,
+					adaptiveHeight: false,
+					autoplay:false,
+					infinite: true,
+					draggable: true,
+					accessibility:true,
+					arrows : true,
+					cssEase:'linear',
+					prevArrow:$(".controls .prev", $this),
+					nextArrow:$(".controls .next", $this),
+				});
+
+			});
         }
 	</script>
 	<!--//[v4.0] 스크립트 추가-->

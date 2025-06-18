@@ -16,7 +16,7 @@
     <!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->
@@ -43,13 +43,28 @@
 					<img src="@/assets_v40/images/img/temp_map.png" alt="" style="width: 100%;"> 
 				</div>
 				-->
-				
-				<cmm-naverMap :mapInfoList.sync="mapInfoList" mapMode="retina"></cmm-naverMap>
+
+				<div v-if="!mapError && mapInfoList.length > 0" class="board_box"> <!--[v4.0] 2025-04-08 지도 UI 변경 -->
+					<div class="head bg02">
+						<strong>지도</strong>
+						<p>지도를 확대/축소해서<br>더 상세한 코스를 확인해 보세요.</p>
+					</div>
+					<!-- 네이버 지도 영역 -->
+					<div>
+						<cmm-naverMap
+							:mapInfoList.sync="mapInfoList" 
+							mapMode="retina" 
+							@map-error="mapError = true"
+						></cmm-naverMap>
+					</div>
+					<!-- // -->
+				</div>
+
 			</section>
 
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 
@@ -72,23 +87,23 @@ export default {
         return {
             surFacInfo: {},
 			mapInfoList: [],
+			mapError: false,
 		}
 	},
 	created() {
 		this.surFacInfo = this.params
-		this.mapInfoList = this.surFacInfo.gpsList
-		console.log("mapInfoList")
+		console.log("mapInfoList change")
 		console.log(this.mapInfoList)
+
 	},
     mounted() {
         //this.initComponent()
 
         //PFM로그 처리 화면접속이력 등록 POST
 
-		this.$nextTick(()=>{
-			this.mapInfoList = this.surFacInfo.gpsList;
-		})
-
+		console.log('window')
+		console.log(window)
+		this.getData()
         apiService.pfmLogSend(this.$options.name)
     },
     mixins: [
@@ -109,6 +124,27 @@ export default {
 			}
 			modalService.openPopup(config).then(() => {})
 		},
+
+		getData() {
+			const apiConfig = {
+					method : 'post',
+                	url : '/rg/bm/01r03',
+                	data : {
+                    	bkphNm: this.params.bkphNm,
+						eqiKdnm: this.params.eqiKdnm
+                	},
+            	}	
+
+            apiService.call(apiConfig).then(response => {
+				let tmp = response.gpsList
+				tmp[0].name = this.params.bkphNm
+				tmp[0].isReverse = true
+				this.mapInfoList = tmp	
+				console.log('get this.mapInfoList')
+				console.log(this.mapInfoList)
+            })
+
+		}
     },
     components: {
 		Page,

@@ -13,34 +13,20 @@
 -->
 <template>
 	<page class="content-view">
-		
-		<!--
-		<div class="com_tabmenu_type01">
-			<ul role="tablist">
-				<li><a href="#nolink">나의 노후준비</a></li>
-				<li><a href="#nolink">연말정산 공제금액</a></li>
-				<li><a href="#nolink">세금 납부 확인</a></li>
-				<li><a href="#nolink">건강보험 가입내역</a></li>
-				<li><a href="#nolink">데일리 금융브리핑</a></li>
-				<li class="on"><a href="#nolink">대출이자 계산기</a></li>
-				<li><a href="#nolink">대출한도 계산기</a></li>
-			</ul>
-		</div>
-		-->
-		
 		<!-- content --> 
 			<div id="content"> 
 				<div class="loan_cal">
 					<div class="tit_area">
 						<p class="sub_txt">대출계획이 필요하신가요?</p>
-						<h2 class="headline"><strong>대출이자를<br>간편하게 확인해보세요.</strong></h2>
+						<h2 class="headline"><strong>대출이자를<br>간편하게 확인해 보세요.</strong></h2>
 					</div>
 
 					<div :class="lnAmErrorText ? 'formItem error' : 'formItem'">
 						<label for="loan_cal_01">희망대출금액</label>
 						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
 						<div class="input">
-							<input type="text" name="" id="loan_cal_01" v-model="lnAm" ref="lnAm" required="" placeholder="희망대출금액을 입력해 주세요." @input="onLnAmInput" @focus="showButtons('loanAmount')">
+							<input type="text" inputmode="numeric" name="" id="loan_cal_01" v-model="lnAm" ref="lnAm" required="" placeholder="희망대출금액을 입력해 주세요." @input="onLnAmInput" @focus="showButtons('loanAmount')">
+							<button type="button" class="clear_btn" :class="lnAm != '' && lnAm != null ? 'show' : ''" v-show="lnAm.length &gt; 0" @click.prevent="del('lnAm')"><span class="blind">삭제</span></button>
 							<span class="unit">만원</span>
 						</div>
 						<div class="btns_wrap">
@@ -52,14 +38,15 @@
 						<span class="han"><span class="blind">입력금액확인</span> 
 							<div v-if="lnAmInKorean"> {{ lnAmInKorean }} </div>
 						</span>
-						<span class="error_txt" v-if="lnAmErrorText">100만원이상 입력해 주세요.</span>
+						<span class="error_txt" v-if="lnAmErrorText">100만 원 이상 입력해 주세요.</span>
 					</div>
 
 					<div :class="lnDtErrorText ? 'formItem error' : 'formItem'">
 						<label for="loan_cal_02">대출기간</label>
 						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
 						<div class="input">
-							<input type="text" name="" id="loan_cal_02" v-model="lnDt" ref="lnDt" required="" placeholder="대출기간을 입력해 주세요." @input="onLnDtInput" @focus="showButtons('loanTerm')">
+							<input type="text" inputmode="numeric" name="" id="loan_cal_02" v-model="lnDt" ref="lnDt" required="" placeholder="대출기간을 입력해 주세요." @input="onLnDtInput" @focus="showButtons('loanTerm')">
+							<button type="button" class="clear_btn" :class="lnDt != '' && lnDt != null ? 'show' : ''" v-show="lnDt.length &gt; 0" @click.prevent="del('lnDt')"><span class="blind">삭제</span></button>
 							<span class="unit">개월</span>
 						</div>
 						
@@ -76,7 +63,8 @@
 						<label for="loan_cal_03">대출이자율</label>
 						<span class="info_txt">대출이자율 범위 : 1~30%</span>
 						<div class="input">
-							<input type="text" name="" id="loan_cal_03" v-model="lnInt" ref="lnInt" required="" placeholder="대출이자율을 입력해 주세요." @input="onLnIntInput" @focus="showButtons('interestRate')">
+							<input type="text" inputmode="decimal" name="" id="loan_cal_03" v-model="lnInt" ref="lnInt" required="" placeholder="대출이자율을 입력해 주세요." @input="onLnIntInput" @focus="showButtons('interestRate')">
+							<button type="button" class="clear_btn" :class="lnInt != '' && lnInt != null ? 'show' : ''" v-show="lnInt.length &gt; 0" @click.prevent="del('lnInt')"><span class="blind">삭제</span></button>
 							<span class="unit">%</span>
 						</div>
 						<div class="btns_wrap">
@@ -94,7 +82,7 @@
 				</div>
 
 				<!-- 대출이자 계산 결과 -->
-				<div class="loan_cal section" v-if="showResult">
+				<div class="loan_cal section loan_results" v-if="showResult">
 					<div class="top_area">
 						<button type="button" class="btn_repay" @click="openDsrInfoPopup">상환방식 알아보기</button>
 					</div>
@@ -145,7 +133,7 @@
 						</div>
 
 						<div class="banner_area">
-							<a href="#nolink" class="link_banner" @click.prevent="fn_movePage('PDPD1001')"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
+							<a href="javascript:void(0);" class="link_banner" @click.prevent="fn_movePage('PDPD4001')"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
 						</div>
 
 						<div class="result_detail">
@@ -173,17 +161,17 @@
 											<!-- 처음 5회차만 보여주기 -->
 											<tr v-for="(payment, index) in pAndILoanSchedule.slice(0, 5)" :key="index">
 												<td>{{ index + 1 }} 회차</td>
-												<td>{{ ResultaddComma(payment.principal) }} 원</td>
-												<td>{{ ResultaddComma(payment.interest) }} 원</td>
-												<td>{{ ResultaddComma(payment.totalPayment) }} 원</td>
+												<td><em>{{ ResultaddComma(payment.principal) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.interest) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.totalPayment) }}</em><span>원</span></td>
 											</tr>
 
 											<!-- '더보기' 클릭 시 나머지 회차 전부 보여주기 -->
 											<tr v-for="(payment, index) in pAndILoanSchedule.slice(5)" :key="'more-' + index" v-show="pAndIShowMore">
 												<td>{{ index + 6 }} 회차</td>
-												<td>{{ ResultaddComma(payment.principal) }} 원</td>
-												<td>{{ ResultaddComma(payment.interest) }} 원</td>
-												<td>{{ ResultaddComma(payment.totalPayment) }} 원</td>
+												<td><em>{{ ResultaddComma(payment.principal) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.interest) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.totalPayment) }}</em><span>원</span></td>
 											</tr>
 										</template>
 
@@ -192,17 +180,17 @@
 											<!-- 처음 5회차만 보여주기 -->
 											<tr v-for="(payment, index) in principalLoanSchedule.slice(0, 5)" :key="index">
 												<td>{{ index + 1 }} 회차</td>
-												<td>{{ ResultaddComma(payment.principal) }} 원</td>
-												<td>{{ ResultaddComma(payment.interest) }} 원</td>
-												<td>{{ ResultaddComma(payment.totalPayment) }} 원</td>
+												<td><em>{{ ResultaddComma(payment.principal) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.interest) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.totalPayment) }}</em><span>원</span></td>
 											</tr>
 
 											<!-- '더보기' 클릭 시 나머지 회차 전부 보여주기 -->
 											<tr v-for="(payment, index) in principalLoanSchedule.slice(5)" :key="'more-' + index" v-show="principalShowMore">
 												<td>{{ index + 6 }} 회차</td>
-												<td>{{ ResultaddComma(payment.principal) }} 원</td>
-												<td>{{ ResultaddComma(payment.interest) }} 원</td>
-												<td>{{ ResultaddComma(payment.totalPayment) }} 원</td>
+												<td><em>{{ ResultaddComma(payment.principal) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.interest) }}</em><span>원</span></td>
+												<td><em>{{ ResultaddComma(payment.totalPayment) }}</em><span>원</span></td>
 											</tr>
 										</template>
 									</tbody>
@@ -216,20 +204,20 @@
 								<div class="btn_area">
 									<!-- 원리금 균등상환 -->
 									<template v-if="isPAndI">
-										<input type="checkbox" id="num_info" v-model="chk1" @change.prevent="fnChk(true, $event, 0)" class="blind" title="회차별 월상환금액 전체보기">
-										<label for="num_info">
-											<span class="open" aria-hidden="true">더보기</span>
-											<span class="close" aria-hidden="true">접기</span>
-										</label>
+										<button type="button" @click.prevent="fnChk(true)" class="btn_loan_cal_add" :class="this.pAndIShowMore ? 'on' : ''" :aria-expended="this.pAndIShowMore ? 'true' : 'false'">
+											<span class="blind">회차별 월상환금액</span>
+											<span class="open">더보기</span>
+											<span class="close">접기</span>
+										</button>
 									</template>
 
 									<!-- 원금 균등상환 -->
 									<template v-else>
-										<input type="checkbox" id="num_info" v-model="chk2" @change.prevent="fnChk(false, $event, 1)" class="blind" title="회차별 월상환금액 전체보기">
-										<label for="num_info">
-											<span class="open" aria-hidden="true">더보기</span>
-											<span class="close" aria-hidden="true">접기</span>
-										</label>
+										<button type="button" @click.prevent="fnChk(false)" class="btn_loan_cal_add" :class="this.principalShowMore ? 'on' : ''" :aria-expended="this.principalShowMore ? 'true' : 'false'">
+											<span class="blind">회차별 월상환금액</span>
+											<span class="open">더보기</span>
+											<span class="close">접기</span>
+										</button>
 									</template>
 								</div>
 								
@@ -316,6 +304,10 @@ export default {
 	mixins: [
         commonMixin
     ],
+	mounted() {
+		//PFM로그 처리 화면접속이력 등록 POST
+        apiService.pfmLogSend(this.$options.name)
+	},
 	methods: {
 		// 입력받은 금액을 한글로 변환
 		numberToKorean(num) {
@@ -399,7 +391,7 @@ export default {
 			}
 
 			if(parseInt(this.lnAm) < 100) {
-				this.lnAmErrorText = '100만원이상 입력해 주세요.';
+				this.lnAmErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.lnAmErrorText = '';
 			}
@@ -435,6 +427,8 @@ export default {
 			if(parseInt(this.lnDt) > 600){
 				this.lnDt = 600;
 			}
+
+			this.lnDt = this.addComma(this.lnDt);
 		},
 		onLnIntInput() {
 			this.lnInt = this.checkInputNum(this.lnInt, 'lnInt');
@@ -449,6 +443,8 @@ export default {
 			if(parseFloat(this.lnInt) > 30){
 				this.lnInt = 30;
 			}
+
+			this.lnInt = String(this.lnInt);
 		},
 		// 대출금액 버튼 이벤트
         btnLnAmEvt(amount) {
@@ -457,7 +453,7 @@ export default {
             curAm += amount;
 
 			if(parseInt(curAm) < 100) {
-				this.lnAmErrorText = '100만원이상 입력해 주세요.';
+				this.lnAmErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.lnAmErrorText = '';
 			}
@@ -590,8 +586,16 @@ export default {
 
 			this.pAndIShowMore = false;
 			this.principalShowMore = false;
+			this.chk1 = false;
+			this.chk2 = false;
 
             this.showResult = true;
+
+			// 계산하기 버튼 클릭시 결과화면으로 스크롤 이동
+			this.$nextTick(() => {
+				const resultsSection = document.querySelector('.loan_results');
+				if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'})
+			});
         },
         // comma(value){
         //     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -660,6 +664,8 @@ export default {
 			this.showLoanTermButtons = false,		// 대출 기간 버튼 노출 여부
 			this.showInterestRateButtons = false,	// 대출 이자율 버튼 노출 여부
 
+			this.chk1 = false;
+			this.chk2 = false;
 			
 			this.$nextTick(() => {
 				//window.scrollTo(0, 0);
@@ -707,21 +713,28 @@ export default {
 			}
 		},
 
-		fnChk(flag, e, dsc) {
+		fnChk(flag) {
 			if(flag) {
-				this.pAndIShowMore = e.target.checked
-
-				if(dsc != 0) {
-					this.chk1 = dsc
-				}
+				this.pAndIShowMore = !this.pAndIShowMore
 			} else {
-				this.principalShowMore = e.target.checked
-
-				if(dsc != 1) {
-					this.chk2 = dsc
-				}
+				this.principalShowMore = !this.principalShowMore
 			}
-		}
+		},
+		del(type) {
+			if(type === 'lnAm') {
+				this.lnAm = ""
+				this.lnAmErrorText = '';
+				this.lnAmInKorean = '';
+			}
+			else if(type === 'lnDt') {
+				this.lnDt = ""
+				this.lnDtErrorText = '';
+			}
+			else if(type === 'lnInt') {
+				this.lnInt = ""
+				this.lnIntErrorText = '';
+			}
+		},
 	},
     watch: {
         

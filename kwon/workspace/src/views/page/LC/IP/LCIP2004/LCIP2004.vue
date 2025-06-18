@@ -15,7 +15,7 @@
 	<!-- 전체 팝업 시작 -->
 	<div id="tab_03" role="tabpanel" class="cmm-tab-panel on">	
 		<div class="com_inner">
-			<strong class="titH1">주요 소비 활동 시간은<br><em>{{weekTimeTypNm}}</em> 이예요</strong>
+			<strong class="titH1">주요 소비 활동 시간은<br><em>{{weekTimeTypNm}}</em> 이에요</strong>
 			<!-- 차트영역 -->
 			<!-- <div id="chartHolder2" class="chart_left_bor mt30" role="img" aria-label="정기지출 TOP 5 이번달 지출 - 의료건강 지난달 000 / 이번달 000, 교육 지난달 000 / 이번달 000, 교통 지난달 000 / 이번달 000, 주거통신 지난달 000 / 이번달 000, 금융 지난달 000 / 이번달 000 입니다."></div> -->
 			<div id="chartHolder2" class="chart_left_bor mt30"></div><!-- 1004 접근성 반영 -->

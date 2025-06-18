@@ -32,9 +32,19 @@
                     <div class="title">
                         <div class="text">
                             갚을 돈<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="num">{{lnAcBactt | numberFilter}}</span>원</strong> -->
-                            <!-- [v4.0] 25-02-17 잔액숨김 기능추가 -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{lnAcBactt | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('CIST', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('CIST', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -44,7 +54,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{lnAcBactt | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //[v4.0] 25-02-17 잔액숨김 기능추가 -->
                         </div>
                     </div>
@@ -70,11 +80,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{item.istFncRpyAcno}}</span> 
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{item.istFncRpyAcno}}</span> 
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{item.lnAcBac | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.lnAcBac | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -185,6 +195,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
 

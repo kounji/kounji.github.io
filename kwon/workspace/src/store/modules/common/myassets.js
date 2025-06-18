@@ -12,12 +12,14 @@
  */ 
 
 import apiService from '@/service/apiService'
-import {dateFormat} from '@/utils/date'
+import modalService from '@/service/modalService'
+import constant from '@/common/config/constants'
+import {dateFormat, getFirstDay, getLastDay, monthDiff} from '@/utils/date'
 
 // getters
 const getters = {
 	isMyAssetGathering: state => state.isMyAssetGathering,
-	lastUpdateDtm: state => state.lastUpdateDtm || dateFormat(new Date(), "YYYY.MM.DD HH:mm:ss"),
+	lastUpdateDtm: state => state.lastUpdateDtm,  // v4 YYYY.MM.DD HH:mm
 	myAssetsBzRgCnt: state => state.myAssetsBzRgCnt || 0,	//자산연결기관건수
 	myAssetInfo: state => state.myAssetInfo || {},			//메인 전체 자산 정보 2022.08.03
 	myAssetsBzrgList: state => state.myAssetsBzrgList || [],	//자산연결기관목록
@@ -49,7 +51,8 @@ const actions = {
 			const userInfo = rootGetters['user/userInfo']
 			
 			let config = {
-				url : "/co/ma/01r03",
+				// url : "/co/ma/01r03",
+				url : "/cl/cm/01r04",	// asis) /co/ma/01r03
 				data : {
 					mydtCusno : userInfo.mydtCusno,
 					org_Code  : "0000000000",
@@ -58,7 +61,7 @@ const actions = {
 			}
 
 			const myBizRegInfoConfig = {
-				url : '/co/am/08r02', // /co/am/05rb2
+				url : '/co/am/08r05', // /co/am/08r02
 				data : {mydtCusno : userInfo.mydtCusno},
 			}
 
@@ -67,7 +70,7 @@ const actions = {
 
 				apiService.assetGather(config).then(()=>{
 					commit('completeMyAssetGatherData')
-					commit('setMyAssetGatherDate')
+					//commit('setMyAssetGatherDate')	// v4 자산수집일자갱신 assetGather 내 진행
 					resolve()
 				}).catch(()=>{
 					commit('completeMyAssetGatherData')
@@ -84,8 +87,7 @@ const actions = {
 			
 			let config = {}
 			config = {
-				// url : "/co/ma/01ra2,"
-				url : "/co/ma/01r03",
+				url : "/cl/cm/01r04",	// asis) /co/ma/01r03
 				data : {
 					mydtCusno : userInfo.mydtCusno,
 					org_Code  : "0000000000",
@@ -94,7 +96,7 @@ const actions = {
 				disableLoading : true,
 			}
 			const myBizRegInfoConfig = {
-				url : '/co/am/08r02', //'/co/am/05rb2', // "/co/am/05r01",
+				url : '/co/am/08r05', // /co/am/08r02
 				data : {mydtCusno : userInfo.mydtCusno},
 				disableLoading : true,
 			}
@@ -103,7 +105,7 @@ const actions = {
 
 				apiService.assetGather(config).then(()=>{
 					commit('completeMyAssetGatherData')
-					commit('setMyAssetGatherDate')
+					//commit('setMyAssetGatherDate')	// v4 자산수집일자갱신 assetGather 내 진행
 					resolve()
 				}).catch(()=>{
 					commit('completeMyAssetGatherData')
@@ -111,6 +113,144 @@ const actions = {
 			})
 		})
 	},
+	// v4 장기미접속자 재로그인 api
+	getUserRelogin({commit,rootGetters}) {
+		return new Promise((resolve) => {
+			// 타 수집 api 실행중여부 확인
+			if(!!state.isMyAssetGathering) {
+				modalService.toast(constant.MESSAGE.DURING_GATHER_ASSETS)
+				console.error("api assetGathering")
+				return
+			}
+
+			commit('setMyAssetGatherData', true)
+
+			const userInfo = rootGetters['user/userInfo']
+
+			const config = {
+				// url: '/co/ma/01r03',
+				url : "/cl/cm/01r04",	// asis) /co/ma/01r03
+				data: {
+					mydtCusno	: userInfo.mydtCusno,
+					org_Code	: "0000000000",
+					x_api_type	: "user-relogin"
+				},
+				disableLoading: true,
+			}
+			const myBizRegInfoConfig = {
+				url : '/co/am/08r05', // /co/am/08r02
+				data : {mydtCusno : userInfo.mydtCusno},
+				disableLoading : true,
+			}
+			apiService.call(myBizRegInfoConfig).then((response) => {
+				commit('setMyAssetsBzrgCnt', response.bzrgCnt)
+
+				apiService.assetGather(config).then(() => {
+					commit('completeMyAssetGatherData')
+					//commit('setMyAssetGatherDate')	// v4 자산수집일자갱신 assetGather 내 진행
+					resolve()
+				}).catch(()=>{
+					commit('completeMyAssetGatherData')
+				})
+			})
+		})
+	},
+	// v4 기간별 자산 수집처리
+	getPrdMyAssetInfo({commit,rootGetters}, data) {
+		return new Promise((resolve) => {
+			// 타 수집 api 실행중여부 확인
+			if(!!state.isMyAssetGathering) {
+				modalService.toast(constant.MESSAGE.DURING_GATHER_ASSETS)
+				console.error("api assetGathering")
+				return
+			}
+
+			const currYm = dateFormat(new Date(), 'YYYYMM')
+			// 수신년월데이터 검증
+			if(data.length !== 6 || monthDiff(dateFormat(new Date(), 'YYYYMM'), data) < 0) {
+				console.error("api input Data Error: ", data)
+				return
+			}
+			commit('setMyAssetGatherData', true)
+
+			// 현재월, 수신년월데이터 비교
+			let fromDate = dateFormat(getFirstDay(data), 'YYYYMMDD')
+			let toDate = ''
+			if(data === currYm) {
+				toDate = dateFormat(new Date(), 'YYYYMMDD')
+			} else {
+				toDate = dateFormat(getLastDay(data), 'YYYYMMDD')
+			}
+			
+			const userInfo = rootGetters['user/userInfo']
+			const config = {
+				// url: '/co/ma/01r03',
+				url : "/cl/cm/01r04",	// asis) /co/ma/01r03
+				data: {
+					mydtCusno: userInfo.mydtCusno,
+					org_Code: "0000000000",
+					x_api_type: "user-search",
+					paramFromDate: fromDate,
+					paramToDate: toDate
+				},
+				disableLoading: true,
+			}
+			const myBizRegInfoConfig = {
+				url : '/co/am/08r05', // /co/am/08r02
+				data : {mydtCusno : userInfo.mydtCusno},
+				disableLoading : true,
+			}
+			apiService.call(myBizRegInfoConfig).then((response)=>{
+				commit('setMyAssetsBzrgCnt', response.bzrgCnt)
+
+				apiService.assetGather(config).then(()=>{
+					commit('completeMyAssetGatherData')
+					//commit('setMyAssetGatherDate')	// v4 자산수집일자갱신 assetGather 내 진행
+					resolve()
+				}).catch(()=>{
+					commit('completeMyAssetGatherData')
+				})
+			})
+		})
+	},
+
+	// v4 수집처리 테스트
+	getAllMyAssetInfoTest({commit,rootGetters}) {
+		return new Promise((resolve) => {
+			commit('setMyAssetGatherData', true)
+
+			//비정기 자산 정보 수집처리
+			const userInfo = rootGetters['user/userInfo']
+			
+			let config = {}
+			config = {
+				url : "/cl/cm/01r04",
+				data : {
+					mydtCusno : userInfo.mydtCusno,
+					org_Code  : "0000000000",
+					x_api_type: "user-refresh"
+				},
+				disableLoading : true,
+			}
+			const myBizRegInfoConfig = {
+				url : '/co/am/08r05', // /co/am/08r02
+				data : {mydtCusno : userInfo.mydtCusno},
+				disableLoading : true,
+			}
+			apiService.call(myBizRegInfoConfig).then((response)=>{
+				commit('setMyAssetsBzrgCnt', response.bzrgCnt)
+
+				apiService.assetGather(config).then(()=>{
+					commit('completeMyAssetGatherData')
+					//commit('setMyAssetGatherDate')	// v4 자산수집일자갱신 assetGather 내 진행
+					resolve()
+				}).catch(()=>{
+					commit('completeMyAssetGatherData')
+				})
+			})
+		})
+	},
+
 	/*
 	* 자산연결기관정보 조회 2021.11.15
 	*/
@@ -119,7 +259,7 @@ const actions = {
 			const userInfo = rootGetters['user/userInfo']
 
 			const config = {
-				url : "/co/am/08r01",
+				url : '/co/am/08r05', // /co/am/08r02
 				data : {mydtCusno : userInfo.mydtCusno},
 				disableLoading : true,
 			}
@@ -144,10 +284,18 @@ const actions = {
 		commit('setMyAssetInfo', data)
 	},
   
-  //중앙회 자산 변경 상태 2022.08.03
+  	//중앙회 자산 변경 상태 2022.08.03
 	setNacfAccChg({commit}, data) {
-    commit('setNacfAccChg', data)
-  },
+		commit('setNacfAccChg', data)
+	},
+
+	/**
+	 * NH콕마이데이터4.0 신규
+	 * 자산 수집업데이트 최종시기 갱신
+	 */
+	setLastUpdateDtm({commit}, data) {
+		commit('setLastUpdateDtm', data)
+	},
 }
 
 // mutations
@@ -159,7 +307,7 @@ const mutations = {
 	},
 	// 자산수집 완료일시
 	setMyAssetGatherDate(state) {
-		state.lastUpdateDtm = dateFormat(new Date(), "YYYY.MM.DD HH:mm:ss")
+		state.lastUpdateDtm = dateFormat(new Date(), "YYYY.MM.DD HH:mm") // v4 YYYY.MM.DD HH:mm:ss 
 	},
 	// 자산수집 완료
 	completeMyAssetGatherData(state) {
@@ -188,7 +336,15 @@ const mutations = {
 	 */
 	setNacfAccChg(state, data) {
 		state.nacfAccChg = data
-	}
+	},
+
+	/**
+	 * NH콕마이데이터4.0
+	 * 자산 수집업데이트 최종시기 갱신
+	 */
+	setLastUpdateDtm(state, data) {
+		state.lastUpdateDtm = data
+	},
 }
 
 // state

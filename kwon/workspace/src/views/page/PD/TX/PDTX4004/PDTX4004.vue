@@ -1,7 +1,7 @@
 <!--
 /*************************************************************************
-* @ 서비스경로 : 연금절세 > 세급 납부 확인
-* @ 페이지설명 :  세급 납부 확인
+* @ 서비스경로 : 연금절세 > 세금 납부 확인
+* @ 페이지설명 :  세금 납부 확인
 * @ 파일명     : src\views\page\PD\TX\PDTX4004\PDTX4004.vue
 * @ 작성자     : CS533541
 * @ 작성일     : 2023-08-22
@@ -9,7 +9,7 @@
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
 * 2023-08-22              CS533541              최초작성
-* 2025-02-21              CS541015              고도화 파일명, UI 변경(PDTX2004.vue -> PDTX4004.vue)
+* 2025-02-21              CS541015              상호금융 NH콕마이데이터 4.0 추진 개발(PDTX2004.vue -> PDTX4004.vue)
 *************************************************************************/
 -->
 <template>
@@ -19,7 +19,7 @@
 				<div v-show="isConnectedPb" class="top_area">
 					<strong class="titH1">
 						{{cusnm}}님의<br>
-						세금 납부 현황이예요.
+						세금 납부 현황이에요.
 					</strong>
 
 					<p v-if="lctxList.length > 0" class="com_txtinfo_type01" >체납 중인 세금이 있어요!</p>
@@ -37,15 +37,15 @@
 						</ul>
 					</div>
 					<!-- 지방세 -->
-					<PDTX2001 v-if="lctxAssetYn =='Y' && selectedTab === '01'" @getLctxList="getLctxList"/>
+					<PDTX4001 v-if="lctxAssetYn =='Y' && selectedTab === '01'" @getLctxList="getLctxList"/>
 					<!-- //지방세 -->
 					
 					<!-- 국세 -->
-					<PDTX2002 v-if="natxAssetYn =='Y' && selectedTab === '02'" @getNatxPrtoDsc="getNatxPrtoDsc"/>
+					<PDTX4002 v-if="natxAssetYn =='Y' && selectedTab === '02'" @getNatxPrtoDsc="getNatxPrtoDsc"/>
 					<!-- //국세 -->
 
 					<!-- 관세 -->
-					<PDTX2003 v-if="cdtyAssetYn =='Y' && selectedTab === '03'" @getCdtyDlqYn="getCdtyDlqYn"  />
+					<PDTX4003 v-if="cdtyAssetYn =='Y' && selectedTab === '03'" @getCdtyDlqYn="getCdtyDlqYn"  />
 					<!-- //관세 -->
 				</div>	
 
@@ -147,9 +147,9 @@ import FootersV2 from '@/views/layout/FootersV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 // import popupMixin from '@/common/mixins/popupMixin'
-import PDTX2001 from '@/views/page/PD/TX/PDTX2001/PDTX2001'
-import PDTX2002 from '@/views/page/PD/TX/PDTX2002/PDTX2002'
-import PDTX2003 from '@/views/page/PD/TX/PDTX2003/PDTX2003'
+import PDTX4001 from '@/views/page/PD/TX/PDTX4001/PDTX4001'
+import PDTX4002 from '@/views/page/PD/TX/PDTX4002/PDTX4002'
+import PDTX4003 from '@/views/page/PD/TX/PDTX4003/PDTX4003'
 //import COAR2003 from '@/views/page/CO/AR/COAR2003/COAR2003'
 import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정보제공동의
 import commonService from '@/service/commonService'
@@ -356,9 +356,9 @@ export default {
 	components: {
 		Page,
 		FootersV2,
-		PDTX2001,
-		PDTX2002,
-		PDTX2003,
+		PDTX4001,
+		PDTX4002,
+		PDTX4003,
     }
 }
 </script>

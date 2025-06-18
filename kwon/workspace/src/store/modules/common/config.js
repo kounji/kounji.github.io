@@ -9,7 +9,7 @@ import appService from '@/service/appService'
 import configService from '@/service/configService'
 import routerService from '@/service/routerService'
 
-import {startSessionTimer} from '@/utils/date'
+import {startSessionTimer, clearSessionTimer} from '@/utils/date'
 
 import userService from '@/service/userService'
 import {dateFormat} from '@/utils/date'
@@ -152,6 +152,7 @@ const actions = {
             modalService.alert("장시간 미사용으로 종료되었습니다.<br>재로그인 해주시기 바랍니다", "세션만료","확인").then(response=>{
               console.log('세션만료 alert 처리', response)
               if (response === '확인'){
+                clearSessionTimer()
                 appService.moveMain()
               }
             })

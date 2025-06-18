@@ -272,16 +272,24 @@ export const jQueryFncExcute = () => {
 		    영업점명을 입력하세요 부분의 글자 입력시 x 버튼 활성화
 		    입력 후 x 버튼 클릭시 글자 삭제
 	    */
-		var _inputBox = $('.inputClear'); // Input Box
-		var _clearBtn = $('.com_btn_delete'); // X Btn
+		$('.inputClear').each(function(){
+            var $input = $(this);
+            var $clearBtn = $input.siblings('.com_btn_delete');
 
-		_inputBox.keyup(function(){
-			
-			$(this).next(_clearBtn).addClass('btnDeleteShow');
-			_clearBtn.on('click', function() {
-				$(this).removeClass('btnDeleteShow');
-				_inputBox.val(''); 
-			});
+            $input.on('keyup', function() {
+                if($input.val().length == 0) {
+                    $($clearBtn).removeClass('btnDeleteShow');
+                } else {
+                    $($clearBtn).addClass('btnDeleteShow');
+                }
+            })
+
+            $clearBtn.on('click', function() {
+                $(this).removeClass('btnDeleteShow');
+                $input.val(''); 
+                $input.focus();
+            });
+
         });
         
         /**

@@ -16,7 +16,7 @@
         <div id="content">
             <section class="pension_main">
                 <!--배너-->
-                <cmm-flot-banner bnnrExpsDsVal="44"/>
+                <cmm-flot-banner bnnrExpsDsVal="44" @reload="initComponent"/>
 
                 <!--update-->
                 <div class="update">
@@ -41,16 +41,17 @@
                     <!-- 연결된 연금 있을때 -->
                     <template v-if="this.ntpsAssetYn == 'Y' || ppnsLength > 0 || sDcList.length > 0">
                         <!--25-02-10 금액숨김 수정-->
-                        <div class="toggle_money">
-                            <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="amHideYn" @change="fn_amHidden()">
-                            <label for="sum_view_01" class="btns">
-                                <span class="hide" aria-hidden="true">보기</span>
-                                <span class="show" aria-hidden="true">숨김</span>
-                            </label>
+                        
+                        <div class="toggle_money"  :class="amHideYn === true ? 'on' : ''">
                             <div class="sum">
-                                <span class="hide">쉿! 비밀이에요.</span>
-                                <span class="show">{{allPnsTts | numberFilter}}원</span>
-                            </div>
+								<span class="hide">쉿! 비밀이에요.</span>
+								<span class="show">{{allPnsTts | numberFilter}}원</span>
+							</div>
+							<button type="button" class="btns" @click="fn_amHidden(!amHideYn)">
+								<span class="blind">금액</span>
+								<span class="hide">보기</span>
+								<span class="show">숨김</span>
+							</button>
                         </div>
                         <!--//25-02-10 금액숨김 수정-->
                         <!--25-02-10 텍스트 수정-->
@@ -65,7 +66,7 @@
                             <span class="text" v-else>지난달과 동일해요.</span>      
                             <div class="custom_tooltip">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
-                                    <a href="#nolink" class="com_btn_info" role="button">
+                                    <a href="javascript:void(0);" class="com_btn_info" role="button">
                                         <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                     </a>
                                     <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
@@ -74,7 +75,7 @@
                                                 <li>마지막 업데이트 시점의 총 연금과 마지막 업데이트 전 월 말일 총연금을 비교했습니다.</li>
                                                 <li>오늘 업데이트 하셨으면 전 월 말일 총 연금과 비교한 결과입니다.</li>
                                             </ul>
-                                            <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -148,20 +149,20 @@
                             <ul v-if="ntpsAssetYn == 'Y'">
                                 <li>국민연금<span class="total"><em>{{sNtpsTotAm | numberFilter}}</em>원</span></li><!--//25-02-10 텍스트 수정-->
                                 <li>
-                                    <a href="javascript:void(0);" @click.prevent="fn_PDSC4001()">
+                                    <a href="javascript:void(0);" role="button" @click.prevent="fn_PDSC4001()">
                                         <i class="ico_bank PBAAVM0000"></i>
                                         <span class="org">국민연금공단</span>
-                                        <span class="total"><em>총 가입기간 {{sNtpsTotPrdCn}}개월</em></span>
+                                        <span class="total"><em>총 개월수 {{sNtpsTotPrdCn}}개월</em></span>
                                     </a>
                                 </li>
                             </ul>
-                            <p v-else>국민연금 <em>얼만만큼 납입했을까?</em></p>
+                            <p v-else>국민연금 <em>얼마만큼 납입했을까?</em></p>
                         </div>
 
                         <!--개인연금-->
                         <div class="details" v-if="pnsDsc=='ppns'">
                             <ul v-if="ppnsLength > 0">
-                                <li>개인연금<em>{{ppnsLength}}</em><span class="total"><em>{{sPpnsTts | numberFilter}}</em>원</span></li>
+                                <li>개인연금<em>{{ppnsLength}}<i class="blind">건</i></em><span class="total"><em><i class="blind">금액</i>{{sPpnsTts | numberFilter}}</em>원</span></li>
                                 <li v-for="(item, idx) in pnsvInsuList" :key="`0_${idx}`">
                                     <a href="javascript:void(0);" role="button" @click.prevent="fn_openDetailPop('PSIS', item)">
                                         <i :class="'ico_bank '+item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
@@ -177,22 +178,22 @@
                                     </a>
                                 </li>
                             </ul>
-                            <p v-else>개인연금 <em>세액공제 예상하기</em></p>
+                            <p v-else>개인연금 연결하면<br><em>예상 세액공제 금액 알려드려요.</em></p>
                         </div>
 
                         <!--퇴직연금-->
                         <div class="details" v-if="pnsDsc=='rtpn'">
                             <ul v-if="sDcList.length > 0">
-                                <li>퇴직연금<em>{{sDcList.length}}</em><span class="total"><em>{{sRtrpnsTotAcEvlam| numberFilter}}</em>원</span></li>
+                                <li>퇴직연금<em>{{sDcList.length}}<i class="blind">건</i></em><span class="total"><em><i class="blind">금액</i>{{sRtrpnsTotAcEvlam| numberFilter}}</em>원</span></li>
                                 <li v-for="(item, idx) in sDcList" :key="idx">
-                                    <a href="javascript:void(0);" @click.prevent="item.wrsAmnno !== undefined ? fn_openDetailPop('DC',item) : fn_openDetailPop('IRP',item)">
-                                        <i :class="'ico_bank '+item.infOfrmnOrgC"></i>
+                                    <a href="javascript:void(0);" role="button" @click.prevent="item.wrsAmnno !== undefined ? fn_openDetailPop('DC',item) : fn_openDetailPop('IRP',item)">
+                                        <i :class="'ico_bank '+item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                         <span class="org">{{item.dcRtrpnsWrsnm}}</span>
                                         <span class="total"><em>{{item.acEvlam| numberFilter}}</em>원</span>
                                     </a>
                                 </li>
                             </ul>
-                            <p v-else>퇴직연금 <em>내가 받을 연금액</em></p>
+                            <p v-else>퇴직연금 연결하고<br><em>내가 받을 연금 확인해 보세요.</em></p>
                         </div>
                     </template>
 
@@ -224,14 +225,12 @@
                 <!--금융지식-->
                 <!--25-02-10 세대별 추가 -->
                 <div class="finlit" v-if="financeKlList.length > 0">
-                    <h2 class="h_tit01">세대별 절세 노하우</h2>
-                    <a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')" ><span class="blind">더보기</span></a>
-
+                    <a href="javascript:void(0);" class="h_tit01" role="button" @click.prevent="fn_movePage('COCT4001')">세대별 절세 노하우</a>
                     <div class="scroller">
                         <ul>
                             <li v-for="(item, idx) in financeKlList" :key="idx">
-                                <a href="javascript:void(0);" @click.prevent="fnOpenContents(item.cntzId)">
-                                    <img :src="item.thmnlImgUrlnm" alt="" @error="emptyImg"/>
+                                <a href="javascript:void(0);" role="button" @click.prevent="fnOpenContents(item.cntzId)">
+                                    <img :src="`/assets/images/fin_cont/${item.thmnlImgUrlnm}`" alt="" @error="emptyImg"/>
                                     <span class="gen">{{item.asetAgLrgDsnm}}</span>
                                     <strong>{{item.cntzTinm}}</strong>
                                     <span class="hash">#{{item.rcmKwrdCntn}}</span>
@@ -245,17 +244,17 @@
                 <!--여러가지-->
                 <!--25-02-10 텍스트 수정-->
                 <div class="move_banner">
-                    <a href="#nolink" class="board_box rect old" @click.prevent="fn_movePage('PDRT4001')">
+                    <a href="javascript:void(0);" role="button" class="board_box rect old" @click.prevent="fn_movePage('PDRT4001')">
                         <em>나의 노후준비</em>
                         안정적인 은퇴를 준비하세요.
                     </a>
 
-                    <a href="#nolink" class="board_box rect tax" @click.prevent="fn_movePage('PDTX4004')">
-                        <em>세금납부 확인</em>
+                    <a href="javascript:void(0);" role="button" class="board_box rect tax" @click.prevent="fn_movePage('PDTX4004')">
+                        <em>세금 납부 확인</em>
                         내가 낸 세금, 쉽게 확인하세요.
                     </a>
 
-                    <a href="#nolink" class="board_box rect insure" @click.prevent="fn_movePage('PDSC4004')">
+                    <a href="javascript:void(0);" role="button" class="board_box rect insure" @click.prevent="fn_movePage('PDSC4004')">
                         <em>건강보험 가입내역</em>
                         내 건강보험 가입내역을 확인하세요.
                     </a>
@@ -265,56 +264,58 @@
                 <!--상품추천-->
                 <!--[v4.0] 25-01-23 추천 상품 컨텐츠 수정-->
                 <div class="goods_for_you">
-                    <h2 class="h_tit01">안락한 노후를 위한 추천상품</h2>
-
                     <!-- 약관 동의 내역이 없는 경우 노출 -->
-                    <div class="board_box empty" v-if="isShowStltAgrYn == false">
-                        <p>{{userName}}님!<br>꼭 맞는 상품<br>추천해 드려요.</p>
-                        <button type="button" class="link" @click.prevent="openWrsStltPop()">상품추천 조회 동의</button>
-                    </div>
-
-                    <!--25-02-10 금리삭제 / 상품명 수정-->
-                    <div class="slick_banner" v-if="isShowStltAgrYn == true && wrsRcmList.length > 0">
-                        <div class="inner">
-                            <a href="javascript:void(0);" v-for="(item, idx) in wrsRcmList" :key="idx" @click.prevent="openWrsDtlInfo(item.wrsDtlUrlnm)">
-                                <dl class="deposit" :class="item.wrsGrTpc == 'DFFM' ? 'green' : item.wrsGrTpc == 'RVGTP' ? 'blue' : 'orange'"> <!-- green blue orange -->
-                                    <dt>
-                                        <strong>{{item.acWrsnm}}</strong>
-                                    </dt>
-                                    <dd class="txt">{{item.rcmWrsBrfCntn}}</dd>
-                                    <dd class="tag" v-if="!!item.rcmKwrdCntn">
-                                        <span v-for="(subItem, subIdx) in item.rcmKwrdCntn.split('^')" :key="subIdx">
-                                            {{subItem}}&nbsp;
-                                        </span>
-                                    </dd>
-                                </dl>
-                            </a>
+                    <template v-if="isShowStltAgrYn == false">
+                        <h2 class="h_tit01">안락한 노후를 위한 추천상품</h2>
+                        <div class="board_box empty">
+                            <p>{{userName}}님!<br>꼭 맞는 상품<br>추천해 드려요.</p>
+                            <button type="button" class="link" @click.prevent="openWrsStltPop()">상품추천 조회 동의</button>
                         </div>
+                    </template>
+                    
+                    <template v-if="isShowStltAgrYn == true && wrsRcmList.length > 0">
+                        <!--25-02-10 금리삭제 / 상품명 수정-->
+                        <h2 class="h_tit01">안락한 노후를 위한 추천상품</h2>
+                        <div class="slick_banner">
+                            <div class="inner">
+                                <a href="javascript:void(0);" role="button" v-for="(item, idx) in wrsRcmList" :key="idx" @click.prevent="openWrsDtlInfo(item.wrsDtlUrlnm)">
+                                    <dl class="deposit" :class="item.wrsGrTpc == 'DFFM' ? 'green' : item.wrsGrTpc == 'RVGTP' ? 'blue' : 'orange'"> <!-- green blue orange -->
+                                        <dt>
+                                            <strong>{{item.acWrsnm}}</strong>
+                                        </dt>
+                                        <dd class="txt">{{item.rcmWrsBrfCntn}}</dd>
+                                        <dd class="tag" v-if="!!item.rcmKwrdCntn">
+                                            <span v-for="(subItem, subIdx) in item.rcmKwrdCntn.split('^')" :key="subIdx">
+                                                {{subItem}}&nbsp;
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </a>
+                            </div>
 
-                        <div class="controls">
-                            <p class="paging"></p>
-                            <button type="button" class="prev"><span class="blind">이전</span></button>
-                            <button type="button" class="next"><span class="blind">다음</span></button>
+                            <div class="controls">
+                                <p class="paging"></p>
+                                <button type="button" class="prev"><span class="blind">이전</span></button>
+                                <button type="button" class="next"><span class="blind">다음</span></button>
+                            </div>
                         </div>
-                    </div>
-                    <!--//25-02-10 금리삭제 / 상품명 수정-->
+                        <!--//25-02-10 금리삭제 / 상품명 수정-->
+                    </template>
                 </div>
                 <!--//[v4.0] 25-01-23 추천 상품 컨텐츠 수정-->
 
 
                 
                 <div class="board_box_wrap banner">
-                    <a href="javascript:void(0);" class="board_box calc1" @click.prevent="fn_movePage('PDPD4051')">
+                    <a href="javascript:void(0);" role="button" class="board_box calc1" @click.prevent="fn_movePage('PDPD4051')">
                         <em>대출이자 계산기</em>
                         쉽고 빠른<br>대출금 계산하기
                     </a>
-                    <a href="javascript:void(0);" class="board_box calc2" @click.prevent="fn_movePage('PDPD4061')">
+                    <a href="javascript:void(0);" role="button" class="board_box calc2" @click.prevent="fn_movePage('PDPD4061')">
                         <em>대출한도 계산기</em>
                         DSR계산하고 대출<br>가능금액 확인하기
                     </a>
                 </div>
-
-                <cmm-flot-icon/>
             </section>
 
         </div>
@@ -340,12 +341,11 @@ import {mapActions, mapGetters} from 'vuex'
 import LottieAnimation from 'lottie-web-vue'
 import CmmCanvas from '@/components/CmmCanvas.vue' //canvas 공통컴퍼넌트
 import CmmFlotBanner from '@/components/CmmFlotBanner.vue'  // 플로팅배너
-import CmmFlotIcon from '@/components/CmmFlotIcon.vue'  // 플로팅배너
 
 import PDSC4001 from '@/views/page/PD/SC/PDSC4001/PDSC4001'
 import ASPS2002 from '@/views/page/AS/PS/ASPS2002/ASPS2002'
 import ASPS2004 from '@/views/page/AS/PS/ASPS2004/ASPS2004'
-import ASIS2013 from '@/views/page/AS/IS/ASIS2013/ASIS2013'
+import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
 import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
 import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
 import COCT4011 from '@/views/page/CO/CT/COCT4011/COCT4011'
@@ -434,19 +434,25 @@ export default {
             this.getStltAgrYn();
         },
         getData(){
-            console.log("와항항")
-            //국민연결 여부 
-			this.ntpsAssetYn = 'N'
-
+            //국민연금 연결여부 
+            this.ntpsAssetYn = 'N'
 			if(typeof this.myAssetsBzrgList != "undefined") {
 				let publicAsset = this.myAssetsBzrgList.filter(item => item.comnCVal === 'public') || []
 				if(publicAsset.length > 0) {
 					let publicAssetList = this.myAssetsBzrgList.find(item => item.comnCVal === 'public').orgList || []
 					if(publicAssetList.length > 0){
-						this.ntpsAssetYn = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVM0000') ? 'Y' : 'N'		// 국민연금
+                        let tmpPublicAssetList = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVM0000')
+                        if(tmpPublicAssetList?.acsTokenDusDtm == '0') {
+                            this.ntpsAssetYn = 'Y'
+                        } else {
+                            this.ntpsAssetYn = 'N'
+                        }
 					}
 				}
+			} else {
+				this.ntpsAssetYn = 'N'
 			}
+
 
             // 연금조회
             const config = {
@@ -512,9 +518,7 @@ export default {
                 }
             }
             apiService.call(config).then(response => {
-                console.log('>>>>>>>>>>> ', response)
                 this.wrsRcmList = response.wrsRcmList || []
-
                 this.$nextTick(() => {
                     this.slick()
                 })
@@ -522,10 +526,10 @@ export default {
         },
         // 추천상품 안내화면 이동
         openWrsDtlInfo(dtlUrlnm) {
-            console.log("상품안내 URL = " + dtlUrlnm)
             appService.moveFinancialProductPage(dtlUrlnm)
         },
-        fn_amHidden() {
+        fn_amHidden(type) {
+			this.amHideYn = type
             this.setSecretAmInfo('ISR', this.amHideYn)
         },
         tabList(dsc) {
@@ -576,9 +580,19 @@ export default {
 			});
 		},
         fn_COAR4002() {
+            let orgDsc = "";
+            if(this.pnsDsc == 'ntps'){
+                orgDsc = 'public'
+            } else {
+                orgDsc = 'bank'
+            }
 			// 자산연결
 			const config = {
-				component : COAR4002
+				component : COAR4002,
+                params : {
+                    isExternal : true,
+                    orgDsc : orgDsc
+                }
 			}
 
 			modalService.openPopup(config).then(() => {
@@ -589,7 +603,6 @@ export default {
 			
 			let popupParam = pension
 			popupParam.mydtCusno = this.getUserInfo('mydtCusno') //마이데이터고객번호
-			console.log(">>>>>>>>>>>>popupParam", popupParam)
 			let config = {}
 			
 			if(type == "DC"){
@@ -604,7 +617,7 @@ export default {
 				}
 			} else if(type == "PSIS") {
 				config = {
-					component : ASIS2013, // 연금저축보험
+					component : ASIS2012, // 연금저축보험
 					params : {
 						infOfrmnOrgC: pension.infOfrmnOrgC,
 						isrSctsNo: pension.isrSctsNo,
@@ -654,7 +667,6 @@ export default {
         // 금융지식 컨텐츠 조회
         getFinanceKlList(){ 
             this.getFinanInfo('PDTA4001', 0, true).then(response =>{
-                console.log("금융지식 : ", response)
                 this.financeKlList = response
                 // *출력값
                 // -썸네일이미지URL명  = thmnlImgUrlnm
@@ -744,7 +756,6 @@ export default {
         LottieAnimation,
         CmmCanvas,
         CmmFlotBanner,
-        CmmFlotIcon
 	}   
 }
 </script>

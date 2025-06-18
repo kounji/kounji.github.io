@@ -20,9 +20,9 @@
 		<div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
 			<div class="com_tabmenu_type03 switchType btn2 mt20">
 				<ul role="tablist">
-					<li role="presentation" aria-controls="tab_01" :aria-selected="viewIndex == 0 ? true : false" :class="viewIndex == 0 ? 'on' : ''" @click.prevent="tabChangeEvent(0)"><a href="javascript:void(0)" role="tab"><span>지출현황</span></a></li>
-					<li role="presentation" aria-controls="tab_02" :aria-selected="viewIndex == 1 ? true : false" :class="viewIndex == 1 ? 'on' : ''" @click.prevent="tabChangeEvent(1)"><a href="javascript:void(0)" role="tab"><span>전월비교</span></a></li>
-					<li role="presentation" aria-controls="tab_03" :aria-selected="viewIndex == 2 ? true : false" :class="viewIndex == 2 ? 'on' : ''" @click.prevent="tabChangeEvent(2)"><a href="javascript:void(0)" role="tab"><span>지출패턴</span></a></li>
+					<li role="presentation" aria-controls="tab_01" :aria-selected="viewIndex == 0 ? true : false" :class="viewIndex == 0 ? 'on' : ''" @click.prevent="tabChangeEvent(0)"><a href="javascript:void(0)" role="tab" :aria-selected="viewIndex == 0 ? true : false"><span>지출현황</span></a></li>
+					<li role="presentation" aria-controls="tab_02" :aria-selected="viewIndex == 1 ? true : false" :class="viewIndex == 1 ? 'on' : ''" @click.prevent="tabChangeEvent(1)"><a href="javascript:void(0)" role="tab" :aria-selected="viewIndex == 1 ? true : false"><span>전월비교</span></a></li>
+					<li role="presentation" aria-controls="tab_03" :aria-selected="viewIndex == 2 ? true : false" :class="viewIndex == 2 ? 'on' : ''" @click.prevent="tabChangeEvent(2)"><a href="javascript:void(0)" role="tab" :aria-selected="viewIndex == 2 ? true : false"><span>지출패턴</span></a></li>
 				</ul>
 			</div>		
 

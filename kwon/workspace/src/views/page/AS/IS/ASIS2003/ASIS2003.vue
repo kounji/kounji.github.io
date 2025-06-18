@@ -25,7 +25,7 @@ export default {
         apiService.pfmLogSend(this.$options.name);
     },
     components: {
-        CmmInsuDetailCoverages: () => import('@/components/AS/IS/CMM/CmmInsuDetailCoverages')
+        CmmInsuDetailCoverages: () => import('@/components/AS/IS/CMM/CmmInsuDetailCoveragesV4')
     }
 }
 </script>

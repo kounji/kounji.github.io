@@ -505,7 +505,7 @@ export default {
 			// if (type === 'PDMY') return 'PDMY1101' // 나의목표
 			// if (type === 'PDPD') return 'PDPD1101' // 상품추천
 			// if (type === 'PDCA') return 'PDCA1101' // 자동차
-			if (type === 'AC')   return 'ASTA2001' // 자산(나의자산 > 자산) => ASAC1001 => ASTA2001 변경 20230901
+			if (type === 'AC')   return 'ASTA4001' // 자산(나의자산 > 자산) => ASAC1001 => ASTA2001 => ASTA4001 변경 20250327
 			if (type === 'MA')   return  'MAMA4001' // 상호금융 NH콕마이데이터 4.0 추진 개발 자산 메인 MAMA2001 => MAMA4001 
 			
 			return ''

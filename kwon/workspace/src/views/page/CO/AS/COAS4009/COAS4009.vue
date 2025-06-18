@@ -28,11 +28,11 @@
                 </div>
                 <div class="popup_footer fixed">
                     <div class="btns_wrap">
-                        <button type="button" class="btns lg primary">권유직원 없이 시작하기</button>
+                        <button type="button" class="btns lg primary" @click.prevent="close('clear')">권유직원 없이 시작하기</button>
                     </div>
                 </div>
                 
-                <a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
+                <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
             </div>
         </div>
         <!--// slide popup E -->
@@ -46,6 +46,7 @@ import modalService from '@/service/modalService'
 import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
 import {fncSlick_Terms} from '@/utils/slick'
+import _ from 'lodash'
 
 export default {
     name: 'COAS4009',
@@ -84,8 +85,8 @@ export default {
                 }
             }
             modalService.openPopup(config).then(response => {
-                if(!this.isNull(response)) {
-                    this.enoObj = response.selectEno || ""
+                if(!_.isEmpty(response)) {
+                    this.enoObj = response.empObj || ""
                     console.log("@@@ 선택된 권유 직원 =>",this.enoObj)
                     this.close({enoObj : this.enoObj})
                 }

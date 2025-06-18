@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<title>2024 타기관 마이데이터 관리</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="../@pub_guide/css/worklist.css" />
+	<link rel="stylesheet" type="text/css" href="../@pub_guide/css/colorbox.css" />
+	<script type="text/javascript" src="../@pub_guide/lib/jquery/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../@pub_guide/lib/jquery/jquery-1.12.0.min.js"></script>
+	<script type="text/javascript" src="../@pub_guide/lib/jquery.colorbox-min.js"></script>
+</head>
+
+<body>
+	<div class="header">
+		<div class="title">
+			<div class="subject">
+				<h1>NH콕 마이데이터 v4.0 고도화 (2024 타기관 마이데이터 관리)</h1>
+			</div>
+			<div class="desc">
+				<a href="../../../worklist.html" class="btns">worklist v4.0 ></a>
+			</div>
+		</div>
+		<div class="gnb">
+			<div class="menu">
+				<ul>
+					<li class="on"><a href="#list00" data-target="#list00">마이데이터 가입 조회 및 관리</a></li>
+					<li><a href="#list01" data-target="#list01">제 3자 정보제공 조회 및 관리</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- wrap -->
+	<div id="wrap">
+		<div class="cont" id="list00">
+			<h2 id="title">마이데이터 가입 조회 및 관리</h2>
+			<table id="list00-header"></table>
+			<div id="page"><table><tbody></tbody></table></div>
+		</div>
+		<div class="cont" id="list01">
+			<h2 id="title">제 3자 정보제공 조회 및 관리</h2>
+			<table id="list01-header"></table>
+			<div id="page"><table><tbody></tbody></table></div>
+		</div>
+	</div>
+	<!-- //wrap -->
+<iframe id="preview" src=""></iframe>
+<script type="text/javascript" src="js/worklist.js"></script>
+<div class="cboxOverlay"></div>
+<script>
+	
+	/*********** 마이데이터 가입 조회 및 관리 *************/
+	//입력예제 insertList("탭ID","업무구분","depth2","depth3","depth4","화면명","화면ID","구분(수용,""삭제)","유형","작업구분","기획자","디자이너","작업자","상태(M작업,Y완료)","완료일자","확인(E수정,C확인)","비고");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","","","마이데이터 가입 조회 및 관리","UI-OR-01","수용","","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","안내","","안내","UI-OR-01-info","수용","s팝업","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","전송요구내역 통합조회","","개인(신용)정보 제공 동의서","UI-OR-01-agree","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","서비스 이용현황","","서비스 이용현황","UI-OR-01-service-01","수용","","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","서비스 이용현황","미응답 목록","미응답 목록","UI-OR-01-service-02","수용","","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","서비스 이용현황","조회결과","조회결과","UI-OR-01-service-03","수용","","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","서비스 이용현황","조회결과_조회설정","조회설정","UI-OR-01-service-04","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list00","타기관 마이데이터","마이데이터 가입 조회 및 관리","서비스 이용현황","전송요구내역","전송요구내역","UI-OR-01-service-05","수용","s팝업","신규","","","","Y","20241122","","");
+
+	
+	/*********** 제 3자 정보제공 조회 및 관리 *************/
+	//입력예제 insertList("탭ID","업무구분","depth2","depth3","depth4","화면명","화면ID","구분(수용,""삭제)","유형","작업구분","기획자","디자이너","작업자","상태(M작업,Y완료)","완료일자","확인(E수정,C확인)","비고");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","","","제 3자 정보제공 조회 및 관리","UI-OR-02","수용","","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 개인(신용)정보 제공 동의서","","제 3자 개인(신용)정보 제공 동의서","UI-OR-02-agree","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_동의내역","동의내역","UI-OR-02-search-agree-01","수용","","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_동의내역조회설정","동의내역조회설정","UI-OR-02-search-agree-02","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_동의내역서비스선택","동의내역서비스선택","UI-OR-02-search-agree-03","수용","s팝업","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_동의내역상세","동의내역상세","UI-OR-02-search-agree-04","수용","","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_제공내역","제공내역","UI-OR-02-search-offer-01","수용","","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_제공내역조회설정","제공내역조회설정","UI-OR-02-search-offer-02","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_제공내역상세","제공내역상세","UI-OR-02-search-offer-03","수용","팝업","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","제 3자 정보제공 조회 및 관리","제 3자 제공 동의 내역 통합조회","제3자 통합조회_철회내역","철회내역","UI-OR-02-search-withdraw","수용","","신규","","","","Y","20241122","","");
+	insertList("list01","타기관 마이데이터","공통팝업","데이터로딩","","데이터로딩","UI-OR-03","수용","팝업","신규","","","","Y","20241122","","");
+	
+	
+
+	</script>
+</body>
+
+</html>

@@ -207,7 +207,8 @@ export default {
                 if(response.rspC === "0000") {
                     let message = (flagYN ==="Y") ? this.today + "<br>약관의 동의처리가 완료되었습니다." : "약관의 동의처리가 철회되었습니다.";
                     modalService.alert(message).then(() => {
-                        this.close()
+                        this.closeAll()
+                        
                     })
                 }
             })

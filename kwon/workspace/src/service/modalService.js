@@ -1,7 +1,8 @@
 /**
  * 팝업화면 개발에 필요한 공통 스크립트.
  */
-import AlertPopup from '@/views/popup/common/AlertPopup.vue'
+// import AlertPopup from '@/views/popup/common/AlertPopup.vue'
+import AlertPopup from '@/views/popup/common/AlertPopupV4.vue'
 import store from '@/store'
 import constant from '@/common/config/constants.js'
 import appService from '@/service/appService.js'
@@ -40,16 +41,16 @@ export default {
 
         // modalService.alert(data.name)
 		if(!appService.applicationSessionCheck()){
-            clearSessionTimer()
+            sessionStorage.clear()
             this.alert("장시간 미사용으로 종료되었습니다.<br>재로그인 해주시기 바랍니다", "세션만료","확인").then(response=>{
                 console.log('세션만료 alert 처리', response)
                 if (response === '확인'){
+					clearSessionTimer()
                     appService.moveMain()
                 }
             })    
             sesChk = false    
         }
-        
 
 		if(event === undefined)
 		{
@@ -65,6 +66,16 @@ export default {
 		}else{
 			config.target = event.currentTarget
 		}
+
+		
+		try {
+			// 팝업창 띄울때 로딩화면 여부
+			if (config.params.loading == true) {
+				this.showLoading()
+			}
+		} catch(e){ }
+		
+
 		return new Promise((resolve, reject) => {
 			//통합인증시 팝업의 랜더링 문제로 인하여 1차 인증후 메인팝업 이외의 팝업은 제거
 
@@ -82,10 +93,10 @@ export default {
 				// 		break
 				// 	}
 				// }
-				let isCORE2206 = _.findIndex(modalInfo, d => d.component.name === "CORE2206") > -1 ? true : false;	// 아파트 검색 선택
-				let isCORE2201 = _.findIndex(modalInfo, d => d.component.name === "CORE2201") > -1 ? true : false;	// 직접입력
+				let isCORE4206 = _.findIndex(modalInfo, d => d.component.name === "CORE4206") > -1 ? true : false;	// 아파트 검색 선택
+				let isCORE4201 = _.findIndex(modalInfo, d => d.component.name === "CORE4201") > -1 ? true : false;	// 직접입력
 
-				if(!isCORE2206 && !isCORE2201) {
+				if(!isCORE4206 && !isCORE4201) {
 					// 일반 case
 					while (modalLength--){
 						if(newYn && modalLength == 0) break
@@ -94,19 +105,19 @@ export default {
 				} else {
 					// 부동산 등록 도중 대출계좌 연결 슬라이드를 통해 자산 연결 진행 시
 					while (modalLength--) {
-						if(isCORE2206) {
-							if(modalInfo[modalLength].component.name === "CORE2206") break
+						if(isCORE4206) {
+							if(modalInfo[modalLength].component.name === "CORE4206") break
 						}
-						if(isCORE2201) {
-							if(modalInfo[modalLength].component.name === "CORE2201") break
+						if(isCORE4201) {
+							if(modalInfo[modalLength].component.name === "CORE4201") break
 						}
-
 
 						if(newYn && modalLength == 0) break
 						store.dispatch('modal/closeModal')
 					}
 				}
 			}
+
             if(!sesChk){
                 resolve("세션만료")
             }else{
@@ -256,6 +267,7 @@ export default {
 	alert(...args) {
 		console.log('alert', args)
 		const userConfig = this.getUserConfig(args, 'alert')
+		console.log(userConfig)
 		return new Promise(resolve => {
 			const config = {
 				component: AlertPopup,
@@ -300,25 +312,32 @@ export default {
 		const confirmObj = JSON.parse(JSON.stringify(args[0]))
 		// let isTobePage = store.state.layout.isTobePage
 
-		// AS-IS, TO-BE 구분
-		// if(isTobePage) {
-			if(confirmObj.buttons === '' || confirmObj.buttons === undefined || confirmObj.buttons === null) {
-				confirmObj.buttons = [
-					{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btn btn_mint_gray btn_no'}, // 아니오(취소)
-					{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-				]
-			} else {
-				confirmObj.buttons = [
-					{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
-					{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-				]
-			}
+		//////////////////////////////////////////////////// ASIS ////////////////////////////////////////////////////
+		// if(confirmObj.buttons === '' || confirmObj.buttons === undefined || confirmObj.buttons === null) {
+		// 	confirmObj.buttons = [
+		// 		{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btn btn_mint_gray btn_no'}, // 아니오(취소)
+		// 		{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
+		// 	]
 		// } else {
-			// confirmObj.buttons = [
-			// 	{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
-			// 	{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-			// ]
+		// 	confirmObj.buttons = [
+		// 		{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
+		// 		{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
+		// 	]
 		// }
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		if(confirmObj.buttons === '' || confirmObj.buttons === undefined || confirmObj.buttons === null) {
+			confirmObj.buttons = [
+				{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btns lg'}, // 아니오(취소)
+				{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btns lg primary'}, // 예(확인)
+			]
+		} else {
+			confirmObj.buttons = [
+				{text: confirmObj.ALERT_CANCEL_TEXT ||constant.ALERT_CANCEL_TEXT, class: 'btns lg'}, // 아니오(취소)
+				{text: confirmObj.ALERT_CONFIRM_TEXT || constant.ALERT_CONFIRM_TEXT, class: 'btns lg primary'}, // 예(확인)
+			]
+		}
+		
 		return this.alert(confirmObj)
 	},
 
@@ -329,37 +348,27 @@ export default {
 	 */
 	getUserConfig(args, type='alert') {
 		const isObject = typeof args[0] === 'object'
+		///////////////////////////////////////// ASIS /////////////////////////////////////////
+		// const alertButtons = [
+		// 	{text: args[2] || constant.ALERT_TEXT, class: 'btn btn_mint btn_no'}, // 확인
+		// ]
+
+		// let confirmButtons = []
+		// confirmButtons = [
+		// 	{text: constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
+		// 	{text: constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
+		// ]
+		/////////////////////////////////////////////////////////////////////////////////////////
+
 		const alertButtons = [
-			{text: args[2] || constant.ALERT_TEXT, class: 'btn btn_mint btn_no'}, // 확인
+			{text: args[2] || constant.ALERT_TEXT, class: 'btns lg primary'}
 		]
 
-		///////////////////////////// CBT /////////////////////////////
-		// let isTobePage = store.state.layout.isTobePage
 		let confirmButtons = []
-		// if(isTobePage) {
-		// 	confirmButtons = [
-		// 		{text: constant.ALERT_CANCEL_TEXT, class: 'btn btn_mint_grey btn_no'}, // 아니오(취소)
-		// 		{text: constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-		// 	]
-		// } else {
-			confirmButtons = [
-				{text: constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
-				{text: constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-			]
-		// }
-		/*
-		<<asis>>
-		const confirmButtons = [
-			{text: constant.ALERT_CANCEL_TEXT, class: 'btn btn_grey btn_no'}, // 아니오(취소)
-			{text: constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
+		confirmButtons = [
+			{text: constant.ALERT_CANCEL_TEXT, class: 'btns lg'},	// 아니오(취소)
+			{text: constant.ALERT_CONFIRM_TEXT, class: 'btns lg primary'}
 		]
-		<<tobe>>
-		const confirmButtons = [
-			{text: constant.ALERT_CANCEL_TEXT, class: 'btn btn_mint_grey btn_no'}, // 아니오(취소)
-			{text: constant.ALERT_CONFIRM_TEXT, class: 'btn btn_mint'}, // 예(확인)
-		]
-		*/
-		///////////////////////////// CBT /////////////////////////////
 
 		const buttons = type === 'alert' ? alertButtons : confirmButtons
 		return isObject
@@ -400,6 +409,7 @@ export default {
    * showLoading
    */
 	showLoading() {
+		console.log("modalService:::showLoading...")
 		store.dispatch('modal/addLoading')
 	},
 
@@ -407,6 +417,7 @@ export default {
    * hideLoading
    */
 	hideLoading() {
+		console.log("modalService:::hideLoading...")
 		store.dispatch('modal/removeAllLoading')
 	},
 

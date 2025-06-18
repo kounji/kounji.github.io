@@ -142,7 +142,12 @@ export default {
 
 			this.selectedCode = this.localPubRlestCode.code;	// 로컬 스토리지에 저장된 청약 유형
 
-			if(this.selectedCode.length < 5) this.allChk = false
+			if(this.selectedCode.length == 0) {
+				this.selectedCode = ["1", "2", "3", "4", "5"]
+				this.allChk = true
+			}
+
+			if(!this.selectedCode.length) this.allChk = false
 			else this.allChk = true
         },
         openDetailPop() {
@@ -177,7 +182,7 @@ export default {
 			}
 		}, 
 		fnCtrlAllChk(e) {
-			if(this.selectedCode.length < 5) this.allChk = false
+			if(!this.selectedCode.length) this.allChk = false
 			else this.allChk = true
 		},
     },

@@ -203,7 +203,7 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import {getLastDay, dateFormat, dayDiff} from '@/utils/date'
 import {round} from '@/utils/number'
-import PDMY2023 from '@/views/page/PD/MY/PDMY2023/PDMY2023'
+import PDMY4023 from '@/views/page/PD/MY/PDMY4023/PDMY4023'
 import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import PDMY2042 from '@/views/page/PD/MY/PDMY2042/PDMY2042'
 import PDMY2043 from '@/views/page/PD/MY/PDMY2043/PDMY2043'
@@ -403,7 +403,7 @@ export default {
             })
         },
         goExpensePerpose() {
-            var compName = PDMY2023
+            var compName = PDMY4023
 
             var param = {"fncObtDsc":this.fncObtDsc, "sqno": this.sqno, "prgStsCd":this.prgStsCd}
 

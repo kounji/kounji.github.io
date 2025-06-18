@@ -62,7 +62,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 // import commonMixin from '@/common/mixins/commonMixin'
 import modalService from '@/service/modalService'
 // import commonService from '@/service/commonService'
-import PDBF2003 from '@/views/page/PD/BF/PDBF2003/PDBF2003'
+import PDBF4003 from '@/views/page/PD/BF/PDBF4003/PDBF4003'
 
 export default {
     name : "PDBF2002",
@@ -101,7 +101,7 @@ export default {
                     title    : "통화선택"
                 },
                 renderer : {
-                    component : PDBF2003,
+                    component : PDBF4003,
                     cdata     : {
                         title    : "통화선택",
                     }

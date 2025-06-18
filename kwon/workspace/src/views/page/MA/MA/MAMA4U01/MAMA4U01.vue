@@ -16,7 +16,7 @@
         <div id="content">
             <section class="main_united">
                 <div class="join_title">
-                    <strong>아직 가입하지 않으셨네요.<button type="button" class="btns" @click.prevent="fn_regService">가입</button></strong>
+                    <strong>아직 가입하지 않으셨네요.<button type="button" class="btns" @click.prevent="fn_openPopup('COAS4001')">가입</button></strong>
                     <p>NH콕마이데이터(자산관리) 가입하면<br>자산 리포트 확인할 수 있어요</p>
                 </div>
 
@@ -51,30 +51,91 @@
                     </li>
                 </ul>
 
-                <!-- [금융지식] -->
-                <div class="finlit" v-show="financeKlList.length > 0">
-                    <h2 class="h_tit01">금융지식</h2>
-                    <a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')"><span class="blind">더보기</span></a>
-
-                    <div class="scroller">
-                        <ul>
-							<li v-for="(item, idx) in financeKlList" :key="idx">
-								<a href="javascript:void(0);" @click.prevent="fn_openFncKlDtl(item.cntzId)">
-									<img :src="item.thmnlImgUrlnm" alt="" @error="emptyImg">
-									<strong>{{item.cntzTinm}}</strong>
-									<span class="hash" v-if="!!item.rcmKwrdCntn">#{{item.rcmKwrdCntn}}</span>
-								</a>
-							</li>
-						</ul>
+                <!--[v4.0] 25-06-02 컨텐츠 추가 -->
+                <!-- [NH지역정보] -->
+                <div class="local_sheet">
+                    <div class="sheet">
+                        <div>
+                            <a href="javascript:void(0);" role="button">
+                                <dl class="item01">
+                                    <dt>
+                                        <span>NH지역정보</span>
+                                        <strong>우리동네에는 어떤 축제가<br>열리고 있을까요?</strong>
+                                    </dt>
+                                    <dd>
+                                        <p class="txt">지역별 축제를 확인해보세요.</p>
+                                    </dd>
+                                    <dd>
+                                        <span class="link" @click.prevent="fn_movePage('RGFT4001')">지역축제</span>
+                                    </dd>
+                                </dl>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="javascript:void(0);" role="button">
+                                <dl class="item02">
+                                    <dt>
+                                        <span>NH지역정보</span>
+                                        <strong>가까운 자전거길부터<br>천천히 도전해봐요.</strong>
+                                    </dt>
+                                    <dd>
+                                        <p class="txt">강과 산을 따라 달리는<br>자전거길을 확인해보세요.</p>
+                                    </dd>
+                                    <dd>
+                                        <span class="link" @click.prevent="fn_movePage('RGBM4001')">자전거길 국토종주</span>
+                                    </dd>
+                                </dl>
+                            </a>
+                        </div>
+                        <div> 
+                            <a href="javascript:void(0);" role="button">
+                                <dl class="item03">
+                                    <dt>
+                                        <span>NH지역정보</span>
+                                        <strong>몸과 마음을 쉬게하는<br>전국 둘레길</strong>
+                                    </dt>
+                                    <dd>
+                                        <p class="txt">최고의 여행길,<br>전국 둘레길을 확인해보세요.</p>
+                                    </dd>
+                                    <dd>
+                                        <span class="link" @click.prevent="fn_movePage('RGDM4001')">전국 둘레길</span>
+                                    </dd>
+                                </dl>
+                            </a>
+                        </div>
                     </div>
+                </div>
+
+                <!-- [로또복권 번호 만들기] -->
+                <a href="javascript:void(0);" class="board_box menu_lotto" role="button" @click.prevent="fn_openPopup('COAS4001')">
+                    <div class="box_tit">
+                        <span>NH콕마이데이터(자산관리)</span>
+                        <strong>가입하면 로또번호<br>추천 받을 수 있어요.</strong>
+                    </div>
+                    <div class="btns md"><span class="icon_line_right">NH콕마이데이터(자산관리) 가입</span></div>
+                </a>
+                <!--//[v4.0] 2025-06-02 컨텐츠 추가 -->
+
+                <!-- [금융지식] -->
+                <div class="fin_sheet">
+                    <a href="javascript:void(0);" class="board_box menu_fin" role="button" @click.prevent="fn_movePage('COCT4001')">
+                        <div class="box_tit">
+                            <span>금융지식</span>
+                            <strong>현명한 소비와 알뜰한<br>재테크의 시작</strong>
+                            <p>미래 계획에 한걸음 내딛어 보세요.</p>
+                        </div>
+                        <div class="btns md"><span class="icon_line_right">금융지식 바로가기</span></div>
+                    </a>
                 </div>
 
                 <div class="current_banner">
                     <div class="title">
-                        <span>이용하지 않는 마이데이터<br>서비스는 탈퇴하는게</span>
-                        <p>내 소중한 개인정보를<br>지킬 수 있어요.</p>
+                        <span>고객님의 소중한 개인정보,<br>안전하게 보호됩니다.</span>
+                        <p>내 자산 안전하게 관리하는<br>NH콕마이데이터</p>
                     </div>
-                    <button type="button" class="btns md" @click.prevent="fn_openBrowser">나의 마이데이터 가입 현황</button>
+                    <!-- <button type="button" class="btns md" @click.prevent="fn_openBrowser">지금 가입하기</button> -->
+                    <button type="button" class="btns md" @click.prevent="fn_openPopup('COAS4001')">지금 가입하기</button>
+                    
                 </div>
 
             </section>
@@ -97,7 +158,7 @@
     import {mapActions, mapGetters} from 'vuex'
 
     import COCT4011 from '@/views/page/CO/CT/COCT4011/COCT4011'
-    import COGU4001 from '@/views/page/CO/GU/COGU4001/COGU4001'
+    import COAS4001 from '@/views/page/CO/AS/COAS4001/COAS4001'
 
     export default {
         name : "MAMA4U01",
@@ -106,7 +167,6 @@
                 currYm        : dateFormat(new Date(), "YYYYMM"), //현재년월
                 currMm        : dateFormat(new Date(), "M"), //현재월
 
-                financeKlList : [], // 금융지식 컨텐츠 목록
             }
         },
         computed: {
@@ -138,42 +198,34 @@
                 'setMyCreditInfo'   //신용정보(점수/등급) add. 2021.11.22
             ]),
             initComponent() {
-                this.getData()
+                this.slick()
             },
-            getData(mainFlag) {
-                if(mainFlag === '' || mainFlag === undefined || mainFlag === null) {
-                    mainFlag = '1'
-                }
-                
-                // 금융지식 컨텐츠 조회
-                this.getFinanInfo('MAMA4001', 0, false).then(response => {
-                    this.financeKlList = response
-                })
-            },
+
             emptyImg(e) {
                 e.target.src = new URL("@/assets_v40/images/event/ev_noimg.png", import.meta.url).href
             },
-            /**
-             * 서비스 가입 팝업
-             */
-            fn_regService() {
-                const config = {
-                    component: COGU4001
-                }
-                modalService.openPopup(config)
-            },
-            /**
-             * 화면이동
-             */
+            
+            // 팝업 호출
+            fn_openPopup(compName) {
+				let compenent = ''
+				if(compName == "COAS4001") {  // 서비스 가입 약관 팝업
+					compenent = COAS4001	
+				}
+				const config = {
+					component: compenent,
+				}
+				modalService.openPopup(config)
+			}, 
+
+            // 화면 이동
             fn_movePage(page) {
                 const config = {
                     name: page
                 }
                 commonService.movePage(config)
             },
-            /**
-             * 금융지식 컨텐츠 상세 팝업오픈
-             */
+
+            // 금융지식 컨텐츠 상세 팝업오픈
             fn_openFncKlDtl(cntzId) {
                 const config = {
                     component: COCT4011,
@@ -181,9 +233,8 @@
                 }
                 modalService.openPopup(config)
             },
-            /**
-             * 외부 브라우저 오픈
-             */
+
+            // 외부 브라우저 오픈
             fn_openBrowser() {
                 // 외부 브라우저 링크 오픈 
                 let url = "http://www.mydatacenter.or.kr"
@@ -198,7 +249,22 @@
                     appService.cokBankOpenPopupWebBrowser(url)
                 }
             },
-            
+
+            slick() {
+                // NH지역정보 //[v4.0] 25-06-02 컨텐츠 추가
+                var $local =  $('.main_united .local_sheet');
+                $local.each(function(){
+                    let $this = $(this);
+
+                    $(".sheet", $this).slick({
+                        infinite: true,
+                        speed: 300,
+                        arrows:false,
+                        dots:true,
+                        centerPadding: '40px',
+                    });
+                });
+            }
         }
     }
 </script>

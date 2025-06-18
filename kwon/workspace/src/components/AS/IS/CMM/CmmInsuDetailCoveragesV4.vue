@@ -360,7 +360,7 @@
             </div>
 
         </div>
-        <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closeAll(true)"><span class="blind">팝업닫기</span></a>
+        <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>
     </div>
     <!--// 전체 팝업 종료 -->
 </template>
@@ -370,8 +370,9 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
+import {mapGetters} from 'vuex'
 
-import ASIS2002 from '@/views/page/AS/IS/ASIS2002/ASIS2002'
+import ASIS4002 from '@/views/page/AS/IS/ASIS4002/ASIS4002'
 import ASIS2004 from '@/views/page/AS/IS/ASIS2004/ASIS2004'
 import ASIS2005 from '@/views/page/AS/IS/ASIS2005/ASIS2005'
 import ASIS2006 from '@/views/page/AS/IS/ASIS2006/ASIS2006'
@@ -384,6 +385,7 @@ import ASIS2017 from '@/views/page/AS/IS/ASIS2017/ASIS2017'
 import ASIS2019 from '@/views/page/AS/IS/ASIS2019/ASIS2019'
 import ASIS2020 from '@/views/page/AS/IS/ASIS2020/ASIS2020'
 import ASIS2025 from '@/views/page/AS/IS/ASIS2025/ASIS2025'
+import appService from '@/service/appService'
 
 //보험종류
 const TYPE_PERSON = 'PERSON'                          // 인보험
@@ -475,6 +477,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters('layout', [
+            'pageName',
+        ]),
         agSctrCntnLabel() {
             if(this.agSctrCntn == '99'){
                 return '전 연령'
@@ -774,7 +779,7 @@ export default {
             let component
             switch(this.type) {
                 case TYPE_PERSON:
-                    component = ASIS2002
+                    component = ASIS4002
                     break
                 case TYPE_NOT_PERSON:
                     component = ASIS2006
@@ -849,7 +854,25 @@ export default {
         청구하기 콕뱅크>콕혜택>생활금융>농협생명 TODO 경로 확인
         */
         fn_rqs(){
-            alert("이동 url 확정 시 추가 작업 예정")
+            //콕 농협생명 이동
+            let url = 'CBCFP0000R^life^mdMenu'
+            appService.cokBankGoMove( url )
+        },
+
+        // 25.04.04) 모드 및 화면별 팝업닫기 분기
+        closePopup() {
+            const scrMode = this.getScrmode()?.mode || 'N'
+            const pageId = this.pageName || ''
+            
+            if(scrMode == 'S') {
+                if(this.isTabPopup) {
+                    pageId.startsWith('AS') ? this.closeAllLeftMain(true) : this.closeAll(true)
+                } else {
+                    this.close(true)
+                }
+            } else {
+                this.closeAll(true)
+            }
         }
     }
 }

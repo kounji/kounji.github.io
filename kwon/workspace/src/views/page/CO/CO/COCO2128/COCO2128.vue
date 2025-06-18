@@ -56,8 +56,7 @@
                         </li>
                     </ul>
                 </template>
-                <div class="com_space_type01"></div>
-			</div>
+			</div>                
 			<div class="com_inner" v-else>
 				<!-- 조회내역이 없을경우 S -->
 				<div class="no_data_box">
@@ -67,6 +66,7 @@
 				</div>
 				<!--// 조회내역이 없을경우 E -->
 			</div>
+            <div class="com_space_type01"></div>
         </div>
 		
         <div class="popup_footer fixed">

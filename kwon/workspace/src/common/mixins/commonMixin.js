@@ -186,120 +186,82 @@ const commonMixin = {
     * 2025.03.17, sungchul, 권한 및 음성TEXT 앱단에서 처리 후 리턴
     * params{}
     * return{code: String, msg: String}
+    * code	msg
+         0	정상메시지
+        97	사용자종료
+        98	권한 오류
+        99	일반적인 에러
     */
     showVoice(){
+      if ( this.getUserInfo('chnl') === "385" ) {
+        console.log("commonMixin:::showVoice called TO 스마트뱅킹")
+        
+        return appService.showVoice()
+      } else { //콕뱅크
+        return new Promise((resolve, reject) => {
+            
+            console.log("commonMixin:::cokbankShowVoice called TO 콕뱅킹")
+            appService.cokBankShowVoice().then( res => {
+              resolve(res)
+            }).catch(error => {
+              modalService.alert("음성인식을 위해 마이크 권한 허용 해주세요.", error)
+              reject(error)
+            })
+        })
+      }
+    },
+    /*
+    * 음성인식 권한 요청
+    * 2025.04.24, sungchul, 음성인식 권한 요청
+    * params {}
+    * return {code: String, msg: String}
+    */
+    reqVoiceAuth(){
       return new Promise((resolve, reject) => {
         if(this.getUserInfo('chnl') === "385"){ //스마트뱅크
-            console.log("commonMixin:::showVoice called TO 스마트뱅킹")
-
-            apiService.addLoading("voice")
-
-            appService.showVoice().then(res => {
-              apiService.removeLoading("voice")
-              resolve(res.result)
+            console.log("commonMixin:::reqVoiceAuth called TO 스마트뱅킹")
+            appService.reqVoiceAuth().then( res => {
+              if (res.result == null && res.errorMessage){
+                res.result = res.errorMessage
+                console.log("commonMixin:::reqVoiceAuth called res.errorMessage > ", res.errorMessage)
+              }
+              console.log("commonMixin:::reqVoiceAuth called res.result > ", res.result)
+              resolve(res)
             }).catch( error => {
-              apiService.removeLoading("voice")
               reject(error)
             })
         }else{
             //콕뱅크
-            console.log("commonMixin:::showVoice called TO 콕뱅킹")
-
-            apiService.addLoading("voice")
-
-            appService.cokBankShowVoice().then( res => {
-              apiService.removeLoading("voice")
+            console.log("commonMixin:::cokReqVoiceAuth called TO 콕뱅킹")
+            appService.cokBankReqVoiceAuth().then( res => {
               resolve(res)
             }).catch(error => {
-              modalService.alert("음성인식을 위해 마이크 권한 허용 해주세요.", error)
-              apiService.removeLoading("voice")
               reject(error)
             })
         }
-    })
-    },
-    /*
-    * [deprecated] 음성인식 마이크 권한확인
-    * params{}
-    * return{}
-    */
-    voicePermission(){
-      return new Promise((resolve, reject) => {
-          if(this.getUserInfo('chnl') === "385"){ //스마트뱅크
-              appService.requestPermission().then(res => {
-                  console.log('음성인식 권한 resonpse: ', res)
-                  let jsonRes = res.result
-                  if(jsonRes.success === "1"){
-                      resolve(this.voice())
-                  }else{
-                      modalService.alert("음성인식을 위해 마이크 권한 허용 해주세요.")
-                      reject('마이크 권한 오류')
-                  }
-              }).catch(error => {
-                  console.log('마이크 권한 오류:', error)
-              })     
-          }else{
-              //콕뱅크
-              appService.cokBankRequestPermission().then(res => {
-                  console.log('음성인식 권한 response: ', res)
-                  let jsonRes = JSON.parse(res.result)
-                  if(jsonRes.success === "1"){
-                      resolve(this.voice())
-                  }else{
-                      modalService.alert("음성인식을 위해 마이크 권한 허용 해주세요.")
-                      reject('마이크 권한 오류')
-                  }
-              }).catch(error => {
-                  console.log('마이크 권한 오류:', error)
-              })   
-          }
       })
     },
     /*
-    * [deprecated] 음성인식
-    * params{}
-    * return{}
+    * 음성인식 끄기
+    * 2025.04.24, sungchul, 음성인식 끄기
+    * params {}
+    * return {}
     */
-    voice(){        
-        return new Promise((resolve, reject)=>{
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-            let reco = new SpeechRecognition()
-            reco.lang = 'ko-KR'
-            
-            // reco.interimResults = true
-            // reco.continuous = true
-            // reco.maxAlternatives = 1
-            
-            apiService.addLoading("voice")
-
-            reco.onstart = () => {
-                console.log('음성인식 시작')
-            }
-
-            reco.onresult = (e) => {
-                apiService.removeLoading("voice")
-                console.log('음성인식 성공 : ', e)
-                let result = {'success': '1', 'msg': e.results[0][0].transcript}
-                resolve(result)
-            }
-
-            reco.onerror = (e) => {
-                apiService.removeLoading("voice")
-                console.log('음성인식 오류 : ', e)
-                let result = {'success': '0', 'msg': e}
-                resolve(result)
-            }
-
-            reco.onend = () => {
-                console.log('음성인식 종료')
-            }
-
-            reco.start()
-        })
+    closeVoice(){
+      return new Promise((resolve, reject) => {
+        if(this.getUserInfo('chnl') === "385"){ //스마트뱅크
+            console.log("commonMixin:::closeVoice called TO 스마트뱅킹")
+            appService.closeVoice()
+        }else{
+            //콕뱅크
+            console.log("commonMixin:::cokBankCloseVoice called TO 콕뱅킹")
+            appService.cokBankCloseVoice()
+        }
+      })
     },
     /*
     * 카카오톡 공유하기
-    * params{title:String, description:String, img:String, screen:String}
+    * params{title:String, description:String, imageUrl:String, screenId:String, inviteCd:String category: Int}
     * return{}
     */
     shareKakao(data){
@@ -314,20 +276,215 @@ const commonMixin = {
           }
         }
         
-        let url = location.href.substr(0, location.href.lastIndexOf('/'))
+        /*
+
+        콕뱅크 개발
+        https://nhsmartdev.nonghyup.com:38690/service/html/cbgateway.html?WEB=Y&SRV_ID=CBCOP9997R&screenId=마이데이터화면ID
+
+        콕뱅크 검증 (예정)
+        https://nhsmartdev.nonghyup.com:8690/service/html/cbgateway.html?WEB=Y&SRV_ID=CBCOP9997R&screenId=마이데이터화면ID
         
+        콕뱅크 운영
+        https://nhcokbank.nonghyup.com/service/html/cbgateway.html?WEB=Y&SRV_ID=CBCOP9997R&screenId=마이데이터화면ID
+
+        케이스 1. 이벤트 배너 클릭하여 접속
+        ?WEB=Y&SRV_ID=CBCOP9997R&screenId={마이데이터화면ID}&cus={고객번호}&mydtEvtSqno={이벤트페이지번호}&inviteCd=99999999&chnl={채널}&lginInfVal={}&lginDtm={}
+
+        케이스 2. 친구추천 관련 배너, QR 접속
+        ?WEB=Y&SRV_ID=CBCOP9997R&screenId={마이데이터화면ID}&cus={고객번호}&mydtEvtSqno=0&inviteCd={추천코드번호}&chnl={채널}&lginInfVal={}&lginDtm={}
+
+        케이스 3. 일반적인 접속
+        ?WEB=Y&SRV_ID=CBCOP9997R&screenId={마이데이터화면ID}&cus={고객번호}&mydtEvtSqno=0&inviteCd=99999999&chnl={채널}&lginInfVal={}&lginDtm={}
+        */
+        let url = 'https://nhcokbank.nonghyup.com/service/html/cbgateway.html?WEB=Y&SRV_ID=CBCOP9997R&screenId=' 
+                  + data.screenId
+                  + '&cus=' + this.getUserInfo('cus')
+                  + '&mydtEvtSqno=0'
+                  + '&chnl=' + this.getUserInfo('chnl')
+        let localUrl = location.href.substr(0, location.href.lastIndexOf('/'))
+        const baseImgPath = '/assets/images/share/'
+        console.log('data') 
+        console.log(data)
+        console.log('localUrl')
+        console.log(localUrl)
+        console.log('url')
+        console.log(url)
+        console.log('imageUrl')
+        console.log(localUrl + baseImgPath + data.imgName)
+        
+        /*
+        const convertImageUrlToFileList = async(imageUrl) => {
+          const response = await fetch(imageUrl)
+          console.log(response)
+          if (!response.ok) {
+            console.log('이미지 로드에 문제가 발생했습니다.');
+          }
+          const data = await response.blob();
+          const ext = imageUrl.split(".").pop() || "";
+          const filename = imageUrl.split("/").pop() || "";
+          const metadata = { type: `image/${ext}` };
+          const file = new File([data], filename, metadata);
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(file);
+    
+          return dataTransfer.files;
+        }
+
+        convertImageUrlToFileList(localUrl + baseImgPath + data.imgName).then((files) => {
+          console.log('업로드 시작')
+          console.log(files)
+          
+          Kakao.Share.uploadImage({
+            file: files,
+          }).then((response) => {
+            console.log('이미지 업로드 결과')
+            console.log(response.infos.original.url)
+          }).catch((error) => {
+            console.log(error)
+          })
+        })
+        */
+
+
+        switch(data.category) {
+          case 1: //로또
+            Kakao.Share.sendDefault({
+              objectType: 'feed',
+              content: {
+                  title: '복권구매는 복권판매소에서 구매하셔야 합니다.',
+                  description: 'NH콕마이데이터(자산관리)',
+                  imageUrl: localUrl + baseImgPath + data.imgName,
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  }
+              },
+              itemContent: {
+                profileText: '[로또복권 추천번호]',
+                items: data.items
+              },
+              buttons: [
+                {
+                  title: '살펴보기',
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  },
+                },
+              ],
+              installTalk: true
+
+            })
+            break
+          case 2: //친구
+            url = url + '&inviteCd=' + data.inviteCd
+            Kakao.Share.sendDefault({
+              objectType: 'feed',
+              content: {
+                 title: '콕마이데이터 가입 시 초대코드를 입력하면 자산을 쉽게 관리할 수 있습니다.',
+                 description: 'NH콕마이데이터(자산관리)',
+                 imageUrl: localUrl + baseImgPath + data.imgName,
+                 link: {
+                  mobileWebUrl: url,
+                  webUrl: url,
+                 } 
+              },
+              itemContent: {
+                profileText: '[초대코드 : ' + data.inviteCd + ']'
+              },
+              buttons: [
+                {
+                 title: '살펴보기',
+                  link: {
+                   mobileWebUrl: url,
+                   webUrl: url,
+                  },
+                },
+              ],
+              installTalk: true
+            })
+            break
+          case 3: //축제
+            let festivalImageUrl = localUrl + baseImgPath + 'share_festival_empty.png'
+            
+            if (!!data.otxtImgUrlnm) {
+              festivalImageUrl = data.otxtImgUrlnm
+            } 
+            
+            festivalImageUrl = festivalImageUrl.replace('http://', 'https://')
+            
+            console.log('case 3 festivalImageUrl : ', festivalImageUrl)
+            
+            Kakao.Share.sendDefault({
+              objectType: 'feed',
+              content: {
+                  title: data.cntzTinm + '\n(기간: ' + data.evtStDt + ' ~ ' + data.evtEdDt + ')',
+                  description: 'NH콕마이데이터(자산관리)',
+                  imageUrl: festivalImageUrl,
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  }   
+              },
+              itemContent: {
+                profileText: '[지역축제]'
+              },
+              buttons: [
+                {
+                  title: '이 축제 어때요?',
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  },
+                },
+              ],
+              installTalk: true
+            })
+            break
+          case 4: //버킷리스트
+
+        
+            Kakao.Share.sendDefault({
+              objectType: 'feed',
+              content: {
+                  title: data.title,
+                  description: 'NH콕마이데이터(자산관리)',
+                  imageUrl: localUrl + baseImgPath + data.imgName,   
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  }
+              },
+              itemContent: {
+                profileText: '[버킷리스트]',
+              },
+              buttons: [
+                {
+                  title: '살펴보기',
+                  link: {
+                    mobileWebUrl: url,
+                    webUrl: url,
+                  },
+                },
+              ],
+              installTalk: true
+            })
+            break
+        }
+        /*
         Kakao.Share.sendDefault({
             objectType: 'feed',
             content: {
                 title: data.title,
                 description: data.description,
-                imageUrl: url + '/assets/images/' + data.img,
+                imageUrl: url + baseImgPath + data.img,
                 link: {
                     mobileWebUrl: url + '/?cus=' + this.getUserInfo('cus') + '&chnl=' + this.getUserInfo('chnl') + '&screen=' + data.screen,
                     webUrl: url + '/?' + this.getUserInfo('cus') + '&chnl=' + this.getUserInfo('chnl') + data.screen,
                 }       
             }
         })
+        */
     },
   
     /**
@@ -350,58 +507,70 @@ const commonMixin = {
                 } 
      * @return 
      */
-    excelExport(exgbn ,data, toast){
-
-      //리턴받을 워크쉬트
-      let worksheet;
-      
-      if ( exgbn == "exec_lcfd4009") {
-        worksheet = ex_lcfd4009(data);
-      } else if ( exgbn == "sample") {
-        worksheet = ex_sample(data);
-      }
-      
-      //신규 워크북 필수 생성
-      const workbook = XLSX.utils.book_new()
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
-
-      const excelFileName = (data.header.title || "excelDownload") + ".xlsx"
-
-      //로컬호스트일 경우
-      if ( window.location.host.indexOf('localhost') > -1 ) {
-        XLSX.writeFile(workbook, excelFileName)
-      } else {
-        const excelBuffer = XLSX.write(workbook, {bookType: 'xlsx', type: 'base64'})
-        const result = {
-          "title": excelFileName,
-          "data" : excelBuffer,
-          "toastYn":  toast || "1"   //저장여부 alert toast로 띄울지 여부 (0인 경우는 modal alert로 따로 처리)
+    excelExport(exgbn ,data, toast =  1){
+      return new Promise((resolve) => {
+        //리턴받을 워크쉬트
+        let worksheet;
+        
+        if ( exgbn == "exec_lcfd4009") {
+          worksheet = ex_lcfd4009(data);
+        } else if ( exgbn == "sample") {
+          worksheet = ex_sample(data);
         }
-        console.log("excel result => ", result)
+        
+        //신규 워크북 필수 생성
+        const workbook = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
 
-        if(this.getUserInfo('chnl') === "385") {
-          appService.exportExcel(result).then(res => {
-            if(toast === "0"){
-              if(res.success === "1"){
-                modalService.alert("저장되었습니다.")
-              }else{
-                modalService.alert("저장 실패하였습니다.")
-              }
-            }
-          })
+        const excelFileName = (data.header.title || "excelDownload") + ".xlsx"
+
+        //로컬호스트일 경우
+        if ( window.location.host.indexOf('localhost') > -1 ) {
+          XLSX.writeFile(workbook, excelFileName)
         } else {
-            appService.cokBankExportExcel(result).then(res => {
+          const excelBuffer = XLSX.write(workbook, {bookType: 'xlsx', type: 'base64'})
+          const result = {
+            "title": excelFileName,
+            "data" : excelBuffer,
+            "toastYn":  toast || "1"   //저장여부 alert toast로 띄울지 여부 (0인 경우는 modal alert로 따로 처리)
+          }
+          console.log("excel result => ", result)
+          
+          if(this.getUserInfo('chnl') === "385") {
+            appService.exportExcel(result).then(res => {
               if(toast === "0"){
-                if(JSON.parse(res).success === "1"){
-                  modalService.alert("저장되었습니다.")
+                if(res.success === "1"){
+                  modalService.alert("저장되었습니다.").then(()=>{
+                    resolve("OK");
+                  })
                 }else{
-                  modalService.alert("저장 실패하였습니다.")
+                  modalService.alert("저장 실패하였습니다.").then(()=>{
+                    resolve("FAILD");
+                  })
                 }
               }
             })
+          } else {
+            
+              appService.cokBankExportExcel(result).then(res => {
+                console.log("appService.cokBankExportExcel result", res, toast);
+                if(toast === "0"){
+                  if(JSON.parse(res).success === "1"){
+                    modalService.alert("저장되었습니다.").then(()=>{
+                      resolve("OK");
+                    })
+                  }else{
+                    modalService.alert("저장 실패하였습니다.").then(()=>{
+                      resolve("FAILD");
+                    })
+                  }
+                }
+              }).catch(error=>{
+                console.log(error)
+              })
+          }
         }
-      }
-      
+    })
     },
 
     /*
@@ -435,6 +604,14 @@ const commonMixin = {
     // 로컬스토리지 설정 공통 작업
     //////////////////////////////////////////////
     /**
+     * sessionStorage userInfo 내 초대코드 get
+     */
+    getInviteCd() {
+      const target = JSON.parse(sessionStorage.getItem("userInfo"))
+
+      return target.inviteCd || ''
+    },
+    /**
      * 화면 모드 로컬스토리지 set
      * @param {String} mode: N(일반), U(미가입자), S(큰글), C(청소년)
      */
@@ -446,7 +623,8 @@ const commonMixin = {
       const localKey = 'usrInfoSet' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'V4'
       
       // state mode값 변경
-      this.setUserMode(mode)
+      // this.setUserMode(mode)
+      store.dispatch('user/setUserMode', mode)
 
       // 로컬스토리지 모드설정 변경
       let usrSetObj = commonService.getStorage(localKey)
@@ -890,6 +1068,48 @@ const commonMixin = {
       }
 
       return rtn
+    },
+
+    /**
+     * 자산연결안내 슬라이드팝업 노출여부 설정
+     */
+    setNoSeeAssets() {
+      if(this.isNull(this.getUserInfo('mydtCusno')) || this.isNull(this.getUserInfo('chnl'))) return
+
+      const localKey = 'usrInfoSet' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'V4'
+      let usrInfoSet = commonService.getStorage(localKey)
+      if(JSON.stringify(usrInfoSet) == '{}' || usrInfoSet == null || typeof usrInfoSet == 'undefined') {
+        usrInfoSet = [{noSeeAssets: dateFormat(new Date(), 'YYYYMMDD')}]
+
+        commonService.setStorage(localKey, usrInfoSet)
+        return
+      }
+
+      usrInfoSet.noSeeAssets = dateFormat(new Date(), 'YYYYMMDD')
+      commonService.setStorage(localKey, usrInfoSet)
+    },
+    /**
+     * 자산연결안내 슬라이드팝업 노출여부 조회
+     * Y : 노출없음, N : 노출
+     */
+    getNoSeeAssets() {
+      if(this.isNull(this.getUserInfo('mydtCusno')) || this.isNull(this.getUserInfo('chnl'))) return
+
+      const localKey = 'usrInfoSet' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'V4'
+      let usrInfoSet = commonService.getStorage(localKey)
+      if(JSON.stringify(usrInfoSet) == '{}' || usrInfoSet == null || typeof usrInfoSet == 'undefined') {
+        return 'N'
+      }
+
+      let noSeeAssetDt = usrInfoSet?.noSeeAssets
+      if(JSON.stringify(noSeeAssetDt) == '{}' || noSeeAssetDt == null || typeof noSeeAssetDt == 'undefined') {
+        return 'N'
+      }
+
+      const today = dateFormat(new Date(), 'YYYYMMDD')
+      const compDate = dayDiff(noSeeAssetDt, today)
+      
+      return compDate >= 0 ? 'Y' : 'N'
     },
     //////////////////////////////////////////////
     //////////////////////////////////////////////

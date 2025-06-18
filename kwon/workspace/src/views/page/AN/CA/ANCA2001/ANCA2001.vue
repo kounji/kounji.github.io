@@ -429,10 +429,10 @@ export default {
 			// openGbn에 따른 URL분기처리
             switch(openGbn) {
                 case "USEDCAR" :		// 중고차(인증중고차)
-					url = "https://nhcok.cardong.co.kr/usedcar/list"
+					url = "https://nhcok.carnoon.co.kr/usedcar/list"
 					break
                 case "CERTUSEDCAR" :	// 인증중고차 구매(인증중고차)
-					url = "https://nhcok.cardong.co.kr" + cnctLkNm
+					url = "https://nhcok.carnoon.co.kr" + cnctLkNm
 					break																							
                 default :
                     break
@@ -492,7 +492,7 @@ export default {
 			return resultString
 		},
 		fn_setImgUrl(imgPathnm){
-			return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 		},
 		// 검색초기화
 		fn_clearSearch(){

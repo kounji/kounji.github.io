@@ -144,7 +144,7 @@
                 <div v-if="resultRcmList && resultRcmList.length > 0" class="custom_box_product01" :key="'rcm_'+refRcmKey">
                     <div class="slide slick_refresh product">
                         <div class="item" v-for="(rcmItem, idx) in resultRcmList" :key="'rcm'+idx">
-                            <a href="javascript:void(0)" role="button" class="arrow" @click.prevent="movePage('PDPD1001')">
+                            <a href="javascript:void(0)" role="button" class="arrow" @click.prevent="movePage('PDPD4001')">
                                 <div class="title_area">
                                     <strong class="titH4">고객님을 위한 추천상품 {{idx + 1}}</strong>
                                     <span class="badge_2023 soft_orange" v-if="rcmItem.wrsGrTpc == 'RVGTP'">적금</span>
@@ -185,15 +185,15 @@ import {fncSlick_briefing, fncSlick_briefing2} from '@/utils/slick'
 import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import apiService from '@/service/apiService'
 
-import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
 import ASRE1203 from '@/views/page/AS/RE/ASRE1203/ASRE1203'
 import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'
 
-import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'
+import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'
 import LCIP2012 from '@/views/page/LC/IP/LCIP2012/LCIP2012'
 
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'
-import PDBF2002 from '@/views/page/PD/BF/PDBF2002/PDBF2002'
+import PDBF4002 from '@/views/page/PD/BF/PDBF4002/PDBF4002'
 
 export default {
     name : "PDBF2001",
@@ -356,7 +356,7 @@ export default {
             let flag = 'page'
             let compName = ''
 
-            if(url == 'ASCR1101' || url == 'ASRE1203' || url == 'COAR2002') {
+            if(url == 'ASCR4101' || url == 'ASRE1203' || url == 'COAR2002') {
                 flag = 'popup'
             }
 
@@ -366,8 +366,8 @@ export default {
                 }
                 commonService.movePage(config);
             } else if(flag == 'popup') {
-                if(url == 'ASCR1101') {
-                    compName = ASCR1101
+                if(url == 'ASCR4101') {
+                    compName = ASCR4101
                 } else if(url == 'ASRE1203') {
                     compName = ASRE1203
                 } else if(url == 'COAR2002') {
@@ -383,7 +383,7 @@ export default {
         fn_financial(url) {
             let flag = 'page' // 화면, 팝업 구분
 
-            if(url == 'CORE2201' || url == 'LCIP2012' || url == 'COAR2002') {
+            if(url == 'CORE4201' || url == 'LCIP2012' || url == 'COAR2002') {
                 flag = 'popup'
             }
 
@@ -393,13 +393,13 @@ export default {
                 }
                 commonService.movePage(config);
             } else if(flag == 'popup') {
-                if(url == 'CORE2201') {
+                if(url == 'CORE4201') {
                     const config = {
-                        component: CORE2201,
+                        component: CORE4201,
                         params   : {"popId":url}
                     }
                     modalService.openPopup(config).then((response) => {
-                        if(response == 'refresh' || response == 'CORE2201') {
+                        if(response == 'refresh' || response == 'CORE4201') {
                             this.getData()  // 부동산 등록 완료시 부동산이 있으므로 금융알림 항목이 바뀌어야 함
                         }
                     })
@@ -441,7 +441,7 @@ export default {
         },
         fn_curc() {
             const config = {
-                component: PDBF2002
+                component: PDBF4002
             }
             modalService.openPopup(config).then((response) => {
                 if(response == 'success') { // PDBF1002 화면에서 등록 버튼을 누른 경우

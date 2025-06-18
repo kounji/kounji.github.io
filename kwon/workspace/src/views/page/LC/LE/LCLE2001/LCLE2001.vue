@@ -31,7 +31,7 @@
 
                 <div class="link_area" v-if="totListCn > 0 && topXpsCtgrC">
                     <i :class="topXpsCtgrC"><span class="blind">{{topXpsCtgrCNm}}</span></i>
-                    <a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP2001')">{{topXpsCtgrCNm}}에 가장 많이 썼어요</a>
+                    <a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP4001')">{{topXpsCtgrCNm}}에 가장 많이 썼어요</a>
                 </div>
             </div>
 
@@ -270,7 +270,7 @@
                         </a>
                     </div>
                     <div class="com_box_type01 bannerCard taxf">
-                        <a @click.prevent="fn_movePage('LCIP2001')" href="javascript:void(0);">
+                        <a @click.prevent="fn_movePage('LCIP4001')" href="javascript:void(0);">
                             <p>이번달 내 소비는?</p>
                             <strong>지출분석</strong>
                         </a>
@@ -295,13 +295,13 @@ import {dateFormat, monthAdd} from '@/utils/date'
 import commonService from '@/service/commonService'
 import _ from 'lodash'
 
-import LCLE2104 from '@/views/page/LC/LE/LCLE2104/LCLE2104'
+import LCLE4104 from '@/views/page/LC/LE/LCLE4104/LCLE4104'
 import LCLE2114 from '@/views/page/LC/LE/LCLE2114/LCLE2114'
 import LCLE2107 from '@/views/page/LC/LE/LCLE2107/LCLE2107'
-import LCLE2002 from '@/views/page/LC/LE/LCLE2002/LCLE2002'
-import LCLE2003 from '@/views/page/LC/LE/LCLE2003/LCLE2003'
-import LCLE2004 from '@/views/page/LC/LE/LCLE2004/LCLE2004'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002'
+import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003'
+import LCLE4004 from '@/views/page/LC/LE/LCLE4004/LCLE4004'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'
 import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'
 
@@ -488,7 +488,7 @@ export default {
         // 전체조회는 필수입력값만 들어가면 됨, obj가 ALL이면 선택입력값은 빈값, 아니면 obj안의 해당값
         openCardDetail(obj){
             const config = {
-                component: LCLE2002,
+                component: LCLE4002,
                 params : {
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
@@ -504,7 +504,7 @@ export default {
 
         openPayMnyDetail(obj) {
             const config = {
-                component : LCLE2003,
+                component : LCLE4003,
                 params : {
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
@@ -540,7 +540,7 @@ export default {
         // 선불카드 상세 오픈
         openPpayCdDetail(obj) {
             const config = {
-                component : LCLE2004,
+                component : LCLE4004,
                 params : {
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
@@ -563,7 +563,7 @@ export default {
             }
 
             const config = {
-                component : LCLE2104,
+                component : LCLE4104,
                 params : {
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
@@ -627,15 +627,15 @@ export default {
 
         fn_openExpensePop() {
             const config = {
-                component : PDMY2005,
+                component : PDMY4005,
             }
             modalService.openPopup(config).then(response => {
                 //this.getData();
                 // 배너이미지를 통하여 목표등록을 하였을 경우
                 if(response == 'reSelect') {
                     const menu = {
-                        // name: 'PDMY2001',
-                        name: 'PDMY2001',
+                        // name: 'PDMY4001',
+                        name: 'PDMY4001',
                         params : {}
                     }
                     commonService.movePage(menu)

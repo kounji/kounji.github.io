@@ -30,7 +30,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in rndaAcList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop('RNDA', item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<strong class="account">{{item.mydtAcno}}</strong>
@@ -58,7 +58,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in dpAcList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop('DPAC', item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<div class="inbox">
@@ -88,7 +88,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in isAcList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop('ISAC', item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<div class="inbox">
@@ -118,7 +118,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in fcAcList" :key="idx">
 									<a href="javascript:void(0);" @click.prevent="fn_openDetailPop('FCAC', item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.acWrsnm}}</strong>
 											<strong class="account">{{item.mydtAcno}}</strong>

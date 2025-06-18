@@ -16,7 +16,7 @@
 	<div class="full_popup" id="full_popup_01">
 		<div class="popup_header">
 			<h1>로또복권 번호만들기</h1>
-			<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+			<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
 		</div>	
 		<div class="popup_content">
 			<div class="lotto_gen">
@@ -27,7 +27,7 @@
 
 				<div class="board_box">
 					<div class="top_link">
-						<a href="https://m.dhlottery.co.kr/gameResult.do?method=byWin" target="_blank">지난 회차 로또 번호 확인해볼까?</a>
+						<a href="javascript:void(0);" @click.prevent="openWebBrowser('https://m.dhlottery.co.kr/gameResult.do?method=byWin')">지난 회차 로또 번호 확인해볼까?</a>
 					</div>
 
 					<div class="lotteryStart">
@@ -41,7 +41,7 @@
                                          class="plz_lottery" 
                                          >
                         </lottie-animation>
-						<p>로또 번호 추천 받기 버튼 눌러서<br>하루에 5번 로또 번호 받아보세요!</p>
+						<p>로또 번호 추천 받기 버튼을 눌러서<br>하루에 5번 로또 번호를 받아보세요!</p>
 						<button type="button" class="btns md primary play" @click.prevent="randomRecomd()">로또 번호 추천받기</button>
 					</div>
 
@@ -108,7 +108,7 @@
 
 				<div class="gray_box">
 					<p>로또복권 번호만들기는 로또 번호만 추천해 드립니다.<br>복권구매는 복권판매소에서 구매하셔야 합니다.</p>
-					<a href="https://m.dhlottery.co.kr/store.do?method=sellerInfo645" target="_blank" class="btns md">판매점 찾기</a>
+                    <a href="javascript:void(0);" class="btns md" @click.prevent="openWebBrowser('https://m.dhlottery.co.kr/store.do?method=sellerInfo645')">판매점 찾기</a>
 				</div>
 				
 			</div>
@@ -121,7 +121,7 @@
 				
 			</div>
 		</div>
-		<a href="#nolink" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// 전체 팝업 종료 -->
 </template>
@@ -133,7 +133,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 
 import WebSharePopup from '@/views/popup/common/WebSharePopup'
-
+import appService from '@/service/appService'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
@@ -157,6 +157,8 @@ export default {
 	computed: {
     },
     mounted() {
+        modalService.hideLoading()
+        
         this.initComponent()
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
@@ -346,46 +348,46 @@ export default {
         },
         // 로또 번호 공유하기 클릭 이벤트
         shareLotto() {
-            let txt = "";
-            txt  = "[NH콕마이데이터 로또복권 추천번호]\n";
-            txt += "NH콕뱅크 콕마이데이터 로또복권 번호만들기에서\n";
-            txt += "받은 추천받은 번호입니다.\n\n";
-            
             let abc = ['A','B','C','D','E'];
-            let tmp = [];
+            let item = [];
 
             this.lottery.games.forEach(function (el, idx) {
-                tmp.push([]);
-                el.forEach(function (ell) {
-                   tmp[idx].push(ell < 10 ? "0".concat(ell) : "".concat(ell));
+                item.push({"item" : abc[idx], "itemOp" : ""})
+                el.forEach(function (ell, iidx) {
+                   item[idx].itemOp += ell < 10 ? "0".concat(ell) : "".concat(ell)
+                   if(iidx < el.length -1) item[idx].itemOp += " "
                 });
-                txt += abc[idx] + "  " + tmp[idx].join(" ") + "\n";
-            });
-
-            txt += "\n로또복권 번호만들기는 로또 번호만 추천해 드립니다.\n";
-            txt += "복권구매는 복권판매소에서 구매하셔야 합니다.";
-
-            console.log(txt)
+            })
 
             const config = {
-                params: { // 파라미터
-                    title : "공유하기",
-                    text  : txt
-                },
-            }
-            
-            modalService.webSharePopup(config).then(response => {
-
-            })
+                params: {
+                    category : 1,                  // 로또 카테고리 번호 1 
+                    imgName  : "share_lotto.png",  // 대표 이미지 명 (.png 확장자 포함)
+                    items    : item,               // 로또번호 리스트
+                    screenId : "MRLO4001"          // 앱 랜딩시 초기 화면으로 표시할 화면ID 
+                }, 
+            }         
+            modalService.webSharePopup(config).then(response => {})
             /*
-            var a = this.$el.querySelectorAll('dd').forEach(function (el) {
-                el.querySelectorAll('span').forEach(function (row) {
-                    console.log(row.textContent)
-                });
-            });
-            */
-
-            //WebSharePopup
+            로또번호 예시
+            let items = [
+                {"item": "A", "itemOp": "01 02 03 04 05 06"},
+                {"item": "B", "itemOp": "02 03 04 05 06 07"},
+                {"item": "C", "itemOp": "10 11 12 13 14 15"},
+                {"item": "D", "itemOp": "15 16 17 18 19 20"},
+                {"item": "E", "itemOp": "21 22 23 24 25 26"}
+            ]
+             */
+        },
+        /**
+         * 외부 브라우저 열기
+         */
+        openWebBrowser(url) {
+            if (this.getUserInfo('chnl') === '385') {
+                appService.executeBrowser(url);
+            } else {
+                appService.cokBankOpenPopupWebBrowser(url);
+            }
         },
 
     },

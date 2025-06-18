@@ -21,10 +21,13 @@
             <div id="content">
                 <!-- 일반모드 Start -->
                 <section class="allNavi">
-                    <div class="personal saving">
+                    <div class="personal" :class="avatarImg">
+                        <span class="char" :aria-label="getCharName(avatarImg)+' 캐릭터'" role="img"></span>
 						<a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO1130')">{{ getUserInfo("cusnm") }}님 안녕하세요!</a>
 					</div>
                     <!--
+                        금융멘토 : mentor
+                        디지털금융달인 : master
 						저축왕 : saving
 						투자천재 :invest
 						절약마스터 : economist
@@ -38,7 +41,7 @@
 						<li><a href="javascript:void(0);" @click.prevent="fn_movePage('MRAM4001')"><span>연결기관관리</span></a></li>
 					</ul>
 
-					<div class="credit">
+					<div class="credit_score">
 						<a href="javascript:void(0);" @click.prevent="fn_openPopup('ASCR4101')">신용점수 {{ getMyCreditInfo.psnCrdevlScrVal }}</a>
 						<a href="javascript:void(0);" class="arrow" @click.prevent="fn_openPopup('ASCR1113')">신용점수 올리기</a>
 					</div>
@@ -48,12 +51,10 @@
 							<div class="scroller">
 								<ul role="tablist">
 									<li><a href="#navi01" role="tab" aria-selected="false">자산</a></li>
-                                    <!-- <li><router-link :path="'/'" :to="{hash:'#navi01'}">자산</router-link></li> -->
 									<li><a href="#navi02" role="tab" aria-selected="false">지출</a></li>
 									<li><a href="#navi03" role="tab" aria-selected="false">연금/절세</a></li>
 									<li><a href="#navi04" role="tab" aria-selected="false">추천</a></li>
 									<li><a href="#navi05" role="tab" aria-selected="false">금융지식</a></li>
-                                    <!-- <li><a href="#navi06" role="tab" aria-selected="false">놀이터</a></li> -->
 									<li><a href="#navi07" role="tab" aria-selected="false">도전 목표 챌린지</a></li>
 									<li><a href="#navi08" role="tab" aria-selected="false">나의 신용점수 올리기</a></li>
 									<li><a href="#navi09" role="tab" aria-selected="false">NH지역정보</a></li>
@@ -62,9 +63,12 @@
 									<li><a href="#navi12" role="tab" aria-selected="false">이벤트/혜택</a></li>
                                     <li><a href="#navi13" role="tab" aria-selected="false">이용안내</a></li>
 									<li><a href="#navi14" role="tab" aria-selected="false">콕마이데이터관리</a></li>
-									<li><a href="#navi15" role="tab" aria-selected="false">타기관 마이데이터관리</a></li>
-                                    <li><a href="#navi16" role="tab" aria-selected="false">설정관리</a></li>
+                                    <!-- 타기관 마이데이터관리 임시 주석처리 -->
+                                    <!-- // v4 본이행 시 v-if 제거 필요 -->
+									<li v-if="hideContent"><a href="#navi15" role="tab" aria-selected="false">타기관 마이데이터관리</a></li>
+                                    <li><a href="#navi16" role="tab" aria-selected="false">설정&middot;관리</a></li>
                                     <li v-show="cbtType"><a href="#navi17" role="tab" aria-selected="false">CBT전용</a></li>
+                                    <li v-show="envType"><a href="#navi18" role="tab" aria-selected="false">로그인페이지</a></li>
 								</ul>
 							</div>
 						</div>
@@ -80,71 +84,72 @@
 						</div>
 
 						<ul>
-							<li id="navi01"><a href="javascript:void(0);" @click.prevent="fn_movePage('ASTA4001')">자산<span class="pin purple">NEW</span></a>
+							<li id="navi01"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASTA4001')">나의 자산<span class="pin purple">NEW</span></a>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('ASAC4001')">자산현황</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('ASCD4001')">부채관리</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('ASIP4001')">자산진단<span class="pin orange">HOT</span></a></li>
-                                    <li><a href="javascript:void(0);" @click.prevent="fn_movePage('ASTN4001')">숨은자산<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASAC4001')">자산현황</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASCD4001')">부채관리</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASIP4001')">자산진단<span class="pin orange">HOT</span></a></li>
+                                    <li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASTN4001')">숨은자산<span class="pin purple">NEW</span></a></li>
 								</ul>
 							</li>
-							<li id="navi02"><a href="javascript:void(0);" @click.prevent="fn_movePage('LCTA4001')">지출<span class="pin purple">NEW</span></a>
+							<li id="navi02"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('LCTA4001')">나의 지출<span class="pin purple">NEW</span></a>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')">금융달력</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('LCLE4001')">지출내역</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP4001')">지출분석<span class="pin orange">HOT</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO2128')">숨긴 지출내역</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('LCFD4001')">금융달력</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('LCLE4001')">지출내역</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('LCIP4001')">지출분석<span class="pin orange">HOT</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COCO2128')">숨긴 지출내역</a></li>
 								</ul>
 							</li>
-							<li id="navi03"><a href="javascript:void(0);" @click.prevent="fn_movePage('PDTA4001')">연금/절세<span class="pin purple">NEW</span></a>
+							<li id="navi03"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDTA4001')">나의 연금/절세<span class="pin purple">NEW</span></a>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDRT4001')">나의 노후준비</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDYT4002')">연말정산 공제금액</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDTX4004')">세금 납부 확인</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDSC4004')">건강보험 가입내역</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDBF4001')">데일리 금융브리핑</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDPD4001')">맞춤 상품추천</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDPD4051')">대출이자 계산기<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDPD4061')">대출한도 계산기<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDRT4001')">나의 노후준비</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDYT4002')">연말정산 공제금액</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDTX4004')">세금 납부 확인</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDSC4004')">건강보험 가입내역</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDBF4001')">데일리 금융브리핑</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDPD4001')">맞춤 상품추천</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDPD4051')">대출이자 계산기<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDPD4061')">대출한도 계산기<span class="pin purple">NEW</span></a></li>
 								</ul>
 							</li>
-							<li id="navi04"><a href="javascript:void(0);" @click.prevent="fn_movePage('RETA4001')">추천<span class="pin purple">NEW</span></a></li>
+							<li id="navi04"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RETA4001')">추천<span class="pin purple">NEW</span></a></li>
 
-							<li id="navi05"><a href="javascript:void(0);" @click.prevent="fn_movePage('COCT4001')">금융지식<span class="pin purple">NEW</span></a></li>
+							<li id="navi05"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('COCT4001')">금융지식<span class="pin purple">NEW</span></a></li>
                             <!--
 							<li id="navi06"><a href="javascript:void(0);">놀이터<span class="pin purple">NEW</span></a></li>
                             -->
-							<li id="navi07" @click.prevent="fn_movePage('PDMY4001')"><span>도전 목표 챌린지</span>
-								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY4001')">버킷리스트</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY4001', {type: 'goal'})">금융목표</a></li>
-								</ul>
+							<li id="navi07"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('PDMY4001')">도전 목표 챌린지</a>
 							</li>
-							<li id="navi08"><a href="javascript:void(0);" @click.prevent="fn_openPopup('ASCR4101')">나의 신용점수 올리기</a>
+							<li id="navi08"><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('ASCR4101')">나의 신용점수 올리기</a>
 								<div class="credit_txt" v-html="creditTxt">
 								</div>
 							</li>
-							<li id="navi09"><a href="javascript:void(0);" @click.prevent="fn_movePage('RGTA4001')">NH지역정보<span class="pin orange">HOT</span></a>
+							<li id="navi09"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGTA4001')">NH지역정보<span class="pin orange">HOT</span></a>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGFT4001')">지역축제<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGCL4001')">지역문화/정보<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGAT4001')">농촌여행<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGBM4001')">자전거길 국토종주<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGDM4001')">전국 둘레길<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('RGMM4001')">군장병 TMO안내<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('ANFM4001')">귀농귀촌의 꿈</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('SZFC4101')">슬기로운 영농생활</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGFT4001')">지역축제<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGCL4001')">지역문화시설<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGAT4001')">농촌여행<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGBM4001')">자전거길 국토종주<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGDM4001')">전국 둘레길<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('RGMM4001')">군장병 TMO안내<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ANFM4001')">귀농귀촌의 꿈</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('SZFC4101')">슬기로운 영농생활</a></li>
 								</ul>
 							</li>
-							<li id="navi10"><a href="javascript:void(0);" @click.prevent="fn_movePage('ANCA4201')">NH콕마이카</a></li>
-							<li id="navi11"><a href="javascript:void(0);" @click.prevent="fn_movePage('ANRE4201')">NH콕부동산</a></li>
+							<li id="navi10"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ANCA4201')">NH콕마이카</a></li>
+							<li id="navi11"><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ANRE4201')">NH콕부동산</a></li>
 							
 							<li id="navi12"><span>이벤트/혜택</span>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MREV2000')">이벤트<span class="pin orange">HOT</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MRLO4001')">로또복권 번호만들기<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MREV4041')">친구초대<span class="pin purple">NEW</span><span class="pin orange">HOT</span></a></li>
-                                    <li><a href="javascript:void(0);">OX퀴즈<span class="pin purple">NEW</span><span class="pin gray">준비중</span></a></li><!-- 25-03-13 OX퀴즈 상태태그 추가 -->
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MREV2000')">이벤트<span class="pin orange">HOT</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MRLO4001')">로또복권 번호만들기<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MREV4041')">친구초대<span class="pin purple">NEW</span><span class="pin orange">HOT</span></a></li>
+                                    <li>
+                                        <a href="javascript:void(0);" role="button" @click.prevent="getEventOXJoin()">OX퀴즈
+                                            <span class="pin purple">NEW</span>
+                                            <span :class="`pin ${eventOxInfo.bltnDt ? 'green' : 'gray'}`">{{eventOxInfo.bltnDt ? '진행중' : '준비중'}}</span>
+                                        </a>
+                                    </li><!-- 25-03-13 OX퀴즈 상태태그 추가 -->
                                     <!-- 
                                     <span class="pin gray">준비중</span>
                                     <span class="pin green">진행중</span>
@@ -153,47 +158,64 @@
 							</li>
                             <li id="navi13"><span>이용안내</span>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO1104')">새소식</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO1116')">자주하는 질문</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MAGU4001')">서비스 소개<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MAGU4S01')">큰글 서비스 소개<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MAGU4C01')">청소년 서비스 소개<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COCO1104')">새소식</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COCO4116')">자주하는 질문</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MAGU4001')">서비스 소개<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MAGU4S01')">큰글 서비스 소개<span class="pin purple">NEW</span></a></li>
+									<!-- <li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MAGU4C01')">청소년 서비스 소개<span class="pin purple">NEW</span></a></li> -->
 								</ul>
 							</li>
 							<li id="navi14"><span>콕마이데이터관리</span>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('MRAM4001')">연결기관 관리</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MRAT1001')">약관 및 동의서</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COAT1104')">제3자 정보제공동의 설정</a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('MRCA2001')">서비스 해지</a></li>
-                                    <li><a href="javascript:void(0);">대면상담 일회성 동의<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('MRAM4001')">연결기관 관리</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MRAT4001')">약관 및 동의서</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COAT1104')">제3자 정보제공동의 설정</a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MRCA4001')">서비스 해지</a></li>
+                                    <li v-if="hideContent">
+                                        <a href="javascript:void(0);" role="button" @click.prevent="moveOfflnCus('COOR4201')">
+                                            대면상담 일회성 동의
+                                            <span class="pin purple">NEW</span>
+                                        </a>
+                                    </li>
 								</ul>
 							</li>
-							<li id="navi15"><span>타기관 마이데이터관리</span>
+                            <!-- // v4 본이행 시 v-if 제거 필요 -->
+							<li id="navi15" v-if="hideContent"><span>타기관 마이데이터관리</span>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="fn_movePage('MRAM4001')">마이데이터 가입 조회 및 관리<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COAT1104')">제3자 정보제공 조회 및 관리<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('COOR2001')">마이데이터 가입 조회 및 관리<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('COOR2101')">제3자 정보제공 조회 및 관리<span class="pin purple">NEW</span></a></li>
 								</ul>
 							</li>
                             <li id="navi16"><span>설정&middot;관리</span>
                                 <ul>
-                                    <li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO4051')">모드 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);">캐릭터 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);">나의관심서비스 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="javascript:void(0);">홈화면 편집<span class="pin purple">NEW</span></a></li>
+                                    <li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COCO4051')">모드 설정<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MAMA4005')">캐릭터 설정<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('COCO4351')">나의관심서비스 설정<span class="pin purple">NEW</span></a></li>
+									<li><a href="javascript:void(0);" role="button" @click.prevent="fn_openPopup('MAMA4004')">홈화면 편집<span class="pin purple">NEW</span></a></li>
                                 </ul>
                             </li>
 							<li id="navi17" v-show="cbtType"><span>CBT전용</span>
 								<ul>
-									<li><a href="javascript:void(0);" @click.prevent="moveCoco">데이터 조회</a></li>
+                                    <li><a href="javascript:void(0);" @click.prevent="fn_movePage('Sample')">샘플페이지</a></li>
+                                    <li>=================================</li>
+                                    <li><a href="javascript:void(0);" @click.prevent="moveCoco">데이터 조회</a></li>
 									<li><a href="javascript:void(0);" @click.prevent="moveOtherPort">포트변경(현재: {{this.port}})</a></li>
                                     <li><a href="javascript:void(0);" @click.prevent="shareKakaoFn">카카오톡 공유</a></li>
                                     <li><a href="javascript:void(0);" @click.prevent="fn_Share()">공유하기</a></li>
                                     <li><a href="javascript:void(0);" @click.prevent="voiceFn">음성인식</a></li>
                                     <li><a href="javascript:void(0);" @click.prevent="excelExportFn">엑셀다운로드</a></li>
+                                    <li><a href="login.html">로그인페이지</a></li>
+                                    <li><a href="javascript:void(0);" @click.prevent="checkNHCert">NH모바일인증서 보유여부</a></li>
+                                    <li><a href="javascript:void(0);" @click.prevent="getUuid">UUID 보기</a></li>
+                                    <li><a href="javascript:void(0);" @click.prevent="getAppVersion">앱버전 보기</a></li>
                                     <li><input type="text" id="productCode"><a href="javascript:void(0);" @click.prevent="moveProduct">상품이동</a></li>
 								</ul>
 							</li>
+                            <li id="navi18" v-show="envType"><span>로그인페이지</span>
+                                <ul>
+                                    <li><a href="javascript:void(0);" @click.prevent="moveLogin">로그인페이지</a></li>
+                                </ul>
+                            </li>
 						</ul>
 					</nav>
 
@@ -205,27 +227,26 @@
             -->
         </div>
         <!--// content -->
+        <div id="rssRef" ref="rssRef"></div>
     </div>
 </template>
 
 <script>
-    $('.scroller > ul').children('li').click(function(e){
-        console.log('!')
-    })
+import constant from '@/common/config/constants'
     import COCO1130 from '@/views/page/CO/CO/COCO1130/COCO1130' // 프로필 
     import COCO2128 from '@/views/page/CO/CO/COCO2128/COCO2128' // 숨긴 지출내역
     import COCO1104 from '@/views/page/CO/CO/COCO1104/COCO1104' // 공지사항
-    import COCO1116 from '@/views/page/CO/CO/COCO1116/COCO1116' // 자주하는 질문
+    import COCO4116 from '@/views/page/CO/CO/COCO4116/COCO4116' // 자주하는 질문
     import MREV2000 from '@/views/page/MR/EV/MREV2000/MREV2000' // 이벤트
 
     import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101' // 신용정보
     import ASCR1113 from '@/views/page/AS/CR/ASCR1113/ASCR1113' // 신용점수올리기
     import COAT1104 from '@/views/page/CO/AT/COAT1104/COAT1104'
-    import MRAT1001 from '@/views/page/MR/AT/MRAT1001/MRAT1001'
-    import MRCA2001 from '@/views/page/MR/CA/MRCA2001/MRCA2001'
+    import MRAT4001 from '@/views/page/MR/AT/MRAT4001/MRAT4001'
+    import MRCA4001 from '@/views/page/MR/CA/MRCA4001/MRCA4001'
     import SZFC4101 from '@/views/page/SZ/FC/SZFC4101/SZFC4101' // 슬기로운 영농 생활
     import MRCO1001 from '@/views/page/MR/CO/MRCO1001/MRCO1001' // 알림함
-    import MRLO4001 from '@/views/page/MR/LO/MRLO4001/MRLO4001' // 로또복권 번호만들기
+    // import MRLO4001 from '@/views/page/MR/LO/MRLO4001/MRLO4001' // 로또복권 번호만들기
     import COCO4351 from '@/views/page/CO/CO/COCO4351/COCO4351' // 나의 관심서비스
 
     import COCO4051 from '@/views/page/CO/CO/COCO4051/COCO4051'
@@ -233,6 +254,10 @@
     import MAGU4S01 from '@/views/page/MA/GU/MAGU4S01/MAGU4S01'
     import MAGU4C01 from '@/views/page/MA/GU/MAGU4C01/MAGU4C01'
     import MREV4041 from '@/views/page/MR/EV/MREV4041/MREV4041'
+    import MAMA4004 from '@/views/page/MA/MA/MAMA4004/MAMA4004'
+    import MAMA4005 from '@/views/page/MA/MA/MAMA4005/MAMA4005'
+    import OXTP0001 from '@/views/page/OX/TP/OXTP0001/OXTP0001'
+    import OXTP0006 from '@/views/page/OX/TP/OXTP0006/OXTP0006'
 
     import FootersV2 from "@/views/layout/FootersV2.vue"
 
@@ -243,9 +268,11 @@
     import apiService from '@/service/apiService'
     import appService from '@/service/appService'
     import routerService from '@/service/routerService'
-    import {mapGetters} from 'vuex'
+    import {mapGetters, mapActions} from 'vuex'
     import {defineAsyncComponent} from 'vue'
-    
+    import {dateFormat} from '@/utils/date'
+    import _ from 'lodash'
+
     export default {
         name : "MRMR4001",
         data: () => {
@@ -261,6 +288,23 @@
                     '나의 신용점수가 떨어지는 이유는?'
                 ],
                 creditTxt       : '',
+                avatarImg       : '',   // 캐릭터 이미지
+                avatarList      : [
+                    {id: 'myAvatarId01', class: 'mentor'},
+                    {id: 'myAvatarId02', class: 'master'},
+                    {id: 'myAvatarId03', class: 'saving'},
+                    {id: 'myAvatarId04', class: 'invest'},
+                    {id: 'myAvatarId05', class: 'economist'},
+                    {id: 'myAvatarId06', class: 'insure'},
+                    {id: 'myAvatarId07', class: 'credit'},
+                    {id: 'myAvatarId08', class: 'loan'},
+                ],
+
+                anwAncYn        : '',   // 새알림여부
+                eventOxInfo : {},
+
+                // v4 본이행 시 제거
+                hideContent: import.meta.env.VITE_ENV == 'D'
             }
         },
         computed: {
@@ -282,7 +326,10 @@
             },
             cbtType(){
                 return this.getUserInfo('tobeType')
-            }
+            },
+            envType(){
+            return import.meta.env.VITE_ENV !== 'R'
+            },             
         },
         created() {
             this.cusnm = this.getUserInfo("cusnm")
@@ -298,18 +345,111 @@
             popupMixin
         ],
         methods: {
+            ...mapActions('user', [
+                'setNewAlarm'
+            ]),
             initComponent() {
-                //this.fn_newAlarm()  //신규알림여부
+                this.fn_newAlarm()  //신규알림여부
 
-                // 카테고리 선택 시 라우팅 오류 방지
-                // $('.scroller > ul').children('li').on('click', function(e){
-                //     e.preventDefault()
-                // })
+                // 캐릭터 아이콘 설정 (기본설정 남성일경우 mentor, 여성일경우 master)
+                this.avatarImg = this.avatarList.find(item => item.id == this.getMyAvatar())?.class || (this.getUserInfo('sexDsc') == '0' ? 'master' : 'mentor')
 
+                
                 // 신용점수 관련 문구 랜덤설정
                 this.creditTxt = this.creditTxtList[Math.floor(Math.random() * this.creditTxtList.length)]
 
                 this.getInteList(); // 나의 관심서비스 가져오기
+                this.getEventOXInfo()
+            },
+            // 캐릭터 명칭 설정
+            getCharName(avatarImg) {
+                /**
+                 *  금융멘토 : mentor
+                 *  디지털금융달인 : master
+                 *  저축왕 : saving
+                 *  투자천재 :invest
+                 *  절약마스터 : economist
+                 *  보험수호자 : insure
+                 *  신용지킴이 : credit
+                 *  대출코치 : loan
+                 */
+                let rtnStr = ''
+                switch(avatarImg) {
+                    case 'mentor': 
+                        rtnStr = '금융멘토'
+                        break
+                    case 'master':
+                        rtnStr = '디지털금융달인'
+                        break
+                    case 'invest':
+                        rtnStr = '투자천재'
+                        break
+                    case 'economist':
+                        rtnStr = '절약마스터'
+                        break
+                    case 'insure':
+                        rtnStr = '보험수호자'
+                        break
+                    case 'credit':
+                        rtnStr = '신용지킴이'
+                        break
+                    case 'loan':
+                        rtnStr = '대출코치'
+                        break
+                    default: 
+                        rtnStr = '금융멘토'
+                        break
+                }
+
+                return rtnStr
+            },
+            // 로그인화면이동 테스트
+            loginTest() {
+                if(import.meta.env.VITE_ENV !== 'R') {
+                    // 로그아웃처리
+                    sessionStorage.clear()
+                    location.replace('/login.html')
+                }
+            },
+            //ox퀴즈 정보 조회
+            getEventOXInfo(){
+                const config = {
+                    url: '/mr/ev/19r01', 
+                    data: {
+                        "bltnDt" : dateFormat(new Date(), 'YYYYMMDD'),
+                    },
+                    disableLoading : true,
+                }
+                apiService.call(config).then(response =>{
+                    console.log('response : ', response)
+                    this.eventOxInfo = response
+
+                    const config2 = {
+                        url: '/mr/ev/17r01', 
+                        data: {
+                            "mydtCusno" : this.getUserInfo("mydtCusno"),
+                            "bltnDt" : dateFormat(new Date(), 'YYYYMMDD'),
+                        },
+                        // disableLoading : true,
+                    }
+                    apiService.call(config2).then(response =>{
+                        console.log('response : ', response)
+                        //오늘퀴즈참여여부
+                        this.eventOxInfo.quizPrgYn = response.quizPrgYn
+                    })
+                })
+            },
+            //ox퀴즈 참여여부 조회
+            getEventOXJoin(){
+                if(!this.eventOxInfo.bltnDt){
+                    modalService.alert("OX퀴즈를 준비하고 있어요.")
+                }else{
+                    if(this.eventOxInfo.quizPrgYn === '1'){
+                        this.fn_openPopup('OXTP0006', this.eventOxInfo)   //도전현황
+                    }else{
+                        this.fn_openPopup('OXTP0001', this.eventOxInfo)   //ox문제
+                    } 
+                }
             },
             // 페이지 이동
             fn_movePage(pageId, param) {
@@ -328,7 +468,7 @@
                 this.close()
                 commonService.movePage(config);
             },
-            fn_openPopup(pageId) {
+            fn_openPopup(pageId, param) {
                 let compName = ''
                 if(pageId === "COCO1130") {
 					compName = COCO1130	// 프로필
@@ -338,16 +478,16 @@
                     compName = ASCR1113   
                 }else if(pageId === 'COAT1104') {
                     compName = COAT1104	//
-                }else if(pageId === 'MRCA2001') {
-                    compName = MRCA2001	//
-                }else if(pageId === 'MRAT1001') {
-                    compName = MRAT1001	//
+                }else if(pageId === 'MRCA4001') {
+                    compName = MRCA4001	//
+                }else if(pageId === 'MRAT4001') {
+                    compName = MRAT4001	//
                 }else if(pageId === 'COCO2128') {
                     compName = COCO2128	//
                 }else if(pageId === 'COCO1104') {
                     compName = COCO1104	// 공지사항
-                }else if(pageId === 'COCO1116') {
-                    compName = COCO1116	// 자주하는 질문
+                }else if(pageId === 'COCO4116') {
+                    compName = COCO4116	// 자주하는 질문
                 }else if(pageId === 'MREV2000') {
                     compName = MREV2000	// 이벤트
                 }else if(pageId === 'SZFC4101') {
@@ -357,7 +497,8 @@
                 }else if(pageId === 'COCO4051') {
                     compName = COCO4051
                 }else if(pageId === 'MRLO4001') {
-                    compName = MRLO4001 // 로또복권 번호만들기
+                    // compName = MRLO4001 // 로또복권 번호만들기
+                    compName = defineAsyncComponent(() => import("@/views/page/MR/LO/MRLO4001/MRLO4001"))
                 }else if(pageId === 'COCO4351') {
                     compName = COCO4351 // 나의 관심서비스
                 }else if(pageId === 'MAGU4001') {
@@ -368,17 +509,37 @@
                     compName = MAGU4C01 // 청소년모드 서비스소개
                 }else if(pageId === 'MREV4041') {
                     compName = MREV4041 // 친구 초대
+                }else if(pageId === 'MAMA4004') {
+                    compName = MAMA4004 // 캐릭터설정
+                }else if(pageId === 'MAMA4005') {
+                    compName = MAMA4005 // 홈화면순서편집
+                }else if(pageId === 'OXTP0001') {
+                    compName = OXTP0001 // ox오늘의퀴즈
+                }else if(pageId === 'OXTP0006') {
+                    compName = OXTP0006 // ox퀴즈 도전현황
                 }
-                
-                const config = {
-					component: compName,
+
+                let config = {}
+                if ( pageId == "MRLO4001" ) {
+                    // 페이지가 무거워 비동기 컴포넌트 & 로딩
+                    config = { component: compName, params : {loading: true} }    
+                } else {
+                    config = { component: compName, params : param }
                 }
+
                 // this.close()
 				modalService.openPopup(config).then((response) => {
                     if(pageId === 'COCO4351') { // 관심서비스 추가된 경우 재조회
                         if(response == 'refresh') {
                             this.getInteList();
                         }
+                    }else if(pageId === 'MAMA4005') {
+                        if(response?.isSave) {
+                            this.avatarImg = this.avatarList.find(item => item.id == this.getMyAvatar())?.class || 'mentor'
+                        }
+                    }else if(pageId === 'OXTP0001' && response === 'ok'){
+                        this.eventOxInfo.quizPrgYn = '1'    //참여
+                        this.fn_openPopup('OXTP0006', this.eventOxInfo)   //도전현황
                     }
                 })
             },
@@ -395,6 +556,10 @@
                 }
                 apiService.call(config).then(response =>{
                     this.anwAncYn = response.anwAncYn
+
+                    // 신규알람여부값 (1: 여, 0: 부) state 저장
+                    // 여 => Y, 부 => N
+                    this.setNewAlarm(this.anwAncYn == '1' ? 'Y' : 'N')
                 })
             },
             closePopup(pageType, pageId) {
@@ -434,7 +599,7 @@
 					}
                 }
 
-                cus = cus.replace('+', '%2B');
+                cus = cus.replaceAll('+', '%2B');
 
                 if ( location.port == '5090' ) {
                     location.href = location.href.substr(0, location.href.lastIndexOf(':')) + ":9090?cus=" + cus + "&chnl=" + chnl
@@ -541,6 +706,92 @@
               }
             }
           },
+            checkNHCert() {
+                const params = {
+                    "RA_CERT_DCD" : "001",
+                    "RQST_CHNL_DCD": this.getUserInfo('chnl') === '385'? "NHSP" : "NHSB",
+                };
+
+                if(this.getUserInfo('chnl') === '385') { // 스뱅
+                    appService.checkNHCert(params).then(response => {
+                        let result = response.result.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        // 스뱅만 result로 한번 더 묶여 있음
+                        try { result = JSON.parse(response.result.result) } catch (e) { }
+
+                        if (response.result.resultCode === 0 ) {
+                            modalService.alert("존재 > " + result.CUST_NAME)
+                        } else {
+                            // 실제 사용할때는 resultCode가 '1'면 모두 '인증서가 없습니다' 팝업으로 찍으세요~
+                            modalService.alert("appService::(SB)checkNHCert error > " + result.msg)
+                        }
+                        
+                    });
+                } else { // 콕뱅
+                    appService.cokBankCheckNHCert(params).then(response => {
+                        let result = response.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        try { result = JSON.parse(response.result) } catch (e) { }
+
+                        if ( response.resultCode == 0 ) {
+                            modalService.alert("존재 > " + result.CUST_NAME)
+                        } else {
+                            // 실제 사용할때는 resultCode가 '1'면 모두 '인증서가 없습니다' 팝업으로 찍으세요~
+                            modalService.alert("appService::(CB)checkNHCert error > " + result.msg)
+                        }
+                    });
+                }
+
+                
+                
+            },
+            getUuid() {
+                if(this.getUserInfo('chnl') === '385') { // 스뱅
+                    appService.getUuid().then(response => {
+                        let result = response.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        try { result = JSON.parse(response.result) } catch (e) { }
+
+                        modalService.alert("UUID > " + result.uuid)
+                    });
+                } else { // 콕뱅
+                    appService.cokBankGetUuid().then(response => {
+                        let result = response.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        try { result = JSON.parse(response.result) } catch (e) { }
+
+                        modalService.alert("UUID > " + result.uuid)
+                    });
+                }
+            },
+            getAppVersion() {
+                if(this.getUserInfo('chnl') === '385') { // 스뱅
+                    appService.getAppVersion().then(response => {
+                        let result = response.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        try { result = JSON.parse(response.result) } catch (e) { }
+
+                        modalService.alert("app > " + result.app + " os > " + result.os + " versionName > " + result.versionName + " versionCode > " + result.versionCode)
+                    });
+                } else { // 콕뱅
+                    appService.cokBankGetAppVersion().then(response => {
+                        let result = response.result
+                        // AOS는 파싱이 필요하고, IOS는 파싱이 불필요함
+                        // AOS는 될거고, IOS는 catch로 빠짐
+                        try { result = JSON.parse(response.result) } catch (e) { }
+
+                        modalService.alert("app > " + result.app + " os > " + result.os + " versionName > " + result.versionName + " versionCode > " + result.versionCode)
+                    });
+                }
+            },
+            moveLogin(){
+                location.href="/login.html"
+            },          
           // 관심서비스 가져오기
           getInteList() {
             const config = {
@@ -563,15 +814,9 @@
           // 관심서비스 이동 화면이 Page인지 Popup인지 구분해주는 함수
           fnOpenPopYn(scrId) {
             let popDsc = this.inteList.find(el=>el.psAmnScid == scrId).scrnDsc
-            let type = ""; // 버킷리스트와 금융목표는 scrId가 같으므로 {type:"goal"}을 param으로 넘겨줘야 함.
-
+            let param  = "" // OX 퀴즈용
             if(popDsc == "M") { // 화면(M)
-                if(scrId == "PDMY4003") {
-                    scrId = "PDMY4001";
-                    type  = {type : "goal"};
-                }
-                
-                this.fn_movePage(scrId, type);
+                this.fn_movePage(scrId);
             } else {            // 팝업(P)
                 let component
                 
@@ -579,15 +824,36 @@
                     component = defineAsyncComponent(() => import("@/views/page/MR/LO/MRLO4001/MRLO4001"))
                 } else if(scrId == "ASCR4101") {  // 나의신용점수올리기
                     component = defineAsyncComponent(() => import("@/views/page/AS/CR/ASCR4101/ASCR4101"))
-                }
-                /*
+
+                } else if(scrId == "OXTP0001") {  // OX퀴즈
+
+                    if(!this.eventOxInfo.bltnDt){
+                        modalService.alert("OX퀴즈를 준비하고 있어요.")
+                    }else{
+                        param = this.eventOxInfo
+
+                        if(this.eventOxInfo.quizPrgYn === '1'){ // 도전현황
+                            component = defineAsyncComponent(() => import("@/views/page/OX/TP/OXTP0006/OXTP0006"))
+                        }else{                                  // OX퀴즈
+                            component = defineAsyncComponent(() => import("@/views/page/OX/TP/OXTP0001/OXTP0001"))
+                        } 
+                    }
+
                 } else if(scrId == "MREV4041") {  // 친구초대
                     component = defineAsyncComponent(() => import("@/views/page/MR/EV/MREV4041/MREV4041"))
+                } else if(scrId == "COCO4351") {  // 나의 관심서비스
+                    component = defineAsyncComponent(() => import("@/views/page/CO/CO/COCO4351/COCO4351"))
+                } else {
+                    modalService.alert("존재하지않는 팝업입니다.")
+                    return
                 }
-                */
 
-                const config = {
-                    component: component
+                let config = {}
+                if ( scrId == "MRLO4001" ) {
+                    // 페이지가 무거워 비동기 컴포넌트 & 로딩
+                    config = { component: component, params : {loading: true} }    
+                } else {
+                    config = { component: component, params : param }
                 }
                 
 				modalService.openPopup(config).then((response) => {
@@ -595,11 +861,39 @@
                         if(response == "refresh") {
                             this.getInteList()
                         }
+                    } else if(scrId === "OXTP0001" && response === "ok"){
+                        this.eventOxInfo.quizPrgYn = '1'    //참여
+                        //this.fn_openPopup('OXTP0006', this.eventOxInfo)   //도전현황
+                        this.fnOpenPopYn("OXTP0001")
                     }
                 });
             }
-          },
+          },                
+          moveOfflnCus(pageId) {
+            const config = {
+				url : "/co/or/01r03",
+				data: {
+					mydtCusno 	: this.mydtCusno,
+				}
+			}
+			apiService.call(config).then(response => {
+                console.log("response : ", response)
 
+                let params = {
+                    brnm : response.brnm,
+                    rqrmnm : response.rqrmnm
+                }
+
+				if(!_.isEmpty(response)) {
+                    if(response.rqrYn == '1') {
+                        this.fn_movePage(pageId, params)
+                    }
+                    else {
+                        modalService.alert("지점을 방문하여 대면상담을 요청하신 후<br>가이드를 받으세요.")
+                    }
+                }
+			})
+          },
         },
         components : {
             // Page

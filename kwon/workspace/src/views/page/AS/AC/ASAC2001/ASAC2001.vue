@@ -96,7 +96,7 @@
                                 </a>
                             </div>
                             <div>
-                                <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY2005()">
+                                <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY4005()">
                                     <img src="@/assets_v40/images/banner/img_benner_03.png" alt="부자되는 첫 걸음 돈 모으기 목표부터 세우기!">
                                 </a>
                             </div>
@@ -114,7 +114,7 @@
                     </template>
                     <template  v-if="dpAcList.length == 0 && isAcList.length == 0">
                         <div class="inner_banner">
-                            <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY2005()">
+                            <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY4005()">
                                 <img src="@/assets_v40/images/banner/img_benner_03.png" alt="부자되는 첫 걸음 돈 모으기 목표부터 세우기!">
                             </a>
                         </div>
@@ -202,7 +202,7 @@
                 <!-- 돈모으기 배너 -->
                 <div class="inner_banner" v-if="dpAcList.length > 0 || isAcList.length > 0">
                     <div>
-                        <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY2005()">
+                        <a href="javascript:void(0)" role="button" @click.prevent="fn_openPDMY4005()">
                             <img src="@/assets_v40/images/banner/img_benner_03.png" alt="부자되는 첫 걸음 돈 모으기 목표부터 세우기!">
                         </a>
                     </div>
@@ -278,13 +278,13 @@
     import appService from '@/service/appService'
     import commonService from '@/service/commonService'
 
-    import ASAC2102 from '@/views/page/AS/AC/ASAC2102/ASAC2102'
+    import ASAC4102 from '@/views/page/AS/AC/ASAC4102/ASAC4102'
     import ASAC1103 from '@/views/page/AS/AC/ASAC1103/ASAC1103'
     import ASAC1104 from '@/views/page/AS/AC/ASAC1104/ASAC1104'
     import ASAC1105 from '@/views/page/AS/AC/ASAC1105/ASAC1105'
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
 
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' //돈모으기 목표등록
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005' //돈모으기 목표등록
 
 	export default {
 		name: 'ASAC2001',
@@ -391,7 +391,7 @@
 
                 let compName = ""
                 if(type == "RNDA") { 
-                    compName = ASAC2102 //입출금
+                    compName = ASAC4102 //입출금
                 } else if(type == "DPAC") {
                     compName = ASAC1103 //예금
                 } else if(type == "ISAC") {
@@ -429,9 +429,9 @@
             /*
             * 돈모으기 팝업
             */
-            fn_openPDMY2005() {
+            fn_openPDMY4005() {
                 const config = {
-                    component: PDMY2005,
+                    component: PDMY4005,
                 }
                 modalService.openPopup(config).then(response => {
 
@@ -439,7 +439,7 @@
                     // 나의목표로 이동
                     if(response == 'reSelect') {
                         const menu = {
-                            name: 'PDMY2001',
+                            name: 'PDMY4001',
                             params : {}
                         }
                         commonService.movePage(menu)

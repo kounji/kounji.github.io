@@ -2,14 +2,13 @@
 /*************************************************************************
 * @ 서비스경로 : 더보기 > 전체메뉴 > 연결자산관리 > 연결자산목록
 * @ 페이지설명 : 전체메뉴 > 연결자산관리 > 연결자산목록
-* @ 파일명     : src\views\page\MR\AM\MRAM2001\MRAM2001.vue
-* @ 작성자     : CS528069
-* @ 작성일     : 2022-07-28
+* @ 파일명     : src\views\page\MR\AM\MRAM4001\MRAM4001.vue
+* @ 작성자     : CS540685
+* @ 작성일     : 2025-04-18
 ************************** 수정이력 ****************************************
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
-* 2022-07-28              CS528069              최초작성
-* ! 공공데이터 개발 테스트 데이터가 존재하지않아 연결자산목록에서 제외 (데이터 유무에 따른 추가개발이 있을 수 있음)
+* 2025-04-18              CS540685              최초작성
 *************************************************************************/
 -->
 
@@ -27,19 +26,27 @@
                         <button type="button" class="stdBtn innerType01" @click="fn_openAssetPage()">자산연결</button>
                     </div>
                 </div>
-                <div v-if="orgPrdCnt > 0" class="box_border_link iconType01">
+                <div v-if="orgPrdCnt > 0" class="box_border_link iconType01 mt35">
                     <a role="button" @click.prevent="fn_openExpr(1)"><span class="arrow"><em class="num">{{orgPrdCnt}}</em>개의 기관이 만료 예정 이예요.</span></a>
                 </div>
                 <div class="com_tabmenu_type03 switchType btn2">
                     <ul role="tablist">
-                        <li :class="isConnectedTab ? 'on' : ''" role="presentation" aria-controls="tab_01"><a role="tab" @click="isConnectedTab = true"><span>연결 기관</span></a></li>
-                        <li :class="!isConnectedTab ? 'on' : ''" role="presentation" aria-controls="tab_02"><a role="tab" @click="isConnectedTab = false"><span>만료&middot;해제 기관</span></a></li>
+                        <li :class="isConnectedTab ? 'on' : ''" role="presentation" aria-controls="tab_01"><a href="#nolink" role="tab" @click="isConnectedTab = true" :aria-selected="isConnectedTab.toString()"><span>연결 기관</span></a></li>
+                        <li :class="!isConnectedTab ? 'on' : ''" role="presentation" aria-controls="tab_02"><a href="#nolink" role="tab" @click="isConnectedTab = false" :aria-selected="(!isConnectedTab).toString()"><span>만료&middot;해제 기관</span></a></li>
                     </ul>
                 </div>
                
 
                 <!-- 연결기관 tabBox 시작 -->
                 <div v-show="isConnectedTab" id="tab_01" role="tabpanel" class="cmm-tab-panel on">
+                    <!-- [v4.0]전체 체크박스 추가 -->
+                    <div class="btn_checkbox check_all_wrap">
+                        <input type="checkbox" name="checkAllConnected" id="checkAllConnected" ref="checkAllConnected" @click="fn_checkAllConnected($event)">
+                        <label for="checkAllConnected">
+                            <strong>전체</strong>
+                        </label>
+                    </div>
+                    <!-- //[v4.0]전체 체크박스 추가 -->
                     <template v-if="nacfAccList.length > 0 ? 1 + Number(bankList.length) : Number(bankList.length) > 0">
 
                         <!-- 은행 -->
@@ -90,7 +97,7 @@
                             </div>
                             <div class="slideBox">
                                 <ul class="list_type_01">
-                                    <li v-for="(nacfAcc, idx) in nacfAccList" :key="'nacfAcc_'+idx">
+                                    <li v-for="(nacfAcc, idx) in openNacfAccList" :key="'openNacfAcc_'+idx">
                                         <dl>
                                             <dt>
                                                 <em class="prod_name">{{nacfAcc.acWrsnm}}</em>
@@ -105,6 +112,25 @@
                                         </span>
                                     </li>
                                 </ul>
+                                <!--[v4.0] 25-04-11 해지계좌 추가(운영 적용) -->
+								<div class="cancel_acc_box" v-if="closeNacfAccList.length > 0">
+									<div class="tit_area">
+										<strong class="list_stitle01">해지계좌</strong>
+										<button class="btn_toggle"><span class="blind">열기</span></button>
+									</div>
+									
+									<div class="cont_area">
+										<ul class="list_type_01">
+											<li v-for="(nacfAcc, idx) in closeNacfAccList" :key="'closeNacfAcc_'+idx">
+												<dl>
+													<dt><em class="prod_name">{{nacfAcc.acWrsnm}}</em></dt>
+													<dd><em class="bank_num">{{nacfAcc.mydtAcno}}</em></dd>
+												</dl>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!--//[v4.0] 25-04-11 해지계좌 추가(운영 적용) -->
                             </div>
                             <button class="bottomBtn">더보기</button>
                         </div>
@@ -127,7 +153,7 @@
                                     <ul class="list_type_02">
                                         <li>
                                             <span>정기 업데이트</span>
-                                            <em>{{bankItem.fxtmTmsYn === '1' ? "주 1회" : "아니오"}}</em>
+                                            <em>{{bankItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(bankItem.bscTmsFq) : "아니오"}}</em>
                                         </li>
                                         <li>
                                             <span>적요&middot;거래메모 전송</span>
@@ -206,7 +232,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{cardItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{cardItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(cardItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -263,7 +289,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{investItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{investItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(investItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -320,7 +346,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{insuItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{insuItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(insuItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -377,7 +403,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{efinItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{efinItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(efinItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -435,7 +461,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{capitalItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{capitalItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(capitalList.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -493,7 +519,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{ginsuItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{ginsuItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(ginsuItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -551,7 +577,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{telecomItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{telecomItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(telecomItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -609,7 +635,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{usuryItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{usuryItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(usuryItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -667,7 +693,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{bondItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{bondItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(bondItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -725,7 +751,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{p2pItem.fxtmTmsYn === '1' ? "주1회" : "아니오"}}</em>
+                                        <em>{{p2pItem.fxtmTmsYn === '1' ? fn_getBscTmsFq(p2pItem.bscTmsFq) : "아니오"}}</em>
                                     </li>
                                     <!-- <li>
                                         <span>적요&middot;거래메모 전송</span>
@@ -788,7 +814,7 @@
                                 <ul class="list_type_02">
                                     <li>
                                         <span>정기 업데이트</span>
-                                        <em>{{publicItem.fxtmTmsYn === '1' ? "월1회" : "아니오"}}</em>
+                                        <em>{{publicItem.fxtmTmsYn === '1' ? "월 1회" : "아니오"}}</em>
                                     </li>
                                 </ul>
                                 <ul v-show="publicItem.wrsList.length > 0" class="list_type_01">
@@ -1059,14 +1085,11 @@ import {dayDiff, dateFormat} from '@/utils/date'
 import _ from 'lodash'
 import {mapActions, mapGetters} from 'vuex'
 
-import MRAM2005 from '@/views/page/MR/AM/MRAM2005/MRAM2005'
-import MRAM2004 from '@/views/page/MR/AM/MRAM2004/MRAM2004'
+import MRAM4005 from '@/views/page/MR/AM/MRAM4005/MRAM4005'
+import MRAM4004 from '@/views/page/MR/AM/MRAM4004/MRAM4004'
 import MRAM2003 from '@/views/page/MR/AM/MRAM2003/MRAM2003'
-import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
-import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'
-import COAR2003 from '@/views/page/CO/AR/COAR2003/COAR2003'
-import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005'
-import COAR2007 from '@/views/page/CO/AR/COAR2007/COAR2007'
+import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001'
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002'
 
 export default {
     name : "MRAM4001",
@@ -1077,7 +1100,10 @@ export default {
 		return {
             currentDate		: dateFormat(new Date(), 'YYYYMMDD'), //금일
             //////// 농축협 계좌 관련 데이터
-            nacfAccList     : [],   // 농.축협 계좌 리스트
+            nacfAccList     : [],   // 농.축협 전체 계좌 리스트
+            openNacfAccList : [],   //  농축협개설 계좌리스트
+            openNacfAccTmpList : [],   //  농축협개설 계좌리스트 복사본 (원본 비교용)
+            closeNacfAccList  : [], // 농축협해지 계좌리스트
             // nacfAccTogYn    : false,// 농.축협 계좌 리스트 show/hide 토글버튼 히든여부
 
             //////// 연결자산 관련 데이터
@@ -1133,6 +1159,7 @@ export default {
 
             orgExprCnt      : 0,    // 만료된 기관 개수
             orgPrdCnt       : 0,    // 만료 예정 기관 개수
+            orgConCnt       : 0,    // 정상연결 기관 개수
 
             modifyTxt       : "",   // 변경 버튼 텍스트
             disconTxt       : "",   // 해제 버튼 텍스트
@@ -1245,6 +1272,37 @@ export default {
         this.initComponent()
         this.tabLayerInit()
 
+        jQuery(document).ready(function() {
+			//더보기 클릭
+			jQuery('.bottomBtnType .bottomBtn').on('click',function(){
+				var _this = jQuery(this),
+						_par = _this.parent();
+				if(_par.hasClass('open')){
+					_par.find('.slideBox').slideUp(300);
+					_par.removeClass('open');
+					_par.find('.bottomBtn').text('더보기');
+				}else{
+					_par.find('.slideBox').slideDown(300);
+					_par.addClass('open');
+					_par.find('.bottomBtn').text('접기');
+				};
+			});
+			//[v4.0]해지계좌 show/hide
+			$(document).off('click.btn_cancel_acc_toggle').on('click.btn_cancel_acc_toggle', '.cancel_acc_box .btn_toggle', function(){
+				var can_acc_box = $(this).closest('.cancel_acc_box');
+				if(can_acc_box.hasClass('open')){
+					can_acc_box.find('.cont_area').slideUp(300);
+					can_acc_box.removeClass('open');
+					$(this).find('span').text('열기')
+				}else{
+					can_acc_box.addClass('open');
+					can_acc_box.find('.cont_area').slideDown(300);
+					$(this).find('span').text('접기')
+				}
+			})
+
+		});
+
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
     },
@@ -1328,10 +1386,12 @@ export default {
                 }
             }
             apiService.call(config).then(response => {
-                console.log("nacfAccList===========>",response)
-                this.nacfAccList = response.nacfAccList || []
-
+                this.nacfAccList = _.orderBy(response.nacfAccList, 'pfmAcYn', 'desc') || []
                 this.fn_setNacfAccList(this.nacfAccList)
+
+                this.openNacfAccList = this.nacfAccList.filter(d => d.pfmAcYn === "1")
+                this.openNacfAccTmpList = this.nacfAccList.filter(d => d.pfmAcYn === "1").map(item =>({...item}))
+                this.closeNacfAccList = this.nacfAccList.filter(d => d.pfmAcYn === "0")
 
                 // 농.축협 보유계좌가 하나일 경우 숨김버튼 히든처리
                 // if(this.nacfAccList.length === 1) this.nacfAccTogYn = false
@@ -1340,7 +1400,7 @@ export default {
 
             // 개인신용정보 전송요구내역 조회
             const config_con = {
-                url : "/co/am/08r02", //"/co/am/05rb2", //"/co/am/05ra1",
+                url : "/co/am/08r05", //"/co/am/05rb2", //"/co/am/05ra1",
                 data : {
                     "mydtCusno" : this.getUserInfo('mydtCusno')
                     // "mydtCusno" : "2000000842"
@@ -1348,7 +1408,6 @@ export default {
                 }
             }
             apiService.call(config_con).then(response => {
-                console.log("userAsetList===========>",response)
                 this.userAsetList = response.bzrgList || []
                 // console.log("데이터 확인 :: ", this.userAsetList)
                 this.modifyTxt = "연결 변경"
@@ -1520,6 +1579,11 @@ export default {
 
                 // 만료/해제 기관 개수 계산
                 this.orgExprCnt = this.fn_calcOrgExprCnt()
+
+                // 정상연결 기관 개수
+                this.orgConCnt = this.bankList.length + this.cardList.length + this.investList.length + this.insuList.length 
+                                + this.ginsuList.length + this.efinList.length + this.capitalList.length + this.telecomList.length
+                                + this.usuryList.length + this.bondList.length + this.p2pList.length + this.publicList.length
                 
                 this.$nextTick(()=>{
                     this.fn_scrollMove()
@@ -1577,6 +1641,11 @@ export default {
             if(!this.fn_chkChngStsDscValid(e)) {
                 e.target.checked = true
                 this.nacfAccList[idx].checked = true
+                if(!_.isEqual(this.openNacfAccList, this.openNacfAccTmpList)){
+                  this.$store.dispatch('myassets/setNacfAccChg', true)  // 중앙회 자산 변경
+                }else{
+                  this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
+                }
                 return false
             }
             if(this.nacfAccList[idx].checked) {
@@ -1596,9 +1665,13 @@ export default {
                     if(text == "아니오") {
                         e.target.checked = true
                         this.nacfAccList[idx].checked = true
+                        if(!_.isEqual(this.openNacfAccList, this.openNacfAccTmpList)){
+                          this.$store.dispatch('myassets/setNacfAccChg', true)  // 중앙회 자산 변경
+                        }else{
+                          this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
+                        }
                         return false
                     } else {
-                    
                         const config = {
                             url : '/mr/am/01s01', // "/co/am/05sa1",
                             data : {
@@ -1606,14 +1679,20 @@ export default {
                                 infOfrmnOrgC : "",
                                 mydtAcno : this.nacfAccList[idx].mydtAcno,
                                 bnkAcStsDsc : (this.nacfAccList[idx].bnkAcStsDsc === '99') ? '01' : '99'
-                            }
+                            },
+                            disableLoading : true,
                         }
                         apiService.call(config).then(response => {
                             const rspC = response.rspC || ""
                             if(rspC === '0000') {
                                 this.nacfAccList[idx].checked = this.nacfAccList[idx].checked ? false : true
                                 this.nacfAccList[idx].bnkAcStsDsc = (this.nacfAccList[idx].bnkAcStsDsc === '99') ? '01' : '99'
-                                this.fn_refreshApiCall()
+                                if(!_.isEqual(this.openNacfAccList, this.openNacfAccTmpList)){
+                                  this.$store.dispatch('myassets/setNacfAccChg', true)  // 중앙회 자산 변경
+                                }else{
+                                  this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
+                                }
+                                // this.fn_refreshApiCall()
                             }
                         })
                     }
@@ -1627,14 +1706,20 @@ export default {
                         infOfrmnOrgC : "",
                         mydtAcno : this.nacfAccList[idx].mydtAcno,
                         bnkAcStsDsc : (this.nacfAccList[idx].bnkAcStsDsc === '99') ? '01' : '99'
-                    }
+                    },
+                    disableLoading : true,
                 }
                 apiService.call(config).then(response => {
                     const rspC = response.rspC || ""
                     if(rspC === '0000') {
                         this.nacfAccList[idx].checked = this.nacfAccList[idx].checked ? false : true
                         this.nacfAccList[idx].bnkAcStsDsc = (this.nacfAccList[idx].bnkAcStsDsc === '99') ? '01' : '99'
-                        this.fn_refreshApiCall()
+                        if(!_.isEqual(this.openNacfAccList, this.openNacfAccTmpList)){
+                          this.$store.dispatch('myassets/setNacfAccChg', true)  // 중앙회 자산 변경
+                        }else{
+                          this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
+                        }
+                        // this.fn_refreshApiCall()
                     }
                 })
             }
@@ -1670,12 +1755,12 @@ export default {
             if(e.target.checked) {
                 // 체크 on
                 ////////////////// !! 추후 공공기관 데이터 개발 시 금융기관 과 함께 변경 불가 알럿 추가할것 !! ////////////////////
-                if(this.chkOrgList.length + 1 > 25) {
-                    modalService.alert("안전하고 신속한 자산 연결을 위해<br> 최대 25개까지 선택 가능합니다.").then(() => {
-                        e.target.checked = false
-                        return
-                    })
-                } else {
+                // if(this.chkOrgList.length + 1 > 25) {
+                //     modalService.alert("안전하고 신속한 자산 연결을 위해<br> 최대 25개까지 선택 가능합니다.").then(() => {
+                //         e.target.checked = false
+                //         return
+                //     })
+                // } else {
                     tmpObj.orgDiv       = orgDiv    // 기관구분
                     tmpObj.orgObj       = item      // 기관정보 Object
                     tmpObj.checked      = true      // 체크여부
@@ -1685,8 +1770,9 @@ export default {
                     this.chkCnt++
                     this.modifyTxt = this.chkCnt + "개 기관 변경"
                     this.disconTxt = this.chkCnt + "개 기관 해제"
-                }
+                // }
                 
+                if(this.chkCnt === this.orgConCnt) this.$refs.checkAllConnected.checked = true
             } else {
                 // 체크 off
                 this.chkOrgList.splice( _.findIndex(this.chkOrgList, d => d.orgObj.infOfrmnOrgC === item.infOfrmnOrgC), 1 )
@@ -1694,6 +1780,8 @@ export default {
                 this.chkCnt--
                 this.modifyTxt = this.chkCnt === 0 ? "연결 변경" : this.chkCnt + "개 기관 변경"
                 this.disconTxt = this.chkCnt === 0 ? "연결 해제" : this.chkCnt + "개 기관 해제"
+
+                this.$refs.checkAllConnected.checked = false
             }
         },
 
@@ -1723,7 +1811,7 @@ export default {
                 })
             } else {
                 const config = {
-                    component : MRAM2005,
+                    component : MRAM4005,
                     params : {
                         orgList : this.chkOrgList
                     }
@@ -1777,7 +1865,25 @@ export default {
                 //기존 연결된 기관 외 선택 및 공공기관만 선택 여부 체크용
                 let onlyPublic = this.moduleList.filter(item => item.orgBizDsc !== 'public').length
 
-                let config = {}
+                let config = {
+                    "component": COAR4002,
+                    "params": {
+                        "topTitle": "연결변경",
+                        "isExternal": true,
+                        "isMoveMainAfterConnect": false,
+                        "filteredTargetOrgList": this.moduleList
+                    }
+                };
+                modalService.openPopup(config).then(response => {
+                    if (Boolean(response.isMoveMainAfterConnect)) {
+                        Object.assign(this.$data, this.$options.data())
+                        // this.initComponent()
+                        this.chkCnt = 0
+                        this.getData()
+                        this.$refs.content.scrollTop = 0
+                    }
+                });
+                /*
                 if(onlyPublic < 1) {
                     //COAR2005
                     console.log('공공기관만 선택 시 [COAR2005]')
@@ -1819,7 +1925,7 @@ export default {
                         }
                     }
                 })
-                    
+                */
                 // })
             }
 
@@ -1835,6 +1941,18 @@ export default {
             //기존 연결된 기관 외 선택 및 공공기관만 선택 여부 체크용
             let onlyPublic = this.moduleList.filter(item => item.orgBizDsc !== 'public').length
 
+            let config = {
+                "component": COAR4002,
+                "params": {
+                    "isExternal": true,
+                    "filteredTargetOrgList": this.moduleList
+                }
+            };
+            modalService.openPopup(config).then(response => {
+                this.getData();
+            });
+            
+            /*
 			if(onlyPublic < 1) {
 				//COAR2005
 				console.log('공공기관만 선택 시 [COAR2005]')
@@ -1863,6 +1981,7 @@ export default {
 					
 				})
 			}
+            */
         },
 
         // 만료예정 기관관리 팝업 & 만료/해제 관리 팝업 MRAM2004 파일 내 통합.
@@ -1870,7 +1989,7 @@ export default {
         fn_openExpr(tabIdx) {
             // modalService.alert("만료예정 기관관리 팝업 준비중입니다.")
             const config = {
-                component : MRAM2004,
+                component : MRAM4004,
                 params : {
                     selTab      : tabIdx,
                     bankList    : this.bankList,    // 은행리스트 (만료예정 기관 필터링 위함)
@@ -2000,19 +2119,6 @@ export default {
         // },
 
         // 신규 자산 연결
-        fn_openNewConnect(orgDsc) {
-            // modalService.alert(orgDsc + " 자산 연결 준비중입니다.")
-            const config = {
-                component : COAR2002,
-                params : {
-                    isMramNew : true,
-                    orgDsc : orgDsc
-                }
-            }
-            modalService.openPopup(config).then(() => {
-                
-            })
-        },
 
         // 스크롤 및 카테고리 선택 이벤트 동작
         fn_scrollMove() {
@@ -2161,6 +2267,62 @@ export default {
 
 			// this.chkedExprCnt = evt.target.checked ? this.itemExprList?.length || 0 : 0
 		},
+
+        fn_checkAllConnected(evt) {
+            if (evt.target.checked) {
+                // if (this.chkCnt == 25) {
+                //     modalService.alert("안전하고 신속한 자산 연결을 위해<br> 최대 25개까지 선택 가능합니다.").then(() => {
+                //         evt.target.checked = false;
+                //         return;
+                //     });
+                // } else {
+                    let orgList = [{"bzrgCode": "bank", "orgs": this.bankList}
+                                    , {"bzrgCode": "card", "orgs": this.cardList}
+                                    , {"bzrgCode": "invest", "orgs": this.investList}
+                                    , {"bzrgCode": "insu", "orgs": this.insuList}
+                                    , {"bzrgCode": "efin", "orgs": this.efinList}
+                                    , {"bzrgCode": "capital", "orgs": this.capitalList}
+                                    , {"bzrgCode": "telecom", "orgs": this.telecomList}
+                                    , {"bzrgCode": "public", "orgs": this.publicList}];
+                    
+                    for (let i = 0; i < orgList.length; i++) {
+                        let bzrgCode = orgList[i].bzrgCode;
+                        let orgs = orgList[i].orgs;
+                        for (let j = 0; j < orgs.length; j++) {
+                            let org = orgs[j];
+                            // if (this.chkCnt < 25) {
+                                if (this.checkedList.includes(bzrgCode + "_" + j)) {
+                                    continue;
+                                } else {
+                                    this.checkedList.push(bzrgCode + "_" + j);
+                                    this.chkOrgList.push({
+                                        "orgDiv": bzrgCode,
+                                        "orgObj": org,
+                                        "checked": true,
+                                    });
+                                    this.chkCnt++
+                                }
+                            // } else {
+                            //     modalService.alert("안전하고 신속한 자산 연결을 위해<br> 최대 25개까지 선택 가능합니다.");
+                            //     break;
+                            // }
+                        }
+                    }
+                    
+
+                    this.modifyTxt = this.chkCnt + "개 기관 변경"
+                    this.disconTxt = this.chkCnt + "개 기관 해제"
+
+                // }
+            } else {
+                this.checkedList = [];
+                this.chkOrgList = [];
+                this.chkCnt = 0;
+                this.modifyTxt = "연결 변경";
+                this.disconTxt = "연결 해제";
+            }
+        },
+
         initEvent() {
             //더보기 클릭
 			$('.bottomBtnType .bottomBtn').on('click',function(){
@@ -2183,7 +2345,7 @@ export default {
         fn_openAssetPage() {
             //자산등록
             const config = {
-                component: COAR2001,
+                component: COAR4001,
                 params : {}
             }
             modalService.openPopup(config).then(response => {
@@ -2276,7 +2438,7 @@ export default {
 		fn_dataDelete() {
             console.log('데이터 삭제 api')
 			const config = {
-				url : '/co/co/02sb3', // "/co/co/02sa3", 
+				url : '/cl/ba/01r01', // "/co/co/02sa3", 
 				data : {
 					orgC 			: this.disconParam[this.disconCnt].orgC,
 					mydtCusno 		: this.getUserInfo("mydtCusno"),
@@ -2367,7 +2529,7 @@ export default {
         /**
          * 수집갱신 처리
          */
-        async fn_refreshApiCall() {
+        fn_refreshApiCall() {
            //Vuex Store로 변경
            // 20220422 두번 클릭 방지 
            console.log('isMyAssetGathering', this.isMyAssetGathering)
@@ -2376,6 +2538,26 @@ export default {
                this.getAllMyAssetInfo()
            }
         },
+
+        fn_getBscTmsFq(bscTmsFq) {
+            if (!_.isEmpty(bscTmsFq)) {
+                let msg = bscTmsFq.match(/\d\/(\d)w/gi) != null ? bscTmsFq.replaceAll(/\d\/(\d)w/gi, "$1주 1회") : "주 1회";
+                if (msg == "1주 1회") {
+                    msg = "주 1회";
+                }
+                return msg;
+            } else {
+                return bscTmsFq;
+            }
+        },
+
+        clickLabel(e) {
+          if(e.target.checked){
+            document.getElementById("toggle01").classList.add("up")
+          }else{
+            document.getElementById("toggle01").classList.remove("up")
+          }
+        }
     },
     created() {
     },

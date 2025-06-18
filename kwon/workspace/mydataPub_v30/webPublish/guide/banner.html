@@ -1,114 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-	<title>layout sample</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<script src="../../@pub_include/head_guide.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
-	<style>		
-		.guide_box {display: flex;flex-direction: column;margin:0 auto;width: 90%;}
-		.guide_box + .guide_box {margin-top:2rem;}
-		.guide_box .color_box{display: flex;}
-		.guide_box .color_box div{display:flex;align-items: center;justify-content: center;width:14rem;height:14rem;color:#fff}
-		.guide_box .color_box + .color_box {margin-top:.5rem;}  
-	</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Banner</title>
+<!-- 공통 script -->
+<script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
+<script src="../../@pub_include/head_guide.js"></script>
+
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js"></script>
 </head>
+
 <body>
-	<!-- wrap -->
-	<div id="wrap" class="sticky-scroll">
-		<!-- header S -->
-		<header id="header">
-			<h1>배너모음</h1>
-			<a href="javascript:void(0);" class="btn_back"><span class="blind">뒤로</span></a>		
-			<div class="header_option">
-				<a href="javascript:void(0);" class="btn_home"><span class="blind">홈이동</span></a>	
-				<a href="javascript:void(0);" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+<div class="guide contetns renewal" id="styleGuide">
+	<h1>Banner</h1>
+	<article class="guide_group">
+		<h2>submain top banner</h2>
+		<section class="view">
+			<!-- item -->
+			<div class="item">
+				<!-- 자산 서브메인 -->
+				<section class="assets_main" style="min-height:auto;">
+					<p class="top_banner">
+						<a href="#nolink">작은 시작이 만드는 큰 행복, 자산관리 시작하기</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+				</section>
+
+				<!-- 지출 서브메인 -->
+				<section class="wallet_main" style="min-height:auto;">
+					<p class="top_banner">
+						<a href="#nolink">연말정산으로<br>공제받을 수 있는 금액은?</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+				</section>
+
+				<!-- 연금/절세 서브메인 -->
+				<section class="pension_main" style="min-height:auto;">
+					<p class="top_banner">
+						<a href="#nolink">연말정산으로<br>공제받을 수 있는 금액은?</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+				</section>
+
+				<!--지역정보 서브메인-->
+				<div class="local_main" style="min-height:auto;">
+					<p class="top_banner">
+						<a href="#nolink">다양한 축제와 행사가<br>열리고 있어요</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+				</div>
+
+				<!-- 큰글 통합메인 -->
+				<section class="main_united" style="min-height:auto;">
+					<p class="top_banner ty01">
+						<a href="#nolink">새로워진 NH콕마이데이터 이용안내</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
+				</section>
 			</div>
-		</header>
-		<!--// header E -->       
-		<!-- content-view S -->
-		<div class="content-view">
-			 <div id="content" class="renewal">
-					 <div class="com_inner">
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_01.png" alt="송금수수료 무료 이제 타은행계좌도 콕뱅크에 등록하고 송금하세요">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_02.png" alt="내차 구입을 위한 우대 금리 대출상품 추천까지!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_03.png" alt="부자되는 첫 걸음 돈 모으기 목표부터 세우기!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_04.png" alt="국민행복장터 농협몰 자동차 베스트상품 모음전">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_05.png" alt="차근차근 모아 내 차고에 드림카 채워 넣기!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_06.png" alt="내가 원하는 맞춤 견적으로 좋은 가격에 이차 탈래요!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_07.png" alt="높은 가격으로 내차 팔고, 신차 견적부터 추천까지!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_08.png" alt="안정적인 투자 전략 적절한 투자 목표 세우기!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_09.png" alt="카드값을 줄일 수 있는 카드는? NH카드를 찾아보세요.">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_10.png" alt="내 집 마련의 꿈 목표를 시작으로 현실로!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_11.png" alt="나만의 보금자리를 위해 맞춤 대출 상품을 알아볼까요?">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_12.png" alt="나에게 맞는 신차 추천과 견적 서비스까지 한번에!">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_13.png" alt="NH콕뱅크 [금융상품] 여행자를 위한 NH농협카드 써보셨나요?">
-									 </a>
-							 </div>
-							 <div class="inner_banner">
-									 <a href="javascript:void(0)">
-											 <img src="../../../src/assets_v30/images/banner/img_benner_14.png" alt="NH손해보험 해외여행 갈때 꼭 필요한 보험은?">
-									 </a>
-							 </div>
-					 </div>
-			</div>
-			<script src="../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
-		</div>
-	</div>
-	<!--// wrap -->   
+			<!-- //item -->
+		</section>
+	</article>
+</div>
+<script type="text/javascript">
+	//fnGuide.guide();
+</script>
 </body>
 </html>

@@ -160,21 +160,23 @@ export default {
 				return false
 			}
 
-			this.arrSrchKwrd =this.srchKwrd.split(' ')
+			//this.arrSrchKwrd =this.srchKwrd.split(' ')
+			// console.log('fstSrchKwrd', this.arrSrchKwrd)
 
 			this.pageNo = 1
 			const config = {
-				url : "/co/re/02r01",
+				url : "/co/re/02r02",
 				data: {
-					srchKwrd 	: this.arrSrchKwrd[0],
+					srchKwrd 	: this.srchKwrd,
 					pageNo		: this.pageNo,
 				}
 			}
 			apiService.call(config).then(response => {
-				this.isSrch     = true
+				// console.log('02r01', JSON.parse(JSON.stringify(response)))
+				this.isSrch = true
 				this.nxDataYn 	= response.nxDataYn
 				let aptList 	= response.aptList || []
-
+				/*
 				for (let i = 1; i < this.arrSrchKwrd.length; i++) {
 					let searchKey = this.arrSrchKwrd[i] || ''
 					searchKey = searchKey.trim().toUpperCase()
@@ -186,6 +188,7 @@ export default {
 						return aptHcxnm.indexOf(searchKey) > -1 || dgnm.indexOf(searchKey) > -1
 					})
 				}
+				*/
 
 				this.aptList = aptList
 
@@ -209,9 +212,9 @@ export default {
 			this.pageNo = this.pageNo + 1
 			
 			const config = {
-				url : "/co/re/02r01",
+				url : "/co/re/02r02",
 				data: {
-					srchKwrd 	: this.arrSrchKwrd[0],
+					srchKwrd 	: this.srchKwrd,
 					pageNo		: this.pageNo,
 				}
 			}
@@ -220,6 +223,7 @@ export default {
 				this.nxDataYn 	= response.nxDataYn
 				let tmpList 	= response.aptList || []
 
+				/*
 				for (let i = 1; i < this.arrSrchKwrd.length; i++) {
 					let searchKey = this.arrSrchKwrd[i] || ''
 					searchKey = searchKey.trim().toUpperCase()
@@ -231,6 +235,7 @@ export default {
 						return aptHcxnm.indexOf(searchKey) > -1 || dgnm.indexOf(searchKey) > -1
 					})
 				}
+				*/
 
 				if(this.aptList.length === 0) {
 					this.aptList = tmpList

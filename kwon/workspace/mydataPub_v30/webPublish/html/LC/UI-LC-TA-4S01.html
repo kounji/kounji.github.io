@@ -38,7 +38,7 @@
                     <div class="outline"><!--늘은경우 up, ,줄은 경우 down class 추가-->
                         <div class="board_box">
                             <h2><a href="#nolink">11월 지출</a></h2>
-
+                            <!--[v4.0] #접근성# 마크업수정 
                             <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                                 <label for="sum_view_01" class="btns">
@@ -50,6 +50,25 @@
                                     <span class="show"><em>1,952,692,372</em>원</span>
                                 </div>
                             </div>
+                            -->
+                            <div class="toggle_money">
+								<div class="sum">
+									<span class="hide">쉿! 비밀이에요.</span>
+									<span class="show"><em>1,952,692,372</em>원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+                            <!--[v4.0] #접근성# 마크업수정 -->
+							<!-- [v4.0] 25-04-08 버튼 추가 -->
+                            <div class="btn_area">
+                                <button type="button" class="btns refresh"><em>11</em>월 불러오기</button>
+                            </div>
+                            <!-- //[v4.0] 25-04-08 버튼 추가 -->
+							
 
                             <div class="details down"><!--적게 쓴경우 down, 초과인 경우 up class 추가--> 
                                 <!-- [v4.0] 25-02-28 문구 변경 / 25-03-11 툴팁추가-->
@@ -123,7 +142,8 @@
                                 </div>
                                 -->
                                 <!-- //[v4.0] 25-02-28 문구 변경 / 25-03-11 툴팁추가 -->
-                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                 <!-- 25-04-04 로티 loop 속성 제거-->
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                                 <!--
                                     초과인 경우 icon_wallet_up.json
                                     적게 쓸 경우 icon_wallet_down.json
@@ -133,34 +153,148 @@
                         <a href="#nolink"><em>지출분석</em><span>상세보기</span></a>
                     </div>
 
-                    <!--카드-->
+                    <!--카드 -->
+                    <!-- 25-04-08 마크업 변경
                     <div class="board_box wallet_spend">
                         <h2 class="title"><a href="#nolink">카드 이용 금액</a></h2>
                         <div class="card">
                             <span class="num"><em>3,214,070</em>원</span>
                         </div>
                     </div>
+                    -->
+                    <div class="board_box">
+                        <details class="wallet_toggle" open="">
+                            <summary>
+                                <span class="item">카드<em>3</em></span>
+                                <span class="num"><em>8,155,556,224</em>원</span>
+                            </summary>
+                            <div class="cont">
+                                <ul class="wallet_list">
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank D1AADO0000"></i>
+                                            <div>
+                                                <strong class="org">스페셜 롯데카드(LG전자)</strong>
+                                                <strong class="account">520045******1325</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank D1AADO0000"></i>
+                                            <div>
+                                                <strong class="org">스페셜 롯데카드(LG전자)</strong>
+                                                <strong class="account">520045******1325</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank D1AADO0000"></i>
+                                            <div>
+                                                <strong class="org">스페셜 롯데카드(LG전자)</strong>
+                                                <strong class="account">520045******1325</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- 25-04-08 마크업 변경 -->
 
                     <!--페이-->
+                    <!-- 25-04-08 마크업 변경
                     <div class="board_box wallet_spend">
                         <h2 class="title"><a href="#nolink">페이 이용 금액</a></h2>
                         <div class="pay">
                             <span class="num"><em>14,070</em>원</span>
                         </div>
                     </div>
+                    -->
+                    <div class="board_box">
+                        <details class="wallet_toggle" open="">
+                            <summary>
+                                <span class="item">페이<em>2</em></span>
+                                <span class="num"><em>8,155,556,224</em>원</span>
+                            </summary>
+                            <div class="cont">
+                                <ul class="wallet_list">
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank ZVAAIA0000"></i>
+                                            <div>
+                                                <strong class="org">카카오페이 머니</strong>
+                                                <strong class="account">010*****857</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank D1AAEX0000"></i>
+                                            <div>
+                                                <strong class="org">신한 Pre선불카드</strong>
+                                                <strong class="account">520045******1325</strong>
+                                            </div>
+                                            <strong class="num"><em>367,000</em>원</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- 25-04-08 마크업 변경 -->
 
                     <!--현금-->
+                    <!-- 25-04-08 마크업 변경 
                     <div class="board_box wallet_spend">
                         <h2 class="title"><a href="#nolink">현금 이용 금액</a></h2>
                         <div class="cash">
                             <span class="num"><em>14,070</em>원</span>
                         </div>
                     </div>
+                    -->
+                    <div class="board_box">
+                        <details class="wallet_toggle" open="">
+                            <summary>
+                                <span class="item">현금<em>2</em></span>
+                                <span class="num"><em>700,000</em>원</span>
+                            </summary>
+                            <div class="cont">
+                                <ul class="wallet_list">
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank icon_money"></i>
+                                            <div>
+                                                <strong class="org">계좌 이체로 쓴 금액</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#nolink">
+                                            <i class="ico_bank icon_money"></i>
+                                            <div>
+                                                <strong class="org">계좌 이체로 쓴 금액</strong>
+                                            </div>
+                                            <strong class="num"><em>196,022,420</em>원</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    <!-- //25-04-08 마크업 변경 -->
 
                     <!--통신비-->
+                    <!-- 25-04-08 마크업 변경 
                     <div class="board_box wallet_spend">
                         <h2 class="title"><a href="#nolink">통신비 이용 금액</a></h2>
-                        <!-- [v4.0] 25-02-21 툴팁추가 -->
+                        <!-- [v4.0] 25-02-21 툴팁추가 --
                         <div class="custom_tooltip up">
                             <div class="com_tooltip_type02 com_tooltip_type03">
                                 <a href="#nolink" class="com_btn_info" role="button">
@@ -174,24 +308,64 @@
                                         결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
                                         결제일 이후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
                                     </p>
-                                    <!--//25-02-10 텍스트 수정 / 25-03-17 문구수정 -->
+                                    <!--//25-02-10 텍스트 수정 / 25-03-17 문구수정 --
 
                                     <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                 </div> 
                             </div>
                         </div>
-                        <!-- // [v4.0] 25-02-21 툴팁추가 -->
+                        <!-- // [v4.0] 25-02-21 툴팁추가 --
 
-                        <!--내역이 없는 경우-->    
+                        <!--내역이 없는 경우--   
                         <div class="phone">  
                             <span class="num"><em>14,070</em>원</span>
                         </div>
                     </div>
+                    -->
+                    <div class="board_box">
+                        <details class="wallet_toggle" open="">
+                            <summary>
+                                <span class="item">통신<em>1</em>
+                                    <div class="custom_tooltip up">
+                                        <div class="com_tooltip_type02 com_tooltip_type03">
+                                            <a href="#nolink" class="com_btn_info" role="button">
+                                                <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+                                            </a>
+                                        </div>
+                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                                            <div>
+                                                <p>
+                                                    결제 예정금액으로 총지출에는 포함되지 않습니다.<br>
+                                                    결제일 이후 카드/페이/현금 결제 내역에서 확인할 수 있습니다.
+                                                </p>
+                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </span>
+                                <a href="#nolink" class="num"><em>150,000</em>원</a>
+                            </summary>
+                            <div class="cont">
+                                <ul class="wallet_list">
+                                    <li>
+                                        <div class="box">
+                                            <i class="ico_bank F1AAAN0000"></i>
+                                            <div>
+                                                <strong class="org">KT</strong>
+                                            </div>
+                                            <strong class="num"><em>150,000</em>원</strong>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                    <!--// 25-04-08 마크업 변경 / 25-04-09 마크업 변경 -->
 
                     <!--금융지식-->
+                    <!-- 25-03-18 금융지식 삭제
                     <div class="finlit">
-                        <h2 class="h_tit01">금융지식</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">금융지식</a>
 
                         <div class="scroller">
                             <ul>
@@ -209,7 +383,7 @@
                                         <span class="hash">#금융지식</span>
                                     </a>
                                 </li>
-                                <!-- <li>
+                                !-- <li>
                                     <a href="#nolink">
                                         <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
                                         <strong>연금저축 및 IRP 가입하고<br>노후 자금 준비</strong>
@@ -236,10 +410,11 @@
                                         <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
                                         <span class="hash">#10대</span>
                                     </a>
-                                </li> -->
+                                </li> --
                             </ul>
                         </div>
                     </div>
+                    -->
                 </section>
 			</div>
 

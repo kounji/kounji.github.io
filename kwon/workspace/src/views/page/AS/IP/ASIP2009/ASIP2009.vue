@@ -546,13 +546,13 @@ export default {
         },
         // 링크 연결
 		connectLink(pageId) {
-            if(pageId == 'PDPD1001') {	// 맞춤상품추천
+            if(pageId == 'PDPD4001') {	// 맞춤상품추천
 				const config = {
 					name: pageId
 				}
                 commonService.movePage(config);
 				this.closeAll();
-            }else if(pageId == 'ANCA2201'){// NH콕마이카 화면 UI-AN-CA-1001 연결
+            }else if(pageId == 'ANCA4201'){// NH콕마이카 화면 UI-AN-CA-1001 연결
                 const config = {
 					name: pageId
 				}

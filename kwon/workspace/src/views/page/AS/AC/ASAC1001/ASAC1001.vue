@@ -56,7 +56,7 @@ ________________________________________________________________________
                     <ul class="list_type_02 arrow_gray">
                         <!-- 예금 -->
                         <li>
-                            <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASAC2001')">
+                            <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASAC4001')">
                                 <dl>
                                     <dt>
                                         <em>예금</em><span class="com_icon_num custom" v-show="acCnt > 0">{{acCnt | numberFilter}}</span>
@@ -73,7 +73,7 @@ ________________________________________________________________________
                         <!-- 투자 -->
                         <li>
                             <template v-if="ivCnt > 0">
-                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIV2001')">
+                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASIV4001')">
                                     <dl>
                                         <dt>
                                             <em>투자</em><span class="com_icon_num custom" v-show="ivCnt > 0">{{ivCnt | numberFilter}}</span>
@@ -176,7 +176,7 @@ ________________________________________________________________________
                         <!-- 대출 -->
                         <li>
                             <template v-if="lnCnt > 0">
-                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLN2001')">
+                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASLN4001')">
                                     <dl>
                                         <dt>
                                             <em>대출</em><span class="com_icon_num custom" v-show="lnCnt > 0">{{lnCnt | numberFilter}}</span>
@@ -207,7 +207,7 @@ ________________________________________________________________________
                         <!-- 카드 -->
                         <li>
                             <template v-if="cdCnt > 0">
-                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCD2001')">
+                                <a href="javascript:void(0)" role="button" @click.prevent="fn_movePage('ASCD4001')">
                                     <dl>
                                         <dt>
                                             <em>카드</em><span class="com_icon_num custom" v-show="cdCnt > 0">{{cdCnt | numberFilter}}</span>
@@ -359,7 +359,7 @@ ________________________________________________________________________
                 <!-- 현금(원화+외화) -->
                 <template v-if="(krwCnt > 0 || fcCnt > 0)">                    
                     <div class="com_box_type01 custom_list">
-                        <a href="javascript:void(0)" class="new_tit_area" role="button" @click.prevent="fn_movePage('ASOA2001')">
+                        <a href="javascript:void(0)" class="new_tit_area" role="button" @click.prevent="fn_movePage('ASOA4001')">
                             <div class="tit"><span>현금</span></div>
                             <span class="total_price ico_arrow">
                                 <em class="num">{{cshTtAm | numberFilter}}</em><em class="unit">원</em>
@@ -399,7 +399,7 @@ ________________________________________________________________________
                 <!-- 부동산 -->
                 <div class="com_box_type01 custom_list">
                     <template v-if="rlestList.length > 0">
-                        <a href="javascript:void(0)" role="button"  class="new_tit_area" @click.prevent="fn_movePage('ASRE2001')">
+                        <a href="javascript:void(0)" role="button"  class="new_tit_area" @click.prevent="fn_movePage('ASRE4001')">
                             <div class="tit">
                                 <span>부동산</span>
                             </div>
@@ -493,7 +493,7 @@ ________________________________________________________________________
                     </template>
                     <!-- 부동산(없을 때) -->
                     <template v-else>
-                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="openRlAssetPop('CORE2201')">
+                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="openRlAssetPop('CORE4201')">
                             <div class="tit"><span>부동산</span></div>
                             <span class="total_price ico_plus"><!-- 정보 없을떄  ico_plus / 있을때 ico_arrow --><!-- 2022-10-05 추가 -->
                                 시세 알아보기
@@ -544,7 +544,7 @@ ________________________________________________________________________
                 <!-- 금(gold) -->
                 <template v-if="goldAsetAm > 0">
                     <div class="com_box_type01 custom_list">
-                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA2001')">
+                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA4001')">
                             <div class="tit"><span>금(gold)</span></div>
                             <span class="total_price ico_arrow">
                                 <em class="num">{{goldAsetAm | numberFilter}}</em><em class="unit">원</em>
@@ -556,7 +556,7 @@ ________________________________________________________________________
                 <!-- 기타 -->
                 <template v-if="othrAstCnt > 0">
                     <div class="com_box_type01 custom_list">
-                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA2001')">   
+                        <a href="javascript:void(0)" role="button" class="new_tit_area" @click.prevent="fn_movePage('ASOA4001')">   
                             <div class="tit"><span>기타</span></div>
                             <span class="total_price ico_arrow">
                                 <em class="num">{{othrAstAm | numberFilter}}</em><em class="unit">원</em>
@@ -589,7 +589,7 @@ ________________________________________________________________________
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001' // 자산등록
     import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002' // 기관선택
 
-    import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201' // 부동산등록
+    import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201' // 부동산등록
     import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101' // 자동차등록
     import COOA2003 from '@/views/page/CO/OA/COOA2003/COOA2003' // 빌린돈
     
@@ -853,8 +853,8 @@ ________________________________________________________________________
             openRlAssetPop(popId) {
                 let popName = ""
                 switch(popId) {
-                    case 'CORE2201':
-                        popName = CORE2201	// 부동산
+                    case 'CORE4201':
+                        popName = CORE4201	// 부동산
                         break
                     case 'COCA2101':
                         popName = COCA2101	// 자동차

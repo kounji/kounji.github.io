@@ -17,28 +17,26 @@
     <div>
         <div class="lnb">
             <ul role="tablist">
-                <li :class="evtStsc == '2' ? 'on' : ''" @click="getData('2')"><a href="javascript:void(0);">전체</a></li>
-                <li :class="evtStsc == '1' ? 'on' : ''" @click="getData('1')"><a href="javascript:void(0);">진행중</a></li>
-                <li :class="evtStsc == '0' ? 'on' : ''" @click="getData('0')"><a href="javascript:void(0);">종료</a></li>
+                <li :class="evtStsc == '2' ? 'on' : ''" @click="getData('2')"><a href="javascript:void(0);" role="tab" :aria-selected="evtStsc == '2' ? 'true': 'false'" :title="evtStsc == '2' ? '선택됨': null"> 전체</a></li>
+                <li :class="evtStsc == '1' ? 'on' : ''" @click="getData('1')"><a href="javascript:void(0);" role="tab" :aria-selected="evtStsc == '1' ? 'true': 'false'" :title="evtStsc == '1' ? '선택됨': null"> 진행중</a></li>
+                <li :class="evtStsc == '0' ? 'on' : ''" @click="getData('0')"><a href="javascript:void(0);" role="tab" :aria-selected="evtStsc == '0' ? 'true': 'false'" :title="evtStsc == '0' ? '선택됨': null"> 종료</a></li>
             </ul>
         </div>
 
         <div id="content" class="renewal event_wrap">
             <div class="com_inner" v-if="eventList.length > 0">
                 <div class="event_list" v-for="(event, index) in eventList" :key="index" :id="'event_'+(index+1)" >
-                    <p>
-                        <a href="javascript:void(0);" @click="fn_detail(event.mydtEvtSqno, event.evtTpc, event.evtStsc)">
-                            <img :src="`/assets/images/event/banner/${event.evtBnnrImgnm}`" @error="emptyImg" :alt="event.evtTinm">
-                        </a>
-                    </p>
-                    <div>										
-                        <a href="javascript:void(0);" @click="fn_detail(event.mydtEvtSqno, event.evtTpc, event.evtStsc)">
-                            <span :class="event.uyn == '0' ? 'unuse' : event.evtStsc == '1' ? 'ing' : event.evtStsc == '3' ? 'pre' : 'end'">
-                                {{event.uyn == '0' ? '미사용' : event.evtStsc == '1' ? '진행중' : event.evtStsc == '3' ? '준비중' : '종료'}}
-                            </span> {{event.evtTinm}}
-                        </a>
-                        <p>{{event.stDt | dateFilter('YYYY.MM.DD')}} ~ {{event.edDt | dateFilter('YYYY.MM.DD')}}</p>
-                    </div>
+                    <a href="javascript:void(0);" role="button" @click="fn_detail(event.mydtEvtSqno, event.evtTpc, event.evtStsc)">
+                        <img :src="`/assets/images/event/banner/${event.evtBnnrImgnm}.png`" @error="emptyImg" alt="" />    
+                        <div>
+                            <p class="tit">
+                                <span :class="event.uyn == '0' ? 'unuse' : event.evtStsc == '1' ? 'ing' : event.evtStsc == '3' ? 'pre' : 'end'">{{event.uyn == '0' ? '미사용' : event.evtStsc == '1' ? '진행중' : event.evtStsc == '3' ? '준비중' : '종료'}} </span> 
+                                {{event.evtTinm}}
+                            </p>
+                            <p>{{event.stDt | dateFilter('YYYY.MM.DD')}} ~ {{event.edDt | dateFilter('YYYY.MM.DD')}}</p>
+                        </div>
+                    </a>
+
                 </div>
             </div>
 
@@ -65,8 +63,10 @@ import modalService from '@/service/modalService'
 
 import MREV2010 from '@/views/page/MR/EV/MREV2010/MREV2010'
 import MREV2011 from '@/views/page/MR/EV/MREV2011/MREV2011'
+import MREV2012 from '@/views/page/MR/EV/MREV2012/MREV2012'
 // import MREV2020 from '@/views/page/MR/EV/MREV2020/MREV2020'
 import MREV2030 from '@/views/page/MR/EV/MREV2030/MREV2030'
+import MREV2031 from '@/views/page/MR/EV/MREV2031/MREV2031'
 // import MREV2040 from '@/viewsdm/page/MR/EV/MREV2040/MREV2040'
 
 export default {
@@ -138,11 +138,15 @@ export default {
                     evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
                                     , '4' : 'MREV2030'    //퀴즈(콕마이데이터)
                                     , '10' : 'MREV2011'   //일반(추석 소원)
+                                    , '11' : 'MREV2012'   //일반(발렌타인)
+                                    , '12' : 'MREV2031'   //퀴즈(600만)
                     }
                 }else{
                     evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
                                     , '49' : 'MREV2030'    //퀴즈(콕마이데이터)
                                     , '50' : 'MREV2011'   //일반(추석 소원)
+                                    , '51' : 'MREV2012'   //일반(발렌타인)
+                                    , '60' : 'MREV2031'   //퀴즈(600만)
                     }
                 }
 
@@ -152,9 +156,17 @@ export default {
                     component = MREV2030
                 }else if(evtComponent[sqno] === 'MREV2011'){
                     component = MREV2011
+                }else if(evtComponent[sqno] === 'MREV2012'){
+                    component = MREV2012
+                }else if(evtComponent[sqno] === 'MREV2031'){
+                    component = MREV2031
                 }else{
-                    modalService.alert('이벤트 준비중')
-                    return;
+                    if(this.getUserInfo('mydtCusno') == "2000006853" && import.meta.env.VITE_ENV != 'R') { // 이벤트 팝업 노출 테스트 케이스: 조하천
+                        component = MREV2010
+                    } else {
+                        modalService.alert('이벤트 준비중')
+                        return;
+                    }   
                 }
 
                 let config = {

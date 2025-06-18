@@ -13,7 +13,7 @@
 -->
 <template>
 <div>
-  <div class="dimmed" style="display:block;" @click="close()"></div>
+  <div class="dimmed" style="display:block;"></div>
   <div class="popup_box">
     <div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display:block;">
         <div class="popup_header">
@@ -71,7 +71,7 @@
         </div>
         <div class="popup_footer">
           <div class="btn_full_box">
-            <a href="javascript:void(0);" class="btn btn_mint" @click='complete()'>{{isContentExist}}</a>
+            <a href="javascript:void(0);" class="btn btn_mint" :class="btnOnOff" :aria-disabled="btnOnOff == 'btn_off' ? true : false" @click='complete()'>{{isContentExist}}</a>
             <!-- btn_off 제거시 활성화 -->
           </div>
         </div>
@@ -112,7 +112,15 @@
     computed: {
           isContentExist(){
             return ( this.currentDataList.length > 0 && this.currentDataList[0].contentData.length>0 ) ? '선택완료' : '확인'
-          }
+          },
+          // 대출 미선택시 선택 버튼 비활성화
+          btnOnOff() {
+            if(this.selectGoodsList.length <= 0) return "btn_off"
+            for(let i = 0; i < this.selectGoodsList.length; i++) {
+              if(this.selectGoodsList[i].checked) return "btn_on"
+            }
+            return "btn_off"
+          },
     },
     methods: {
       initComponent() {
@@ -162,7 +170,8 @@
         if((evnt.target.offsetHeight + evnt.target.scrollTop) >= evnt.target.scrollHeight){
             console.log("scroll End")
         }
-      }
+      },
+      
     },
     created(){
     },

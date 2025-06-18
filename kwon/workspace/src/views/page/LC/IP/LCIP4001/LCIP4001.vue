@@ -105,21 +105,21 @@
                             </div>
                             <div class="barChartInfo">
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2002')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4002')">
                                         <i style="background:#de7cc1"></i>
                                         <span>카드</span>
                                         <span class="right"><em>{{stlXpsOut.cardXpsAm | numberFilter}}</em><span class="won">원</span></span>
                                     </a>
                                 </div>
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2003')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4003')">
                                         <i style="background:#e33596"></i>
                                         <span>페이</span>
                                         <span class="right"><em>{{stlXpsOut.payXpsAm | numberFilter}}</em><span class="won">원</span></span>
                                     </a>
                                 </div>
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2104')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4104')">
                                         <i style="background:#edb0db"></i>
                                         <span>현금</span>
                                         <span class="right"><em>{{stlXpsOut.cshXpsAm | numberFilter}}</em><span class="won">원</span></span>
@@ -178,7 +178,7 @@
                         <!--// 소비스타일 -->
 
                         <!-- 정기 지출 -->
-                        <div class="com_box_type01" v-if="fxtmList.length > 0">
+                        <div class="com_box_type01 bottomBtnType" v-if="fxtmList.length > 0 && showFlagYN3 == 'Y'">
                             <ul class="layoutBox wAuto rBtn">
                                 <li class="left">
                                     <strong class="titH3">다가올 지출 <em>{{fxtmCnt}}</em>건</strong>
@@ -188,14 +188,17 @@
                                 </li>
                             </ul>
                             <!-- 다가올 지출 목록 -->
-                            <ul class="expenListBox">
-                                <li v-for="(item, index) in fxtmList.filter((el,idx)=>idx < 3)" class="expenList" :key="`item1_${index}`">
+                            <ul class="expenListBox" :class="fxtmList.length > 3 ? 'botmBtn' : ''">
+                                <li v-for="(item, index) in fxtmList.filter((el,idx)=>idx < fxtmList.length)" class="expenList" :key="`item1_${index}`">
                                     <span :class="`expIcon ${item.xpsCtgrC}`"></span>
                                     <strong class="expName">{{item.prcMchtnm}}</strong>
                                     <span class="expTarget"><i>{{item.fxtmMmDd}}</i>{{item.wrsnm}}</span>
                                     <em class="expAmt">{{item.xpsAm | numberFilter}}원</em>
                                 </li>
                             </ul>
+                            <template v-if="fxtmList.length > 3">
+                                <button class="bottomBtn">더보기</button>
+                            </template>
                             <!--// 다가올 지출 목록 -->
                         </div>		
                         <!--// 정기 지출 -->
@@ -371,13 +374,14 @@ import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007' // 정기 지출
 import LCIP2011 from '@/views/page/LC/IP/LCIP2011/LCIP2011' // 자주 이용하는 가맹점
 import LCIP2012 from '@/views/page/LC/IP/LCIP2012/LCIP2012' // 또래 지출 비교
 import LCIP2002TAB from '@/components/category/LcIp2002Tab' // 유형별 지출
-// import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' // 목표등록
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 지출목표 등록
-import PDMY2033 from '@/views/page/PD/MY/PDMY2033/PDMY2033' // 지출목표(상세조회)
-import LCLE2002 from '@/views/page/LC/LE/LCLE4002/LCLE4002' // 카드 지출내역
-import LCLE2003 from '@/views/page/LC/LE/LCLE4003/LCLE4003' // 페이머니 지출내역
-import LCLE2104 from '@/views/page/LC/LE/LCLE4104/LCLE4104' // 현금 지출내역
-import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002' // 자산연결
+
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // v4 지출목표 등록   
+import PDMY4033 from '@/views/page/PD/MY/PDMY4033/PDMY4033' // v4 지출목표(상세조회) v.40
+
+import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002' // v4 카드 지출내역
+import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003' // v4 페이머니 지출내역
+import LCLE4104 from '@/views/page/LC/LE/LCLE4104/LCLE4104' // v4 현금 지출내역
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002' // v4 자산연결
 
 export default {
     name : "LCIP4001",
@@ -387,6 +391,7 @@ export default {
             cusnm: '',              // 고객명
             showFlagYN0: '',        // 최근 당월 지출내역이 있으면 'Y'
             showFlagYN2: '',        // 최근 2개월 지출내역이 있으면 'Y'
+            showFlagYN3: '',        // 정기지출 더보기 
             executeCnt: 0,          // 실행 count
 
             monPrev: false,         // 이전달 조회
@@ -481,7 +486,6 @@ export default {
         this.cusnm = this.getUserInfo("cusnm")
     },
     mounted() {
-        // console.log('LCIP2001 mounted')
         this.initComponent()
 
         //PFM로그 처리 화면접속이력 등록 POST
@@ -498,8 +502,6 @@ export default {
          * 데이터 조회
          */
         getData() {
-            console.log("getData===============================================")
-
             const config = {
                 url: '/lc/ip/01r02', // 인터페이스ID: IF-MOB-PFM-LCIP01R02, 서비스코드: PFMLCIP01R02
                 data: {
@@ -530,15 +532,15 @@ export default {
                     this.showFlagYN2 = 'Y'
                 }
 
-                this.stlXpsOut = response.stlXpsOut         // 결제수단별
-                this.xpsStyle  = response.xpsStyle          // 소비스타일   
-                this.xpsObt    = response.xpsObt            // 지출목표
-                this.xpsPeer   = response.xpsPeer           // 또래비교
-                this.fxtmList  = response.fxtmList          // 정기지출
+                this.stlXpsOut = response.stlXpsOut || ''        // 결제수단별
+                this.xpsStyle  = response.xpsStyle  || ''         // 소비스타일   
+                this.xpsObt    = response.xpsObt    || ''         // 지출목표
+                this.xpsPeer   = response.xpsPeer   || ''         // 또래비교
+                this.fxtmList  = response.fxtmList  || ''         // 정기지출
                 //this.ctgrList = response.ctgrList;
 
                 // 지출목표
-                this.xpsObtAm = this.xpsObt.xpsObtAm || 0                
+                this.xpsObtAm = response.xpsObt?.xpsObtAm || 0                
 
                 if (this.xpsPeer.peerXpsAm - this.xpsPeer.xpsAm < 0) {
                     this.peerIndDsc = 1
@@ -557,30 +559,46 @@ export default {
                     this.indDsc = 3
                 }
 
-                // 가맹점
-                this.amSize = response.mchtByAmtList.length;
-                this.cntSize = response.mchtByCntList.length;
+                this.ctgrList      = response.ctgrList      || [] // 카테고리 TOP4
+                this.mchtByAmtList = response.mchtByAmtList || [] // 거래치별 금액순 TOP3
+                this.mchtByCntList = response.mchtByCntList || [] // 거래처별 횟수순 TOP3
 
-                if (response.mchtByAmtList.length > 0) {
-                    let item = response.mchtByAmtList.find(el => el.xpsAmOrd === 1)
+                // 가맹점
+                // this.amSize  = response.mchtByAmtList?.length || 0
+                // this.cntSize = response.mchtByCntList?.length || 0  
+
+                this.amSize  = this.mchtByAmtList.length || 0
+                this.cntSize = this.mchtByCntList.length || 0
+
+                // if (response.mchtByAmtList.length > 0) {
+                //     let item = response.mchtByAmtList.find(el => el.xpsAmOrd === 1)
+                //     console.log('item ### ', item)
+                //     this.topXpsAmMchtnm = item.prcMchtnm
+                // }
+
+                if (this.mchtByAmtList.length > 0) {
+                    let item = this.mchtByAmtList.find(el => el.xpsAmOrd === 1)
                     console.log('item ### ', item)
                     this.topXpsAmMchtnm = item.prcMchtnm
-                }
+                }                
                 
                 // 정기지출
-                this.fxtmCnt = response.fxtmList.length;
+                this.fxtmCnt = response.fxtmList?.length || 0;
                 this.fxtmTtAm = 0;
                 for(let i=0 ; i < this.fxtmCnt; i++){
                     this.fxtmTtAm = this.fxtmTtAm + this.fxtmList[i].xpsAm;
                 }
 
+                // 정기지출건수가 3건 이상이면 'Y'
+                if (this.fxtmCnt <=3 ){
+                    this.showFlagYN3 = 'N'
+                }else{
+                    this.showFlagYN3 = 'Y'
+                }                
+
                 // this.ctgrList = this.fn_arrPad(response.ctgrList || [], 3) // 카테고리 TOP4
                 // this.mchtByAmtList = this.fn_arrPad(response.mchtByAmtList, 3) || [] // 거래치별 금액순 TOP3
                 // this.mchtByCntList = this.fn_arrPad(response.mchtByCntList, 3) || [] // 거래처별 횟수순 TOP3
-
-                this.ctgrList      = response.ctgrList      || [] // 카테고리 TOP4
-                this.mchtByAmtList = response.mchtByAmtList || [] // 거래치별 금액순 TOP3
-                this.mchtByCntList = response.mchtByCntList || [] // 거래처별 횟수순 TOP3
 
                 this.$nextTick(()=>{
                     this.initEvent()
@@ -725,7 +743,7 @@ export default {
             if (viewName == 'LCIP2007') compName = LCIP2007 // 정기지출          
             if (viewName == 'LCIP2002TAB') compName = LCIP2002TAB // 정기지출 리포트
             // if (viewName == 'PDMY2005') compName = PDMY2005 // 목표등록
-            if (viewName == 'PDMY2032') compName = PDMY2032 // 지출목표 등록
+            if (viewName == 'PDMY4032') compName = PDMY4032 // 지출목표 등록
 
             if (compName == null) {
                 modalService.alert("미적용")
@@ -740,7 +758,7 @@ export default {
             }
             modalService.openPopup(config).then(() => {
                 // if (viewName == 'PDMY2005') {
-                if (viewName == 'PDMY2032') {    
+                if (viewName == 'PDMY4032') {    
                     this.getData()
                 }
             })
@@ -764,7 +782,7 @@ export default {
         openPopTarget() {
             var param = { "stYm": this.basYm, "preXpsAm": this.xpsObt.xpsObtAm}
             const config = {
-                component: PDMY2033,
+                component: PDMY4033,
                 params : param
             }
             modalService.openPopup(config).then(() => {
@@ -785,7 +803,7 @@ export default {
         openPopPDMY() {
             const config = {
                 // component: PDMY2005
-                component: PDMY2032
+                component: PDMY4032
             }
             modalService.openPopup(config).then((response) => {
                 if (response == "reSelect") {
@@ -799,9 +817,9 @@ export default {
         openPopLCLE(viewName) {
             let compName;
 
-            if (viewName == 'LCLE2002') compName = LCLE2002 // 카드 
-            if (viewName == 'LCLE2003') compName = LCLE2003 // 페이
-            if (viewName == 'LCLE2104') compName = LCLE2104 // 현금
+            if (viewName == 'LCLE4002') compName = LCLE4002 // 카드 
+            if (viewName == 'LCLE4003') compName = LCLE4003 // 페이
+            if (viewName == 'LCLE4104') compName = LCLE4104 // 현금
 
             // selectList ALL 카드상세화면 호출시 전체카드로 표기용
             // inqDsc     ALL 기타상세화면 호출시 전체로 표기용
@@ -842,7 +860,7 @@ export default {
          */
         fn_openAssetPage() {
             const config = {
-                component: COAR2002,
+                component: COAR4002,            // v4
             }
             modalService.openPopup(config).then(() => {
                 //this.getData()
@@ -928,7 +946,7 @@ export default {
     components: {
         Page,
         FootersV2,
-        LcCategoryV2
+        //LcCategoryV2
     },
 }
 </script>

@@ -24,8 +24,8 @@
               <ul class="com_radio_type01">
                   <li v-for="(item, index) in options" :key="index" @click="buttonClick(item)">
                       <span class="btn_radio">
-                          <input type="radio" name="com_check" :id="'com_check'+index" :checked="(item.comnCId === selectVal)">
-                          <label :for="'com_check'+index">
+                          <input type="radio" name="com_check" :id="'com_check'+index" :checked="(item.comnCId === selectVal)" aria-hidden="true">
+                          <label :for="'com_check'+index" role="radio" :aria-checked="(item.comnCId === selectVal) ? true : false">
                               <component
                                 :is="renderer"
                                 :data="item"

@@ -9,7 +9,7 @@
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
 * 2021-08-19              CS516033              최초작성
-* 2025-01-10              CS541015              고도화 파일명, UI변경 및 고도화개발(PDMY2025.vue -> PDMY4025.vue)
+* 2025-01-10              CS541015              고도화 파일명, UI변경 및 고도화개발(PDMY4025.vue -> PDMY4025.vue)
 *************************************************************************/
 -->
 <template>
@@ -20,11 +20,11 @@
 
 		<div class="popup_content com_bg_type00">
 			<div class="com_inner">
-				<strong class="titH1">나의 워라벨, 설레는 여행!</strong>
+				<strong class="titH1">나의 워라밸, 설레는 여행!</strong>
 
 				<div class="com_inputarea_type01">					
 					<div class="com_input_type01">
-                        <input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목">
+                        <input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목" @input="inputCtr($event)">
 						<label for="obtnm"><span class="txt_label_x">목표 제목</span></label>
 						<div class="del_txt">
 							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
@@ -33,9 +33,9 @@
 
                     <!-- 여행지 검색 -->
 					<div class="com_input_type01">
-						<label for="PDMY2025_txt01"></label>
-						<input type="search" id="PDMY2025_txt01" :value="PDMY2025_srchKwrd" ref="PDMY2025_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openTravelPopup('3', trvDsnC)" @keyup.delete="fn_infoClear" placeholder="여행지 검색" title="여행지 검색">
-                        <a class="com_btn_delete" v-show="PDMY2025_srchKwrd.length>0" @click.prevent="del('PDMY2025_srchKwrd')" href="javascript:void(0);"><span class="blind">삭제</span></a>
+						<label for="PDMY4025_txt01"></label>
+						<input type="search" id="PDMY4025_txt01" :value="PDMY4025_srchKwrd" ref="PDMY4025_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openTravelPopup('3', trvDsnC)" @keyup.delete="fn_infoClear" placeholder="여행지 검색" title="여행지 검색">
+                        <a class="com_btn_delete" v-show="PDMY4025_srchKwrd.length>0" @click.prevent="del('PDMY4025_srchKwrd')" href="javascript:void(0);"><span class="blind">삭제</span></a>
                         <a class="com_btn_search" @click.prevent="fn_openTravelPopup('3', trvDsnC)" href="javascript:void(0);"><span class="blind">검색</span></a>
 					</div>
 					<!-- //여행지 검색 -->
@@ -250,7 +250,7 @@
                 trvPrdDscNm       : '',   // 여행기간구분코드명
                 totTrvAirfare     : 0,    // 왕복항공료 합계
                 totTrvCost        : 0,    // 1일경비 합계
-                PDMY2025_srchKwrd : '',   // 여행지 검색어
+                PDMY4025_srchKwrd : '',   // 여행지 검색어
                 foc_fncObtAm      : false,// 목표금액 focus YN
                 foc_obtDt         : false,// 목표기간 focus YN
                 dis_fncObtAm      : true, // 목표금액 disabled여부
@@ -366,7 +366,7 @@
                     this.pers       = response.pers       // 여행인원수
                     this.trvAirfare = response.trvAirfare // 왕복항공료
                     this.trvCost    = response.trvCost    // 1일경비
-                    this.PDMY2025_srchKwrd = response.trvDsnNm
+                    this.PDMY4025_srchKwrd = response.trvDsnNm
                     
                     this.getCurcData();
 				})
@@ -394,7 +394,7 @@
                     this.trvPrdDsc = this.respInfo.trvPrdDsc
                     this.trvPrdDscNm = this.respInfo.trvPrdDscNm
                     this.pers = this.respInfo.pers
-                    this.PDMY2025_srchKwrd = this.respInfo.trvDsnNm
+                    this.PDMY4025_srchKwrd = this.respInfo.trvDsnNm
                     this.fncObtAm = keyupNumFormat(this.respInfo.fncObtAm)
                     this.obtDt = dateFormat(this.respInfo.obtDt, 'YYYY-MM-DD')
                     this.obtDtLabel = dateFormat(this.respInfo.obtDt, "YYYY년 MM월 DD일")
@@ -474,7 +474,7 @@
                         this.trvDsnNm = response.comnCExpl
                         this.trvAirfare = response.refCntn1
                         this.trvCost = response.refCntn2
-                        this.PDMY2025_srchKwrd = this.trvDsnNm
+                        this.PDMY4025_srchKwrd = this.trvDsnNm
                         
                         this.getCurcData();
                     }
@@ -494,10 +494,10 @@
             },
             del(type) {
 
-                if(type === 'PDMY2025_srchKwrd') {
+                if(type === 'PDMY4025_srchKwrd') {
                     this.trvDsnC = ''
                     this.trvDsnNm = ''
-                    this.PDMY2025_srchKwrd = ''
+                    this.PDMY4025_srchKwrd = ''
                     this.trvAirfare = 0
                     this.trvCost = 0
                     this.totTrvAirfare = 0
@@ -534,10 +534,10 @@
             fn_checkWord(event, maxByte) {
                 let rtnObj = checkWord(event.target.value, maxByte)
 
-                if(rtnObj.flag) {this.$refs.PDMY2025_srchKwrd.blur()}   // 알럿 중복 방지
+                if(rtnObj.flag) {this.$refs.PDMY4025_srchKwrd.blur()}   // 알럿 중복 방지
 
                 event.target.value = rtnObj.value
-                this.PDMY2025_srchKwrd = event.target.value
+                this.PDMY4025_srchKwrd = event.target.value
             },
             addComma() {
 
@@ -969,6 +969,11 @@
                     division = Math.pow(unit, ++index)
                 }
                 return (answer + "원").replace(" 원", "원")
+            },
+            // 목표명 입력값 제어
+            inputCtr(e) {
+                const inputStr = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s_~!@#$%^&*()\-–—+=;,.<>\[\]{}|?\\/]/g
+			    this.obtnm = e.target.value.replace(inputStr, '')
             }
         }
     }

@@ -17,7 +17,7 @@
 	<!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->

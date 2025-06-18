@@ -57,137 +57,107 @@
 			"componentPath": "views/page/PD/MY/PDMY2001/PDMY2001.vue"
 		},
 		{
-			"title": "나의자산",
+			"title": "전체자산",
+			"desc" : "나의자산 > 자산 > 전체 메인",
+			"name": "ASTA2001",
+			"path": "/ASTA2001",
+			"componentPath": "views/page/AS/TA/ASTA2001/ASTA2001.vue"
+		},
+		{
+			"title": "자산현황",
 			"desc" : "나의자산 > 자산 > 메인(투자)",
 			"name": "ASIV2001",
 			"path": "/ASIV2001",
+			"disableHistory": false,
 			"componentPath": "views/page/AS/IV/ASIV2001/ASIV2001.vue"
 		},
 		{
-			"title": "나의자산",
-			"name": "ASLN2001",
-			"path": "/ASLN2001",
-			"desc" : "나의자산 > 부채 > 메인(대출)",
-			"componentPath": "views/page/AS/LN/ASLN2001/ASLN2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASLN1102",
-			"path": "/ASLN1102",
-			"desc" : "나의자산 > 부채 > 메인(자동차)",
-			"componentPath": "views/page/AS/LN/ASLN1102/ASLN1102.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASCD2001",
-			"path": "/ASCD2001",
-			"desc" : "나의자산 > 부채 > 메인(카드)",
-			"componentPath": "views/page/AS/CD/ASCD2001/ASCD2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASLN1105",
-			"path": "/ASLN1105",
-			"desc" : "나의자산 > 부채 > 메인(할부금융)",
-			"componentPath": "views/page/AS/LN/ASLN1105/ASLN1105.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASLN1106",
-			"path": "/ASLN1106",
-			"desc" : "나의자산 > 부채 > 메인(리스)",
-			"componentPath": "views/page/AS/LN/ASLN1106/ASLN1106.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASLN1107",
-			"path": "/ASLN1107",
-			"desc" : "나의자산 > 부채 > 메인(빌린돈)",
-			"componentPath": "views/page/AS/LN/ASLN1107/ASLN1107.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASIT2001",
-			"path": "/ASIT2001",
-			"desc" : "나의자산 > 부채 > 메인(할부금융)",
-			"componentPath": "views/page/AS/IT/ASIT2001/ASIT2001.vue"
-		},
-        {
-			"title": "나의자산",
-			"name": "ASCL2001",
-			"path": "/ASCL2001",
-			"desc" : "나의자산 > 부채 > 메인(자동차)",
-			"componentPath": "/views/page/AS/CL/ASCL2001/ASCL2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASLS2001",
-			"path": "/ASLS2001",
-			"desc" : "나의자산 > 부채 > 메인(리스)",
-			"componentPath": "views/page/AS/LS/ASLS2001/ASLS2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASBR2001",
-			"path": "/ASBR2001",
-			"desc" : "나의자산 > 부채 > 메인(빌린돈)",
-			"componentPath": "views/page/AS/BR/ASBR2001/ASBR2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"name": "ASCA2001",
-			"path": "/ASCA2001",
-			"desc" : "나의자산 > 자산 > 메인(자동차)",
-			"componentPath": "views/page/AS/CA/ASCA2001/ASCA2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 예금(메인)",
-			"name": "ASAC2001",
-			"path": "/ASAC2001",
-			"componentPath": "views/page/AS/AC/ASAC2001/ASAC2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 포인트(메인)",
-			"name": "ASAC1110",
-			"path": "/ASAC1110",
-			"componentPath": "views/page/AS/AC/ASAC1110/ASAC1110.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 포인트(메인)",
-			"name": "ASPT2001",
-			"path": "/ASPT2001",
-			"componentPath": "views/page/AS/PT/ASPT2001/ASPT2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 전체(메인)",
-			"name": "ASAC1001",
-			"path": "/ASAC1001",
-			"componentPath": "views/page/AS/AC/ASAC1001/ASAC1001.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 예금 > 계좌별 잔액 예측 리포트",
-			"name": "ASAC1003",
-			"path": "/ASAC1003",
-			"componentPath": "views/page/AS/AC/ASAC1003/ASAC1003.vue"
-		},
-		{
-			"title": "연금",
+			"title": "자산현황",
 			"desc" : "자산현황 > 연금",
 			"name": "ASPS2001",
 			"path": "/ASPS2001",
+			"disableHistory": false,
 			"componentPath": "views/page/AS/PS/ASPS2001/ASPS2001.vue"
+		},		
+		{
+			"title": "자산현황",
+			"desc" : "나의자산 > 자산 > 포인트(메인)",
+			"name": "ASPT2001",
+			"path": "/ASPT2001",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/PT/ASPT2001/ASPT2001.vue"
+		},	
+		{
+			"title": "자산현황",
+			"desc" : "나의자산 > 자산 > 메인(보험)",
+			"name": "ASIS2001",
+			"path": "/ASIS2001",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/IS/ASIS2001/ASIS2001.vue"
 		},
 		{
-			"title": "나의자산",
+			"title": "자산현황",
+			"desc" : "나의자산 > 자산 > 부동산 메인(상세)",
+			"name": "ASRE2001",
+			"path": "/ASRE2001",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/RE/ASRE2001/ASRE2001.vue"
+		},
+		{
+			"title": "자산현황",
+			"name": "ASCA2001",
+			"path": "/ASCA2001",
+			"desc" : "나의자산 > 자산 > 메인(자동차)",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/CA/ASCA2001/ASCA2001.vue"
+		},
+		{
+			"title": "자산현황",
 			"desc" : "나의자산 > 자산 > 기타(메인)",
 			"name": "ASOA2001",
 			"path": "/ASOA2001",
+			"disableHistory": false,
 			"componentPath": "views/page/AS/OA/ASOA2001/ASOA2001.vue"
+		},
+		{
+			"title": "자산현황",
+			"name": "ASCD2001",
+			"path": "/ASCD2001",
+			"desc" : "나의자산 > 부채 > 메인(카드)",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/CD/ASCD2001/ASCD2001.vue"
+		},
+		{
+			"title": "자산현황",
+			"name": "ASIT2001",
+			"path": "/ASIT2001",
+			"desc" : "나의자산 > 부채 > 메인(할부금융)",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/IT/ASIT2001/ASIT2001.vue"
+		},
+        {
+			"title": "자산현황",
+			"name": "ASCL2001",
+			"path": "/ASCL2001",
+			"desc" : "나의자산 > 부채 > 메인(자동차)",
+			"disableHistory": false,
+			"componentPath": "/views/page/AS/CL/ASCL2001/ASCL2001.vue"
+		},
+		{
+			"title": "자산현황",
+			"name": "ASLS2001",
+			"path": "/ASLS2001",
+			"desc" : "나의자산 > 부채 > 메인(리스)",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/LS/ASLS2001/ASLS2001.vue"
+		},
+		{
+			"title": "자산현황",
+			"name": "ASBR2001",
+			"path": "/ASBR2001",
+			"desc" : "나의자산 > 부채 > 메인(빌린돈)",
+			"disableHistory": false,
+			"componentPath": "views/page/AS/BR/ASBR2001/ASBR2001.vue"
 		},
 		{
 			"title": "나의자산",
@@ -195,13 +165,6 @@
 			"name": "ASIP2001",
 			"path": "/ASIP2001",
 			"componentPath": "views/page/AS/IP/ASIP2001/ASIP2001.vue"
-		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 전체 메인",
-			"name": "ASTA2001",
-			"path": "/ASTA2001",
-			"componentPath": "views/page/AS/TA/ASTA2001/ASTA2001.vue"
 		},
 		{
 			"title": "지출",
@@ -310,13 +273,7 @@
 			"path": "/ANCA2201",
 			"componentPath": "views/page/AN/CA/ANCA2201/ANCA2201.vue"
 		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 부동산 메인(상세)",
-			"name": "ASRE2001",
-			"path": "/ASRE2001",
-			"componentPath": "views/page/AS/RE/ASRE2001/ASRE2001.vue"
-		},
+
 		{
 			"title": "제휴서비스",
 			"desc" : "제휴서비스 > 귀농귀촌 > 귀농귀촌 메인",
@@ -381,13 +338,7 @@
 			"path": "/ASIN1101",
 			"componentPath": "views/page/AS/IN/ASIN1101/ASIN1101.vue"
 		},
-		{
-			"title": "나의자산",
-			"desc" : "나의자산 > 자산 > 메인(보험)",
-			"name": "ASIS2001",
-			"path": "/ASIS2001",
-			"componentPath": "views/page/AS/IS/ASIS2001/ASIS2001.vue"
-		},
+
 		{
 			"title": "금융생활",
 			"desc" : "금융생활 > 나의 세금/사회보험료",
@@ -515,7 +466,49 @@
 			"path": "/EXCOAS0007",
 			"disableHistory": true,
 			"componentPath": "views/page/XX/CO/AS/COAS0007/COAS0007.vue"
-		}
+		},
+		{
+            "title": "마이데이터 가입·조회 및 관리",
+            "desc" : "더보기 > 타기관 마이데이터 관리 > 마이데이터 가입·조회 및 관리",
+            "name": "COOR2001",
+            "path": "/COOR2001",
+            "componentPath": "views/page/CO/OR/COOR2001/COOR2001.vue"
+        },
+		{
+            "title": "전송요구내역 통합조회 결과",
+            "desc" : "더보기>타기관 마이데이터 관리>마이데이터 가입·조회 및 관리>서비스 이용현황>전송요구내역 통합조회 결과",
+            "name": "COOR2005",
+            "path": "/COOR2005",
+            "componentPath": "views/page/CO/OR/COOR2005/COOR2005.vue"
+        },
+		{
+            "title": "전송요구내역 통합조회 미응답 목록",
+            "desc" : "더보기>타기관 마이데이터 관리>마이데이터 가입·조회 및 관리>서비스 이용현황>미응답 목록",
+            "name": "COOR2007",
+            "path": "/COOR2007",
+            "componentPath": "views/page/CO/OR/COOR2007/COOR2007.vue"
+        },
+		{
+			"title": "제3자 정보제공 조회 및 관리",
+			"desc" : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리",
+			"name": "COOR2101",
+			"path": "/COOR2101",
+			"componentPath": "views/page/CO/OR/COOR2101/COOR2101.vue"
+        },
+		{
+			"title": "제3자 제공 동의내역 통합조회",
+			"desc" : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리>제3자 제공 동의내역 통합조회>동의내역",
+			"name": "COOR2104",
+			"path": "/COOR2104",
+			"componentPath": "views/page/CO/OR/COOR2104/COOR2104.vue"
+        },
+		{
+			"title": "제3자 정보제공 조회 및 관리",
+			"desc" : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리>제3자 제공 동의내역 통합조회>철회내역",
+			"name": "COOR2105",
+			"path": "/COOR2105",
+			"componentPath": "views/page/CO/OR/COOR2105/COOR2105.vue"
+        }
 	],
 	"sample": [
 		{

@@ -46,15 +46,16 @@ ________________________________________________________________________
 							</div>
 						</div>
 
-						<p class="txt">아직 가입하지 않으셨네요. <a href="javascript:void(0);" class="btns" @click.prevent="fn_regService">연결</a></p>
+						<p class="txt">아직 가입하지 않으셨네요. <a href="javascript:void(0);" class="btns" @click.prevent="fn_openPopup('COAS4001')">가입</a></p>
 					</div>
 
 					<div class="board_box">
-						<lottie-animation :animationData="require('@/assets_v40/images/lottie/plz_asset_join.json')" :loop="true" :autoPlay="true" aria-hidden="true" class="plz_asset_join" ></lottie-animation>
+						<lottie-animation :animationData="require('@/assets_v40/images/lottie/plz_asset_join_2.json')" :loop="true" :autoPlay="true" aria-hidden="true" class="plz_asset_join" ></lottie-animation>
+						<p class="blind">NH콕마이데이터(자산관리) 이용 하면 자산변동 내역을 확인할 수 있어요.</p>
 					</div>
 
 					<div class="mystyle">
-						<a href="javascript:void(0);" @click.prevent="fn_regService"><em>한번에 등록</em>하고 쉽게 관리해보세요</a>
+						<a href="javascript:void(0);" @click.prevent="fn_openPopup('COAS4001')"><em>효율적인 </em>자산관리 지금 시작하기</a>
 					</div>
 				</div>
 
@@ -62,32 +63,32 @@ ________________________________________________________________________
 				<div class="plz_join">
 					<div class="board_box">
 						<h2>금융자산</h2>
-						<p>나는 얼마의 자산을<br>가지고 있을까요?</p>
-						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_regService"><span class="icon_line_right">흩어진 자산을 모아보세요.</span></a>
+						<p>든든한 친구같은 금융자산,<br>얼마나 모였을까요?</p>
+						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_openPopup('COAS4001')"><span class="icon_line_right">NH콕마이데이터(자산관리)시작하기</span></a>
 					</div>
 
 					<div class="board_box">
 						<h2>실물자산</h2>
-						<p>우리 집과 내차<br>시세를 알아보세요.</p>
-						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_regService"><span class="icon_line_right">시세에 맞추어 관리해 보세요.</span></a>
+						<p>우리 집 실거래가, 관심 부동산<br>매매시세, 내 차 시세까지 한번에 관리</p>
+						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_openPopup('COAS4001')"><span class="icon_line_right">가입하고 시세맞춤 관리 시작하기</span></a>
 					</div>
 
 					<div class="board_box">
 						<h2>기타자산</h2>
-						<p>흩어져 있는 내 자산<br>한번에 모아볼까요?</p>
-						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_regService"><span class="icon_line_right">똑똑한 자산관리 시작해 보세요.</span></a>
+						<p>금, 외화, 현금, 농기계 모두 등록하면<br>자산진단이 더 정확해져요.</p>
+						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_openPopup('COAS4001')"><span class="icon_line_right">가입하고 자산진단 받아보기</span></a>
 					</div>
 
 					<div class="board_box">
 						<h2>부채</h2>
-						<p>결제 예정인 돈,<br>잊어서는 안되겠죠?</p>
-						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_regService"><span class="icon_line_right">항목별로 관리할 수 있어요.</span></a>
+						<p>부채는 잘 관리할 수록<br>안정된 경제생활을 할 수 있어요.</p>
+						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_openPopup('COAS4001')"><span class="icon_line_right">가입하고 체계적으로 관리하기</span></a>
 					</div>
 
 					<div class="board_box">
-						<h2>보험료 월 납입료</h2>
-						<p>이번달 보험료<br>잊지 않고 챙기세요.</p>
-						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_regService"><span class="icon_line_right">보장내역도 바로 확인 가능해요.</span></a>
+						<h2>월 납입 보험료</h2>
+						<p>흩어진 보험, 한곳에모아<br>한눈에 관리해보세요.</p>
+						<a href="javascript:void(0);" class="btns md gray" @click.prevent="fn_openPopup('COAS4001')"><span class="icon_line_right">가입하고 보험 보장내역까지 확인하기</span></a>
 					</div>
 				</div>
 
@@ -96,16 +97,16 @@ ________________________________________________________________________
 					<h2 class="h_tit01">추천 서비스</h2>
 
 					<div class="board_box_wrap banner">
-						<a href="javascript:void(0);" class="board_box staple1">
+						<a href="javascript:void(0);" class="board_box staple1" @click.prevent="fn_openPopup('COTP0004')">
 							<em>자금 흐름<br>진단</em>
 						</a>
-						<a href="javascript:void(0);" class="board_box staple2">
+						<a href="javascript:void(0);" class="board_box staple2" @click.prevent="fn_movePage('LCTA4U01')"> 
 							<em>버킷리스트<br>만들기</em>
 						</a>
-						<a href="javascript:void(0);" class="board_box staple3">
+						<a href="javascript:void(0);" class="board_box staple3" @click.prevent="fn_movePage('PDTA4U01')"> 
 							<em>안정적인<br>투자전략!</em>
 						</a>
-						<a href="javascript:void(0);" class="board_box staple4">
+						<a href="javascript:void(0);" class="board_box staple4" @click.prevent="fn_openPopup('COTP0004')"> 
 							<em>내 또래들은<br>얼만큼 쓸까?</em>
 						</a>
 					</div>
@@ -116,15 +117,14 @@ ________________________________________________________________________
 				</div>
 
 				<!--금융지식-->
-				<div class="finlit">
-					<h2 class="h_tit01">금융지식</h2>
-					<a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')"><span class="blind">더보기</span></a>
+				<div class="finlit" v-if="financeKlList.length > 0 && financeKlList">
+					<a href="javascript:void(0);" class="h_tit01" @click.prevent="fn_movePage('COCT4001')">금융지식</a>
 
 					<div class="scroller">
 						<ul>
 							<li v-for="(item, idx) in financeKlList" :key="idx">
-								<a href="javascript:void(0);">
-									<img :src="item.thmnlImgUrlnm" alt="" @error="emptyImg">
+								<a href="javascript:void(0);" @click.prevent="fn_openFncKlDtl(item.cntzId)">
+									<img :src="`/assets/images/fin_cont/${item.thmnlImgUrlnm}`" alt="" @error="emptyImg">
 									<strong>{{item.cntzTinm}}</strong>
 									<span class="hash" v-if="!!item.rcmKwrdCntn">#{{item.rcmKwrdCntn}}</span>
 								</a>
@@ -134,11 +134,7 @@ ________________________________________________________________________
 				</div>
 
 				<div class="bottom">
-					<a href="javascript:void(0);" class="btn_asset_edit">
-						새로워진 NH콕뱅크 자산홈
-						<strong>관심자산별로 구성해보세요</strong>
-					</a>
-					<a href="javascript:void(0);" class="btn_connect left" @click.prevent="fn_regService">NH콕마이데이터(자산관리) 가입</a><!-- 25-03-11 문구수정 -->
+					<a href="javascript:void(0);" class="btn_connect left" @click.prevent="fn_openPopup('COAS4001')">NH콕마이데이터(자산관리) 가입</a><!-- 25-03-11 문구수정 -->
 				</div>
 				
 			</section>
@@ -159,7 +155,9 @@ import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
 import LottieAnimation from 'lottie-web-vue' 
 
-import COGU4001 from '@/views/page/CO/GU/COGU4001/COGU4001'
+import COTP0004 from '@/views/page/CO/TP/COTP0004/COTP0004'
+import COAS4001 from '@/views/page/CO/AS/COAS4001/COAS4001'
+import COCT4011 from '@/views/page/CO/CT/COCT4011/COCT4011'
 
 export default {
 	name : "ASTA4U01",
@@ -183,44 +181,62 @@ export default {
 		apiService.pfmLogSend(this.$options.name)
 	},
 	methods: {        
-		initComponent() {
-			Promise.all[
-				this.getFinanceKlList()
-			]
+		initComponent() {			
+			this.getFinanceKlList()
 		},
 
-		getFinanceKlList() {
-			this.getFinanInfo('ASTA4001', 4, false).then(response => {
-                this.financeKlList = response
-                // *출력값
-                // -썸네일이미지URL명  = thmnlImgUrlnm
-                // -글번호 = cntzId
-                // -컨텐츠제목 = cntzTinm
-                // -추천연령 = asetAgLrgDsnm
-            })
+		// 금융 지식 데이터 조회 
+		getFinanceKlList() {       
+			const config = {
+			url: '/co/ct/01r03',
+			data: {
+					cntzTpc        : "N", // 화면모드(U 둘러보기/N 일반모드/S 큰글씨/C 청소년) >> 미가입자라하더라도 일반모드의 금융지식 노출
+					scrnPsnEstCntn : "ASTA4001",  // 게시위치
+					rowCnt         : 4,
+					ageDsc         : "",          // 연령별구분여부코드
+					}
+			};
+
+        	apiService.call(config).then(response => {
+          		this.financeKlList = response.klList
+        	})
 		},
+
+		// 금융지식 컨텐츠 상세 팝업오픈
+		fn_openFncKlDtl(cntzId) {
+			const config = {
+				component: COCT4011,
+				params: cntzId
+			}
+			modalService.openPopup(config)
+		},
+		
 		emptyImg(e) {
 			e.target.src = new URL("@/assets_v40/images/event/ev_noimg.png", import.meta.url).href
 		},
-		/**
-		 * 화면이동
-		 */
+		// 화면이동
 		fn_movePage(pageId) {
 			const config = {
 				name: pageId
 			}
 			commonService.movePage(config)
 		},
-		/**
-		 * 서비스 가입 팝업
-		 */
-		fn_regService() {
+		
+ 		// 팝업 호출
+		fn_openPopup(compName) {
+			let compenent = ''
+			if(compName == "COAS4001") {  // 서비스 가입 약관 팝업
+				compenent = COAS4001	
+			} else if(compName == "COTP0004") { // 미가입자 가입필요 팝업
+				compenent = COTP0004	
+			} 
+			
 			const config = {
-				component: COGU4001
+				component: compenent,
 			}
 			modalService.openPopup(config)
-		},
-		
+		}, 
+
 	},
 	components : {
 		Page,

@@ -30,699 +30,788 @@
 
 			<div id="content">
 				<section class="assets_main">
-                    <!--배너-->
-                    <p class="top_banner">
-                        <a href="#nolink">작은 시작이 만드는 큰 행복, 자산관리 시작하기</a>
-                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
-                    </p>
+					<!--배너-->
+					<p class="top_banner">
+						<a href="#nolink">작은 시작이 만드는 큰 행복, 자산관리 시작하기</a>
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</p>
 
-                    <!--update-->
-                    <div class="update">
-                        <span>2025.07.31 15:20</span>
-                        <button type="button" class="btn_update"><span class="blind">업데이트</span></button>
-                    </div>
+					<!--update-->
+					<div class="update">
+						<span>2025.07.31 15:20</span>
+						<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
+					</div>
 
-                    <!--순자산-->
-                    <div class="assets_net up"><!--늘은경우 up,줄은 경우 down class 추가, 동일한 경우 클래스 없음 -->
-                        <div class="outline">
-                            <h2>순자산</h2>
-                            <div class="custom_tooltip up">
-                                <div class="com_tooltip_type02 com_tooltip_type03">
-                                    <a href="#nolink" class="com_btn_info" role="button">
-                                        <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
-                                    </a>
-                                </div>
-                                <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                    <div>
-                                        <h3 class="h_tit03">순자산이란?</h3>
-                                        <p>보유한 금융/실물/기타자산에 부채를 제외한 실제 자산을 의미해요.</p>
-                                        
-                                        <ul class="bl_dot_list">
-                                            <li>금융자산: 예금,투자,연금,페이/포인트</li> 
-                                            <li>실물자산: 부동산 매매가 또는 보증금, 자동차 현재 시세</li>
-                                            <li>기타자산: 직접 등록한 현금,외화,금,기타자산</li>
-                                            <li>부채: 대출,할부금융,카드결제예정금액 등</li>
-                                        </ul>
-                                        <p>자산 증감은 전월말 보유 자산과 현재 자산을 비교했어요.</p>
-                                        
-    
-                                        <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                    </div> 
-                                </div>
-                            </div>
-                            <!--25-02-10 금액숨김 수정--->
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
-                                <label for="sum_view_01" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="hide">쉿! 비밀이에요.</span><!--//25-02-24 문구 수정-->
-                                    <span class="show">1,952,692,372원</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!--25-02-10 금액숨김 수정-->
-                        <div class="board_box">
-                            <!--25-02-24 문구수정 / 25-03-11 툴팁 추가 -->
-                            <div class="analysis">
-                                <span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>늘었어요.</em>
-                                <div class="custom_tooltip">
-                                    <div class="com_tooltip_type02 com_tooltip_type03">
-                                        
-                                        <a href="#nolink" class="com_btn_info" role="button">
-                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
-                                        </a>
-                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                            <div>
-                                                <ul class="dotted_list">
-                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
-                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
-                                                </ul>
-                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            
-                            <!--동일한 경우
-                            <div class="analysis"> 
-                                <span class="text">지난달과</span> <em>동일해요.</em>
-                                <div class="custom_tooltip">
-                                    <div class="com_tooltip_type02 com_tooltip_type03">
-                                        
-                                        <a href="#nolink" class="com_btn_info" role="button">
-                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
-                                        </a>
-                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                            <div>
-                                                <ul class="dotted_list">
-                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
-                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
-                                                </ul>
-                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
+					<!--순자산-->
+					<div class="assets_net up"><!--늘은경우 up,줄은 경우 down class 추가, 동일한 경우 클래스 없음 -->
+						<div class="outline">
+							<h2>순자산</h2>
+							<div class="custom_tooltip up">
+								<div class="com_tooltip_type02 com_tooltip_type03">
+									<a href="#nolink" class="com_btn_info" role="button">
+										<em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+									</a>
+								</div>
+								<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+									<div>
+										<h3 class="h_tit03">순자산이란?</h3>
+										<p>보유한 금융/실물/기타자산에 부채를 제외한 실제 자산을 의미해요.</p>
+										
+										<ul class="bl_dot_list"> <!--[v4.0] 2025-04-04 띄어쓰기 수정 -->
+											<li>금융자산 : 예금, 투자, 연금, 페이/포인트</li>
+											<li>실물자산 : 부동산 매매가 또는 보증금, 자동차 현재 시세</li>
+											<li>기타자산 : 직접 등록한 현금, 외화, 금, 기타자산</li>
+											<li>부채 : 대출, 할부금융, 카드결제예정금액 등</li>
+										</ul>
+										<p>자산 증감은 전월말 보유 자산과 현재 자산을 비교했어요.</p>
+	
+										<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+									</div> 
+								</div>
+							</div>
+							<!--25-02-10 금액숨김 수정--->
+							<!--[v4.0] #접근성# 마크업수정 -->
+							<!--
+							<div class="toggle_money">
+								<input type="checkbox" name="" id="sum_view_01" aira-hidden="true" checked role="none">
+								<label for="sum_view_01" class="btns" role="button">
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</label>
+								<div class="sum">
+									<span class="hide">쉿! 비밀이에요.</span><!--//25-02-24 문구 수정--
+									<span class="show">1,952,692,372원</span>
+								</div>
+							</div>
+							-->
+							<div class="toggle_money">
+								<div class="sum">
+									<span class="hide">쉿! 비밀이에요.</span>
+									<span class="show">1,952,692,372원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+							<!--//[v4.0] #접근성# 마크업수정 -->
+						</div>
+						
+						<!--25-02-10 금액숨김 수정-->
+						<div class="board_box">
+							<!--25-02-24 문구수정 / 25-03-11 툴팁 추가 -->
+							<div class="analysis">
+								<span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>늘었어요.</em>
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												<ul class="dotted_list">
+													<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+													<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+												</ul>
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+							<!--동일한 경우
+							<div class="analysis"> 
+								<span class="text">지난달과</span> <em>동일해요.</em>
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												<ul class="dotted_list">
+													<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+													<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+												</ul>
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							-->
 
-                            <!--줄은 경우
-                            <div class="analysis">
-                                <span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>줄었어요.</em>
-                                <div class="custom_tooltip">
-                                    <div class="com_tooltip_type02 com_tooltip_type03">
-                                        
-                                        <a href="#nolink" class="com_btn_info" role="button">
-                                            <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
-                                        </a>
-                                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                            <div>
-                                                <ul class="dotted_list">
-                                                    <li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
-                                                    <li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
-                                                </ul>
-                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
+							<!--줄은 경우
+							<div class="analysis">
+								<span class="text">지난달보다</span> <span class="num">5,095,452원</span> <em>줄었어요.</em>
+								<div class="custom_tooltip">
+									<div class="com_tooltip_type02 com_tooltip_type03">
+										
+										<a href="#nolink" class="com_btn_info" role="button">
+											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
+										</a>
+										<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+											<div>
+												<ul class="dotted_list">
+													<li>마지막 업데이트 시점의 총 자산과 마지막 업데이트 전 월 말일 총자산을 비교했습니다.</li>
+													<li>오늘 업데이트 하셨으면 전 월 말일 총 자산과 비교한 결과입니다.</li>
+												</ul>
+												<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							-->
 
-                            <!--//25-02-24 문구수정 / 25-03-11 툴팁 추가-->
+							<!--//25-02-24 문구수정 / 25-03-11 툴팁 추가-->
 
-                            <lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
-                            <!--
-                                늘은경우 icon_asset_up.json
-                                줄은경우 icon_asset_down.json
-                                동일 icon_asset.json
-                            -->
+							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_asset.json"  loop autoplay aria-hidden="true" class="icon_asset" ></lottie-player>
+							<!--
+								늘은경우 icon_asset_up.json
+								줄은경우 icon_asset_down.json
+								동일 icon_asset.json
+							-->
 
+							<!-- 25-03-21 클래스명 수정 (chart -> asset_chart, bar -> asset_bar, chart -> asset_label) -->
+							<div class="asset_chart">
+								<div class="asset_bar">
+									<span class="asset_1" style="width:50%"></span><!--//금융-->
+									<span class="asset_2" style="width:20%"></span><!--//실물-->
+									<span class="asset_3" style="width:30%"></span><!--//기타-->
+									<!--25-03-07 부채 삭제 <span class="asset_4" style="width:18.8%"></span>--><!--//부채-->
+								</div>
 
-                            <div class="chart">
-                                <div class="bar">
-                                    <span class="asset_1" style="width:50%"></span><!--//금융-->
-                                    <span class="asset_2" style="width:20%"></span><!--//실물-->
-                                    <span class="asset_3" style="width:30%"></span><!--//기타-->
-                                    <!--25-03-07 부채 삭제 <span class="asset_4" style="width:18.8%"></span>--><!--//부채-->
-                                </div>
+								<dl class="asset_label">
+									<dt>나의 자산비율</dt>
+									<dd class="asset_1">금융<span>50%</span></dd>
+									<dd class="asset_2">실물<span>20%</span></dd>
+									<dd class="asset_3">기타<span>30%</span></dd>
+									<!--25-03-07 부채 삭제<dd class="asset_4">부채<span>18.8%</span></dd>-->
+								</dl>
+							</div>
+						</div>
 
-                                <dl class="chart">
-                                    <dt>나의 자산비율</dt>
-                                    <dd class="asset_1">금융<span>50%</span></dd>
-                                    <dd class="asset_2">실물<span>20%</span></dd>
-                                    <dd class="asset_3">기타<span>30%</span></dd>
-                                    <!--25-03-07 부채 삭제<dd class="asset_4">부채<span>18.8%</span></dd>-->
-                                </dl>
-                            </div>
-                        </div>
+						<div class="mystyle">
+							<a href="#">나의 금융 스타일, 콕 집어드려요!</a>
+							<!--금액 노출된 경우 예시
+							<a href="#">분산관리성향이 강한 <em>지출과다형</em></a>
+							-->
+						</div>
+					</div>
 
-                        <div class="mystyle">
-                            <a href="#">나의 금융 스타일, 콕 집어드려요!</a>
-                            <!--금액 노출된 경우 예시
-                            <a href="#">분산관리성향이 강한 <em>지출과다형</em></a>
-                            -->
-                        </div>
-                    </div>
+					<!--25-02-06 이벤트 있을경우 노출 배너 추가-->
+					<div class="temp_banner">
+						<a href="#nolink">2개기관 자산 만료예정,
+							연장하면 자산정보 계속볼 수 있어요.</a><!--25-03-10 태그변경 / 25-04-04 배너 문구, 아이콘 수정-->
+						<button type="button" class="btn_x"><span class="blind">삭제</span></button>
+					</div>
+					<!--//25-02-06 이벤트 있을경우 노출 배너 추가-->
 
-                    <!--25-02-06 이벤트 있을경우 노출 배너 추가-->
-                    <div class="temp_banner">
-                        <a href="#nolink">애니카다이렉트 개인용 만기 30일 전 이에요. 얼마 남지 않은 자동차 보험  만기를 꼭 챙기세요!</a><!--25-03-10 태그변경 -->
-                        <button type="button" class="btn_x"><span class="blind">삭제</span></button>
-                    </div>
-                    <!--//25-02-06 이벤트 있을경우 노출 배너 추가-->
+					<!-- 금융자산 -->
+					<div class="board_box assets_detail">
+						<h2>금융자산</h2>
+						
+						<div class="analysis up">
+							<!--25-02-10 금액숨김 수정-->
+							<!--[v4.0] #접근성# 마크업수정 
+							<div class="toggle_money">
+								<input type="checkbox" title="금액숨김" name="" id="sum_view_02" checked>
+								<label for="sum_view_02" class="btns">
+									<span class="hide" aria-hidden="true">보기</span>
+									<span class="show" aria-hidden="true">숨김</span>
+								</label>
+								<div class="sum">
+									<span class="show">1,952,692,372원</span>
+									<span class="hide">금액숨김</span>
+								</div>
+							</div>
+							-->
+							<div class="toggle_money">
+								<div class="sum">
+									<span class="hide">금액숨김</span>
+									<span class="show">1,952,692,372원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+							<!--//[v4.0] #접근성# 마크업수정 -->
+							<!--//25-02-10 금액숨김 수정-->
+							<!--늘은 경우 : analysis + up -->
+							<p class="latter">지난달보다 <em class="num">12,223원</em> <em>늘었어요.</em></p>
+									
+							<!--동일한 경우 : analysis 
+							<p class="latter">지난달과 <em>동일해요.</em></p>
+							-->
+							<!--줄은 경우 : analysis + down 
+							<p class="latter">지난달보다 <em class="num">12,223원</em> <em>줄었어요.</em></p>
+							-->
+						</div>
 
-                    <!-- 금융자산 -->
-                    <div class="board_box assets_detail">
-                        <h2>금융자산</h2>
-                        
-                        <div class="analysis up">
-                            <!--25-02-10 금액숨김 수정-->
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_02" checked>
-                                <label for="sum_view_02" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="show">1,952,692,372원</span>
-                                    <span class="hide">금액숨김</span>
-                                </div>
-                            </div>
-                            <!--//25-02-10 금액숨김 수정-->
-                            <!--늘은 경우 : analysis + up -->
-                            <p class="latter">지난달보다 <em class="num">12,223원</em> <em>늘었어요.</em></p>
-                                    
-                            <!--동일한 경우 : analysis 
-                            <p class="latter">지난달과 <em>동일해요.</em></p>
-                            -->
-                            <!--줄은 경우 : analysis + down 
-                            <p class="latter">지난달보다 <em class="num">12,223원</em> <em>줄었어요.</em></p>
-                            -->
-                        </div>
+						<details class="board_box_details" open>
+							<summary>
+								<span class="show">금융자산 보기</span>
+								<span class="hide">금융자산 닫기</span>
+							</summary>
+							<div class="cont">
+								<!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+								<a href="#nolink" class="unconnected" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+									<span class="item">예금</span>
+									<span class="txt">입출금, 예적금 확인하기</span>
+								</a>
+								<!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
+								<!--예금--> 
+								<details class="assets_toggle">
+									<summary>
+										<span class="item">예금<em>34<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										<span class="txt">금액숨김</span>
+									</summary>
+									<div class="cont">
+										<ul class="assets_list">
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">더나은미래통장</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+												</a>
+											</li>
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAMW0000"><span class="blind">광주은행</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">광주은행</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="num"><span class="blind">금액</span>25,668,522원</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+												</a>
+											</li>
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAHJ0000"><span class="blind">카카오뱅크</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">카카오뱅크 예금상품</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+												</a>
+											</li>
+										</ul>
+										<!--25-02-24 문구 수정-->
+										<a href="#nolink" class="btns md">예금 전체보기</a>
+										<!--//25-02-24 문구 수정-->
+									</div>
+								</details>
 
-                        <details class="board_box_details" open>
-                            <summary>
-                                <span class="show">금융자산 보기</span>
-                                <span class="hide">금융자산 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
-                                <a href="#nolink" class="unconnected">
-                                    <span class="item">예금</span>
-                                    <span class="txt">입출금, 예적금 확인하기</span>
-                                </a>
-                                <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
-                                <!--예금--> 
-                                <details class="assets_toggle">
-                                    <summary>
-                                        <span class="item">예금<em>34</em></span>
-                                        <span class="txt">금액숨김</span>
-                                    </summary>
-                                    <div class="cont">
-                                        <ul class="assets_list">
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAJB0000"></i>
-                                                    <div>
-                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAMW0000"></i>
-                                                    <div>
-                                                        <strong class="org">광주은행</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAHJ0000"></i>
-                                                    <div>
-                                                        <strong class="org">카카오뱅크</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <!--25-02-24 문구 수정-->
-                                        <a href="#nolink" class="btns md">예금 전체보기</a>
-                                        <!--//25-02-24 문구 수정-->
-                                    </div>
-                                </details>
+								<!--투자-->
+								<details class="assets_toggle">
+									<summary>
+										<span class="item">투자<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										<span class="txt">금액숨김</span>
+									</summary>
+									<div class="cont">
+										<ul class="assets_list">
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+												</a>
+											</li>
+											<li>
+												<a href="#nolink"> 
+													<i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<div class="num_wrap">
+														<!-- case. 금액노출시 <strong class="num">22,668원</strong> -->
+														<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+														<!--[v4.0] #접근성# 상승,하락 마크업 변경 -->
+														<span class="latter up"><i class="up blind">상승</i><i class="down blind">하락</i><em class="num">22,668원</em></span>
+														<!--//[v4.0] #접근성# 상승,하락 마크업 변경 -->
+													</div>
+												</a>
+											</li>
+										</ul>
+										<!--3개 이상일 경우 노출 
+										<a href="#nolink" class="btns md">투자 전체보기</a>
+										-->
+									</div>
+								</details>
 
-                                <!--투자-->
-                                <details class="assets_toggle">
-                                    <summary>
-                                        <span class="item">투자<em>1</em></span>
-                                        <span class="txt">금액숨김</span>
-                                    </summary>
-                                    <div class="cont">
-                                        <ul class="assets_list">
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAJB0000"></i>
-                                                    <div>
-                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#nolink"> 
-                                                    <i class="ico_bank D1AAJB0000"></i>
-                                                    <div>
-                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <div class="num_wrap">
-                                                        <!-- case. 금액노출시 <strong class="num">22,668원</strong> -->
-                                                        <strong class="txt">금액숨김</strong>
-                                                        <span class="latter up"><em class="num">22,668원</em></span>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                        <!--3개 이상일 경우 노출 
-                                        <a href="#nolink" class="btns md">투자 전체보기</a>
-                                        -->
-                                    </div>
-                                </details>
+								<!--연금-->
+								<details class="assets_toggle">
+									<summary>
+										<span class="item">연금<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										<span class="txt">금액숨김</span>
+									</summary>
+									<div class="cont">
+										<ul class="assets_list">
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+												</a>
+											</li>
+											<!-- 25-03-12 국민연금케이스 추가 -->
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank PBAAVM0000"></i>
+													<div>
+														<strong class="org">국민연금</strong>
+														<strong class="account">가입기간 160개월</strong>
+													</div>
+													<strong class="num"><span class="blind">금액</span>9,999,999원</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+												</a>
+											</li>
+											<!-- //25-03-12 국민연금케이스 추가 -->
+										</ul>
+										<!--3개 이상일 경우 노출 
+										<a href="#nolink" class="btns md">연금 전체보기</a>
+										-->
+									</div>
+								</details>
 
-                                <!--연금-->
-                                <details class="assets_toggle">
-                                    <summary>
-                                        <span class="item">연금<em>1</em></span>
-                                        <span class="txt">금액숨김</span>
-                                    </summary>
-                                    <div class="cont">
-                                        <ul class="assets_list">
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAJB0000"></i>
-                                                    <div>
-                                                        <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                            <!-- 25-03-12 국민연금케이스 추가 -->
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank PBAAVM0000"></i>
-                                                    <div>
-                                                        <strong class="org">국민연금</strong>
-                                                        <strong class="account">가입기간 160개월</strong>
-                                                    </div>
-                                                    <strong class="num">9,999,999원</strong>
-                                                </a>
-                                            </li>
-                                            <!-- //25-03-12 국민연금케이스 추가 -->
-                                        </ul>
-                                        <!--3개 이상일 경우 노출 
-                                        <a href="#nolink" class="btns md">연금 전체보기</a>
-                                        -->
-                                    </div>
-                                </details>
+								<!--페이/포인트-->
+								<details class="assets_toggle">
+									<summary>
+										<span class="item">페이/포인트<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										<span class="txt">금액숨김</span>
+									</summary>
+									<div class="cont">
+										<ul class="assets_list">
+											<li> <!--[v4.0] 2025-03-24 링크 없는 케이스 추가 -->
+												<div>
+													<i class="ico_bank D1AAJB0000"><span class="blind">네이버</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">페이페이페이</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">금액숨김</strong>
+												</div>
+											</li>
+											<li>
+												<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+													<i class="ico_bank D1AAJB0000"><span class="blind">네이버</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">페이페이페이</strong>
+														<strong class="account"><span class="blind">계좌번호</span>3522230203283</strong><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													</div>
+													<strong class="txt">상세보기</strong> <!--[v4.0] 2025-05-29 텍스트 수정 -->
+												</a>
+											</li>
+											<li>
+												<!-- 25-03-13 임금신청 구조변경-->
+												<div>
+													<i class="ico_bank D1AAJB0000"><span class="blind">네이버</span></i><!--[v4.0] #접근성# 대체텍스트 추가 -->
+													<div>
+														<strong class="org">포인트포인트포인트</strong>
+													</div>
+													<!-- case. 금액노출시 <a href="#nolink" class="txt">금액숨김</a>  -->
+													<a href="#nolink" class="num"><span class="blind">금액</span>22,668원</a><!-- 25-03-12 a태그로 변경 --><!--[v4.0] #접근성# 대체텍스트 추가 -->
+												</div>
+												<div class="num_btns">
+													<a href="#nolink" class="btn_txt">입금신청</a><!-- 25-03-13 a태그로 변경 -->
+												</div>
+												<!-- //25-03-13 임금신청 구조변경-->
+											</li>
+										</ul>
+										<!--3개 이상일 경우 노출 
+										<a href="#nolink" class="btns md">페이/포인트 전체보기</a>
+										-->
+									</div>
+								</details>
+							</div>
+						</details>
+					</div>
 
-                                <!--페이/포인트-->
-                                <details class="assets_toggle">
-                                    <summary>
-                                        <span class="item">페이/포인트<em>1</em></span>
-                                        <span class="txt">금액숨김</span>
-                                    </summary>
-                                    <div class="cont">
-                                        <ul class="assets_list">
-                                            <li>
-                                                <a href="#nolink">
-                                                    <i class="ico_bank D1AAJB0000"></i>
-                                                    <div>
-                                                        <strong class="org">페이페이페이</strong>
-                                                        <strong class="account">3522230203283</strong>
-                                                    </div>
-                                                    <strong class="txt">금액숨김</strong>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <!-- 25-03-13 임금신청 구조변경-->
-                                                <div>
-                                                    <i class="ico_bank D1AAJB0000"></i> 
-                                                    <div>
-                                                        <strong class="org">포인트포인트포인트</strong>
-                                                    </div>
-                                                    <!-- case. 금액노출시 <a href="#nolink" class="txt">금액숨김</a>  -->
-                                                    <a href="#nolink" class="num">22,668원</a><!-- 25-03-12 a태그로 변경 -->
-                                                </div>
-                                                <div class="num_btns">
-                                                    <a href="#nolink" class="btn_txt">입금신청</a><!-- 25-03-13 a태그로 변경 -->
-                                                </div>
-                                                <!-- //25-03-13 임금신청 구조변경-->
-                                            </li>
-                                        </ul>
-                                        <!--3개 이상일 경우 노출 
-                                        <a href="#nolink" class="btns md">페이/포인트 전체보기</a>
-                                        -->
-                                    </div>
-                                </details>
-                            </div>
-                        </details>
-                    </div>
+					<!--실물자산-->
+					<div class="board_box assets_detail">
+						<h2>실물자산</h2>
+						
+						<div class="analysis">
+							<!--25-02-10 금액숨김 수정-->
+							<!--[v4.0] #접근성# 마크업수정 
+							<div class="toggle_money">
+								<input type="checkbox" title="금액숨김" name="" id="sum_view_02" checked>
+								<label for="sum_view_02" class="btns">
+									<span class="hide" aria-hidden="true">보기</span>
+									<span class="show" aria-hidden="true">숨김</span>
+								</label>
+								<div class="sum">
+									<span class="show">1,952,692,372원</span>
+									<span class="hide">금액숨김</span>
+								</div>
+							</div>
+							-->
+							<div class="toggle_money">
+								<div class="sum">
+									<span class="hide">금액숨김</span>
+									<span class="show">1,952,692,372원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+							<!--//[v4.0] #접근성# 마크업수정 -->
+							<!--//25-02-10 금액숨김 수정-->
 
-                    <!--실물자산-->
-                    <div class="board_box assets_detail">
-                        <h2>실물자산</h2>
-                        
-                        <div class="analysis">
-                            <!--25-02-10 금액숨김 수정-->
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_03">
-                                <label for="sum_view_03" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="show">1,952,692,372원</span>
-                                    <span class="hide">금액숨김</span>
-                                </div>
-                            </div>
-                            <!--//25-02-10 금액숨김 수정-->
+							<!--늘은 경우 : analysis + up
+							<p class="latter">지난달보다 <em class="num">**,***원</em> <em>늘었어요.</em></p>
+							-->
+							<!--동일한 경우 : analysis -->
+							<p class="latter">지난달과 <em>동일해요.</em></p>
+							<!--줄은 경우 : analysis + down 
+							<p class="latter">지난달보다 <em class="num">**,***원</em> <em>줄었어요.</em></p>
+							-->
+						</div>
 
-                            <!--늘은 경우 : analysis + up
-                            <p class="latter">지난달보다 <em class="num">**,***원</em> <em>늘었어요.</em></p>
-                            -->
-                            <!--동일한 경우 : analysis -->
-                            <p class="latter">지난달과 <em>동일해요.</em></p>
-                            <!--줄은 경우 : analysis + down 
-                            <p class="latter">지난달보다 <em class="num">**,***원</em> <em>줄었어요.</em></p>
-                            -->
-                        </div>
+						<details class="board_box_details">
+							<summary>
+								<span class="show">실물자산 보기</span>
+								<span class="hide">실물자산 닫기</span>
+							</summary>
+							<div class="cont">
+								<ul class="assets_list">
+									<!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+									<li>
+										<a href="#nolink" class="unconnected" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">부동산</span>
+											<span class="txt">최근 실거래는?</span>
+										</a>
+									</li>
+									<!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">부동산<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">자동차<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+								</ul>
+							</div>
+						</details>
+					</div>
 
-                        <details class="board_box_details">
-                            <summary>
-                                <span class="show">실물자산 보기</span>
-                                <span class="hide">실물자산 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <ul class="assets_list">
-                                    <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
-                                    <li>
-                                        <a href="#nolink" class="unconnected">
-                                            <span class="item">부동산</span>
-                                            <span class="txt">최근 실거래는?</span>
-                                        </a>
-                                    </li>
-                                    <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">부동산<em>1</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">자동차<em>1</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
+					<!--기타자산-->
+					<div class="board_box assets_detail">
+						<h2>기타자산</h2>
+						
+						<div class="analysis down">
+							<!--25-02-10 금액숨김 수정-->
+							<!--[v4.0] #접근성# 마크업수정 
+							<div class="toggle_money">
+								<input type="checkbox" title="금액숨김" name="" id="sum_view_02" checked>
+								<label for="sum_view_02" class="btns">
+									<span class="hide" aria-hidden="true">보기</span>
+									<span class="show" aria-hidden="true">숨김</span>
+								</label>
+								<div class="sum">
+									<span class="show">1,952,692,372원</span>
+									<span class="hide">금액숨김</span>
+								</div>
+							</div>
+							-->
+							<div class="toggle_money">
+								<div class="sum">
+									<span class="hide">금액숨김</span>
+									<span class="show">1,952,692,372원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+							<!--//[v4.0] #접근성# 마크업수정 -->
+							<!--//25-02-10 금액숨김 수정-->
 
-                    <!--기타자산-->
-                    <div class="board_box assets_detail">
-                        <h2>기타자산</h2>
-                        
-                        <div class="analysis down">
-                            <!--25-02-10 금액숨김 수정-->
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_04">
-                                <label for="sum_view_04" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="show">1,952,692,372원</span>
-                                    <span class="hide">금액숨김</span>
-                                </div>
-                            </div>
-                            <!--//25-02-10 금액숨김 수정-->
+							<!--늘은 경우 : analysis + up 
+							<p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
+							-->
+							<!--동일한 경우 : analysis 
+							<p class="latter">지난달과 <em>동일해요.</em></p>
+							-->
+							<!--줄은 경우 : analysis + down -->
+							<p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em></p>
+						</div>
 
-                            <!--늘은 경우 : analysis + up 
-                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
-                            -->
-                            <!--동일한 경우 : analysis 
-                            <p class="latter">지난달과 <em>동일해요.</em></p>
-                            -->
-                            <!--줄은 경우 : analysis + down -->
-                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em></p>
-                        </div>
+						<details class="board_box_details">
+							<summary>
+								<span class="show">기타자산 보기</span>
+								<span class="hide">기타자산 닫기</span>
+							</summary>
+							<div class="cont">
+								<ul class="assets_list">
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">현금<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">금<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+								</ul>
+							</div>
+						</details>
+					</div>
 
-                        <details class="board_box_details">
-                            <summary>
-                                <span class="show">기타자산 보기</span>
-                                <span class="hide">기타자산 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <ul class="assets_list">
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">현금<em>1</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">금<em>1</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
+					<!--부채-->
+					<div class="board_box assets_detail">
+						<h2>부채</h2>
+						
+						<div class="analysis down">
+							<!--25-02-10 금액숨김 수정-->
+							<!--[v4.0] #접근성# 마크업수정 
+							<div class="toggle_money">
+								<input type="checkbox" title="금액숨김" name="" id="sum_view_02" checked>
+								<label for="sum_view_02" class="btns">
+									<span class="hide" aria-hidden="true">보기</span>
+									<span class="show" aria-hidden="true">숨김</span>
+								</label>
+								<div class="sum">
+									<span class="show">1,952,692,372원</span>
+									<span class="hide">금액숨김</span>
+								</div>
+							</div>
+							-->
+							<div class="toggle_money">
+								<div class="sum">
+									<span class="hide">금액숨김</span>
+									<span class="show">1,952,692,372원</span>
+								</div>
+								<button type="button" class="btns">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+							<!--//[v4.0] #접근성# 마크업수정 -->
+							<!--//25-02-10 금액숨김 수정-->
 
-                    <!--부채-->
-                    <div class="board_box assets_detail">
-                        <h2>부채</h2>
-                        
-                        <div class="analysis down">
-                            <!--25-02-10 금액숨김 수정-->
-                            <div class="toggle_money">
-                                <input type="checkbox" title="금액숨김" name="" id="sum_view_05">
-                                <label for="sum_view_05" class="btns">
-                                    <span class="hide" aria-hidden="true">보기</span>
-                                    <span class="show" aria-hidden="true">숨김</span>
-                                </label>
-                                <div class="sum">
-                                    <span class="show">1,952,692,372원</span>
-                                    <span class="hide">금액숨김</span>
-                                </div>
-                            </div>
-                            <!--//25-02-10 금액숨김 수정-->
+							<!--늘은 경우 : analysis + up 
+							<p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
+							-->
+							<!--동일한 경우 : analysis 
+							<p class="latter">지난달과 <em>동일해요.</em></p>
+							-->
+							<!--줄은 경우 : analysis + down -->
+							<p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em> <span class="info">(마이너스 통장 거래금액 포함)</span></p><!--25-04-25 마이너스 안내문구추가-->
+						</div>
 
-                            <!--늘은 경우 : analysis + up 
-                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>늘었어요.</em></p>
-                            -->
-                            <!--동일한 경우 : analysis 
-                            <p class="latter">지난달과 <em>동일해요.</em></p>
-                            -->
-                            <!--줄은 경우 : analysis + down -->
-                            <p class="latter">지난달보다 <em class="num">5,092,236원</em> <em>줄었어요.</em></p>
-                        </div>
+						<details class="board_box_details">
+							<summary>
+								<span class="show">부채 보기</span>
+								<span class="hide">부채 닫기</span>
+							</summary>
+							<div class="cont">
+								<ul class="assets_list">
+									<!-- [v4.0] 25-03-06 미연결케이스 추가 -->
+									<li>
+										<a href="#nolink" class="unconnected" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">카드</span>
+											<span class="txt">카드 대출 내역확인</span>
+										</a>
+									</li>
+									<!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">카드<em>2<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">자동차할부</span>
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+								</ul>
+							</div>
+						</details>
+					</div>
 
-                        <details class="board_box_details">
-                            <summary>
-                                <span class="show">부채 보기</span>
-                                <span class="hide">부채 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <ul class="assets_list">
-                                    <!-- [v4.0] 25-03-06 미연결케이스 추가 -->
-                                    <li>
-                                        <a href="#nolink" class="unconnected">
-                                            <span class="item">카드</span>
-                                            <span class="txt">카드 대출 내역확인</span>
-                                        </a>
-                                    </li>
-                                    <!-- //[v4.0] 25-03-06 미연결케이스 추가 -->
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">카드<em>2</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">자동차할부</span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
+					<!--보험료-->
+					<div class="board_box assets_detail insure">
+						<h2>월 납입 보험료</h2><!--25-04-23 문구수정-->
 
-                    <!--보험료-->
-                    <div class="board_box assets_detail insure">
-                        <h2>보험료 월 납입료</h2>
+						<div class="custom_tooltip up">
+							<div class="com_tooltip_type02 com_tooltip_type03">
+								<a href="#nolink" class="com_btn_info" role="button">
+									<em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
+								</a>
+							</div>
+							<div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+								<!--25-02-24 문구수정/25-04-23 문구수정-->
+								<div>
+									<h3 class="h_tit03">인보험이란?</h3>
+									<p>
+										사람을 대상으로 한 보험. 생명보험, 실손보험, 건강보험, 상해보험 등
+									</p>
+									<h3 class="h_tit03 mt10">물보험이란?</h3>
+									<p>                                    
+										물건에 대한 손해보험. 자동차보험, 화재보험,펫보험, 해상/항공보험, 운전자보험, 여행자보험, 기계, 공장, 특수장비 보험 등
+									</p>
 
-                        <div class="custom_tooltip up">
-                            <div class="com_tooltip_type02 com_tooltip_type03">
-                                <a href="#nolink" class="com_btn_info" role="button">
-                                    <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
-                                </a>
-                            </div>
-                            <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
-                                <!--25-02-24 문구수정-->
-                                <div>
-                                    <h3 class="h_tit03">인보험이란?</h3>
-                                    <p>
-                                        사람의 생명이나 신체 손해에 대한 보험으로 생명, 상해, 질병 보험 등이 속해요.
-                                    </p>
-                                    <h3 class="h_tit03 mt10">물보험이란?</h3>
-                                    <p>                                    
-                                        물건과 기타 재산 피해에 대한 보험으로 화재, 운송, 해상, 자동차, 쳇보험 등이 속해요.
-                                    </p>
+									<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+								</div> 
+								<!--//25-02-24 문구수정/25-04-23 문구수정-->
+							</div>
+						</div>
 
-                                    <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
-                                </div> 
-                                <!--//25-02-24 문구수정-->
-                            </div>
-                        </div>
+						<div class="analysis">
+							<div class="sum">
+								1,952,692,372원
+							</div>
+						</div>
 
-                        <div class="analysis">
-                            <div class="sum">
-                                1,952,692,372원
-                            </div>
-                        </div>
+						<details class="board_box_details">
+							<summary>
+								<span class="show">납입 보험료 보기</span>
+								<span class="hide">납입 보험료 닫기</span>
+							</summary>
+							<div class="cont">
+								<ul class="assets_list">
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">인보험<em>2<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+									<li>
+										<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+											<span class="item">물보험<em>1<i class="blind">건</i></em></span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+											<span class="num"><span class="blind">금액</span>1,100,000,000원</span><!--[v4.0] #접근성# 대체텍스트 추가 -->
+										</a>
+									</li>
+								</ul>
+								<!-- 25-04-23 안내영역 추가-->
+								<div class="gray_box info_insur">
+									<p class="txt">
+										<strong>매 월 납입하는 보험</strong>의 개수와 총 보험료입니다. 년 1회 납입 보험 또는 만기/실효 보험은 상세화면에서 확인할 수 있어요.
+									</p>
+								</div>
+								<!-- //25-04-23 안내영역 추가-->
+							</div>
+						</details>
+					</div>
 
-                        <details class="board_box_details">
-                            <summary>
-                                <span class="show">납입 보험료 보기</span>
-                                <span class="hide">납입 보험료 닫기</span>
-                            </summary>
-                            <div class="cont">
-                                <ul class="assets_list">
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">인보험<em>2</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#nolink">
-                                            <span class="item">물보험<em>1</em></span>
-                                            <span class="num">1,100,000,000원</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </details>
-                    </div>
+					<!--주목받는 콘텐츠-->
+					<div class="staple_cont">
+						<h2 class="h_tit01">홍길동 님을 위한 추천 서비스</h2>
 
-                    <!--주목받는 콘텐츠-->
-                    <div class="staple_cont">
-                        <h2 class="h_tit01">홍길동 님을 위한 추천 서비스</h2>
+						<div class="board_box_wrap banner">
+							<a href="#nolink" class="board_box staple1" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+								<em>자금 흐름<br>진단</em>
+							</a>
+							<a href="#nolink" class="board_box staple2" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+								<em>버킷리스트<br>만들기</em>
+							</a>
+							<a href="#nolink" class="board_box staple3" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+								<em>안정적인<br>투자전략!</em>
+							</a>
+							<a href="#nolink" class="board_box staple4" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+								<em>내 또래들은<br>얼만큼 쓸까?</em>
+							</a>
+						</div>
 
-                        <div class="board_box_wrap banner">
-                            <a href="#nolink" class="board_box staple1">
-                                <em>자금 흐름<br>진단</em>
-                            </a>
-                            <a href="#nolink" class="board_box staple2">
-                                <em>버킷리스트<br>만들기</em>
-                            </a>
-                            <a href="#nolink" class="board_box staple3">
-                                <em>안정적인<br>투자전략!</em>
-                            </a>
-                            <a href="#nolink" class="board_box staple4">
-                                <em>내 또래들은<br>얼만큼 쓸까?</em>
-                            </a>
-                        </div>
+						<a href="#nolink">
+							<img src="../../../../src/assets_v40/images/banner/img_banner_asset_pensiton.png" alt="65세, 내가 받는 연금은 얼마일까요? 지금 바로 알아보세요." />
+						</a>
+					</div>
 
-                        <a href="#nolink">
-                            <img src="../../../../src/assets_v40/images/banner/img_banner_asset_pensiton.png" alt="65세, 내가 받는 연금은 얼마일까요? 지금 바로 알아보세요." />
-                        </a>
-                    </div>
+					<!--금융지식-->
+					<div class="finlit">
+						<a href="#nolink" class="h_tit01" role="button">금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 
-                    <!--금융지식-->
-                    <div class="finlit">
-                        <h2 class="h_tit01">금융지식</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
-
-                        <div class="scroller">
-                            <ul>
-                                <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
-                                        <strong>부자의 첫걸음,<br>금리와 복리를 이해하라!</strong>
-                                        <span class="hash">#콕셍긱</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_50.png" alt="">
-                                        <strong>2025년 트렌드 키워드<br>10초 요약</strong>
-                                        <span class="hash">#일반/트렌드</span>
-                                    </a>
-                                </li>
-                                <!-- <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_40.png" alt="">
-                                        <strong>연금저축 및 IRP 가입하고 노후 자금 준비</strong>
-                                        <span class="hash">#40대</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_30.png" alt="">
-                                        <strong>맞벌이 부부를 위한 세금 절약 노하우</strong>
-                                        <span class="hash">#30대</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_20.png" alt="">
-                                        <strong>첫 직장 생활에서의 소득공제 활용법</strong>
-                                        <span class="hash">#20대</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#nolink">
-                                        <img src="../../../../src/assets_v40/images/img/img_generation_10.png" alt="">
-                                        <strong>첫 직장 생활에서의 소득공제 활용법</strong>
-                                        <span class="hash">#10대</span>
-                                    </a>
-                                </li> -->
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="bottom">
-                        <!--25-02-24 문구수정 | 25-03-07 문구수정-->
-                        <a href="#nolink" class="btn_asset_edit">
-                            새로워진NH콕마이데이터(자산관리)
-                            <strong>자산 순서 변경할 수 있어요.</strong>
-                        </a>
-                        <!--//25-02-24 문구수정 | 25-03-07 문구수정 -->
-                        <a href="#nolink" class="btn_connect left">더 연결할 자산이 있으신가요?</a>
-                    </div>
-                </section>
+						<div class="scroller">
+							<ul>
+								<li>
+									<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+										<img src="../../../../src/assets_v40/images/img/img_generation_60.png" alt="">
+										<strong>부자의 첫걸음,<br>금리와 복리를 이해하라!</strong>
+										<span class="hash">#콕생각</span>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+										<img src="../../../../src/assets_v40/images/img/img_generation_50.png" alt="">
+										<strong>2025년 트렌드 키워드<br>10초 요약</strong>
+										<span class="hash">#일반/트렌드</span>
+									</a>
+								</li>
+								<!-- <li>
+									<a href="#nolink" role="button">
+										<img src="../../../../src/assets_v40/images/img/img_generation_40.png" alt="">
+										<strong>연금저축 및 IRP 가입하고 노후 자금 준비</strong>
+										<span class="hash">#40대</span>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button">
+										<img src="../../../../src/assets_v40/images/img/img_generation_30.png" alt="">
+										<strong>맞벌이 부부를 위한 세금 절약 노하우</strong>
+										<span class="hash">#30대</span>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button">
+										<img src="../../../../src/assets_v40/images/img/img_generation_20.png" alt="">
+										<strong>첫 직장 생활에서의 소득공제 활용법</strong>
+										<span class="hash">#20대</span>
+									</a>
+								</li>
+								<li>
+									<a href="#nolink" role="button">
+										<img src="../../../../src/assets_v40/images/img/img_generation_10.png" alt="">
+										<strong>첫 직장 생활에서의 소득공제 활용법</strong>
+										<span class="hash">#10대</span>
+									</a>
+								</li> -->
+							</ul>
+						</div>
+					</div>
+					
+					<div class="bottom">
+						<!--25-02-24 문구수정 | 25-03-07 문구수정 | 25-04-01 문구수정 -->
+						<a href="#nolink" class="btn_asset_edit" role="button"><!--[v4.0] #접근성# role="button" 추가 -->
+							새로워진 NH콕마이데이터(자산관리)
+							<strong>자산 순서 변경할 수 있어요.</strong>
+						</a>
+						<!--//25-02-24 문구수정 | 25-03-07 문구수정 -->
+						<a href="#nolink" class="btn_connect left">더 연결할 자산이 있으신가요?</a>
+					</div>
+				</section>
 			</div>
 
 			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->

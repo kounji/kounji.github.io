@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>휴면예금 상세</title>
+	<title>상세내역</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -23,7 +23,7 @@
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">    
-			<h1>계좌상세조회</h1>
+			<h1>상세내역</h1><!-- 25-03-21 문구수정 -->
 		</div>
 
 		<div class="popup_content">
@@ -31,23 +31,29 @@
 				<p class="inquiry_date">조회기준일 2025.02.21</p>
                 <div class="board_box">
                     <h2 class="title">
-                        <i class="ico_bank A1AAES0000"></i>
+                        <i class="ico_bank A1AAES0000"><span class="blind">하나은행</span></i> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                         하나은행 주거래 하나통장 하나은행 주거래 하나통장
                     </h2>
 
                     <div class="outline">
-                        <span class="account">214210757669</span>
-                        <span class="num">105,790,783원</span>
+                        <span class="account"><span class="blind">계좌번호</span>214210757669</span> <!--[v4.0] #접근성# 대체텍스트 추가 -->
+                        <span class="num"><span class="blind">금액</span>105,790,783원</span> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                         <div class="exe_btns">
                             <button type="button" class="btns">해지가능여부조회</button>
                         </div>
                     </div>
 
                     <ul class="sleep_list">
+						<!-- 25-03-21 항목변경 
                         <li><em>잔액</em><span>23,000원</span></li>
                         <li><em>계좌 상태</em><span>-</span></li>
                         <li><em>거래메모</em><span>죽었다살아남</span></li>
 						<li><em>최종 거래일</em><span>2020.02.02</span></li>
+						-->
+						<li><em>소멸시효완성일자</em><span>-</span></li>
+                        <li><em>계좌관리점사무소코드</em><span>-</span></li>
+                        <li><em>거래메모</em><span>-</span></li>
+						<!-- //25-03-21 항목변경 -->
                     </ul>
                 </div>
 				<div class="gray_box">

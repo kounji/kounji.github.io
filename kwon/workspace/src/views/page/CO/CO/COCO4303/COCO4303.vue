@@ -45,7 +45,7 @@
 			</div>
 			
 		</div>
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="fn_close()"><span class="blind">팝업닫기</span></a>
 	</div>
 </template>
 
@@ -53,13 +53,14 @@
 
 	import commonMixin from '@/common/mixins/commonMixin'
     import popupMixin from '@/common/mixins/popupMixin'
-
+	import modalService from '@/service/modalService'
 	import LottieAnimation from 'lottie-web-vue' // import lottie-web-vue
 	
 	export default {
 		name : "COCO4303",
 		data: () => {
 			return {
+				isMounted: false,
 				voiceTxt: '',		// 음성인식 텍스트
 				isListening : true // 임시
 			}
@@ -68,9 +69,12 @@
 			
 		},
 		mounted() {
-
+			this.isMounted = true
 			this.initComponent()
 
+		},
+		destroyed() {
+			this.isMounted = false
 		},
 		mixins: [
 			popupMixin,
@@ -86,34 +90,53 @@
 			voiceFn() {
 				console.log("음성인식 click...")
 			
-				this.showVoice().then(res=>{
-					console.log('res:', res)
-					if(res.msg){
-						//modalService.alert(res.msg)
-						this.voiceTxt = res.msg
-						this.isListening = false
+				this.showVoice().then( res =>{
+					console.log('res :: ', res)				
+					if(res){
+						// (CB) 0 : 정상메시지 , 97 : 사용자종료 , 98 : 권한오류 , 99 : 일반적인 에러
+						// (SB) 6 : "입력이 없습니다", (AOS) 7: 일치하는 항목이 없습니다
+						let resultJson = null
+						if ( this.getUserInfo('chnl') === "385" ) {
+							resultJson = res.result
+						} else {
+							resultJson = JSON.parse(res.result)
+						}
 
-						setTimeout(()=> {
-							this.close(this.voiceTxt)
-                		}, 2000)
+						if(resultJson.code == '0') { // 음성인식 텍스트 존재
+							this.voiceTxt = resultJson.msg
+							this.isListening = false
+
+							setTimeout(()=> {
+								this.close(this.voiceTxt)
+                			}, 2000)
+
+						} else if (resultJson.code == '99' || resultJson.code == '6') { // 음성인식 텍스트 없음
+							modalService.alert("음성인식 시간이 초과되었어요. 음성 검색을 하시려면 마이크 버튼을 선택하세요.").then(() => {
+								this.close()
+							});
+						} else { //resultJson.code == '97' //사용자 종료
+							// 팝업 닫기(fn_close()) 수행시 closeVoice() 수행되면서 음성인식 응답이 97로 내려옴. 음성 인식 팝업은 이미 fn_close() 수행시 종료 되었기 때문에 후처리 하지 않음
+							if(this.isMounted) {
+								this.fn_close()
+							}
+						}
 					}
 				}).catch(error => {
 					console.log('error:', error)
+					this.close()
 				})
 
-				// 임시...
-									
-				// setTimeout(()=> { 
-				// 	this.voiceTxt = "금융"
-				// 	this.isListening = false;
-				// },2000)
-				
-				// setTimeout(()=> {
-				// 	this.close(this.voiceTxt)
-                // },2000)
-
-            },
+            },	
 			
+			// 팝업 닫기 클릭 시
+			fn_close() {
+				this.closeVoice() // 마이크 사용 종료
+				this.close()
+			},
+
+			isEmpty(value) {
+            	return (value === null || value === undefined || value.length < 1) ? true : false
+        	},
 
 		},
 		components : {

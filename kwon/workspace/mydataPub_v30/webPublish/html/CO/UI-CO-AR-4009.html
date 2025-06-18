@@ -42,7 +42,7 @@
 				<div class="tit_area">
 					<h2 class="headline"><strong>자산을 확인하기 위해<br>동의가 필요해요</strong></h2>
 				</div>
-				<div class="terms_view">
+				<div class="terms_view" id="terms_scroll"><!-- // [v4.0] terms_scroll id 추가 -->
 					<div>
 						<div class="terms_cont">
 							<div class="terms_group">
@@ -88,23 +88,36 @@
 									<dd>전자서명, 접근토큰, 인증서, 전송요구서</dd>
 
 									<dt>신용거래정보</dt>
+									<!--25-06-09 현행화 -->
 									<dd>
 										<details class="terms_detail">
 											<summary>
 												<strong>은행</strong>
-												<p>계좌(수신/펀드/신탁/ISA/대출) 정보</p>
+												<p>수신계좌 정보</p>
 											</summary>
 											<div class="cont">
-												<p>고객정보 최초생성일시, 계좌번호, 회차번호, 상품명, 외화계좌여부, 마이너스약정 여부, 계좌번호 별 구분 코드, 계좌번호 별 상태 코드</p>
+												<p>기본정보(통화코드, 저축방법, 계좌개설일자, 만기일, 약정액, 월 납입액), 추가정보(통화코드, 현재잔액, 출금 가능액, 계약금리, 최종납입회차), 거래내역(거래일시, 거래번호, 거래유형, 거래구분, 통화코드, 거래금액, 거래 후 잔액, 납입회차) 계좌지정 자동이체 등록정보(자동이체기관(코드), 자동이체계좌번호, 자동이체금액, 자동이체주기, 자동이체주기 상세, 적요)</p>
 												<dl>
-													<dt>퇴직연금(개인형IRP) 목록</dt>
-													<dd>개인형IRP 계좌의 상품명, 계좌번호</dd>
-
-													<dt>퇴직연금(DC형) 목록</dt>
-													<dd>상품명, 상품관리번호</dd>
-
-													<dt>선불카드 목록</dt>
-													<dd>카드식별자, 카드상품명, 발급일자, 액면한도 또는 최대충전한도</dd>
+													<dt>펀드상품 정보</dt>
+													<dd>기본정보(표준펀드코드, 납입유형, 개설일, 만기일), 추가정보(통화코드, 잔액, 평가금액, 투자원금, 보유좌수), 거래내역(거래일시, 거래번호, 거래유형, 통화코드, 기준가, 거래좌수, 거래금액, 거래 후 잔고평가금액)</dd>
+													
+													<dt>대출상품 정보</dt>
+													<dd>기본정보(대출일, 만기일, 최종적용금리, 월상환일, 상환방식, 자동이체 기관, 상환계좌번호(자동이체), 거치기간), 잔액정보(통화코드, 대출잔액, 대출원금, 다음 이자 상환일), 거래내역(거래일시, 거래번호, 거래유형, 통화코드, 거래금액, 거래 후 대출잔액, 거래금액 중 원금, 거래금액 중 이자, 환출이자, 이자적용수, 이자적용시작일, 이자적용종료일, 적용이율, 이자금액, 이자종류</dd>
+													
+													<dt>DB형 퇴직연금 정보</dt>
+													<dd>기본정보(보유여부)</dd>
+													
+													<dt>DC형 퇴직연금 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 개설일), 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율)</dd>
+													
+													<dt>개인형IRP 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 사용자부담금, 가입자부담금, 개설일, 최초입금일, 최초 제도 가입일, 연금개시 시작(예정)일, 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율</dd>
+													
+													<dt>선불카드 정보</dt>
+													<dd>잔액정보(총잔액, 충전포인트 잔액, 적립포인트 잔액, 적립예정, 소멸예정), 거래내역(거래유형, 거래일시, 거래번호, 거래금액, 거래 후 잔액, 거래상대기관, 거래상대 식별값), 결제내역(승인번호, 승인일시, 결제상태, 정정 또는 승인취소 일시, 가맹점명, 가맹점 사업자등록번호, 이용금액, 정정 후 금액, 전체할부회차)</dd>
+													
+													<dt>휴면예금 정보</dt>
+													<dd>계좌번호, 전송요구여부, 회차번호, 상품명, 숨은금융자산구분코드 통화코드, 계좌잔액, 소멸시효완성일</dd>
 												</dl>
 											</div>
 										</details>
@@ -114,62 +127,89 @@
 												<p>카드 정보</p>
 											</summary>
 											<div class="cont">
-												<p>고객정보 최초생성일시, 계좌번호, 회차번호, 상품명, 외화계좌여부, 마이너스약정 여부, 계좌번호 별 구분 코드, 계좌번호 별 상태 코드</p>
+												<p>카드 목록(카드번호, 카드식별자, 카드상품명, 본인/가족 구분(코드), 카드구분(코드)), 카드기본정보(교통 기능(여부), 현금카드기능(여부), 결제은행(코드), 결제계좌번호, 카드브랜드(코드), 상품 연회비, 발급일자)</p>
 												<dl>
-													<dt>퇴직연금(개인형IRP) 목록</dt>
-													<dd>개인형IRP 계좌의 상품명, 계좌번호</dd>
-
-													<dt>퇴직연금(DC형) 목록</dt>
-													<dd>상품명, 상품관리번호</dd>
-
-													<dt>선불카드 목록</dt>
-													<dd>카드식별자, 카드상품명, 발급일자, 액면한도 또는 최대충전한도</dd>
+													<dt>포인트 정보</dt>
+													<dd>포인트정보(포인트명, 잔여 포인트, M+2월 소멸예정포인트)</dd>
+													
+													<dt>청구 결제 정보 및 리볼빙 정보</dt>
+													<dd>월별 청구정보(결제순번, 월별 청구금액, 결제일, 청구년월, 결제년월일), 월별 청구 상세정보(사용일시 또는 사용일자, 카드식별자, 거래번호, 이용금액, 통화코드(이용금액), 가맹점명, (국내승인)가맹점 사업자등록번호, 신용판매 수수료, 전체 할부회차, 현재 할부회차, 할부 결제 후 잔액, 상품구분(코드)), 결제기본정보(일별 카드 이용정보)(리볼빙 약정여부, 결제순번, 결제예정일, 결제예정금액, 일시불, 할부, 단기대출(현금서비스), 리볼빙, 장기대출(카드론), 연회비 및 기타), 리볼빙 정보(일별 카드 이용정보)(리볼빙약정시작일, 리볼빙약정종료일, 리볼빙약정해지일자, 최소결제비율, 최소결제금액, 약정결제비율, 약정결제금액, 리볼빙 이월잔액), 승인 상세정보(건별 카드 이용정보)(승인번호, 결제상태, 사용구분(신용/체크), 승인일시, 정정 또는 승인취소 일시, 가맹점명, (국내승인)가맹점 사업자등록번호, 이용금액, 정정 후 금액, (국내승인)전체 할부회차, (해외승인)결제(승인)국가코드, (해외승인)결제(승인)시 통화코드, (해외승인)원화), 카드매입취소 정보(매입번호, 매입일자, 매출(취소)일자, 원승인번호, 원승인일시, 원승인금액, (해외매입)원승인금액 통화코드, (해외매입)원승인금액 원화, 사용구분(신용/체크), 가맹점명, (국내매입)가맹점 사업자번호, (해외매입)결제(매입)국가코드, (해외매입)결제(매입)통화코드, 이용금액, (국내매입)전체 할부 회차, (해외매입)원화</dd>
+													
+													<dt>대출상품 정보</dt>
+													<dd>단기대출 이용정보(이용일시, 이용금액(취급앱), 단기대출잔액, 결제예정일, 이자율, 상환기관(코드), 상환계좌번호), 장기대출 이용정보(대출번호, 대출일시 또는 대출일자, 일자의 대출회차, 대출종류, 상품명, 이용금액, 이자율, 만기일, 장기대출 잔액, 상환방법(코드), 상환액 중 이자, 상환기관(코드), 상환 계쫘번호), 장기대출 거래내역 정보(거래일시 또는 거래일자, 거래번호, 거래유형, 통화코드, 거래금액, 거래 후 대출잔액, 거래금액 중 원금, 거래금액 중 이자</dd>
 												</dl>
 											</div>
 										</details>
 										<details class="terms_detail">
 											<summary>
-												<strong>증권</strong>
-												<p>증권 정보</p>
+												<strong>증권(금융투자)</strong>
+												<p>계좌 정보</p>
 											</summary>
 											<div class="cont">
+												<p>계좌목록(계좌번호, 계좌명, 계좌종류(코드), 계좌개설일, 세제혜택 적용여부(계좌), CMA상품포함여부, 주식거래가능여부, 은행예수금방식계좌여부), 잔액정보(기준일자, 통화코드, 예수금, 신용 융자, 대출금, 출금가능금액), 거래내역(종목명(상품명), 종목코드(상품코드), 거래일시 또는 거래일자, 거래번호, 거래종류(코드), 거래종류 상세, 거래수량, 수량단위명, 거래단가, 거래금액, 정산금액, 거래후잔액, 통화코드, 적요, 거래소코드)</p>
 												<dl>
-													<dt>계좌(수신/펀드/신탁/ISA/대출) 목록</dt>
-													<dd>고객정보 최초생성일시, 계좌번호, 회차번호, 상품명, 외화계좌여부, 마이너스약정 여부, 계좌번호 별 구분 코드, 계좌번호 별 상태 코드</dd>
-
-													<dt>퇴직연금(개인형IRP) 목록</dt>
-													<dd>개인형IRP 계좌의 상품명, 계좌번호</dd>
-
-													<dt>퇴직연금(DC형) 목록</dt>
-													<dd>상품명, 상품관리번호</dd>
-
-													<dt>선불카드 목록</dt>
-													<dd>카드식별자, 카드상품명, 발급일자, 액면한도 또는 최대충전한도</dd>
+													<dt>상품 정보</dt>
+													<dd>개별상품 기본정보(기준일자, 상품종류(코드), 상품종류 상세, 종목코드(상품코드), 종목명, 거래소코드, 파생상품포지션구분(코드), 신용구분(코드), 세제혜택적용여부(상품), 매입금액, 보유수량, 수량단위명, 평가금액, 체결기준여부, 통화코드), 연금계좌 추가정보(연금가입일, 납부총액, 기출금액, 최종납입일, 연금기수령액, 연금개시(예정)일, 금년납입금, 통화코드), 계좌지정 자동이체 등록정보(자동이체기관(코드), 자동이체계좌번호, 자동이체금액, 자동이체주기, 자동이체주기 상세, 적요)</dd>
+													
+													<dt>DB형 퇴직연금 정보</dt>
+													<dd>기본정보(보유여부)</dd>
+													
+													<dt>DC형 퇴직연금 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 개설일), 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율)</dd>
+													
+													<dt>개인형IRP 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 사용자부담금, 가입자부담금, 개설일, 최초입금일, 최초 제도 가입일, 연금개시 시작(예정)일, 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율</dd>
 												</dl>
 											</div>
 										</details>
 										<details class="terms_detail">
 											<summary>
-												<strong>할부금융</strong>
-												<p>할부금융 정보</p>
+												<strong>보험</strong>
+												<p>보험 정보</p>
 											</summary>
 											<div class="cont">
+												<p>보험료납입 기본정보(납입기간구분, 납입주기, 총 납입 횟 수, 납입기관, 납입계좌번호, 납입일자, 납입종료일자, 납입 보험료, 통화코드, 자동대출납입 신청 여부), 납입내역(납입 일자, 납입연월, 납입회차, 실납입 보험료, 통화코드, 수금방법)</p>
 												<dl>
-													<dt>계좌(수신/펀드/신탁/ISA/대출) 목록</dt>
-													<dd>고객정보 최초생성일시, 계좌번호, 회차번호, 상품명, 외화계좌여부, 마이너스약정 여부, 계좌번호 별 구분 코드, 계좌번호 별 상태 코드</dd>
-
-													<dt>퇴직연금(개인형IRP) 목록</dt>
-													<dd>개인형IRP 계좌의 상품명, 계좌번호</dd>
-
-													<dt>퇴직연금(DC형) 목록</dt>
-													<dd>상품명, 상품관리번호</dd>
-
-													<dt>선불카드 목록</dt>
-													<dd>카드식별자, 카드상품명, 발급일자, 액면한도 또는 최대충전한도</dd>
+													<dt>장기인 보험정보(계약자)</dt>
+													<dd>보험계약정보(갱신여부, 계약체결일, 만기일자, 통화코드, 보험가입금액, 변액보험 여부, 유니버셜 여부, 연금개시일, 연금수령주기, 대출실행 가능 상품 여부, 피보험자수, 피보 험자번호, 피보험자명, 주피보험자 여부), 특약정보(특약명, 특약의 상태, 특약만기일자, 특약가입금액, 통화코드, 특약 의 유형), 증권별 보장정보(계약관계자구분, 피보험자계약 자관계, 담보, 담보특성, 회사담보일렬번호, 회사담보명, 담 보상태, 담보금액, 담보기간시작일자, 담보기간종료일자)</dd>
+													
+													<dt>장기인 보험정보(피보험자)</dt>
+													<dd>보험계약정보(갱신여부, 계약체결일, 만기일자, 통화코드, 보험가입금액, 변액보험 여부, 유니버셜 여부, 계약자명, 주 피보험자 여부), 특약정보(특약명, 특약의 상태, 특약만기일 자, 특약가입금액, 통화코드, 특약의 유형), 증권별 보장정보 (계약관계자구분, 피보험자계약자관계, 담보, 담보특성, 회 사담보일렬번호, 회사담보명, 담보상태, 담보금액, 담보기간시작일자, 담보기간종료일자)</dd>
+													
+													<dt>물및일반 보험정보(계약자)</dt>
+													<dd>보험계약정보(갱신여부, 계약체결일, 만기일자, 통화코드, 보험가입금액, 목적물수, 인/물 구분코드, 피보험인/물 번 호, 피보험인/물명, 주피보험자 여부, 소재지, 물건구분, 목 적물), 특약정보(특약명, 특약의 상태, 특약만기일자, 특약 가입금액, 통화코드, 특약의 유형), 증권별 보장정보(계약관 계자구분, 피보험자계약자관계, 담보, 담보특성, 회사담보 일렬번호, 회사담보명, 담보상태, 담보금액, 담보기간시작 일자, 담보기간종료일자)</dd>
+													
+													<dt>물및일반 보험정보(피보험자)</dt>
+													<dd>보험계약정보(갱신여부, 계약체결일, 만기일자, 통화코드, 보험가입금액, 계약자명, 목적물수, 인/물 구분코드, 피보험 인/물 번호, 피보험인/물명, 주피보험자 여부, 소재지, 물건 구분, 목적물), 특약정보(특약명, 특약의 상태, 특약만기일 자, 특약가입금액, 통화코드, 특약의 유형), 증권별 보장정보 (계약관계자구분, 피보험자계약자관계, 담보, 담보특성, 회 사담보일렬번호, 회사담보명, 담보상태, 담보금액, 담보기 간시작일자, 담보기간종료일자)</dd>
+													
+													<dt>자동차 보험정보(계약자)</dt>
+													<dd>계약정보(차량번호, 자동차보험 구분, 계약자 차량명, 보험 시기, 보험종기, 연령특약, 운전자한정특약, 자기차량손해, 자기부담금 구분, 자기부담금 금액), 납입정보(거래일시, 거 래번호, 자동차보험 보험료, 납입회차, 실납입 보험료, 수금 방법, 납입기관, 납입계좌번호)</dd>
+													
+													<dt>자동차 보험정보(피보험자)</dt>
+													<dd>계약정보(차량번호, 자동차보험 구분, 계약자 차량명, 보험 시기, 보험종기, 연령특약, 운전자한정특약, 자기차량손해, 자기부담금 구분, 자기부담금 금액)</dd>
+													
+													<dt>보험대출상품정보</dt>
+													<dd>기본정보(대출일, 만기일, 상환방식, 증권번호, 납입기관, 납 입계좌번호, 월상환일), 잔액정보(통화코드, 대출잔액, 대출 원금, 다음 이자 상환일), 이자 납입 및 대출원금 상환내역 (거래일시, 거래번호, 통화코드, 대출원금상환액, 이자납입 액, 이자적용시작일, 이자적용종료일, 적용이율, 이자종류)</dd>
+													
+													<dt>DB형 퇴직연금 정보</dt>
+													<dd>기본정보(보유여부)</dd>
+													
+													<dt>DC형 퇴직연금 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 개설일), 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율)</dd>
+													
+													<dt>개인형IRP 정보</dt>
+													<dd>기본정보(계좌잔액, 계좌평가금액, 사용자부담금, 가입자부담금, 개설일, 최초입금일, 최초 제도 가입일, 연금개시 시작(예정)일, 거래내역(거래일시, 거래번호, 거래구분, 거래금액), 개별운용상품 정보(개별운용상품명, 상품가입번호, 상품유형, 평가금액, 납입(투자)원금, 보유좌수, 신규일, 만기일, 약정이자율</dd>
+													
+													<dt>휴면보험 정보</dt>
+													<dd>보험증권번호, 전송요구여부, 상품명, 숨은금융자산구분코드, 보험구분코드 업권구분코드, 기관명, 대표전화번호, 통화코드, 휴면계좌금액, 소멸시효완성일, 부가정보</dd>
+													
+													<dt>미청구보험금 정보</dt>
+													<dd>상품구분코드, 통화코드, 미청구보험금, 원금산출기준, 이자산출기준, 계약체결일, 부가정보</dd>
 												</dl>
 											</div>
 										</details>
 									</dd>
+									<!--//25-06-09 현행화 -->
 								</dl>
 							</div>
 						</div>
@@ -213,68 +253,71 @@
 							</div>
 
 							<div class="terms_group">
+								<strong class="terms_tit">수집&middot;이용 선택 정보</strong><!-- [v4.0]25-04-28 타이틀 추가 -->
 								<dl>
-									<dt>정기적 전송여부</dt>
+									<dt>정보를 정기적으로 가져올까요?</dt><!-- [v4.0]25-04-28 문구수정 -->
 									<dd>
 										<div class="radio_box_group">
 											<div class="radio">
-												<input type="radio" name="transfer_agree" id="transfer_agree1">
-												<label for="transfer_agree1">아니오</label>
+												<input type="radio" name="transfer_agree" id="transfer_agree1" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="transfer_agree1" role="radio" aria-checked="false">아니오</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="transfer_agree" id="transfer_agree2">
-												<label for="transfer_agree2">예</label>
+												<input type="radio" name="transfer_agree" id="transfer_agree2" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="transfer_agree2" role="radio" aria-checked="true">예</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 										</div>
+									</dd>
+									<dd>
 										<div class="radio_box_group">
 											<div class="radio">
-												<input type="radio" name="period_agree" id="period_agree1">
-												<label for="period_agree1">1주</label>
+												<input type="radio" name="period_agree" id="period_agree1" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="period_agree1" role="radio" aria-checked="false">1주</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="period_agree" id="period_agree2">
-												<label for="period_agree2">2주</label>
+												<input type="radio" name="period_agree" id="period_agree2" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="period_agree2" role="radio" aria-checked="false">2주</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="period_agree" id="period_agree3">
-												<label for="period_agree3">3주</label>
+												<input type="radio" name="period_agree" id="period_agree3" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="period_agree3" role="radio" aria-checked="true">3주</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="period_agree" id="period_agree4">
-												<label for="period_agree4">4주</label>
+												<input type="radio" name="period_agree" id="period_agree4" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="period_agree4" role="radio" aria-checked="false">4주</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 										</div>
-										<!-- 250317 문구수정 -->
+										<!-- [v4.0]25-03-17 문구수정 -->
 										<ul class="dotted_list sm">
 											<li>금융정보는 1주 단위로 선택 할 수 있습니다.</li>
 											<li>공공정보는 1개월 주기로 가져옵니다.</li>
 											<li>정기적 전송에 "예" 선택 하시면, NH콕마이데이터에 들어오지 않아도 선택한 주기에 따라 자동으로 자산 업데이트 됩니다.</li>
-											<li>6개월동안 들어오지 않으면 자동 업데이트 는 중단 됩니다.</li>
+											<li>6개월 동안 미 접속 시 자동 업데이트는 중단되며 1년간 미 접속 시 개인신용정보는 모두 삭제되고 서비스는 해지 됩니다.</li><!-- [v4.0]25-04-28 문구수정 -->
 										</ul>
-										<!-- 250317 문구수정 -->
+										<!-- // [v4.0]25-03-17 문구수정 -->
 									</dd>
 
-									<dt>전송요구 유효기간</dt>
+									<dt>정보를 언제까지 가져올까요?</dt><!-- [v4.0]25-04-28 문구수정 -->
 									<dd>
 										<div class="radio_box_group">
 											<div class="radio">
-												<input type="radio" name="effect_agree" id="effect_agree1">
-												<label for="effect_agree1">6개월</label>
+												<input type="radio" name="effect_agree" id="effect_agree1" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="effect_agree1" role="radio" aria-checked="true">6개월</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="effect_agree" id="effect_agree2">
-												<label for="effect_agree2">1년</label>
+												<input type="radio" name="effect_agree" id="effect_agree2" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="effect_agree2" role="radio" aria-checked="false">1년</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 											<div class="radio">
-												<input type="radio" name="effect_agree" id="effect_agree3">
-												<label for="effect_agree3">5년</label>
+												<input type="radio" name="effect_agree" id="effect_agree3" aria-hidden="true"><!--[v4.0] #접근성# aria 추가 -->
+												<label for="effect_agree3" role="radio" aria-checked="false">5년</label><!--[v4.0] #접근성# aria 추가 -->
 											</div>
 										</div>
-										<!-- 250317 문구추가 -->
+										<!-- [v4.0]25-03-17 문구추가 -->
 										<ul class="dotted_list sm">
 											<li>공공정보는 1년까지만 가져옵니다.</li>
 										</ul>
-										<!-- 250317 문구추가 -->
+										<!-- //[v4.0]25-03-17 문구추가 -->
 									</dd>
 
 									<dt>재산세 납세 기관</dt>
@@ -288,37 +331,54 @@
 											</div>
 										</div>
 									</dd>
-
+									<!-- [v4.0]25-04-28 해당부분 삭제 
 									<dt>선택 정보</dt>
 									<dd>
 										<div class="border_box">
 											<p>실제 구매한 상품이 아닌 해당 상품의 13가지 항목의 카테고리가 포함되어 있습니다. 본인의 소비생활 등에 관련된 상세한 정보가 포함되어 있습니다.</p>
 										</div>
 									</dd>
+									-->
 								</dl>
 							</div>
 						</div>
 
+						<!-- [v4.0]25-04-28 구조변경 --> 
 						<div class="terms_check">
+							<strong class="terms_check_tit">선택정보의 전송동의</strong>
 							<ul class="checkbox_list">
 								<li>
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree3">
-										<label for="terms_agree3">[선택]계좌 출처&middot;메모 표시</label>
+										<label for="terms_agree3">
+											<!-- [v4.0]25-04-28 변경 -->
+											<strong class="tit">[선택]계좌 출처&middot;메모 표시</strong>
+											<span class="txt">송금인/수취인명 정보 등 본인의 사생활 및 경제활동 등에 관련된 상세한 정보가 포함되어 있습니다.</span>
+											<!-- [v4.0]25-04-28 변경 -->
+										</label>
 									</div>
 								</li>
 								<li>
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree4">
-										<label for="terms_agree4">[선택]가맹점명/사업자등록번호 표시</label>
+										<label for="terms_agree4">
+											<strong class="tit">[선택]가맹점명/사업자등록번호 표시</strong>
+											<span class="txt">실제 구매한 상품이 아닌 해당 상품의 13가지 항목의 카테고리가 포함되어 있습니다.</span>
+										</label>
 									</div>
 								</li>
 								<li>
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" id="terms_agree5">
-										<label for="terms_agree5">[선택]구매한 상품 카테고리 표시</label>
+										<label for="terms_agree5">
+											<strong class="tit">[선택]구매한 상품 카테고리 표시</strong>
+											<span class="txt">본인의 소비생활 등에 관련된 상세한 정보가 포함되어 있습니다.</span>
+										</label>
 									</div>
 								</li>
+							</ul>
+
+							<ul class="checkbox_list">
 								<li>
 									<div class="checkbox">
 										<input type="checkbox" name="terms_agree" required="" id="terms_agree1">
@@ -337,6 +397,7 @@
 								</li>
 							</ul>
 						</div>
+						<!-- //[v4.0]25-04-28 구조변경 --> 
 					</div>
 				</div>
 
@@ -352,7 +413,7 @@
 		-->
 		<div class="popup_footer fixed">
 			<div class="btns_wrap btn_agree_wrap">
-				<button type="button" class="btns lg primary btn_agree_move"><span class="btn_down_arrow">끝까지 내려 보기</span></button>
+				<button type="button" class="btns lg primary btn_agree_move" id="btn_terms_scroll"><span class="btn_down_arrow">끝까지 내려 보기</span></button><!-- // [v4.0] btn_terms_scroll id 추가 -->
 				<button type="button" class="btns lg primary btn_agree_stop">동의하고 계속하기</button>
 			</div>
 		</div>
@@ -360,7 +421,80 @@
 	</div>
 	<!--// 전체 팝업 종료 -->
 
-	<script>
-	</script>
+<script>
+//약관 스크롤 애니 - scroll
+$(function () {
+	let scrolling;
+	let scrollEnding = false;
+
+	//let $termsCon = $('#terms_scroll');
+	let $termsCon = $('.terms_view');
+	let $fullPop = $termsCon.closest('.full_popup');
+	let $popCont = $('.popup_content',$fullPop);
+	
+	$popCont.off('scroll.full_popup_scroll').on('scroll.full_popup_scroll', function(){
+		let nowScroll = $popCont.scrollTop();
+
+		/*scroll ending check */
+		if($termsCon){
+			if((nowScroll + $popCont.height()) >= $termsCon.height()){
+				scrollEnding = true;
+			
+				if (document.getElementsByClassName('.btn_agree_move') ) {
+					$fullPop.find('.btn_agree_wrap').addClass('act');
+
+					//check toast
+					$fullPop.find('.error_message').addClass('on');
+					setTimeout(function(){
+						$fullPop.find('.error_message').removeClass('on').addClass('off');
+					},2000)
+				}
+			}else{
+				scrollEnding = false;
+			}	
+		}
+	})
+})
+
+
+//약관 스크롤 애니 - click
+$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn_agree_move', function(){
+
+	let $btnTerms = $('.btn_agree_move');
+	let $fullPop = $btnTerms.closest('.full_popup');
+	let $popCont = $('.popup_content',$fullPop);
+	let $termsCont = $('.terms_view',$fullPop);
+	let nowScroll = $popCont.scrollTop();
+	var posScroll = 0;
+
+	$btnTerms.each(function(){
+		$btnTerms.addClass('rrrrrrrrrrrrrrrrrrrrrr')
+
+		if((nowScroll + $popCont.height()) >= $termsCont.height()){
+			scrollEnding = true;
+
+			$btnTerms.parent('.btn_agree_wrap').addClass('act');
+
+			//check toast
+			$fullPop.find('.error_message').addClass('on');
+			setTimeout(function(){
+				$fullPop.find('.error_message').removeClass('on').addClass('off');
+			},2000)
+		}else{
+			scrollEnding = false;
+
+			if($btnTerms.hasClass('go_last')){
+				$popCont.animate({
+					scrollTop: $popCont[0].scrollHeight //맨아래로 바로
+				}, 400);
+			}else{
+				$popCont.animate({
+					scrollTop: nowScroll + $popCont.height() // 조금조금 이동
+				}, 400);
+			}
+		}	
+	})
+});
+</script>
 </body>
 </html>

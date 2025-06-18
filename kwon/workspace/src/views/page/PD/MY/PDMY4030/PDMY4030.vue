@@ -441,11 +441,11 @@ export default {
             let config = {};
             
             if(linkDsc == "newCar") {
-                //window.open("https://nhcok.cardong.co.kr");
+                //window.open("https://nhcok.carnoon.co.kr");
                 if (this.getUserInfo('chnl') === '385') {
-                    appService.executeBrowser("https://nhcok.cardong.co.kr");
+                    appService.executeBrowser("https://nhcok.carnoon.co.kr");
                 } else {
-                    appService.cokBankOpenPopupWebBrowser("https://nhcok.cardong.co.kr");
+                    appService.cokBankOpenPopupWebBrowser("https://nhcok.carnoon.co.kr");
                 }
                 return;
             } else if(linkDsc == "loanLmt") {

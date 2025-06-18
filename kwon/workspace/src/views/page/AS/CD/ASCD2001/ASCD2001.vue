@@ -250,7 +250,7 @@ import ASCD2004 from '@/views/page/AS/CD/ASCD2004/ASCD2004'     // 청구내역
 import ASCD2007 from '@/views/page/AS/CD/ASCD2007/ASCD2007'     // 단기신용대출
 import ASCD2008 from '@/views/page/AS/CD/ASCD2008/ASCD2008'     // 장기신용대출
 import ASCD2009 from '@/views/page/AS/CD/ASCD2009/ASCD2009'     // 리볼빙
-import LCLE2002 from '@/views/page/LC/LE/LCLE2002/LCLE2002'
+import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002'
 import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
 
 export default {
@@ -412,7 +412,7 @@ export default {
         // 이번달 카드별 이용내역 오픈
         openDetailPop(obj) {
             const config = {
-                component: LCLE2002,
+                component: LCLE4002,
                 params : {
                     mydtCusno       : obj.mydtCusno,
                     inqYm           : this.inqYm,

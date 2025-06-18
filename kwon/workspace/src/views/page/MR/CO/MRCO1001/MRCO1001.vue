@@ -82,11 +82,12 @@ import popupMixin from '@/common/mixins/popupMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
+import _ from 'lodash'
 
 import ASAC1003 from '@/views/page/AS/AC/ASAC1003/ASAC1003'
-import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
 import COCO1105 from '@/views/page/CO/CO/COCO1105/COCO1105'
-import LCIP1010TAB from '@/components/category/LcIp1010Tab'
+import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'
 
 export default {
 	name : "MRCO1001",
@@ -308,6 +309,9 @@ export default {
 				case "23" :
 					rtnTit = "신용점수"
 					break;
+				case "26" :
+					rtnTit = "대면상담"
+					break;
 				case "03" :
 					// asis) 신용점수
 					rtnTit = "신용점수"
@@ -315,6 +319,9 @@ export default {
 				case "04" :
 					// asis) 공지사항
 					rtnTit = "공지사항"
+					break;
+				case "26" :
+					rtnTit = "대면상담"
 					break;
 				case "99" :
 					// asis) 별도 알림
@@ -350,12 +357,13 @@ export default {
 			 * 21 :: 목표관리	
 			 * 22 :: 광고		
 			 * 23 :: 신용점수		< asis 유지 ("03")
+			 * 26 :: 대면상담(동의요청) 2025-05-20 추가
 			 */
 			if (anc.asetAmnAncDsc == "03" || anc.asetAmnAncDsc == "04" || anc.asetAmnAncDsc == "23" || anc.asetAmnAncDsc == "11") {
 				// 알림구분 :: 신용점수 또는 공지사항일 경우
 				let compName = ""
 				if(anc.asetAmnAncDsc == "03" || anc.asetAmnAncDsc == "23") {
-					compName = ASCR1101
+					compName = ASCR4101
 				} else if(anc.asetAmnAncDsc == "04" || anc.asetAmnAncDsc == "11") {
 					compName = COCO1105
 				}
@@ -375,7 +383,7 @@ export default {
 				});
 			} else if(anc.asetAmnAncDsc == "15" || anc.asetAmnAncDsc == "18") {
 				// 계좌예상잔액 / 정기지출 알림일 경우 팝업 오픈
-				let compName = anc.asetAmnAncDsc == "15" ? ASAC1003 : LCIP1010TAB
+				let compName = anc.asetAmnAncDsc == "15" ? ASAC1003 : LCIP2007
 
 				const config = {
 					component : compName,
@@ -384,18 +392,95 @@ export default {
 					Object.assign(this.$data, this.$options.data())
 					this.getData();
 				})
+			} else if(anc.asetAmnAncDsc == "26") {
+				const config = {
+					url : "/co/or/01r03",
+					data: {
+						mydtCusno 	: this.getUserInfo('mydtCusno'),
+					}
+				}
+				apiService.call(config).then(response => {
+					console.log("response : ", response)
+
+					let params = {
+						brnm : response.brnm,
+						rqrmnm : response.rqrmnm
+					}
+
+					if(!_.isEmpty(response)) {
+						if(response.rqrYn == '1') {
+							this.fn_movePage('COOR4201', params)
+						}
+						else {
+							modalService.alert("지점을 방문하여 대면상담을 요청하신 후<br>가이드를 받으세요.")
+						}
+					}
+				})
 			} else {
 				if(this.isNull(anc.apLkUrlnm1))  {
 					return
 				}
+				let ancUrl = ""
+
+				switch(anc.apLkUrlnm1) {
+					case "ASCD2001" :
+						ancUrl = "ASCD4001"
+						break;
+					case "ASIS2001" :
+						ancUrl = "ASIS4001"
+						break;
+					case "ASAC2001" :
+						ancUrl = "ASAC4001"
+						break;
+					case "ASLN2001" :
+						ancUrl = "ASLN4001"
+						break;
+					case "MRAM2001" :
+						ancUrl = "MRAM4001"
+						break;
+					case "ASIP2001" :
+						ancUrl = "ASIP4001"
+						break;
+					case "MAMA2001" :
+						ancUrl = "MAMA4001"
+						break;
+					case "LCIP1010TAB" :
+						ancUrl = "LCIP2007"
+						break;
+					case "PDMY2001" :
+						ancUrl = "PDMY4001"
+						break;
+					case "LCIP2001" :
+						ancUrl = "LCIP4001"
+						break;
+					default :
+						ancUrl = anc.apLkUrlnm1
+				}
 				const config = {
-					name : anc.apLkUrlnm1
+					name : ancUrl
 				};
 
 				commonService.movePage(config);
 				this.closeAll();
 			}
-		}
+		},
+		// 페이지 이동
+		fn_movePage(pageId, param) {
+			if (pageId === '') {
+				modalService.alert("페이지 정보 필요")
+				return
+			}
+
+			let params = {}
+			params = param
+			
+			const config = {
+				name : pageId,
+				params : params
+			}
+			this.close()
+			commonService.movePage(config);
+		},
 	}
 }
 </script>

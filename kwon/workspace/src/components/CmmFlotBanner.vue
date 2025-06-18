@@ -27,6 +27,8 @@ import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
 import _ from 'lodash'
 import COCO4052 from '@/views/page/CO/CO/COCO4052/COCO4052'
+import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001'
+import MAGU4001 from '@/views/page/MA/GU/MAGU4001/MAGU4001'   // v4 서비스소개
 
 
 export default {
@@ -80,10 +82,27 @@ export default {
         * 화면이동
         */
         fn_movePage(pageId) {
+            let popName = "";
+
+            if(pageId == 'COAR4001'){
+                popName = COAR4001
+            }else if(pageId == 'MAGU4001'){
+                popName = MAGU4001
+            }
+
             const config = {
-                name: pageId
-            } 
-            commonService.movePage(config)
+                name : pageId,
+                component : popName
+            }
+
+            if(popName){
+                modalService.openPopup(config).then(() => {
+                    this.$emit('reload');
+                })
+            }else{
+                commonService.movePage(config)
+            }
+                     
         },
         /*
         * 닫기 선택

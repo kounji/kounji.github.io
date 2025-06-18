@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>해지</title>
+	<title>계좌해지신청</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -29,26 +29,26 @@
 
 		<div class="popup_content">
             <section class="close_account">
-                <!-- 25-03-10 headline 추가 -->
-                <p class="headline">해지 및 잔고이전 여부 확인을 위해<br>아래 내용을 입력해주세요.</p>
-                <!-- //25-03-10 headline 추가 -->
+                <!-- 25-03-10 headline 추가 / 25-04-24 문구변경 -->
+                <p class="headline">해지 및 잔고이전 방법을<br>선택해주세요.</p>
+                <!-- //25-03-10 headline 추가 / 25-04-24 문구변경-->
 
                 <div class="board_box">    
                     <h2 class="title">해지대상 계좌</h2>        
 
                     <div class="assets_info">
-                        <i class="ico_bank D1AAJB0000"></i>
+                        <i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                         <div>
                             <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                            <div class="account">352222302032522<span>비활동</span></div>
-                            <strong class="num">3,758,000원</strong>
+                            <div class="account"><span class="blind">계좌번호</span>352222302032522<!-- 25-03-21 비활동 삭제 <span>비활동</span>--></div> <!--[v4.0] #접근성# 대체텍스트 추가 -->
+                            <strong class="num"><span class="blind">금액</span>3,758,000원</strong> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                         </div>
                     </div>
-
+                    <!--25-04-24 삭제
                     <details class="board_box_details">
                         <summary>
-                            <span class="show"><span class="blind">계좌정보</span> 자세히보기</span><!-- 25-03-10 문구수정 -->
-                            <span class="hide"><span class="blind">계좌정보</span> 닫기</span><!-- 25-03-10 문구수정 -->
+                            <span class="show"><span class="">계좌정보</span> 더보기</span>!-- 25-03-10 문구수정 / 25-03-21 문구수정, blind 제거--
+                            <span class="hide"><span class="blind">계좌정보</span> 닫기</span>!-- 25-03-10 문구수정 --
                         </summary>
                         <div class="cont">
                             <ul class="sleep_list">
@@ -60,6 +60,7 @@
                             </ul>
                         </div>
                     </details>
+                    -->
                 </div>
 
                 <div class="close_info">
@@ -116,8 +117,12 @@
                 -->
 
                 <div class="close_info">
-                    <h2>이체 은행 입력</h2><!-- 25-03-10 문구수정 -->
-
+                    <!-- 25-03-21 내계좌선택 추가로 마크업 변경-->
+                    <div class="tit_area">
+                        <h2>이체 은행</h2><!-- 25-03-10 문구수정 / 25-03-21 문구수정-->
+                        <button type="button" class="btns">내계좌선택</button>
+                    </div>
+                    <!-- // 25-03-21 내계좌선택 추가로 마크업 변경-->
                     <!--입력이 없는 경우-->
                     <div class="formItem">
                         <span class="label">은행</span>
@@ -126,8 +131,14 @@
 
                     <div class="formItem">
                         <span class="label">계좌번호</span>
+                        <!--25-04-04 버튼을 인풋으로 변경
                         <div class="input">
                             <button type="button" class="account">계좌번호 입력</button>
+                            <button type="button" class="btns">계좌확인</button>
+                        </div>
+                        -->
+                        <div class="input">
+                            <input type="text" name="" id="account" placeholder="계좌번호 입력" title="계좌번호">
                             <button type="button" class="btns">계좌확인</button>
                         </div>
                     </div>
@@ -140,22 +151,43 @@
 
                     <div class="formItem confirm">
                         <span class="label">계좌번호</span>
+                        <!--25-04-04 버튼을 인풋으로 변경
                         <div class="input">
                             <button type="button" class="account" title="계좌번호 입력"><span class="blind">입력된 계좌</span><span class="num">2214210757669</span></button>                            
                             <button type="button" class="btns" disabled>계좌확인</button>
                         </div>
-                        <span class="error_txt">계좌확인이 완료되었어요.</span>
+                        -->
+                        <div class="input">
+                            <input type="text" name="" id="account" placeholder="계좌번호 입력" title="계좌번호">
+                            <button type="button" class="btns" disabled>계좌확인</button>
+                        </div>
+                        
+                        <span class="error_txt">계좌 확인이 완료 되었습니다.</span><!-- 25-03-21 문구수정 -->
                     </div>
 
                     <!--입력하였으나 오류가 있는 경우-->
                     <div class="formItem error">
                         <span class="label">계좌번호</span>
+                        <!--25-04-04 버튼을 인풋으로 변경
                         <div class="input">
                             <button type="button" class="account" title="계좌번호 입력"><span class="blind">입력된 계좌</span><span class="num">2214210757669</span></button>
                             <button type="button" class="btns">계좌확인</button>
                         </div>
-                        <span class="error_txt">계좌번호를 다시 확인해주세요.</span>
+                        -->
+                        <div class="input">
+                            <input type="text" name="" id="account" placeholder="계좌번호 입력" title="계좌번호">
+                            <button type="button" class="btns">계좌확인</button>
+                        </div>
+                        
+                        <span class="error_txt">계좌번호를 다시 확인해 주세요.</span> <!--[v4.0] 25-05-29 띄어쓰기 수정 -->
                     </div>
+
+                    <!-- 25-06-05 문구추가 -->
+                    <ul class="info_list">
+                        <li><strong class="point">농축협 계좌</strong>로 이체는  금융결제원 정책에 따라 추후 제공 예정입니다.</li>
+                        <li>NH콕마이데이터에 연결된 계좌중 금융결제원 정책에 따라 실제 해당 기능(해지 및 잔고 이전)을 제공하는 은행권 계좌에만 잔고를 이전할 수 있습니다.</li>
+                    </ul>
+                    <!-- //25-06-05 문구추가 -->
                 </div>
                 
                 <details class="ico_detail_noti" open>
@@ -182,7 +214,7 @@
         <div class="popup_footer fixed">
 			
             <div class="btn_full_box">
-				<button type="button" class="btns lg primary">해지신청</button><!-- 25-03-10 문구수정 -->
+				<button type="button" class="btns lg primary">다음</button><!-- 25-03-10 문구수정 / 25-03-21 문구수정 -->
             </div>
         </div>
 

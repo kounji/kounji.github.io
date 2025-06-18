@@ -223,7 +223,7 @@
 
     import ASCR1102 from '@/views/page/AS/CR/ASCR1102/ASCR1102'
     import ASCR1104 from '@/views/page/AS/CR/ASCR1104/ASCR1104'
-    import ASCR1107 from '@/views/page/AS/CR/ASCR1107/ASCR1107'
+    import ASCR4107 from '@/views/page/AS/CR/ASCR4107/ASCR4107'
     import ASCR1108 from '@/views/page/AS/CR/ASCR1108/ASCR1108'
     import ASCR1112 from '@/views/page/AS/CR/ASCR1112/ASCR1112'
     import ASCR1113 from '@/views/page/AS/CR/ASCR1113/ASCR1113'
@@ -300,7 +300,7 @@
             },
             fn_openCrinfTipPop() {
                 const config = {
-                    component : ASCR1107 // 신용정보관리팁
+                    component : ASCR4107 // 신용정보관리팁
                 };
 
                 modalService.openPopup(config).then(() => {});
@@ -381,13 +381,25 @@
                 }
                 apiService.call(config).then(response =>{
                     console.log(response)
+
+                    let json = {"url" : response.url}
+                    
+                    if(import.meta.env.VITE_ENV !== 'R' && !response.url){
+                      json = {"url" : "https://finance.naver.com"}
+                    }else if(import.meta.env.VITE_ENV === 'R' && !response.url){
+                      modalService.alert("이미 다 제출하여 올릴 신용점수가 없습니다.")
+                      return
+                    }
+                    
                     if(this.getUserInfo('chnl') === '385'){
-                        appService.openPopupWebView(response.url).then(rst => {
-                            console.log(rst)
+                        appService.openPopupWebView(json).then(rst => {
+                            console.log("스뱅 웹뷰다녀온 후 데이터 확인 :: ",rst)
+                            this.close(rst.result.resultCallback.status)
                         })
                     }else{
-                        appService.cokBankOpenPopupWebView(response.url).then(rst => {
-                            console.log(rst)
+                        appService.cokBankOpenPopupWebView(json).then(rst => {
+                            console.log("콕뱅 웹뷰다녀온 후 데이터 확인 :: ",rst)
+                            this.close(JSON.parse(rst.result).resultCallback.status)
                         }) 
                     }
                 });

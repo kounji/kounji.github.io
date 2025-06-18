@@ -117,7 +117,7 @@
 		</div>
 		<div class="popup_footer fixed" v-show="viewYN == 'N'">
 			<div class="btn_full_box">
-				<a href="javascript:void(0);" @click.prevent="openPop('COAR2002')" role="button" class="btn btn_mint">정기지출 추가</a> <!-- COAR2002 자산연결 -->
+				<a href="javascript:void(0);" @click.prevent="openPop('COAR4002')" role="button" class="btn btn_mint">정기지출 추가</a> <!-- COAR4002 자산연결 -->
 			</div>
 		</div>
 		<!-- //데이터 없을때 -->
@@ -136,7 +136,7 @@ import modalService from '@/service/modalService'
 import {dateFormat} from '@/utils/date'
 import {amountCountAnimate} from '@/utils/jUtils'
 import LCFD2003 from '@/views/page/LC/FD/LCFD2003/LCFD2003'
-import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002'
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002'
 import LCIP2008 from '@/views/page/LC/IP/LCIP2008/LCIP2008'
 import LCIP2009 from '@/views/page/LC/IP/LCIP2009/LCIP2009'
 import _ from 'lodash'
@@ -228,9 +228,9 @@ export default {
         openPop(viewName) {
 			let config = {}
 			
-			if (viewName == 'COAR2002') {
+			if (viewName == 'COAR4002') {
 				config = {
-					component: COAR2002,
+					component: COAR4002,
 					params : {}
 				}
 			}

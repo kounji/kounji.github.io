@@ -24,7 +24,7 @@
         <div class="popup_content com_bg_type00"><!-- 하단 버튼 없을때 com_no_bottom -->
 			<div class="com_inner" :class="goalCheck">
 				<div class="mygoal_title_area">
-					<p class="pointColor green">나의 워라벨, 설레는 여행!</p>
+					<p class="pointColor green">나의 워라밸, 설레는 여행!</p>
 					<strong class="titH1">{{obtnm}}</strong>
 					<p class="sub_text">{{trvDsnNm}}<span class="dot_text">{{pers}}명</span><span class="dot_text">{{trvPrdDscNm}}</span></p>
 				</div>
@@ -143,7 +143,7 @@
 
 			<div class="com_inner exchangerate_info">
 				<!-- 환율정보 미리 알아보세요! -->
-				<div class="custom_box custom_box2">
+				<div class="custom_box custom_box2" v-if="trvDsnC !== '07'">
 					<div class="content_wrap">
 						<div class="com_cont_tit01">
 							<strong>환율정보 미리 알아보세요!</strong>
@@ -165,7 +165,7 @@
                             <div class="standard">
 								<p class="con">매매 기준율</p>
 								<div class="com_price">
-                                    <strong class="num counter" data-count="112356">{{addComma(Number(selectCurc.dlbsrt))}}</strong><em class="unit">KRW</em>
+                                    <em class="unit">KRW </em><strong class="num counter" data-count="112356">{{addComma(Number(selectCurc.dlbsrt))}}</strong>
 									<!-- 
 										통화 선택버튼 클릭 후 미국, 일본, 유로연합, 중국, 호주, 캐나다 등 각 나라를 
 										각각 클릭시 해당 데이터 표시 후 매매 기준율 숫자 인터렉션됩니다.
@@ -176,28 +176,29 @@
 											해당 클래스(counter) /속성(data-count) 삽입시 숫자 인터렉션됩니다
 										)
 									-->
-									<span class="change_rate up">
-                                        <template v-if="selectCurc.subDlbsrt > 0">
-                                            <span class="raise">
-                                                <em>{{addComma(Math.abs(selectCurc.subDlbsrt))}}</em>
-                                            </span>
-                                        </template>
-                                        <template v-else-if="selectCurc.subDlbsrt < 0">
-                                            <span class="decrease">
-                                                <em>{{addComma(Math.abs(selectCurc.subDlbsrt))}}</em>
-                                            </span>
-                                        </template>
-									</span>
+									<template v-if="selectCurc.subDlbsrt > 0">
+                                        <span class="change_rate up">
+                                            <i class="blind">상승</i>
+                                            <em>{{addComma(Math.abs(selectCurc.subDlbsrt))}}</em>
+                                        </span>
+                                    </template>
+                                    <template v-else-if="selectCurc.subDlbsrt < 0">
+                                        <span class="change_rate down">
+                                            <i class="blind">하락</i>
+                                            <em>{{addComma(Math.abs(selectCurc.subDlbsrt))}}</em>
+                                        </span>
+                                    </template>
 								</div>
+                                <p class="date">기준일 : {{selectCurc.rgDt | dateFilter('YYYY.MM.DD')}}</p>
 							</div>
                             <div class="list_gray_box mt20">
 								<dl>
 									<dt>살 때</dt>
-                                    <td>{{addComma(Number(selectCurc.ttxs))}}<em class="unit"> KRW</em></td>
+                                    <td><em class="unit">KRW </em>{{addComma(Number(selectCurc.ttxs))}}</td>
 								</dl>
 								<dl>
 									<dt>팔 때</dt>
-                                    <td>{{addComma(Number(selectCurc.ttbrt))}}<em class="unit"> KRW</em></td>
+                                    <td><em class="unit">KRW </em>{{addComma(Number(selectCurc.ttbrt))}}</td>
 								</dl>
 							</div>
 						</div>
@@ -205,7 +206,7 @@
 				</div>
 
 				
-				<div class="inner_banner mt40">
+				<div class="inner_banner">
 					<!-- NH 콕뱅크 [금융상품] -->
 					<a href="javascript:void(0);" role="button" @click="banLink('nhCok')">
 						<!-- <div class="com_box_type03 bg20">
@@ -353,6 +354,8 @@ export default {
                 this.bacAm = this.fncObtAm - this.acNowBacTotAm // 남은금액
                 this.bacDt = Number(dayDiff(dateFormat(this.obtDt, 'YYYYMMDD'), this.curDt) + 1) // 남은일자
                 
+
+                console.log("ㅇㄴㄹ마ㅣㅓ;ㅁㄹㄴ어;ㅣㅏㅁㄴㄹ어;ㅣㅏㅁㄴㄹ어;ㅏㅣㅁㄴㄹ어;ㅣㅏㅁㄴㄹㅇ;ㅓㅣㅏ" , this.trvDsnC)
                 // 남은기간이 30일 이하일경우에는 남은금액으로 노출
                 if(this.bacDt > 30) {
                     this.dayAm = round(this.bacAm / (this.bacDt / 30), 0)
@@ -527,9 +530,9 @@ export default {
         banLink(linkDsc) {
             if(linkDsc == "nhCok") {
                 if (this.getUserInfo('chnl') === '385') {
-                    appService.executeBrowser("https://smartcard.nonghyup.com");
+                    appService.executeBrowser("https://nhpay.nonghyup.com");
                 } else {
-                    appService.cokBankOpenPopupWebBrowser("https://smartcard.nonghyup.com");
+                    appService.cokBankOpenPopupWebBrowser("https://nhpay.nonghyup.com");
                 }
                 return;
             } else if(linkDsc == "nhInsur") {
@@ -598,7 +601,22 @@ export default {
 
             if(this.curcList.length > 0) {
                 if(chgDsc == 'init') {
-                    tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'USD');
+                    if(this.trvDsnC === '01'){ // 동남아,대만
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'IDR');
+                    } else if(this.trvDsnC === '02') { // 유럽
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'EUR');
+                    } else if(this.trvDsnC === '03') { // 남태평양
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'AUD');
+                    } else if(this.trvDsnC === '04') { // 호주/뉴질랜드
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'AUD');
+                    } else if(this.trvDsnC === '05') { // 미주/하와이
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'USD');
+                    } else if(this.trvDsnC === '06') { // 중국/일본/홍콩
+                        tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == 'CNY');
+                    } else { // 제주도
+                        tmpCurcObj = [];
+                    }
+                    
                 } else {
                     tmpCurcObj = this.curcList.find((tmpCurc) => tmpCurc.curc == this.selectCurc.curc);
                 }

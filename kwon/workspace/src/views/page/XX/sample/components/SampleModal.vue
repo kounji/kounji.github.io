@@ -22,7 +22,12 @@
 		<h1></h1>
 		<p><button @click="openModalASAC03">순자산예금입출금</button></p>
 		<br>
-		<span>=========== TO-BE 팝업 ============</span>
+		<span>=========== TO-BE 팝업 (2025) ============</span>
+		<p><button @click="openSlideNHCertNoti">NH모바일인증서 미보유 안내 슬라이드</button></p>
+		<br>
+		<p><button @click="openSlideNHCertAgr">NH모바일인증서 약관동의 슬라이드</button></p>
+		<span>=========== TO-BE 팝업 (2021) ============</span>
+		<p><button @click="openSlideCOAR2011">공동인증서 약관동의 슬라이드</button></p>
 		<br>
 		<p><button @click="openSlidePagePopup">슬라이드페이지팝업</button></p>
 		<p><button @click="openSlidePagePopupWithComponent">슬라이드페이지-계좌-대출상품컴퍼넌트</button></p>
@@ -56,6 +61,9 @@
 	// import ASCR0008 from '@/views/page/AS/CR/ASCR0008/ASCR0008'
 	// import LCFD0004 from '@/views/page/LC/FD/LCFD0004/LCFD0004'
 	// import LCFD0005 from '@/views/page/LC/FD/LCFD0005/LCFD0005'
+	import COAR2011 from '@/views/page/CO/AR/COAR2011/COAR2011'
+	import COAR4037 from '@/views/page/CO/AR/COAR4037/COAR4037'
+	import COAR4038 from '@/views/page/CO/AR/COAR4038/COAR4038'
 
 	export default {
 		name: 'SampleModal',
@@ -97,6 +105,32 @@
 			//if(button) button.click()
 		},
 		methods: {
+			openSlideNHCertNoti() {
+				const config = {
+					renderer: {component: COAR4037},
+					params: {}
+				}
+				modalService.openSlidePagePopup(config)
+			},
+			openSlideNHCertAgr() {
+				const config = {
+					renderer: {component: COAR4038},
+					params: {}
+				}
+				modalService.openSlidePagePopup(config).then(response => {
+					console.log('>>> response >> ', response)
+				})
+			},
+
+			openSlideCOAR2011() {
+				const config = {
+					renderer: {component: COAR2011},
+					params: {}
+				}
+				modalService.openSlidePagePopup(config)
+			},
+
+
 			openModalJsonViewer() {
 				alert('open json viewer')
 				// const config = {

@@ -54,7 +54,7 @@
                                     <!-- 퇴직연금 DC -->
                                     <template v-if="item.rtrPsnDsc === 'DC'">
                                         <a href="javascript:void(0);" @click.prevent="fn_openDetailPop('DC', item)">
-                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                             <div>
                                                 <strong class="org">{{item.dcRtrpnsWrsnm}}</strong>
                                                 <strong class="account">{{item.wrsAmnno}}</strong>
@@ -66,7 +66,7 @@
                                     <!-- 퇴직연금 IRP -->
                                     <template v-else>
                                         <a href="javascript:void(0);" @click.prevent="fn_openDetailPop('IRP', item)">
-                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                             <div>
                                                 <strong class="org">{{item.acWrsnm}}</strong>
                                                 <strong class="account">{{item.mydtAcno}}</strong>
@@ -97,25 +97,29 @@
                                     <!-- 개인연금저축보험 -->
                                     <template v-if="item.pPnsDsc === 'PSIS'">
                                         <a href="javascript:void(0);" @click.prevent="fn_openDetailPop('PSIS', item)">
-                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                             <div>
                                                 <strong class="org">{{item.isrcoWrsnm}}</strong>
                                                 <strong class="account">{{item.isrSctsNo}}</strong>
                                             </div>
                                             <strong class="num"><em>{{item.isrTotPymAmt | numberFilter}}</em>원</strong>
+                                            <span :class="getStatusClass(item.isrCtrStsc)">{{item.isrCtrStsnm}}</span>
                                         </a>
                                     </template>
                                     <!-- // 개인연금저축보험 -->
                                     <!-- 개인연금저축펀드 -->
                                     <template v-if="item.pPnsDsc === 'PSIV'">
                                         <a href="javascript:void(0);" @click.prevent="fn_openDetailPop('PSIV', item)">
-                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                             <div>
                                                 <strong class="org">{{item.acWrsnm}}</strong>
                                                 <strong class="account">{{item.mydtAcno}}</strong>
                                             </div>
                                             <strong class="num"><em>{{item.acNowBac | numberFilter}}</em>원</strong>
                                             <p class="latter" :class="item.strmPftrt === 0 ? '' : item.strmPftrt > 0 ? 'up' : 'down'">
+                                                <i class="blind" :class="item.strmPftrt === 0 ? '' : item.strmPftrt > 0 ? 'up' : 'down'">
+                                                    {{ item.strmPftrt === 0 ? '변동없음' : item.strmPftrt > 0 ? '상승' : '하락' }}
+                                                </i>
                                                 <em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
                                             </p>
                                         </a>
@@ -124,7 +128,7 @@
                                     <!-- 연금신탁 -->
                                     <template v-if="item.pPnsDsc === 'PSTS'">
                                         <a href="javascript:void(0);" @click.prevent="fn_openDetailPop('PSTS', item)">
-                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+                                            <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                             <div>
                                                 <strong class="org">{{item.acWrsnm}}</strong>
                                                 <!-- asis) 계좌번호 미노출 확인필요 -->
@@ -161,7 +165,7 @@
     import PDSC4001 from '@/views/page/PD/SC/PDSC4001/PDSC4001'
     import ASPS2002 from '@/views/page/AS/PS/ASPS2002/ASPS2002'
     import ASPS2004 from '@/views/page/AS/PS/ASPS2004/ASPS2004'
-    import ASIS2013 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
+    import ASIS4012 from '@/views/page/AS/IS/ASIS4012/ASIS4012'
     import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
     import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
 
@@ -215,7 +219,7 @@
                 ///////////////////////////////////
                 // 계좌목록 조회 
                 const config = {
-                    url: '/as/ps/01r01',
+                    url: '/as/ps/01r02',
 					data: {
                         mydtCusno : this.getUserInfo('mydtCusno')
                         //mydtCusno : '2000003756'
@@ -295,6 +299,25 @@
             },
 
             /**
+             * 보험 상태에 따른 배지 class
+             */
+            getStatusClass(isrSctrStsc) {
+                // 정상
+                if(isrSctrStsc == '02') {
+                    return ['pin', 'green']
+                // 실효
+                }else if(isrSctrStsc == '04') {
+                    return ['pin', 'yellow']
+                // 만기
+                }else if(isrSctrStsc == '05') {
+                    return ['pin', 'red']
+                // 소멸
+                }else if(isrSctrStsc == '06') {
+                    return ['pin', '']
+                }
+            },
+
+            /**
              * 더보기 선택 이벤트
              */
             fn_showMore(type) {
@@ -347,7 +370,7 @@
                     compName = ASPS2004 // IRP
                     params = {"objAccInfo": popupParam}
                 } else if(type == 'PSIS') {
-                    compName = ASIS2013 // 연금저축보험
+                    compName = ASIS4012 // 연금저축보험
                     params = {
                         infOfrmnOrgC: pension.infOfrmnOrgC,
                         isrSctsNo: pension.isrSctsNo,

@@ -1,7 +1,7 @@
 <!--
 /*************************************************************************
 * @ 서비스경로 : 지출 > 금융달력
-* @ 페이지설명 : 지출 > 금융달력 > 거래내역조회
+* @ 페이지설명 : 지출 > 금융달력 > 조회조건 및 정렬조건
 * @ 파일명     : src/views/page/LC/FD/LCFD4008/LCFD4008.vue
 * @ 작성자     : CS541017
 * @ 작성일     : 2025-01-10
@@ -18,7 +18,7 @@
         <div class="popup_box">
             <div aria-hidden="false" class="slide_popup" id="slide_popup_01">
                 <div class="popup_header">
-                    <h1>조건 검색</h1>
+                    <h1>조회 조건 설정</h1>
                 </div>
                 <div class="popup_content com_btn_bottom">
                     <div class="btn_radio_wrap mt0">
@@ -26,13 +26,13 @@
                             <strong class="titH5">조회기간</strong>
                             <div class="custom_tooltip">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
-                                    <a href="#nolink" class="com_btn_info" role="button">
+                                    <a href="javascript:void(0);" class="com_btn_info" role="button">
                                         <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                     </a>
                                     <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
                                         <div>
                                             <p>최근 1년 이내 최대 3개월까지 조회가 가능합니다.</p>
-                                            <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                         </div> 
                                     </div>
                                 </div>
@@ -55,6 +55,7 @@
                             <label for="com_input01"></label>
                             <input v-model="mchtnmCnd" type="search" id="com_input01" class="" name="" value="" placeholder="가맹점명을 입력하세요" title="가맹점 찾기"><div class="lineEF"></div>
                             <a href="javascript:void(0);" class="com_btn_delete"><span class="blind">삭제</span></a>
+                            <a @click.prevent="fn_search()" href="javascript:void(0);" class="com_btn_search"><span class="blind">검색</span></a>
                         </div>
                     </div>
 
@@ -254,12 +255,13 @@ export default {
         },
         // 달력
         fn_popupCalendar(evt, objNm) {
-            let tmpDt = ""
-            let minDate = ''
-            let maxDate = ''
+            let tmpDt   = ""
+            let minDate = ""
+            let maxDate = ""
             if(objNm == "inqStrDt"){
                 minDate = dateFormat(monthAdd(-12), 'YYYY.MM.DD')
-                tmpDt = this.inqStrDt
+                tmpDt   = this.inqStrDt
+                maxDate = this.inqEndDt
             }else{
                 if(this.inqStrDt !== undefined || this.inqStrDt !== null || this.inqStrDt !== ''){
                     minDate = dateFormat(this.inqStrDt , 'YYYY.MM.DD') 
@@ -267,9 +269,9 @@ export default {
                 }else{
                     minDate = dateFormat(monthAdd(-12), 'YYYY.MM.DD')
                 }  
-                 tmpDt = this.inqEndDt  
+                tmpDt = this.inqEndDt  
+                maxDate = dateFormat(new Date(), 'YYYY.MM.DD')
             }
-            maxDate = dateFormat(new Date(), 'YYYY.MM.DD')
             
             let config = {
                 pDate   : tmpDt,
@@ -281,9 +283,9 @@ export default {
                 if(response !== undefined && response !== null && response !== '')
                 {
                     evt.target.value = dateFormat(response, "YYYY.MM.DD")
-                    if(objNm === 'inqStrDt'){
+                    if(objNm === 'inqStrDt'){                     
                         this.inqStrDt = evt.target.value
-                    }else{
+                    }else{  
                         this.inqEndDt = evt.target.value
                     }                    
 
@@ -293,7 +295,6 @@ export default {
         ,
         // 조회
         fn_search() {
-
             if (this.inqStrDt == '') {
 				modalService.alert("조회시작일자는 필수입니다.")
     			return false             

@@ -19,8 +19,8 @@
 		</div>
 		
 		<div class="popup_content iframe com_no_bottom">
-			<div class="iframe_wrap">
-				<iframe :src="url" style="width:100%;height:100%" ref="iframe"></iframe>
+			<div class="iframe_wrap com_inner">
+				<iframe :src="url" style="width:100%; height:100%; " ref="iframe"></iframe>
 			</div>
 		</div>
 

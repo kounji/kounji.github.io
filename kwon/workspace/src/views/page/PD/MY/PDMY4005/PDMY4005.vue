@@ -64,7 +64,7 @@
 									</div>
 
 									<div class="text">
-										나의 워라벨,<br> 
+										나의 워라밸,<br> 
 										설레는 여행!
 									</div>
 								</a>

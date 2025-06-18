@@ -280,7 +280,7 @@ import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 
-import ASIS2003 from '@/views/page/AS/IS/ASIS2003/ASIS2003' // 인보험 보장정보 팝업
+import ASIS4003 from '@/views/page/AS/IS/ASIS4003/ASIS4003' // 인보험 보장정보 팝업
 import ASIS2004 from '@/views/page/AS/IS/ASIS2004/ASIS2004' // 인보험 특약정보 슬라이드 팝업
 import ASIS2005 from '@/views/page/AS/IS/ASIS2005/ASIS2005' // 인보험 대출정보 팝업
 import ASIS2007 from '@/views/page/AS/IS/ASIS2007/ASIS2007' // 물보험 보장정보 팝업
@@ -672,7 +672,7 @@ export default {
             let component
             switch(this.type) {
                 case TYPE_PERSON:
-                    component = ASIS2003
+                    component = ASIS4003
                     break
                 case TYPE_NOT_PERSON:
                     component = ASIS2007

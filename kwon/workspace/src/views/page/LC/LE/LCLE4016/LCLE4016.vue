@@ -1,7 +1,7 @@
 <!--
 /*************************************************************************
-* @ 서비스경로 : 지출 > 지출내역 > 선불결제내역 > 상세정보
-* @ 페이지설명 : 지출 > 지출내역 > 선불결제내역 > 상세정보 슬라이드 팝업
+* @ 서비스경로 : 지출 > 지출내역 > 지출목표 등록
+* @ 페이지설명 : 지출 > 지출내역 > 지출목표 등록
 * @ 파일명     : src/views/page/LC/LE/LCLE4016/LCLE4016.vue
 * @ 작성자     : CS540687
 * @ 작성일     : 2025-02-04
@@ -20,13 +20,13 @@
             <div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
                 <div class="popup_header">
                     <h1>지출 목표</h1>
-                    <!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+                    <!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
                 </div>
                 <div class="popup_content com_btn_bottom">
 
                     <strong class="titH5">목표 금액</strong>
                     <div class="com_input_type01 com_won01 mt0">
-                        <input type="tel" id="com_input01" :class="xpsEstAm.length>0 && foc_xpsEstAm?'focusON focusforce':''" v-model="xpsEstAm" @keyup="addComma($event)" @focus="fn_focusOnOff('xpsEstAm')" ref="xpsEstAm" value=""  maxlength="17" required="" placeholder="이번달 예산 입력" title="한달 예산">
+                        <input type="tel" id="com_input01" :class="xpsEstAm.length > 0 && foc_xpsEstAm ? 'focusON focusforce' : ''" v-model="xpsEstAm" @keyup="addComma($event)" @focus="fn_focusOnOff('xpsEstAm')" ref="xpsEstAm" value=""  maxlength="19" required="" placeholder="이번달 지출목표 입력" title="지출목표">
                         <div class="del_txt">
                             <a href="javascript:void(0);" class="com_btn_delete2 blur" role="button" style="display: none;"><span class="blind">삭제</span></a>
                             <span class="com_inputtxtright2">원</span>
@@ -36,13 +36,13 @@
                     <div class="mygoal_cont_title mt30">
                         <strong class="com_box_tit titH5">목표 설정</strong>                       
                         <!-- 0925 삭제 -->
-                        <!-- <a href="#nolink" class="link_arrow">정기지출 관리</a> -->
+                        <!-- <a href="javascript:void(0);" class="link_arrow">정기지출 관리</a> -->
                         <!-- //0925 삭제 -->
 					
 					<!-- 0925 툴팁 추가 -->
                         <div class="custom_tooltip">
                             <div class="com_tooltip_type02 com_tooltip_type03">
-                                <a href="#nolink" class="com_btn_info" role="button">
+                                <a href="javascript:void(0);" class="com_btn_info" role="button">
                                     <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                 </a>
                                 <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -63,16 +63,16 @@
                     <ul class="com_radio_type02">
                         <li>
                             <div class="btn_radio">
-                                <input v-model="xpsEstDsc" type="radio" name="xpsEstDsc" id="radio5-1" value="01">
-                                <label for="radio5-1" :aria-checked="xpsEstDsc == '01'">
+                                <input v-model="xpsEstDsc" type="radio" name="xpsEstDsc" id="radio5-1" value="02">
+                                <label for="radio5-1" :aria-checked="xpsEstDsc == '02'">
                                     <span>매월 자동반영</span><!-- [v4.0]문구수정 -->
                                 </label>
                             </div>
                         </li>
                         <li>
                             <div class="btn_radio">
-                                <input v-model="xpsEstDsc" type="radio" name="xpsEstDsc" id="radio5-2" value="02">
-                                <label for="radio5-2" :aria-checked="xpsEstDsc == '02'">
+                                <input v-model="xpsEstDsc" type="radio" name="xpsEstDsc" id="radio5-2" value="01">
+                                <label for="radio5-2" :aria-checked="xpsEstDsc == '01'">
                                     <span>다음달 초기화</span><!-- [v4.0]문구수정 -->
                                 </label>
                             </div>
@@ -151,21 +151,27 @@ export default {
 
         // input 태그 내 천단위 쉼표추가
         addComma(e="") {
-            const selectionStartPos = this.$refs.xpsEstAm.selectionStart
-            const selectionEndPos = this.$refs.xpsEstAm.selectionEnd
 
-            if(this.xpsEstAm.length == 1 && this.xpsEstAm == 0) {
-                this.xpsEstAm = this.xpsEstAm.slice(0, -1)
-            } else {
-                this.xpsEstAm = this.xpsEstAm.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
-                this.xpsEstAm = this.xpsEstAm.split(",").join("")
-                this.xpsEstAm = keyupNumFormat(this.xpsEstAm)
+			const xpsEstAm = this.$refs.xpsEstAm
+			const selectionStartPos = this.xpsEstAm.selectionStart
+			const selectionEndPos = this.xpsEstAm.selectionEnd
+            
+            if(xpsEstAm.value.length === 1 && xpsEstAm.value === 0) {
+
+                xpsEstAm.value = xpsEstAm.value.slice(0, -1)
+            } else {               
+                xpsEstAm.value = xpsEstAm.value.replace(/[^0-9]/g,'') .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+                xpsEstAm.value = Number(xpsEstAm.value.split(",").join(""))
+                //xpsEstAm.value = keyupNumFormat(xpsEstAm.value.toString())   
+                this.$nextTick(()=>{
+                    xpsEstAm.value = keyupNumFormat(xpsEstAm.value)
+                })                         
             }
 
             if(e.keyCode === 8) {
                 this.$nextTick(() => {
-                    this.$refs.xpsEstAm.focus()
-                    this.$refs.xpsEstAm.setSelectionRange(selectionStartPos, selectionEndPos)
+                    this.xpsEstAm.focus()
+                    this.xpsEstAm.setSelectionRange(selectionStartPos, selectionEndPos)
                 })
             }
         },        
@@ -188,6 +194,10 @@ export default {
 
         // 저장
         save() {
+
+            this.xpsEstAm = this.xpsEstAm.replace(/[^0-9]/g,'') .replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+            this.xpsEstAm = Number(this.xpsEstAm.split(",").join(""))
+            this.xpsEstAm = keyupNumFormat(this.xpsEstAm.toString())             
             // 검색조건
             let params = {
                 xpsEstAm    : this.xpsEstAm,

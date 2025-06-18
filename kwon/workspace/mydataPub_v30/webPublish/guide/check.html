@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<html lang="ko">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>CheckBox Sample</title>
+<title>CheckBox/Radio</title>
 <!-- 공통 script -->
 <script src="../../resource/lib/jquery/jquery-3.4.1.min.js"></script>
 <script src="../../@pub_include/head_guide.js"></script>
@@ -21,9 +21,8 @@
 		<section class="view">
 			<!-- item -->
 			<div class="item">
-				<h3>v4.0 작업중 이미지 수급전</h3>
+				<h3>01.default</h3>
 				<section class="source">
-
 					<div class="checkbox">
 						<input type="checkbox" name="agree3" id="check01">
 						<label for="check01">권유 직원이 있어요</label>
@@ -33,8 +32,46 @@
 						<input type="checkbox" name="agree3" id="check02">
 						<label for="check02">권유 직원이 있어요</label>
 					</div>
+				</section>
+			</div>
+			<!-- //item -->
 
+			<!-- item -->
+			<div class="item">
+				<h3>02.list type</h3>
+				<section class="source">
+					<ul class="checkbox_list">
+						<li>
+							<div class="checkbox">
+								<input type="checkbox" name="terms_agree" required="" id="terms_agree1">
+								<label for="terms_agree1">[필수]개인(신용)정보 수집&middot;이용 동의</label>
+							</div>
+							<div class="error_message" aria-live="polite" >
+								<em class="blind">[필수]개인(신용)정보 수집&middot;이용 동의</em>
+								<p>체크해 주세요</p>
+							</div>
+						</li>
+						<li>
+							<div class="checkbox">
+								<input type="checkbox" name="terms_agree" required="" id="terms_agree2">
+								<label for="terms_agree2">[필수]개인신용정보 제공 동의</label>
+							</div>
+						</li>
+						<li>
+							<div class="checkbox">
+								<input type="checkbox" name="terms_agree" id="terms_agree3">
+								<label for="terms_agree3">[선택]적요/거래메모 수집&middot;이용문의</label>
+							</div>
+						</li>
+					</ul>
+				</section>
+			</div>
+			<!-- //item -->
 
+			<!-- item -->
+			<div class="item">
+				<h3>03.약관</h3>
+				<section class="source">
 					<div class="agree_wrap active open"  data-ui-toggle="box">
 						<div class="check_all">
 							<div class="checkbox border">
@@ -66,33 +103,6 @@
 							</ul>
 						</div>
 					</div>
-
-					<br><br>
-
-					<ul class="checkbox_list">
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="terms_agree" required="" id="terms_agree1">
-								<label for="terms_agree1">[필수]개인(신용)정보 수집&middot;이용 동의</label>
-							</div>
-							<div class="error_message" aria-live="polite" >
-								<em class="blind">[필수]개인(신용)정보 수집&middot;이용 동의</em>
-								<p>체크해 주세요</p>
-							</div>
-						</li>
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="terms_agree" required="" id="terms_agree2">
-								<label for="terms_agree2">[필수]개인신용정보 제공 동의</label>
-							</div>
-						</li>
-						<li>
-							<div class="checkbox">
-								<input type="checkbox" name="terms_agree" id="terms_agree3">
-								<label for="terms_agree3">[선택]적요/거래메모 수집&middot;이용문의</label>
-							</div>
-						</li>
-					</ul>
 				</section>
 			</div>
 			<!-- //item -->
@@ -106,7 +116,7 @@
 
 			<!-- item -->
 			<div class="item">
-				<h3>radio</h3>
+				<h3>01.default</h3>
 				<section class="source">
 					<div class="radio">
 						<input type="radio" name="radio" id="radio1">
@@ -120,7 +130,7 @@
 
 					<div class="radio_group">
 						<div class="radio">
-							<input type="radio" name="option_chk" id="option_chk1">
+							<input type="radio" name="option_chk" id="option_chk1" checked>
 							<label for="option_chk1">추천기관</label>
 						</div>
 						<div class="radio">
@@ -144,7 +154,7 @@
 
 			<!-- item -->
 			<div class="item">
-				<h3>round type</h3>
+				<h3>02.round type</h3>
 				<section class="source">
 					<div class="radio round">
 						<input type="radio" name="radio" id="radio100">
@@ -173,7 +183,7 @@
 
 			<!-- item -->
 			<div class="item">
-				<h3>box type</h3>
+				<h3>03.box type</h3>
 				<section class="source">
 					<div class="radio_box_group">
 						<div class="radio">
@@ -237,15 +247,15 @@
 				<h3>금액숨김</h3>
 				<section class="source">
 					<div class="toggle_money">
-						<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
-						<label for="sum_view_01" class="btns">
-							<span class="hide" aria-hidden="true">보기</span>
-							<span class="show" aria-hidden="true">숨김</span>
-						</label>
 						<div class="sum">
 							<span class="hide">금액숨김</span>
-							<span class="show">1,952,692,372</span>
+							<span class="show">1,952,692,372원</span>
 						</div>
+						<button type="button" class="btns">
+							<span class="blind">금액</span>
+							<span class="hide">보기</span>
+							<span class="show">숨김</span>
+						</button>
 					</div>
 
 				</section>
@@ -254,24 +264,14 @@
 			
 			<!-- item -->
 			<div class="item">
-				<h3>Toggle</h3>
+				<h3>toggle</h3>
 				<section class="source">
-
 					<div class="toggle_check">
-						<input type="checkbox" title="선택" name="" id="toggle_check_01">
+						<input type="checkbox"  name="" id="toggle_check_01">
 						<label for="toggle_check_01">
-							<span class="hide">보기</span>
-							<span class="show">숨김</span>
+							<span class="blind">관심지역</span>
 						</label>
 					</div>
-
-					<div class="toggle_check">
-						<input type="checkbox" title="선택" name="" id="toggle_check_01">
-						<label for="toggle_check_01">
-							<span class="blind">라벨 필요 없는 경우의 라벨</span>
-						</label>
-					</div>
-
 				</section>
 			</div>
 			<!-- //item -->

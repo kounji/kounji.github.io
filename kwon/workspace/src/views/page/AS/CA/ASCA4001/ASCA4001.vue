@@ -29,15 +29,24 @@
         <!--
         <div id="content" class="renewal" v-if="carList.length > 0">
         -->
-        <div id="content" v-if="carList.length > 0">
+        <div id="content" class="renewal" v-if="carList.length > 0">
             <div class="com_inner">
                 <div class="new_sub_info">
                     <div class="title">
                         <div class="text">
                             내 차 시세<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="num">{{totOdmtrDistMprAm | numberFilter}}</span>원</strong> -->
-                            <!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{totOdmtrDistMprAm | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('CAR', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01"  v-model="hideYn" @change="fn_setHidden('CAR', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -47,7 +56,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{totOdmtrDistMprAm | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //[v4.0] 25-02-07 잔액숨김 기능추가 /  25-02-10 금액숨김 수정-->
                         </div>
                     </div>
@@ -225,11 +234,11 @@ import _ from 'lodash'
 import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101'
 import COCA2102 from '@/views/page/CO/CA/COCA2102/COCA2102'
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import PDCA1102 from '@/views/page/PD/CA/PDCA1102/PDCA1102' // 자동차정보상세
 
 export default {
-    name : "ASCA2001", 
+    name : "ASCA4001", 
     data: () => {
         return {
             pdcaUserAgent           : "", // 실행플랫폼 (ios, android, else)
@@ -479,7 +488,7 @@ export default {
         /* 차근차근 모아, 내 차고에 드림카 채워 넣기! */
         fn_openExpensePop() {
             const config = {
-                component : PDMY2005
+                component : PDMY4005
             };
 
             modalService.openPopup(config).then((response) => {
@@ -489,7 +498,7 @@ export default {
                     // 배너이미지를 통하여 목표등록을 하였을 경우
                     // 나의목표로 이동
                     const menu = {
-                        name: 'PDMY2001',
+                        name: 'PDMY4001',
                         params : {}
                     }
                     commonService.movePage(menu)
@@ -499,7 +508,7 @@ export default {
         /* 높은 가격으로 내차 팔고, 내 신차 견적부터 추천까지! */
         fn_openRecommandPop() {
             const config = {
-                name   : "ANCA2201"  // 금융생활 > 자동차관리
+                name   : "ANCA4201"  // 금융생활 > 자동차관리
             }
 
             commonService.movePage(config);
@@ -522,7 +531,8 @@ export default {
 
                     apiService.call(config_d).then(response => {
                         if (response.rspC == '0000') {
-                            this.getAllMyAssetInfo() // vuex 수집갱신 처리
+                            // v4 사용자 요청이아닌 수집갱신 주석처리
+                            // this.getAllMyAssetInfo() // vuex 수집갱신 처리
 
                             modalService.alert("삭제되었습니다.").then(() => {
                                 this.getData();
@@ -682,6 +692,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
     },

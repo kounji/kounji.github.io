@@ -1215,7 +1215,7 @@ export default {
 			return resultString
 		},
 		fn_setImgUrl(imgPathnm){
-			return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 		},
         emptyImg(e) {
             e.target.src = new URL("@/assets/images/icon/car_new06.png", import.meta.url).href            

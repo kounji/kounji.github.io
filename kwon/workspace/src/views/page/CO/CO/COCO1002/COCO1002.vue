@@ -24,7 +24,7 @@
 				<!-- 계좌없을때 -->
 				<div class="no_data_box">
 					<div class="no_data_list">
-						<p>연계된 계좌가 없습니다.</p>
+						<p>연결된 계좌가 없습니다.</p>
 						<span class="txt_sub">관련 계좌가 있으면 연결해 주세요</span>
 					</div>
 				</div>

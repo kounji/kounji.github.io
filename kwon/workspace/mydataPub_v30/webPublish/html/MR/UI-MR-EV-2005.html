@@ -11,17 +11,17 @@
 	<style>
 		html {font-size:62.5%}
 		body {margin:0;}
-		.open_info2023 {background-color:#f2f4f6;height:100vh;position:relative;}
-		.open_info2023 img {width:37.5rem;}
-		.open_info2023 .btn_close {
+		.open_info2024 {background-color:#f2f4f6;height:100vh;position:relative;}
+		.open_info2024 img {display:block;margin:0 auto;width:37.5rem;}
+		.open_info2024 .btn_close {
 			z-index: 900;
 			display: block;
 			position: fixed;
-			width: 3.2rem;
-			height: 3.2rem;
-			right: 1.2rem;
-			top: 1.1rem;
-			background: url('../event/btn_full_popup_close_2023.png') no-repeat center center / 1.6rem 1.6rem;
+			width: 2.4rem;
+			height: 2.4rem;
+			background: url(../../../../src/assets_v40/images/icon/header/icon_close.png) no-repeat center/2.4rem;
+			right: 1.6rem;
+			top: 1.3rem;
 		}
 		.blind {
 			position: absolute;
@@ -35,11 +35,14 @@
 			overflow: hidden;
 		}
 
+		.temp_test_btn {display:block;position:absolute;bottom:0;right:0;width:20rem;height:15rem;}
+
 	</style>
 </head>
 <body>
-	<div class="open_info2023">
-		<img src="open_info_full.png" alt="보다 새로워진 NH콕마이데이터를 만나보세요! 더 나은 서비스 제공을 위해 NH콕마이데이터 서비스가 아래와 같이 중단되오니 이용에 참고 바랍니다. 서비스 중단일시 2023년 10월 30일(월) 00시~09시">
+	<div class="open_info2024">
+		<img src="../../../../src/assets_v40/images/event/2024/open_info2024.png" alt="보다 새로워진 NH콕마이데이터(자산관리)를 만나보세요! 더 나은 서비스 제공을 위해 NH콕마이데이터(자산관리) 서비스가 아래와 같이 중단 예정이오니 이용에 참고 바랍니다. 서비스 중단일시 2025년 6월 19일(목) 00시~09시(9시간), 더 쉽고 편리해진 자산관리">
+		<a href="#nolink" class="temp_test_btn"></a>
 		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
 	</div>
 </body>

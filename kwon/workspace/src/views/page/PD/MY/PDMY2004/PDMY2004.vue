@@ -59,22 +59,22 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import modalService from '@/service/modalService'
 
-import PDMY2039 from '@/views/page/PD/MY/PDMY2039/PDMY2039' // 돈모으기 상세
-import PDMY2041 from '@/views/page/PD/MY/PDMY2041/PDMY2041' // 투자목표 상세
-import PDMY2029 from '@/views/page/PD/MY/PDMY2029/PDMY2029' // 내집마련 상세
-import PDMY2030 from '@/views/page/PD/MY/PDMY2030/PDMY2030' // 내차사기 상세
-import PDMY2031 from '@/views/page/PD/MY/PDMY2031/PDMY2031' // 여행목표 상세
-import PDMY2026 from '@/views/page/PD/MY/PDMY2026/PDMY2026' // 여가생활 상세
-import PDMY2027 from '@/views/page/PD/MY/PDMY2027/PDMY2027' // 자기계발 상세
-import PDMY2028 from '@/views/page/PD/MY/PDMY2028/PDMY2028' // 반려동물 상세
+import PDMY4039 from '@/views/page/PD/MY/PDMY4039/PDMY4039' // 돈모으기 상세
+import PDMY4041 from '@/views/page/PD/MY/PDMY4041/PDMY4041' // 투자목표 상세
+import PDMY4029 from '@/views/page/PD/MY/PDMY4029/PDMY4029' // 내집마련 상세
+import PDMY4030 from '@/views/page/PD/MY/PDMY4030/PDMY4030' // 내차사기 상세
+import PDMY4031 from '@/views/page/PD/MY/PDMY4031/PDMY4031' // 여행목표 상세
+import PDMY4026 from '@/views/page/PD/MY/PDMY4026/PDMY4026' // 여가생활 상세
+import PDMY4027 from '@/views/page/PD/MY/PDMY4027/PDMY4027' // 자기계발 상세
+import PDMY4028 from '@/views/page/PD/MY/PDMY4028/PDMY4028' // 반려동물 상세
 // import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038' // 돈모으기 등록
 // import PDMY2040 from '@/views/page/PD/MY/PDMY2040/PDMY2040' // 투자목표 등록
 // import PDMY2023 from '@/views/page/PD/MY/PDMY2023/PDMY2023' // 내집마련 등록
 // import PDMY2025 from '@/views/page/PD/MY/PDMY2025/PDMY2025' // 여행목표 등록
 // import PDMY2024 from '@/views/page/PD/MY/PDMY2024/PDMY2024' // 내차사기 등록
 // import PDMY2006 from '@/views/page/PD/MY/PDMY2006/PDMY2006' // 여가생활 등록
-// import PDMY2015 from '@/views/page/PD/MY/PDMY2015/PDMY2015' // 자기계발 등록
-// import PDMY2020 from '@/views/page/PD/MY/PDMY2020/PDMY2020' // 반려동물 등록
+// import PDMY4015 from '@/views/page/PD/MY/PDMY4015/PDMY4015' // 자기계발 등록
+// import PDMY4020 from '@/views/page/PD/MY/PDMY4020/PDMY4020' // 반려동물 등록
 
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'
 
@@ -372,14 +372,14 @@ export default {
         updateMove(fncObtDsc, sqno, prgStsCd, carGrdNo, carCtrimNo, basyy, basmm) {
 			var compName
 
-            if(fncObtDsc == '01') compName = PDMY2039 /* 돈모으기 */
-            if(fncObtDsc == '02') compName = PDMY2041 /* 투자목표 */
-            if(fncObtDsc == '03') compName = PDMY2029 /* 버킷-내집마련 */
-            if(fncObtDsc == '04') compName = PDMY2031 /* 버킷-여행목표 */
-            if(fncObtDsc == '05') compName = PDMY2030 /* 버킷-내차사기 */
-            if(fncObtDsc == '06') compName = PDMY2026 /* 버킷-여가생활 */
-            if(fncObtDsc == '07') compName = PDMY2027 /* 버킷-자기계발 */
-            if(fncObtDsc == '08') compName = PDMY2028 /* 버킷-반려동물 */
+            if(fncObtDsc == '01') compName = PDMY4039 /* 돈모으기 */
+            if(fncObtDsc == '02') compName = PDMY4041 /* 투자목표 */
+            if(fncObtDsc == '03') compName = PDMY4029 /* 버킷-내집마련 */
+            if(fncObtDsc == '04') compName = PDMY4031 /* 버킷-여행목표 */
+            if(fncObtDsc == '05') compName = PDMY4030 /* 버킷-내차사기 */
+            if(fncObtDsc == '06') compName = PDMY4026 /* 버킷-여가생활 */
+            if(fncObtDsc == '07') compName = PDMY4027 /* 버킷-자기계발 */
+            if(fncObtDsc == '08') compName = PDMY4028 /* 버킷-반려동물 */
 
             var param = {"fncObtDsc":fncObtDsc, "sqno": sqno, "prgStsCd":prgStsCd, "carGrdNo":carGrdNo, "carCtrimNo":carCtrimNo, "basyy":basyy, "basmm":basmm}
             const config = {

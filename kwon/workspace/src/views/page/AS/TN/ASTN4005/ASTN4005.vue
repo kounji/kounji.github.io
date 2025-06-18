@@ -18,14 +18,17 @@
 			<h1>약관동의</h1>
 			<!-- <button type="button" class="prev"><span class="blind">이전</span></button> -->
 		</div>		
-		<div class="popup_content"  id="terms_popup">
-			<div class="terms_view slide">
-				<div v-for="(item, idx) in stltArray" :key="idx">
-					<strong class="terms_tit">{{item.stltTinm}}</strong>
-					<div class="terms_cont" v-html="item.stltCntn"></div>
-				</div>
-			</div>
-		</div>
+		<!-- <div class="popup_content" id="terms_popup"> -->
+        <div class="popup_content" id="terms_popup01">
+            <div class="terms_wrap">
+                <div class="terms_view" :class="stltArray.length > 1 ? 'slide':''">
+                    <div v-for="(item, idx) in stltArray" :key="idx">
+                        <strong class="terms_tit">{{item.stltTinm}}</strong>
+                        <div class="terms_cont" v-html="item.stltCntn"></div>
+                    </div>
+                </div>
+		    </div>
+        </div>
 		<div class="popup_footer fixed">
 			<!-- 복수 : 전체동의 -->
 			<div class="btns_wrap"  v-if="allYn" @click.prevent="fnAgreeTerm('all')">
@@ -34,11 +37,11 @@
 			<!-- //복수 : 전체동의 -->
 			<!-- 개별 -->
 			<div class="btns_wrap" v-else @click.prevent="fnAgreeTerm(stltArray[0].stltSqno)">
-				<a href="#nolink" class="btns lg primary">동의</a>
+				<a href="javascript:void(0);" class="btns lg primary">동의</a>
 			</div>
 			<!-- //개별 -->
 		</div>
-		<a href="#nolink" class="btn_close" @click.prevent="close({agreeYn:'N'})"><span class="blind">팝업닫기</span></a>		
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close({agreeYn:'N'})"><span class="blind">팝업닫기</span></a>		
 	</div>
 	<!--// full popup E -->
 </template>

@@ -41,7 +41,7 @@
 									<div class="com_tooltip_type02 com_tooltip_type03">
 										<a href="javascript:void(0);" class="com_btn_info">
 											<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
-											<span class="arrow" style="display:none"></span>
+											<!-- <span class="arrow" style="display:none"></span> -->
 										</a>
 									</div>
 									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -60,7 +60,7 @@
 							<span><em>{{goldAsetAmtt | numberFilter}}</em><span>원</span></span>
 							<div class="custom_tooltip">
 								<div class="com_tooltip_type02 com_tooltip_type03">
-									<a href="#nolink" class="com_btn_info" role="button">
+									<a href="javascript:void(0);" class="com_btn_info" role="button">
 										<em class="com_icon_info"><span class="blind">툴팁열기</span></em>
 									</a>
 									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -73,7 +73,7 @@
 													<li>실물 구입 시 부가가치세 10%가 부과될 수 있습니다.</li>
 												</ul>
 											</div>
-											<a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
 										</div> 
 									</div>
 								</div>
@@ -116,15 +116,19 @@
 		</div>
 		<div class="popup_footer fixed">
 			<!-- 다건 -->
-			<div class="btn_full_box" v-if="gldAstCn > 1">
-				<a href="javascript:void(0);" role="button" class="btn btn_mint" v-on:click.prevent="fn_allDelBtn()">자산 모두 삭제</a>
-			</div>
+            <template v-if="gldAstCn > 1">
+                <div class="btns_wrap">
+                    <button type="button" class="btns lg primary" v-on:click.prevent="fn_allDelBtn()">자산 모두 삭제</button>
+                </div>
+            </template>
 			<!-- //다건 -->
 			<!-- 단건 -->
-            <div class="com_btnhalfbox_type02" v-else>
-				<a href="javascript:void(0);" role="button" class="btn btn_mint_gray" v-on:click.prevent="fn_allDelBtn()">삭제</a>
-				<a href="javascript:void(0);" role="button" class="btn btn_mint" v-on:click.prevent="movePage(0)">수정</a>
-            </div>
+            <template v-else>
+                <div class="btns_wrap">
+                    <button type="button" class="btns lg" v-on:click.prevent="fn_allDelBtn()">삭제</button>
+                    <button type="button" class="btns lg primary" v-on:click.prevent="movePage(0)">수정</button>
+                </div>
+            </template>
 			<!-- //단건 -->
 		</div>
 		<a href="javascript:void(0);" @click.prevent="close(true)" class="btn_close"><span class="blind">팝업닫기</span></a>		
@@ -313,7 +317,8 @@
                         component : componentNm
                     },
                     params : {
-                        goldMprList : this.goldMprList
+                        goldMprList : this.goldMprList,
+                        goldKdc     : this.goldKdc
                     }
                 }
                 modalService.openSlidePagePopup(config);

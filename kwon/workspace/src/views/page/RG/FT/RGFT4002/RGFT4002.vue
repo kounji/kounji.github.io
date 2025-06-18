@@ -18,7 +18,6 @@
         </div>
 
         <div class="popup_content">
-        
             <div class="local_select">
                 <div class="mylocal">
                     <p class="txt"><span>관심지역</span>을<br>설정해보세요.</p>
@@ -63,23 +62,6 @@ export default {
         return {
 			selectedLocal: null,
             resInterstRegionList : [], 
-			rgnC1 : "",
-			rgnC2 : "",
-			rgnC3 : "",
-			rgnC4 : "",
-			rgnC5 : "",
-			rgnC6 : "",
-			rgnC7 : "",
-			rgnC8 : "",
-			rgnC9 : "",
-			rgnC10 : "",
-			rgnC11 : "",
-			rgnC12 : "",
-			rgnC13 : "",
-			rgnC14 : "",
-			rgnC15 : "",
-			rgnC16 : "",
-			rgnC17 : "",
             regionMap: {
                 1: "seoul",
                 2: "incheon",
@@ -129,15 +111,7 @@ export default {
             console.log("getData()===========>",config)
             apiService.call(config).then(response => {
                 console.log("관심지역 목록 조회111 response >>> : ", response)
-                
                 this.resInterstRegionList = response.regionInfoList
-                
-                console.log("관심지역 목록 조회222 response >>> : ", this.resInterstRegionList)
-            
-                for(let i=0; i < this.resInterstRegionList.length; i++){
-                    this['rgnC'+ (i+1)] = this.resInterstRegionList[i].rgnC
-                    
-                }
             })
         },
         getInterestRegion() {
@@ -162,7 +136,6 @@ export default {
                 data: {
                     mydtCusno: this.getUserInfo("mydtCusno"),
                     rgnDsc : "01", // 관심지역 축제 : 01, 지역문화 : 02, 부동산: 03
-                    // 02: 지역문화도 해당 코드에 맞게 넣어줘야함
                     provC : this.selectedLocal,
                 },
             }
@@ -182,8 +155,6 @@ export default {
             
             // 나의 관심지역 조회
             this.getInterestRegion();
-
-            console.log("(rgnC11)",this.rgnC11)
         },
     },
 }

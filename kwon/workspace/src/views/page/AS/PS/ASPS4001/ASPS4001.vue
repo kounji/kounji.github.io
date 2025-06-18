@@ -32,9 +32,19 @@
 					<div class="title">
 						<div class="text">
 							노후 준비를 위한 돈<br>
-							<!-- <span class="fs-27">총 </span><strong><span class="num counter" data-count= "pnsTotAcEvlam"> {{pnsTotAcEvlam | numberFilter}}</span>원</strong> -->
+							<div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{pnsTotAcEvlam | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('PNS', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
                             <!-- [v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
-                            <div class="toggle_money">
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('PNS', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -44,7 +54,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{pnsTotAcEvlam | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
 						</div>
 					</div>
@@ -65,7 +75,7 @@
 							<div class="new_tit_area">
 								<div class="tit"><span>국민연금</span></div>
 								<span class="total_price">
-									<em class="num">{{ntpsTotPayAm | numberFilter}}</em><em class="unit">원</em>
+									<em class="num"><span class="blind">금액</span>{{ntpsTotPayAm | numberFilter}}</em><em class="unit">원</em>
 								</span>
 							</div>
 							<em class="open">열기</em>
@@ -78,7 +88,7 @@
 								<dt>가입기간</dt>
                                 <dd>{{ntpsTotEntPrd | numberFilter}}개월</dd>
 							</dl>
-                            <a href="#nolink" class="link_arrow txt_r"  @click.prevent="movePage('PDSC2001')" >연금가입내역</a> 
+                            <a href="javascript:void(0);" class="link_arrow txt_r"  @click.prevent="fn_openDetailPop('PDSC4001')" >연금가입내역</a> 
                             <!-- TODO PDSC2001 - > PDSC4001 팝업 호출로 변경 -->
 						</li>
 					</ul>
@@ -90,15 +100,15 @@
 					<div data-ui-toggle="box" class="toggle_box_area open">
 						<button type="button" class="view_btn" aria-expanded="false">
 							<div class="new_tit_area">
-								<div class="tit"><span>퇴직연금 </span><span class="com_icon_num custom">{{rtrpnsCn | numberFilter}}</span></div>
+								<div class="tit"><span>퇴직연금 </span><span class="com_icon_num custom">{{rtrpnsCn | numberFilter}}<i class="blind">건</i></span></div>
 								<span class="total_price">
-									<em class="num">{{rtrpnsTotAcEvlam | numberFilter}}</em><em class="unit">원</em>
+									<em class="num"><span class="blind">금액</span>{{rtrpnsTotAcEvlam | numberFilter}}</em><em class="unit">원</em>
 								</span>
 							</div>
 							<em class="open">열기</em> 
 							<em class="close">닫기</em>
 						</button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_rtpnplSortPop()"><span>{{rtpnplSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_rtpnplSortPop()"><span>{{rtpnplSortNm}}</span></a>
 					</div>
 					<ul class="view_cont list_type_01">
 						<li v-for="(item, idx) in rtpnplTotal" :key="idx">
@@ -112,11 +122,11 @@
                                             </div>
                                         </dt>
                                         <dd>
-                                            <span class="prod_num">{{item.wrsAmnno}}</span>
+                                            <span class="prod_num"><span class="blind">계좌번호</span>{{item.wrsAmnno}}</span>
                                         </dd>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.acEvlam| numberFilter}}</em><em class="unit">원</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.acEvlam| numberFilter}}</em><em class="unit">원</em>
                                             </span>
                                         </dd>
                                     </dl>
@@ -132,11 +142,11 @@
                                             </div>
                                         </dt>
                                         <dd>
-                                            <span class="prod_num">{{item.mydtAcno}}</span>
+                                            <span class="prod_num"><span class="blind">계좌번호</span>{{item.mydtAcno}}</span>
                                         </dd>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
                                             </span>
                                         </dd>
                                     </dl>
@@ -152,7 +162,7 @@
 					<div data-ui-toggle="box" class="toggle_box_area open">
 						<button type="button" class="view_btn" aria-expanded="false">
 							<div class="new_tit_area">
-								<div class="tit"><span>개인연금 </span><span class="com_icon_num custom">{{pPnsCn | numberFilter}}</span></div>
+								<div class="tit"><span>개인연금 </span><span class="com_icon_num custom">{{pPnsCn | numberFilter}}<i class="blind">건</i></span></div>
 								<span class="total_price">
 									<em class="num">{{pPnsTotAcEvlam | numberFilter}}</em><em class="unit">원</em>
 								</span>
@@ -160,7 +170,7 @@
 							<em class="open">열기</em>
 							<em class="close">닫기</em>
 						</button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_ppnsSortPop()"><span>{{ppsnSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_ppnsSortPop()"><span>{{ppsnSortNm}}</span></a>
 					</div>
 					<ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in ppnsTotal" :key="idx">
@@ -175,15 +185,27 @@
                                             </div>
                                         </dt>
                                         <dd>
-                                            <span class="prod_num">{{item.isrSctsNo}}</span>
+                                            <span class="prod_num"><span class="blind">계좌번호</span>{{item.isrSctsNo}}</span>
                                         </dd>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.isrTotPymAmt | numberFilter}}</em><em class="unit">원</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.isrTotPymAmt | numberFilter}}</em><em class="unit">원</em>
                                             </span>
                                         </dd> 
                                     </dl>
-                                    <span><em class="mint_badge">{{item.isrCtrStsnm}}</em> </span>
+                                    <template v-if="item.isrCtrStsnm == '정상'">
+                                        <span><em class="mint_badge">{{item.isrCtrStsnm}}</em> </span>
+                                    </template>
+                                    <template v-if="item.isrCtrStsnm == '실효'">
+                                        <span><em class="mint_badge orng">{{item.isrCtrStsnm}}</em> </span>
+                                    </template>
+                                    <template v-if="item.isrCtrStsnm == '만기'">
+                                        <span><em class="mint_badge red2">{{item.isrCtrStsnm}}</em> </span>
+                                    </template>
+                                    <template v-if="item.isrCtrStsnm == '소멸'">
+                                        <span><em class="mint_badge gray">{{item.isrCtrStsnm}}</em> </span>
+                                    </template>
+                                    
                                 </a>
                             </template>
                             <template v-if="item.type == 'PSIV'">
@@ -196,11 +218,11 @@
                                             </div>
                                         </dt>
                                         <dd>
-                                            <span class="prod_num">{{item.mydtAcno}}</span>
+                                            <span class="prod_num"><span class="blind">계좌번호</span>{{item.mydtAcno}}</span>
                                         </dd>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
                                             </span>
                                             <span class="change_rate up">
                                                 <em>{{item.strmPftrt|numberFilter('0,0.00', {precision: 2}) }}</em>%
@@ -220,7 +242,7 @@
                                         </dt>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
                                             </span>
                                         </dd> 
                                     </dl>
@@ -262,11 +284,12 @@
     
     import ASPS2002 from '@/views/page/AS/PS/ASPS2002/ASPS2002'
     import ASPS2004 from '@/views/page/AS/PS/ASPS2004/ASPS2004'
-    import ASIS2013 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
+    import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
     import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
     import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
     import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001'
     import ASPS4006 from '@/views/page/AS/PS/ASPS4006/ASPS4006'
+    import PDSC4001 from '@/views/page/PD/SC/PDSC4001/PDSC4001'
     
 
 	export default {
@@ -285,11 +308,11 @@
                 irpListOrg       : [],     // IRP퇴직연금목록org
                 rtpnplTotal      : [],     // 총퇴직연금목록
                 rtpnplTotalOrg   : [],     // 총퇴직연금목록org
-                rtpnplSortVal    : 1,      //총퇴직연금 정렬기준
+                rtpnplSortVal    : "1",      //총퇴직연금 정렬기준
                 rtpnplSortNm     : "기본", //총퇴직연금 정렬이름
                 ppnsTotal        : [],     // 총개인연금목록
                 ppsnTotalOrg     : [],     // 총개인연금목록org
-                ppsnSortVal      : 1,      //총개인연금 정렬기준
+                ppsnSortVal      : "1",      //총개인연금 정렬기준
                 ppsnSortNm       : "기본", //총개인연금 정렬이름
                 pPnsTotAcEvlam   : 0,      // 개인연금총평가금액 
                 pPnsCn           : 0,      // 개인연금목록건수
@@ -426,8 +449,7 @@
 
                 //let compName = ""
                 let popupParam = pension
-                popupParam.mydtCusno = this.getUserInfo('mydtCusno') //마이데이터고객번호
-
+                if(popupParam){popupParam.mydtCusno = this.getUserInfo('mydtCusno')}//마이데이터고객번호
                 
                 let config = {}
                 if(type == "DC") { 
@@ -442,7 +464,7 @@
                     }
                 } else if(type == "PSIS") {
                     config = {
-                        component : ASIS2013, // 연금저축보험
+                        component : ASIS2012, // 연금저축보험
                         params : {
                             infOfrmnOrgC: pension.infOfrmnOrgC,
                             isrSctsNo: pension.isrSctsNo,
@@ -460,15 +482,18 @@
                         component : ASIV2005, // 연금신탁
                         params : {"objIvInfo" : popupParam}      
                     }                    
-                } 
+                }
+                else if(type == 'PDSC4001') {
+                    config = {
+                        component   : PDSC4001, // 연금가입내역
+                        popParams   :   ''
+                    }                    
+                }
 
                 // 전달파라미터 세팅           
-                console.log('@@@popupParam' , popupParam);
-                console.log('@@@params' , config.params);
 
                 modalService.openPopup(config).then(() => {
                     this.getData()
-                    console.log('@@@mydtCusno' , popupParam)
                 })
             }, 
 
@@ -533,6 +558,7 @@
                 숨김여부
             */
             fn_setHidden(flag, type) {
+                this.hideYn = type
 				this.setSecretAmInfo(flag, type)
 			},  
 		},

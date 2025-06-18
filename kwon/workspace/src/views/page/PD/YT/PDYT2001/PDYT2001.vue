@@ -302,11 +302,11 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import {numberFormat} from '@/utils/number'
 
-import PDYT2104 from '@/views/page/PD/YT/PDYT2104/PDYT2104'
-import PDYT2105 from '@/views/page/PD/YT/PDYT2105/PDYT2105'
-import PDYT2106 from '@/views/page/PD/YT/PDYT2106/PDYT2106'
+import PDYT4104 from '@/views/page/PD/YT/PDYT4104/PDYT4104'
+import PDYT4105 from '@/views/page/PD/YT/PDYT4105/PDYT4105'
+import PDYT4106 from '@/views/page/PD/YT/PDYT4106/PDYT4106'
 import PDYT2107 from '@/views/page/PD/YT/PDYT2107/PDYT2107'
-import PDYT2108 from '@/views/page/PD/YT/PDYT2108/PDYT2108'
+import PDYT4108 from '@/views/page/PD/YT/PDYT4108/PDYT4108'
 import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
 
 export default {
@@ -564,7 +564,7 @@ export default {
 			let param = {}
 			switch(type) {
 				case "card" :	// 카드
-					popId = PDYT2104
+					popId = PDYT4104
 					param = {
 						totSalAm		: this.totSalAm		,		// 연소득총액(재조회용)
 						cd_maxMadAm 	: this.cd_maxMadAm  ,		// 최대공제금액
@@ -580,7 +580,7 @@ export default {
 					}
 					break
 				case "subscription" :	// 청약
-					popId = PDYT2105
+					popId = PDYT4105
 					param = {
 						totSalAm			: this.totSalAm			,	// 연소득총액(재조회용)
 						hse_madAm 			: this.hse_madAm 		,	// 공제금액
@@ -595,7 +595,7 @@ export default {
 					}
 					break
 				case "irp" : 	// 연금
-					popId = PDYT2106
+					popId = PDYT4106
 					param = {
 						totSalAm		: this.totSalAm			,	// 연소득총액(재조회용)
 						irp_madAm 		: this.irp_madAm 		,	// 공제금액
@@ -620,7 +620,7 @@ export default {
 					}
 					break
 				case "insu" :	// 보험료
-					popId = PDYT2108
+					popId = PDYT4108
 					param = {
 						totSalAm		: this.totSalAm			,	// 연소득총액(재조회용)
 						insu_madAm 		: this.insu_madAm 		,	// 공제금액

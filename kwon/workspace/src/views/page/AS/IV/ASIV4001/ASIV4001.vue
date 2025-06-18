@@ -34,8 +34,19 @@
                     <div class="title">
                         <div class="text">
                             미래 준비를 위한 돈<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="num counter" :data-count="ivAcTotBac | numberFilter">{{ivAcTotBac | numberFilter}}</span>원</strong> -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{ivAcTotBac | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('IV', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액노출" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('IV', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -45,7 +56,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{ivAcTotBac | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -67,15 +78,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>펀드 </span><span class="com_icon_num custom">{{bankIvAccn}}</span></div>
+                                <div class="tit"><span>펀드 </span><span class="com_icon_num custom">{{bankIvAccn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{bankIvAcBaltt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{bankIvAcBaltt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_bankIvSortPop()"><span>{{bankIvSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_bankIvSortPop()"><span>{{bankIvSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in bankIvList" :key="idx">
@@ -91,12 +102,12 @@
                                     </dt>
                                     <!-- [v4.0] 계좌번호 추가 -->
                                     <dd>
-                                        <span class="prod_num">{{item.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{item.mydtAcno}}</span>
                                     </dd>
                                     <!-- //[v4.0] 계좌번호 추가 -->
                                     <dd>
                                         <span class="com_price" :role="item.strmPftrt === 0 ? '' : 'text'">
-                                            <em class="num">{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                         <span class="change_rate" v-if="item.strmPftrt === 0">
                                             <em>{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
@@ -126,15 +137,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>신탁/ISA </span><span class="com_icon_num custom">{{bankTsIsaAccn}}</span></div>
+                                <div class="tit"><span>신탁/ISA </span><span class="com_icon_num custom">{{bankTsIsaAccn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{bankTsIsaEvlamtt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{bankTsIsaEvlamtt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_bankTsIsaSortPop()"><span>{{bankTsIsaSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_bankTsIsaSortPop()"><span>{{bankTsIsaSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in bankTsIsaList" :key="idx">
@@ -147,11 +158,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{item.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{item.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.acEvlam | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -164,15 +175,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>증권 </span><span class="com_icon_num custom">{{efinIvAccn}}</span></div>
+                                <div class="tit"><span>증권 </span><span class="com_icon_num custom">{{efinIvAccn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{efinIvAcBaltt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{efinIvAcBaltt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_efinIvSortPop()"><span>{{efinIvSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_efinIvSortPop()"><span>{{efinIvSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in efinIvList" :key="idx">
@@ -185,11 +196,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{item.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{item.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -202,15 +213,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>P2P투자 </span><span class="com_icon_num custom">{{p2pInvestCnt}}</span></div>
+                                <div class="tit"><span>P2P투자 </span><span class="com_icon_num custom">{{p2pInvestCnt}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{p2pInvestTotAm | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{p2pInvestTotAm | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_p2pInvestSortPop()"><span>{{p2pInvestSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_p2pInvestSortPop()"><span>{{p2pInvestSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in p2pInvestList" :key="idx">
@@ -223,11 +234,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{item.ivCtrno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{item.ivCtrno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{item.rmAm | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.rmAm | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -273,7 +284,7 @@
     import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
     import ASIV2003 from '@/views/page/AS/IV/ASIV2003/ASIV2003'
     import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
     import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001'
     import ASIV2007 from '@/views/page/AS/IV/ASIV2007/ASIV2007'
     import ASIV4004 from '@/views/page/AS/IV/ASIV4004/ASIV4004'
@@ -298,16 +309,16 @@
                 p2pInvestTotAm     : 0,  //P2P투자금액합계
                 p2pInvestCnt       : 0,  //P2P투자계약건수
                 bankIvListOrg      : [], //은행투자계좌목록org
-                bankIvSortVal      : 1,      //은행투자계좌목록 정렬기준
+                bankIvSortVal      : "1",      //은행투자계좌목록 정렬기준
                 bankIvSortNm       : "기본", //은행투자계좌목록 정렬이름
                 bankTsIsaListOrg   : [], //은행신탁ISA목록org
-                bankTsIsaSortVal   : 1,      //은행신탁ISA목록 정렬기준
+                bankTsIsaSortVal   : "1",      //은행신탁ISA목록 정렬기준
                 bankTsIsaSortNm    : "기본", //은행신탁ISA목록 정렬이름
                 efinIvListOrg      : [], //전자금융투자계좌목org
-                efinIvSortVal      : 1,      //전자금융투자계좌목 정렬기준
+                efinIvSortVal      : "1",      //전자금융투자계좌목 정렬기준
                 efinIvSortNm       : "기본", //전자금융투자계좌목 정렬이름
                 p2pInvestListOrg   : [], //P2P투자계좌목록org
-                p2pInvestSortVal   : 1,      //P2P투자계좌목록 정렬기준
+                p2pInvestSortVal   : "1",      //P2P투자계좌목록 정렬기준
                 p2pInvestSortNm    : "기본", //P2P투자계좌목록 정렬이름
                 hideYn		: false,  // 숨김 여부
             }
@@ -430,7 +441,7 @@
             },
             fn_openExpensePop() {
                 const config = {
-                    component : PDMY2005
+                    component : PDMY4005
                 };
 
                 modalService.openPopup(config).then((response) => {
@@ -438,7 +449,7 @@
                         // 배너이미지를 통하여 목표등록을 하였을 경우
                         // 나의목표로 이동
                         const menu = {
-                            name: 'PDMY2005',
+                            name: 'PDMY4001',
                             params : {}
                         }
                         commonService.movePage(menu)
@@ -461,7 +472,7 @@
                 const config = {
                     params : {
                         sortVal   : this.bankIvSortVal,
-                        sortDs   : '1' //펀드 "" , 신탁/ISA,증권,P2P투자 "1"
+                        sortDs   : '1' //펀드 "1" , 신탁/ISA,증권,P2P투자 ""
                     },
                     renderer : {
                         component : ASIV4004
@@ -488,7 +499,7 @@
                 const config = {
                     params : {
                         sortVal   : this.bankTsIsaSortVal,
-                        sortDs   : '' //펀드 "" , 신탁/ISA,증권,P2P투자 "1"
+                        sortDs   : '' //펀드 "1" , 신탁/ISA,증권,P2P투자 ""
                     },
                     renderer : {
                         component : ASIV4004
@@ -500,7 +511,7 @@
                         this.bankTsIsaList = [...this.bankTsIsaListOrg] || [] 
                         this.bankTsIsaSortNm = "기본"
                     }else{
-                        this.bankTsIsaList = this.bankTsIsaList.sort((a,b) => b.acNowBac - a.acNowBac || a.scrnPrtoSq - b.scrnPrtoSq)
+                        this.bankTsIsaList = this.bankTsIsaList.sort((a,b) => b.acEvlam - a.acEvlam || a.scrnPrtoSq - b.scrnPrtoSq)
                         this.bankTsIsaSortNm = "금액순"
                     }
                 })
@@ -512,7 +523,7 @@
                 const config = {
                     params : {
                         sortVal   : this.efinIvSortVal,
-                        sortDs   : '' //펀드 "" , 신탁/ISA,증권,P2P투자 "1"
+                        sortDs   : '' //펀드 "1" , 신탁/ISA,증권,P2P투자 ""
                     },
                     renderer : {
                         component : ASIV4004
@@ -548,7 +559,7 @@
                         this.p2pInvestList = [...this.p2pInvestListOrg] || [] 
                         this.p2pInvestSortNm = "기본"
                     }else{
-                        this.p2pInvestList = this.p2pInvestList.sort((a,b) => b.acNowBac - a.acNowBac || a.scrnPrtoSq - b.scrnPrtoSq)
+                        this.p2pInvestList = this.p2pInvestList.sort((a,b) => b.rmAm - a.rmAm || a.scrnPrtoSq - b.scrnPrtoSq)
                         this.p2pInvestSortNm = "금액순"
                     }
                 })
@@ -557,6 +568,7 @@
                 숨김여부
             */
             fn_setHidden(flag, type) {
+                this.hideYn = type
 				this.setSecretAmInfo(flag, type)
 			},
         },

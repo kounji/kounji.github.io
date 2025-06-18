@@ -29,8 +29,8 @@
                             <!-- 페이머니 -->
                             <template v-if="type == TYPE_PAY && subtype == SUBTYPE_PAYMONEY">
                                 <input type="radio" name="radio03" :id="'radio3-1' + index" :value="item.faceOnm + item.accIdVal" v-model="selectVal">
-                                <label v-if="item.infOfrmnOrgC == ''" :for="'radio3-' + index">전체</label>
-                                <label v-else :for="'radio3-' + index">{{item.faceOnm}}
+                                <label v-if="item.infOfrmnOrgC == ''" :for="'radio3-' + index" role="radio" :aria-checked="selectVal === item.faceOnm + item.accIdVal ? 'true' : 'false'">전체</label>
+                                <label v-else :for="'radio3-' + index" role="radio" :aria-checked="selectVal === item.faceOnm + item.accIdVal ? 'true' : 'false'">{{item.faceOnm}}
                                     <template v-if="item.accIdVal && item.accIdVal !== 'NA'">
                                         <span class="common_bar"></span>
                                         {{item.accIdVal}}
@@ -41,13 +41,13 @@
                             <!-- 카드, 선불카드 -->
                             <template v-else-if="type == TYPE_CARD || (type == TYPE_PAY && subtype == SUBTYPE_PPAYCARD)">
                                 <input type="radio" name="radio03" :id="'radio3-' + index" :value="item.infOfrmnOrgC + item.mydtCdId" v-model="selectVal">
-                                <label :for="'radio3-' + index">{{item.cdcoCdWrsnm}}</label>
+                                <label :for="'radio3-' + index" role="radio" :aria-checked="selectVal === item.infOfrmnOrgC + item.mydtCdId ? 'true' : 'false'">{{item.cdcoCdWrsnm}}</label>
                             </template>
 
                             <!-- 선불 -->
                             <template v-else-if="type == TYPE_PPAY">
                                 <input type="radio" name="radio03" :id="'radio3-' + index" :value="item.infOfrmnOrgC + item.tfrTrkyVal" v-model="selectVal">
-                                <label :for="'radio3-' + index">{{item.infOfrmnOrgCNm}}
+                                <label :for="'radio3-' + index" role="radio" :aria-checked="selectVal === item.infOfrmnOrgC + item.tfrTrkyVal ? 'true' : 'false'">{{item.infOfrmnOrgCNm}}
                                     <template v-if="item.tfrTrkyVal && item.tfrTrkyVal !== 'NA'">
                                         <span class="common_bar"></span>
                                         {{item.tfrTrkyVal}}
@@ -225,10 +225,10 @@ console.log("this.list########################", this.list)
                         // 페이머니일 경우
                         case SUBTYPE_PAYMONEY:
                             // 페이머니 지출내역에서 호출된 경우
-                            if(this.calledId == "LCLE4003") {
+                            if(this.calledId == "LCLE4003") {   // v4 페이머니 지출내역
                                 url = "/lc/le/09r02"
                             // 선불(선불카드 아님) 지출내역에서 호출된 경우
-                            }else if(this.calledId == "LCLE4006") {
+                            }else if(this.calledId == "LCLE4006") { // v4
                                 url = "/lc/le/06r03"
                             }
                             break

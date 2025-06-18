@@ -66,9 +66,9 @@
 					</div>
 
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" v-model="cntzTinm" placeholder="축제명으로 검색하세요" title="축제명으로 검색하세요">
-						<button type="button" class="com_btn_delete" @click="clickClear()"><span class="blind">삭제</span></button>
-						<button type="button" class="btn_search" @click="search()"><span class="blind">검색</span></button>
+						<input type="search" id="local_search_01" class="inputClear" ref="inputBox" name="" v-model="cntzTinm" @keyup.enter="search" placeholder="축제명으로 검색하세요" title="축제명으로 검색하세요">
+						<button type="button" class="com_btn_delete" ref="clearBtn" @click.prevent="clickClear()"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search" @click="search"><span class="blind">검색</span></button>
 					</div>
 
 					<div class="board_box">
@@ -76,7 +76,7 @@
 						<ul class="thum_list">
 							<li  v-for="(festival, index) in resFestivalList.slice(0, visibleCount)" :key="index">
 								<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopDetailPage(festival.cntzId, resFestivalList[index])">
-									<img :src="festival.thmnlImgUrlnm"  @error="emptyImg" alt="" class="img">
+									<img :src="festival.otxtImgUrlnm"  @error="emptyImg" alt="" class="img">
 									<p class="name">{{festival.cntzTinm}}</p>
 									<p class="date">{{festival.evtStDt }} ~ {{festival.evtEdDt}}</p>
 									<p class="location">{{festival.adr}}</p>
@@ -88,12 +88,21 @@
 							<p class="text">검색결과가 없어요.</p>
 						</div>
 						<!-- //empty 케이스 -->
-						<button type="button" class="list_more" v-if="visibleCount < searchCnt" @click.prevent="fn_moreItem">검색결과</button>
+
+						<!-- 더보기 / 접기 버튼 -->
+						<button 
+							type="button" 
+							class="list_more" 
+							:class="{open: isOpen}"
+							@click.prevent="fn_moreItem"
+							v-if="searchCnt > minVisibleCount"
+						>검색결과</button>
 					</div>
+
 				</section>
 			</div>
 			<!-- Footer -->
-            <footersV2 type="an" />
+            <footersV2 type="" />
 		</div>
 	</div>
 </template>
@@ -117,12 +126,10 @@ export default {
 				cntzTinm : "",	// 지역축제명
 				resFestivalList : [], 
 				searchCnt : "",
-				searchResultCnt : 0,
-				formDateSt : "",
-				formDateEd : "",
 				isChecked : false,
+				minVisibleCount: 4,
 				visibleCount: 4,
-				inteRegion : "", // 시도코드
+				inteRegion : "", // 관심지역 시도 코드
 				showRegion : "", // 화면에 보여질 나의 관심지역 -> 토글에 따라 변하는 값
 				useInteRegion : "", // 관심지역 사용 여부 1:여, 0:부
 				regionMap: {
@@ -159,11 +166,12 @@ export default {
 		regionName() {
 			return this.showRegion == "" ? "전국" : this.regionMap[this.showRegion]
 		},
+		isOpen() {
+			return this.visibleCount >= this.searchCnt;
+		},
 	},
 	methods: {
 		getData(){
-			this.searchResultCnt = 0;
-		
 			const config = {
 				url: '/rg/ft/01r01',
 				data: {
@@ -181,18 +189,18 @@ export default {
 
 				this.resFestivalList = this.resFestivalList.map(item=>({
 					...item,
+					name : item.cntzTinm,
+					lttdCrdnVal : item.gpsYcdnNo,
+					lgtdCrdnVal : item.gpsXcdnNo,
 					evtStDt : this.formatDateSt(item.evtStDt),
 					evtEdDt : this.formatDateSt(item.evtEdDt),
-					thmnlImgUrlnm : item.thmnlImgUrlnm ? item.thmnlImgUrlnm : "",
+					otxtImgUrlnm : item.otxtImgUrlnm ? item.otxtImgUrlnm : "",
 				}))
 			})
 			this.visibleCount = 4;
+			this.$refs.inputBox.blur();
 		},
 		search() {
-			if(this.cntzTinm.length < 2) {
-				modalService.alert('검색어는 최소 2글자 이상<br>입력해주세요.');
-				return;
-			}
 			this.getData();
 		},
 		formatDateSt(resSt){
@@ -216,13 +224,13 @@ export default {
 		},
 		/* 관심지역 설정 alert */
 		fn_regionAlert() {
-			if(this.inteRegion == "0" && !this.isChecked) { // 관심지역 미지정인 경우
+			if(this.inteRegion == "" && !this.isChecked) { // 관심지역 미지정인 경우
 				const config = {
-					content : ['관심지역을 설정해보세요','관심지역으로 검색할 수 있어요'],
+					content : ['관심지역을 설정해보세요','(관심지역으로 검색할 수 있어요)'],
 					title   : "",
 					buttons : [
-						{text: "다음에 할게요", class: 'btn btn_grey btn_no'}, // 아니오(취소)
-						{text: "설정하기", class: 'btn btn_mint'},            // 예(확인)
+						{text: "다음에 할게요", class: 'btns lg'},		// 아니오(취소)
+						{text: "설정하기", class: 'btns lg primary'},	// 예(확인)
 					]
 				};
 				modalService.alert(config).then(text => {
@@ -236,12 +244,14 @@ export default {
 				this.isChecked = false;
 				this.useInteRegion = '0';
 				this.showRegion = "";
+				this.clickClear();
 				this.getData();
 				this.setInteRgnInfo("01", "0", "관심지역 설정") // rgnDsc, uYn, Desc
 			} else if(!this.isChecked) {
 				this.isChecked = true;
 				this.useInteRegion = '1';
 				this.showRegion = this.inteRegion;
+				this.clickClear();
 				this.getData();
 				this.setInteRgnInfo("01", "1", "관심지역 설정") // rgnDsc, uYn, Desc
 			}
@@ -273,7 +283,9 @@ export default {
 
 			apiService.call(config).then(response => {
 				console.log("나의 관심지역 조회 response >>> : ", response);
-				this.inteRegion = response.provC.toString().trim();
+				if(response.provC) {
+					this.inteRegion = response.provC.toString().trim();
+				}
 				
 				if(this.inteRegion != "") {
 					this.useInteRegion = this.getInteRgnInfo("01");
@@ -290,7 +302,15 @@ export default {
 			})
 		},
 		fn_moreItem() {
-			this.visibleCount += 4
+			if(this.isOpen) {
+				this.visibleCount = 4;
+				this.$nextTick(() => {
+					const resultsSection = document.querySelector('.local_favorite');
+					if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'});
+				});
+			} else {
+				this.visibleCount += 4;
+			}
 		},
 		// 새로 고침
 		fn_refresh(){
@@ -310,7 +330,8 @@ export default {
 		 * 검색 내용 초기화
 		 */
 		clickClear(){
-			this.cntzTinm = ""
+			this.cntzTinm = "";
+			this.$refs.clearBtn.classList.remove('btnDeleteShow');
 		},
 		emptyImg(e) {
 			e.target.src = new URL("@/assets_v40/images/img/img_festival_empty.png", import.meta.url).href            

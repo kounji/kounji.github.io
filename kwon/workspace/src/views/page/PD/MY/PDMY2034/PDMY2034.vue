@@ -42,7 +42,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 import modalService from '@/service/modalService'
 import apiService from '@/service/apiService'
 
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 지출목표 수정
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // 지출목표 수정
 
 export default {
     name : "PDMY2034",
@@ -75,7 +75,7 @@ export default {
             
 		},
 		openExpensePop() {
-			var compName = PDMY2032	// 지출목표 수정
+			var compName = PDMY4032	// 지출목표 수정
 
             var param = {
 				stYm : this.stYm,

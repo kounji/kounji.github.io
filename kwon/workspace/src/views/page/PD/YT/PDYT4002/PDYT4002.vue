@@ -9,7 +9,7 @@
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
 * 2023-07-25              CS533541              최초작성(PDYT1101 -> PDYT2002)
-* 2025-02-21              CS541015              고도화 파일명, UI 변경(PDYT2002.vue -> PDYT4002.vue)
+* 2025-02-21              CS541015              상호금융 NH콕마이데이터 4.0 추진 개발(PDYT2002.vue -> PDYT4002.vue)
 *************************************************************************/
 -->
 <template>
@@ -24,7 +24,7 @@
 					
 					<div class="tax_img_2023"></div>
 					<div class="com_btn_area">
-						<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click.prevent="fn_openSlidePDYT2003()">내가 받는 공제 알아보기</a>
+						<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click.prevent="fn_openSlidePDYT4003()">내가 받는 공제 알아보기</a>
 					</div>
 				</div>
 
@@ -101,7 +101,7 @@ import FootersV2 from '@/views/layout/FootersV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
-import PDYT2003 from '@/views/page/PD/YT/PDYT2003/PDYT2003'
+import PDYT4003 from '@/views/page/PD/YT/PDYT4003/PDYT4003'
 
 export default {
     name : "PDYT4002",
@@ -132,13 +132,13 @@ export default {
 
         },
 
-        fn_openSlidePDYT2003() {
+        fn_openSlidePDYT4003() {
             const config = {
                 params : {
                     
                 },
                 renderer : {
-                    component : PDYT2003
+                    component : PDYT4003
                 }
             }
             modalService.openSlidePagePopup(config)

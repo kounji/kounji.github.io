@@ -35,7 +35,7 @@
             </div>
         </div>
 
-        <a href="javascript:void(0);" class="btn_close" @click.prevent="closeAllData(true)"><span class="blind">팝업닫기</span></a>
+        <a href="javascript:void(0);" class="btn_close" @click.prevent="close(true)"><span class="blind">팝업닫기</span></a>
     </div>
 </template>
 <script>

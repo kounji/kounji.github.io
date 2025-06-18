@@ -19,22 +19,32 @@
             <h1>자동차 검색</h1>
         </div>
         <div class="popup_content com_no_bottom com_bg_type00">
-            <div class="com_inner com_line_type01 com_top_type02">
-                <div class="com_input_type02">
-                    <label for="PDMY2048_txt01"></label>
-                    <input type="search" id="PDMY2048_txt01" :value="PDMY2048_srchKwrd" ref="PDMY2048_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_searchCarList(PDMY2048_srchKwrd)" @keyup.delete="fn_clearData" placeholder="브랜드명으로 찾기" title="브랜드명으로 찾기">
-                    <a v-show="PDMY2048_srchKwrd.length>0" @click.prevent="del('PDMY2048_srchKwrd')" class="com_btn_delete" href="javascript:void(0);"><span class="blind">삭제</span></a>
-                    <a @click.prevent="fn_searchCarList(PDMY2048_srchKwrd)" class="com_btn_search" href="javascript:void(0);"><span class="blind">검색</span></a>
+            <div class="com_line_type01">
+                <div class="com_inner com_top_type02" style="padding-bottom: 0px">
+                    <div class="com_input_type02">
+                        <label for="PDMY2048_txt01"></label>
+                        <input type="search" id="PDMY2048_txt01" :value="PDMY2048_srchKwrd" ref="PDMY2048_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_searchCarList(PDMY2048_srchKwrd)" @keyup.delete="fn_clearData" placeholder="브랜드명을 검색하세요" title="브랜드명을 검색하세요">
+                        <a v-show="PDMY2048_srchKwrd.length>0" @click.prevent="del('PDMY2048_srchKwrd')" class="com_btn_delete" href="javascript:void(0);"><span class="blind">삭제</span></a>
+                        <a @click.prevent="fn_searchCarList(PDMY2048_srchKwrd)" class="com_btn_search" href="javascript:void(0);"><span class="blind">검색</span></a>
+                    </div>
                 </div>
-                <div class="com_btnarea_top limit2">
-                    <a @click.prevent="fn_searchCarList('현대')"    class="com_btn_txtsearch" href="javascript:void(0);"><span>#현대</span></a>
-                    <a @click.prevent="fn_searchCarList('기아')"    class="com_btn_txtsearch" href="javascript:void(0);"><span>#기아</span></a>
-                    <a @click.prevent="fn_searchCarList('벤츠')"    class="com_btn_txtsearch" href="javascript:void(0);"><span>#벤츠</span></a>
-                    <a @click.prevent="fn_searchCarList('BMW')"     class="com_btn_txtsearch" href="javascript:void(0);"><span>#BMW</span></a>
-                    <a @click.prevent="fn_searchCarList('아우디')"   class="com_btn_txtsearch" href="javascript:void(0);"><span>#아우디</span></a>
-                    <a @click.prevent="fn_searchCarList('폭스바겐')" class="com_btn_txtsearch" href="javascript:void(0);"><span>#폭스바겐</span></a>
-                    <a @click.prevent="fn_searchCarList('볼보')"    class="com_btn_txtsearch" href="javascript:void(0);"><span>#볼보</span></a>
-                    <a @click.prevent="fn_searchCarList('테슬라')"  class="com_btn_txtsearch" href="javascript:void(0);"><span>#테슬라</span></a>
+                <div class="category_tab fixed">
+                    <div class="scroller">
+                        <ul role="tablist">
+                            <li><a @click.prevent="fn_searchCarList('현대')" class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#현대</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('기아')"    class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#기아</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('제네시스')"  class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#제네시스</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('벤츠')"    class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#벤츠</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('BMW')"     class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#BMW</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('아우디')"   class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#아우디</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('폭스바겐')" class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#폭스바겐</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('볼보')"    class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#볼보</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('테슬라')"  class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#테슬라</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('KG모빌리티')"  class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#KG모빌리티</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('렉서스')"  class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#렉서스</span></a></li>
+                            <li><a @click.prevent="fn_searchCarList('폴스타')"  class="com_btn_txtsearch" href="javascript:void(0);" aria-selected="false"><span>#폴스타</span></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <template v-if="brandList.length > 0">
@@ -213,7 +223,7 @@
                 this.PDMY2048_srchKwrd = carBrannm
 
                 if(this.PDMY2048_srchKwrd.length < 1) {
-                    modalService.alert("브랜드명을 입력해주세요.")
+                    modalService.alert("브랜드명을 검색하세요.")
                     this.$refs.PDMY2048_srchKwrd.blur()
                     return false
                 }
@@ -236,7 +246,7 @@
                 this.gradeList = []
             },
             fn_setImgUrl(imgPathnm){
-			    return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			    return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 		    },
             emptyImg(e, idx) {
                 e.target.src = new URL("@/assets/images/icon/car_new06.png", import.meta.url).href

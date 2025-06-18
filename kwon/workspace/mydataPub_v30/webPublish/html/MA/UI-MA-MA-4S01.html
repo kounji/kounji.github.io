@@ -20,7 +20,7 @@
 				<label for="head_toggle">큰글</label>
 			</div>
 			<div class="option">
-				<a href="#nolink" class="bank"><span class="blind">홈</span></a>
+				<a href="#nolink" class="bank"><span class="blind">콕뱅크</span></a>
 				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
@@ -46,7 +46,7 @@
 									<span>조금 전</span>
 									<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
 								</div>
-
+								<!--[v4.0] #접근성# 마크업수정
 								<div class="toggle_money">
 									<input type="checkbox" title="금액노출" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -58,6 +58,19 @@
 										<span class="hide"><em>1,952,692,372</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">쉿! 비밀이에요.</span>
+										<span class="show"><em>1,952,692,372</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								
 								<div class="analysis">
 									<!-- CASE1 증가 -->
@@ -70,7 +83,7 @@
 									<!-- <p class="latter down">나의 총 자산이 <em>줄었어요.</em></p> -->
 
 									<!-- CASE4 금액숨김 -->
-									<p class="latter">나의 총 자산을 확인해보세요.</p>
+									<p class="latter">나의 총 자산을 확인해 보세요.</p> <!--[v4.0] 25-05-29 띄어쓰기 수정 -->
 									
 									<div class="custom_tooltip top">
 										<div class="com_tooltip_type02">
@@ -97,7 +110,7 @@
 									<span>조금 전</span>
 									<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
 								</div>
-
+								<!--[v4.0] #접근성# 마크업수정
 								<div class="toggle_money">
 									<input type="checkbox" title="금액노출" name="" id="sum_view_02">
 									<label for="sum_view_02" class="btns">
@@ -109,7 +122,19 @@
 										<span class="hide"><em>1,952,692,372</em>원</span>
 									</div>
 								</div>
-								
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">금액숨김</span>
+										<span class="show"><em>1,952,692,372</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								<div class="analysis">
 									<!-- CASE1 증가 -->
 									<p class="latter up">나의 총 지출이 <em>늘었어요.</em></p>
@@ -121,7 +146,7 @@
 									<!-- <p class="latter down">나의 총 지출이 <em>줄었어요.</em></p> -->
 
 									<!-- CASE4 금액숨김 -->
-									<!-- <p class="latter">나의 총 자산을 확인해보세요.</p> -->
+									<!-- <p class="latter">나의 총 자산을 확인해 보세요.</p> -->
 									
 									<div class="custom_tooltip top">
 										<div class="com_tooltip_type02">
@@ -158,6 +183,7 @@
 								infinite: false,
 								slidesToShow: 1,
 								slidesToScroll: 1,
+								adaptiveHeight: true,
 								speed: 300,
 								arrows:false,
 								dots:true
@@ -172,7 +198,12 @@
 									$outline.slick('slickGoTo', idx);
 								});
 							})
+							//[v4.0] #접근성# 마크업수정
+							//$('.toggle_money input').on('change input', function() {
+							//	$outline.slick('setPosition');
+							//})
 						}
+
 					</script>
 
 					<!-- [주요서비스] -->
@@ -180,14 +211,17 @@
 						<a href="#nolink" class="gotolink">자산</a>
 						<a href="#nolink" class="gotolink">지출</a>
 						<a href="#nolink" class="gotolink">연금/절세</a>
-						<a href="#nolink" class="gotolink">금융지식</a>
+						<!--25-05-15 금융지식 삭제 <a href="#nolink" class="gotolink">금융지식</a> -->
+						<!--25-05-15 신용점수 올리기 배너 추가-->
+						<a href="#nolink" class="credit"><em>나의 신용점수 올리기</em>조회, 변동내역을 확인해 보세요</a> <!--[v4.0] 25-05-29 띄어쓰기 수정 -->
+						<!--//25-05-15 신용점수 올리기 배너 추가-->
 						<a href="#nolink" class="phishing"><em>보이스피싱 예방 10계명</em>확인하고 함께 예방해요</a>
 					</div>
 
-					<!-- [금융지식] -->
+					<!-- [금융지식]
+					 25-05-15 금융지식 삭제 
 					<div class="finlit">
-                        <h2 class="h_tit01">금융지식</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">금융지식</a>
 
                         <div class="scroller">
                             <ul>
@@ -232,19 +266,20 @@
                                         <strong>첫 직장 생활에서의<br>소득공제 활용법</strong>
                                         <span class="hash">#10대</span>
                                     </a>
-                                </li> -->
+                                </li> --
                             </ul>
                         </div>
                     </div>
+					-->
 
 					<a href="#nolink" class="gotolink">
 						NH콕마이데이터(자산관리)<br>
 						큰글 서비스 이용안내
 					</a>
 					<!-- [상담센터] -->
-					<a href="tel:1600-2800" class="gotolink">
+					<a href="tel:1600-2800" class="gotolink" title="전화앱 연결"><!--25-04-14 title 추가 -->
 						HN콕뱅크 상담센터
-						<span>1600-2800</span>
+						<span>1600-2800 (평일 09:00~18:00)</span> <!--25-06-02 문구 추가 -->
 					</a>
                 </section>
 			</div>

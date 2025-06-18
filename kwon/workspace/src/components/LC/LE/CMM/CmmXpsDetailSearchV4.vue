@@ -18,7 +18,7 @@
         <div class="popup_box">
             <div aria-hidden="false" class="slide_popup" id="slide_popup_01">
                 <div class="popup_header">
-                    <h1>조건 검색</h1>
+                    <h1>조회 조건 설정</h1>
                 </div>
 				<!--[v4.0] 조회기간 추가-->
                 <div class="popup_content com_btn_bottom">
@@ -27,13 +27,13 @@
                             <strong class="titH5">조회기간</strong>
                             <div class="custom_tooltip">
                                 <div class="com_tooltip_type02 com_tooltip_type03">
-                                    <a href="#nolink" class="com_btn_info" role="button">
+                                    <a href="javascript:void(0);" class="com_btn_info" role="button">
                                         <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                     </a>
                                     <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
                                         <div>
                                             <p>최근 1년 이내 최대 3개월까지 조회가 가능합니다.</p>
-                                            <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                            <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                         </div> 
                                     </div>
                                 </div>
@@ -266,16 +266,14 @@ export default {
                 })
             })
         },
-        // 조건검색
+        
+        // v4조건검색
         search() {
 
-            let tmpStrDt = this.inqStrDt.split("-").join("")
-            let tmpEndDt = this.inqEndDt.split("-").join("")
-            console.log("initComponent() tmpStrDt  ===================", tmpStrDt)
-            console.log("initComponent() tmpEndDt  ===================", tmpEndDt)
+            let tmpStrDt = this.inqStrDt.split(".").join("")
+            let tmpEndDt = this.inqEndDt.split(".").join("")
             let diffDays = Number(dayDiff(dateFormat(tmpEndDt, 'YYYYMMDD'), tmpStrDt) + 1) // 남은일자
             console.log("initComponent() diffDays  ===================", diffDays)
-
             
             if (diffDays > 90){
                 modalService.alert("조회기간은 최대 3개월까지 조회할수 있습니다.")
@@ -350,18 +348,19 @@ export default {
             console.log("objNm1==> ", objNm)
 
             if(objNm === "inqStrDt"){
-                minDate = dateFormat(monthAdd(-12), 'YYYY-MM-DD')
-                tmpDt = this.inqStrDt
+                minDate = dateFormat(monthAdd(-12), 'YYYY.MM.DD')
+                tmpDt   = this.inqStrDt
+                maxDate = this.inqEndDt
             }else{
                 if(this.inqStrDt !== undefined || this.inqStrDt !== null || this.inqStrDt !== ''){
-                    minDate = dateFormat(this.inqStrDt , 'YYYY-MM-DD') 
+                    minDate = dateFormat(this.inqStrDt , 'YYYY.MM.DD') 
                     console.log("minDate>>",minDate)   
                 }else{
-                    minDate = dateFormat(monthAdd(-12), 'YYYY-MM-DD')
+                    minDate = dateFormat(monthAdd(-12), 'YYYY.MM.DD')
                 }  
-                 tmpDt = this.inqEndDt  
+                tmpDt = this.inqEndDt  
+                maxDate = dateFormat(new Date(), 'YYYY.MM.DD')
             }
-            maxDate = dateFormat(new Date(), 'YYYY-MM-DD')
             
             let config = {
                 pDate   : tmpDt,
@@ -372,18 +371,18 @@ export default {
                 console.log("fn_popupCalendar response ==>",response)
                 if(response !== undefined && response !== null && response !== '')
                 {
-                    console.log("evt2==> ", evt)
-                    console.log("objNm2==> ", objNm)
+                    console.log("evt2==> ", evt);
+                    console.log("objNm2==> ", objNm);
                     
-                    evt.target.value = dateFormat(response, "YYYY-MM-DD")
+                    evt.target.value = dateFormat(response, "YYYY.MM.DD");             
 
-                    console.log("evt.target.value ==> ",evt.target.value)
+                    console.log("evt.target.value ==> ",evt.target.value);
 
                     if(objNm === 'inqStrDt'){
                         this.inqStrDt = evt.target.value
-                        console.log("this.inqStrDt ==> ", this.inqStrDt)
-                    }else{
-                        this.inqEndDt = evt.target.value
+                        console.log("this.inqStrDt ==> ", this.inqStrDt)             
+                    } else {
+                        this.inqEndDt = evt.target.value;
                         console.log("this.inqEndDt ==> ", this.inqEndDt)
                     } 
                 }

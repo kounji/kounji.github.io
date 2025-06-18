@@ -143,7 +143,7 @@ export default {
 
 				this.selectCtgrList = []
 
-				this.chkCnt = 0
+				//this.chkCnt = 0
 			});		
 		},
         openPop(viewName) { 

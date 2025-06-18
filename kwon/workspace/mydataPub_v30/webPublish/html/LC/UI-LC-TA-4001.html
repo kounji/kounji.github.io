@@ -48,6 +48,7 @@
                         <h2><a href="#nolink">11월 지출</a></h2>
                         
                         <!--25-02-10 금액숨김 수정-->
+                        <!--[v4.0] #접근성# 마크업수정
                         <div class="toggle_money">
                             <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
@@ -59,6 +60,19 @@
                                 <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
+                        -->
+                        <div class="toggle_money">
+                            <div class="sum">
+                                <span class="hide">쉿! 비밀이에요.</span>
+                                <span class="show"><em>1,952,692,372</em>원</span>
+                            </div>
+                            <button type="button" class="btns">
+                                <span class="blind">금액</span>
+                                <span class="hide">보기</span>
+                                <span class="show">숨김</span>
+                            </button>
+                        </div>
+                        <!--[v4.0] #접근성# 마크업수정 -->
                         <!--//25-02-10 금액숨김 수정-->
 
                         <!-- 25-03-11 툴팁 추가 -->
@@ -166,8 +180,8 @@
                                         <p>이번 달 카드 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                     </div>
                                 -->
-
-                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                <!--25-04-01 로티 loop 속성 삭제 -->
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet.json"  autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                                  <!--
                                     초과인 경우 icon_wallet_up.json
                                     적게 쓸 경우 icon_wallet_down.json
@@ -180,8 +194,7 @@
                                     <p class="h_tit01">페이를 지난달보다<br><em>많이</em>쓰고 있어요.</p>
                                     <p>이번 달 페이 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
-
-                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_up.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_up.json" autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                             </div>
                             -->
 
@@ -192,7 +205,7 @@
                                     <p>이번 달 현금 이용 금액<span class="num"><em>1,367,020</em>원</span></p>
                                 </div>
 
-                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_down.json"  loop autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
+                                <lottie-player src="../../../../src/assets_v40/images/lottie/icon_wallet_down.json" autoplay aria-hidden="true" class="icon_wallet" ></lottie-player>
                             </div>
                             -->
                         </div> 
@@ -271,7 +284,7 @@
 
                     <!--최근소비-->
                     <div class="board_box lately_spend">
-                        <h2><a href="#nolink" class="title">최근 소비</a></h2>
+                        <h2><a href="#nolink" class="title">최근 내역</a></h2><!--25-04-01 문구수정-->
                         
                         <span class="date">27일(일)</span>
                         <ul class="lately_list">
@@ -508,6 +521,9 @@
                                 <div class="chart">
                                     <div class="standard"><span>목표 : 4,000,000원</span></div>
                                     <div class="now" style="width:70%"><span><span class="blind">현재</span> 4,200,000원</span></div>
+                                    <!--25-04-30 50% 이하 케이스 추가 -->
+                                    <div class="now left" style="width:0%"><span><span class="blind">현재</span> 0원</span></div>
+                                    <!--25-04-30 50% 이하 케이스 추가 -->
                                 </div>
 
                                 <div class="gray_box">
@@ -521,13 +537,16 @@
                 
                     <!--배너-->
                     <a href="#nolink" class="gotoCok">
-                        <img src="../../../../src/assets_v40/images/banner/img_banner_goto_cok.png" alt="나의 꿈을 현실로 NH콕뱅킹이 함께 합니다!" />
+                        <img src="../../../../src/assets_v40/images/banner/img_banner_goto_cok.png" alt="나의 꿈을 현실로 NH콕마이데이터(자산관리)가 함께 합니다!" /><!--25-04-01 대체텍스트 수정-->
+                    </a>
+
+                    <a href="#nolink" class="img_banner"> <!--[v4.0] 2025-05-30 배너 추가 -->
+                        <img src="../../../../src/assets_v40/images/banner/img_banner_spend.png" alt="월별 소비내역을 다운로드 받을 수 있어요">
                     </a>
 
                     <!--금융지식-->
                     <div class="finlit">
-                        <h2 class="h_tit01">금융지식</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 
                         <div class="scroller">
                             <ul>

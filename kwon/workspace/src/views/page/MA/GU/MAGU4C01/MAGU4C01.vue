@@ -17,7 +17,7 @@
 	<div class="full_popup " id="full_popup_01">
 		<div class="popup_header">
 			<h1>서비스 소개</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<!-- [v4.0] 25-03-31 이전버튼 삭제 <button type="button" class="prev"><span class="blind">이전</span></button> -->
 		</div>
 
 		<div class="popup_content">
@@ -29,8 +29,8 @@
 				<div class="intro_list">
 					<div class="board_box intro_report">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
-								<strong>리포트</strong>
+							<a href="javascript:void(0);" class="btn_acco" role="button">
+								<strong>마이데이터 홈</strong>
 								<div class="blind">
 									<span class="show">열기</span>
 									<span class="hide">닫기</span>
@@ -46,7 +46,7 @@
 
 					<div class="board_box intro_asset">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>나의 자산</strong>
 								<div class="blind">
 									<span class="show">열기</span>
@@ -63,7 +63,7 @@
 
 					<div class="board_box intro_wallet">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>나의 지출</strong>
 								<div class="blind">
 									<span class="show">열기</span> 
@@ -81,7 +81,7 @@
 					<!-- 
 					<div class="board_box intro_finance">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco">
 								<strong>금융지식</strong>
 								<div class="blind">
 									<span class="show">열기</span> 

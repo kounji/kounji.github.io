@@ -50,6 +50,7 @@
                         <!--//25-02-10 링크추가-->
                         
                         <!--25-02-10 금액숨김 수정-->
+                        <!--[v4.0] #접근성# 마크업수정
                         <div class="toggle_money">
                             <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
@@ -61,6 +62,19 @@
                                 <span class="show">1,952,692,372원</span>
                             </div>
                         </div>
+                        -->
+                        <div class="toggle_money">
+                            <div class="sum">
+                                <span class="hide">쉿! 비밀이에요.</span>
+                                <span class="show"><em>1,952,692,372</em>원</span>
+                            </div>
+                            <button type="button" class="btns">
+                                <span class="blind">금액</span>
+                                <span class="hide">보기</span>
+                                <span class="show">숨김</span>
+                            </button>
+                        </div>
+                        <!--[v4.0] #접근성# 마크업수정 -->
                         <!--//25-02-10 금액숨김 수정-->
                         <!-- 25-03-11 툴팁 추가 -->
                         <!--동일한 경우
@@ -159,6 +173,7 @@
                         </ul>
                         
                         <script>
+                            /* 25-04-07 값이 0일때 컬러 제거로 변경 */
                             var canvas  = document.getElementById("cate_outline_chart");
                             var chart = canvas.getContext("2d");
     
@@ -212,10 +227,61 @@
                                     ],
                                 ]
                             ]
+
+                            const colors_zero =[
+                                [
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                    ],
+                                ],
+                                [
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                    ],
+                                ],
+                                [
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                        
+                                    ], 
+                                    [
+                                        [0, 'transparent'],
+                                        [1, 'transparent']
+                                    ],
+                                ],
+                            ]
                         
                             const data = {
                                 numberOfParts: 3,
-                                parts:{"pt": [30 , 30 , 40]},//percentage of each parts 
+                                parts:{"pt": [40 , 0 , 60]},//percentage of each parts 
                                 colors:{"cs": null }//color of each part
                             };
                         
@@ -227,8 +293,15 @@
                             $(document).off('click.inner_tab').on('click.inner_tab', '.inner_tab button', function(e){                           
                                 var _now = $(this).parent().index();
                                 chart.clearRect(0, 0, 300, 300);
-                                data.colors.cs = colors[_now];
-                                drawDount.draw(data);
+                                
+                                if(parseInt(data.parts.pt[_now]) === 0){
+                                    data.colors.cs = colors_zero[_now];
+                                    drawDount.draw(data);
+                                    
+                                }else{
+                                    data.colors.cs = colors[_now];
+                                    drawDount.draw(data);
+                                }  
                             });
     
                             $("button", $('.inner_tab li').eq(0)).trigger('click');
@@ -242,7 +315,7 @@
                                     <a href="#nolink">
                                         <i class="ico_bank PBAAVM0000"></i>
                                         <span class="org">국민연금공단국민연금공단국민연금공단</span>
-                                        <span class="total"><em>총 가입기간 350개월</em></span>
+                                        <span class="total"><em>총 개월수 350개월</em></span><!--25-04-10 문구수정-->
                                     </a>
                                 </li>
                             </ul>
@@ -300,8 +373,7 @@
                     <!--금융지식-->
                     <!--25-02-10 세대별 추가 -->
                     <div class="finlit">
-                        <h2 class="h_tit01">세대별 절세 노하우</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">세대별 절세 노하우</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 
                         <div class="scroller">
                             <ul>
@@ -367,7 +439,7 @@
                         </a>
 
                         <a href="#nolink" class="board_box rect tax">
-                            <em>세금납부 확인</em>
+                            <em>세금 납부 확인</em> <!--[v4.0] 2025-05-28 띄어쓰기 수정 -->
                             내가 낸 세금, 쉽게 확인하세요.
                         </a>
 

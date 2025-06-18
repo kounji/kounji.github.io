@@ -43,6 +43,9 @@ import LottieAnimation from 'lottie-web-vue'
 import _ from 'lodash'
 
 import COCO4052 from '@/views/page/CO/CO/COCO4052/COCO4052'
+import MREV2010 from '@/views/page/MR/EV/MREV2010/MREV2010' // 일반이벤트 상세팝업(신규가입)
+import MREV2011 from '@/views/page/MR/EV/MREV2011/MREV2011' // 일반이벤트 상세팝업(추석소원빌기)
+import MREV2030 from '@/views/page/MR/EV/MREV2030/MREV2030' // 퀴즈이벤트 상세팝업(콕마이데이터)
 
 export default {
     name: 'CmmFlotIcon',
@@ -92,10 +95,31 @@ export default {
         * 화면이동
         */
         fn_movePage(pageId) {
+            let popName = "";
+
+            if(pageId == 'MREV2010'){
+                popName = MREV2010
+            }
+            else if(pageId == 'MREV2011'){
+                popName = MREV2011
+            }
+            else if(pageId == 'MREV2030'){
+                popName = MREV2030
+            }
+
             const config = {
-                name: pageId
-            } 
-            commonService.movePage(config)
+                name : pageId,
+                component : popName
+            }
+
+            if(popName){
+                modalService.openPopup(config).then(() => {
+                    this.$emit('reload');
+                })
+            }else{
+                commonService.movePage(config)
+            }
+                     
         },
         /*
         * 닫기 선택

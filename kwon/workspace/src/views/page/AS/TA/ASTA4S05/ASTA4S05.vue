@@ -30,7 +30,7 @@
 							<ul class="assets_list">
 								<li v-for="(item, idx) in payTotList" :key="idx">
 									<a href="javascript:void(0);" v-if="item.payDsc === 'payAc'" @click.prevent="fn_openDetailPop('PAY', item)">
-										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgCNm}}</span></i>
+										<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 										<div>
 											<strong class="org">{{item.faceOnm}}</strong>
 										</div>
@@ -56,7 +56,7 @@
 				<div class="board_box" v-if="cardPntcn > 0">
 					<details class="assets_toggle" open="">
 						<summary>
-							<span class="item">포인트<em>{{cardPntcn | numberFilter}}</em></span>
+							<span class="item">금융포인트<em>{{cardPntcn | numberFilter}}</em></span>
 							<span class="num"><em>{{cardPntBaltt | numberFilter}}</em>원</span>
 						</summary>
 						<div class="cont">

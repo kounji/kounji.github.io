@@ -74,7 +74,7 @@
             </div>
         </div>
         
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>
 		
 	</div>
 	<!--// full popup E -->
@@ -86,6 +86,7 @@ import apiService from '@/service/apiService'
 import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
 import {fncSlick_Terms} from '@/utils/slick'
+import _ from 'lodash'
 
 export default {
     name: 'COAS4008',
@@ -96,7 +97,7 @@ export default {
             empType	        : "01",	 // 검색타입 01:성명, 02:사번
             keyword         : "",    // 검색 키워드
             isNextDataYn    : "N",   // 다음 데이터 존재 여부
-            pageNo          : "",    // send 파라미터 내 페이지번호
+            pageNo          : 1,     // send 파라미터 내 페이지번호
             isSearchYn      : false, // 검색여부
             selEmpInfo      : "",    // 선택한 권유직원 정보
             initFlag        : true,  // 부모 검색어 세팅용
@@ -120,7 +121,12 @@ export default {
     methods: { 
         initComponent(param = {}) {
             this.keyword = param.invtEmpnm
-            this.getData()
+            if(!_.isEmpty(this.keyword)) {
+                this.getData()
+            } else {
+                this.initFlag = false // 부모 검색어 세팅용이므로 값이 비어있는 경우도 false로 바꿔줌
+            }
+            
         },
         getData() {
             this.fn_chngTab('1')
@@ -128,6 +134,7 @@ export default {
 
         /* Tab 변경 */
         fn_chngTab(tabIdx) {
+            this.empList = []
             this.pageNo = 1
 
             if(this.initFlag) {
@@ -166,7 +173,7 @@ export default {
 
         /* 권유직원 검색 */
         searchEmpInfo() {
-            if(this.keyword === "") {
+            if(_.isEmpty(this.keyword)) {
                 if(this.empType === '01') {
                     // 성명검색
                     modalService.alert("권유직원을 입력해주세요.", "", "확인")

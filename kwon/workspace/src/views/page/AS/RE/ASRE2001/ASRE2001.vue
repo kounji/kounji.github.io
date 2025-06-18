@@ -353,8 +353,8 @@ import {numberFormat} from '@/utils/number'
 import _ from 'lodash'
 import {mapActions} from 'vuex'
 
-import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'     // 부동산 등록 팝업
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'     // 목표등록 메인
+import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'     // 부동산 등록 팝업
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'     // 목표등록 메인
 //import PDMY1102 from '@/views/page/PD/MY/PDMY1102/PDMY1102'     // 나의목표 > 목표등록 팝업(AS-IS)
 import ASRE1203 from '@/views/page/AS/RE/ASRE1203/ASRE1203'     // 재산세 계산기
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'     // 계좌목록 팝업
@@ -494,10 +494,10 @@ export default {
         // 등록(자산추가)
         insRlestBasData(isTitleHide=false) {
             const config = {
-                component : CORE2201, // 부동산정보입력
+                component : CORE4201, // 부동산정보입력
                 params    : {
                     isUpt : false,              // 등록
-                    popId : 'ANRE2201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
+                    popId : 'ANRE4201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
                     isTitleHide : isTitleHide   // 부동산 등록 시 아파트/직접입력 타이틀 hide 여부(true:숨김, false:보임)
                 }
             }
@@ -509,7 +509,7 @@ export default {
                     this.rlestHldSqno = "";
 
                     this.getData();
-                } else if(response == 'ANRE2201') {
+                } else if(response == 'ANRE4201') {
                     this.currIdx      = 0;
                     this.rlestHldSqno = "";
 
@@ -521,7 +521,7 @@ export default {
         // 수정
         updRlestBasData() {
             const config = {
-                component : CORE2201, // 부동산정보입력
+                component : CORE4201, // 부동산정보입력
                 params    : {
                     mydtCusno    : this.getUserInfo('mydtCusno'), // 고객번호
                     rlestHldSqno : this.rlestHldSqno,             // 부동산보유일련번호
@@ -664,9 +664,9 @@ export default {
         },
         // 화면 이동(배너 및 재산세 계산기)
         openBannerLink(dsc) {
-            if(dsc == '1') {    // 제휴서비스 > 부동산 화면 이동(ANRE2201)
+            if(dsc == '1') {    // 제휴서비스 > 부동산 화면 이동(ANRE4201)
                 const config = {
-                    name: 'ANRE2201',
+                    name: 'ANRE4201',
                     param : {
                         aptIdx : this.currIdx
                     }
@@ -682,7 +682,7 @@ export default {
                 });
             } else if(dsc == '3') {     // 나의 목표 > 목표등록
                 const config = {
-                    component: PDMY2005,
+                    component: PDMY4005,
                     //component : PDMY1102,   // AS-IS 소스 이관 시 AS-IS 소스 연결
                     params : {}
                 };
@@ -929,7 +929,7 @@ export default {
             }
             modalService.openPopup(config_evtPop).then(response => {
                 //바이패스 (응모 도중 팝업 닫을 시 완료팝업에서 팝업닫기 기능과 같은 역할)
-                console.log("CORE2201 close popup", response)
+                console.log("CORE4201 close popup", response)
 
                 if(response == 'refresh') {
                     this.init();

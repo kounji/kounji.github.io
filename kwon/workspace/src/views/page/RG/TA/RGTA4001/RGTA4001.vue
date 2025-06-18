@@ -19,10 +19,7 @@
 			<div id="content">
 				<section class="local_main">
 					<!--배너-->
-					<p class="top_banner" v-show="bannerShow">
-						<a href="#nolink">다양한 축제와 행사가<br>열리고 있어요</a>
-						<button type="button" class="btn_x" @click="offBanner()"><span class="blind">삭제</span></button>
-					</p>
+					<cmm-flot-banner bnnrExpsDsVal="45"/>
 
 					<!--관심지역 설정-->
 					<div class="local_favorite">
@@ -58,7 +55,7 @@
 
 						<!--셋팅후 isIntAreaChecked === true && myIntArea !== null -->
 						<div class="mylocal after" v-show="isIntAreaChecked === true && inteRgnC !== '0'" @click="moveSetIntRegion()">
-							<p class="txt"><span>농협콕</span>님의<br>관심지역은 <em>{{ curRgnName }}</em>입니다.</p>
+							<p class="txt"><span>{{ getUserInfo("cusnm") }}</span>님의<br>관심지역은 <em>{{ curRgnName }}</em>입니다.</p>
 							<p>축제와 문화시설을 보실 수 있어요.</p>
 							
 
@@ -76,18 +73,18 @@
 					</div>
 
 					<!--축제정보-->
-					<div class="festival" v-show="isIntAreaChecked == false" :key="10000 + refKey">
+					<div class="festival" v-show="isIntAreaChecked == false && nationFestivalList.length > 0" :key="10000 + refKey">
 						<div class="board_box">
-							<h2><a href="#nolink" class="title" @click.prevent="movePage('RGFT4001')">전국 축제정보</a></h2>
+							<h2><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGFT4001')">전국 축제정보</a></h2>
 
 							<div class="thum_list">
 								
-								<a href="#nolink" class="item" v-for="(item, index) in nationFestivalList" :key="index" @click.prevent="moveFestivalDetail(item)">
+								<a href="javascript:void(0);" class="item" v-for="(item, index) in nationFestivalList" :key="index" @click.prevent="moveFestivalDetail(item)">
 									<!--
 									<img v-show="item.onLoading == true" :src="require('@/assets_v40/images/img/img_festival_02.png')" alt="" class="img">
-									<img v-show="item.onLoading == false" :src="item.thmnlImgUrlnm" alt="" class="img" @load="(e) => item.onLoading = false" @error="e => e.target.src = require('@/assets_v40/images/img/img_festival_02.png')">
+									<img v-show="item.onLoading == false" :src="item.otxtImgUrlnm" alt="" class="img" @load="(e) => item.onLoading = false" @error="e => e.target.src = require('@/assets_v40/images/img/img_festival_02.png')">
 									-->
-									<img :src="item.thmnlImgUrlnm" @error="emptyImg" alt="" class="img">
+									<img :src="getImage(item.otxtImgUrlnm)" @error="emptyImg" alt="" class="img">
 									<p class="name">{{ item.cntzTinm }}</p>
 									<p class="location">{{ item.adr.split(" ")[0] + ' ' + item.adr.split(" ")[1] }}</p>
 								</a>
@@ -96,18 +93,18 @@
 						</div>
 					</div>
 
-					<div class="festival" v-show="isIntAreaChecked == true" :key="1000000 + refKey">
+					<div class="festival" v-show="isIntAreaChecked == true && regionFestivalList.length > 0" :key="1000000 + refKey">
 						<div class="board_box">
-							<h2><a href="#nolink" class="title" @click.prevent="movePage('RGFT4001')">{{ curRgnName }} 축제정보</a></h2>
+							<h2><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGFT4001')">{{ curRgnName }}의 축제정보</a></h2>
 
 							<div class="thum_list">
 								
-								<a href="#nolink" class="item" v-for="(item, index) in regionFestivalList" :key="index" @click.prevent="moveFestivalDetail(item)">
+								<a href="javascript:void(0);" class="item" v-for="(item, index) in regionFestivalList" :key="index" @click.prevent="moveFestivalDetail(item)">
 									<!--
 									<img v-show="item.onLoading == true" :src="require('@/assets_v40/images/img/img_festival_02.png')" alt="" class="img">
-									<img v-show="item.onLoading == false" :src="item.thmnlImgUrlnm" alt="" class="img" @load="(e) => item.onLoading = false" @error="e => e.target.src = require('@/assets_v40/images/img/img_festival_02.png')">
+									<img v-show="item.onLoading == false" :src="item.otxtImgUrlnm" alt="" class="img" @load="(e) => item.onLoading = false" @error="e => e.target.src = require('@/assets_v40/images/img/img_festival_02.png')">
 									-->
-									<img :src="item.thmnlImgUrlnm" @error="emptyImg" alt="" class="img">
+									<img :src="getImage(item.otxtImgUrlnm)" @error="emptyImg" alt="" class="img">
 
 									<p class="name">{{ item.cntzTinm }}</p>
 									<p class="location">{{ item.adr.split(" ")[0] + ' ' + item.adr.split(" ")[1] }}</p>
@@ -120,13 +117,13 @@
 					
 
 					<!--문화시설정보-->
-					<div class="board_box" v-if="isIntAreaChecked == true && inteRgnC !== '0'">
-						<h2 v-if="isIntAreaChecked == true && inteRgnC !== '0'"><a href="#nolink" class="title" @click.prevent="movePage('RGCL4001')">{{ curRgnName }} 문화시설 정보</a></h2>
-						<h2 v-else><a href="#nolink" class="title" @click.prevent="movePage('RGCL4001')">전국 문화시설 정보</a></h2>
+					<div class="board_box" v-if="isIntAreaChecked == true && inteRgnC !== '0' && regionCultureList.length > 0">
+						<h2 v-if="isIntAreaChecked == true && inteRgnC !== '0'"><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGCL4001')">{{ curRgnName }}의 문화시설 정보</a></h2>
+						<h2 v-else><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGCL4001')">전국 문화시설 정보</a></h2>
 						<ul class="cate_list ty_local">
 							<!-- [D]: 생활문화센터 : .local01, 문화의집 : .local02, 미술관 : .local03, 문예회관 : .local04 -->
 							<li v-for="(item, index) in regionCultureList" :key="index" :class="tabValueMap[item.tabValue]" @click.prevent="moveCultureDetail(item)">
-								<a href="#nolink" class="item">
+								<a href="javascript:void(0);" class="item">
 									<p class="name">{{ item.orgnm }}</p>
 									<p class="text">{{ item.adr }}</p>
 								</a>
@@ -134,13 +131,13 @@
 						</ul>
 					</div>
 
-					<div class="board_box" v-else>
-						<h2 v-if="isIntAreaChecked == true && inteRgnC !== '0'"><a href="#nolink" class="title" @click.prevent="movePage('RGCL4001')">{{ curRgnName }} 문화시설 정보</a></h2>
-						<h2 v-else><a href="#nolink" class="title" @click.prevent="movePage('RGCL4001')">전국 문화시설 정보</a></h2>
+					<div class="board_box" v-if="isIntAreaChecked == false && nationCultureList.length > 0">
+						<h2 v-if="isIntAreaChecked == true && inteRgnC !== '0'"><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGCL4001')">{{ curRgnName }}의 문화시설 정보</a></h2>
+						<h2 v-else><a href="javascript:void(0);" class="title" @click.prevent="movePage('RGCL4001')">전국 문화시설 정보</a></h2>
 						<ul class="cate_list ty_local">
 							<!-- [D]: 생활문화센터 : .local01, 문화의집 : .local02, 미술관 : .local03, 문예회관 : .local04 -->
-							<li v-for="(item, index) in nationCultureList" :key="index" :class="tabValueMap[item.tabValue]" @click.prevent="moveCultureDetail">
-								<a href="#nolink" class="item">
+							<li v-for="(item, index) in nationCultureList" :key="index" :class="tabValueMap[item.tabValue]" @click.prevent="moveCultureDetail(item)">
+								<a href="javascript:void(0);" class="item">
 									<p class="name">{{ item.orgnm }}</p>
 									<p class="text">{{ item.adr }}</p>
 								</a>
@@ -149,14 +146,14 @@
 					</div>
 
 					<!--인구현황-->
-					<div class="board_box" v-if="isIntAreaChecked == false">
+					<div class="board_box" v-if="isIntAreaChecked == false && popList.length > 0">
 						<h2 class="title">전국 인구현황</h2>
 
 						<div class="total_num">
 							<span class="pin purple">{{popList[0].basDt.substring(0, 4) + '.' + popList[0].basDt.substring(4, 6) + '월 통계기준'}}</span>
 							<p class="total">총 인구수 <span class="num">{{ nationPopulation.toLocaleString() }}</span>명</p>
 							<div class="box">
-								<p>남녀성비: <span class="num">{{ Math.floor(100 * nationNafRto) / 100 }}</span></p>
+								<p>남녀비율은 <span class="num">1 : {{ Math.floor(100 * nationNafRto) / 100 }}</span></p>
 							</div>
 						</div>
 						<ul class="cate_list ty_gender">
@@ -171,14 +168,14 @@
 						</ul>
 					</div>
 
-					<div class="board_box" v-else>
-						<h2 class="title">{{ curRgnName }} 인구현황</h2>
+					<div class="board_box" v-if="isIntAreaChecked == true && popList.length > 0">
+						<h2 class="title">{{ curRgnName }}의 인구현황</h2>
 
-						<div class="total_num">
+						<div class="total_num" v-if="popList.length > 0">
 							<span class="pin purple">{{popList[0].basDt.substring(0, 4) + '.' + popList[0].basDt.substring(4, 6) + '월 통계기준'}}</span>
 							<p class="total">총 인구수 <span class="num">{{ regionPopulation.toLocaleString() }}</span>명</p>
 							<div class="box">
-								<p>남녀성비: <span class="num">{{ Math.floor(100 * regionNafRto) / 100 }}</span></p>
+								<p>남녀비율은 <span class="num">1 : {{ Math.floor(100 * regionNafRto) / 100 }}</span></p>
 							</div>
 						</div>
 						<ul class="cate_list ty_gender">
@@ -195,17 +192,18 @@
 
 					<!--여러가지 안내-->
 					<div class="various">
-						<a href="#nolink" class="board_box" @click.prevent="movePage('RGBM4001')">국토종주를 위한<br>자전거 안내</a>
+						<a href="javascript:void(0);" class="board_box" @click.prevent="movePage('RGBM4001')">국토종주를 위한<br>자전거 안내</a>
 
-						<a href="https://www.farmstay.co.kr/search" target="_blank"><img src="@/assets_v40/images/banner/img_banner_farmstay.png" alt="팜스테이 농촌체험여행" @click="movePage('팜스테이')" /></a>
-						<a href="#nolink"><img src="@/assets_v40/images/banner/img_banner_farmlive.png" alt="귀농귀촌 성공적인 농촌정착" @click.prevent="movePage('ANFM4001')" /></a>
-						<a href="#nolink"><img src="@/assets_v40/images/banner/img_banner_myfarm.png" alt="마이농가 내 농가 운영관리" @click.prevent="movePage('SZFC4101')" /></a>
+						<a href="https://www.farmstay.co.kr/search" target="_blank"><img src="@/assets_v40/images/banner/img_banner_farmstay.png" alt="팜스테이 농촌체험여행" @click.prevent="fn_openBrowser" /></a>
+						<a href="javascript:void(0);"><img src="@/assets_v40/images/banner/img_banner_farmlive.png" alt="귀농귀촌 성공적인 농촌정착" @click.prevent="movePage('SZFC4101')" /></a>
+						<a href="javascript:void(0);"><img src="@/assets_v40/images/banner/img_banner_myfarm.png" alt="마이농가 내 농가 운영관리" @click.prevent="movePage('ANFM4001')" /></a>
 					</div>
+
 				</section>
 
 			</div>
             <!-- Footer -->
-            <footersV2 type="an" />
+            <footersV2 type="" />
 			
 		</div>
 	</div>
@@ -215,6 +213,8 @@
 import Page from '@/views/layout/Page.vue'
 import FootersV2 from "@/views/layout/FootersV2.vue"
 import apiService from '@/service/apiService'
+import appService from '@/service/appService'
+import CmmFlotBanner from '@/components/CmmFlotBanner.vue'
 import commonService from '@/service/commonService'
 import routerService from '@/service/routerService'
 import modalService  from '@/service/modalService'
@@ -239,14 +239,11 @@ export default {
 				isIntAreaChecked: false,
 				myIntArea: null,
 				bannerShow: true,
-				popList: [{
-					basDt: '20250201'
-				}],
+				popList: [],
 				festRgnCodeMap: new Map(),
 				cultureRgnCodeMap: new Map(),
 				searchRgnCodeMap: new Map(),
 				inteRgnC: '1',
-				isRender: true,
 				refKey: 0,
 			}
         },
@@ -266,7 +263,7 @@ export default {
                     	lwdgProvnm: ''
                 	}
             	}	
-
+ 
             apiService.call(apiConfig).then(response => {
 				if (!!response.popList) {
 					this.popList = response.popList
@@ -291,6 +288,10 @@ export default {
 			nationPopulation() {
 				let sum = 0
 
+				if (!this.popList) {
+					return 0
+				}
+
 				this.popList.forEach((item) => {
 					sum += item.rzrgPplt
 				})
@@ -300,6 +301,10 @@ export default {
 
 			nationManPopulation() {
 				let sum = 0
+
+				if (!this.popList) {
+					return 0
+				}
 
 				this.popList.forEach((item) => {
 					sum += item.rzrgMppcn
@@ -311,6 +316,10 @@ export default {
 			nationWomanPopulation() {
 				let sum = 0
 
+				if (!this.popList) {
+					return 0
+				}
+
 				this.popList.forEach((item) => {
 					sum += item.rzrgFppcn
 				})
@@ -319,11 +328,18 @@ export default {
 			},
 
 			nationNafRto() {
-				return this.nationManPopulation / this.nationWomanPopulation
+				if (!this.popList) {
+					return 0
+				}
+				return this.nationWomanPopulation / this.nationManPopulation
 			},
 
 			regionPopulation() {
 				let cond = this.searchRgnCodeMap.get(this.inteRgnC.trim())
+
+				if (!this.popList) {
+					return 0
+				}
 
 				let item = this.popList.find((item) => item.lwdgProvnm.indexOf(cond) != -1)
 
@@ -331,6 +347,10 @@ export default {
 			},
 
 			regionManPopulation() {
+				if (!this.popList) {
+					return 0
+				}
+
 				let cond = this.searchRgnCodeMap.get(this.inteRgnC.trim())
 
 				let item = this.popList.find((item) => item.lwdgProvnm.indexOf(cond) != -1)
@@ -339,6 +359,11 @@ export default {
 			},
 
 			regionWomanPopulation() {
+
+				if (!this.popList) {
+					return 0
+				}
+
 				let cond = this.searchRgnCodeMap.get(this.inteRgnC.trim())
 
 				let item = this.popList.find((item) => item.lwdgProvnm.indexOf(cond) != -1)
@@ -347,12 +372,15 @@ export default {
 			},
 
 			regionNafRto() {
-				return this.regionManPopulation / this.regionWomanPopulation
+				if (!this.popList) {
+					return 0
+				}
+				return this.regionWomanPopulation / this.regionManPopulation
 			}
 		},
 
 		methods: {
-
+			
 			initComponent() {
 
 				this.festRgnCodeMap = new Map()
@@ -408,12 +436,12 @@ export default {
 				this.cultureRgnCodeMap.set('울산', '31')
 				this.cultureRgnCodeMap.set('세종', '36')
 				this.cultureRgnCodeMap.set('경기', '41')
-				this.cultureRgnCodeMap.set('강원', '42')
+				this.cultureRgnCodeMap.set('강원', '51')
 				this.cultureRgnCodeMap.set('충북', '43')
 				this.cultureRgnCodeMap.set('충남', '44')
 				this.cultureRgnCodeMap.set('경북', '47')
 				this.cultureRgnCodeMap.set('경남', '48')
-				this.cultureRgnCodeMap.set('전북', '45')
+				this.cultureRgnCodeMap.set('전북', '52')
 				this.cultureRgnCodeMap.set('전남', '46')
 				this.cultureRgnCodeMap.set('제주', '50')
 				/*
@@ -444,7 +472,6 @@ export default {
 				} else {
 					this.updateFestivalList(false)
 					this.updateCultureList(false)
-					this.reRender()
 					this.isIntAreaChecked = false
 				}
 
@@ -477,6 +504,11 @@ export default {
 								choose = 0
 							}
 
+							this.regionFestivalList = response.festivalList.map(item => ({
+								...item,
+								otxtImgUrlnm : item.otxtImgUrlnm ? item.otxtImgUrlnm : "",
+							}))
+
 							this.regionFestivalList = response.festivalList.slice(choose, choose + 10)	
 						
 							this.regionFestivalList.forEach((item) => item.onLoading = true)
@@ -506,6 +538,11 @@ export default {
 							if (choose < 0) {
 								choose = 0
 							}
+
+							this.nationFestivalList = response.festivalList.map(item => ({
+								...item,
+								otxtImgUrlnm : item.otxtImgUrlnm ? item.otxtImgUrlnm : "",
+							}))
 
 							this.nationFestivalList = response.festivalList.slice(choose, choose + 10)	
 						
@@ -545,7 +582,7 @@ export default {
 								choose = 0
 							}
 
-						
+							response.cultureList.sort(() => Math.random() - 0.5)
 							this.regionCultureList = response.cultureList.slice(choose, choose + 2)
 							console.log(this.regionCultureList)
 						}
@@ -573,7 +610,7 @@ export default {
 								choose = 0
 							}
 
-						
+							response.cultureList.sort(() => Math.random() - 0.5)
 							this.nationCultureList = response.cultureList.slice(choose, choose + 2)
 							console.log(this.nationCultureList)
 						}
@@ -581,17 +618,12 @@ export default {
 				}
 			},
 
-			reRender() {
-
-				this.isRender = false
-				this.isRender = true
-				this.$forceUpdate()
-			},
 
 			slick() {
 				var $outline =  $('.festival .thum_list');
 						
 				$outline.not('.slick-initialized').slick({
+						lazyLoad: 'ondemand',
 						infinite: true,
 						slidesToShow: 2,
 						slidesToScroll: 2,
@@ -600,6 +632,12 @@ export default {
 						dots:true,
 						centerPadding: '40px',
 				});
+
+				$outline.on('afterChange', function(event, slick, currentSlide) {
+					$('img').on('error', function() {
+						$(this).attr('src', new URL("@/assets_v40/images/img/img_festival_empty.png", import.meta.url).href)
+					})
+				})
 
 				this.$nextTick(() => {
 					$outline.slick("refresh")
@@ -616,18 +654,45 @@ export default {
                 commonService.movePage(menu)
 			},
 
+			fn_openBrowser() {
+                // 외부 브라우저 링크 오픈 
+                let url = "https://www.farmstay.co.kr/search"
+
+                // 외부 브라우저 링크 오픈 
+                // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
+                if(this.getUserInfo('chnl') === '385') {
+                    // 스뱅
+                    appService.executeBrowser(url)
+                } else {
+                    // 콕뱅
+                    appService.cokBankOpenPopupWebBrowser(url)
+                }
+            },
+
+			getImage(value) {
+				if (!!value) {
+					return value
+				} else {
+					return new URL("@/assets_v40/images/img/img_festival_empty.png", import.meta.url).href
+				}
+			},
+
 			fn_openRecommandPop() {
 			},
 
 			moveFestivalDetail(p) {
-
-				p.evtStDt = this.formatDateSt(p.evtStDt)
-				p.evtEdDt = this.formatDateSt(p.evtEdDt)
+				
+				let pa = { ...p }
+				pa.evtStDt = this.formatDateSt(pa.evtStDt)
+				pa.evtEdDt = this.formatDateSt(pa.evtEdDt)
+				pa.name = pa.cntzTinm
+				pa.lttdCrdnVal = pa.gpsYcdnNo
+				pa.lgtdCrdnVal = pa.gpsXcdnNo
 
 				let compName = RGFT4003
 				let param    = {
-					festivalCntzId: p.cntzId,
-					resFestivalList: p
+					festivalCntzId: pa.cntzId,
+					resFestivalList: pa,
 				};
 
 				const config = {
@@ -640,10 +705,16 @@ export default {
 
 			moveCultureDetail(p) {
 				let compName = RGCL4003
+
+				console.log('문화시설파라메터')
+				console.log(p)
 				let param    = {
 					"orgnm" : p.orgnm,
 					"adr" : p.adr,
 					"pbcYy" : p.pbcYy,
+					"name" : p.orgnm,
+					"lttdCrdnVal" : p.gpsYcdnNo,
+					"lgtdCrdnVal" : p.gpsXcdnNo,
 				}
 
 				console.log('상세 param')
@@ -667,29 +738,31 @@ export default {
 				}
 
 				modalService.openPopup(config).then((response) => {
-					const apiConfig = {
-						method : 'post',
-                		url : '/rg/ft/02r02',
-                		data : {
-							mydtCusno: this.getUserInfo('mydtCusno'),
-                    		rgnDsc: '01',
-                		}
+
+					if (response == 'refresh') {
+						const apiConfig = {
+							method : 'post',
+                			url : '/rg/ft/02r02',
+                			data : {
+								mydtCusno: this.getUserInfo('mydtCusno'),
+                    			rgnDsc: '01',
+                			}
+						}
+
+						apiService.call(apiConfig).then(response => {
+							console.log('response.provC')
+							console.log(response.provC)
+
+							if (!!response.provC) {
+								console.log('response.provC 존재')
+								this.isIntAreaChecked = true
+								this.inteRgnC = response.provC.trim()
+								this.updateFestivalList(true)
+								this.updateCultureList(true)
+							}
+						})
 					}
 
-					apiService.call(apiConfig).then(response => {
-						console.log('response.provC')
-						console.log(response.provC)
-
-						if (!!response.provC) {
-							console.log('response.provC 존재')
-							this.inteRgnC = response.provC.trim()
-							this.updateFestivalList(true)
-							this.updateCultureList(true)
-							this.reRender()
-						}
-					})
-
-					console.log('끝')
 				})
 			},
 
@@ -737,18 +810,17 @@ export default {
 								this.inteRgnC = response.provC.trim()
 								this.updateFestivalList(true)
 								this.updateCultureList(true)
-								this.reRender()
 								console.log('this.inteRgnC')
 								console.log(String(this.inteRgnC))
 								console.log('festRgnCodeMap[String(this.intRgnC)]')
 								console.log(this.festRgnCodeMap.get(this.inteRgnC))
 							} else {
 								const configYn = {
-                    			content: ['관심지역을 설정해보세요<br>(관심지역 문화/시설만 검색할 수 있어요)'],
+                    			content: ['관심지역을 설정해보세요<br>(관심지역으로 검색할 수 있어요)'],
                     			title  : "",
                     			// 예-아니요 순서 변경을 위해 아래 내용 추가
                     			buttons: [
-                        				{text: "다음에 할게요", class: 'btn btn_mint'}, // 아니오(취소)
+                        				{text: "다음에 할게요", class: 'btn btn_grey'}, // 아니오(취소)
                         				{text: "설정하기", class: 'btn btn_mint'},            // 예(확인)
                     				]
 								}
@@ -778,7 +850,6 @@ export default {
 													this.inteRgnC = response.provC.trim()
 													this.updateFestivalList(true)
 													this.updateCultureList(true)
-													this.reRender()
 												} else {
 													this.isIntAreaChecked = false
 													this.setInteRgnInfo('01', '0')
@@ -801,7 +872,7 @@ export default {
 						this.setInteRgnInfo('01', '0')
 						this.updateFestivalList(false)
 						this.updateCultureList(false)
-						this.reRender()
+
 						
 						this.$nextTick(() => {
 							this.slick()
@@ -815,6 +886,7 @@ export default {
             Page,
             FootersV2,
 			LottieAnimation,
+			CmmFlotBanner,
         }
     }
 

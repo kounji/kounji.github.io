@@ -218,7 +218,7 @@
 
     import ASRA2106 from '@/views/page/AS/RA/ASRA2106/ASRA2106'
     import ASRA2107 from '@/views/page/AS/RA/ASRA2107/ASRA2107'
-    import ASOA2005 from '@/views/page/AS/OA/ASOA2005/ASOA2005'
+    import ASOA4005 from '@/views/page/AS/OA/ASOA4005/ASOA4005'
     import ASRA2109 from '@/views/page/AS/RA/ASRA2109/ASRA2109'
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
     import ASOA2009 from '@/views/page/AS/OA/ASOA2009/ASOA2009'
@@ -302,7 +302,7 @@
                 } else if (type == "2") {
                     compName = ASRA2107; // 외화
                 } else if (type == "3") {
-                    compName = ASOA2005; // 금
+                    compName = ASOA4005; // 금
                 } else if (type == "5") {     // 농기계
                     compName = ASOA2009
                 } else if (type == "4") {

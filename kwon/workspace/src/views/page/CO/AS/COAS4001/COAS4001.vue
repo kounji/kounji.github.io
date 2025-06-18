@@ -8,7 +8,7 @@
 ************************** 수정이력 ****************************************
 * 날짜                    작업자                변경내용
 *_________________________________________________________________________
-* 2025-02-13              CS541599              최초작성(COAS2002,->COAS4001)
+* 2025-02-13              CS541599              최초작성(COAS2002,->COAS4001) 선택약관 로직 주석
 *************************************************************************/
 -->
 <template>
@@ -16,19 +16,28 @@
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">    
 			<h1>서비스 가입</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+            <!--[v4.0] 25-02-20 이전 버튼 숨김 -->
+			<!--<button type="button" class="prev" @click.prevent="close()"><span class="blind">이전</span></button>-->
 		</div>
 		
 		<div class="popup_content">
 			<div class="signup">
 				<div class="tit_area">
 					<h2 class="headline">NH콕마이데이터<br>
-						(자산관리) 이용을 위해<br>
-						<strong>이용약관을 확인</strong>해주세요.	
+						(자산관리) <strong>이용약관</strong>을<br>
+						확인해 주세요.	
 					</h2><!-- [v4.0] 25-02-11 문구수정 -->
 					<!-- [v4.0] 배경이미지 로티json으로 변경 -->
 					<div class="bg">
-						<!--<lottie-player src="../../../../src/assets_v40/images/lottie/bg_signup.json" loop="" autoplay="" aria-hidden="true" class="bg_signup" background="transparent"></lottie-player>-->
+                        <lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_signup.json')" 
+                                         ref="anim"
+                                         :loop="true"
+                                         :auto-play="true" 
+                                         :speed="1"
+                                         aria-hidden="true" 
+                                         class="plz_lottery" 
+                                         >
+                        </lottie-animation>
 					</div>
 					<!-- //[v4.0] 배경이미지 로티json으로 변경 -->
 				</div>
@@ -36,8 +45,9 @@
 				<div class="agree_wrap active open"  data-ui-toggle="box">
 					<div class="check_all">
 						<div class="checkbox border">
-							<input type="checkbox" name="allagree1" id="estlAllChk" required="" v-model="estlAgreeCheckYn" @change="allAgreeCheck($event, 'estl')" ref="estlAllChk" title="모두 동의합니다.">
-							<button type="button" class="btn_detail">[필수] 모두 동의합니다.<span class="blind">상세보기</span></button>
+							<input type="checkbox" name="allagree1" id="estlAllChk" v-model="estlAgreeCheckYn" @change="allAgreeCheck($event, 'estl')" ref="estlAllChk" title="실행시 약관 상세페이지 열림">
+							<!-- <button type="button" class="btn_detail">[필수] 모두 동의합니다.<span class="blind">상세보기</span></button> -->
+                            <label for="estlAllChk" class="btn_detail">[필수] 모두 동의합니다.</label>
 						</div>
 						<button type="button" class="view_btn" aria-expanded="true"><span class="blind">필수약관</span></button>
 					</div>
@@ -46,19 +56,19 @@
 							<li v-for="(item, index) in estlStltArray" :key="index">
 								<div class="checkbox">
                                     <input type="checkbox" name="agree1" :checked="item.checked" :id="item.stltKeyNo"
-                                    :essYn="item.essYn" @change="chngAgreeValue($event, item, 'estl')" required="" :title="item.asetAmnStltTinm">
+                                    :essYn="item.essYn" @change="chngAgreeValue($event, item, 'estl')" :title="item.asetAmnStltTinm">
 									<button type="button" class="btn_detail ico_arrow"  @click.prevent="openDtlPop(item, '1')">{{item.asetAmnStltTinm}}<span class="blind">상세보기</span></button>
 								</div>
 							</li>
 						</ul>
 					</div>
 				</div>
-
-				<div class="agree_wrap active open"  data-ui-toggle="box">
+                <!-- 2025.06.04 서비스가입 내 선택약관 로직 제거(가입 완료 후 선택약관 프로세스 진행)
+				<div class="agree_wrap active open"  data-ui-toggle="box" v-show="!tolda">
 					<div class="check_all">
 						<div class="checkbox border">
-							<input type="checkbox" name="allagree2" id="optlAllChk" v-model="optlAgreeCheckYn" @change="allAgreeCheck($event, 'optl')" required="" ref="optlAllChk" title="[선택] 모두 동의합니다.">
-							<button type="button" class="btn_detail">[선택] 모두 동의합니다.<span class="blind">상세보기</span></button>
+							<input type="checkbox" name="allagree2" id="optlAllChk" v-model="optlAgreeCheckYn" @change="allAgreeCheck($event, 'optl')" ref="optlAllChk" title="실행시 약관 상세페이지 열림">
+                            <label for="optlAllChk" class="btn_detail">[선택] 모두 동의합니다.</label>
 						</div>
 						<button type="button" class="view_btn" aria-expanded="true" @click.prevent="setAllAgreeCheck('optl')"><span class="blind">선택약관</span></button>
 					</div>
@@ -74,33 +84,34 @@
 						</ul>
 					</div>
 				</div>
-                <div class="formItem">
-					<div class="input">
-						<label for="input03">서비스 변경 내용 수신 동의해요.</label>
-						<input type="text" name="" id="input03" title="이메일 주소" v-model="email" placeholder="이메일 주소를 입력해 주세요.">
-					</div>
-				</div>
+                -->
                 <div class="formItem" v-if="respRegInfo.entYn != '1'">
 					<div class="input">
-						<label for="input04">거래 지점을 선택해 주세요.</label>
-						<input type="text" name="" id="input04" title="거래 지점" placeholder="거래 지점을 선택해 주세요." v-model="invtBrnm" readonly>
-						<button type="button" class="btns" @click.prevent="fn_srchInvtBrc()">검색</button>
+						<label for="input04">[필수] 거래 지점을 선택해 주세요.</label>
+						<input type="text" name="" id="input04" title="거래 지점" v-model="invtBrnm" readonly>
+						<button type="button" class="btns" @click.prevent="fn_srchInvtBrc()">찾기</button>
 					</div>
 				</div>
 
 				<div class="formItem" v-if="respRegInfo.entYn != '1'">
 					<div class="input">
-						<label for="input01">권유 직원이 있어요.</label><!-- [v4.0] 25-02-11 마침표추가 -->
-						<input type="text" name="" id="input01" title="권유 직원 이름" :value="setEnoInfo()" readonly placeholder="이름(사번)을 입력해주세요.">
-						<button type="button" class="btns" v-if="enoModYn" @click.prevent="fn_srchInvtEno()">검색</button>
+						<label for="input01">[선택] 권유 직원을 선택해 주세요.</label><!-- [v4.0] 25-02-11 마침표추가 -->
+						<input type="text" name="" id="input01" title="권유 직원 이름" :value="setEnoInfo()" readonly >
+						<button type="button" class="btns" v-if="enoModYn" @click.prevent="fn_srchInvtEno()">찾기</button>
 					</div>
 				</div>
 				<!-- [v4.0] 25-02-11 마침표추가 및 위치 변경 -->
 				
 				<div class="formItem">
 					<div class="input">
-						<label for="input02">추천인 코드를 입력해 주세요.</label>
-						<input type="text" name="" id="input02" title="추천인 코드" v-model="rcmCd"  placeholder="친구의 초대 코드를 입력해 주세요.">
+						<label for="input02">[선택] 추천인 코드를 입력해 주세요.</label>
+						<input type="text" name="" id="input02" title="추천인 코드" v-model="rcmCd" maxlength="8">
+					</div>
+				</div>
+                <div class="formItem">
+					<div class="input">
+						<label for="input03">[선택] 서비스 변경 내용을 수신할 이메일 주소를 입력해주세요.</label>
+						<input type="text" name="" id="input03" title="이메일 주소" v-model="email" >
 					</div>
 				</div>
 				<!-- //[v4.0] 25-02-11 마침표추가 및 위치 변경 -->
@@ -115,8 +126,8 @@
 							이용하지 않는 서비스는 해지를 권장합니다.
 						</p>
 						<ul class="dotted_list">
-							<li><a href="#nolink" class="underline" @click.prevent="fn_openBrowser('1')">내가 가입한 마이데이터 서비스 현황</a></li>
-							<li><a href="#nolink" class="underline" @click.prevent="fn_openBrowser('2')">개인정보 처리방침</a></li>
+							<li><a href="javascript:void(0);" class="underline primary" @click.prevent="fn_openBrowser('1')">내가 가입한 마이데이터 서비스 현황</a></li>
+							<li><a href="javascript:void(0);" class="underline" @click.prevent="fn_openBrowser('2')">개인정보 처리방침</a></li>
 						</ul>
 					</div>
 				</details>
@@ -127,7 +138,7 @@
 		<div class="popup_footer fixed">
 			<div class="btns_wrap">
                 <template v-if="estlAgreeCheckYn">
-                    <button type="button" class="btns lg primary" @click.prevent="fn_join()">동의하고 시작하기</button>
+                    <button type="button" class="btns lg primary" @click.prevent="fn_inviteChk()">동의하고 시작하기</button>
                 </template>
                 <template v-else>
                     <button type="button" class="btns lg primary" disabled>동의하고 시작하기</button>
@@ -135,18 +146,18 @@
 			</div>
 		</div>
 
-		<!--<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>-->
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="fnClose()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 </template>
 
 <script>
-
+import {dateFormat} from '@/utils/date'
 import COAS4004 from '@/views/page/CO/AS/COAS4004/COAS4004' // 약관상세팝업
 import COAS4005 from '@/views/page/CO/AS/COAS4005/COAS4005' // 거래 지점 찾기
 import COAS4009 from '@/views/page/CO/AS/COAS4009/COAS4009' // 권유 직원 찾기
 import COAS4010 from '@/views/page/CO/AS/COAS4010/COAS4010' // 서비스 가입 완료
-
+import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
 import apiService from '@/service/apiService'
 import appService from '@/service/appService'
@@ -155,6 +166,9 @@ import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
 import {mapGetters, mapActions} from 'vuex'
 import {maskingformat} from '@/utils/data'
+import {defineAsyncComponent} from 'vue'
+
+import LottieAnimation from 'lottie-web-vue' // import lottie-web-vue
 import _ from 'lodash'
 
 export default {
@@ -171,7 +185,7 @@ export default {
                 estlStltArray    : [],      // 필수약관 Array
                 optlStltArray    : [],      // 선택약관 Array
 
-                tmpStltArray     : [],      // 상세팝업용 전환 Array
+                isRecvInfoAgree  : false,    // 이메일 수신 동의 여부
 
                 emailAdr         : "",      // 이메일주소
                 email            : "",      // 이메일주소(수신동의 on/off 처리위함)
@@ -196,6 +210,8 @@ export default {
                 brcObj           : {},      // 선택된 거래농축협 정보객체
 
                 isProcessing     : false,   // 가입진행여부 (중복체크)
+
+                tolda            : false,   // 청소년 여부
         }
     },
 	computed: {
@@ -231,20 +247,15 @@ export default {
             'removeUserRecvAgrInfo'
         ]),
         initComponent(params) {
-            console.log("params=>",params)
-            if(!this.isEmpty(params)) {
-                this.rcmCd = params.rcmCd
-                //this.rcmCd = param.rcmCd || ""; // 추천코드를 타고 온 경우
-            }
-            
+            this.rcmCd = this.getInviteCd()
             this.getData()
         },
 
         getData() {
-            this.rcmCd = "28FK5KF9"
             // 약관조회
             // 약관대상구분코드 값 세팅 (1:비조합원, 2:조합원)
             let stltObjDsc = this.getUserInfo('macoYn') === "1" ? "2" : "1"
+            this.tolda     = this.getUserInfo('tolda') // 청소년 여부
 
             const config = {
                 url: '/co/as/02ra1',
@@ -256,7 +267,6 @@ export default {
             }
 
             apiService.call(config).then(response => {
-                console.log("response =>",response)
                 this.respStltInfo = response;
                 this.stltArray    = this.respStltInfo.stltList || []    // 약관리스트
                 this.emailAdr     = this.respStltInfo.emailAdr || ""    // email주소
@@ -284,11 +294,11 @@ export default {
                     }
 
                     // 필수약관, 선택약관 별도 저장
-                    // essYn    1 : 필수약관, 2 : 선택약관
+                    // essYn    1 : 필수약관, 0 : 선택약관
                     if(this.stltArray[k].essYn === "1") {
                         this.estlStltArray.push(this.stltArray[k])
                     } else {
-                        this.optlStltArray.push(this.stltArray[k])
+                        //this.optlStltArray.push(this.stltArray[k]) 2025.06.04 서비스가입 내 선택약관 로직 제거(가입 완료 후 선택약관 프로세스 진행)
                     }
                 }
 
@@ -301,7 +311,7 @@ export default {
 
                 // 페이지 이동시 STORE에 등록된 약관정보가 존재할때
                 if(this.userTermsAgreeList.length > 0 )  {
-                    this.setAllAgreeCheck('estl')
+                    this.setAllAgreeCheck()
                 }
                 
                 /////////////////////////////////////////////////////////
@@ -328,7 +338,7 @@ export default {
                 let optlStltTpc = ""        // 약관유형코드
                 let optlSqno    = ""        // 일련번호
                 this.stltDtlArray = []  // 약관상세목록
-
+                /* 2025.06.04 서비스가입 내 선택약관 로직 제거(가입 완료 후 선택약관 프로세스 진행)
                 for(let i=0; i < this.optlStltArray.length; i++) {
                     setTimeout(() => {
                         optlStltTpc = this.optlStltArray[i].stltTpc || ""
@@ -337,7 +347,7 @@ export default {
                         this.fn_callDtlApi(optlStltTpc, optlSqno, "optl")
                     }, 100);
                 }
-
+                */
 
             })
 
@@ -347,7 +357,7 @@ export default {
         },
 
         /* 필수/선택약관 상세 api 호출 */
-        fn_callDtlApi(stltTpc, sqno, flag) {
+        fn_callDtlApi(stltTpc, sqno) {
             let stltTinm = ""
             let stltCntn = ""
 
@@ -363,126 +373,95 @@ export default {
                 stltTinm = response.asetAmnStltTinm || ""  //자산관리약관제목명
                 stltCntn = response.asetAmnStltCntn || ""  //자산관리약관내용
                 
-                if(flag == "estl") { // 필수
-                    this.estlstltDtlArray.push({"stltTinm" : stltTinm, "stltCntn" : stltCntn})
-                } else {             // 선택
-                    this.optlstltDtlArray.push({"stltTinm" : stltTinm, "stltCntn" : stltCntn})
-                }
-                
+                this.estlstltDtlArray.push({"stltTinm" : stltTinm, "stltCntn" : stltCntn})
             })
         },
 
         /*
          * 필수/선택약관 개별선택시
          */
-        chngAgreeValue(event, item, flag) {
-            let stltArray = flag == "estl" ? this.estlStltArray : this.optlStltArray
-            
+        chngAgreeValue(event, item) {
             let stltKeyNo = item.stltKeyNo
-
             let isChecked = event.target.checked
 
-            for(let k=0; k < stltArray.length; k++) {
-                if(stltKeyNo === stltArray[k].stltKeyNo) {
-                    stltArray[k].checked = isChecked
+            for(let k=0; k < this.estlStltArray.length; k++) {
+                if(stltKeyNo === this.estlStltArray[k].stltKeyNo) {
+                    this.estlStltArray[k].checked = isChecked
                     event.target.checked = isChecked
                     break
                 }
             }
 
-            this.setAllAgreeCheck(flag)
+            this.setAllAgreeCheck()
             
         },
 
         /*
          * 필수/선택약관 동의 체크처리
          */
-        setAllAgreeCheck(flag) {
+        setAllAgreeCheck() {
             let stltCheckCount = 0
-            let stltArray = flag == "estl" ? this.estlStltArray : this.optlStltArray
 
-            for(let k=0; k < stltArray.length; k++) {
-                if(stltArray[k].checked === true) {
+            for(let k=0; k < this.estlStltArray.length; k++) {
+                if(this.estlStltArray[k].checked === true) {
                     stltCheckCount++
                 }
             }
 
-            console.log(flag == "estl" ? "필수":"선택", "약관 목록 =>", stltArray)
-            console.log("체크된 약관 개수 =>", stltCheckCount)
-
-            if(stltArray.length === stltCheckCount) {
-                if(flag == "estl") {
-                    this.estlAgreeCheckYn = true
-                } else {
-                    this.optlAgreeCheckYn = true
-                }
-                
+            if(this.estlStltArray.length === stltCheckCount) {
+                this.estlAgreeCheckYn = true
             } else {
-                if(flag == "estl") {
-                    this.estlAgreeCheckYn = false
-                } else {
-                    this.optlAgreeCheckYn = false
-                }
+                this.estlAgreeCheckYn = false
             }
         },
         /*
          * 필수/선택약관 전체동의
          */
-        allAgreeCheck(event, flag) {
-            // flag:estl:필수, optl:선택
-            let stltArray = flag == "estl" ? this.estlStltArray : this.optlStltArray;
-            let stltDtlArray = flag == "estl" ? this.estlstltDtlArray : this.optlstltDtlArray;
+        allAgreeCheck(event) {
             
-            console.log("약관 상세 필수=>", this.estlStltArray)
-            console.log("약관 상세 선택=>", this.optlStltArray)
-            for(let k=0; k < stltArray.length; k++) {
+            for(let k=0; k < this.estlStltArray.length; k++) {
                 //필수동의 전체해제
-                stltArray[k].checked = false
-                $("#"+stltArray[k].stltKeyNo).prop("checked", false)
+                this.estlStltArray[k].checked = false
+                $("#"+this.estlStltArray[k].stltKeyNo).prop("checked", false)
             }
 
             if(event.target.checked === false) {
-                this.setAllAgreeCheck(flag)
+                this.setAllAgreeCheck()
 
             } else {
                 // 필수 약관 전체동의 체크 우선 해제
-                if(flag == "estl") {
-                    this.$refs.estlAllChk.checked = false
-                    this.estlAgreeCheckYn = false
-                } else {
-                    this.$refs.optlAllChk.checked = false
-                    this.optlAgreeCheckYn = false
-                }
-                
-                
+                this.$refs.estlAllChk.checked = false
+                this.estlAgreeCheckYn = false
 
                 // 필수약관상세 팝업 호출
                 const config = {
                     component: COAS4004, 
                     params: {
                         flag      : "all",              // 전체여부
-                        stltArray : stltArray, // 필수/선택약관 array
-                        stltDtlArray : stltDtlArray.sort((a,b)=>{  // as-is는 필수, 선택 팝업이 나누어져있어서 수정함
+                        stltArray : this.estlStltArray, // 필수/선택약관 array
+                        stltDtlArray : this.estlstltDtlArray.sort((a,b)=>{  // as-is는 필수, 선택 팝업이 나누어져있어서 수정함
                         //stltDtlArray : this.stltDtlArray.sort((a,b)=>{
-                            return stltArray.map(function(e){return e.asetAmnStltTinm}).indexOf(a.stltTinm) - stltArray.map(function(e){return e.asetAmnStltTinm}).indexOf(b.stltTinm)
+                            return this.estlStltArray.map(function(e){return e.asetAmnStltTinm}).indexOf(a.stltTinm) - this.estlStltArray.map(function(e){return e.asetAmnStltTinm}).indexOf(b.stltTinm)
                         })                              // 필수약관 상세 array
                     }
                 }
                 console.log("팝업 param =>", config.params.stlDtlArray)
                 modalService.openPopup(config).then(response => {
+                    // 전체 동의 경우 그냥 팝업을 닫았을 때는 agreeStltIdArray를 리턴해주지 않기 때문에 멈춤
+                    if(response.agreeYn == 'N') return
                     let agreeStltIdArray = response.agreeStltIdArray
-
+                    
                     for(let i=0; i < agreeStltIdArray.length; i++) {
-                        for(let k=0; k < stltArray.length; k++) {
-                            if(agreeStltIdArray[i].stltKeyNo === stltArray[k].stltKeyNo) {
-                                stltArray[k].checked = true
-                                $("#"+stltArray[k].stltKeyNo).prop("checked", true)
+                        for(let k=0; k < this.estlStltArray.length; k++) {
+                            if(agreeStltIdArray[i].stltKeyNo === this.estlStltArray[k].stltKeyNo) {
+                                this.estlStltArray[k].checked = true
+                                $("#"+this.estlStltArray[k].stltKeyNo).prop("checked", true)
                                 break
                             }
                         }
                     }
 
-                    this.setAllAgreeCheck(flag)
+                    this.setAllAgreeCheck()
 
                     // 필수약관 전체동의인 경우만 거래지점 및 권유 직원 수정 가능
                     /*
@@ -497,10 +476,9 @@ export default {
 
         // 약관 상세 보기
         // flag 1:필수(estlStltArray), 2:선택(optlStlTArray)
-        openDtlPop(item, flag) {
+        openDtlPop(item) {
             let stltDtlArray = []           // 약관상세목록
             let stltKeyNo = item.stltKeyNo  // 약관키
-            this.tmpStltArray = flag == '1' ? this.estlStltArray : this.optlStltArray;
 
             const config_api = {
                 url : '/co/as/03r01',
@@ -529,16 +507,16 @@ export default {
                 let isChecked = (response.agreeYn === "Y") ? true : false
 
                 // 1:this.estlStltArray, 2:this.optlStltArray
-                for(let k=0; k < this.tmpStltArray.length; k++) {
-                    if(stltKeyNo === this.tmpStltArray[k].stltKeyNo) {
-                        this.tmpStltArray[k].checked = isChecked
+                for(let k=0; k < this.estlStltArray.length; k++) {
+                    if(stltKeyNo === this.estlStltArray[k].stltKeyNo) {
+                        this.estlStltArray[k].checked = isChecked
                         
                         $("#"+stltKeyNo).prop("checked", isChecked)
                         break
                     }
                 }
 
-                this.setAllAgreeCheck(flag)
+                this.setAllAgreeCheck()
             })
         },
         // 거래농축협 조회
@@ -566,41 +544,53 @@ export default {
             let url = "";
 
             if(flag == '1') {
-                url = "";
+                url = "https://www.mydatacenter.or.kr";
+                // 외부 브라우저 링크 오픈 
+                // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
+                if(this.getUserInfo('chnl') === '385') {
+                    // 스뱅
+                    appService.executeBrowser(url)
+                } else {
+                    // 콕뱅
+                    appService.cokBankOpenPopupWebBrowser(url)
+                }
             } else {
-                url = "";
+                url = defineAsyncComponent(() => import("@/views/page/CO/AT/COAT1103/COAT1103"))
+                const config = {
+                    component: url
+                }
+            
+                modalService.openPopup(config).then(() => {})
             }
 
-            // 외부 브라우저 링크 오픈 
-            // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
-            if(this.getUserInfo('chnl') === '385') {
-                // 스뱅
-                appService.executeBrowser(url)
-            } else {
-                // 콕뱅
-                appService.cokBankOpenPopupWebBrowser(url)
+            
+        },
+        fn_inviteChk() {
+            if(!_.isEmpty(this.rcmCd)) {
+                // 추천인 코드 조회
+                const config = {
+                    url: '/mr/ev/41r02',
+                    data: {
+                        "invtCNo" : this.rcmCd
+                    }
+                }
+                apiService.call(config).then(response =>{
+                    if(response.inviCNo == "" || response.inviCNo == null || response.inviCNo == undefined) {
+                        modalService.alert("유효하지 않은 추천이 코드에요.<br>다시 확인해 주세요.","","확인")
+                        return
+                    } else {
+                        this.rcmFlag = true // 추천인에 등록되어야하는 경우(서비스 가입 완료에서 이력을 insert하기 위해 미리 저장)
+                        this.fn_join() // 가입 실행
+                    }
+                })
+            } else { // 추천코드 없는 경우
+                this.fn_join()
             }
         },
-
         /* 가입 버튼 이벤트 */
         fn_join() {
-            // 추천인 코드 조회
-            const config = {
-                url: '/mr/ev/41r02',
-                data: {
-                    "inviCNo" : this.rcmCd
-                }
-            }
-            apiService.call(config).then(response =>{
-                if(response.inviCNo == "" || response.inviCNo == null || response.inviCNo == undefined) {
-                    modalService.alert("올바르지 않은 추천인 코드입니다.","","확인")
-                    return
-                } else {
-                    this.rcmFlag = true // 추천인에 등록되어야하는 경우(서비스 가입 완료에서 이력을 insert하기 위해 미리 저장)
-                }
-            })
-
             console.log("mutation 함수 호출")
+            
             // 동의내역 mutation clear
             this.removeAllAgreeTermInfo()
 
@@ -616,6 +606,11 @@ export default {
                     return false
                 }
             } 
+
+            if(_.isEmpty(this.invtBrnm)) {
+                modalService.alert("거래 지점을 등록해야 서비스를 이용하실 수 있어요.<br>거래 지점을 선택해 주세요.")
+                return false
+            }
             
             // 필수약관 mutation 등록
             for(let i=0; i < this.estlStltArray.length; i++) {
@@ -627,8 +622,8 @@ export default {
                 let estlData = {"stltKeyNo" : stltKeyNo, "stltTpc" : stltTpc, "sqno": sqno,  "agrYn" : agrYn}
                 this.addAgreeTermInfo(estlData)
             }
-
-            // 선택약관 mutation 등록
+            /* 2025.06.04 서비스가입 내 선택약관 로직 제거(가입 완료 후 선택약관 프로세스 진행)
+            // 선택약관 mutation 등록 
             for(let i=0; i < this.optlStltArray.length; i++) {
                 let stltKeyNo = this.optlStltArray[i].stltKeyNo
                 let stltTpc   = this.optlStltArray[i].stltTpc       //약관유형코드
@@ -638,6 +633,7 @@ export default {
                 let optlData  = {"stltKeyNo" : stltKeyNo, "stltTpc" : stltTpc, "sqno": sqno,  "agrYn" : agrYn}
                 this.addAgreeTermInfo(optlData)
             }
+            */
 
             // 정보수신동의정보 mutation 등록
             let recvInfo = {
@@ -766,13 +762,20 @@ export default {
                 }
             }
             modalService.openPopup(config_popup).then(response => {
-                let enoObj = response.enoObj
+                if(response != 'clear') {
+                    let enoObj = response.enoObj
 
-                this.invtAdr          = enoObj.brAdr    // 거래지점주소
-                this.invtEmpEno       = enoObj.eno      // 권유 직원코드
-                this.invtEmpnm        = enoObj.empnm    // 권유 직원명
-                this.invtEmpBrc       = enoObj.brc      // 권유 직원사무소
-                this.invtEmpBrnm      = enoObj.brnm     // 권유 직원사무소명
+                    this.invtEmpEno       = enoObj.eno      // 권유 직원코드
+                    this.invtEmpnm        = enoObj.empnm    // 권유 직원명
+                    this.invtEmpBrc       = enoObj.brc      // 권유 직원사무소
+                    this.invtEmpBrnm      = enoObj.brnm     // 권유 직원사무소명
+                } else {
+                    this.invtEmpEno       = ''              // 권유 직원코드
+                    this.invtEmpnm        = ''              // 권유 직원명
+                    this.invtEmpBrc       = ''              // 권유 직원사무소
+                    this.invtEmpBrnm      = ''              // 권유 직원사무소명
+                }
+                
             })
 
         },
@@ -783,11 +786,10 @@ export default {
             this.enoObj  = ""
             //this.brcModYn   = this.params.brcModYn || false
 
-            console.log("@@@ 권유 직원 변경 여부 =>",this.userTermsInvtInfo)
             // 권유 직원정보 존재여부 체크
             if(this.userTermsInvtInfo.invtEmpEno === undefined 
                 || this.userTermsInvtInfo.invtEmpEno === null || this.userTermsInvtInfo.invtEmpEno === "") {
-                this.enoModYn = false    // 권유 직원 변경 가능
+                this.enoModYn = true    // 권유 직원 변경 가능
             } else {
                 this.enoModYn = false   // 권유 직원 변경 불가
             }
@@ -801,7 +803,6 @@ export default {
                 }
             }
             modalService.openSlidePagePopup(config_slide).then(response => {
-                console.log("@@@ response =>", response)
                 let brcObj = response.brcObj
 
                 this.invtBrc  = brcObj.brc
@@ -819,14 +820,18 @@ export default {
             }
 
             modalService.openPopup(config).then(response => {
-                if(!this.isNull(response)) {
+                if(response != 'clear') {
                     let enoObj = response.enoObj
 
-                    this.invtAdr          = enoObj.brAdr    // 거래지점주소
                     this.invtEmpEno       = enoObj.eno      // 권유 직원코드
                     this.invtEmpnm        = enoObj.empnm    // 권유 직원명
                     this.invtEmpBrc       = enoObj.brc      // 권유 직원사무소
                     this.invtEmpBrnm      = enoObj.brnm     // 권유 직원사무소명
+                } else {
+                    this.invtEmpEno       = ''              // 권유 직원코드
+                    this.invtEmpnm        = ''              // 권유 직원명
+                    this.invtEmpBrc       = ''              // 권유 직원사무소
+                    this.invtEmpBrnm      = ''              // 권유 직원사무소명
                 }
             })
 
@@ -904,7 +909,7 @@ export default {
                         url: '/mr/ev/41s02',
                         data: {
                             mydtCusno : this.getUserInfo("mydtCusno"),
-                            inviCNo   : this.rcmCd
+                            invtCNo   : this.rcmCd
                         }
                     }
                     apiService.call(config).then(response =>{
@@ -915,13 +920,52 @@ export default {
                         }
                     })
 
-                    const menu = {
-                        component : COAS4010,
-                        data      : {rcmFlag : this.rcmFlag}
-                    }
                     userService.setUserInfo().then(response => {
                         this.$store.dispatch('user/setUserInfo', response)  // 사용자정보 재조회
-                        modalService.openPopup(menu)
+
+                        const menu = {
+                            component : defineAsyncComponent(() => import("@/views/page/CO/AS/COAS4010/COAS4010"))
+                        }
+
+                        modalService.openPopup(menu).then(response => {
+                            if(response.addAssetYn == 'Y') {
+                                let popId = defineAsyncComponent(() => import("@/views/page/CO/AR/COAR4002/COAR4002"))
+                                
+                                let popParams = {
+                                        isExternal : true,
+                                        orgDsc : 'bank',
+                                        isMoveMainAfterConnect : false // true면 자산연결이 끝난 후 통합메인으로 보냄
+                                }
+
+                                let popConfig = {
+                                    component : popId,
+                                    params    : popParams
+                                }
+
+                                modalService.openPopup(popConfig).then((response) => {
+                                    // 선택약관 팝업 호출
+                                    const compName = defineAsyncComponent(() => import("@/views/page/CO/AS/COAS4003/COAS4003"))
+
+                                    const config = {
+                                        component: compName
+                                    }
+
+                                    modalService.openPopup(config).then((response) => {
+                                        if(response == "home") {
+                                            this.setScrmode('N')
+
+                                            this.closeAll()
+                                            
+                                            const menu = {
+                                                name : "MAMA4001",
+                                                params : {"addAssetYn" : "N"}
+                                            }
+                                            commonService.movePage(menu)
+                                        }
+                                    })
+                                })
+                            }
+                        })
                     })
                 } 
             })
@@ -933,6 +977,18 @@ export default {
             }else if(!this.isNull(this.invtEmpnm) && this.isNull(this.invtEmpEno)) {
                 return maskingformat(this.invtEmpnm, "namex")
             }
+        },
+        // 닫기 버튼
+        fnClose() {
+            const config = {
+                content : ['화면을 닫으면 처음부터 다시 진행해야 해요.<br>취소하시겠어요?'],
+                title   : ""
+            };
+            modalService.confirm(config).then(text => {
+                if(text == "예") {
+                    this.close()
+                }
+            });
         },
 
         /* 사번 마스킹 */
@@ -953,22 +1009,22 @@ export default {
         },
 
         isEmpty(value) {
-            if (value === null || value === undefined) return true
-                    
-            if (typeof value === "string") {              
-            if (value.trim().length < 1) return true          
+            if(typeof(value) == 'object') {
+                if(Array.isArray(value)) {
+                    return value.length < 1 ? true : false
+                } else {
+                    return Object.keys(value).length < 1 ? true : false
+                }
             }
             
-            return false          
+            return (value === null || value === undefined || value.length < 1) ? true : false
         },
+
         
     },
     components : {
-
+        LottieAnimation
     },
-    destroyed() {
-        //this.getMyBizRegInfo()  //연결기관정보 조회/갱신
-    }
 }
 
 </script>

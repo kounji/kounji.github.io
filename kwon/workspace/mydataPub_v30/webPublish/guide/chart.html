@@ -16,48 +16,242 @@
 
 <body>
 <div class="guide contetns renewal" id="styleGuide">
-	<h1>components</h1>
+	<h1>Chart</h1>
 	<article class="guide_group">
-		<h2>chart</h2>
+		<h2>canvas</h2>
 		<section class="view">
 			<!-- item -->
 			<div class="item">
-				<h3>01. 뱃지(pin)</h3>
+				<h3>01. 통합메인</h3>
 				<section class="source">
-                    <div style="width:240px; height:120px; border:1px solid red">
-                        <canvas id="halfdoughnutChartCanvas" ></canvas>
-                    </div>
+					<canvas id="finance_style"></canvas>
+					<script>
+						$(function(){
+							financeStyleChart();
+						})
+						function financeStyleChart(){
+							const fincolors =[
+								[
+									[0,'#3fd999']
+								],
+								[
+									[0,'#6b75ff']
+								]
+							]
+						
+							const data = {
+								parts:{"pt": [75 , 25]},//percentage of each parts
+								colors:{"cs": fincolors }//color of each part
+							};
+			
+							var fincanvas  = document.getElementById("finance_style");
+							var finchart = fincanvas.getContext("2d");									
+							var findrawDount = new drawdountChart(finchart);
 					
+							findrawDount.set(45, 50, 35, false, Math.PI*0.5, Math.PI*2.5, 16, "#ebf1f9", 2, 1.5, "round");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
+						
+							finchart.clearRect(0, 0, 100, 100);
+							findrawDount.draw(data);
+						}
+						
+					</script>
 				</section>
 			</div>
 			<!-- //item -->
 
-            <script>
-                var canvas  = document.getElementById("halfdoughnutChartCanvas");
-                var chart = canvas.getContext("2d");
-               
-                var data = {
-                    numberOfParts: 2,
-                    parts:{"pt": [20 , 30 , 25 , 25]},//percentage of each parts 
-                    colors:{"cs": [
-                        [
-                            [0.5, '#000'],
-                            [1, '#f00']
-                            
-                        ],   
-                        [
-                            [1, '#ff0'],
-                            [0.5, '#000']
-                            
-                        ], "blue", "yellow"
-                    ]}//color of each part
-                };
-               
-                var drawDount = new drawdountChart(chart);
-                drawDount.set(120, 120, 115, false, Math.PI, 0, 10, "#000", 1);
-                drawDount.draw(data);
-            </script>
+			<!-- item -->
+			<div class="item">
+				<h3>02. 연금/절세 서브메인</h3>
+				<section class="source">
+					<div class="board_box pension_outline">
+						<div class="chart">
+							<canvas id="cate_outline_chart"></canvas>
+						</div>
+					
+						<ul role="tablist" class="inner_tab">
+							<li class="on"><button type="button" role="tab" aria-selected="true">국민연금</button></li><!--//25-02-10 텍스트 수정-->
+							<li><button type="button" role="tab" aria-selected="false">개인연금</button></li>
+							<li><button type="button" role="tab" aria-selected="false">퇴직연금</button></li>
+						</ul>
+					</div>
+					
+					<script>
+						$(function(){
+							cateOutlineChart();
+						})
+						function cateOutlineChart(){
+							var canvas  = document.getElementById("cate_outline_chart");
+							var chart = canvas.getContext("2d");
 
+							const colors =[
+								[
+									[
+										[0,'#FF929D'],
+										[0.5,'#FFB67C'],
+										[1,'#FF7459']
+									],   
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+									],
+								],
+
+								[
+									[
+										[0,'transparent'],
+										[1,'transparent']
+									],   
+									[
+										[1, '#72c8ff'],
+										[0, '#4579FF']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+									],
+								],
+
+								[
+									[
+										[0,'transparent'],
+										[1,'transparent']
+									],   
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0.7, '#6D64F1'],
+										[0, '#7B96FF'],
+									],
+								]
+							]
+
+							const colors_zero =[
+								[
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+									],
+								],
+								[
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+									],
+								],
+								[
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+										
+									], 
+									[
+										[0, 'transparent'],
+										[1, 'transparent']
+									],
+								],
+							]
+						
+							const data = {
+								numberOfParts: 3,
+								parts:{"pt": [30 , 20 , 50]},//percentage of each parts 
+								colors:{"cs": null }//color of each part
+							};
+						
+							var drawDount = new drawdountChart(chart);
+
+							drawDount.set(150, 140, 132, false, Math.PI, 0, 15, "#f7f8fa", 1);
+							drawDount.bgdraw();
+
+							$(document).off('click.inner_tab').on('click.inner_tab', '.inner_tab button', function(e){                           
+								var _now = $(this).parent().index();
+								chart.clearRect(0, 0, 300, 300);
+								
+								if(parseInt(data.parts.pt[_now]) === 0){
+									data.colors.cs = colors_zero[_now];
+									drawDount.draw(data);
+									
+								}else{
+									data.colors.cs = colors[_now];
+									drawDount.draw(data);
+								}  
+							});
+
+						}
+					</script>
+				</section>
+			</div>
+			<!-- //item -->
+
+			<!-- item -->
+			<div class="item">
+				<h3>03. 지출 서브메인</h3>
+				<section class="source">
+					<div class="staple_spend " style="height:auto;background:none">
+						<div class="chart" aria-hidden="true">
+							<div class="bar">
+								<!--1위/2위/3위순이고, 전달대비 증가폭이 큰 경우 up class 추가 -->
+								<div style="height:90%"><span>카페/베이커리</span></div>
+								<div style="height:60%"><span>자녀/육아</span></div>
+								<div class="up" style="height:55%"><span>문화/레저</span></div>
+							</div>
+							<canvas id="staple_spend"></canvas>
+						</div>
+					</div>
+					
+					<script>
+						$(function(){
+							stapleSpendChart();
+						})
+						function stapleSpendChart(){
+							var spend = document.getElementById("staple_spend");                                        
+							var lineChart = spend.getContext("2d");
+							var drawline = new drawlineChart(lineChart);
+							var linedata = [100, 0, 60];/*이번달 1위, 2위, 3위 항목순 비율*/
+
+							drawline.set(spend, 184, 92, 16, 0, 60);
+							drawline.draw(linedata);
+						}
+						
+					</script>
+
+				</section>
+			</div>
+			<!-- //item -->
+			
 		</section>
 	</article>
 </div>

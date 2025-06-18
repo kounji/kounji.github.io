@@ -63,28 +63,28 @@ const commonMixin = {
       //   }
       // }
 
-      if(_.findIndex(modalInfo, d => d.component.name === "CORE2206") > -1 || _.findIndex(modalInfo, d => d.component.name === "CORE2201") > -1 ) {
+      if(_.findIndex(modalInfo, d => d.component.name === "CORE4206") > -1 || _.findIndex(modalInfo, d => d.component.name === "CORE4201") > -1 ) {
         // 부동산 등록 프로세스 도중 대출계좌 연결 진행 시 closeAllData
-        let isCORE2206  = false
-        let isCORE2201 = false
+        let isCORE4206  = false
+        let isCORE4201 = false
 
         // 아파트 선택 대응
         if(modalInfo[modalLength-1].component.name !== '' && modalInfo[modalLength-1].component.name !== null && modalInfo[modalLength-1].component.name !== undefined) {
-          isCORE2206  = 
-            (_.findIndex(modalInfo, d => d.component.name === "CORE2206") > -1 && modalInfo[modalLength-1].component.name !== "CORE2206") ? true : false
+          isCORE4206  = 
+            (_.findIndex(modalInfo, d => d.component.name === "CORE4206") > -1 && modalInfo[modalLength-1].component.name !== "CORE4206") ? true : false
         }
 
         // 직접입력 대응
         if(modalInfo[modalLength-1].component.name !== '' && modalInfo[modalLength-1].component.name !== null && modalInfo[modalLength-1].component.name !== undefined) {
-          if(!isCORE2206) {
+          if(!isCORE4206) {
             /**
-             * 아파트 선택(CORE2206)이 아닌 직접입력(CORE2201)일 경우
+             * 아파트 선택(CORE4206)이 아닌 직접입력(CORE4201)일 경우
              *  - 마지막으로 띄운 팝업이 직접입력이 아님
              *  - 연결 프로세스 관련 팝업이 띄워진 상태
              */
-            isCORE2201  =
-              (_.findIndex(modalInfo, d => d.component.name === "CORE2201") > -1 
-              && modalInfo[modalLength-1].component.name !== "CORE2201") 
+            isCORE4201  =
+              (_.findIndex(modalInfo, d => d.component.name === "CORE4201") > -1 
+              && modalInfo[modalLength-1].component.name !== "CORE4201") 
               && (_.findIndex(modalInfo, d => d.component.name === "COAR1002") > -1 || _.findIndex(modalInfo, d => d.component.name === "COAR1010") > -1) ? true : false
           }
         }
@@ -95,7 +95,7 @@ const commonMixin = {
           isComplRest = _.findIndex(modalInfo, d => d.component.name === "COCO2201") > -1 ? true : false 
         }
 
-        if((!isCORE2206 && !isCORE2201) || isComplRest) {
+        if((!isCORE4206 && !isCORE4201) || isComplRest) {
           // 일반 case (부동산 등록 도중 연결프로세스 오픈 상태가 아니거나 자산 등록 완료 팝업 오픈상태일 시)
           for (let i=0 ;i<modalLength-1; i++)
           {
@@ -160,14 +160,14 @@ const commonMixin = {
       //   }
       // }
 
-      if(_.findIndex(modalInfo, d => d.component.name === "CORE2206") > -1 || _.findIndex(modalInfo, d => d.component.name === "CORE2201") > -1) {
+      if(_.findIndex(modalInfo, d => d.component.name === "CORE4206") > -1 || _.findIndex(modalInfo, d => d.component.name === "CORE4201") > -1) {
         // 부동산 등록 프로세스 도중 대출계좌 연결 진행 시 closeAllLeftMain
-        let isCORE2206  = _.findIndex(modalInfo, d => d.component.name === "CORE2206") > -1 ? true : false
-        let isCORE2201  = _.findIndex(modalInfo, d => d.component.name === "CORE2201") > -1 ? true : false
+        let isCORE4206  = _.findIndex(modalInfo, d => d.component.name === "CORE4206") > -1 ? true : false
+        let isCORE4201  = _.findIndex(modalInfo, d => d.component.name === "CORE4201") > -1 ? true : false
 
         let isComplRest = _.findIndex(modalInfo, d => d.component.name === "COCO2201") > -1 ? true : false // 자산 등록 완료 팝업 오픈상태 시 
 
-        if((!isCORE2206 && !isCORE2201) || isComplRest) {
+        if((!isCORE4206 && !isCORE4201) || isComplRest) {
           // 일반 case
           while (modalLength--){
             if(modalLength == 0) break
@@ -180,11 +180,11 @@ const commonMixin = {
         } else {
           // 부동산 등록 프로세스 도중 대출계좌 연결 진행 시 closeAllLeftMain
           while (modalLength--) {
-            if(isCORE2206) {
-              if(modalInfo[modalLength].component.name === "CORE2206") break
+            if(isCORE4206) {
+              if(modalInfo[modalLength].component.name === "CORE4206") break
             }
-            if(isCORE2201) {
-              if(modalInfo[modalLength].component.name === "CORE2201") break
+            if(isCORE4201) {
+              if(modalInfo[modalLength].component.name === "CORE4201") break
             }
 
             if(modalLength == 0) break

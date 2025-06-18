@@ -12,60 +12,49 @@
 </head>
 
 <body>
-	<!-- wrap S -->
-	<div id="wrap">
-		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
-		</div>    
-	</div>
-	<!--// wrap E -->
+	<div id="wrap" class="sticky-scroll"> <!--[v4.0] 2025-03-25 바닥페이지로 변경 -->
+		<!-- header S -->
+		<header id="header">
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+		</header>
+		<!--// header E -->
+		
+		<div class="content-view">
+			<div id="content">
 
-	<!-- full popup S -->
-	<div class="full_popup" id="full_popup_01"> 
-		<div class="popup_header">    
-			<h1></h1>
-		</div>
-
-		<div class="popup_content">
-			<div class="mydata_outline">
-				<div class="slick">
-					<div class="item">
-						<div class="card ty_01">
-							<span>마이데이터</span>
-							<strong>청소년을 위한<br>콕마이데이터(자산관리)<br>함께 하세요.</strong>
-							<p>나만의 자산관리 플래너</p>
+				<div class="mydata_outline">
+					<div class="slick">
+						<div class="item">
+							<div class="card ty_01">
+								<span>마이데이터</span>
+								<strong>청소년을 위한<br>콕마이데이터(자산관리)<br>함께 하세요.</strong>
+								<p>나만의 자산관리 플래너</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_02">
-							<span>자산이야기</span>
-							<strong>자산 흐름을 한 눈에!<br>지금 바로<br>경험해 보세요.</strong>
-							<p>내 손 안에 자산리포트</p>
+						<div class="item">
+							<div class="card ty_02">
+								<span>자산이야기</span>
+								<strong>자산 흐름을 한 눈에!<br>지금 바로<br>경험해 보세요.</strong>
+								<p>내 손 안에 자산리포트</p>
+							</div>
 						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_03">
-							<span>소비이야기</span>
-							<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
-							<p>부자되는 지름길 함께해요.</p>
+						<div class="item">
+							<div class="card ty_03">
+								<span>소비이야기</span>
+								<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
+								<p>부자되는 지름길 함께해요.</p>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	
-		<div class="popup_footer fixed">
-			<div class="btn_full_box btns_wrap">
-				<button type="button" class="btns lg primary">가입하고 시작하기</button>
-				<button type="button" class="btns_txt">체험하기</button>
-			</div>
-		</div>
-		
-		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
-		
-	</div>
-	<!--// full popup E -->
 
+				<div class="btns_wrap fixed">
+					<button type="button" class="btns lg primary">가입하고 시작하기</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		$(function() {
@@ -74,10 +63,6 @@
 
 	function slick () {
 		var $outline =  $('.mydata_outline .slick');
-
-		// $outline.on('afterChange', function(event, slick, currentSlide, nextSlide){
-		// 	$(slick.$slides[currentSlide]).addClass('on');
-		// });
 
 		$outline.slick({
 			speed : 200,

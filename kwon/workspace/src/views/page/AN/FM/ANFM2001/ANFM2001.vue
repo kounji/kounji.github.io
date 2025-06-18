@@ -95,7 +95,7 @@
                         미리 준비할 수 있는 
                         금융상품은 뭔가요?
                         </p>
-                    <a href="javascript:void(0)" role="button" class="btn_sm arrow" @click.prevent="movePage('PDPD1001')">추천 금융상품 전체보기</a>
+                    <a href="javascript:void(0)" role="button" class="btn_sm arrow" @click.prevent="movePage('PDPD4001')">추천 금융상품 전체보기</a>
                     <a href="javascript:void(0)" role="button" class="link_arrow" @click.prevent="openPopup('ANFM2005', null)">바로가기</a>
                 </div>
                 <div class="inner_banner">

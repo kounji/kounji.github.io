@@ -1,184 +1,110 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-	<title>홈화면 편집</title>
+	<title>콕마이데이터 설정</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
-	<meta name="viewport"
-		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<script src="../../../@pub_include/head.js"></script><!-- 개발팀에서 다시 include 바랍니다. -->
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
 </head>
-
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
 <body>
 	<!-- wrap S -->
-	<div id="wrap">
+	<div id="wrap" class="sticky-scroll">
 		<div>
 			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
-		</div>
+		</div>    
 	</div>
 	<!--// wrap E -->
 
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01">
+
 		<div class="popup_header">
-			<h1>홈화면 순서 편집</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<h1>캐릭터 설정</h1>
 		</div>
 
 		<div class="popup_content">
-			<section class="assets_edit">
-				<p><strong>홈 화면에서 보이는 순서를<br>원하는 대로 바꿀 수 있어요.</strong></p>
-				<!-- [D]
-					item01 주가지수
-					item02 추천서비스
-					item03 주요자산 변동내역
-					item04 자산분석을 통한 제안
-					item05 신용과 건강
-					item06 건강, 연금/절세
-					item07 내가 연결한 자산
-					item08 자산진단
-					item09 나의 관심서비스
-				-->
-				<ul class="list_edit">
-					<li>
-						<span class="item01">주가지수</span>
-					</li>
-					<li>
-						<span class="item02">추천서비스</span>
-					</li>
-					<li>
-						<span class="item03">주요자산 변동내역</span>
-					</li>
-					<li>
-						<span class="item04">자산분석을 통한 제안</span>
-					</li>
-					<li>
-						<span class="item05">신용과 건강</span>
-					</li>
-					<li>
-						<span class="item06">건강, 연금/절세</span>
-					</li>
-					<li>
-						<span class="item07">내가 연결한 자산</span>
-					</li>
-					<li>
-						<span class="item08">자산진단</span>
-					</li>
-					<li>
-						<span class="item09">나의 관심서비스</span>
-					</li>
-				</ul>
+
+			<section class="set_cont">
+				<h2 class="headline"><strong>나만의 캐릭터를<br>프로필로 설정해 보세요.</strong></h2>
+
+				<div class="char_list">
+					<ul>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_01">
+							<label for="char_rdo_01">
+								<strong>금융멘토</strong>
+								<span>안정적이고 지속적인 성장</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_02" checked="">
+							<label for="char_rdo_02">
+								<strong>디지털금융달인</strong>
+								<span>신속, 정확한 금융달인</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_03">
+							<label for="char_rdo_03">
+								<strong>저축왕</strong>
+								<span>작은 돈이 큰 돈 된다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_04">
+							<label for="char_rdo_04">
+								<strong>투자천재</strong>
+								<span>미래를 키우는 투자</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_05">
+							<label for="char_rdo_05">
+								<strong>절약마스터</strong>
+								<span>아낄수록 더 풍요롭게</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_06">
+							<label for="char_rdo_06">
+								<strong>보험수호자</strong>
+								<span>예상 밖을 대비한다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_07">
+							<label for="char_rdo_07">
+								<strong>신용지킴이</strong>
+								<span>신용이 곧 재산이다</span>
+							</label>
+						</li>
+						<li>
+							<input type="radio" name="char_rdo" id="char_rdo_08">
+							<label for="char_rdo_08">
+								<strong>대출코치</strong>
+								<span>똑똑하게 빌리고 갚자</span>
+							</label>
+						</li>
+					</ul>
+				</div>
 			</section>
-			<section class="assets_check">
-				<p><strong>주요자산 변동 내역.<br>홈 화면에서 자산을 선택하세요.</strong>최대 5개 선택할 수 있어요.</p>
-				<!-- [D]
-					item01 예금
-					item02 부동산
-					item03 투자
-					item04 연금
-					item05 페이/포인트
-					item06 보험
-					item07 카드
-					item08 대출
-					item09 자동차
-					item10 기타자산
-					item11 할부금융
-					item12 자동차할부
-					item13 학자금대출
-					item14 리스
-					item15 빌린돈
-				-->
-				<ul>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset1">
-						<label for="change_asset1" class="item01">예금</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset2">
-						<label for="change_asset2" class="item02">부동산</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset3">
-						<label for="change_asset3" class="item03">투자</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset4">
-						<label for="change_asset4" class="item04">연금</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset5">
-						<label for="change_asset5" class="item05">페이/포인트</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset6">
-						<label for="change_asset6" class="item06">보험</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset7">
-						<label for="change_asset7" class="item07">카드</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset8">
-						<label for="change_asset8" class="item08">대출</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset9">
-						<label for="change_asset9" class="item09">자동차</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset10">
-						<label for="change_asset10" class="item10">기타자산</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset11">
-						<label for="change_asset11" class="item11">할부금융</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset12">
-						<label for="change_asset12" class="item12">자동차할부</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset13">
-						<label for="change_asset13" class="item13">학자금대출</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset14">
-						<label for="change_asset14" class="item14">리스</label>
-					</li>
-					<li>
-						<input type="checkbox" name="change_asset" id="change_asset15">
-						<label for="change_asset15" class="item15">빌린돈</label>
-					</li>
-				</ul>
-			</section>
+
 		</div>
 
 		<div class="popup_footer fixed">
 			<div class="btns_wrap">
-				<button type="button" class="btns lg">취소</button>
-				<button type="button" class="btns lg primary">저장</button>
+				<button type="button" class="btns lg primary">저장하기</button>
 			</div>
 		</div>
 
-		<!-- 20211108 한별 접근성 role="button" 추가 S -->
 		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
-		<!--// 20211108 한별 접근성 role="button" 추가 E -->
-
 	</div>
 	<!--// full popup E -->
 
-	<script>
-		$(document).ready(function () {
-			$(".list_edit").each(function () {
-				$(this).sortable();
-			});
-
-		});
-	</script>
 </body>
-
 </html>

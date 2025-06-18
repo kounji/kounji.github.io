@@ -28,14 +28,17 @@ nn<!--
 				</div>
 				<p class="desc" v-html="initFestivalListPopup.brfCntn"></p>
 
-				<div class="board_box">
+				<div v-if="initFestivalListPopup.adr" class="board_box">
 					<dl class="info_list">
 						<div>
 							<dt class="ico_flag">오시는길</dt>
 							<dd>
 								<span>{{initFestivalListPopup.adr}} {{initFestivalListPopup.dtlAdr}}</span> <!-- 주소 -->
-								<span>{{initFestivalListPopup.zip}}</span> <!-- 우편번호 -->
 							</dd>
+						</div>
+						<div v-if="initFestivalListPopup.zip"> <!--[v4.0] 2025-04-24 우편번호 위치 변경-->
+							<dt class="ico_course">우편번호</dt>
+							<dd>{{initFestivalListPopup.zip}}</dd>
 						</div>
 					</dl>
 				</div>
@@ -45,31 +48,32 @@ nn<!--
 				</div>
 
 				<!-- 이미지 있을 경우 (API 호출) -->
-				<div v-if="(resFestivalListPopup.length > 0)">
-				<div class="detail_img" v-for="(resFestival, index) in resFestivalListPopup" :key="index">
-					<img :src="resFestival.thmnlImgUrlnm" @error="emptyImg" alt="">
+				<div v-if=" resFestivalListPopup.length > 0 ">
+					<div class="detail_img" v-for="(resFestival, index) in resFestivalListPopup" :key="index">
+						<img 
+						:src="resFestival.otxtImgUrlnm" 
+						@error="handleImageError(index)" 
+						v-show="!errorIndexes.includes(index)" 
+						alt="">
+					</div>
 				</div>
-				</div>
-
-				<!-- 이미지 없을 경우 (기본 이미지 노출) -->
-				<div v-if="(resFestivalListPopup.length <= 0)">
-				<div class="detail_img" >
-					<img src="@/assets_v40/images/img/img_event_empty.png" alt="이미지를 불러올 수 없어요"> <!--[v4.0] 2025-01-24 alt 값 추가-->
-				</div>
-				</div>
-
-				<!-- 네이버 지도 영역 -->
-				<!-- <div class="map_area">
-					<img src="@/assets_v40/images/img/temp_map.png" alt="" style="width: 100%;">
-				</div> -->
-				<!-- // -->
 				
-				<!-- 
-					네이버맵 컴퍼넌트 파라미터 필수
-					mapMode : polyLine | retina | geocoder
-					mapInfoList : Y,X 좌표 리스트 | 위치정보
-				-->
-				<cmm-naverMap :mapInfoList.sync="mapInfoList" mapMode="geocoder"></cmm-naverMap>
+				<div v-if="!mapError && mapInfoList.length > 0" class="board_box"> <!--[v4.0] 2025-04-08 지도 UI 변경 -->
+					<div class="head bg02">
+						<strong>지도</strong>
+						<p>지도를 확대/축소해서<br>더 상세한 위치를 확인해 보세요.</p>
+					</div>
+					<!-- 
+						네이버맵 컴퍼넌트 파라미터 필수
+						mapMode : polyLine | retina | geocoder
+						mapInfoList : Y,X 좌표 리스트 | 위치정보
+					-->
+					<cmm-naverMap 
+						:mapInfoList.sync="mapInfoList" 
+						mapMode="retina" 
+						@map-error="mapError = true"
+					></cmm-naverMap>
+				</div>
 			</section>
 
 		</div>
@@ -93,7 +97,9 @@ nn<!--
 			return {
 				initFestivalListPopup : [],
 				resFestivalListPopup : [],
+				errorIndexes: [],
 				mapInfoList : [],
+				mapError: false,
 			}
 		},
 		mounted() {
@@ -101,6 +107,8 @@ nn<!--
 			
 			//PFM로그 처리 화면접속이력 등록 POST
 			apiService.pfmLogSend(this.$options.name);
+		},
+		computed: {
 		},
 		mixins: [
 			popupMixin
@@ -116,14 +124,11 @@ nn<!--
 						"cntzId" : this.params.festivalCntzId,	// 축제 id
 					}
 				}
-				console.log("getData()===========>",config)
 				apiService.call(config).then(response => {
 					if(response && response.festivalList){
 						this.resFestivalListPopup = response.festivalList
-						console.log("resFestivalListPopup()=resFestivalListPopup==========>",this.resFestivalListPopup)
 					} else {
 						this.resFestivalListPopup = [];
-						console.log("resFestivalListPopup()===========>",this.resFestivalListPopup)
 					}
 				})
 			},
@@ -131,32 +136,34 @@ nn<!--
 				this.initFestivalListPopup = this.params.resFestivalList;
 				this.festivalCntzId = this.params.festivalCntzId;
 				this.$nextTick(() => {
-					this.mapInfoList.push(this.params.resFestivalList.adr);
-					console.log("상세 페이지 mapinfoList >> ",this.mapInfoList);
+					this.mapInfoList.push(this.params.resFestivalList);
 				});
-
-				console.log("this.params.resFestivalList:::::", this.params.resFestivalList);
-				console.log("this.params.festivalCntzId:::::", this.params.festivalCntzId);
 
 				// 상세 조회
 				this.getData();
 			},
 			fn_Share() {
-				console.log("공유하기 버튼 클릭")
+
+				console.log('otxtImgUrlnm')
+				console.log(this.initFestivalListPopup.otxtImgUrlnm)
 				
 				const config = {
 					params: {
-						title: "", 	// 웹공유 타이틀
-						text: "",	// 웹공유 text
-					},
+						category: 3, // 축제 카테고리 번호 3
+						cntzTinm: this.initFestivalListPopup.cntzTinm, // 축제명
+						otxtImgUrlnm: this.initFestivalListPopup.otxtImgUrlnm, // 이미지 url 
+						evtStDt: this.initFestivalListPopup.evtStDt, // 축제 시작일
+						evtEdDt: this.initFestivalListPopup.evtEdDt, // 축제 종료일
+						screenId: 'RGFT4001', // 앱 랜딩시 초기 화면으로 표시할 화면ID 
+					}, 
 				}
-				modalService.webSharePopup(config).then(response => {
-
-				})
+				modalService.webSharePopup(config);
 			},
-			emptyImg(e) {
-            	e.target.src = new URL("@/assets_v40/images/img/img_event_empty.png", import.meta.url).href            
-        	},
+			handleImageError(index) {
+				if(!this.errorIndexes.includes(index)) {
+					this.errorIndexes.push(index);
+				}
+			},
 		},
 		components: {
 			CmmNaverMap,

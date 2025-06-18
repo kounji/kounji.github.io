@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  </head>
+  <style>
+    #btn {
+      border-style: solid; 
+      border-width: 1px; 
+      border-color: gray; 
+      padding: 2px; 
+      margin: 5px;
+    }
+
+    table {font-size: 12px;width: 100%;}
+  </style>
+  <body>
+    <div id="app">
+      <div>
+        <h4>로그인 할 아이디를 선택하세요.</h4>
+        <table class="submain_list_wrap" border="1px">
+          <thead>
+            <tr list head>
+              <th class="title">영역</th>
+              <th class="title" style="width:50px">고객명</th>
+              <th class="title">CRM 고객번호</th>
+              <th class="title">접속채널</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th colspan='4' style="background-color:#ffff00">개발용 로그인 테스트</th></tr>
+            <tr><th>개발</th><td align='center'></td> <td align='center'>1059147060</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('V6wOStJ2sBLB2TvLtEmHCQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('V6wOStJ2sBLB2TvLtEmHCQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'></td> <td align='center'>1044497979</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('3Sf21hwylmIA0x88WMCmtw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('3Sf21hwylmIA0x88WMCmtw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'></td> <td align='center'>3000004607</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('vGvD4i8owFOzruK4qW1JRQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('vGvD4i8owFOzruK4qW1JRQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'></td> <td align='center'>3000004604</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('sjCZFtXBXqCk8EAdwg1Ndw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('sjCZFtXBXqCk8EAdwg1Ndw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'></td> <td align='center'>1035000647</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('Rv2L3u9SEyhMEmDXpH0D8Q==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Rv2L3u9SEyhMEmDXpH0D8Q==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'></td> <td align='center'>2000692640</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('UuC0WQJBDTu9jseCsprEGg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('rtxj7f726qPIxAH14CPFXg==', '386')"/></td></tr>
+            <tr><th>조합원</th><td align='center'></td> <td align='center'>1037526033</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('wAugCO3Xv9n7d7FUv8fdCA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('wAugCO3Xv9n7d7FUv8fdCA==', '386')"/></td></tr>
+            <tr><th colspan='4' style="background-color:#00ffc8">NH콕마이데이터 3.0 고도화(개발) 테스트</th></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>홍사헌</td><td align='center'>1029151237</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('7ibAhuqySWJplSXdNfX0HA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('GQcpdVpxlNt%2BFL%2B1jOTO2A==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>조하천</td><td align='center'>1029387242</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('d3TX86kU1zfzs890BsfA5g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('OpR7rP%2B3zUIBhMGxAILyiQ==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>정효건(미가입)</td><td align='center'>1044864566</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('WyIgsTUYr9kSYactH4SEgg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('onLOyVKtDxF7h%2BfnDgXp6A==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>홍애아(미가입)</td><td align='center'>1000029959</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('GdYryh3Q2dhDjX1SZLq1ABQcAYbwYhrp3Fjp6WRX8Mo=', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('VMIllINZCtMRbGRbOpiGBoGv6yD1Nu5jDmgeUiLS1kU=', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>황인성(청소년 미가입)</td><td align='center'>1029052895</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('2kdxD4BKOjerbOz/9X4VwQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('NEfTw6qIPMFkJ6fee0576A==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>탁하천(청소년 가입)</td><td align='center'>1026526904</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('ie1pjlQZT%2BQ/mTYSn3PjKw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Hddny1vTgjHlLD76rExo9g==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>홍헌니(스뱅_14세미만 테스트)</td><td align='center'>1039491801</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('%2BcAFYtHO9tnbp9TCAYgGJg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('%2BcAFYtHO9tnbp9TCAYgGJg==', '386')"/></td></tr>
+            <tr><th>테스터/콕뱅크</th><td align='center'>조효랑(콕뱅_14세미만 테스트)</td><td align='center'>1034405711</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('obdo5f5KTfo7GpQeVExLlw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('7L%2BSO7L1YmUPsEwvPvqufw==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>조봉울</td><td align='center'>1029802347</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('i3IVFvxeZeEoyZT8eFG7jw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('tHNnZ8fTtGHeAAQZAyowhA==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>곽은건</td><td align='center'>1000571438</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('xId2hN3hN9lp4xAfGf9dRw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('7ZPNFRvpFfNOkpav2Th%2BbA==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>조문록(어카운트인포 테스트)</td><td align='center'>3002776521</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('4c5/KLPmUvkCJsVhJtPWKQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('zMTDPppBvmsxDR9UlKJn%2Bg==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>탈회테스트</td><td align='center'>1046141796</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('semRHSk%2BvFMshceSnqAJKA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Ar1Yeu3txmH5abWgM7rpxA==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>왕도록</td><td align='center'>1037482450</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('2WYnskP8C5yrQ3a%2BHsD78A==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('2WYnskP8C5yrQ3a%2BHsD78A==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>홍해교</td><td align='center'>1029350733</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('l2jhhn9Wg9APGGlY1b98PQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('l2jhhn9Wg9APGGlY1b98PQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>백슬권</td><td align='center'>1037937516</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('3CsfYyJemuCz7AOFpZlfxQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('3CsfYyJemuCz7AOFpZlfxQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>조혜엽</td><td align='center'>1035800234</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('lg2k8Y5lfEOIiWphWtBE0g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('lg2k8Y5lfEOIiWphWtBE0g==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>황금혁</td><td align='center'>1031505965</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('pxtj2LMmLLTg7yJ9zq5b6g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('pxtj2LMmLLTg7yJ9zq5b6g==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>진학하</td><td align='center'>1028285893</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('S2SlIUomNGjhCWK%2BTbw7Xw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('S2SlIUomNGjhCWK%2BTbw7Xw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>조안교</td><td align='center'>1031547065</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('tawVwy05WobeYZVpZMq%2Bfw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('tawVwy05WobeYZVpZMq%2Bfw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>오혜아</td><td align='center'>3002895566</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('4Ssb1SSPZiIH/RhLsqPfNA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('4Ssb1SSPZiIH/RhLsqPfNA==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>공군울</td><td align='center'>1043371896</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('IOpQ5E6hyO1rGKDnVW8tAg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('IOpQ5E6hyO1rGKDnVW8tAg==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>계슬혁</td><td align='center'>1053378783</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('ODWr/eWeS2ffFOnaO/BHMg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('ODWr/eWeS2ffFOnaO/BHMg==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>라하비</td><td align='center'>1018652081</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('vv8ragyns/4aodjNnLJjog==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Q4gzfqxO6eMeCTDhqlIiIg==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>조수건</td><td align='center'>1018923756</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('6cP14ZpYrQBsJ8J42aF%2B6g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('XwAeMXzBzpKt2U%2chDPt3A==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>제치늘</td><td align='center'>1019413519</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('xRaGpCR0M0w/bRvScByGDA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('vN3cawD7QSZpGNRyvZnC4g==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>조문일</td><td align='center'>1020023727</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('mcwt2MuAJRyFY7oUY3WjoQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('w/9BBKRrH1g4H3ImhUxfVQ==', '386')"/></td></tr>
+            <!-- <tr><th>개발</th><td align='center'>탁하천</td><td align='center'>1026526904</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('ie1pjlQZT%2BQ/mTYSn3PjKw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Hddny1vTgjHlLD76rExo9g==', '386')"/></td></tr> -->
+            <tr><th>개발</th><td align='center'>조합원테스트</td><td align='center'>1059533046</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('Xz9PcFVxnjA7QZ%2BZchz4Yw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Xz9PcFVxnjA7QZ%2BZchz4Yw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>면세유테스트</td><td align='center'>1037139750</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('5AurkjfL18wVqcY9KQy44g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('5AurkjfL18wVqcY9KQy44g==', '386')"/></td></tr>
+
+            <tr><th colspan='4' style="background-color:#00ffc8">NH콕마이데이터 4.0 고도화(개발) 테스트</th></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>홍사헌</td><td align='center'>1029151237</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('7ibAhuqySWJplSXdNfX0HA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('GQcpdVpxlNt%2BFL%2B1jOTO2A==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>조하천</td><td align='center'>1029387242</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('d3TX86kU1zfzs890BsfA5g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('OpR7rP%2B3zUIBhMGxAILyiQ==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>조봉울</td><td align='center'>1029802347</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('i3IVFvxeZeEoyZT8eFG7jw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('tHNnZ8fTtGHeAAQZAyowhA==', '386')"/></td></tr>
+            <tr><th>테스터/콕뱅크</th><td align='center'>조효랑</td><td align='center'>1034405711</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('obdo5f5KTfo7GpQeVExLlw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('7L%2BSO7L1YmUPsEwvPvqufw==', '386')"/></td></tr>
+            <tr><th>테스터/콕뱅크</th><td align='center'>조슬울</td><td align='center'>1059147060</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('ie1pjlQZT%2BQ/mTYSn3PjKw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Hkz35otdWW3sdtNW5YosvA==', '386')"/></td></tr>
+            <tr><th>테스터/콕뱅크</th><td align='center'>조헌균</td><td align='center'>1041367867</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('qg6fFol/SoZTNjGHRnrV4g==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('rBcEPQ/VFywVEnqKZ70B6g==', '386')"/></td></tr>
+          </tbody>
+        </table>
+        
+        <h4>AS-IS 테스트 계정</h4>
+        <table class="submain_list_wrap" border="1px">
+          <thead>
+            <tr list head>
+              <th class="title">영역</th>
+              <th class="title">CRM 고객번호</th>
+              <th class="title">접속채널</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th colspan='3' style="background-color:#ffff00">개발용 로그인 테스트</th></tr>
+            <tr><th>개발</th><td align='center'>1059147060</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('V6wOStJ2sBLB2TvLtEmHCQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('V6wOStJ2sBLB2TvLtEmHCQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>1044497979</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('3Sf21hwylmIA0x88WMCmtw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('3Sf21hwylmIA0x88WMCmtw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>3000004607</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('vGvD4i8owFOzruK4qW1JRQ==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('vGvD4i8owFOzruK4qW1JRQ==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>3000004604</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('sjCZFtXBXqCk8EAdwg1Ndw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('sjCZFtXBXqCk8EAdwg1Ndw==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>1035000647</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('Rv2L3u9SEyhMEmDXpH0D8Q==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Rv2L3u9SEyhMEmDXpH0D8Q==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>1029151237</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('7ibAhuqySWJplSXdNfX0HA==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('7ibAhuqySWJplSXdNfX0HA==', '386')"/></td></tr>
+            <tr><th>개발</th><td align='center'>1037482450</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('2WYnskP8C5yrQ3a%2BHsD78A==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('2WYnskP8C5yrQ3a%2BHsD78A==', '386')"/></td></tr>
+            <tr><th>개발/콕뱅크</th><td align='center'>2000692640</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('UuC0WQJBDTu9jseCsprEGg==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('UuC0WQJBDTu9jseCsprEGg==', '386')"/></td></tr>
+            <tr><th>개발/스마트뱅크</th><td align='center'>조합원테스트</td><td align='center'><input type="button" value="스마트뱅크" onclick="clickTest('Xz9PcFVxnjA7QZ%2BZchz4Yw==', '385')"/><input type="button" value="콕뱅크" onclick="clickTest('Xz9PcFVxnjA7QZ%2BZchz4Yw==', '386')"/></td></tr>
+          </tbody>
+        </table>
+
+
+        <h4>AS-IS 보안취약점 테스트</h4>
+        <table class="submain_list_wrap" border="1px">
+          <thead>
+            <tr list head>
+              <th class="title">영역</th>
+              <th class="title">CRM 고객번호</th>
+              <th class="title">CRM 암호화</th>
+              <th class="title">접속채널</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th colspan='4' style="background-color:#ffff00">개발용 로그인 테스트</th></tr>
+            <tr>
+                <th rowspan='2'>개발</th>
+                <td align='center' rowspan='2'><input type="text" id="encVal"></td>
+                <td align='center' id="encValResult" ></td>
+                <td align='center' rowspan='2'><input type="button" value="OTP 생성" onclick="clickTestSecure()"/><input type="button" value="스뱅 접속" onclick="clickTestSecureLogin('385')"/><input type="button" value="콕뱅 접속" onclick="clickTestSecureLogin('386')"/></td>
+            </tr>
+                <td align='center' id="encValResult_cok" ></td>
+          </tbody>
+        </table>
+      </div>      
+    </div>
+  </body>
+  <script>
+    function clickTest(cus, chnl){
+      location.href = `/?cus=${cus}&chnl=${chnl}`
+    }
+
+    async function clickTestSecure(){
+      const cus = document.getElementById("encVal").value;
+
+      console.log(cus);
+      /*스마트 뱅킹 접속 OTP*/
+      fetch(`https://pfm.nonghyup.com:5200/pv/ec/01r01?encVal=${cus}&encDsc=1`)
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            document.getElementById("encValResult").innerText=`${data.rsp_msg}`
+        });    
+      /*콕뱅크 접속 OTP*/
+      fetch(`https://pfm.nonghyup.com:5200/pv/ec/01r01?encVal=${cus}&encDsc=2`)
+      .then((response) => response.json())
+      .then((data) => {
+          console.log(data);
+          document.getElementById("encValResult_cok").innerText=`${data.rsp_msg}`
+      });      
+    }
+
+    function clickTestSecureLogin(chnl){
+      var cus;
+      if(chnl=="385") 
+        cus = document.getElementById("encValResult").innerText.toString();
+      else           
+        cus = document.getElementById("encValResult_cok").innerText.toString();
+
+        cus = cus.replaceAll('+', '%2B');
+        console.log(cus);
+
+        location.href = `/?cus=${cus}&chnl=${chnl}`
+    }
+  </script>
+</html>
+
+
+      </div>      
+    </div>
+  </body>
+  <script>
+    function clickTest(cus, chnl){
+      // location.href = `/?cus=${cus}&chnl=${chnl}&screen=${'ASTA4001'}&inviteCd=`
+      location.href = `/?cus=${cus}&chnl=${chnl}&inviteCd=`
+    }
+  </script>
+</html>

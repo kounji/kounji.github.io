@@ -37,8 +37,19 @@
                         <div class="text">
                             우리 집 시세<br>
                             <!-- [v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
-                            <!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{rlestTtAm | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('RLEST', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01"  v-model="hideYn" @change="fn_setHidden('RLEST', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -48,7 +59,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{ rlestTtAm | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
                         </div>
                     </div>
@@ -67,26 +78,33 @@
                                 <span class="mint_badge" v-if="rlestBasData.rlestTngDsc != '' && rlestBasData.rlestTngDsc != null">{{getComCodeNm('RLEST_TNG_DSC', rlestBasData.rlestTngDsc)}}</span>
                                 <!-- 부동산거주형태구분코드(자가, 전세, 월세) -->
                                 <span class="badge_2023 soft_gray" v-if="rlest.rlestRsdFormDsc != '' && rlest.rlestRsdFormDsc != null">{{getComCodeNm('RLEST_RSD_FORM_DSC', rlest.rlestRsdFormDsc)}}</span>
+                                <span class="badge_2023 soft_gray" v-else>자가</span>
                                 <!-- 임대여부 -->
                                 <span class="badge_2023 soft_red" v-if="rlestBasData.revnMnEn == '1'">임대중</span>                                
                             </div>
-
                             <a href="javascript:void(0);" role="button">
-                                <div class="title_area">										
-                                    <p class="name" @click.prevent="openRlestFullPop('ANRE2203')">
-                                        <template v-if="rlest.mmoInpYn == '1'">{{rlest.rlestNm}}</template>
-                                        <template v-else>{{rlest.aptHcxnm}}</template>
-                                        <template v-if="rlestBasData.rlestTngDsc == '6'"><br><span>{{rlestBasData.provnm}} {{rlestBasData.ccwnm}} {{rlestBasData.ttvnm}}</span></template>										
-                                    </p>
+                                <div class="title_area">	
+                                    <template v-if="rlestBasData.rlestTngDsc == '1'">
+                                        <p class="name" @click.prevent="openRlestFullPop('ANRE2203')">{{aptHcxnm}}</p>
+                                        <p class="size">
+                                            <!--[v4.0] 주택 별칭 추가 -->
+                                            <strong class="nickname">{{rlestNm}}</strong>
+                                            <!-- //[v4.0] 주택 별칭 추가 -->
+                                            (<em class="num">{{rlest.newPytpAreaCntn}}</em>m<sup class="sup_text">2</sup>)<!-- //[v4.0] 괄호 추가 -->
+                                        </p>
+                                    </template>
                                     
-                                    <p class="size" v-if="rlestBasData.rlestTngDsc == '1'">
-                                        <em class="num">{{rlest.newPytpAreaCntn}}</em>m<sup class="sup_text">2</sup>
-                                    </p>
+                                    <template v-else>
+                                            <!--[v4.0] 주택 별칭 추가 -->
+                                            <strong class="nickname">{{rlestNm}}</strong>
+                                            <!-- //[v4.0] 주택 별칭 추가 -->
+                                            <template v-if="rlestBasData.rlestTngDsc == '6'"><p class="addr">{{rlestBasData.provnm}} {{rlestBasData.ccwnm}} {{rlestBasData.ttvnm}}</p></template>										
+                                        
+                                    </template>
                                 </div>
-                            </a>
-
+                            </a>         
                             <div class="price_area">
-                                <p class="price" v-html="fn_hanValue_classDiff((rlestBasData.genDlAm), '', 'won',true)"></p>
+                                <p class="price" v-html="fn_hanValue_classDiff((rlestBasData.genDlAm), '', 'won',rlestBasData)"></p>
                                 <div v-if="rlestBasData.rlestTngDsc == '1' && rlestBasData.rlestRsdFormDsc == '1' && rlestBasData.genDlAm > 0">
                                     <span class="change_rate up" v-if="getProfitCalc(rlestBasData.genDlAm, rlestBasData.commQtart, rlestBasData.rlestTrPr) > 0">
                                         <em v-html="fn_hanValue_classDiff(getProfitCalc(rlestBasData.genDlAm, rlestBasData.commQtart, rlestBasData.rlestTrPr), 'num', 'txt_won')"></em>
@@ -98,9 +116,10 @@
                                         <em class="num">0</em><span class="txt_won">만원</span>
                                     </span>												                                    	
                                 </div>
+                                <p v-if="rlestBasData.rlestTngDsc == '1' && rlestBasData.rlestRsdFormDsc == '1' && rlestBasData.genDlAm <= 0" class="com_txtinfo_type01">최근 시세정보가 없습니다.</p>
                             </div>
 
-                            <div class="graybox_link" v-if="rlestBasData.rlestTngDsc == '1'" @click.prevent="openBannerLink('1')">
+                            <div class="graybox_link" v-if="rlestBasData.rlestTngDsc == '1'&& rlestBasData.genDlAm > 0" @click.prevent="openBannerLink('1')">
                                 <a href="javascript:void(0);" role="button">{{rsdFormBannerTxtChg()}}</a>
                             </div>
 
@@ -125,7 +144,8 @@
                     <ul>
                         <li>
                             <!-- 매매인 경우 또는 토지/농지(6), 상가(7), 기타(9)일 때 표시 -->
-                            <template v-if="rlestBasData.rlestRsdFormDsc == '1' || rlestBasData.rlestTngDsc == '6' || rlestBasData.rlestTngDsc == '7' || rlestBasData.rlestTngDsc == '9'">
+                            <template v-if="rlestBasData.rlestRsdFormDsc == '1' || !rlestBasData.rlestRsdFormDsc ">
+                            <!-- <template v-if="rlestBasData.rlestRsdFormDsc == '1' || rlestBasData.rlestTngDsc == '6' || rlestBasData.rlestTngDsc == '7' || rlestBasData.rlestTngDsc == '9'"> -->
                                 <dl>
                                     <dt>매매금액</dt>
 
@@ -195,8 +215,8 @@
                                 </dd>
                             </dl>
 
-                            <!-- 지분율 0이고, 자가이거나 부동산 물건구분코드가 토지/농지(6), 상가(7), 기타(9)인 경우 표시 -->
-                            <dl v-else-if="(rlestBasData.commQtart == 0) && rlestBasData.rlestRsdFormDsc == '1' || rlestBasData.rlestTngDsc == '6' || rlestBasData.rlestTngDsc == '7' || rlestBasData.rlestTngDsc == '9'">
+                            <!-- 지분율 0이고, 자가이거나 -->
+                            <dl v-else-if="(rlestBasData.commQtart == 0) && rlestBasData.rlestRsdFormDsc == '1'">
                                 <dt>지분율</dt>
                                 <dd>
                                     <span>
@@ -220,12 +240,17 @@
 						
                             <!-- 아파트(1)/주택(5)/오피스텔(2)인 경우만 표시 -->
 
-                            <dl v-if="rlestBasData.rlestTngDsc == '1' || rlestBasData.rlestTngDsc == '5' || rlestBasData.rlestTngDsc == '2'">
+                            <!-- <dl v-if="rlestBasData.rlestTngDsc == '1' || rlestBasData.rlestTngDsc == '5' || rlestBasData.rlestTngDsc == '2'"> -->
+                            <dl>
                                 <dt>주거형태</dt>
-								<dd>{{getComCodeNm('RLEST_RSD_FORM_DSC', rlestBasData.rlestRsdFormDsc)}}
+								<dd v-if="rlestBasData.rlestRsdFormDsc !== '' && rlestBasData.rlestRsdFormDsc !== null">{{getComCodeNm('RLEST_RSD_FORM_DSC', rlestBasData.rlestRsdFormDsc)}}
                                     <template v-if="rlestBasData.revnMnEn == '1'">/임대</template>
-                                    <template v-else-if="rlestBasData.revnMnEn == '0' && rlestBasData.rlestRsdFormDsc == '1'">/직접거주</template>
+                                    <!-- <template v-else-if="rlestBasData.revnMnEn == '0' && rlestBasData.rlestRsdFormDsc == '1'">/직접거주</template> -->
 								</dd>									
+                                <dd v-else>자가
+                                    <template v-if="rlestBasData.revnMnEn == '1'">/임대</template>
+                                    <!-- <template v-else-if="rlestBasData.revnMnEn == '0' && rlestBasData.rlestRsdFormDsc == '1'">/직접거주</template> -->
+								</dd>	
                             </dl>
                         </li>
                     </ul>
@@ -368,7 +393,7 @@ import _ from 'lodash'
 import {mapActions} from 'vuex'
 
 import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'     // 부동산 등록 팝업
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'     // 목표등록 메인
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'     // 목표등록 메인
 //import PDMY1102 from '@/views/page/PD/MY/PDMY1102/PDMY1102'     // 나의목표 > 목표등록 팝업(AS-IS)
 import ASRE1203 from '@/views/page/AS/RE/ASRE1203/ASRE1203'     // 재산세 계산기
 import COCO1124 from '@/views/page/CO/CO/COCO1124/COCO1124'     // 계좌목록 팝업
@@ -402,6 +427,8 @@ export default {
             inteRlestList           : [],       // 관심부동산 목록(이벤트 체크 위함)
             isSearch                : false,     // 조회 여부(조회 전에 이벤트 화면 노출하지 않기 위함)
             hideYn		: false,  // 숨김 여부
+            rlestNm     :   "",
+            aptHcxnm    :   "",
         }
     },
     mounted() {
@@ -473,7 +500,7 @@ export default {
                     // this.getRlestBasData();     // 부동산 보유 기본 조회 -- 부동산 미보유도 call 하여 삭제
 
                     $('.house_slick').filter('.slick-initialized').slick('unslick');
-                    fncSlick_house1(500, false, this.slick_getRlestBasData, this.currIdx);
+                    fncSlick_house1(100, false, this.slick_getRlestBasData, this.currIdx);
                     this.fn_menuOpen()
                     this.fn_menuList()
                 })
@@ -496,13 +523,18 @@ export default {
                 data : {
                     mydtCusno    : this.getUserInfo('mydtCusno'), // 고객번호
                     rlestHldSqno : this.rlestHldSqno              // 부동산보유일련번호
-                }
+                },
+                disableLoading : true,
             };
 
             apiService.call(config).then(response => {
                 //console.log("부동산 상세 데이터 ", response)
                 this.rlestBasData = response;
                 this.rlestCnctAcList = response.rlestCnctAcList;
+                console.log("this.rlestBasData>>>>>",this.rlestBasData)
+                this.rlestNm = this.rlestBasData.rlestNm
+                this.aptHcxnm = this.rlestBasData.aptHcxnm
+                
 
                 this.getEventRgYn();        // 이벤트 응모여부 조회
             });
@@ -513,7 +545,7 @@ export default {
                 component : CORE4201, // 부동산정보입력
                 params    : {
                     isUpt : false,              // 등록
-                    popId : 'ANRE2201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
+                    popId : 'ANRE4201',         // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
                     isTitleHide : isTitleHide   // 부동산 등록 시 아파트/직접입력 타이틀 hide 여부(true:숨김, false:보임)
                 }
             }
@@ -525,7 +557,7 @@ export default {
                     this.rlestHldSqno = "";
 
                     this.getData();
-                } else if(response == 'ANRE2201') {
+                } else if(response == 'ANRE4201') {
                     this.currIdx      = 0;
                     this.rlestHldSqno = "";
 
@@ -576,7 +608,8 @@ export default {
                                 this.rlestHldSqno = "";
 
                                 this.getData();
-                                this.getAllMyAssetInfo(); // vuex 수집갱신 처리
+                                // v4 사용자 요청이아닌 수집갱신 주석처리
+                                // this.getAllMyAssetInfo(); // vuex 수집갱신 처리
                             });
                         } else {
                             modalService.alert("삭제 중 오류가 발생하였습니다.").then(() => {});
@@ -622,10 +655,22 @@ export default {
             return codeObj.comnCExpl;
         },
         // 금액 한글명, 한글/숫자 class 다르게 적용(시세)
-		fn_hanValue_classDiff(value, numClass, txtClass, isGenDlAm=false) {
+		fn_hanValue_classDiff(value, numClass, txtClass, rlestBasData) {
 			const unit = ['', '만', '억', '조', '경']
             const splitAmt = 10000
             const splitCnt = unit.length
+        
+            if(rlestBasData){
+                if(rlestBasData.rlestTngDsc ==='1' && rlestBasData.rlestRsdFormDsc ==='1' && value <= 0){
+                    value = rlestBasData.rlestTrPr
+                }else if(rlestBasData.rlestTngDsc ==='1' && rlestBasData.rlestRsdFormDsc ==='1' && value > 0){
+                    value = value
+                }else if((rlestBasData.rlestTngDsc !=='1' && rlestBasData.rlestRsdFormDsc ==='1') || !rlestBasData.rlestRsdFormDsc){
+                    value = rlestBasData.rlestTrPr
+                }else{
+                    value = rlestBasData.grmy
+                }
+            }
 
             let resultArray = []
             let resultString = ""
@@ -653,10 +698,19 @@ export default {
                     resultString = String(numberFormat(resultArray[j])) + unit[j] + ' ' + resultString
                 }
             }
+            console.log("resultString>>>",resultString)
 
             // 부동산원 텍스트 추가 시
-            if(isGenDlAm) {
-                resultString = resultString + '<span>(한국부동산원)</span>'
+            if(rlestBasData){
+                if(rlestBasData.rlestTngDsc ==='1' && rlestBasData.rlestRsdFormDsc ==='1' && value <= 0){
+                    resultString = resultString + '<span>(매매금액)</span>'
+                }else if(rlestBasData.rlestTngDsc ==='1' && rlestBasData.rlestRsdFormDsc ==='1' && value > 0){
+                    resultString = resultString === '' ? '0원 <span>(한국부동산원)</span>' : resultString + '<span>(한국부동산원)</span>'
+                }else if((rlestBasData.rlestTngDsc !=='1' && rlestBasData.rlestRsdFormDsc ==='1') || !rlestBasData.rlestRsdFormDsc){ // !rlestBasData.rlestRsdFormDsc 처리한 이유는 v4고도화 전에 데이터 등록한 사용자를 위해
+                    resultString = resultString === '' ? '0원 <span>(매매금액)</span>' : resultString + '<span>(매매금액)</span>'
+                }else{
+                    resultString = resultString === '' ? '0원 <span>(보증금)</span>' : resultString + '<span>(보증금)</span>'
+                }
             }
 
             return resultString;
@@ -680,9 +734,9 @@ export default {
         },
         // 화면 이동(배너 및 재산세 계산기)
         openBannerLink(dsc) {
-            if(dsc == '1') {    // 제휴서비스 > 부동산 화면 이동(ANRE2201)
+            if(dsc == '1') {    // 제휴서비스 > 부동산 화면 이동(ANRE4201)
                 const config = {
-                    name: 'ANRE2201',
+                    name: 'ANRE4201',
                     param : {
                         aptIdx : this.currIdx
                     }
@@ -698,7 +752,7 @@ export default {
                 });
             } else if(dsc == '3') {     // 나의 목표 > 목표등록
                 const config = {
-                    component: PDMY2005,
+                    component: PDMY4005,
                     //component : PDMY1102,   // AS-IS 소스 이관 시 AS-IS 소스 연결
                     params : {}
                 };
@@ -967,6 +1021,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
 

@@ -97,7 +97,8 @@
 					<label for="loan_cal_01">대출금액</label><!-- [v4.0] 25-02-24 문구수정 -->
 					<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
 					<div class="input">
-						<input type="text" name="" id="loan_cal_01" required="" placeholder="희망대출금액을 입력해 주세요.">
+						<input type="text" name="" id="loan_cal_01" required="" placeholder="상환금액을 제외한 금액을 입력해주세요."><!-- [v4.0] 25-03-26 placeholder수정 / 25-04-16 placeholder수정 -->
+						<button type="button" class="clear_btn"><span class="blind">삭제</span></button> <!-- [v4.0] 25-04-10 인풋 삭제 버튼 추가 -->
 						<span class="unit">만원</span>
 					</div>
 					<div class="btns_wrap">
@@ -115,6 +116,7 @@
 					<span class="info_txt">대출이자율 범위 : 1~30%</span>
 					<div class="input">
 						<input type="text" name="" id="loan_cal_02" required="" placeholder="대출이자율을 입력해 주세요.">
+						<button type="button" class="clear_btn"><span class="blind">삭제</span></button> <!-- [v4.0] 25-04-10 인풋 삭제 버튼 추가 -->
 						<span class="unit">%</span>
 					</div>
 					<div class="btns_wrap">
@@ -132,6 +134,7 @@
 					<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
 					<div class="input">
 						<input type="text" name="" id="loan_cal_03" required="" placeholder="대출기간을 입력해 주세요.">
+						<button type="button" class="clear_btn"><span class="blind">삭제</span></button> <!-- [v4.0] 25-04-10 인풋 삭제 버튼 추가 -->
 						<span class="unit">개월</span>
 					</div>
 					<div class="btns_wrap">
@@ -151,10 +154,26 @@
 			</div>
 		</div>
 
-		
 		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// 전체 팝업 종료 -->
+
+	<script type="text/javascript"> //[v4.0] 25-04-10 인풋 삭제 버튼 추가
+		$(function() {
+			var _inputBox = $('.formItem input'); // Input Box
+			var _clearBtn = $('.clear_btn'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('show');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('show');
+					$(this).closest('.input').find('input').val(''); 
+				});
+			});
+		});
+	</script>
 </body>
 </html>
 

@@ -23,7 +23,7 @@
 				
 				<section class="local_info road">
 					<div class="mylocal">
-						<p class="txt">우리나라<br>둘레길은요</p>
+						<p class="txt">전국의 둘레길을<br>확인해 볼까요?</p>
 						<p>한국관광공사가 함께합니다.</p>
 						<!-- <lottie-player src="@/assets_v40/images/lottie/bg_local_road.json"  loop autoplay aria-hidden="true" class="local_lottie" ></lottie-player> -->
 						<lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_local_road.json')" 
@@ -40,16 +40,29 @@
 					
 
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" v-model="trlcosNm" placeholder="전국 둘레길 코스를 검색하세요" title="전국 둘레길 코스를 검색하세요">
-						<button type="button" class="com_btn_delete" @click="clickClear()"><span class="blind">삭제</span></button>
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" v-model="trlcosNm" @keyup.enter="search" placeholder="전국 둘레길 코스를 검색하세요" title="전국 둘레길 코스를 검색하세요" ref="searchRef">
+						<button type="button" class="com_btn_delete" @click="clearSearch()"><span class="blind">삭제</span></button>
 						<button type="button" class="btn_search" @click="search"><span class="blind">검색</span></button>
 					</div>
+
+					<div class="category_tab has_btn"> <!--[v4.0] 2025-04-11 탭 추가 -->
+						<ul role="tablist">
+							<li class="on"><a href="#navi11" role="tab" :aria-selected="selectedTab == 0" @click="changeTab(0)">전체</a></li>
+							<li><a href="#navi12" role="tab" :aria-selected="selectedTab == 1" @click="changeTab(1)">DMZ 평화의 길</a></li>
+							<li><a href="#navi13" role="tab" :aria-selected="selectedTab == 2" @click="changeTab(2)">남파랑길</a></li>
+							<li><a href="#navi14" role="tab" :aria-selected="selectedTab == 3" @click="changeTab(3)">물소리길</a></li>
+							<li><a href="#navi15" role="tab" :aria-selected="selectedTab == 4" @click="changeTab(4)">서해랑길</a></li>
+							<li><a href="#navi16" role="tab" :aria-selected="selectedTab == 5" @click="changeTab(5)">해파랑길</a></li>
+						</ul>
+						<button type="button" class="btn_fold" aria-hidden="true"><span class="blind">토글 버튼</span></button> <!--[v4.0] 2025-02-18 버튼 속성 수정 -->
+					</div>
+
 					<div class="board_box">
-						<p class="sum">검색결과 총 <span class="num">{{searchResultCnt}}</span>개</p>
-					<div v-for="(dulegil, index) in resDulegilList.slice(0, visibleCount)" :key="index">
+						<p class="sum">검색결과 총 <span class="num">{{ dulegilList[selectedTab].length }}</span>개</p>
+					<div v-for="(dulegil, index) in dulegilList[selectedTab].slice(0, visibleCount[selectedTab])" :key="index">
 						<ul class="row_ico_list">
 							<li>
-								<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopDetailPage(resDulegilList[index], index)">
+								<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopDetailPage(dulegilList[selectedTab][index], index)">
 									<p class="name">{{dulegil.trlcosNm}}</p>
 								</a>
 							</li>
@@ -59,20 +72,23 @@
 
 					<!--[v4.0] 2025-02-28 empty 케이스 추가 -->
 						<!-- empty 케이스 -->
-						<div class="no_result" v-if="searchResultCnt == 0">
+						<div class="no_result" v-if="dulegilList[selectedTab].length == 0">
 							<p class="text">검색결과가 없어요.</p>
 						</div>
 						<!-- //empty 케이스 -->
 
 						<!--[v4.0] 2025-03-07 더보기 버튼 추가 -->
 						<!-- 더 불러올 리스트 없을 경우 class="open" 추가해주세요.  -->
-						<button type="button" class="list_more" :class="{ open: isOpen }" v-if="visibleCount < resDulegilList.length" @click="fn_moreItem">검색결과</button>
+						<button type="button" class="list_more" :class="{ open: isOpen }" v-if="dulegilList[selectedTab].length > 5" @click="fn_moreItem">검색결과</button>
 					
                         <!-- <div class="com_btn_area"><a href="javascript:void(0);" class="com_btn_more" @click.prevent="showMoreList()" :style="noMoreList"><span>더보기</span></a></div> -->
                                          
 					</div>
 
 					<div class="board_box">
+						<div class="head"> <!--[v4.0] 2025-04-09 타이틀 추가 -->
+							<strong>우리나라 둘레길은</strong>
+						</div>
 						<ul class="thum_list">
 							<li>
 
@@ -107,7 +123,7 @@
 			</div>
 
 			<!-- Footer -->
-            <footersV2 type="an" />
+            <footersV2 type="" />
 			
 		</div>
 	</div>
@@ -130,11 +146,22 @@ export default {
 			return {
 					mydtCusno: '', 	// 마이데이터고객번호
            			trlcosNm : '',	// 둘레길명
-					resDulegilList : [], 
+					lastTrlcosNm : '', // 마지막으로 검색한 둘레길 이름
+					resDulegilList : [],
+					dulegilList : [[], [], [], [], [], []],
 					pageNo : 1,  // 5개씩 call
 					moreBtnShow : true,   //  더보기 버튼 노출여부
 					searchResultCnt : 0,
-					visibleCount : 5,
+					selectedTab : 0,
+					visibleCount : [5, 5, 5, 5, 5, 5],
+					trlcosMap: {
+						0 : '',
+						1 : 'DMZ',
+						2 : '남파랑',
+						3 : '물소리',
+						4 : '서해랑',
+						5 : '해파랑'
+					}
 					
 				}
 		},
@@ -168,6 +195,14 @@ export default {
 			}
 			modalService.openPopup(config).then(() => {})
 		},
+
+		clearSearch() {
+			this.trlcosNm = ''
+		},
+
+		changeTab(i) {
+			this.selectedTab = i
+		},
     
 		getData(){
 
@@ -175,51 +210,38 @@ export default {
 			
 			this.searchResultCnt = 0;
 		
-				const config = {
-					url: '/rg/dm/01r01',
-					data: {
-							"trlcosNm": this.trlcosNm,				// 둘레길명
-							//"pageNo"  : 1					// 페이지번호
-						}
+			const config = {
+				url: '/rg/dm/01r01',
+				data: {
+						"trlcosNm": '',				// 둘레길명
+						//"pageNo"  : 1					// 페이지번호
+					}
+			}
+			console.log("getData()===========>",config)
+			apiService.call(config).then(response => {
+				console.log("둘레길 조회 response >>> : ", response)
+					
+				this.resDulegilList = response.dulegilList
+				this.searchResultCnt += Number(response.dulegilCn)
+
+				for (let i = 0; i < 6; i++) {
+					this.$set(this.dulegilList, i, this.resDulegilList.filter((item) => item.trlcosNm.indexOf(this.trlcosMap[i]) != -1))
 				}
-				console.log("getData()===========>",config)
-				apiService.call(config).then(response => {
-					console.log("둘레길 조회 response >>> : ", response)
 					
-					this.resDulegilList = response.dulegilList.sort((a, b) => a.trlcosNm.toLowerCase() < b.trlcosNm.toLowerCase() ? -1 : 1)
-					this.initList1 = response.dulegilList.sort((a, b) => a.trlcosNm.toLowerCase() < b.trlcosNm.toLowerCase() ? -1 : 1)
-					this.searchResultCnt += Number(response.dulegilCn)
-					
-				})
+			})
 		},
 		search() {
 
 			console.log("둘레길 조회!!")
 
-			if (this.trlcosNm.length < 2) {
-				console.log("두 글자 이상으로 입력해주세요.")
-				modalService.alert('검색어는 최소 2글자 이상<br>입력해주세요.')
-				return
-			}
+			this.$refs.searchRef.blur()
 			
-			this.searchResultCnt = 0;
-		
-				const config = {
-					url: '/rg/dm/01r01',
-					data: {
-							"trlcosNm": this.trlcosNm,				// 둘레길명
-							//"pageNo"  : 1					// 페이지번호
-						}
-				}
-				console.log("getData()===========>",config)
-				apiService.call(config).then(response => {
-					console.log("둘레길 조회 response >>> : ", response)
-					
-					this.resDulegilList = response.dulegilList.sort((a, b) => a.trlcosNm.toLowerCase() < b.trlcosNm.toLowerCase() ? -1 : 1)
-					this.initList1 = response.dulegilList.sort((a, b) => a.trlcosNm.toLowerCase() < b.trlcosNm.toLowerCase() ? -1 : 1)
-					this.searchResultCnt += Number(response.dulegilCn)
-					
-				})
+			this.searchResultCnt = 0
+			this.lastTrlcosNm = this.trlcosNm
+			for (let i = 0; i < 6; i++) {
+				this.$set(this.visibleCount, i, 5)
+				this.$set(this.dulegilList, i, this.resDulegilList.filter((item) => item.trlcosNm.indexOf(this.trlcosMap[i]) != -1).filter((item) => item.trlcosNm.indexOf(this.lastTrlcosNm) != -1))
+			}
 		},
 		//더보기
 		// showMoreList() {
@@ -245,13 +267,7 @@ export default {
 		// 		})
 
 		// },
-		/**
-		 * 검색 내용 초기화
-		 */
-		clickClear(){
-			
-			this.trlcosNm = ""
-		},
+
 		/**
          * 외부 브라우저 열기
          */
@@ -268,10 +284,18 @@ export default {
 			this.searchResultCnt = 0;
 			
             // 목록조회
-            this.getData();
+            this.$nextTick(() => this.getData());
         },
 		fn_moreItem() {
-			this.visibleCount += 4
+			if (this.isOpen) {
+				this.$set(this.visibleCount, this.selectedTab, 5)
+				this.$nextTick(() => {
+					const resultsSection = document.querySelector('.content-view');
+					if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'})
+				});
+			} else {
+				this.$set(this.visibleCount, this.selectedTab, this.visibleCount[this.selectedTab] + 20)
+			}
 		}
 		},
         created() {
@@ -281,7 +305,7 @@ export default {
 
 		computed: {
 			isOpen() {
-				return this.visibleCount > this.resDulegilList.length 
+				return this.visibleCount[this.selectedTab] >= this.dulegilList[this.selectedTab].length 
 			}
 		},
        

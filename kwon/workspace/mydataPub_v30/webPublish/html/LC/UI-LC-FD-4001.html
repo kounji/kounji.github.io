@@ -54,9 +54,9 @@
 												<button class="cal_btn cal_next" aria-label="한달 후 이동"></button>
 											</div>
 										</div>
-										<!--[v4.0] 내려받기 추가-->
-										<button type="button" class="stdBtn innerType01 download">내려받기</button>
-										<!--//[v4.0] 내려받기 추가-->
+										<!--[v4.0] 내려받기 추가 / 25-04-02 클래스,문구 변경-->
+										<button type="button" class="stdBtn innerType01 refresh"><em>7</em>월 불러오기</button>
+										<!--//[v4.0] 내려받기 추가 / 25-04-02 클래스,문구 변경 -->
 									</div>
 								</div>
 
@@ -84,15 +84,15 @@
 									</dl>
 									<!--//25-02-05 과거 달일 경우 수정하지 못하게 disabled casse 추가-->
 
-									<!--25-02-11 텍스트 수정 -->
+									<!--25-02-11 텍스트 수정 / 25-04-03 문구수정 -->
 									<div class="goal">
-										이번 달 29일 기준,<br>예산이 <span><em class="num">4,100,100</em>원</span> 남았어요.
+										이번 달 29일 기준 예산이 <span><em class="num">4,100,100</em>원</span> 남았어요.
 									</div>
 
 									<div class="goal">
-										이번 달 29일 기준,<br>예산이 <span><em class="num">4,100,100</em>원</span> 초과 되었어요.<br>지출 금액을 한번 점검해 보세요.
+										이번 달 29일 기준 예산이 <span><em class="num">4,100,100</em>원</span> 초과 되었어요.
 									</div>
-									<!--//25-02-11 텍스트 수정 -->
+									<!--//25-02-11 텍스트 수정  / 25-04-03 문구수정-->
 									<!--//[v4.0] 지출목표 추가-->
 								</div>
 
@@ -344,8 +344,23 @@
 
 							<div class="calendar_detail">
 								<!--[v4.0] 조회조건 추가-->
-								<div class="all_filter com_inner">
-									<a href="#nolink" role="button">최신순ㆍ전체</a>
+								<div class="all_filter between com_inner"><!--[v4.0] 25-04-02 between 클래스 추가-->
+									<!--[v4.0] 25-04-02 내려받기 추가-->
+									<button type="button" class="stdBtn innerType01 download">내려받기</button>
+									<!--//[v4.0] 25-04-02 내려받기 추가 -->
+									<!--[v4.0] 25-04-04 조회후 케이스 추가 / 25-04-09 조회후 케이스 수정-->
+									<!-- case2.조회전 
+									<a href="#nolink" role="button">
+										<span class="date">최신순ㆍ전체</span>
+									</a>
+									-->
+									<!-- case2.조회후 -->
+									<a href="#nolink" role="button">
+										<span class="date">2025.04.01~2025.04.04</span>
+										<em>높은순ㆍ결제(승인)ㆍ오래된순</em>
+										<em>의왕시 청계 가맹점</em>
+									</a>
+									<!-- //[v4.0] 25-04-04 조회후 케이스 추가 / 25-04-09 조회후 케이스 수정-->
 								</div>	
 								<!--//[v4.0] 조회조건 추가-->
 
@@ -604,6 +619,23 @@
 				</div>
 				<!--// content E -->
 				<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+
+				<!-- float S -->
+				<div class="dimmed" ></div>
+				<div class="toggle-box sticky">
+					<div data-ui-toggle="sticky">
+						<button type="button" class="btn_float" aria-expanded="false">
+							<span class="tit">수입,지출 추가 메뉴</span><!-- 1004 접근성 반영 -->
+							<em class="open">열기</em><em class="close">닫기</em>
+						</button>
+						<div class="view_box p0">
+							<button type="button" class="btn_01"><span>수입 추가</span></button>
+							<button type="button" class="btn_02"><span>지출 추가</span></button>
+						</div>
+					</div>
+				</div>
+				<!--// float E -->
+
 			</div>
 			<!--// content-view E -->
 		</div>
@@ -611,21 +643,7 @@
 	</div>
 	<!--// wrap E -->
 
-	<!-- float S -->
-	<div class="dimmed" ></div>
-	<div class="toggle-box sticky">
-		<div data-ui-toggle="sticky">
-			<button type="button" class="btn_float" aria-expanded="false">
-				<span class="tit">수입,지출 추가 메뉴</span><!-- 1004 접근성 반영 -->
-				<em class="open">열기</em><em class="close">닫기</em>
-			</button>
-			<div class="view_box p0">
-				<button type="button" class="btn_01"><span>수입 추가</span></button>
-				<button type="button" class="btn_02"><span>지출 추가</span></button>
-			</div>
-		</div>
-	</div>
-	<!--// float E -->
+	
 
 	<script>
 		//0927 접근성 반영

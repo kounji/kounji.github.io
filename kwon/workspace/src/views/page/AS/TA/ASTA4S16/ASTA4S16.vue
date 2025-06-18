@@ -124,7 +124,7 @@ import {dateFormat} from '@/utils/date'
 import ASIS4002 from '@/views/page/AS/IS/ASIS4002/ASIS4002'
 import ASIS2006 from '@/views/page/AS/IS/ASIS2006/ASIS2006'
 import ASIS2010 from '@/views/page/AS/IS/ASIS2010/ASIS2010'
-import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
+import ASIS4012 from '@/views/page/AS/IS/ASIS4012/ASIS4012'
 import ASIS4016 from '@/views/page/AS/IS/ASIS4016/ASIS4016'
 import ASIS2018 from '@/views/page/AS/IS/ASIS2018/ASIS2018'
 import ASIS2021 from '@/views/page/AS/IS/ASIS2021/ASIS2021'
@@ -203,6 +203,11 @@ export default {
             }
             apiService.call(config).then(response => {
                 this.respInfo           = response || {}
+                // test
+                // this.respInfo.atisrTngInsuCn = this.respInfo.insuCn
+                // this.respInfo.atisrTngInsuList = this.respInfo.insuList
+                // this.respInfo.atisrCarInsuCn = this.respInfo.carInsuCn
+                // this.respInfo.atisrCarInsuList = this.respInfo.carInsuList
 
                 // 주계약자 물보험
                 this.respInfo?.tngInsuList?.forEach(d => d.insuDsc = 'MCTR')
@@ -228,7 +233,7 @@ export default {
 
                 this.totTngInsuList = [...this.tngInsuList, ...this.carInsuList]
                 this.totTngAtInsuList = [...this.atisrTngInsuList, ...this.atisrCarInsuList]
-                console.log('>>> ', this.tngInsuCn + this.carInsuCn)
+                
                 this.totTngInsuList = (this.tngInsuCn + this.carInsuCn) > 3 ? this.totTngInsuList.slice(0, 3) : this.totTngInsuList
                 this.totTngAtInsuList = (this.atisrTngInsuCn + this.atisrCarInsuCn) > 3 ? this.totTngAtInsuList.slice(0, 3) : this.totTngAtInsuList
             })
@@ -251,13 +256,13 @@ export default {
             if(isrCtrStsc == '02') {
                 return ['pin', 'green']
             }else if(isrCtrStsc == '04') {
-                return ['pin', 'orange']
+                return ['pin', 'yellow']
             // 만기
             }else if(isrCtrStsc == '05') {
                 return ['pin', 'red']
             // 소멸
             }else if(isrCtrStsc == '06') {
-                return ['pin', 'gray']
+                return ['pin', '']
             }
             return ''
         },
@@ -283,10 +288,19 @@ export default {
             const type = insuInfo.insuDsc   // MCTR : 주계약자, ATISR : 피보험계약자
             if(type.includes('MCTR')) {
                 if(this.insuIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
-                    insuInfo.btnType = (insuInfo.infOfrmnOrgC == 'B1AABF0000' && this.getUserInfo('chnl') != '385') ? true : false
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
                     compName = ASIS4002 // 상세내역(인보험 상세 납입정보탭)
                 } else if(this.pensionIsrKdDsc.some(d => d == insuInfo.isrKdDsc)){
-                    compName = ASIS2012 // 상세내역(연금저축보험 상세 납입정보탭)
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+                                    
+                    compName = ASIS4012 // 상세내역(연금저축보험 상세 납입정보탭)
                 } else if(this.tngIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
                     compName = ASIS2006 // 상세내역(물보험 상세 납입정보탭)
                 } else {
@@ -294,9 +308,18 @@ export default {
                 }
             } else {
                 if(this.insuIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
-                    insuInfo.btnType = (insuInfo.infOfrmnOrgC == 'B1AABF0000' && this.getUserInfo('chnl') != '385') ? true : false
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
                     compName = ASIS4016 // 상세내역(피보험자 인보험 상세)
                 } else if(this.pensionIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
                     compName = ASIS4016 // 상세내역(피보험자 연금저축보험 상세)
                 } else if(this.tngIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
                     compName = ASIS2018 // 상세내역(피보험자 물보험 상세)
@@ -309,9 +332,7 @@ export default {
                 component: compName,
                 params: insuInfo
             }
-            modalService.openPopup(config).then(() => {
-                this.getData()
-            })
+            modalService.openPopup(config)
         }
 
         

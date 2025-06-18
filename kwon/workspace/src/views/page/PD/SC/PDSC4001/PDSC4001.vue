@@ -31,12 +31,12 @@
 					<ul class="list_type_2023">
 						<li>
 							<dl>
-								<dt>총 납부금액</dt>
-								<dd><span class="num">{{totPayAm | numberFilter}}</span>원</dd>
+								<dt>총 가입액</dt>
+								<dd><span class="num">{{totEntPrdVal | numberFilter}}</span>원</dd>
 							</dl>
 							<dl>
-								<dt>납부기간</dt>
-								<dd><span class="num">{{totPayYear}}</span>개월</dd>
+								<dt>총 개월수</dt>
+								<dd><span class="num">{{totEntPrdYear}}</span>개월</dd>
 							</dl>
 						</li>
 					</ul>
@@ -46,7 +46,7 @@
 				
 			<div class="renewal financial_life">
 				<div class="social_insurance">
-					<div class="period_search">
+					<!-- <div class="period_search">
 						<ul class="layoutBox com_inner">
 							<li class="left">
 								<div class="com_btnselectbox_type01">
@@ -63,15 +63,15 @@
 							</li>
 						</ul>
 						<div class="com_btn_area com_inner">
-							<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click="getData()">조회</a>
+							<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click="getData('R')">조회</a>
 						</div>
-					</div>
+					</div> -->
 
 					<template v-if="ntpsList.length > 0">
 						<div class="shor_term mt20 com_inner">
 							<div class="com_box_type01 toggle_list_box2 custom_list" v-for="(ntpsInfo, index) in ntpsList" :key="index">
 								<div data-ui-toggle="box" class="toggle_box_area">
-									<button type="button" class="view_btn" aria-expanded="true">
+									<button type="button" class="view_btn" aria-expanded="false">
 										<div class="new_tit_area">
 											<div class="tit">
 												<p class="bank">{{ntpsInfo.bzplnm}}</p>
@@ -119,7 +119,7 @@
 			</div>
 		</div>
         
-		<a href="#nolink" role="button" class="btn_close" @click="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 </template>
@@ -136,7 +136,6 @@ import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정�
 
 import {dateFormat} from '@/utils/date'
 import {mapGetters} from 'vuex'
-import Template from '../../../XX/template/template.vue'
 
 export default {
     name : "PDSC4001",
@@ -190,7 +189,7 @@ export default {
             this.getData()
         },
 
-		getData() {
+		getData(dsc) {
 			this.ntpsList      = [] // 국민연금 가입내역
 			this.totPayAm      = 0
 			this.totPayYear    = 0;
@@ -198,15 +197,17 @@ export default {
 			let setUrl      = ''
 			let sObjYySt    =  new Date().getFullYear() - 40;
 			let isObjYySt10 = false // 조회시작일자 10년이전 
+			let resultYear = Number(this.objYyEd) - Number(this.objYySt)
 
-			if(sObjYySt > Number(this.objYySt) && this.sInqCpl){ //자산연결시 10년전 데이터를 가져오나 10년이전 데이터 요청시 API호출
+			if(resultYear > 10 && this.sInqCpl){ //자산연결시 10년전 데이터를 가져오나 10년이전 데이터 요청시 API호출
 				isObjYySt10 = true;
 			}
 
+			console.log("sObjYySt ===" , sObjYySt)
 			console.log("objYySt ===" , this.objYySt);
-            !isObjYySt10 ? setUrl = '/pd/sc/01r01' : setUrl = '/co/ma/01r04';
+            //!isObjYySt10 ? setUrl = '/pd/sc/01r01' : setUrl = '/co/ma/01r04';
 
-			let resultYear = Number(this.objYyEd) - Number(this.objYySt)
+			
 			// if(resultYear > 10) {
 			// 	modalService.alert("최대 10년까지 조회 할 수 있어요.").then(() => {});
 			// 	return
@@ -217,7 +218,7 @@ export default {
 			}
 			
             const config = {
-                url: setUrl,
+                url: '/pd/sc/01r01',
                 data: {
 					"mydtCusno": this.getUserInfo('mydtCusno') // 마이데이터고객번호
 					,"objYySt" : this.objYySt					// 대상년도시작
@@ -239,7 +240,7 @@ export default {
 
 					let prdVal1 = dateFormat(prdVal[0], 'YYYY.MM', 'YYYY.MM')
 					let prdVal2 = dateFormat(prdVal[1], 'YYYY.MM', 'YYYY.MM')
-					console.log('prdVal1', prdVal1, prdVal2)
+					//console.log('prdVal1', prdVal1, prdVal2)
 					return {...el, prdVal: `${prdVal1} ~ ${prdVal2}`}
 				}) || []
 
@@ -253,6 +254,14 @@ export default {
 					for(let i=0; i<this.ntpsList.length; i++){
 						this.totPayAm += this.ntpsList[i].pvpayAm;
 						this.totPayYear += this.ntpsList[i].pvpayMtcn;
+						
+						if(dsc == 'R'){
+							this.totEntPrdVal = this.totPayAm
+							this.totEntPrdYear = this.totPayYear
+							this.objYySt = this.objYySt 
+						} else {
+							this.objYySt = Math.min(this.ntpsList[i].objYy)
+						}
 					}
 				}
 				if(response != null && response.rsp_code === "CL000") {

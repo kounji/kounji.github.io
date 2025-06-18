@@ -1,0 +1,114 @@
+<!--
+/*************************************************************************
+* @ 서비스경로 : 공통 > 자산연결 > 금융자산 > NH모바일인증서 동의 약관상세
+* @ 페이지설명 : NH모바일인증서 동의 약관상세
+* @ 파일명     : src/views/page/CO/AR/COAR4039/COAR4039.vue
+* @ 작성자     : CS541597
+* @ 작성일     : 2025-05-08
+************************** 수정이력 ****************************************
+* 날짜                    작업자                 변경내용
+*_________________________________________________________________________
+* 2025-05-08              CS541597               최초작성
+*************************************************************************/
+-->
+<template>
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup " id="full_popup_01">
+		<div class="popup_header">
+			<h1>개인(신용)정보 제3자 제공 동의서</h1>
+		</div>		
+		<div class="popup_content">
+			<div class="terms_wrap">
+				<div class="tit_area">
+					<h2 class="headline"><strong>마이데이터 통합인증서비스<br>&lt;NH 모바일인증서&gt;</strong></h2>
+				</div>
+				<div class="terms_view">
+					<div>
+						<div class="terms_cont">
+							<div class="terms_group">
+								<strong class="terms_tit">농업협동조합중앙회 귀중</strong>
+								<p class="terms_txt">
+									농업협동조합중앙회와의 비여신 (금융)거래와 관련하여 농업협동조합중앙회가 본인의 개인(신용)정보를 제3자에게 제공하고자 하는 경우에는 「개인정보보호법」, 「신용정보의 이용 및 보호에 관한 법률」 등 관계 법령에 따라 본인의 동의가 필요합니다.
+								</p>
+								<dl>
+									<dt>제공받는 자</dt>
+									<dd>
+										<strong class="terms_txt_point">농협은행</strong>
+									</dd>
+
+									<dt>제공받는 자의 이용 목적</dt>
+									<dd>
+										<strong class="terms_txt_point">마이데이터 고객 본인인증을 위한 개인 식별</strong>
+									</dd>
+
+									<dt>보유 및 이용기간</dt>
+									<dd>
+										<strong class="terms_txt_point">이용 목적 달성 후 즉시 파기</strong>
+									</dd>
+
+									<dt>거부 권리 및 불이익</dt>
+									<dd>
+										<strong class="terms_txt_point">귀하는 동의를 거부하실 수 있습니다. 다만, 위 개인(신용)정보 제공에 관한 동의는 본 서비스 이용에 필수적 사항이므로, 위 사항에 동의하셔야만 해당 인증기관의 마이데이터 통합인증서비스를 이용하실 수 있습니다.</strong>
+									</dd>
+								</dl>
+							</div>
+
+							<div class="terms_group">
+								<strong class="terms_tit">제공항목</strong>
+								<dl>
+									<dt>개인신용정보</dt>
+									<dd>
+										<strong class="terms_txt_point">연계 정보(CI)<br>
+										※ 연계정보(CI, Connecting Information) : 본인확인기관 등에서 주민등록번호를 기반으로
+										고유하게 부여하는 개인 식별정보</strong>
+									</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="popup_footer fixed">
+			<div class="btns_wrap">
+				<button type="button" class="btns lg primary" @click.prevent="close('agree')">동의하고 다음</button>
+			</div>
+		</div>
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+	</div>
+	<!--// 전체 팝업 종료 -->
+</template>
+
+<script>
+import commonMixin from '@/common/mixins/commonMixin'
+import popupMixin from '@/common/mixins/popupMixin'
+
+export default {
+    name : 'COAR4039',
+    data: () => {
+        return {
+            
+        }
+    },
+    computed : {
+        
+    },
+    mounted() {
+        this.initComponent()
+        
+    },
+    mixins: [
+        commonMixin,
+        popupMixin
+    ],
+    methods: {
+        initComponent() {
+            
+        },
+    },
+    components : {
+        
+    }
+}
+</script>

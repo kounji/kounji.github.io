@@ -18,7 +18,17 @@
 
 <template>
     <page class="content-view mydata2023" :class="bckCnt == 0 && finCnt == 0 && acnoObtCnt == 0 ? '' : 'movLNB '">
-        <!-- <pd-category-v2 ref="pdCate" type="PDMY_"></pd-category-v2> -->
+        
+        <!-- [v4.0] 25-04-10 탭 추가 -->
+        <nav class="navi">
+            <div class="inner">
+                <ul role="navigation" aria-label="도전 목표 챌린지" class="depth5-1">
+                    <li><a href="javascript:void(0);" :title="this.tabDsc == 0 ? '선택됨' : '선택안됨'" :aria-current="this.tabDsc == 0 ? 'page' : ''" @click="onTabClick(0)"><span>버킷리스트</span></a></li>
+                    <li><a href="javascript:void(0);" :title="this.tabDsc == 1 ? '선택됨' : '선택안됨'" :aria-current="this.tabDsc == 1 ? 'page' : ''" @click="onTabClick(1)"><span>금융목표</span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- //[v4.0] 25-04-10 탭 추가 -->
 
         <!-- content S -->
         <!-- 등록된 목표가 있는 경우 -->
@@ -32,8 +42,9 @@
 
 				<div class="goal_box_wrap com_inner">
                     <!--[v4.0] 안내문구 추가-->
-                    <template v-if="financialList.length>0">
-					    <p class="com_txt_sub">총 <em>{{financialList.length}}</em>개의 {{this.pageTitle}}가 등록 되었습니다. </p>
+                    <template v-if="bckCnt > 0 || finCnt > 0">
+					    <p v-if="tabDsc===0" class="com_txt_sub">총 <em>{{bckCnt}}</em>개의 {{this.pageTitle}}가 등록 되었습니다. </p>
+                        <p v-else class="com_txt_sub">총 <em>{{finCnt}}</em>개의 {{this.pageTitle}}가 등록 되었습니다. </p>
                     </template>
                     <template v-else>
                         <p class="com_txt_sub"> 아직 {{this.pageTitle}}를 등록하지 않았어요.</p>
@@ -41,7 +52,7 @@
 					<!--//[v4.0] 안내문구 추가-->	
                     <template v-if="this.tabDsc === 1 && expenseList.length > 0 && expenseList[0].stYm === this.stYm">
                         <!--  지출목표 -->
-                        <div class="mygoal_cont_box" @click="detailMove1(expenseList[0].stYm)" name="finance">
+                        <div class="mygoal_cont_box bg_skyblue" @click="detailMove1(expenseList[0].stYm)" name="finance">
                             <a href="javascript:void(0);">
                                 <div class="head">
                                     <p class="goal_title">{{expenseList[0].month}}월 지출목표<span class="mint_badge">{{setExpenseDday()}}</span></p>
@@ -80,7 +91,7 @@
                     <template v-for="(financialInfo, index) in financialList">
                         <template v-if="financialInfo.fncObtDsc === '01' | financialInfo.fncObtDsc === '02'">
                             <!-- 돈모으기, 투자목표 -->
-                            <div class="mygoal_cont_box" :key="'key1_'+index" @click="detailMove2(financialInfo.fncObtDsc, financialInfo.sqno, financialInfo.prgStsCd, financialInfo.carGrdNo, financialInfo.carCtrimNo, financialInfo.basyy, financialInfo.basmm)" name="finance">
+                            <div class="mygoal_cont_box" :class="financialInfo.fncObtDsc === '01' ? 'bg_ivory' : 'bg_lightpink'" :key="'key1_'+index" @click="detailMove2(financialInfo.fncObtDsc, financialInfo.sqno, financialInfo.prgStsCd, financialInfo.carGrdNo, financialInfo.carCtrimNo, financialInfo.basyy, financialInfo.basmm)" name="finance">
                                 <a href="javascript:void(0);">
                                     <div class="head">
                                         <p class="goal_title">{{financialInfo.tit}}<span class="mint_badge">{{financialInfo.dday}}</span></p>
@@ -144,7 +155,7 @@
                                     </div>
                                 </a>
                                 <!--[v4.0] 버튼 추가-->
-                                <button type="button" title="댕댕이 입양하기" class="btn_share" @click.prevent="fn_Share()">공유하기</button>
+                                <button type="button" title="공유하기" class="btn_share" @click.prevent="fn_Share(financialInfo)">공유하기</button>
                                 <!--//[v4.0] 버튼 추가-->
                             </div>
                         </template>
@@ -167,24 +178,22 @@
 
             <!-- 등록된 목표가 없는 경우 -->
             <template v-else-if="bckCnt == 0 && finCnt == 0 && this.searchFlag === false">
-				<div class="com_inner">
-					<div class="mygoal_challenge">
-						<strong class="title">나의 목표 챌린지</strong>
-						<p>
-							목표를 등록하고 슬기롭게 관리해서<br>
-							현명한 금융 습관을 기르세요
-						</p>
-
-						<div class="img_wrap">
-                            <img src="@/assets_v40/images/img/PD_MY_2001_2023.png" alt=""><!-- 230721 이미지 경로, 이름 수정 -->
-						</div>
+                <div class="goal_box_wrap com_inner">	
+					<!--[v4.0] 25-02-10 텍스트 수정-->
+					<p class="com_txt_sub">아직 {{this.pageTitle}}를 등록하지 않았어요.</p>
+					<!--//[v4.0] 25-02-10 텍스트 수정-->	
+					<div class="mygoal_cont_box" v-if="this.tabDsc == 0">
+                        <a href="javascript:void(0);" class="make_new_goal" @click.prevent="openBckPop()">
+                            <p>새로운 버킷리스트 만들기</p>
+                        </a>
+                    </div>
+                    <!-- 새로운 금융목표 만들기 -->
+					<div class="mygoal_cont_box" v-else-if="this.tabDsc == 1">
+						<a href="javascript:void(0);" class="make_new_goal" @click.prevent="openFinancePop()">
+							<p>새로운 금융목표 만들기</p>
+						</a>
 					</div>
-
-					<p class="com_txtinfo_type01">목표 등록을 하려면 예적금, 투자 계좌가 필요해요</p>
-
-					<div class="com_btn_area">
-						<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click.prevent="openPurposePop()">목표 만들기</a>
-					</div>
+					<!-- //새로운 금융목표 만들기 -->
 				</div>
             </template>
 		</div>
@@ -195,7 +204,7 @@
 
 		<!--// content E -->
 
-        <footersV2 type="pd" />
+        <footersV2 />
     </page>
 </template>
 
@@ -207,7 +216,6 @@ import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
-import commonService from '@/service/commonService'
 import PDMY4034 from '@/views/page/PD/MY/PDMY4034/PDMY4034' // 지출목표 수정 안내 팝업`
 import PDMY4002 from '@/views/page/PD/MY/PDMY4002/PDMY4002' // 버킷리스트 만들기
 import PDMY4003 from '@/views/page/PD/MY/PDMY4003/PDMY4003' // 금융목표 만들기
@@ -284,13 +292,10 @@ export default {
 
             this.stYm = dateFormat(new Date, 'YYYYMM') // 
 
-            const currentPage = store.getters['layout/pageInfo']
-            currentPage.title = "버킷리스트"
             if(typeof param.type != 'undefined') {
                 this.paramObj       = param
-                if(this.paramObj.type == "00" || this.paramObj.type == "01" || this.paramObj.type == "02" || this.paramObj.type == "goal") {
+                if(this.paramObj.type == "00" || this.paramObj.type == "01" || this.paramObj.type == "02") {
                     this.tabDsc = 1     // 금융목표
-                    currentPage.title = "금융목표";
                 }
             }
         },
@@ -348,6 +353,7 @@ export default {
                         }
                     }
                 }
+                
                 this.preXpsAm           = this.myInfoList.preXpsAm
                 this.xpsAm              = this.preXpsAm
                 this.ctgrPreXpsTotAm    = this.myInfoList.ctgrPreXpsTotAm
@@ -460,38 +466,10 @@ export default {
                 })
 
                 console.log("this.expenseList.length : " + this.expenseList.length)
+
                 console.log("this.financialList.length : " + this.financialList.length)
             });
         },
-        		/**
-		 * 페이지 이동
-		 */
-		fn_movePage(pageId, param) {
-            if (pageId === '') {
-                modalService.alert("페이지 정보 필요")
-                return
-            }
-			console.log("MAMA2001 Move page pageId: ", pageId)
-
-            let params = {}
-            
-            // if 신차중고차 및 내차관리
-            if (pageId == 'ANCA2201') {
-                // if 내차관리 else 신차중고차
-                if (param) {
-                    params = { viewSvc: 'CARCARE', vhcnoVal: param }
-                } else {
-                    params = { viewSvc: 'CARDEAL', vhcnoVal: '' }
-                }
-            } else {
-                params = param
-            }
-            const config = {
-                name : pageId,
-                params : params
-            }
-			commonService.movePage(config);
-		},
         // 프로그래스바
         drawProgressbar() {
             let contHeight = $('.mygoal_cont_box').height(); //박스 높이
@@ -526,7 +504,7 @@ export default {
 					width: progressNum01 + '%',
 				},1000);
 
-                $('#content').scroll(function(){
+                $('body').scroll(function(){
                     let currentNum = $('.mygoal_cont_box.bucketList').length; //전체 박스갯수
                     if(n+1 <= currentNum) {
 						var contTop = $('.mygoal_cont_box').eq(n).position().top - contHeight;
@@ -585,7 +563,7 @@ export default {
                     width: progressNum02 + '%',
                 },1000);
 
-                $('#content').scroll(function(){
+                $('body').scroll(function(){
                     if(n <= currentNum && $("[name='finance']")?.eq(n)?.length > 0) {
                         let contTop = $("[name='finance']").eq(n).position().top - contHeight02;
                         let progressNum = Number(progressBar.eq(n).children().find('.popover .num').text());
@@ -642,8 +620,6 @@ export default {
             if(this.paramObj != null) {
                 if(this.paramObj.type == 'reg') {
                     this.openPurposePop()   // 목표등록 화면
-                } else if(this.paramObj.type == "goal") {
-                    this.getData(this.tabDsc)
                 } else if(this.paramObj.type == "01" || this.paramObj.type == "02") {    // 돈모으기, 투자목표
                     let comp
                     if(this.paramObj.type == "01") {
@@ -743,7 +719,7 @@ export default {
                 rtnObj.img       = "home"
             } else if(obj.fncObtDsc === '04') {
                 rtnObj.tit       = "여행목표"
-                rtnObj.subTit    = "#나의 워라벨, 설레는 여행!"
+                rtnObj.subTit    = "#나의 워라밸, 설레는 여행!"
                 rtnObj.divColor  = "lightgreen"
                 let dday = this.setDday(obj.obtDt, obj.fncObtAchvYn)
                 rtnObj.titClass  = dday === '실패' ? 'gray_badge' : 'green_badge'
@@ -836,15 +812,13 @@ export default {
         // 버킷리스트 만들기
         openBckPop() {
             const config = {
+                component: PDMY4002,
                 params: {
                     title: '버킷리스트 만들기'
-                },
-                renderer: {
-                    component: PDMY4002
                 }
             };
 
-            modalService.openSlidePagePopup(config).then(response => {
+            modalService.openPopup(config).then(response => {
                 if(response == "reSelect") {
                     // 재조회
                     this.getData(this.tabDsc)
@@ -1048,17 +1022,55 @@ export default {
         // }
         
         //공유하기 테스트 팝업 Web Share Api 
-        fn_Share(){
-            
-            const config = {
-                params: { // 파라미터
-                    title : "웹공유타이틀",
-                    text  : "웹공유TEXT"
-                },
+        fn_Share(cnt){
+            //console.log("선택 목표 ::::::::: ", cnt)
+
+            let imgNm = '';
+            let title = '';
+            if(cnt.fncObtDsc === '03'){  // 내집마련
+                imgNm = 'share_bucket_home.png';
+                title = '내 집 마련'
+            } else if(cnt.fncObtDsc === '05'){  // 내차구입
+                imgNm = 'share_bucket_car.png';
+                title = '내 차 사기'
+            } else if(cnt.fncObtDsc === '04'){  // 여행
+                imgNm = 'share_bucket_travel.png';
+                title = '설레는 여행'
+            } else if(cnt.fncObtDsc === '06'){  // 여가
+                imgNm = 'share_bucket_healing.png';
+                title = '힐링 여가생활'
+            } else if(cnt.img === 'hobby'){ // 자기계발 - 바리스타, 제과제빵
+                imgNm = 'share_bucket_interest.png';
+                title = '자기계발'
+            } else if(cnt.img === 'language'){ // 자기계발 - 언어
+                imgNm = 'share_bucket_language.png';
+                title = '자기계발'
+            } else if(cnt.img === 'certificate'){  // 자기계발 - 자격증
+                imgNm = 'share_bucket_license.png';
+                title = '자기계발'
+            } else if(cnt.img === 'cat'){  // 반려동물 - 고양이
+                imgNm = 'share_bucket_cat.png';
+                title = '반려동물 키우기'
+            } else if(cnt.img === 'dog'){  // 반려동물 - 강아지
+                imgNm = 'share_bucket_dog.png';
+                title = '반려동물 키우기'
+            } else if(cnt.img === 'fish'){  // 반려동물 - 관상어
+                imgNm = 'share_bucket_fish.png';
+                title = '반려동물 키우기'
+            } else if(cnt.img === 'reptiles'){  // 반려동물 - 파충류
+                imgNm = 'share_bucket_frog.png';
+                title = '반려동물 키우기'
             }
+            const config = {
+                params: {
+                category: 4, // 버킷리스트 카테고리 번호 4
+                title: title + ' 버킷리스트\n저와 함께 하실래요?', // 목표 문구
+                imgName: imgNm, // 대표 이미지 명 (.png 확장자 포함)
+                screenId: 'PDMY4001' // 앱 랜딩시 초기 화면으로 표시할 화면ID 
+                }, 
+            }        
             
             modalService.webSharePopup(config).then(response => {
-
             })
             
         },

@@ -20,7 +20,7 @@
                 <div class="popup_header">
                     <h1>지출분석</h1>
                 </div>
-                <div class="popup_content" v-show="showYn">
+                <div class="popup_content">
                     <section class="spend_analysis wallet_senior">
                         <div class="outline" :class="cusMmtpXpsOut.bmmCmprXpsAm > 0 ? 'up' : cusMmtpXpsOut.bmmCmprXpsAm < 0 ? 'down' : ''"><!--//늘었을 경우 up class 추가, 줄었을 경우 down class 추가-->
                             <h3>{{cusMmtpXpsOut.bmYm0}}월 지출</h3>
@@ -57,19 +57,17 @@
                         <div class="chart">
                             <h4 class="blind">지출분석</h4>
                             <h5 class="blind">비율별</h5>
-
                             <ul class="by_percent">
-                                <li v-if="Math.round(stlXpsOut.cardXpsRto,0) > 0" class="card" :class="Math.round(stlXpsOut.cardXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.cardXpsRto,0)+'%'"><span class="blind">카드</span><span class="ratio"><em>{{Math.round(stlXpsOut.cardXpsRto,0)}}</em>%</span></li>
-                                <li v-if="Math.round(stlXpsOut.payXpsRto,0) > 0" class="pay" :class="Math.round(stlXpsOut.payXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.payXpsRto,0)+'%'"><span class="blind">페이</span><span class="ratio"><em>{{Math.round(stlXpsOut.payXpsRto,0)}}</em>%</span></li>
-                                <li v-if="Math.round(stlXpsOut.cshXpsRto,0) > 0" class="cash" :class="Math.round(stlXpsOut.cshXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.cshXpsRto,0)+'%'"><span class="blind">현금</span><span class="ratio"><em>{{Math.round(stlXpsOut.cshXpsRto,0)}}</em>%</span></li>
+                                <li v-if="Math.round(stlXpsOut.cardXpsRto,0) > 0" class="card" :class="Math.round(stlXpsOut.cardXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.cardXpsRto,0)+'%'"><span class="blind">카드</span><span class="ratio" :class="stlXpsOut.topIndTypNm != '카드' ? 'blind' : ''"><em>{{Math.round(stlXpsOut.cardXpsRto,0)}}</em>%</span></li>
+                                <li v-if="Math.round(stlXpsOut.payXpsRto,0) > 0" class="pay" :class="Math.round(stlXpsOut.payXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.payXpsRto,0)+'%'"><span class="blind">페이</span><span class="ratio" :class="stlXpsOut.topIndTypNm != '페이' ? 'blind' : ''"><em>{{Math.round(stlXpsOut.payXpsRto,0)}}</em>%</span></li>
+                                <li v-if="Math.round(stlXpsOut.cshXpsRto,0) > 0" class="cash" :class="Math.round(stlXpsOut.cshXpsRto,0) > 0 ? 'up' : ''" :style="'width:'+Math.round(stlXpsOut.cshXpsRto,0)+'%'"><span class="blind">현금</span><span class="ratio" :class="stlXpsOut.topIndTypNm != '현금' ? 'blind' : ''"><em>{{Math.round(stlXpsOut.cshXpsRto,0)}}</em>%</span></li>
                             </ul>
 
                             <h5 class="blind">금액별</h5>
-                            
                             <ul class="by_amount">
-                                <li class="card" :class="stlXpsOut.cardXpsAm > 0 ? 'up' : ''">카드<span>{{stlXpsOut.cardXpsAm | numberFilter}}원</span></li>
-                                <li class="pay" :class="stlXpsOut.payXpsAm > 0 ? 'up' : ''">페이<span>{{stlXpsOut.payXpsAm | numberFilter}}원</span></li>
-                                <li class="cash" :class="stlXpsOut.cshXpsAm > 0 ? 'up' : ''">현금<span>{{stlXpsOut.cshXpsAm | numberFilter}}원</span></li>
+                                <li class="card" :class="stlXpsOut.topIndTypNm == '카드' ? 'up' : ''">카드<span>{{stlXpsOut.cardXpsAm | numberFilter}}원</span></li>
+                                <li class="pay" :class="stlXpsOut.topIndTypNm == '페이' ? 'up' : ''">페이<span>{{stlXpsOut.payXpsAm | numberFilter}}원</span></li>
+                                <li class="cash" :class="stlXpsOut.topIndTypNm == '현금' ? 'up' : ''">현금<span>{{stlXpsOut.cshXpsAm | numberFilter}}원</span></li>
                             </ul>
 
                         </div>
@@ -131,31 +129,35 @@ export default {
         initComponent(param) {
             this.basDt = param.basDt
 
-            this.getData()
+            this.getData(param)
         },
         /*
          * 데이터 조회
          */
-        getData() {
+        getData(param) {
             console.log("getData===============================================")
 
-            const config = {
-                url: '/lc/ip/01r02', // 인터페이스ID: IF-MOB-PFM-LCIP01R02, 서비스코드: PFMLCIP01R02
-                data: {
-                    "mydtCusno" : this.cusNb,
-                    "basDt" : this.basDt
-                }
-            }
-            apiService.call(config).then(response =>{
-                console.log('response', JSON.parse(JSON.stringify(response)))
+            // const config = {
+            //     url: '/lc/ip/01r02', // 인터페이스ID: IF-MOB-PFM-LCIP01R02, 서비스코드: PFMLCIP01R02
+            //     data: {
+            //         "mydtCusno" : this.cusNb,
+            //         "basDt" : this.basDt
+            //     }
+            // }
+            // apiService.call(config).then(response =>{
+            //     console.log('response', JSON.parse(JSON.stringify(response)))
                 
-                this.cusMmtpXpsOut 	= response.cusMmtpXpsOut
-                this.xpsAm0      	= response.cusMmtpXpsOut?.xpsAm0 || 0     // 당월
+            //     this.cusMmtpXpsOut 	= response.cusMmtpXpsOut
+            //     this.xpsAm0      	= response.cusMmtpXpsOut?.xpsAm0 || 0     // 당월
 
-                this.stlXpsOut = response.stlXpsOut         // 결제수단별
+            //     this.stlXpsOut = response.stlXpsOut         // 결제수단별
 
-                this.showYn = true
-            })
+            //     this.showYn = true
+            // })
+            
+            this.cusMmtpXpsOut  = param?.cusMmtpXpsOut || {}    // 고객 월별 지출
+            this.xpsAm0         = param?.xpsAm0 || 0            // 당월지출금액
+            this.stlXpsOut      = param?.stlXpsOut || {}        // 결제수단별
         },
         /**
          * 금액 한글포맷

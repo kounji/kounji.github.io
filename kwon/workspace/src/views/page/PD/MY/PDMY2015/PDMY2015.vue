@@ -446,10 +446,10 @@ export default {
         fn_checkWord(event, maxByte) {
             let rtnObj = checkWord(event.target.value, maxByte)
 
-            if(rtnObj.flag) {this.$refs.PDMY2023_srchKwrd.blur()}   // 알럿 중복 방지
+            if(rtnObj.flag) {this.$refs.PDMY4023_srchKwrd.blur()}   // 알럿 중복 방지
 
             event.target.value = rtnObj.value
-            this.PDMY2023_srchKwrd = event.target.value
+            this.PDMY4023_srchKwrd = event.target.value
 		},
 		addComma() {
 			this.bacAm = 0

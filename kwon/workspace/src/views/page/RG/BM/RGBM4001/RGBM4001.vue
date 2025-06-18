@@ -36,8 +36,8 @@
 					</div>
 					
 					<div class="local_search">
-						<input type="search" id="local_search_01" class="inputClear" name="" value="" v-model="searchCond" placeholder="검색어를 입력하세요" title="검색어를 입력하세요">
-						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" v-model="searchCond" @keyup.enter="fn_search" placeholder="검색어를 입력하세요" title="검색어를 입력하세요" ref="searchRef">
+						<button type="button" class="com_btn_delete" @click="clearSearch()"><span class="blind">삭제</span></button>
 						<button type="button" class="btn_search" @click="fn_search"><span class="blind">검색</span></button>
 					</div>
 
@@ -52,13 +52,13 @@
 						<div class="board_box">
 							<p class="sum">검색결과 총 <span class="num">{{ bikePathList.length }}</span>개</p>
 							<ul class="row_ico_list">
-								<li v-for="(item, idx) in bikePathList.slice(0, visibleCount)" :key="idx">
-									<a href="#nolink" class="item" @click.prevent="fn_goPopGillDetailPage(item)">
+								<li v-for="(item, idx) in bikePathList.slice(0, visibleCount[0])" :key="idx">
+									<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopGillDetailPage(item)">
 										<p class="name">{{ item.bkphNm }}</p>
 									</a>
 								</li>
 							</ul>
-							<button type="button" class="list_more" :class="{ open: isOpenBike }" v-if="visibleCount < bikePathList.length" @click="fn_moreItem">검색결과</button>
+							<button type="button" class="list_more" :class="{ open: isOpenBike }" v-if="bikePathList.length > 5" @click="fn_moreItem">검색결과</button>
 							<div class="no_result" v-if="bikePathList.length == 0">
 								<p class="text">검색결과가 없습니다.</p>
 							</div>
@@ -72,29 +72,29 @@
 						<div class="board_box">
 							<p class="sum">검색결과 총 <span class="num">{{ bikeSurFacList.length }} </span>개</p>
 							<ul class="row_ico_list">
-								<li v-for="(item, idx) in bikeSurFacList.slice(0, visibleCount)" :key="idx">
-									<a href="#nolink" class="item" @click.prevent="fn_goPopSurFacDetailPage(item)" v-if="item.eqiKdnm === '인증센터'">
+								<li v-for="(item, idx) in bikeSurFacList.slice(0, visibleCount[1])" :key="idx">
+									<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopSurFacDetailPage(item)" v-if="item.eqiKdnm === '인증센터'">
 										<p class="name">{{ item.bkphNm }}</p>
 									</a>
-									<a href="#nolink" class="item" @click.prevent="fn_goPopSurFacDetailPage(item)" v-else>
+									<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopSurFacDetailPage(item)" v-else>
 										<p class="name">{{ item.bkphNm + ' ' + item.eqiKdnm }}</p>
 									</a>
 								</li>
 							</ul>
-							<button type="button" class="list_more" :class="{ open: isOpenSurFac }" v-if="visibleCount < bikeSurFacList.length" @click="fn_moreItem">검색결과</button>
+							<button type="button" class="list_more" :class="{ open: isOpenSurFac }" v-if="bikeSurFacList.length > 5" @click="fn_moreItem">검색결과</button>
 
 							<div class="no_result" v-if="bikeSurFacList.length == 0">
 								<p class="text">검색결과가 없습니다.</p>
 							</div>
 						</div>
-
 					</div>
 					
 					<!-- Tab_자전거길 100선 -->
 					<div v-else class="tab_cont3">
 						<div class="category_tab has_btn">
-							<ul role="tablist">
-								<li class="on"><a href="#navi11" role="tab" :aria-selected="selectedRegion == 1" @click.prevent="fn_searchRegion(1)">서울</a></li>
+							<ul role="tablist" :class="{ open: isToggled }">
+								<li class="on"><a href="#navi11" role="tab" :aria-selected="selectedRegion == 0" @click.prevent="fn_searchRegion(0)">전체</a></li>
+								<li><a href="#navi12" role="tab" :aria-selected="selectedRegion == 1" @click.prevent="fn_searchRegion(1)">서울</a></li>
 								<li><a href="#navi12" role="tab" :aria-selected="selectedRegion == 2" @click.prevent="fn_searchRegion(2)">인천</a></li>
 								<li><a href="#navi13" role="tab" :aria-selected="selectedRegion == 3" @click.prevent="fn_searchRegion(3)">대전</a></li>
 								<li><a href="#navi14" role="tab" :aria-selected="selectedRegion == 4" @click.prevent="fn_searchRegion(4)">대구</a></li>
@@ -112,14 +112,14 @@
 								<li><a href="#navi14" role="tab" :aria-selected="selectedRegion == 36" @click.prevent="fn_searchRegion(36)">경남</a></li>
 								<li><a href="#navi14" role="tab" :aria-selected="selectedRegion == 39" @click.prevent="fn_searchRegion(39)">제주</a></li>
 							</ul>
-							<button type="button" class="btn_fold" aria-expanded="false"><span class="blind">토글 버튼</span></button>
+							<button type="button" class="btn_fold" aria-expanded="false" @click.stop="toggleTab"><span class="blind">토글 버튼</span></button>
 						</div>
 						<div class="board_box">
 							<p class="sum">검색결과 총 <span class="num">{{ bikePath100List.length }}</span>개</p>
 							<ul class="row_thum_list">
-								<li v-for="(item, idx) in bikePath100List.slice(0, visibleCount)" :key="idx">
-									<a href="#nolink" class="item" @click.prevent="fn_goPopGill100DetailPage(item)">
-										<img src="@/assets_v40/images/img/img_bike_01.png" alt="" class="img">
+								<li v-for="(item, idx) in bikePath100List.slice(0, visibleCount[2])" :key="idx">
+									<a href="javascript:void(0);" class="item" @click.prevent="fn_goPopGill100DetailPage(item)">
+										<img :src="`/assets/images/local_bike/${item.bkphNo1Imgnm}.png`" alt="" class="img">
 										<p class="name">{{ item.bkphNm }}</p>
 										<p class="txt" v-if="!!item.bkphPathCntn">{{ item.bkphPathCntn.split("|")[0] }}</p>
 										<p class="desc" v-if="!!item.nedHrCntn">{{ item.nedHrCntn.split("|")[0] }}</p>
@@ -127,7 +127,7 @@
 									</a>
 								</li>
 							</ul>
-							<button type="button" class="list_more" :class="{ open: isOpenBikeHundred }" v-if="visibleCount < bikePath100List.length" @click="fn_moreItem">검색결과</button>
+							<button type="button" class="list_more" :class="{ open: isOpenBikeHundred }" v-if="bikePath100List.length > 5" @click="fn_moreItem">검색결과</button>
 
 							<div class="no_result" v-if="bikePath100List.length == 0">
 								<p class="text">검색결과가 없습니다.</p>
@@ -137,11 +137,12 @@
 					</div>
 					<!-- //Tab -->
 				</section>
-
 			</div>
 
+			
+
 			<!-- Footer -->
-            <footersV2 type="an" />
+            <footersV2 type="" />
 		</div>
 	</div>
 </template>
@@ -165,6 +166,8 @@ export default {
 			//선택 된 탭
             selectedTab: 1,
 
+			lastSelectedRegion: 0,
+
 			//자전거길 리스트
 			bikePathList: [],
 
@@ -175,10 +178,10 @@ export default {
 			bikeSurFacList: [],
 
 			//선택된 지역
-			selectedRegion: 1,
+			selectedRegion: 0,
 
 			//보여질 검색결과 개수
-			visibleCount: 5,
+			visibleCount: [5, 5, 5],
 
 			//검색어
 			searchCond: '',
@@ -187,47 +190,63 @@ export default {
 
 			latestSearch: '',
 
+			isToggled: false,
+
 			option: {
 				root: null,
 				threshold: 1,
 			},
 		}
 	},
+
     mounted() {
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
+		
     },
     mixins: [
         commonMixin
     ],
     methods: {
+
 		  /* 자전거길 상세 팝업 */
         fn_goPopGillDetailPage(p) {
 
 			
 			let compName = RGBM4005
 			let param    = p;
-
+			
 			const apiConfig = {
 					method : 'post',
                 	url : '/rg/bm/01r03',
                 	data : {
                     	bkphNm: p.bkphNm,
 						eqiKdnm: '자전거길'
-                	}
+                	},
+					flag : 'main'
             	}	
 
             apiService.call(apiConfig).then(response => {
-				//console.log("fn_goPopGillDetailPage", response)
-				param.gpsList = response.gpsList
-            }).then(() => {
-					const config = {
-						component: compName,
-						params: param
-					}
-					modalService.openPopup(config).then(() => {})
-				}
-			)
+				this.$set(param, 'gpsList', response.gpsList)
+            })
+
+
+			const config = {
+				component: compName,
+				params: param
+			}
+			modalService.openPopup(config).then(() => {})
+		},
+
+
+		toggleTab() {
+			this.isToggled = !this.isToggled
+			console.log('isToggled last state')
+			console.log(this.isToggled)
+		},
+
+		clearSearch() {
+			this.searchCond = ''
 		},
   		/* 주변시설 상세 팝업 */
         fn_goPopSurFacDetailPage(p) {
@@ -235,26 +254,37 @@ export default {
 
 			let compName = RGBM4007
 			let param    = p;
-
+			/*
 			const apiConfig = {
 					method : 'post',
                 	url : '/rg/bm/01r03',
                 	data : {
                     	bkphNm: p.bkphNm,
 						eqiKdnm: p.eqiKdnm
-                	}
+                	},
+					flag : 'main'
             	}	
 
+
             apiService.call(apiConfig).then(response => {
+				console.log('RGBM4001 API CALL')
 				console.log(response)
-				param.gpsList = response.gpsList
-            }).then(() => {
-				const config = {
-					component: compName,
-					params: param
-				}
-				modalService.openPopup(config).then(() => {})
-			})
+				this.$set(param, 'gpsList', response.gpsList)
+				this.$set(param.gpsList[0], 'name', p.bkphNm)
+				this.$set(param.gpsList[0], 'isReverse', true)
+
+				
+            })
+			*/
+
+			console.log('window')
+			console.log(window)
+
+			const config = {
+				component: compName,
+				params: param
+			}
+			modalService.openPopup(config).then(() => {})
 		},
 
 		/* 자전거길100선 상세 팝업 */
@@ -269,7 +299,7 @@ export default {
                 	data : {
                     	bkphNm: p.bkphNm,
 						eqiKdnm: '자전거길'
-                	}
+                	},
             	}	
 
             apiService.call(apiConfig).then(response => {
@@ -289,27 +319,21 @@ export default {
 		/* 탭 변경 */
 		fn_changeTab(tab) {
 			this.selectedTab = tab
-			this.visibleCount = 5
-
 
 			//자전거길 100선 탭 인 경우 서울로 초기 검색
 			if (tab == 3) {
-				this.fn_searchRegion(1)
+				this.fn_searchRegion(this.lastSelectedRegion)
 			}
 
 		},
 		fn_search() {
 
-			if (this.searchCond.length < 2) {
-				console.log("두 글자 이상으로 입력해주세요.")
-				modalService.alert('검색어는 최소 2글자 이상<br>입력해주세요.')
-				return
-			}
-			
-			this.latestSearch = this.searchCond
-			
-			this.visibleCount = 5
+			this.$refs.searchRef.blur()
 
+			this.latestSearch = this.searchCond
+			this.fn_searchRegion(this.lastSelectedRegion)
+			
+			this.$set(this.visibleCount, this.selectedTab - 1, 5)
 
 			const config1 = {
 				method : 'post',
@@ -322,6 +346,8 @@ export default {
             apiService.call(config1).then(response => {
 				if (!!response.surFacList) {
                		this.bikePathList = response.surFacList.filter((item) => item.eqiKdnm === '자전거길').sort((a, b) => a.bkphNm.toLowerCase() < b.bkphNm.toLowerCase() ? -1 : 1)
+					console.log(this.bikePathList)
+					console.log('자전거길 리스트')
 				} 
             })
 
@@ -335,7 +361,7 @@ export default {
 
             apiService.call(config2).then(response => {
 				if (!!response.surFacList) {
-               		this.bikeSurFacList = response.surFacList.filter((item) => item.eqiKdnm !== '자전거길' ).sort((a, b) => a.eqiKdnm.toLowerCase() < b.eqiKdnm.toLowerCase() ? -1 : 1)
+               		this.bikeSurFacList = response.surFacList.filter((item) => item.eqiKdnm !== '자전거길' ).sort((a, b) => a.bkphNm.toLowerCase() < b.bkphNm.toLowerCase() ? -1 : 1)
 				} 
             })
 		},
@@ -350,10 +376,17 @@ export default {
 				}
 			}
 			
-			this.selectedRegion = regionCode
-			this.visibleCount = 5
+			if (this.lastSelectedRegion != regionCode) {
+				this.$set(this.visibleCount, 2, 5)
+			}
 
+			this.lastSelectedRegion = regionCode
+			this.selectedRegion = regionCode
+			
 			switch(regionCode) {
+				case 0:
+					config.data.searchCond = ''
+					break
 				case 1:
 					config.data.searchCond = '서울'
 					break
@@ -411,7 +444,7 @@ export default {
 				
 				let pathList = response.pathList
 
-				if (this.latestSearch.length > 1) {
+				if (this.latestSearch.length >= 1) {
 					pathList = response.pathList.filter((item) => item.bkphNm.indexOf(this.latestSearch) != -1)
 				}
 
@@ -420,7 +453,27 @@ export default {
 		},
 
 		fn_moreItem() {
-			this.visibleCount += 4
+			if (this.selectedTab == 1 && this.isOpenBike) {
+				this.$set(this.visibleCount, 0, 5)
+				this.$nextTick(() => {
+					const resultsSection = document.querySelector('.content-view');
+					if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'})
+				});
+			} else if (this.selectedTab == 2 && this.isOpenSurFac) {
+				this.$set(this.visibleCount, 1, 5)
+				this.$nextTick(() => {
+					const resultsSection = document.querySelector('.content-view');
+					if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'})
+				});
+			} else if (this.selectedTab == 3 && this.isOpenBikeHundred) {
+				this.$set(this.visibleCount, 2, 5)
+				this.$nextTick(() => {
+					const resultsSection = document.querySelector('.content-view');
+					if(resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth'})
+				});
+			} else {
+				this.$set(this.visibleCount, this.selectedTab - 1, this.visibleCount[this.selectedTab - 1] + 4)
+			}
 		}
 
     },
@@ -464,15 +517,15 @@ export default {
 
 	computed: {
 		isOpenBike() {
-			return this.visibleCount > this.bikePathList.length
+			return this.visibleCount[0] >= this.bikePathList.length && this.bikePathList.length > 5
 		},
 
 		isOpenSurFac() {
-			return this.visibleCount > this.bikeSurFacList.length
+			return this.visibleCount[1] >= this.bikeSurFacList.length && this.bikeSurFacList.length > 5
 		},
 
 		isOpenBikeHundred() {
-			return this.visibleCount > this.bikePath100List.length
+			return this.visibleCount[2] >= this.bikePath100List.length && this.bikePath100List.length > 5
 		}
 	},
     components: {

@@ -13,7 +13,7 @@
                   <div class="select_date">
                     <!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
                     <button class="cal_btn cal_prev" :class="!enablePreYear?'disabled':''" @click="preYear()" :disabled="!enablePreYear" :title="!enablePreYear ? '선택불가' : ''" aria-label="일년 전 이동"></button>
-                    <a href="javascript:void(0);" class="year_month"><span class="num">{{currentYear}}</span>년</a>
+                    <span class="year_month"><span class="num">{{currentYear}}</span>년</span>
                     <button class="cal_btn cal_next" :class="!enableNextYear?'disabled':''" @click="nextYear()" :disabled="!enableNextYear" :title="!enableNextYear ? '선택불가' : ''" aria-label="일년 후 이동"></button>
                   </div>
                 </div>
@@ -21,7 +21,7 @@
                   <div class="select_date">
                     <!--좌우 버튼에 disabled 클래스 추가 시 disabled 버튼 -->
                     <button class="cal_btn cal_prev" :class="!enablePreMonth?'disabled':''" @click="preMonth()" :disabled="!enablePreMonth" :title="!enablePreMonth ? '선택불가' : ''" aria-label="한달 전 이동"></button>
-                    <a href="javascript:void(0);" class="year_month"><span class="num">{{currentMonth}}</span>월</a>
+                    <span class="year_month"><span class="num">{{currentMonth}}</span>월</span>
                     <button class="cal_btn cal_next" :class="!enableNextMonth?'disabled':''" @click="nextMonth()" :disabled="!enableNextMonth" :title="!enableNextMonth ? '선택불가' : ''" aria-label="한달 후 이동"></button>
                   </div>
                 </div>
@@ -51,7 +51,7 @@
                   >
 
                     <template v-if="day.alink=='yes'">
-                      <a href="javascript:void(0);" 
+                      <a href="javascript:void(0);" :aria-disabled="day.dayOfWeekClass === 'pre'? true : false"
                         @click.prevent="(day.dayOfWeekClass !== 'pre') ? selectWeek(idx, day.dates) : false"
                         :title="(day.month +''+ ('0' + day.dates).slice(-2)) === toDay ? '오늘날짜 '+ day.selectTitle : '' + day.selectTitle"
                         >

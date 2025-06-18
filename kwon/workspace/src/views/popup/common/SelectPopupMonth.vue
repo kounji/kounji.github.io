@@ -9,7 +9,7 @@
         </div>
         <div class="popup_content com_btn_bottom">
           <div class="com_txt_type03">
-                    <ul class="com_radio_type05">
+                    <!-- <ul class="com_radio_type05">
                         <li>
                             <div class="btn_radio">
                                 <input type="radio" name="sPMRadio" id="sPMRadio04" v-model="selectMonth" value="1w" @change="monthClick('1w')">
@@ -42,34 +42,31 @@
                                 </label>	
                             </div>	
                         </li>
-                    </ul>            
-                    <!-- <div class="com_inputarea_type07">
-                        <div class="com_input_type01">
-                            <label for="startDate"></label>
-                            <input type=tel pattern="\d*" id="startDate" ref="startDate" class="input_left com_txtindent0 com_txtright_type01" name="startDate" maxlength=10 @keyup="addDate" :value="startDate" placeholder="년월일 8자리숫자">
-                            <div class="del_txt type01">
-                                <a href="javascript:void(0);" class="com_btn_delete2 blur" :style="(startDate.length > 0) ? 'display: inline-block':'display: none'" @click="delDateValue('startDate')"><span class="blind">삭제</span></a>
-                                <span class="com_inputtxtright2">일 부터</span>
-                            </div>
+                    </ul>             -->
+                    <!-- v4 접근성 관련 UI변경 -->
+                    <div class="box_radio_group">
+                        <div class="btn_box_radio">
+                            <button type="button" role="radio" @click.prevent="monthClick('1w')" aria-checked="false"><span>1주일</span></button>
                         </div>
-                        <div class="com_input_type01">
-                            <label for="endDate"></label>
-                            <input type="tel" pattern="\d*" id="endDate" ref="endDate" class="input_left com_txtindent0 com_txtright_type01" name="endDate" maxlength=10 @keyup="addDate" v-model="endDate" placeholder="년월일 8자리숫자">
-                            <div class="del_txt type01">
-                                <a href="javascript:void(0);" class="com_btn_delete2 blur" :style="(endDate.length > 0) ? 'display: inline-block':'display: none'" @click="delDateValue('endDate')"><span class="blind">삭제</span></a>
-                                <span class="com_inputtxtright2">일 까지</span>
-                            </div>
+                        <div class="btn_box_radio">
+                            <button type="button" role="radio" @click.prevent="monthClick('1m')" aria-checked="false"><span>1개월</span></button>
                         </div>
-                    </div> -->
+                        <div class="btn_box_radio">
+                            <button type="button" role="radio" @click.prevent="monthClick('3m')" aria-checked="false"><span>3개월</span></button>
+                        </div>
+                        <div class="btn_box_radio">
+                            <button type="button" role="radio" @click.prevent="monthClick('6m')" aria-checked="false"><span>6개월</span></button>
+                        </div>
+                    </div>
                     <!-- 20211013 한별 수정 S -->
                     <div class="com_inputarea_type06">
                         <div class="com_inputnum2 input_date com_word1 ani-active">
-                            <div class="com_input_type01">
-                                <input type="type" id="startDate" ref="startDate" data-popup="alert_popup" readonly class="input_cal_date com_txtright_type01" name="startDate" :value="startDate" required placeholder="년월일 8자리숫자" @click="fn_popupCalendar($event, 'stDt')">
+                            <div class="com_input_type01" role="button" title="시작일 선택" @click="fn_popupCalendar($event, 'stDt')">
+                                <input type="type" id="startDate" ref="startDate" data-popup="alert_popup" readonly class="input_cal_date com_txtright_type01" name="startDate" :value="startDate" required placeholder="년월일 8자리숫자">
                                 <label for="startDate"></label>
                             </div>
-                            <div class="com_input_type01">
-                                <input type="type" id="endDate" ref="endDate" data-popup="alert_popup" readonly class="input_cal_date com_txtright_type01" name="endDate" :value="endDate" required data-placeholder="년월일 8자리숫자" @click="fn_popupCalendar($event, 'edDt')">
+                            <div class="com_input_type01" role="button" title="종료일 선택" @click="fn_popupCalendar($event, 'edDt')">
+                                <input type="type" id="endDate" ref="endDate" data-popup="alert_popup" readonly class="input_cal_date com_txtright_type01" name="endDate" :value="endDate" required data-placeholder="년월일 8자리숫자">
                                 <label for="endDate"></label>
                             </div>
                         </div>
@@ -138,6 +135,14 @@
       initComponent() {
         this.startDate = dateFormat(this.params.startDate, 'YYYY.MM.DD') || ''
         this.endDate   = dateFormat(this.params.endDate, 'YYYY.MM.DD') || ''
+
+        // v4 접근성 수정관련 JQuery 추가
+        $(document).off('click.btn_box_radio').on('click.btn_box_radio', '.btn_box_radio button', function(){
+            $(this).parent().siblings().find('>button').removeClass('on');
+            $(this).parent().siblings().find('>button').attr('aria-checked', 'false');
+            $(this).addClass('on');
+            $(this).attr('aria-checked', 'true');
+        });
       },
       // 확인
       confirmHandler() {
@@ -201,15 +206,19 @@
           if(value === '1w')
           {
             this.startDate = dayAdd(-7, this.endDate.split(".").join(""),'YYYY.MM.DD')
+            this.selectMonth = '1w'
           }else if(value === '1m')
           {
             this.startDate = monthAdd(-1, this.endDate.split(".").join(""), 'YYYY.MM.DD')
+            this.selectMonth = '1m'
           }else if(value === '3m')
           {
             this.startDate = monthAdd(-3, this.endDate.split(".").join(""), 'YYYY.MM.DD')
+            this.selectMonth = '3m'
           }else if(value === '6m')
           {
             this.startDate = monthAdd(-6, this.endDate.split(".").join(""), 'YYYY.MM.DD')
+            this.selectMonth = '6m'
           }
         }
       },

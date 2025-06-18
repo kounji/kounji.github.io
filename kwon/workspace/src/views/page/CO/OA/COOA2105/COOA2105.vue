@@ -42,7 +42,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 
-import COOA2004 from '@/views/page/CO/OA/COOA2004/COOA2004'
+import COOA4004 from '@/views/page/CO/OA/COOA4004/COOA4004'
 
 export default {
     name : "COOA2105",
@@ -78,7 +78,7 @@ export default {
         },
         fn_setRstInfo(item) {
             const config = {
-                component : COOA2004,
+                component : COOA4004,
                 params : {
                     goldData        : item,                 // 선택된 금 데이터
                     goldMprBasDt    : item.goldMprBasDt,    // 금시세기준일자

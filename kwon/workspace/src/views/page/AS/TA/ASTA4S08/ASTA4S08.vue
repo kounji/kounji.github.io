@@ -88,7 +88,7 @@
                                     <!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
                                     <a href="javascript:void(0);" role="button" class="data_status" @click.prevent="fn_openSlide(gldAst)">
                                         <em class="date">({{gldAst.goldMprBasDt | dateFilter("YYYY.MM.DD")}} 기준)</em>
-                                        <em class="price"><i class="blind">종가(원/g)</i><em> {{gldAst.goldPucAm | numberFilter}}원</em></em>
+                                        <em class="price"><i class="blind">종가(원/g)</i><em> {{gldAst.goldPucAm | numberFilter}}원</em>/1g</em>
                                     </a>
                                     <!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
                                 </li>

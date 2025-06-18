@@ -38,7 +38,7 @@
 						<p class="h_tit01">메뉴 <span class="primary">{{ searchList.length }}</span></p>
 						<ul>
 							<li v-for="item in searchList" :key="item">
-								<a href="#nolink" class="item"><strong>테스트</strong> </a>
+								<a href="javascript:void(0);" class="item"><strong>테스트</strong> </a>
 							</li>
 						</ul>
 					</div>
@@ -58,7 +58,7 @@
 			
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 </template>
 

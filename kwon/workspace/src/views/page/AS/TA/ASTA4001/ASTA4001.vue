@@ -25,7 +25,7 @@ ________________________________________________________________________
 		<div id="content">
 			<section class="assets_main">
 				<!--배너-->
-				<cmm-flot-banner bnnrExpsDsVal="42"/>
+				<cmm-flot-banner bnnrExpsDsVal="42" @reload="initComponent"/>
 				<!--update-->
 				<div class="update">
 					<template v-if="!isMyAssetGathering">
@@ -40,7 +40,7 @@ ________________________________________________________________________
 
 				<!--순자산-->
 					<!--늘은경우 up,줄은 경우 down class 추가, 동일한 경우 클래스 없음 -->
-				<div class="assets_net" :class="ntAsetTotAm > bfNtAsetTotAm ? 'up' : ntAsetTotAm < bfNtAsetTotAm ? 'down' : ''">
+				<div class="assets_net" :class="astIndSum > 0 ? 'up' : astIndSum < 0 ? 'down' : ''">
 					<div class="outline">
 						<h2>순자산</h2>
 						<div class="custom_tooltip up">
@@ -67,26 +67,40 @@ ________________________________________________________________________
 							</div>
 						</div>
 						<!--25-02-10 금액숨김 수정--->
-						<div class="toggle_money">
-							<input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="asetTotAmHideYn" @change="fn_setHidden('TOT', asetTotAmHideYn)">
-							<label for="sum_view_01" class="btns">
-								<span class="hide" aria-hidden="true">보기</span>
-								<span class="show" aria-hidden="true">숨김</span>
+			
+						<div class="toggle_money" :class="asetTotAmHideYn === true ? 'on' : ''">
+							<div class="sum">
+								<span class="hide">쉿! 비밀이에요.</span>
+								<span class="show">{{totAsetAm | numberFilter}}원</span>
+							</div>
+							<button type="button" class="btns" @click="fn_setHidden('TOT', !asetTotAmHideYn)">
+								<span class="blind">금액</span>
+								<span class="hide">보기</span>
+								<span class="show">숨김</span>
+							</button>
+						</div>
+
+						<!-- <div class="toggle_money">
+							<input type="checkbox" name="" aira-hidden="true" id="sum_view_01" v-model="asetTotAmHideYn" @change="fn_setHidden('TOT', asetTotAmHideYn)">
+							<label for="sum_view_01" class="btns" role="button">
+								<span class="hide">보기</span>
+								<span class="show">숨김</span>
 							</label>
 							<div class="sum">
-								<span class="hide">쉿! 비밀이에요.</span><!--//25-02-24 문구 수정-->
-								<span class="show">{{ntAsetTotAm | numberFilter}}원</span>
+								<span class="hide">쉿! 비밀이에요.</span>
+								<span class="show">{{totAsetAm | numberFilter}}원</span>
 							</div>
-						</div>
+						</div>  -->
+
 					</div>
 					
 					<!--25-02-10 금액숨김 수정-->
 					<div class="board_box">
 						<!--25-02-24 문구수정-->
 
-						<template v-if="ntAsetTotAm > bfNtAsetTotAm">
+						<template v-if="astIndSum > 0">
 							<div class="analysis">
-                                <span class="text">지난달보다</span> <span class="num">{{Math.abs(asetIndAm) | numberFilter}}원</span> <em>늘었어요.</em>
+                                <span class="text">지난달보다</span> <span class="num">{{Math.abs(astIndSum) | numberFilter}}원</span> <em>늘었어요.</em>
                                 <div class="custom_tooltip">
                                     <div class="com_tooltip_type02 com_tooltip_type03">
                                         
@@ -106,9 +120,9 @@ ________________________________________________________________________
                                 </div>
                             </div>
 						</template>
-						<template v-else-if="ntAsetTotAm < bfNtAsetTotAm">
+						<template v-else-if="astIndSum < 0">
 							<div class="analysis">
-                                <span class="text">지난달보다</span> <span class="num">{{Math.abs(asetIndAm) | numberFilter}}원</span> <em>줄었어요.</em>
+                                <span class="text">지난달보다</span> <span class="num">{{Math.abs(astIndSum) | numberFilter}}원</span> <em>줄었어요.</em>
                                 <div class="custom_tooltip">
                                     <div class="com_tooltip_type02 com_tooltip_type03">
                                         
@@ -152,7 +166,7 @@ ________________________________________________________________________
 						</template>
 						<!--//25-02-24 문구수정-->
 						<!-- 자산이 늘었을 때 -->
-						<lottie-animation v-show="asetFnAmSum > bfAsetFnAmSum" :animationData="require('@/assets_v40/images/lottie/icon_asset_up.json')" 
+						<lottie-animation v-show="astIndSum > 0" :animationData="require('@/assets_v40/images/lottie/icon_asset_up.json')" 
 										ref="anim"
 										:loop="true"
 										:auto-play="true" 
@@ -160,8 +174,8 @@ ________________________________________________________________________
 										aria-hidden="true" 
 										class="icon_asset" 
 						></lottie-animation>
-						<!-- 자산이 늘었을 때 -->
-						<lottie-animation v-show="asetFnAmSum < bfAsetFnAmSum" :animationData="require('@/assets_v40/images/lottie/icon_asset_up.json')" 
+						<!-- 자산이 줄었을 때 -->
+						<lottie-animation v-show="astIndSum < 0" :animationData="require('@/assets_v40/images/lottie/icon_asset_down.json')" 
 										ref="anim"
 										:loop="true"
 										:auto-play="true" 
@@ -170,7 +184,7 @@ ________________________________________________________________________
 										class="icon_asset" 
 						></lottie-animation>
 						<!-- 자산이 동일했을 때 TODO 동일한 경우는?-->
-						<lottie-animation v-show="asetFnAmSum == bfAsetFnAmSum" :animationData="require('@/assets_v40/images/lottie/icon_asset.json')" 
+						<lottie-animation v-show="astIndSum == 0" :animationData="require('@/assets_v40/images/lottie/icon_asset.json')" 
 										ref="anim"
 										:loop="true"
 										:auto-play="true" 
@@ -212,8 +226,7 @@ ________________________________________________________________________
 							<button type="button" class="btn_x" @click="fn_bannerHideYn()"><span class="blind">삭제</span></button>
 						</template>
 						<template v-else-if="isEndDate">
-							<p></p>
-							<a href="javascript:void(0);" @click="fn_movePage('ASIP4001')">이번 달 자산을 진단해 드릴게요.</a>
+							<a href="javascript:void(0);" @click="fn_movePage('ASIP4001')">이번 달 자산 진단과 재무관리 솔루션을 확인하세요.</a>
 							<button type="button" class="btn_x" @click="fn_bannerHideYn()"><span class="blind">삭제</span></button>
 						</template>
 						<template v-else-if="closeCardPayDate">
@@ -232,8 +245,21 @@ ________________________________________________________________________
 						<h2>금융자산</h2>
 						
 						<div class="analysis" :class="asetFnAmSum > bfAsetFnAmSum ? 'up' : asetFnAmSum < bfAsetFnAmSum ? 'down' : ''">
+
+							<div class="toggle_money" :class="asetFnAmHideYn === true ? 'on' : ''">
+								<div class="sum">
+									<span class="hide">금액숨김</span>
+									<span class="show">{{asetFnAmSum | numberFilter}}원</span>
+								</div>
+								<button type="button" class="btns" @click="fn_setHidden('FN', !asetFnAmHideYn)">
+									<span class="blind">금액</span>
+									<span class="hide">보기</span>
+									<span class="show">숨김</span>
+								</button>
+							</div>
+
 							<!--25-02-10 금액숨김 수정-->
-							<div class="toggle_money">
+							<!-- <div class="toggle_money">
 								<input type="checkbox" title="금액숨김" name="" id="sum_view_02" v-model="asetFnAmHideYn" @change="fn_setHidden('FN', asetFnAmHideYn)">
 								<label for="sum_view_02" class="btns">
 									<span class="hide" aria-hidden="true">보기</span>
@@ -243,7 +269,7 @@ ________________________________________________________________________
 									<span class="show">{{asetFnAmSum | numberFilter}}원</span>
 									<span class="hide">금액숨김</span>
 								</div>
-							</div>
+							</div> -->
 							<!--//25-02-10 금액숨김 수정-->
 							<!--늘은 경우 : analysis + up -->
 							<template v-if="asetFnAmSum > bfAsetFnAmSum">
@@ -266,18 +292,12 @@ ________________________________________________________________________
 							</summary>
 							<div class="cont">
 								<!--예금--> 
-								<!-- <template v-if="asetFnAcTtcn > 0">
-									<details class="assets_toggle" open>
-								</template>
-								<template v-else>
-									<details class="assets_toggle">
-								</template> -->
 								<template v-if="asetFnAcTtcn > 0">
 									<details class="assets_toggle" open>
 										<summary>
-											<span class="item">예금<em>{{asetFnAcTtcn | numberFilter}}</em></span>
+											<span class="item">예금<em>{{asetFnAcTtcn | numberFilter}}<i class="blind">건</i></em></span>
 											<template v-if="!asetFnAmHideYn">
-												<span class="num">{{asetFnAcAmSum | numberFilter}}원</span>
+												<span class="num"><span class="blind">금액</span>{{asetFnAcAmSum | numberFilter}}원</span>
 											</template>
 											<template v-else>
 												<span class="txt">금액숨김</span>
@@ -289,17 +309,19 @@ ________________________________________________________________________
 												<template v-for="(item, idx) in asetFnAcTtList">
 													<li v-if="idx < 3" :key="idx">
 														<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openAcDetailPop(item.type, item)">
-															<i :class="item.infOfrmnOrgC"></i>
+															<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 															<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
 															<div>
 																<strong class="org">{{item.acWrsnm}}</strong>
-																<strong class="account">{{item.mydtAcno}}</strong>
+																<!-- <strong class="account">{{item.mydtAcno}}</strong> -->
+																<strong class="account"><span class="blind">계좌번호</span>{{item.mydtAcno}}</strong>
 															</div>
 														<template v-if="!asetFnAmHideYn">
-																<strong class="num">{{item.acNowBac | numberFilter}}원</strong>
+																<!-- <strong class="num">{{item.acNowBac | numberFilter}}원</strong> -->
+																<strong class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}원</strong>
 															</template>
 															<template v-else>
-																<strong class="txt">금액숨김</strong>
+																<strong class="txt">상세보기</strong>
 															</template>
 														</a>
 													</li>
@@ -312,7 +334,7 @@ ________________________________________________________________________
 									</details>
 								</template>
 								<template v-else>
-									<a href="javascript:void(0)" class="unconnected" @click.prevent="fn_openNewConnect('bank')">
+									<a href="javascript:void(0)" class="unconnected" role="button" @click.prevent="fn_openNewConnect('bank')">
 										<span class="item">예금</span>
 										<span class="txt">입출금, 예적금 확인하기</span>
 									</a>
@@ -322,9 +344,9 @@ ________________________________________________________________________
 								<template v-if="asetFnIvTtcn > 0">
 									<details class="assets_toggle">
 										<summary>
-											<span class="item">투자<em>{{asetFnIvTtcn | numberFilter}}</em></span>
+											<span class="item">투자<em>{{asetFnIvTtcn | numberFilter}}<i class="blind">건</i></em></span>
 											<template v-if="!asetFnAmHideYn">
-												<span class="num">{{asetFnIvAmSum | numberFilter}}원</span>
+												<span class="num"><span class="blind">금액</span>{{asetFnIvAmSum | numberFilter}}원</span>
 											</template>
 											<template v-else>
 												<span class="txt">금액숨김</span>
@@ -335,31 +357,32 @@ ________________________________________________________________________
 												<template v-for="(item, idx) in asetFnIvTtList">
 													<li v-if="idx < 3" :key="idx">
 														<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openIvDetailPop(item)">
-															<i :class="item.infOfrmnOrgC"></i>
-															<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
+															<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 															<div>
 																<strong class="org">{{item.acWrsnm}}</strong>
-																<strong class="account">{{item.mydtAcno}}</strong>
+																<!-- <strong class="account">{{item.mydtAcno}}</strong> -->
+																<strong class="account"><span class="blind">계좌번호</span>{{item.mydtAcno}}</strong>
 															</div>
 															
 															<template v-if="!asetFnAmHideYn">
 																<div class="num_wrap">
-																	<strong class="num">{{item.acNowBac | numberFilter}}원</strong>
+																	<!-- <strong class="num">{{item.acNowBac | numberFilter}}원</strong> -->
+																	<strong class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}원</strong>
 																	<span class="latter" v-if="item.strmPftrt === 0 && item.type === 'FND'">
-																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
+																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}%</em>
 																		<!-- <span class="latter up"><em class="num">22,668원</em></span> -->
 																	</span>
-																	<span class="latter up" v-else-if="item.strmPftrt > 0 && item.type === 'FND'" >
-																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
+																	<span class="latter up" v-else-if="item.strmPftrt > 0 && item.type === 'FND'" ><i class="up blind">상승</i>
+																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}%</em>
 																	</span>
-																	<span class="latter down" v-else-if="item.type === 'FND'">
-																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}</em>%
+																	<span class="latter down" v-else-if="item.type === 'FND'"><i class="down blind">하락</i>
+																		<em class="num">{{Math.abs(item.strmPftrt) | numberFilter('0,0.00', {precision: 2})}}%</em>
 																	</span>
 																</div>
 															</template>
 															<template v-else>
 																<div class="num_wrap">
-																	<strong class="txt">금액숨김</strong>
+																	<strong class="txt">상세보기</strong>
 																</div>
 															</template>
 														</a>
@@ -373,7 +396,7 @@ ________________________________________________________________________
 								</template>
 
 								<template v-else>
-									<a href="javascript:void(0)" class="unconnected" @click.prevent="fn_openNewConnect('invest')">
+									<a href="javascript:void(0)" class="unconnected" role="button"  @click.prevent="fn_openNewConnect('invest')">
 										<span class="item">투자</span>
 										<span class="txt">수익률 확인하기</span>
 									</a>
@@ -383,9 +406,9 @@ ________________________________________________________________________
 								<template v-if="asetFnPnsTtcn > 0">
 									<details class="assets_toggle">
 										<summary>
-											<span class="item">연금<em>{{asetFnPnsTtcn | numberFilter}}</em></span>
+											<span class="item">연금<em>{{asetFnPnsTtcn | numberFilter}}<i class="blind">건</i></em></span>
 											<template v-if="!asetFnAmHideYn">
-												<span class="num">{{asetFnPnsAmSum | numberFilter}}원</span>
+												<span class="num"><span class="blind">금액</span>{{asetFnPnsAmSum | numberFilter}}원</span>
 											</template>
 											<template v-else>
 												<span class="txt">금액숨김</span>
@@ -402,50 +425,55 @@ ________________________________________________________________________
 															<strong class="account">가입기간{{ntpsTotEntPrd | numberFilter}}개월</strong>
 														</div>
 														<template v-if="!asetFnAmHideYn">
-															<strong class="num">{{ntpsTotPayAm | numberFilter}}원</strong>
+															<!-- <strong class="num">{{ntpsTotPayAm | numberFilter}}원</strong> -->
+															<strong class="num"><span class="blind">금액</span>{{ntpsTotPayAm | numberFilter}}원</strong>
 														</template>
 														<template v-else>
-															<strong class="txt">금액숨김</strong>
+															<strong class="txt">상세보기</strong>
 														</template>
 													</a>
 												</li>
 												<template v-for="(item, idx) in asetFnPnsTtList">
 													<template v-if="ntpsTotPayAm > 0">
-														<li v-if="idx < 3" :key="idx">
+														<li v-if="idx < 2" :key="idx">
 															<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openPnsDetailPop(item.type, item)">
-																<i :class="item.infOfrmnOrgC"></i>
+																<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 																<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
 																<div>
 																	<strong class="org">{{item.acWrsnm}}</strong>
 																	<template v-if="item.type !== 'PSTS'">
-																		<strong class="account">{{item.mydtAcno}}</strong>
+																		<!-- <strong class="account">{{item.mydtAcno}}</strong> -->
+																		<strong class="account"><span class="blind">계좌번호</span>{{item.mydtAcno}}</strong>
 																	</template>
 																</div>
 																<template v-if="!asetFnAmHideYn">
-																	<strong class="num">{{item.acNowBac | numberFilter}}원</strong>
+																	<!-- <strong class="num">{{item.acNowBac | numberFilter}}원</strong> -->
+																	<strong class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}원</strong>
 																</template>
 																<template v-else>
-																	<strong class="txt">금액숨김</strong>
+																	<strong class="txt">상세보기</strong>
 																</template>
 															</a>
 														</li>
 													</template>
 													<template v-else>
-														<li v-if="idx < 2" :key="idx">
-															<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openAcDetailPop(item.type, item)">
-																<i :class="item.infOfrmnOrgC"></i>
+														<li v-if="idx < 3" :key="idx">
+															<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openPnsDetailPop(item.type, item)">
+																<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 																<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
 																<div>
 																	<strong class="org">{{item.acWrsnm}}</strong>
 																	<template v-if="item.type !== 'PSTS'">
-																		<strong class="account">{{item.mydtAcno}}</strong>
+																		<!-- <strong class="account">{{item.mydtAcno}}</strong> -->
+																		<strong class="account"><span class="blind">계좌번호</span>{{item.mydtAcno}}</strong>
 																	</template>
 																</div>
 																<template v-if="!asetFnAmHideYn">
-																	<strong class="num">{{item.acNowBac | numberFilter}}원</strong>
+																	<!-- <strong class="num">{{item.acNowBac | numberFilter}}원</strong> -->
+																	<strong class="num"><span class="blind">금액</span>{{item.acNowBac | numberFilter}}원</strong>
 																</template>
 																<template v-else>
-																	<strong class="txt">금액숨김</strong>
+																	<strong class="txt">상세보기</strong>
 																</template>
 															</a>
 														</li>
@@ -457,7 +485,7 @@ ________________________________________________________________________
 									</details>
 								</template>
 								<template v-else>
-									<a href="javascript:void(0)" class="unconnected" @click.prevent="fn_openNewConnect('bank')">
+									<a href="javascript:void(0)" class="unconnected" role="button" @click.prevent="fn_openNewConnect('bank')">
 										<span class="item">연금</span>
 										<span class="txt">노후준비 상태는?</span>
 									</a>
@@ -466,9 +494,10 @@ ________________________________________________________________________
 								<template v-if="asetFnPayPntTtcn > 0">
 									<details class="assets_toggle">
 										<summary>
-											<span class="item">페이/포인트<em>{{asetFnPayPntTtcn | numberFilter}}</em></span>
+											<span class="item">페이/포인트<em>{{asetFnPayPntTtcn | numberFilter}}<i class="blind">건</i></em></span>
 											<template v-if="!asetFnAmHideYn">
-												<span class="num">{{asetFnPayPntAmSum | numberFilter}}원</span>
+												<!-- <span class="num">{{asetFnPayPntAmSum | numberFilter}}원</span> -->
+												<strong class="num"><span class="blind">금액</span>{{asetFnPayPntAmSum | numberFilter}}원</strong>
 											</template>
 											<template v-else>
 												<span class="txt">금액숨김</span>
@@ -481,38 +510,41 @@ ________________________________________________________________________
 														<template v-if="item.type">
 															<a href="javascript:void(0);" role="button" v-on:click.prevent="fn_openPayDetailPop(item.type, item)">
 															<!-- <a v-if="!type" href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASPT4001')"> -->
-																<i :class="item.infOfrmnOrgC"></i>
+																<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
 																<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
 																<div>
 																	<strong class="org">{{item.pntNm}}</strong>
 																</div>
 																<template v-if="!asetFnAmHideYn">
-																	<strong class="num">{{item.pntAmt | numberFilter}}원</strong>
+																	<!-- <strong class="num">{{item.pntAmt | numberFilter}}원</strong> -->
+																	<strong class="num"><span class="blind">금액</span>{{item.pntAmt | numberFilter}}원</strong>
+																	
 																</template>
 																<template v-else>
-																	<strong class="txt">금액숨김</strong>
+																	<strong class="txt">상세보기</strong>
 																</template>
 															</a>
 														</template>
 														<template v-else>
 															<div>
-																<i :class="item.infOfrmnOrgC"></i> 
+																<i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i> 
 																<!-- TODO 은행명 퍼블 나오면 넣어야 한다. -->
 																<div>
 																	<strong class="org">{{item.pntNm}}</strong>
 																</div>
 																<template v-if="!asetFnAmHideYn">
-																	<a href="javascript:void(0);" class="num"  @click.prevent="fn_movePage('ASPT4001')">{{item.pntAmt | numberFilter}}원</a><!-- 25-03-12 a태그로 변경 -->
+																	<!-- <strong class="num">{{item.pntAmt | numberFilter}}원</strong> -->
+																	<strong class="num"><span class="blind">금액</span>{{item.pntAmt | numberFilter}}원</strong>
 																</template>
 																<template v-else>
-																	<a href="javascript:void(0);" class="num"  @click.prevent="fn_movePage('ASPT4001')">금액숨김</a><!-- 25-03-12 a태그로 변경 -->
+																	<strong class="txt">상세보기</strong>
 																</template>
 															</div>
+															<!--  20250410 요건삭제
 															<div class="num_btns" v-if="item.pntAmt > 0 && orgcSome(item.infOfrmnOrgC)">
-																<a href="javascript:void(0);" class="btn_txt" @click="fn_rrqr()">입금신청</a><!-- 25-03-13 a태그로 변경 -->
-															</div>
+																<a href="javascript:void(0);" class="btn_txt" @click="fn_rrqr()">입금신청</a>
+															</div> -->
 														</template>
-														
 													</li>
 												</template>
 											</ul>
@@ -521,7 +553,7 @@ ________________________________________________________________________
 									</details>
 								</template>
 								<template v-else>
-									<a href="javascript:void(0)" class="unconnected" @click.prevent="fn_openNewConnect('efin')">
+									<a href="javascript:void(0)" class="unconnected" role="button" @click.prevent="fn_openNewConnect('efin')">
 										<span class="item">페이/포인트</span>
 										<span class="txt">숨은 돈 찾기</span>
 									</a>
@@ -535,8 +567,21 @@ ________________________________________________________________________
 						<h2>실물자산</h2>
 						<template v-if="asetRlthTtcn > 0">
 							<div class="analysis" :class="indAsetRlthAmSum > 0 ? 'up' : indAsetRlthAmSum < 0 ? 'down' : ''">
+
+								<div class="toggle_money" :class="asetRlthHideYn === true ? 'on' : ''">
+									<div class="sum">
+										<span class="hide">금액숨김</span>
+										<span class="show">{{asetRlthAmSum | numberFilter}}원</span>
+									</div>
+									<button type="button" class="btns" @click="fn_setHidden('RLTH', !asetRlthHideYn)">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+
 								<!--25-02-10 금액숨김 수정-->
-								<div class="toggle_money">
+								<!-- <div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_03" v-model="asetRlthHideYn" @change="fn_setHidden('RLTH', asetRlthHideYn)">
 									<label for="sum_view_03" class="btns">
 										<span class="hide" aria-hidden="true">보기</span>
@@ -546,7 +591,7 @@ ________________________________________________________________________
 										<span class="show">{{asetRlthAmSum | numberFilter}}원</span>
 										<span class="hide">금액숨김</span>
 									</div>
-								</div>
+								</div> -->
 								<!--//25-02-10 금액숨김 수정-->
 								<template v-if="indAsetRlthAmSum < 0">
 									<p class="latter">지난달보다 <em class="num">{{Math.abs(indAsetRlthAmSum) | numberFilter}}원</em> <em>줄었어요.</em></p>
@@ -567,29 +612,29 @@ ________________________________________________________________________
 								<div class="cont">
 									<ul class="assets_list">
 										<li v-if="asetRlthRlestCn > 0">
-											<a href="javascript:void(0);" @click.prevent="fn_movePage('ASRE4001')">
-												<span class="item">부동산<em>{{asetRlthRlestCn | numberFilter}}</em></span>
-												<span class="num" v-if="!asetRlthHideYn">{{asetRlthRlestAm | numberFilter}}원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASRE4001')">
+												<span class="item">부동산<em>{{asetRlthRlestCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!asetRlthHideYn"><span class="blind">금액</span>{{asetRlthRlestAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="openRlAssetPop('CORE4201')">
+											<a href="javascript:void(0);" role="button" class="unconnected" @click.prevent="openRlAssetPop('CORE4201')">
 												<span class="item">부동산</span>
-												<span class="txt">최근 실거래는?</span>
+												<span class="txt">우리집 실거래가 확인</span>
 											</a>
 										</li>
 										<li v-if="asetRlthCarCn > 0">
-											<a href="javascript:void(0);" @click.prevent="fn_movePage('ASCA4001')">
-												<span class="item">자동차<em>{{asetRlthCarCn | numberFilter}}</em></span>
-												<span class="num" v-if="!asetRlthHideYn">{{asetRlthCarAm | numberFilter}}원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASCA4001')">
+												<span class="item">자동차<em>{{asetRlthCarCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!asetRlthHideYn"><span class="blind">금액</span>{{asetRlthCarAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 												</a>
 											</li>
 											<li v-else>
-												<a href="javascript:void(0);" class="unconnected" @click.prevent="openRlAssetPop('COCA2101')">
+												<a href="javascript:void(0);" role="button" class="unconnected" @click.prevent="openRlAssetPop('COCA2101')">
 													<span class="item">자동차</span>
-													<span class="txt">시세알아보기</span>
+													<span class="txt">내 차 평균 시세 확인</span>
 												</a>
 											</li>
 										</ul>
@@ -599,7 +644,7 @@ ________________________________________________________________________
 							<!-- 실물자산 없을 때-->
 							<template v-else>
 								<div class="analysis">
-									<p class="txt">실물자산이 없어요. <a href="javascript:void(0);" class="btns" @click.prevent="fn_openAssetPage()">등록</a></p>
+									<p class="txt">집, 차 시세 궁금하면 <a href="javascript:void(0);" class="btns" @click.prevent="fn_openAssetPage()">등록</a></p>
 								</div>
 
 								<details class="board_box_details">
@@ -610,15 +655,15 @@ ________________________________________________________________________
 									<div class="cont">
 										<ul class="assets_list">
 											<li>
-												<a href="javascript:void(0);" class="unconnected" @click.prevent="openRlAssetPop('CORE2201')">
+												<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="openRlAssetPop('CORE4201')">
 													<span class="item">부동산</span>
-													<span class="txt">최근 실거래는?</span>
+													<span class="txt">우리집 실거래가 확인</span>
 												</a>
 											</li>
 											<li>
-												<a href="javascript:void(0);" class="unconnected" @click.prevent="openRlAssetPop('COCA2101')">
+												<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="openRlAssetPop('COCA2101')">
 													<span class="item">자동차</span>
-													<span class="txt">시세알아보기</span>
+													<span class="txt">내 차 평균 시세 확인</span>
 												</a>
 											</li>
 										</ul>
@@ -633,8 +678,21 @@ ________________________________________________________________________
 								<h2>기타자산</h2>
 								
 								<div class="analysis" :class="indAsetEtcAmSum > 0 ? 'up' : indAsetEtcAmSum < 0 ? 'down' : ''">
+
+									<div class="toggle_money" :class="asetEtcHideYn === true ? 'on' : ''">
+										<div class="sum">
+											<span class="hide">금액숨김</span>
+											<span class="show">{{asetEtcAmSum | numberFilter}}원</span>
+										</div>
+										<button type="button" class="btns" @click="fn_setHidden('ETC', !asetEtcHideYn)">
+											<span class="blind">금액</span>
+											<span class="hide">보기</span>
+											<span class="show">숨김</span>
+										</button>
+									</div>
 									<!--25-02-10 금액숨김 수정-->
-									<div class="toggle_money">
+
+									<!-- <div class="toggle_money">
 										<input type="checkbox" title="금액숨김" name="" id="sum_view_04" v-model="asetEtcHideYn" @change="fn_setHidden('ETC', asetEtcHideYn)">
 										<label for="sum_view_04" class="btns">
 											<span class="hide" aria-hidden="true">보기</span>
@@ -644,7 +702,8 @@ ________________________________________________________________________
 											<span class="show">{{asetEtcAmSum | numberFilter}}원</span>
 											<span class="hide">금액숨김</span>
 										</div>
-									</div>
+									</div> -->
+
 									<!--//25-02-10 금액숨김 수정-->
 									<template v-if="indAsetEtcAmSum > 0">
 										<p class="latter">지난달보다 <em class="num">{{Math.abs(indAsetEtcAmSum) | numberFilter}}원</em> <em>늘었어요.</em></p>
@@ -666,28 +725,28 @@ ________________________________________________________________________
 										<ul class="assets_list">
 											<template v-if="asetEtcCshCn > 0"> 
 												<li>
-													<a href="javascript:void(0);" @click.prevent="fn_movePage('ASOA4001')">
-														<span class="item">현금<em>{{asetEtcCshCn | numberFilter}}</em></span>
-														<span class="num" v-if="!asetEtcHideYn">{{asetEtcCshAmSum | numberFilter}}원</span>
-														<span class="txt" v-else>금액숨김</span>
+													<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASOA4001')">
+														<span class="item">현금<em>{{asetEtcCshCn | numberFilter}}<i class="blind">건</i></em></span>
+														<span class="num" v-if="!asetEtcHideYn"><span class="blind">금액</span>{{asetEtcCshAmSum | numberFilter}}원</span>
+														<span class="txt" v-else>상세보기</span>
 													</a>
 												</li>
 											</template>
 											<template v-if="asetEtcGoldCn > 0 ">  
 												<li>
-													<a href="javascript:void(0);" @click.prevent="fn_movePage('ASOA4001')">
-														<span class="item">금<em>{{asetEtcGoldCn | numberFilter}}</em></span>
-														<span class="num" v-if="!asetEtcHideYn">{{asetEtcGoldAm | numberFilter}}원</span>
-														<span class="txt" v-else>금액숨김</span>
+													<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASOA4001')">
+														<span class="item">금<em>{{asetEtcGoldCn | numberFilter}}<i class="blind">건</i></em></span>
+														<span class="num" v-if="!asetEtcHideYn"><span class="blind">금액</span>{{asetEtcGoldAm | numberFilter}}원</span>
+														<span class="txt" v-else>상세보기</span>
 													</a>
 												</li>
 											</template>
 											<template v-if="asetEtcEtcCn > 0 ">
 												<li>
-													<a href="javascript:void(0);" @click.prevent="fn_movePage('ASOA4001')">
-														<span class="item">기타<em>{{asetEtcEtcCn | numberFilter}}</em></span>
-														<span class="num" v-if="!asetEtcHideYn">{{asetEtcEtcAm | numberFilter}}원</span>
-														<span class="txt" v-else>금액숨김</span>
+													<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASOA4001')">
+														<span class="item">농기계<em>{{asetEtcEtcCn | numberFilter}}<i class="blind">건</i></em></span>
+														<span class="num" v-if="!asetEtcHideYn"><span class="blind">금액</span>{{asetEtcEtcAm | numberFilter}}원</span>
+														<span class="txt" v-else>상세보기</span>
 													</a>
 												</li>
 											</template>
@@ -702,8 +761,19 @@ ________________________________________________________________________
 							<h2>부채</h2>
 							<div class="analysis" :class="indDbtTotAm > 0 ? 'up' : indDbtTotAm < 0 ? 'down' : ''">
 								<template v-if="dbtTtcn > 0">
+									<div class="toggle_money" :class="dbtHideYn === true ? 'on' : ''">
+										<div class="sum">
+											<span class="hide">금액숨김</span>
+											<span class="show">{{dbtTotAm | numberFilter}}원</span>
+										</div>
+										<button type="button" class="btns" @click="fn_setHidden('DBT', !dbtHideYn)">
+											<span class="blind">금액</span>
+											<span class="hide">보기</span>
+											<span class="show">숨김</span>
+										</button>
+									</div>
 									<!--25-02-10 금액숨김 수정-->
-									<div class="toggle_money">
+									<!-- <div class="toggle_money">
 										<input type="checkbox" title="금액숨김" name="" id="sum_view_05" v-model="dbtHideYn" @change="fn_setHidden('DBT', dbtHideYn)">
 										<label for="sum_view_05" class="btns">
 											<span class="hide" aria-hidden="true">보기</span>
@@ -713,20 +783,20 @@ ________________________________________________________________________
 											<span class="show">{{dbtTotAm | numberFilter}}원</span>
 											<span class="hide">금액숨김</span>
 										</div>
-									</div>
+									</div> -->
 									<!--//25-02-10 금액숨김 수정-->
 									<template v-if="indDbtTotAm > 0">
-										<p class="latter">지난달보다 <em class="num">{{Math.abs(indDbtTotAm) | numberFilter}}원</em> <em>늘었어요.</em></p>
+										<p class="latter">지난달보다 <em class="num">{{Math.abs(indDbtTotAm) | numberFilter}}원</em> <em>늘었어요.</em><span class="info">(마이너스 통장 거래금액 포함)</span></p>
 									</template>
 									<template v-else-if="indDbtTotAm < 0">
-										<p class="latter">지난달보다 <em class="num">{{Math.abs(indDbtTotAm) | numberFilter}}원</em> <em>줄었어요.</em></p>
+										<p class="latter">지난달보다 <em class="num">{{Math.abs(indDbtTotAm) | numberFilter}}원</em> <em>줄었어요.</em><span class="info">(마이너스 통장 거래금액 포함)</span></p>
 									</template>
 									<template v-else>
-										<p class="latter">지난달과 <em>동일해요.</em></p>
+										<p class="latter">지난달과 <em>동일해요.</em><span class="info">(마이너스 통장 거래금액 포함)</span></p>
 									</template>
 								</template>
 								<template v-else>
-									<p class="txt">부채는 없어요. <a href="javascript:void(0);" class="btns" @click.prevent="fn_openAssetPage()">연결</a></p>
+									<p class="txt">대출 관리를 쉽게  <a href="javascript:void(0);" class="btns" @click.prevent="fn_openAssetPage()">연결</a></p>
 								</template>
 							</div>
 							<details class="board_box_details">
@@ -738,98 +808,98 @@ ________________________________________________________________________
 									<ul class="assets_list">
 										<!-- 카드 -->
 										<li v-if="dbtCdTcn > 0">
-											<a href="javascript:void(0);"  @click.prevent="fn_movePage('ASCD4001')">
-												<span class="item">카드<em>{{dbtCdTcn | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtCdAmSum | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASCD4001')">
+												<span class="item">카드<em>{{dbtCdTcn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtCdAmSum | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openNewConnect('card')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('card')">
 												<span class="item">카드</span>
-												<span class="txt">카드 대출 내역확인</span>
+												<span class="txt">장기, 단기 카드대출 현황 보기</span>
 											</a>
 										</li>
 										<!-- 대출 -->
 										<li v-if="dbtLonTtcn > 0">
-											<a href="javascript:void(0);"  @click.prevent="fn_movePage('ASLN4001')">
-												<span class="item">대출<em>{{dbtLonTtcn - edflnCnt | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtLonAmSum - edflnAmt| numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASLN4001')">
+												<span class="item">대출<em>{{dbtLonTtcn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtLonAmSum | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openNewConnect('bank')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('bank')">
 												<span class="item">대출</span>
 												<span class="txt">꼼꼼히 계획하고 관리하기</span>
 											</a>
 										</li>
 										<!-- 할부금융 -->
 										<li v-if="dbtIstCn > 0">
-											<a href="javascript:void(0);" @click.prevent="fn_movePage('ASIT4001')">
-												<span class="item">할부금융<em>{{dbtIstCn | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtIstAm | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASIT4001')">
+												<span class="item">할부금융<em>{{dbtIstCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtIstAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openNewConnect('capital')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('capital')">
 												<span class="item">할부금융</span>
-												<span class="txt">상환 현황을 한눈에</span>
+												<span class="txt">할부 상환 현황 보기</span>
 											</a>
 										</li>
 										<!-- 자동차할부 -->
 										<li v-if="dbtCarIstCn > 0">
-											<a href="javascript:void(0);"  @click.prevent="fn_movePage('ASCL4001')">
-												<span class="item">자동차할부<em>{{dbtCarIstCn | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtCarIstAm | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASCL4001')">
+												<span class="item">자동차할부<em>{{dbtCarIstCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtCarIstAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openNewConnect('capital')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('capital')">
 												<span class="item">자동차할부</span>
 												<span class="txt">내차 할부 현황 보기</span>
 											</a>
 										</li>
 										<!-- 학자금대출 -->
 										<li v-if="edflnCnt > 0">
-											<a href="javascript:void(0);"  @click.prevent="fn_movePage('ASEL4001')">
-												<span class="item">학자금대출<em>{{edflnCnt | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{edflnAmt | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASEL4001')">
+												<span class="item">학자금대출<em>{{edflnCnt | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{edflnAmt | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openAssetPage()">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('bank')">
 												<span class="item">학자금대출</span>
 												<span class="txt">학자금대출 현황 보기</span>
 											</a>
 										</li>
 										<!-- 리스 -->
 										<li v-if="dbtLeasCn > 0">
-											<a href="javascript:void(0);" @click.prevent="fn_movePage('ASLS2001')">
-												<span class="item">리스<em>{{dbtLeasCn | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtLeasAm | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASLS4001')">
+												<span class="item">리스<em>{{dbtLeasCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtLeasAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="fn_openNewConnect('capital')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="fn_openNewConnect('capital')">
 												<span class="item">리스</span>
-												<span class="txt">내차 할부 현황 보기</span>
+												<span class="txt">리스 상환 현황 보기</span>
 											</a>
 										</li>
 										<!-- 빌린돈 -->
 										<li v-if="dbtCshCn > 0">
-											<a href="javascript:void(0);" @click.prevent="fn_movePage('ASBR4001')">
-												<span class="item">빌린돈<em>{{dbtCshCn | numberFilter}}</em></span>
-												<span class="num" v-if="!dbtHideYn"><em>{{dbtCshAm | numberFilter}}</em>원</span>
-												<span class="txt" v-else>금액숨김</span>
+											<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASBR4001')">
+												<span class="item">빌린돈<em>{{dbtCshCn | numberFilter}}<i class="blind">건</i></em></span>
+												<span class="num" v-if="!dbtHideYn"><span class="blind">금액</span>{{dbtCshAm | numberFilter}}원</span>
+												<span class="txt" v-else>상세보기</span>
 											</a>
 										</li>
 										<li v-else>
-											<a href="javascript:void(0);" class="unconnected" @click.prevent="openRlAssetPop('COOA2003')">
+											<a href="javascript:void(0);" class="unconnected" role="button" @click.prevent="openRlAssetPop('COOA2003')">
 												<span class="item">빌린돈</span>
 												<span class="txt">직접 추가하기</span>
 											</a>
@@ -843,7 +913,7 @@ ________________________________________________________________________
 						<!--보험료-->
 						<div v-if="tab.id === 'insure'" class="board_box assets_detail insure" :key="tab.id">
 							<template v-if="isrTtcn > 0">
-								<h2>보험료 월 납입료</h2>
+								<h2>월 납입 보험료</h2>
 								<div class="custom_tooltip up">
 									<div class="com_tooltip_type02 com_tooltip_type03">
 										<a href="javascript:void(0);" class="com_btn_info" role="button">
@@ -855,11 +925,11 @@ ________________________________________________________________________
 										<div>
 											<h3 class="h_tit03">인보험이란?</h3>
 											<p>
-												사람의 생명이나 신체 손해에 대한 보험으로 생명, 상해, 질병 보험 등이 속해요.
+												사람을 대상으로 한 보험. 생명보험, 실손보험, 건강보험, 상해보험 등
 											</p>
 											<h3 class="h_tit03 mt10">물보험이란?</h3>
 											<p>                                    
-												물건과 기타 재산 피해에 대한 보험으로 화재, 운송, 해상, 자동차, 쳇보험 등이 속해요.
+												물건에 대한 손해보험. 자동차보험, 화재보험,펫보험, 해상/항공보험, 운전자보험, 여행자보험, 기계, 공장, 특수장비 보험 등
 											</p>
 
 											<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
@@ -882,18 +952,23 @@ ________________________________________________________________________
 									<div class="cont">
 										<ul class="assets_list">
 											<li v-if="isrMnInsuCn > 0">
-												<a href="javascript:void(0);" @click.prevent="fn_movePage('ASIS4001')">
-													<span class="item">인보험<em>{{isrMnInsuCn | numberFilter}}</em></span>
-													<span class="num">{{isrMnTotPymIsrfe | numberFilter}}원</span>
+												<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASIS4001')">
+													<span class="item">인보험<em>{{isrMnInsuCn | numberFilter}}<i class="blind">건</i></em></span>
+													<span class="num"><span class="blind">금액</span>{{isrMnTotPymIsrfe | numberFilter}}원</span>
 												</a>
 											</li>
 											<li v-if="isrTngInsuCn > 0">
-												<a href="javascript:void(0);" @click.prevent="fn_movePage('ASIS4001')">
-													<span class="item">물보험<em>{{isrTngInsuCn | numberFilter}}</em></span>
-													<span class="num">{{isrTngTotPymIsrfe | numberFilter}}원</span>
+												<a href="javascript:void(0);" role="button" @click.prevent="fn_movePage('ASIS4001')">
+													<span class="item">물보험<em>{{isrTngInsuCn | numberFilter}}<i class="blind">건</i></em></span>
+													<span class="num"><span class="blind">금액</span>{{isrTngTotPymIsrfe | numberFilter}}원</span>
 												</a>
 											</li>
 										</ul>
+										<div class="gray_box info_insur">
+											<p class="txt">
+												<strong>매 월 납입하는 보험</strong>의 개수와 총 보험료입니다. 년 1회 납입 보험 또는 만기/실효 보험은 상세화면에서 확인할 수 있어요.
+											</p>
+										</div>
 									</div>
 								</details>
 							</template>
@@ -909,11 +984,11 @@ ________________________________________________________________________
 										<div>
 											<h3 class="h_tit03">인보험이란?</h3>
 											<p>
-												사람의 생명이나 신체 손해에 대한 보험으로 생명, 상해, 질병 보험 등이 속해요
+												사람을 대상으로 한 보험. 생명보험, 실손보험, 건강보험, 상해보험 등
 											</p>
 											<h3 class="h_tit03 mt10">물보험이란?</h3>
 											<p>                                    
-												물건과 기타 재산 피해에 대한 보험으로 화재, 운송, 해상, 자동차, 쳇보험 등이 속해요 
+												물건에 대한 손해보험. 자동차보험, 화재보험,펫보험, 해상/항공보험, 운전자보험, 여행자보험, 기계, 공장, 특수장비 보험 등
 											</p>
 
 											<a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
@@ -922,7 +997,7 @@ ________________________________________________________________________
 								</div>
 
 								<div class="analysis">
-									<p class="txt">보장내용 체크하기 <a href="javascript:void(0);" class="btns" @click.prevent="fn_openAssetPage()">연결</a></p>
+									<p class="txt">보장내용 체크하기 <a href="javascript:void(0);" class="btns" @click.prevent="fn_openNewConnect('insu')">연결</a></p>
 								</div>
 							</template>
 						</div>
@@ -935,17 +1010,17 @@ ________________________________________________________________________
                         <h2 class="h_tit01">{{cusnm}} 님을 위한 추천 서비스</h2>
 
                         <div class="board_box_wrap banner">
-                            <a href="javascript:void(0);" class="board_box staple1" @click.prevent="fn_ASIP2005TAB(0)">
+                            <a href="javascript:void(0);" class="board_box staple1" role="button" @click.prevent="fn_ASIP2005TAB(0)">
                                 <em>자금 흐름<br>진단</em>
                             </a>
-                            <a href="javascript:void(0);" class="board_box staple2" @click.prevent="fn_movePage('PDMY4001')">
+                            <a href="javascript:void(0);" class="board_box staple2" role="button" @click.prevent="fn_movePage('PDMY4001')">
                                 <em>버킷리스트<br>만들기</em>
                             </a>
-                            <a href="javascript:void(0);" class="board_box staple3" @click="fn_moveOpenPage('PDMY2040')">
+                            <a href="javascript:void(0);" class="board_box staple3" role="button" @click="fn_moveOpenPage('PDMY2040')">
                                 <em>안정적인<br>투자전략!</em>
                             </a>
-                            <a href="javascript:void(0);" class="board_box staple4" @click.prevent="fn_getASIP2009()">
-                                <em>내 또래들은<br>얼만큼 쓸까?</em>
+                            <a href="javascript:void(0);" class="board_box staple4" role="button" @click.prevent="fn_getASIP2009()">
+                                <em>내 또래들은<br>얼만큼 모았을까?</em>
                             </a>
                         </div>
 
@@ -956,13 +1031,14 @@ ________________________________________________________________________
 
 					<!--금융지식-->
 					<div class="finlit" v-if="financeKlList.length > 0">
-						<h2 class="h_tit01">금융지식</h2>
-						<a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')" ><span class="blind">더보기</span></a>
+						<!-- <h2 class="h_tit01">금융지식</h2>
+						<a href="javascript:void(0);" class="btn_lots" @click.prevent="fn_movePage('COCT4001')" ><span class="blind">더보기</span></a> -->
+						<a href="javascript:void(0);" class="h_tit01" role="button" @click.prevent="fn_movePage('COCT4001')" >금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 						<div class="scroller">
 							<ul>
 								<li v-for="(item, idx) in financeKlList" :key="idx">
-									<a href="javascript:void(0);" @click.prevent="fnOpenContents(item.cntzId)">
-										<img :src="item.thmnlImgUrlnm" alt="" @error="emptyImg" />
+									<a href="javascript:void(0);" role="button" @click.prevent="fnOpenContents(item.cntzId)">
+										<img :src="`/assets/images/fin_cont/${item.thmnlImgUrlnm}`" alt="" @error="emptyImg" />
 										<strong>{{item.cntzTinm}}</strong>
 										<!-- <strong>금리와 복리를 이해하라!금리와 복리를 이해하라!금리와 복리를 이해하라!금리와 복리를 이해하라!금리와 복리를 이해하라!금리와 복리를 이해하라!</strong> -->
 										<span class="hash">#{{item.rcmKwrdCntn}}</span>
@@ -975,9 +1051,9 @@ ________________________________________________________________________
                     
                     <div class="bottom">
                         <!--25-02-24 문구수정-->
-                        <a href="javascript:void(0);" class="btn_asset_edit" @click="fn_moveOpenPage('ASTA4002')">
-                            새로워진 NH콕뱅크 자산홈
-                            <strong>{{cusnm}}님의 관심자산별로 구성해보세요.</strong>
+                        <a href="javascript:void(0);" class="btn_asset_edit" role="button" @click="fn_moveOpenPage('ASTA4002')">
+                            새로워진 NH콕마이데이터(자산관리)
+                            <strong>자산 순서 변경할 수 있어요.</strong>
                         </a>
                         <!--//25-02-24 문구수정-->
                         <a href="javascript:void(0);" class="btn_connect left" @click.prevent="fn_openAssetPage()">더 연결할 자산이 있으신가요?</a>
@@ -1007,7 +1083,7 @@ ________________________________________________________________________
     import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001' // 자산등록
     import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002' // 기관선택
 
-    import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201' // 부동산등록
+    import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201' // 부동산등록
     import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101' // 자동차등록
     import COOA2003 from '@/views/page/CO/OA/COOA2003/COOA2003' // 빌린돈
     import {mapGetters} from 'vuex'    
@@ -1047,6 +1123,7 @@ ________________________________________________________________________
             return {
                 cusnm               : "",
                 rcnInqDtm           : 0,      // 최근조회일시        
+				totAsetAm			: 0,	  // 총금액
                 ntAsetTotAm         : 0,      // 순자산총금액        
                 bfNtAsetTotAm       : 0,      // 이전순자산총금액    
                 indNtAsetTotAm      : 0,      // 증감순자산총금액    
@@ -1140,6 +1217,7 @@ ________________________________________________________________________
 				edflnCnt			: 0,      // 학자금대출건수
 				edflnAmt			: 0,      // 학자금대출금액
 				cusnm               : "",           // 고객명
+				astIndSum           : 0,        // 자산증감합계
             }
         },
         computed : {
@@ -1177,12 +1255,10 @@ ________________________________________________________________________
 			},
 			// 다가올 카드 결제일
 			closeCardPayDate() {
-				console.log('this.cardPayDateList.length > 0', this.cardPayDateList.length )
 				if(this.cardPayDateList.length > 0) {
 					return this.cardPayDateList.find(el => {
 						let now = new Date()
 						let tomrw = dateFormat(new Date(now.setDate(now.getDate() + 1)), 'YYYYMMDD')
-						console.log('tomrw', tomrw, el === tomrw)
 						return el === tomrw
 					})
 				}else {
@@ -1233,17 +1309,19 @@ ________________________________________________________________________
             getData() {
                 // 계좌목록 조회 
                 const config = {
-                    url: '/as/as/00ra2',
+                    // url: '/as/as/00ra2',
+					url: '/ma/ma/01r03',
 					data: {
-                        "mydtCusno" : this.getUserInfo('mydtCusno')
+                        "mydtCusno" : this.getUserInfo('mydtCusno'),
+						"basYm"     : dateFormat(new Date(), "YYYYMM"),
+                    	"mainFlag"  : '0'
                     }
                 }
                 apiService.call(config).then(response =>{
-					//console.log("======= /as/ip/00ra2 나의 자산조회 response =======", response)							
-                    this.respInfo = response
+                    this.respInfo = response?.myAssetInfo
 
                     this.rcnInqDtm           = this.respInfo.rcnInqDtm           // 최근조회일시 
-                           
+                    this.totAsetAm           = response.totAsetAm || 0		//  자산금액
                     this.ntAsetTotAm         = this.respInfo.ntAsetTotAm         // 순자산총금액        
                     this.bfNtAsetTotAm       = this.respInfo.bfNtAsetTotAm       // 이전순자산총금액    
                     this.indNtAsetTotAm      = this.respInfo.indNtAsetTotAm      // 증감순자산총금액    
@@ -1251,16 +1329,12 @@ ________________________________________________________________________
                     this.bfAsetTotAm         = this.respInfo.bfAsetTotAm         // 이전총자산금액      
                     this.indAsetTotAm        = this.respInfo.indAsetTotAm        // 증감총자산금액 
 
-					console.log("순자산총액---",this.ntAsetTotAm)
-					console.log("이전순자산총금액---",this.bfNtAsetTotAm)
-					console.log("증감순자산총금액---",this.indNtAsetTotAm)
-                    
                     // 금융자산     
                     this.asetFnAmSum         = this.respInfo.asetFnAmSum         // 금융자산금액        
                     this.bfAsetFnAmSum       = this.respInfo.bfAsetFnAmSum       // 이전금융자산금액    
                     this.indAsetFnAcSum      = this.respInfo.indAsetFnAcSum      // 증감금융자산금액    
                     this.asetFnAcAmSum       = this.respInfo.asetFnAcAmSum       // 금융자산계좌금액    
-                    //this.asetFnAcTtcn        = this.respInfo.asetFnAcTtcn        // 금융자산계좌건수    
+                    this.asetFnAcTtcn        = this.respInfo.asetFnAcTtcn        // 금융자산계좌건수    
                     this.asetFnIvAmSum       = this.respInfo.asetFnIvAmSum       // 금융자산투자금액    
                     this.asetFnIvTtcn        = this.respInfo.asetFnIvTtcn        // 금융자산투자건수    
                     this.asetFnPnsAmSum      = this.respInfo.asetFnPnsAmSum      // 금융자산연금금액    
@@ -1319,23 +1393,39 @@ ________________________________________________________________________
                     this.isrTngTotPymIsrfe   = this.respInfo.isrTngTotPymIsrfe   // 물보험납입총보험료  
                     this.isrTngInsuCn        = this.respInfo.isrTngInsuCn        // 물보험납입건수 
 					
-					//console.log("======= ntAsetTotAm =======", this.ntAsetTotAm)  // 순자산						
-					//console.log("======= asetIndAm =======", this.asetIndAm)  // 자산증감액 절대값	
-
 					this.asetRlthTtcn        = this.asetRlthRlestCn + this.asetRlthCarCn   // 실물자산건수 = 실물자산부동산건수 + 실물자산자동차건수
 					// 부채총건수 
 					this.dbtTtcn             = this.dbtLonTtcn + this.dbtCdTcn + this.dbtIstCn + this.dbtCarIstCn + this.dbtLeasCn + this.dbtCshCn
 
-                    // 2025.02.11) 서비스 내 전월 대비 순자산 증감 계산로직 없으므로 화면 내 계산
+                    /* 2025.02.11) 서비스 내 전월 대비 순자산 증감 계산로직 없으므로 화면 내 계산
 					this.indNtAsetTotAm = 0	// 증감순자산총금액
-					/** 이전순자산금액 = 이전금융자산금액 + 이전실물자산금액 + 이전기타자산금액 - 이전총부채금액 */
+					 이전순자산금액 = 이전금융자산금액 + 이전실물자산금액 + 이전기타자산금액 - 이전총부채금액 
 					this.bfNtAsetTotAm = this.bfAsetFnAmSum + this.bfAsetRlthAmSum + this.bfAsetEtcAmSum - this.bfDbtTotAm
 					this.indNtAsetTotAm = Math.abs(this.ntAsetTotAm - this.bfNtAsetTotAm)
 
 					this.asetIndAm =  Math.abs(this.indNtAsetTotAm)  // 증감순자산총금액
 
-                    //총 금액 변경 이후 금액 Animate 처리 함수 호출
+					//총 금액 변경 이후 금액 Animate 처리 함수 호출
                     amountCountAnimate("ntAsetTotAm", this.ntAsetTotAm)
+					*/
+
+					this.astIndSum = 0
+					this.astIndSum += this.indAsetFnAcSum
+					this.editList = response.assetAmnIOList || [] // 자산편집 정보(부채:01, 현금:02, 부동산:03, 자동차:04, 금:05, 기타:06)
+					let dbt = this.editList.find(el => el.asetAmnDsc === '01' && el.totYn === '1') //부채
+					if (dbt) this.astIndSum -= this.indDbtTotAm
+					let rlest = this.editList.find(el => el.asetAmnDsc === '03' && el.totYn === '1') //부동산
+					if (rlest) this.astIndSum += this.respInfo.indAsetRlthRlestAm
+					let car = this.editList.find(el => el.asetAmnDsc === '04' && el.totYn === '1') //자동차
+					if (car) this.astIndSum += this.respInfo.indAetRlthCarAm
+					let etc = this.editList.filter(el =>  ['02','05','06'].includes(el.asetAmnDsc) && el.totYn === '1') //기타자산
+					if (etc.length > 2) this.astIndSum += this.indAsetEtcAmSum
+					console.log("astIndSum>>>",this.astIndSum)
+
+					//학자금대출
+					this.edflnCnt = this.respInfo?.dbtEdufdTcn           || 0 // 부채학자금총건수
+					this.edflnAmt = this.respInfo?.dbtEdufdAmSum         || 0 // 부채학자금금액합계
+                    
 					this.assetList()
                 })
             },
@@ -1350,7 +1440,7 @@ ________________________________________________________________________
                 }
                 apiService.call(config).then(response =>{
 					//예금
-					this.asetFnAcTtcn = response.totAccn	//총 건수
+					//this.asetFnAcTtcn = response.totAccn	//총 건수
 					response.rndaAcList.forEach((item,index) => {	//입출금
                         response.rndaAcList[index].type = 'RNDA'//타입 
                     })
@@ -1395,10 +1485,11 @@ ________________________________________________________________________
                         response.dcList[index].type = 'DC'//타입 
 						response.dcList[index].acWrsnm = item.dcRtrpnsWrsnm //상품명
 						response.dcList[index].acNowBac = item.acEvlam//금액
+						response.dcList[index].mydtAcno = item.wrsAmnno//계좌번호
                     })
+					console.log("irpList>>>",response.irpList)
                     response.irpList.forEach((item,index) => {
                         response.irpList[index].type = 'IRP'//타입 
-						response.irpList[index].mydtAcno = item.wrsAmnno//계좌번호
 						response.irpList[index].acNowBac = item.acEvlam//금액
                     })
 					// 개인연금
@@ -1443,10 +1534,6 @@ ________________________________________________________________________
                     })
 
 					this.asetFnPayPntTtList = [...response.payMnyAcList || [], ...response.ppaycdList || [], ...response.cardPntList || []]
-
-					//학자금대출
-					this.edflnCnt = response.loanCnt
-					this.edflnAmt = response.loanAmnt
 					
 				})
             },
@@ -1498,8 +1585,8 @@ ________________________________________________________________________
             openRlAssetPop(popId) {
                 let popName = ""
                 switch(popId) {
-                    case 'CORE2201':
-                        popName = CORE2201	// 부동산
+                    case 'CORE4201':
+                        popName = CORE4201	// 부동산
                         break
                     case 'COCA2101':
                         popName = COCA2101	// 자동차
@@ -1566,6 +1653,17 @@ ________________________________________________________________________
 				}
 			},
 			fn_setHidden(flag, type) {
+				if(flag === 'TOT'){
+					this.asetTotAmHideYn = type
+				}else if(flag === 'FN'){
+					this.asetFnAmHideYn = type
+				}else if(flag === 'RLTH'){
+					this.asetRlthHideYn = type
+				}else if(flag === 'ETC'){
+					this.asetEtcHideYn = type
+				}else if(flag === 'DBT'){
+					this.dbtHideYn = type
+				}
 				this.setSecretAmInfo(flag, type)
 			},
 			//나의 재무진단
@@ -1599,7 +1697,7 @@ ________________________________________________________________________
             },
 			// 금융지식 컨텐츠 조회
 			getFinanceKlList(){ 
-				this.getFinanInfo('ASTA4001', 5).then(response =>{
+				this.getFinanInfo('ASTA4001', 6).then(response =>{
 					this.financeKlList = response
 					// *출력값
 					// -썸네일이미지URL명  = thmnlImgUrlnm
@@ -1761,7 +1859,8 @@ ________________________________________________________________________
             * 연금 상세화면이동.
             */
 			fn_openPnsDetailPop(type, pension) {
-				let compName = ""
+				
+				console.log("pension>>>",pension)
                 let popupParam = pension
                 popupParam.mydtCusno = this.getUserInfo('mydtCusno') //마이데이터고객번호
 
@@ -1865,7 +1964,7 @@ ________________________________________________________________________
 				if(!this.tabs || !this.tabs.length || this.tabs.length === 0 || this.tabs.length > 5) {
 					// 최초 접속하는 경우 기본 값으로 설정 처리
 					this.tabs = [ {id:'finance', name:"금융자산", hidden:'N'}, {id:'real', name:"실물자산", hidden:'N'}, {id:'etc', name:"기타자산", hidden:'N'},
-								  {id:'debt', name:"부채", hidden:'N'}, {id:'insure', name:"보험료 월 납입료", hidden:'N'} ]
+								  {id:'debt', name:"부채", hidden:'N'}, {id:'insure', name:"월 납입 보험료", hidden:'N'} ]
 					//commonService.setStorage('asetMain' + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + 'tabsV4', this.tabs)
 					this.setAsetMain(this.tabs)
 				}

@@ -1,7 +1,7 @@
 <!--
 /*************************************************************************
-* @ 서비스경로 : 금융지식 > 금융지식 서브1
-* @ 페이지설명 : 금융지식 > 금융지식 서브1
+* @ 서비스경로 : 금융지식 > 금융지식 상세 조회
+* @ 페이지설명 : 금융지식 > 금융지식 상세 조회
 * @ 파일명     : src/views/page/CO/CT/COCT4011/COCT4011.vue
 * @ 작성자     : CS541599
 * @ 작성일     : 2025-02-12
@@ -20,13 +20,14 @@
 
 		<div class="popup_content">
 		
-			<section class="fin_wrap detail" ref="content" v-html="cntzCntn">
+			<!-- <section class="fin_wrap detail" ref="content" v-html="fnTest()"> -->
+            <section class="fin_wrap detail" ref="content" v-html="cntzCntn">
 				
 			</section>
 			
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 </template>
@@ -35,7 +36,7 @@
 
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
-
+//import axios from 'axios'
 import apiService from '@/service/apiService'
 import {mapActions} from 'vuex'
 import _ from 'lodash'
@@ -53,6 +54,8 @@ export default {
         this.initComponent(this.params)
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
+
+        //this.cntzCntn = require('/finance/CO/UI-CO-CT-4012.html')
 
     },
     mixins: [
@@ -76,10 +79,22 @@ export default {
             };
 
             apiService.call(config).then(response => {
-                this.cntzCntn = response.cntzCntn
+                let htmlFileName = response.cntzCntn
+                let _this = this // ajax 안에 들어가면 this가 달라짐
+                $.ajax({
+                    url : "/assets/finance/"+htmlFileName,
+                    type : "get",
+                    success: function(response){
+                        //console.log(response);
+                        _this.cntzCntn = response
+                    },
+                    fail: function(error){
+                        console.log("error" ,error)
+                        reject(error)
+                    },
+                }) 
             })
-        }
-
+        },
     },
     components : {
 

@@ -30,7 +30,7 @@
 
 			<div id="content">
 				
-				<section class="fin_wrap">
+				<section class="fin_wrap"> <!--[v4.0] 25-03-20 이미지 경로 수정/컨텐츠 텍스트 수정 -->
 					
 					<div class="filter">
 						<strong aria-hidden="true">연령별 추천</strong>
@@ -40,69 +40,318 @@
 					<div class="category_tab">
 						<div class="scroller">
 							<ul role="tablist">
-								<!-- [D]: li에 메뉴별 클래스(menu01 ~ 12) 추가  -->
-								<li class="menu on"><a href="#nolink" role="tab" aria-selected="true">전체</a></li>
-								<li class="menu01"><a href="#nolink" role="tab" aria-selected="false">부동산</a></li>
-								<li class="menu02"><a href="#nolink" role="tab" aria-selected="false">자동차</a></li>
-								<li class="menu03"><a href="#nolink" role="tab" aria-selected="false">투자</a></li>
-								<li class="menu04"><a href="#nolink" role="tab" aria-selected="false">건강정보</a></li>
-								<li class="menu05"><a href="#nolink" role="tab" aria-selected="false">아파트</a></li>
-								<li class="menu06"><a href="#nolink" role="tab" aria-selected="false">전세대출</a></li>
-								<li class="menu07"><a href="#nolink" role="tab" aria-selected="false">연금</a></li>
-								<li class="menu08"><a href="#nolink" role="tab" aria-selected="false">절세</a></li>
-								<li class="menu09"><a href="#nolink" role="tab" aria-selected="false">여행</a></li>
-								<li class="menu10"><a href="#nolink" role="tab" aria-selected="false">신용정보</a></li>
-								<li class="menu11"><a href="#nolink" role="tab" aria-selected="false">대출한도</a></li>
-								<li class="menu12"><a href="#nolink" role="tab" aria-selected="false">세액공제</a></li>
+								<!-- [D]: li에 메뉴별 클래스(menu01 ~ 12) 추가 -->
+								<li class="menu on"><a href="#nolink" class="menu_btn" role="tab" aria-selected="true">전체</a></li>
+								<li class="menu01"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">부동산</a></li>
+								<li class="menu02"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">자동차</a></li>
+								<li class="menu03"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">투자</a></li>
+								<li class="menu04"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">건강정보</a></li>
+								<li class="menu05"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">아파트</a></li>
+								<li class="menu06"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">대출</a></li>
+								<li class="menu07"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">연금</a></li>
+								<li class="menu08"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">절세</a></li>
+								<li class="menu09"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">여행</a></li>
+								<li class="menu10"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">신용정보</a></li>
+								<li class="menu11"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">보안</a></li>
+								<li class="menu12"><a href="#nolink" class="menu_btn" role="tab" aria-selected="false">상식</a></li>
 							</ul>
 						</div>
 					</div>
 
-					<!-- menu01 : 부동산, menu02 : 자동차, menu03 : 투자, menu04 : 건강정보, menu05 : 아파트, menu06 : 전세대출, 
-						menu07 : 연금, menu08 : 절세, menu09 : 여행, menu10 : 신용정보, menu11 : 대출한도, menu12 : 세액공제 -->
+					<!-- menu01 : 부동산, menu02 : 자동차, menu03 : 투자, menu04 : 건강정보, menu05 : 아파트, menu06 : 대출, 
+						menu07 : 연금, menu08 : 절세, menu09 : 여행, menu10 : 신용정보, menu11 : 보안, menu12 : 상식 -->
 					<div class="menu01">
+						<!--25-04-18 이미지 없을때 케이스 추가 -->
 						<a href="#nolink" class="cont">
-							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_01.png" alt=""> <!--[v4.0] 25-03-20 경로 수정 -->
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_noimg.png" alt="이미지를 불러올 수 없어요">
 							<div class="info">
 								<span>부동산</span>
-								<strong>부동산 계약이 아직 어려운<br>당신을 위한 팁 특약사항<br>확인하기</strong>
-								<span class="tag">#부동산초보</span>
+								<strong>노후 대비, 집을 어떻게 활용 해야 할까요?</strong>
+								<span class="tag">#연금재테크</span>
+							</div>
+						</a>
+						<!--//25-04-18 이미지 없을때 케이스 추가 -->
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_01.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>노후 대비, 집을 어떻게 활용 해야 할까요?</strong>
+								<span class="tag">#연금재테크</span>
 							</div>
 						</a>
 						<a href="#nolink" class="cont">
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_02.png" alt="">
 							<div class="info">
 								<span>부동산</span>
-								<strong>전세대출 보증 비율 1분기 내<br>90%로 축소</strong>
-								<span class="tag"></span>
+								<strong>주택 계약 전, 꼭 알아야 할 사항들</strong>
+								<span class="tag">#부동산초보</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_03.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>부동산 계약 전 꼭 확인해야 하는 특약사항</strong>
+								<span class="tag">#필수특약사항</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_04.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>부동산 계약, 사기당하지 않게 꼭 확인해요</strong>
+								<span class="tag">#부동산계약</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_05.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>임대인이 체납! 내 계약, 괜찮을까요?</strong>
+								<span class="tag">#집주인체납</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_06.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>등기부등본 확인이 중요한 이유!</strong>
+								<span class="tag">#등기부등본확인</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_07.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>가계약은 파기하면 계약금을 못돌려받나요?</strong>
+								<span class="tag">#가계약파기</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_08.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>안전한 집 고르는 법, 확인해 보세요.</strong>
+								<span class="tag">#안전한매물찾기</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_09.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>내가 원하는 집, 이것만은 꼭 체크하세요!</strong>
+								<span class="tag">#매물체크</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_10.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>부동산 중개인에게 꼭 물어봐야 할 3가지</strong>
+								<span class="tag">#중개인Q&A</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_11.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>부동산 중개 수수료로 손해 볼 수 있다고요?</strong>
+								<span class="tag">#중개수수료</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_12.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>한 달 주거비가 월세가 전부가 아니라고요?</strong>
+								<span class="tag">#관리비</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_13.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>집을 찾는 가장 쉬운 방법 알아보기</strong>
+								<span class="tag">#매물찾는방법</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu01_14.png" alt="">
+							<div class="info">
+								<span>부동산</span>
+								<strong>집 보기 전 알아야 할 TIP</strong>
+								<span class="tag">#집보기전TIP</span>
+							</div>
+						</a>
+
+						<a href="#nolink" class="banner">
+							<span>내 집 마련의 꿈</span>
+							<strong>목표를 시작으로 현실로!</strong>
+						</a>
+					</div>
+
+					<div class="menu02">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu02_01.png" alt="">
+							<div class="info">
+								<span>자동차</span>
+								<strong>자동차 구매 시 금융 전략과 고려사항</strong>
+								<span class="tag">#자동차구매</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu02_02.png" alt="">
+							<div class="info">
+								<span>자동차</span>
+								<strong>사계절 차량 관리로 비용 절감 하는 법</strong>
+								<span class="tag">#자동차관리</span>
 							</div>
 						</a>
 						<a href="#nolink" class="banner">
-							<span>부동산 가이드</span>
-							<strong>부동산 중개수수료 계산하는 법</strong>
+							<span>차근차근 모아</span>
+							<strong>내 차고에 드림카 채워 넣기!</strong>
+						</a>
+					</div>
+
+					<div class="menu03">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu03_01.png" alt="">
+							<div class="info">
+								<span>투자</span>
+								<strong>월급이 모이는 사회 초년생 재무 습관</strong>
+								<span class="tag">#월급관리</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu03_02.png" alt="">
+							<div class="info">
+								<span>투자</span>
+								<strong>흩어져 있는 내 돈 찾고 짠테크 시작하기</strong>
+								<span class="tag">#짠테크</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>자산진단</span>
+							<strong>내 자산 연결하고 전문 재무진단 받기</strong>
 						</a>
 					</div>
 
 					<div class="menu04">
 						<a href="#nolink" class="cont">
-							<img src="../../../../src/assets_v40/images/fin_cont" alt="">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_01.png" alt="">
 							<div class="info">
 								<span>건강정보</span>
-								<strong>한 살 더 먹었는데<br>몸은 더 젊어졌네</strong>
-								<span class="tag">#저속노화</span>
+								<strong>건강한 아침, 밥 대신 건강주스는 어떠세요?</strong>
+								<span class="tag">#건강주스</span>
 							</div>
 						</a>
 						<a href="#nolink" class="cont">
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_02.png" alt="">
 							<div class="info">
 								<span>건강정보</span>
-								<strong>감염병 예방으로<br>건강한 설 보내세요!</strong>
-								<span class="tag">#감염예방</span>
+								<strong>미세먼지로부터 건강을 지키는 3가지 수칙!</strong>
+								<span class="tag">#미세먼지</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_03.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>뇌혈관질환 예방을 위한 9가지 생활습관</strong>
+								<span class="tag">#뇌혈관질환</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_04.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>손 씻기로 질병 예방! 올바른 방법은?</strong>
+								<span class="tag">#손씻기</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_05.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>나에게 맞는 걷기 방법은? 관절 건강 지키기</strong>
+								<span class="tag">#걷기운동</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_06.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>한번 나빠지면 돌이킬 수 없는 눈 건강</strong>
+								<span class="tag">#눈건강</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_07.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>요즘 필수 영양제 마그네슘, 어디에 좋을까?</strong>
+								<span class="tag">#마그네슘</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_08.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>감기인 줄 알았는데 폐렴?! 구별하는 방법</strong>
+								<span class="tag">#폐렴</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_09.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>입냄새, 혹시 나도? 원인과 예방법 체크하기</strong>
+								<span class="tag">#냄새고민</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_10.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>반복적으로 생기는 입술 물집, 왜 생길까?</strong>
+								<span class="tag">#입술물집</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_11.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>근골격 건강, 일상에서 이렇게 지켜보세요!</strong>
+								<span class="tag">#바른자세</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_12.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>코골이와 수면 무호흡, 방치하면 큰일이에요.</strong>
+								<span class="tag">#코골이</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_13.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>땅기고 가려운 피부를 촉촉하게 관리하는 법!</strong>
+								<span class="tag">#피부관리정보</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu04_14.png" alt="">
+							<div class="info">
+								<span>건강정보</span>
+								<strong>건강한 취미, 모두 함께 즐겁게 운동해요!</strong>
+								<span class="tag">#취미활동</span>
 							</div>
 						</a>
 						<a href="#nolink" class="banner">
-							<span>건강정보</span>
-							<strong>쉽고 유익한 건강 정보로 매일을 채우세요</strong>
+							<span>건강보험 가입내역</span>
+							<strong>내 건강정보 가입 내역을 확인하세요.</strong>
 						</a>
 					</div>
 
@@ -111,21 +360,113 @@
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu05_01.png" alt="">
 							<div class="info">
 								<span>아파트</span>
-								<strong>요즘 뜨는 아파트 매물<br>총 정리</strong>
-								<span class="tag"></span>
+								<strong>아파트의 좋은 위치와 층수 고르는 방법!</strong>
+								<span class="tag">#부동산초보</span>
 							</div>
 						</a>
 						<a href="#nolink" class="cont">
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu05_02.png" alt="">
 							<div class="info">
 								<span>아파트</span>
-								<strong>아파트관리비 납부하고<br>10,000원 캐시백 받기</strong>
-								<span class="tag">#관리비</span>
+								<strong>아파트에서 누수가 생겼다!</strong>
+								<span class="tag">#아파트관리</span>
 							</div>
 						</a>
 						<a href="#nolink" class="banner">
-							<span>아파트</span>
-							<strong>내가 원하는 아파트 목돈모으기 1일차</strong>
+							<span>신용 · 아파트 · 전세대출</span>
+							<strong>최대한도와 최저금리를 한번에!</strong>
+						</a>
+					</div>
+
+					<div class="menu06">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu06_01.png" alt="">
+							<div class="info">
+								<span>대출</span>
+								<strong>담보대출 vs 신용대출 무엇이 다를까?</strong>
+								<span class="tag">#대출정보</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu06_02.png" alt="">
+							<div class="info">
+								<span>대출</span>
+								<strong>어떤 대출부터 갚아야 할까? 최적의 선택은?</strong>
+								<span class="tag">#대출상환TIP</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>대출이자 계산기</span>
+							<strong>쉽고 빠르게 대출금 계산하기</strong>
+						</a>
+					</div>
+
+					<div class="menu07">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu07_01.png" alt="">
+							<div class="info">
+								<span>연금</span>
+								<strong>퇴직금 받을 준비, IRP 가입하세요.</strong>
+								<span class="tag">#퇴직연금IRP</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu07_02.png" alt="">
+							<div class="info">
+								<span>연금</span>
+								<strong>디폴트옵션으로 퇴직연금 준비하기</strong>
+								<span class="tag">#디폴트옵션</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>나의 노후준비</span>
+							<strong>안정적인 은퇴를 준비하세요.</strong>
+						</a>
+					</div>
+
+					<div class="menu08">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu08_01.png" alt="">
+							<div class="info">
+								<span>절세</span>
+								<strong>연말정산, 꼭 알아야 할 핵심 포인트!</strong>
+								<span class="tag">#연말정산</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu08_02.png" alt="">
+							<div class="info">
+								<span>절세</span>
+								<strong>연금저축계좌로 절세하고 노후준비 시작!</strong>
+								<span class="tag">#연금저축계좌</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>세금 납부 확인</span>
+							<strong>내가 낸 세금, 쉽게 확인하세요.</strong>
+						</a>
+					</div>
+
+					<div class="menu09">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu09_01.png" alt="">
+							<div class="info">
+								<span>여행</span>
+								<strong>첫 해외여행, 이것만 알면 끝!</strong>
+								<span class="tag">#해외여행TIP</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu09_02.png" alt="">
+							<div class="info">
+								<span>여행</span>
+								<strong>계절별 국내 여행지 추천</strong>
+								<span class="tag">#계절별국내여행</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>농촌여행</span>
+							<strong>시골로 떠나요, 농촌 힐링 여행</strong>
 						</a>
 					</div>
 
@@ -134,21 +475,67 @@
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu10_01.png" alt="">
 							<div class="info">
 								<span>신용정보</span>
-								<strong>저축은행 신용카드<br>2027년 완전히 사라진다구?</strong>
-								<span class="tag">#카드</span>
+								<strong>신용점수는 어떻게 올릴 수 있을까요?</strong>
+								<span class="tag">#신용관리</span>
 							</div>
 						</a>
 						<a href="#nolink" class="cont">
 							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu10_02.png" alt="">
 							<div class="info">
 								<span>신용정보</span>
-								<strong>까다로운 디지털 고객<br>눈높이 맞추는 방법</strong>
-								<span class="tag"></span>
+								<strong>연체 시 내게 일어날 수 있는 끔찍한 상황</strong>
+								<span class="tag">#연체관리</span>
 							</div>
 						</a>
 						<a href="#nolink" class="banner">
-							<span>자산분석</span>
-							<strong>나의 자산관리스타일을 분석해드려요</strong>
+							<span>신용정보</span>
+							<strong>신용점수 관리는 이렇게~</strong>
+						</a>
+					</div>
+
+					<div class="menu11">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu11_01.png" alt="">
+							<div class="info">
+								<span>보안</span>
+								<strong>신종사기 큐싱, 모르면 당할 수 있어요!</strong>
+								<span class="tag">#큐싱</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu11_02.png" alt="">
+							<div class="info">
+								<span>보안</span>
+								<strong>안전한 금융 거래를 위해 꼭 기억해두세요!</strong>
+								<span class="tag">#보안수칙</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>나의 보안수준</span>
+							<strong>지금 내 보안 수준 점수는?</strong>
+						</a>
+					</div>
+
+					<div class="menu12">
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu12_01.png" alt="">
+							<div class="info">
+								<span>상식</span>
+								<strong>어린이를 위한 생활 금융 이야기</strong>
+								<span class="tag">#어린이금융</span>
+							</div>
+						</a>
+						<a href="#nolink" class="cont">
+							<img src="../../../../src/assets_v40/images/fin_cont/img_fin_menu12_02.png" alt="">
+							<div class="info">
+								<span>상식</span>
+								<strong>스물, 달라질 금융 생활 현명하게 관리하기</strong>
+								<span class="tag">#첫금융준비</span>
+							</div>
+						</a>
+						<a href="#nolink" class="banner">
+							<span>또래 부자들의 인기상품은?</span>
+							<strong>부자들의 금융생활</strong>
 						</a>
 					</div>
 

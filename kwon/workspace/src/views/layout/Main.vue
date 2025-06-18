@@ -20,7 +20,7 @@
   <div id="page-area">
     <div id="wrap" class="sticky-scroll" :aria-hidden="wrapAriaHidden">
         <!-- Main Header Start -->
-        <headers />
+        <headers v-show="isLanding"/>
         <!-- Main Header End -->
         <router-view />
     </div>
@@ -32,30 +32,36 @@
   import apiService from '@/service/apiService'
   import appService from '@/service/appService' //개발계 임시로 제거
   import Headers from '@/views/layout/HeadersV4.vue'
-  import ModalContainer from '@/views/layout/ModalContainer.vue'
+  // import ModalContainer from '@/views/layout/ModalContainer.vue'
+  import ModalContainer from '@/views/layout/ModalContainerV4.vue'
 	import routerService from '@/service/routerService'
   import {mapActions, mapGetters} from 'vuex'
   import commonService from '@/service/commonService'
   import modalService from '@/service/modalService'
   import {granOpenDateCheck, checkMaintenanceTime} from '@/utils/date'
   import configService from '@/service/configService'
+  import constants from '@/common/config/constants'
+  import store from '@/store'
+  import _ from 'lodash'
 
   import COAS2011 from '@/views/page/CO/AS/COAS2011/COAS2011.vue'
-  //import COAS2012 from '@/views/page/CO/AS/COAS2012/COAS2012.vue' //상호금융 NH콕마이데이터 4.0 추진 개발로 인한 변경 OLD => NEW
-  import COAS4012 from '@/views/page/CO/AS/COAS4012/COAS4012.vue'
+  import COAS2012 from '@/views/page/CO/AS/COAS2012/COAS2012.vue' //상호금융 NH콕마이데이터 4.0 추진 개발로 인한 변경 OLD => NEW
+  // import COAS4012 from '@/views/page/CO/AS/COAS4012/COAS4012.vue'
 
   export default {
     name: 'Main',
     data: () => {
       return {
+        isLanding: false,
       }
     },
 		computed: {
       ...mapGetters('modal', [
-        'wrapAriaHidden'
+        'wrapAriaHidden', 'hasLoading'
       ]),
       ...mapGetters('user', [
         'userInfo',
+        'isChild',
         'isChildV4',
         'isNHAccountYn'
       ])
@@ -86,7 +92,7 @@
         'getMyBizRegInfo'
       ]),
       initApplication() {
-        this.initAppConfig().then(()=>{
+        this.initAppConfig().then(async ()=>{
 
           //유입채널값 처리
           const params  = location.search.replace("?","")
@@ -111,6 +117,10 @@
             Kakao.init(import.meta.env.VITE_CB_KAKAO_APPKEY)
             console.log('cb 카카오 초기화 확인: ', Kakao.isInitialized())
           }
+
+          // v4 앱체크
+          // ==== 오픈 직전 이행 시 주석해제
+          await this.appVersionCheck(userInfo)
           
           //GrandOpen Check
           if(granOpenDateCheck()) {
@@ -136,10 +146,13 @@
               }              
             }else{
               //이용안내 페이지로 이동
+              this.initUserConfig().then(() => {
                 const menu = {
-                  name : "COCO1118",  // 이용안내
+                  // name : "COCO1118",  // 이용안내
+                  name : "COCO4118",  // 이용안내 v4
                 }
                 commonService.movePage(menu)
+              })
             }
           }else{
             if(checkMaintenanceTime()) {
@@ -158,7 +171,8 @@
                 // 미성년자 alert add 2021.12.03
                 if(error === "IS_CHILD") {
                   modalService
-                  .alert("마이데이터 서비스는 만14세 이상만 가입이 가능합니다.", "", "확인")
+                  // .alert("마이데이터 서비스는 만14세 이상만 가입이 가능합니다.", "", "확인")
+                  .alert("마이데이터 서비스는 만19세 이상만 가입이 가능합니다.", "", "확인")
                   .then(() => appService.moveMain(this.parseQueryString()))
 
                 } else {
@@ -176,10 +190,11 @@
 
       },
       moveLandingPage() {
-        if (this.isChildV4) { //14세미만
+        if (this.isChild) { //19세미만
             const menu = {
-              //component : COAS2012
-              component : COAS4012 //상호금융 NH콕마이데이터 4.0 추진 개발로 인한 변경 OLD => NEW
+              // 25.06.10) 청소년 19세 미만 진입 방지
+              component : COAS2012
+              // component : COAS4012 //상호금융 NH콕마이데이터 4.0 추진 개발로 인한 변경 OLD => NEW
             }
             modalService.openPopup(menu)
         } else {
@@ -231,6 +246,16 @@
               commonService.movePage(menu)
             }
 
+            // 랜딩페이지 진입 시 페이지 및 헤더 싱크 매칭
+            this.$nextTick(() => {
+              this.loadingTimeout = setInterval(() => {
+                if(!this.hasLoading) {
+                  this.isLanding = true
+                  clearInterval(this.loadingTimeout)
+                }
+              }, 10);
+            })
+
           }
         }
       },
@@ -244,6 +269,131 @@
         })
         return obj
       },
+      // v4 앱 체크
+      async appVersionCheck(user) {
+				// v4 마이데이터 서비스 이용가능 콕뱅/스뱅 앱버전 최소요구사항 확인
+				const ua = navigator.userAgent.toLowerCase()
+				const platform = navigator.platform.toLowerCase()
+				const isTouch = 'ontouchstart' in window
+				const hasTouchPoints = navigator.maxTouchPoints > 1
+				const isMobileUA = /mobile|android|iphone|ipad/.test(ua)
+				const isMobilePlatform = /iphone|ipad|android|arm|aarch/.test(platform)
+
+        const userInfo = user ? user : store.state.user.userInfo || {}
+
+				// 실기기에서만 동작하도록 설정
+				if(isTouch && hasTouchPoints && (isMobileUA || isMobilePlatform)) {
+          if(import.meta.env.VITE_ENV !== 'R') {
+            let confirmYn = ''
+            const config = {
+              content : ['앱버전 체크를 실행하시겠습니까?(개발서버)'],
+              title   : ""
+            }
+            confirmYn = await modalService.confirm(config)
+
+            if(confirmYn !== '예') return
+          }
+
+					const userOS = window.$SMNATIVE.getOS('I') ? 'ios' : 'android'
+					let appVer = ''
+					// const appVer = userInfo.chnl === '385' ? await appService.getAppVersion() : await appService.cokBankGetAppVersion()
+					if(userInfo.chnl === '385') {
+						await appService.getAppVersion().then(response => {
+							console.log('>>>> SB getAppVersion >>>> ', response)
+							let result = response.result
+
+							try { result = JSON.parse(response.result); } catch (e) { }
+
+							appVer = result?.versionName || ''
+						},error => {
+              // 버전조회 함수 오류발생 시 강제 인입
+              console.log('appService.getAppVersion Error', error)
+              appVer = '9.9.99'
+            })
+					} else {
+						await appService.cokBankGetAppVersion().then(response => {
+							console.log('>>>> CB cokBankGetAppVersion >>>> ', response)
+							let result = response.result
+
+							try { result = JSON.parse(response.result); } catch (e) { }
+
+							appVer = result?.versionName || ''
+						},error => {
+              // 버전조회 함수 오류발생 시 강제 인입
+              console.log('appService.cokBankGetAppVersion Error', error)
+              appVer = '9.9.99'
+            })
+					}
+					let chkVer = ''
+					if(userOS === 'android') {
+						if(userInfo.chnl === '385') {
+							// AOS 스뱅
+							chkVer = constants.SB_AOS_APP_VERSION
+						} else {
+							// AOS 콕뱅
+							chkVer = constants.COK_AOS_APP_VERSION
+						}
+					} else {
+						if(userInfo.chnl === '385') {
+							// IOS 스뱅
+							chkVer = constants.SB_IOS_APP_VERSION
+						} else {
+							// IOS 콕뱅
+							chkVer = constants.COK_IOS_APP_VERSION
+						}
+					}
+					// const appVer = '1.9.90'
+					// const chkVer = '1.9.91'
+					console.log('>>> OS >>> ', userOS)
+					console.log('>>> 앱버전 >>> ', appVer, ' > ', chkVer)
+					const versionChk = this.compareVersions(appVer, chkVer)
+					console.log('>>> 앱체크 결과 >>> ', versionChk)
+					
+					if(!versionChk && !_.isEmpty(appVer)) {
+						await modalService.alert("온전한 기능을 사용하고자 최신 앱 업데이트가 필요합니다.", "", "확인").then(() => {
+							const cokAosUrl = "https://play.google.com/store/apps/details?id=nh.smart.nhcok"
+							const cokIosUrl = "https://apps.apple.com/kr/app/nh%EC%BD%95%EB%B1%85%ED%81%AC-%EB%86%8D%ED%98%91/id1131147442"
+							const sbAosUrl = "https://play.google.com/store/apps/details?id=nh.smart.banking"
+							const sbIosUrl = "https://apps.apple.com/kr/app/nh%EC%8A%A4%EB%A7%88%ED%8A%B8%EB%B1%85%ED%82%B9/id1444712671"
+
+							if(userOS === 'android') {
+								if(userInfo.chnl === '385') {
+									// AOS 스뱅
+									appService.openPassMarketUrl({marketUrl : sbAosUrl})
+								} else {
+									// AOS 콕뱅
+									appService.cokBankOpenPassMarketUrl({marketUrl : cokAosUrl})
+								}
+							} else {
+								if(userInfo.chnl === '385') {
+									// IOS 스뱅
+									appService.openPassMarketUrl({marketUrl : sbIosUrl})
+								} else {
+									// IOS 콕뱅
+									appService.cokBankOpenPassMarketUrl({marketUrl : cokIosUrl})
+								}
+							}
+
+							appService.moveMain(userInfo)
+						})
+					}
+				}
+      },
+      // v4 버전 비교
+      compareVersions(appVer, chkVer) {
+        const appList = appVer.split('.').map(Number)
+        const chkList = chkVer.split('.').map(Number)
+
+        for(let i=0; i<Math.max(appList.length, chkList.length); i++) {
+          const appNum = appList[i] || 0
+          const chkNum = chkList[i] || 0
+          if(appNum < chkNum) {
+            return false
+          }
+        }
+
+        return true
+      }
     },
     components: {
       Headers,

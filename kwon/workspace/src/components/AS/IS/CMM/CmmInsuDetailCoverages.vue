@@ -364,7 +364,7 @@ import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 
-import ASIS2002 from '@/views/page/AS/IS/ASIS2002/ASIS2002'
+import ASIS4002 from '@/views/page/AS/IS/ASIS4002/ASIS4002'
 import ASIS2004 from '@/views/page/AS/IS/ASIS2004/ASIS2004'
 import ASIS2005 from '@/views/page/AS/IS/ASIS2005/ASIS2005'
 import ASIS2006 from '@/views/page/AS/IS/ASIS2006/ASIS2006'
@@ -765,7 +765,7 @@ export default {
             let component
             switch(this.type) {
                 case TYPE_PERSON:
-                    component = ASIS2002
+                    component = ASIS4002
                     break
                 case TYPE_NOT_PERSON:
                     component = ASIS2006

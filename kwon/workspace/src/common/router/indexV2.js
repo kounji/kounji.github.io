@@ -442,6 +442,48 @@ routes.push({
   path: "/PDBF2001",
   component : () => import("@/views/page/PD/BF/PDBF2001/PDBF2001.vue")
 }) 
+routes.push({
+  title: "마이데이터 가입·조회 및 관리",
+  desc : "더보기 > 타기관 마이데이터 관리 > 마이데이터 가입·조회 및 관리",
+  name: "COOR2001",
+  path: "/COOR2001",
+  component : () => import("@/views/page/CO/OR/COOR2001/COOR2001.vue")
+})
+routes.push({
+  title: "전송요구내역 통합조회 결과",
+  desc : "더보기>타기관 마이데이터 관리>마이데이터 가입·조회 및 관리>서비스 이용현황>전송요구내역 통합조회 결과",
+  name: "COOR2005",
+  path: "/COOR2005",
+  component : () => import("@/views/page/CO/OR/COOR2005/COOR2005.vue")
+})
+routes.push({
+  title: "전송요구내역 통합조회 미응답 목록",
+  desc : "더보기>타기관 마이데이터 관리>마이데이터 가입·조회 및 관리>서비스 이용현황>미응답 목록",
+  name: "COOR2007",
+  path: "/COOR2007",
+  component : () => import("@/views/page/CO/OR/COOR2007/COOR2007.vue")
+})
+routes.push({
+    title: "제3자 정보제공 조회 및 관리",
+    desc : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리",
+    name: "COOR2101",
+    path: "/COOR2101",
+    component : () => import("@/views/page/CO/OR/COOR2101/COOR2101.vue")
+})
+routes.push({
+    title: "제3자 제공 동의내역 통합조회",
+    desc : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리>제3자 제공 동의내역 통합조회>동의내역",
+    name: "COOR2104",
+    path: "/COOR2104",
+    component : () => import("@/views/page/CO/OR/COOR2104/COOR2104.vue")
+})
+routes.push({
+    title: "제3자 정보제공 조회 및 관리",
+    desc : "더보기>타기관 마이데이터 관리>제3자 정보제공 조회 및 관리>제3자 제공 동의내역 통합조회>철회내역",
+    name: "COOR2105",
+    path: "/COOR2105",
+    component : () => import("@/views/page/CO/OR/COOR2105/COOR2105.vue")
+})
 
 routes.push({
   title: "조회",

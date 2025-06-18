@@ -4,6 +4,7 @@
 // import types from '@/common/config/types'
 import _ from 'lodash'
 import constant from '@/common/config/constants'
+import store from '@/store'
 
 // getters
 const getters = {
@@ -20,7 +21,8 @@ const getters = {
   toastList: state => state.toastList || [],
   toastMessage: state =>  (_.last(state.toastList) || {}).message,
   hasToast: state => (state.toastList || []).length > 0,
-
+  hasModAlert: state => state.hasModAlert,  // 모드강제변경안내알럿
+  hasLtrmUnconn: state => state.hasLtrmUnconn,  // 장기미접속자안내알럿
 }
 
 // actions
@@ -42,8 +44,9 @@ const actions = {
     commit('setLoadingBackground', true)
     commit('openLoading')
   },
-  addLoading({commit}) {
-    commit('addLoading')
+  addLoading({commit}, data) {
+    // 25.04.04) 앱 기동 또는 api 실행 구분위한 data 추가
+    commit('addLoading', data)
   },
   removeLoading({commit}) {
     commit('removeLoading')
@@ -64,6 +67,21 @@ const actions = {
   removeToast({commit}) {
     commit('removeToast')
   },
+  // NH콕마이데이터4.0신규
+  // 모드강제변경안내알럿
+  addModAlert({commit}) {
+    commit('addModAlert')
+  },
+  removeModAlert({commit}) {
+    commit('removeModAlert')
+  },
+  // 장기미접속자안내알럿
+  addLtrmUnconn({commit}) {
+    commit('addLtrmUnconn')
+  },
+  removeLtrmUnconn({commit}) {
+    commit('removeLtrmUnconn')
+  }
 }
 
 // mutations
@@ -77,6 +95,8 @@ const mutations = {
     state.modalConfig = _.last(state.modalList) || {}
     state.modalComponent = state.modalConfig.component
 
+    // v4 모달 오픈 시 세션연장 확인
+    store.dispatch('config/extendSession')
   },
   closeModal(state) {
     // 
@@ -98,8 +118,9 @@ const mutations = {
   openLoading(state) {
     state.isOpenLoading = true
   },
-  addLoading(state) {
-    state.loadingList.push({})
+  addLoading(state, data) {
+    // 25.04.04) 앱 기동 또는 api 실행 구분위한 data 추가
+    state.loadingList.push({data})
   },
   removeLoading(state) {
     if (state.loadingBackground) { // 화면 진입시 최초로 열린 로딩바인 경우 loadingBackground 값이 true
@@ -126,6 +147,24 @@ const mutations = {
   removeToast(state) {
     state.toastList.shift()
   },
+  // NH콕마이데이터4.0신규
+  // 모드강제변경안내알럿
+  addModAlert(state) {
+    document.body.classList.add('scroll-off')
+    state.hasModAlert = true
+  },
+  removeModAlert(state) {
+    document.body.classList.remove('scroll-off')
+    state.hasModAlert = false
+  },
+  addLtrmUnconn(state) {
+    document.body.classList.add('scroll-off')
+    state.hasLtrmUnconn = true
+  },
+  removeLtrmUnconn(state) {
+    document.body.classList.remove('scroll-off')
+    state.hasLtrmUnconn = false
+  },
 }
 
 // state
@@ -139,6 +178,8 @@ const state = {
   toastList: [],
 	beforeModalPageInfo: {}, // 이전 팝업 페이지 정보
 	modalPageList: [], // 팝업 페이지 정보	  
+  hasModAlert: false,// NH콕마이데이터4.0 신규) 모드강제변경안내알럿
+  hasLtrmUnconn: false,// NH콕마이데이터4.0 신규) 장기미접속자안내알럿
 }
 
 export default {

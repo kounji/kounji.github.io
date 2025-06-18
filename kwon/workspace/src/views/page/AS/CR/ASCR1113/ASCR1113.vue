@@ -98,13 +98,22 @@
                 }
                 apiService.call(config).then(response =>{
                     console.log(response)
+                    let json = {"url" : response.url}
+                    
+                    if(import.meta.env.VITE_ENV !== 'R' && !response.url){
+                      json = {"url" : "https://finance.naver.com"}
+                    }else if(import.meta.env.VITE_ENV === 'R' && !response.url){
+                      modalService.alert("이미 다 제출하여 올릴 신용점수가 없습니다.")
+                      return
+                    }
+                    
                     if(this.getUserInfo('chnl') === '385'){
-                        appService.openPopupWebView(response.url).then(rst => {
+                        appService.openPopupWebView(json).then(rst => {
                             console.log("스뱅 웹뷰다녀온 후 데이터 확인 :: ",rst)
                             this.close(rst.result.resultCallback.status)
                         })
                     }else{
-                        appService.cokBankOpenPopupWebView(response.url).then(rst => {
+                        appService.cokBankOpenPopupWebView(json).then(rst => {
                             console.log("콕뱅 웹뷰다녀온 후 데이터 확인 :: ",rst)
                             this.close(JSON.parse(rst.result).resultCallback.status)
                         }) 

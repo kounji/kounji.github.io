@@ -169,7 +169,7 @@ import {fncSlick_travel_simple} from '@/utils/slick'
 import _ from 'lodash'
 
 import PDMY2020 from '@/views/page/PD/MY/PDMY2020/PDMY2020'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
 export default {
     name : "PDMY2028",
@@ -376,7 +376,7 @@ export default {
         },
         // 목표등록화면으로 이동
         goPerposePage() {
-            var compName = PDMY2005
+            var compName = PDMY4005
 
             var param = {}
 

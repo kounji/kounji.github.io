@@ -9,8 +9,8 @@
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
 * 2021-08-10              CS515731              최초작성
-* 2023-08-04              CS533453              고도화 파일명, UI 변경 및 고도화 개발(PDMY1112.vue -> PDMY2023.vue)
-* 2025-01-10              CS541015              고도화 파일명, UI변경 및 고도화개발(PDMY2023.vue -> PDMY4023.vue)
+* 2023-08-04              CS533453              고도화 파일명, UI 변경 및 고도화 개발(PDMY1112.vue -> PDMY4023.vue)
+* 2025-01-10              CS541015              고도화 파일명, UI변경 및 고도화개발(PDMY4023.vue -> PDMY4023.vue)
 *************************************************************************/
 -->
 <template>
@@ -24,7 +24,7 @@
 
 				<div class="com_inputarea_type01">					
 					<div class="com_input_type01">
-						<input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목">
+						<input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목" @input="inputCtr($event)">
 						<label for="obtnm"><span class="txt_label_x">목표 제목</span></label>
 						<div class="del_txt">
 							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
@@ -33,16 +33,16 @@
 
 					<!-- 동/단지 명으로 아파트 찾기 -->
 					<div class="com_input_type01">
-						<label for="PDMY2023_txt01"></label>
-						<input type="search" id="PDMY2023_txt01" :value="PDMY2023_srchKwrd" ref="PDMY2023_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openAddrSrch" @keyup.delete="fn_infoClear" placeholder="동/단지 명으로 아파트 찾기" title="동/단지 명으로 아파트 찾기">
-						<a class="com_btn_delete" v-show="PDMY2023_srchKwrd.length>0" @click.prevent="del('PDMY2023_srchKwrd')" href="javascript:void(0);"><span class="blind">삭제</span></a>
+						<label for="PDMY4023_txt01"></label>
+						<input type="search" id="PDMY4023_txt01" :value="PDMY4023_srchKwrd" ref="PDMY4023_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openAddrSrch" @keyup.delete="fn_infoClear" placeholder="동/단지 명으로 아파트 찾기" title="동/단지 명으로 아파트 찾기">
+						<a class="com_btn_delete" v-show="PDMY4023_srchKwrd.length>0" @click.prevent="del('PDMY4023_srchKwrd')" href="javascript:void(0);"><span class="blind">삭제</span></a>
 						<a class="com_btn_search" @click.prevent="fn_openAddrSrch" ref="openAddrSrch" href="javascript:void(0);"><span class="blind">검색</span></a>
 					</div>
 					<!-- //동/단지 명으로 아파트 찾기 -->
 
 					<!-- 면적 선택 -->
 					<div class="com_btnselectbox_type01">
-						<button type="button" class="com_btnselect_type01" id="PDMY2023_txt01_com_input01" ref="newPytpAreaCntn" @click.prevent="fn_openRlestAreaPop" title="평형선택"><span>{{aptHscxIdvdc===''?"평형선택":(newPytpAreaCntn + '㎡')}}</span></button>
+						<button type="button" class="com_btnselect_type01" id="PDMY4023_txt01_com_input01" ref="newPytpAreaCntn" @click.prevent="fn_openRlestAreaPop" title="평형선택"><span>{{aptHscxIdvdc===''?"평형선택":(newPytpAreaCntn + '㎡')}}</span></button>
 					</div>
 					<!-- //면적 선택 -->
 
@@ -186,7 +186,7 @@ export default {
 			acNowBacTotAm:0,   // 계좌현재잔액총액
 			bacAm:0,
 
-			PDMY2023_srchKwrd	: '',	//아파트 검색어
+			PDMY4023_srchKwrd	: '',	//아파트 검색어
 			fncObtAchvYn:'', // 목표달성여부
 
 			foc_fncObtAm : false, // 목표금액 focus YN
@@ -341,7 +341,7 @@ export default {
 				this.aptHscxIdvdc    = this.respInfo.aptHscxIdvdc
 				this.fncObtAm = keyupNumFormat(this.respInfo.fncObtAm / 10000)
 				this.aptHcxnm = this.respInfo.aptHcxnm
-				this.PDMY2023_srchKwrd = this.respInfo.aptHcxnm
+				this.PDMY4023_srchKwrd = this.respInfo.aptHcxnm
 				this.newPytpAreaCntn = this.respInfo.newPytpAreaCntn
 				this.genDlAm = this.respInfo.genDlAm * 10000
 				this.obtDt = dateFormat(this.respInfo.obtDt, 'YYYY-MM-DD')
@@ -357,8 +357,8 @@ export default {
         fn_openAddrSrch() {
 
 			let param = {
-				//srchKwrd : this.PDMY2023_srchKwrd || this.$refs.PDMY2023_srchKwrd.value,
-				srchKwrd : this.$refs.PDMY2023_srchKwrd.value,
+				//srchKwrd : this.PDMY4023_srchKwrd || this.$refs.PDMY4023_srchKwrd.value,
+				srchKwrd : this.$refs.PDMY4023_srchKwrd.value,
             }
             const config = {
                 component: PDMY2045,
@@ -367,7 +367,7 @@ export default {
             modalService.openPopup(config).then(response => {
 
 				this.aptNm          	= response.aptNm
-				this.PDMY2023_srchKwrd	= response.aptNm
+				this.PDMY4023_srchKwrd	= response.aptNm
 
                 this.aptHscxIdvdc   = response.aptHscxIdvdc
                 this.isAptSrch      = true
@@ -385,10 +385,10 @@ export default {
 		// 검색 텍스트 삭제
 		del(type) {
 
-			if(type === 'PDMY2023_srchKwrd') {
+			if(type === 'PDMY4023_srchKwrd') {
 				this.aptNm				= ''
 				this.aptHscxIdvdc		= ''
-				this.PDMY2023_srchKwrd	= ''
+				this.PDMY4023_srchKwrd	= ''
 				this.genDlAm			= '' // 아파트시세
 				this.newPytpAreaCntn 	= '' // 신평형면적내용
 				this.fncObtAm           = ''
@@ -480,10 +480,10 @@ export default {
         fn_checkWord(event, maxByte) {
             let rtnObj = checkWord(event.target.value, maxByte)
 
-            if(rtnObj.flag) {this.$refs.PDMY2023_srchKwrd.blur()}   // 알럿 중복 방지
+            if(rtnObj.flag) {this.$refs.PDMY4023_srchKwrd.blur()}   // 알럿 중복 방지
 
             event.target.value = rtnObj.value
-            this.PDMY2023_srchKwrd = event.target.value
+            this.PDMY4023_srchKwrd = event.target.value
 		},
 		addComma() {
 
@@ -925,6 +925,11 @@ export default {
 				division = Math.pow(unit, ++index)
 			}
 			return (answer + "원").replace(" 원", "원")
+		},
+		// 목표명 입력값 제어
+		inputCtr(e) {
+			const inputStr = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s_~!@#$%^&*()\-–—+=;,.<>\[\]{}|?\\/]/g
+			this.obtnm = e.target.value.replace(inputStr, '')
 		}
     },
     mounted() {

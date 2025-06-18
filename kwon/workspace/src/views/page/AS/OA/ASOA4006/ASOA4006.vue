@@ -47,7 +47,7 @@
                                 <span><em>{{goldMprAm | numberFilter}}</em>원</span>
                                 <div class="custom_tooltip">
                                     <div class="com_tooltip_type02 com_tooltip_type03">
-                                        <a href="#nolink" class="com_btn_info" role="button">
+                                        <a href="javascript:void(0);" class="com_btn_info" role="button">
                                             <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                         </a>
                                         <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
@@ -60,7 +60,7 @@
                                                         <li>실물 구입 시 부가가치세 10%가 부과될 수 있습니다.</li>
                                                     </ul>
                                                 </div>
-                                                <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                                <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                             </div> 
                                         </div>
                                     </div>

@@ -27,14 +27,14 @@
 								{{flagGraph === '1' ? '계좌 잔액이 부족할 것 같아요' : flagGraph === '2' ? '여유자금이 있을 것 같아요' : '잔액 변동이 없어요'}}
 								<div class="custom_tooltip">
 									<div class="com_tooltip_type02 com_tooltip_type03">
-										<a class="com_btn_info" role="button">
-											<em class="com_icon_info question"><span class="blind">툴팁열기</span></em>
+										<a href="javascript:void(0)" class="com_btn_info" role="button">
+											<em class="com_icon_info question"><span class="blind">도움말 툴팁열기</span></em>
 										</a>
 									</div>
 									<div class="com_ballon_type01 com_ballon_type02" style="display:none;">
 										<div>
 											계좌 잔액 예상 서비스는 고객님의 입출금 계좌 현재 잔액에서 예상되는 고정지출 정보를 기반으로 30일 후 추정되는 자산 정보를 제공하며 실제 금액과 차이가 있을 수 있어요.
-											<a class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+											<a href="javascript:void(0)" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
 										</div> <!-- 말풍선영역 -->
 									</div>
 								</div>

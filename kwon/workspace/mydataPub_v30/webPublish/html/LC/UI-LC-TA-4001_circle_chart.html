@@ -45,7 +45,7 @@
                     <!--개요-->
                     <div class="outline">
                         <h2><a href="#nolink">11월 지출</a></h2>
-                        
+                        <!--[v4.0] #접근성# 마크업수정 
                         <div class="toggle_money">
                             <input type="checkbox" title="금액노출" name="" id="sum_view_01">
                             <label for="sum_view_01" class="btns">
@@ -57,7 +57,19 @@
                                 <span class="hide">1,952,692,372원</span>
                             </div>
                         </div>
-
+                        -->
+                        <div class="toggle_money">
+                            <div class="sum">
+                                <span class="hide">쉿! 비밀이에요.</span>
+                                <span class="show"><em>1,952,692,372</em>원</span>
+                            </div>
+                            <button type="button" class="btns">
+                                <span class="blind">금액</span>
+                                <span class="hide">보기</span>
+                                <span class="show">숨김</span>
+                            </button>
+                        </div>
+                        <!--[v4.0] #접근성# 마크업수정 -->
                         <p class="txt">지난 달의 같은 기간보다 <em>100만원</em> 덜 쓰고 있어요</p>
                     </div>
 
@@ -384,8 +396,7 @@
 
                     <!--금융지식-->
                     <div class="finlit">
-                        <h2 class="h_tit01">금융지식</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 
                         <div class="scroller">
                             <ul>

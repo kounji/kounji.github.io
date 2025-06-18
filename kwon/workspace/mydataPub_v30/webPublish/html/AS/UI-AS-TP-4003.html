@@ -32,7 +32,7 @@
 			<nav class="navi">
 				<div class="inner">
 					<ul role="navigation" aria-label="숨은자산" class="depth1-4">
-						<li><a href="#" aria-current="page"><span>휴면계좌</span></a></li>
+						<li><a href="#" aria-current="page"><span>휴면예금</span></a></li><!--25-03-21 문구수정-->
 						<li><a href="#"><span>휴면보험금</span></a></li>
 					</ul>
 				</div>
@@ -57,11 +57,19 @@
                         </div>
                         <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
                             <div>
+                                <!-- 25-05-14 툴팁문구변경 
                                 <ul class="bl_dot_list">
                                     <li>1년 이상 사용하지 않은 잔액이 있는 비활동성 계좌 중 소액(100만원 이하)에 해당하는 계좌만 조회 가능합니다.</li>
                                     <li>계좌를 해지하여 잔액을 이전하거나, 서민금융진흥원에 기부할 수 있습니다.</li>
                                     <li>해지 처리가 완료된 이후 취소가 불가능합니다. </li>
                                 </ul>
+                                -->
+                                <ul class="bl_dot_list">
+                                    <li>소멸시효가 완성된 후 아직 서금원에 출연되지 않은 예금입니다.</li>
+                                    <li>계좌를 해지하여 잔액을 이전하거나, 서민금융진흥원에 기부할 수 있습니다.</li>
+                                    <li>해지 처리가 완료된 이후 취소가 불가능합니다. </li>
+                                </ul>
+                                <!-- //25-05-14 툴팁문구변경 -->
     
                                 <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                             </div> 
@@ -83,6 +91,13 @@
                     </div>
 					-->
 					<div class="board_box">
+						<!-- 25-03-21 버튼 추가 /25-03-25 하단으로 이동 -->
+						<!--
+						<div class="btn_wrap">
+							<button type="button" class="btns line md"><span class="ico_search_green">최신 숨은 자산 조회 하기</span></button>
+						</div>
+						-->
+						<!-- //25-03-21 버튼 추가 -->
 						<div class="no_connect">
 							<p class="headline">잠자는 내 돈, 궁금하지 않으세요?</p>
 							<p class="headline point">숨은 예금을 조회해 보세요.</p>
@@ -94,9 +109,16 @@
 									<lottie-player src="../../../../src/assets_v40/images/lottie/plz_asset_join.json"  loop autoplay aria-hidden="true" class="plz_asset_join" ></lottie-player>
 								</div>
 							</div>
+							<!--  25-03-21 상단으로 이동 
 							<div class="btn_wrap">
 								<button type="button" class="btns md"><span class="icon_line_right">자산연결 하러가기</span></button>
 							</div>
+							-->
+							<!--25-03-25 하단으로 이동 -->
+							<div class="btn_wrap">
+								<button type="button" class="btns line md"><span class="ico_search_green">최신 숨은 자산 조회 하기</span></button>
+							</div>
+							<!--//25-03-25 하단으로 이동 -->
 						</div>
 					</div>
 					<!-- //25-03-10 디자인 변경 -->

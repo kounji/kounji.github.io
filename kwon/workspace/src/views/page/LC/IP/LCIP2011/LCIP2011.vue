@@ -19,7 +19,7 @@
         </div>
         <div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
             <div class="com_inner">
-                <strong class="titH1"><span class="pointColor green">{{prcMchtnm}}</span>를 제일 자주 이용해요</strong>
+                <strong class="titH1"><span class="pointColor green">{{prcMchtnm}}</span> 제일 자주 이용해요</strong>
 
                 <div class="chart_wrap"><!-- 1004 접근성 반영 -->
                     <div class="pension_bar_chart">

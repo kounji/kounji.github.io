@@ -137,7 +137,7 @@ import modalService from '@/service/modalService'
 import {dateFormat, dayDiff} from '@/utils/date'
 import {round} from '@/utils/number'
 import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import _ from 'lodash'
 
     export default {
@@ -287,7 +287,7 @@ import _ from 'lodash'
             },
 			// 목표등록화면으로 이동
 			goPerposePage() {
-				var compName = PDMY2005
+				var compName = PDMY4005
 
 				var param = {}
 

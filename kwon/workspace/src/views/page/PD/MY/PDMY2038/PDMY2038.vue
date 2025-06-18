@@ -31,7 +31,7 @@
 
 			<div class="com_inner">
 				<div class="com_input_type01">
-					<input type="text" id="com_input01" class="" name="" :value="obtnm" ref="obtnm" required placeholder="목표 제목 입력" title="목표 제목 입력" maxlength="40" @keyup="fn_checkWord($event, 40)" @keyup.enter="moveNextTag($event)" @focus="fn_focusOnOff('obtnm')">
+					<input type="text" id="com_input01" class="" name="" v-model="obtnm" ref="obtnm" required placeholder="목표 제목 입력" title="목표 제목 입력" maxlength="40" @keyup="fn_checkWord($event, 40)" @keyup.enter="moveNextTag($event)" @focus="fn_focusOnOff('obtnm')" @input="inputCtr($event)">
 					<label for="com_input01"><span class="txt_label_x">목표제목</span></label>
 				</div>
 				<div class="price_wrap">
@@ -627,6 +627,11 @@ export default {
             }
             
             return result;
+        },
+        // 목표명 입력값 제어
+        inputCtr(e) {
+            const inputStr = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s_~!@#$%^&*()\-–—+=;,.<>\[\]{}|?\\/]/g
+			this.obtnm = e.target.value.replace(inputStr, '')
         }
     }
 }

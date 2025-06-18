@@ -771,9 +771,9 @@ export default {
         fn_openBrowser() {
 
             // 외부 브라우저 링크 오픈 
-            // url = "https://nhcok.cardong.co.kr/estimate/start"
+            // url = "https://nhcok.carnoon.co.kr/estimate/start"
             //2025.02.03 사업부서 요청 url 수정
-            let url = "https://nhcok.cardong.co.kr/home"
+            let url = "https://nhcok.carnoon.co.kr/home"
 
             // chnl : 385 -> 스마트뱅크 , 386 -> 콕뱅크
             if(this.getUserInfo('chnl') === '385') {
@@ -804,7 +804,7 @@ export default {
             }
         },
 		fn_setImgUrl(imgPathnm){
-			return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 		},
         emptyImg(e) {
             e.target.src = new URL("@/assets/images/icon/car_new01.png", import.meta.url).href

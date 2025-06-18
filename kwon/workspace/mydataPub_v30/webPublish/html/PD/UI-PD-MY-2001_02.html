@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>금융생활 | 목표관리 | 나의목표 | 목록</title>
+	<title>도전 목표 챌린지</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="format-detection" content="telephone=no">
@@ -14,13 +14,20 @@
 <body>
 	<div id="wrap" class="sticky-scroll">
 		<!-- header S -->
-		<header id="header" class="mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
-			<h1>금융생활</h1>
-			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		<header id="header">
+			<h1>도전 목표 챌린지</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
 		</header>
 		<!--// header E -->
 		
 		<div class="content-view movLNB mydata2023"><!-- 0803 .mydata2023 클래스 이동-->
+			<!--[v4.0] 
 			<div class="com_tabmenu_type01 menunum04">
 					<ul role="tablist">
 						<li class="on"><a href="#nolink">나의목표</a></li>
@@ -29,7 +36,6 @@
 						<li><a href="#nolink">자동차관리</a></li>
 					</ul>
 			</div>
-
 			<div class="lnb_box">
 				<div class="choice_wrap">
 					<div class="choice_option">
@@ -38,6 +44,17 @@
 					</div>
 				</div>
 			</div>
+			-->
+			<!-- [v4.0] 25-04-10 탭 추가 -->
+			<nav class="navi">
+				<div class="inner">
+					<ul role="navigation" aria-label="도전 목표 챌린지" class="depth5-1">
+						<li><a href="#nolink"><span>버킷리스트</span></a></li>
+						<li><a href="#nolink" aria-current="page"><span>금융목표</span></a></li>
+					</ul>
+				</div>
+			</nav>
+			<!-- //[v4.0] 25-04-10 탭 추가 -->
 		
 			<div id="content" class="sub_main renewal">
 				<!-- 0803 위치 이동, .com_inner로 감싸주세요 -->
@@ -49,8 +66,13 @@
 				<!-- //0803 위치 이동, .com_inner로 감싸주세요 -->
 
 				<div class="goal_box_wrap com_inner">
+					<!--[v4.0] 박스 bg  컬러 변경, [mygoal_cont_box]에 카테고리별로 클래스 추가
+					- 지출목표 : bg_skyblue(#d6ebff)
+					- 돈모으기 : bg_ivory(#fff1db)
+					- 투자목표 : bg_lightpink(#ffe2e2)
+					-->
 					<!-- 6월 지출목표 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_skyblue"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">6월 지출목표<span class="mint_badge">D-28</span></p>
@@ -80,7 +102,7 @@
 					<!-- //6월 지출목표 -->
 
 					<!-- 6월 지출목표 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_skyblue"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">6월 지출목표<span class="mint_badge">D-28</span></p>
@@ -110,7 +132,7 @@
 					<!-- //6월 지출목표 -->
 
 					<!-- 돈모으기 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_ivory"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">돈모으기<span class="mint_badge">D-234</span></p>
@@ -140,7 +162,7 @@
 					<!-- //돈모으기 -->
 
 					<!-- 돈모으기 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_ivory"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">돈모으기<span class="mint_badge">D-234</span></p>
@@ -170,7 +192,7 @@
 					<!-- //돈모으기 -->
 
 					<!-- 투자목표 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_lightpink"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">투자목표<span class="mint_badge">D-234</span></p>
@@ -200,7 +222,7 @@
 					<!-- 투자목표 -->
 
 					<!-- 투자목표 -->
-					<div class="mygoal_cont_box">
+					<div class="mygoal_cont_box bg_lightpink"><!--[v4.0] bg클래스 추가-->
 						<a href="#nolink">
 							<div class="head">
 								<p class="goal_title">투자목표<span class="mint_badge">달성</span></p>
@@ -286,7 +308,7 @@
 		}
 
 		function scrollProgressAni() {
-			jQuery('#content').scroll(function(){
+			jQuery('body').scroll(function(){ // [v4.0] 25-04-10 선택자 변경
 
 				if(n <= currentNum) {
 					var contTop = jQuery('.mygoal_cont_box').eq(n).position().top - contHeight02;

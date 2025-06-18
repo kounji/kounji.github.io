@@ -87,10 +87,11 @@
 		<!-- header S -->
 		<header id="header" class="mydata2023">
 			<h1>지출</h1>
-			<a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a>
-			<div class="header_option">
-				<a href="#nolink" class="btn_home"><span class="blind">홈이동</span></a>	
-				<a href="#nolink" class="btn_nav"><span class="blind">전체메뉴열기</span></a>	
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
 			</div>
 		</header>
 		<!--// header E -->
@@ -261,7 +262,7 @@
 					</div>
 					<!--// 소비스타일 -->
 					<!-- 정기 지출 -->
-					<div class="com_box_type01">
+					<div class="com_box_type01 bottomBtnType"><!--[v4.0] 25-05-23 더보기 버튼 추가로 bottomBtnType 추가 -->
 						<ul class="layoutBox wAuto rBtn">
 							<li class="left">
 								<strong class="titH3">다가올 지출 <em>5</em>건</strong>
@@ -271,7 +272,7 @@
 							</li>
 						</ul>
 						<!-- 다가올 지출 목록 -->
-						<ul class="expenListBox">
+						<ul class="expenListBox botmBtn"><!--[v4.0] 25-05-23 더보기 버튼 추가로 botmBtn 추가 -->
 							<li class="expenList">
 								<span class="expIcon AS20000014"></span>
 								<strong class="expName">도시가스 6월</strong>
@@ -292,6 +293,9 @@
 							</li>
 						</ul>
 						<!--// 다가올 지출 목록 -->
+						<!--[v4.0] 25-05-23 더보기 버튼 추가-->
+						<button class="bottomBtn">더보기</button>
+						<!--//[v4.0] 25-05-23 더보기 버튼 추가-->
 					</div>
 					<!--// 정기 지출 -->
 					<!-- 정기 지출 정보가 없는 경우 -->

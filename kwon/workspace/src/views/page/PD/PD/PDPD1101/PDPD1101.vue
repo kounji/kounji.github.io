@@ -48,7 +48,7 @@
                         </div>
                         
                         <div class="com_box_type01 credit_box_type" v-if="psnCrdevlScrVal > 0">
-                            <a class="com_link" @click.prevent="openASCR1101()" href="javascript:void(0);">
+                            <a class="com_link" @click.prevent="openASCR4101()" href="javascript:void(0);">
                                 <strong class="com_box_tit02 p0">고객님의 신용점수</strong>
                                 <div class="gauge_chart_wrap">
                                     <div class="score mt20"><span class="num bold">{{psnCrdevlScrVal}}</span>점</div>
@@ -191,7 +191,7 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import {fncSlick} from '@/utils/slick'
 import {dateFormat} from '@/utils/date'
-//import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+//import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
 import appService from '@/service/appService'
 //import _ from 'lodash'
 
@@ -337,12 +337,12 @@ export default {
             }
 
         },
-        openASCR1101(){
+        openASCR4101(){
 
             // 신용정보상세보기
             /* var param = {}
             const config = {
-                component: ASCR1101,
+                component: ASCR4101,
                 params : param
             }
             modalService.openPopup(config).then(() => {

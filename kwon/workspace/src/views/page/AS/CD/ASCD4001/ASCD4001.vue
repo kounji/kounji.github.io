@@ -53,7 +53,19 @@
 
 								<br>
 
-								<div class="toggle_money">
+                                <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                    <div class="sum">
+                                        <span class="hide">잔액숨김</span>
+                                        <span class="show">{{totAm | numberFilter}}원</span>
+                                    </div>
+                                    <button type="button" class="btns" @click="fn_setHidden('CD', !hideYn)">
+                                        <span class="blind">금액</span>
+                                        <span class="hide">보기</span>
+                                        <span class="show">숨김</span>
+                                    </button>
+                                </div>
+
+								<!-- <div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('CD', hideYn)">
 									<label for="sum_view_01" class="btns">
 										<span class="hide" aria-hidden="true">보기</span>
@@ -63,7 +75,7 @@
 										<span class="hide">잔액숨김</span>
 										<span class="show">총 <em>{{totAm | numberFilter}}</em>원</span>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<!-- //[v4.0] 25-02-17 잔액숨김 기능추가, 툴팁이동 -->
                         </div>
@@ -115,7 +127,7 @@
                     <!-- 리볼빙, 단기대출, 장기대출 --> 
                     <div class="com_box_type01 toggle_list_box2 custom_list" v-if="cardLoanOut.length > 0">
                         <div data-ui-toggle="box" class="toggle_box_area open">
-                            <button type="button" class="view_btn" aria-expanded="false">
+                            <button type="button" class="view_btn" aria-expanded="true">
                                 <div class="new_tit_area">
                                     <div class="tit"><span>남은 결제예정금액</span></div>
                                     <span class="total_price">
@@ -192,7 +204,7 @@
                     <!-- 이번달 카드별 이용내역 -->
                     <div class="com_box_type01 toggle_list_box2 custom_list" v-if="expeOut.length > 0">
                         <div data-ui-toggle="box" class="toggle_box_area open">
-                            <button type="button" class="view_btn" aria-expanded="false">      
+                            <button type="button" class="view_btn" aria-expanded="true">      
                                 <div class="new_tit_area">
                                     <div class="tit"><span>이번달 카드별 이용내역</span></div>
                                 </div>
@@ -259,7 +271,7 @@ import ASCD2004 from '@/views/page/AS/CD/ASCD2004/ASCD2004'     // 청구내역
 import ASCD2007 from '@/views/page/AS/CD/ASCD2007/ASCD2007'     // 단기신용대출
 import ASCD2008 from '@/views/page/AS/CD/ASCD2008/ASCD2008'     // 장기신용대출
 import ASCD2009 from '@/views/page/AS/CD/ASCD2009/ASCD2009'     // 리볼빙
-import LCLE2002 from '@/views/page/LC/LE/LCLE2002/LCLE2002'
+import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002'
 import COAR4001 from '@/views/page/CO/AR/COAR4001/COAR4001'
 import ASCD4010 from '@/views/page/AS/CD/ASCD4010/ASCD4010'     // 정렬팝업
 
@@ -459,7 +471,7 @@ export default {
         // 이번달 카드별 이용내역 오픈
         openDetailPop(obj) {
             const config = {
-                component: LCLE2002,
+                component: LCLE4002,
                 params : {
                     mydtCusno       : obj.mydtCusno,
                     inqYm           : this.inqYm,
@@ -480,6 +492,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
         /*
@@ -549,7 +562,7 @@ export default {
                     this.claimOut = [...this.claimOutOrg] || [] 
                     this.claimSortNm = "기본"
                 }else{
-                    this.claimOut = this.claimOut.sort((a,b) => b.cdLnStlPlaBac - a.cdLnStlPlaBac || a.scrnPrtoSq - b.scrnPrtoSq)
+                    this.claimOut = this.claimOut.sort((a,b) => b.colCdRqsAm - a.colCdRqsAm || a.scrnPrtoSq - b.scrnPrtoSq)
                     this.claimSortNm = "금액순"
                 }
             })
@@ -573,7 +586,7 @@ export default {
                     this.expeOut = [...this.expeOutOrg] || [] 
                     this.expeSortNm = "기본"
                 }else{
-                    this.expeOut = this.expeOut.sort((a,b) => b.cdLnStlPlaBac - a.cdLnStlPlaBac || a.scrnPrtoSq - b.scrnPrtoSq)
+                    this.expeOut = this.expeOut.sort((a,b) => b.cdUgUsAm - a.cdUgUsAm || a.scrnPrtoSq - b.scrnPrtoSq)
                     this.expeSortNm = "금액순"
                 }
             })

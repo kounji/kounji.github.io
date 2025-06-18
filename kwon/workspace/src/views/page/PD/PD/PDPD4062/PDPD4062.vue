@@ -32,7 +32,7 @@
 						<label for="dsr_cal1"><i class="ico_loan01"></i><span>전세보증금<br>담보대출</span></label>
 					</div>
 					<div class="radio">
-						<input type="radio" name="dsr_cal" id="dsr_cal2" v-model="acTpDsc" value="3220" :checked="acTpDsc == '3220'">
+						<input type="radio" name="dsr_cal" id="dsr_cal2" v-model="acTpDsc" value="3220" :checked="acTpDsc == '3220'" @change.prevent="chkLnDt">
 						<label for="dsr_cal2"><i class="ico_loan02"></i><span>주택<br>담보대출</span></label>
 					</div>
 					<div class="radio">
@@ -77,7 +77,8 @@
 					<label for="loan_cal_01">대출금액</label><!-- [v4.0] 25-02-24 문구수정 -->
 					<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
 					<div class="input">
-						<input type="text" name="" id="loan_cal_01" v-model="lnAm" required="" placeholder="희망대출금액을 입력해 주세요." @input="onLnAmInput">
+						<input type="text" inputmode="numeric" name="" id="loan_cal_01" v-model="lnAm" required="" placeholder="상환금액을 제외한 금액을 입력해 주세요." @input="onLnAmInput"><!-- [v4.0] 25-03-26 placeholder수정 -->
+						<button type="button" class="clear_btn" :class="lnAm != '' && lnAm != null ? 'show' : ''" v-show="lnAm.length &gt; 0" @click.prevent="del('lnAm')"><span class="blind">삭제</span></button>
 						<span class="unit">만원</span>
 					</div>
 					<div class="btns_wrap">
@@ -96,7 +97,8 @@
 					<label for="loan_cal_02">대출 이자율(연 이자율)</label>
 					<span class="info_txt">대출이자율 범위 : 1~30%</span>
 					<div class="input">
-						<input type="text" name="" id="loan_cal_02" v-model="lnInt" required="" placeholder="대출이자율을 입력해 주세요." @input="onLnIntInput">
+						<input type="text" inputmode="decimal" name="" id="loan_cal_02" v-model="lnInt" required="" placeholder="대출이자율을 입력해 주세요." @input="onLnIntInput">
+						<button type="button" class="clear_btn" :class="lnInt != '' && lnInt != null ? 'show' : ''" v-show="lnInt.length &gt; 0" @click.prevent="del('lnInt')"><span class="blind">삭제</span></button>
 						<span class="unit">%</span>
 					</div>
 					<div class="btns_wrap">
@@ -113,7 +115,8 @@
 					<label for="loan_cal_03">대출기간</label>
 					<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
 					<div class="input">
-						<input type="text" name="" id="loan_cal_03" v-model="lnDt" required="" placeholder="대출기간을 입력해 주세요." @input="onLnDtInput">
+						<input type="text" inputmode="numeric" name="" id="loan_cal_03" v-model="lnDt" required="" placeholder="대출기간을 입력해 주세요." @input="onLnDtInput">
+						<button type="button" class="clear_btn" :class="lnDt != '' && lnDt != null ? 'show' : ''" v-show="lnDt.length &gt; 0" @click.prevent="del('lnDt')"><span class="blind">삭제</span></button>
 						<span class="unit">개월</span>
 					</div>
 					<div class="btns_wrap">
@@ -233,7 +236,7 @@ export default {
 		fnInsert(flag) {
 			// 대출금액, 대출기간, 대출이자율의 조건이 충족이 되지 않을 경우
 			if(this.lnAm < 100 || this.lnInt < 1 || (this.lnDt < 6 && this.acTpDsc == '3220')) {
-				modalService.alert("계산할 수 없어요. <br>입력값을 확인해주세요.")
+				modalService.alert("계산할 수 없어요. <br>입력값을 확인해 주세요.")
 				return;
 			}
 			
@@ -252,7 +255,7 @@ export default {
 				}
 			}
 
-			let tmpTerm = {'3100':60, '3150':12, '3210':96, '3230':96, '3240':96, '3050':96, '3260':96, '3271':48, '3290':120}
+			let tmpTerm = {'3100':60, '3150':12, '3210':96, '3230':96, '3240':96, '3250':96, '3260':96, '3271':48, '3290':120}
 
 			if(flag) { // 수정
 				if(this.idx < 0) {
@@ -413,6 +416,8 @@ export default {
 			if(parseInt(this.lnDt) > 600){
 				this.lnDt = 600;
 			}
+
+			this.lnDt = this.addComma(this.lnDt);
 		},
 		onLnIntInput() {
 			this.lnInt = this.checkInputNum(this.lnInt, 'lnInt');
@@ -427,6 +432,8 @@ export default {
 			if(parseFloat(this.lnInt) > 30){
 				this.lnInt = 30;
 			}
+
+			this.lnInt = String(this.lnInt);
 		},
 		// 대출금액 버튼 이벤트
         btnLnAmEvt(amount) {
@@ -517,6 +524,25 @@ export default {
 				value = value.replace(/^(\d+)(\.\d{0,2})?.*$/, "$1$2");
 				
 				return value;
+			}
+		},
+		chkLnDt () {
+			if(this.acTpDsc == '3220')
+				this.lnDt = "";
+		},
+		del(type) {
+			if(type === 'lnAm') {
+				this.lnAm = ""
+				this.lnAmErrorText = '';
+				this.lnAmInKorean = '';
+			}
+			else if(type === 'lnDt') {
+				this.lnDt = ""
+				this.lnDtErrorText = '';
+			}
+			else if(type === 'lnInt') {
+				this.lnInt = ""
+				this.lnIntErrorText = '';
 			}
 		},
     },

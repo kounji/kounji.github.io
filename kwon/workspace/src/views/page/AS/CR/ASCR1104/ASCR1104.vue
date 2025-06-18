@@ -16,7 +16,7 @@
         <div class="popup_header">
             <h1>신용정보</h1>
             <a href="javascript:void(0);" class="btn_back"  @click.prevent="fn_moveBack()" ><span class="blind">이전화면</span></a>
-            <a href="javascript:void(0);" class="btn_close" @click.prevent="closeAll(true)"><span class="blind">화면닫기</span></a>
+            <a href="javascript:void(0);" class="btn_close" @click.prevent="close(true)"><span class="blind">화면닫기</span></a>
         </div>
         <div class="com_tabmenu_type01 menunum03">
             <ul>
@@ -132,7 +132,7 @@
                 <div class="com_inner p0">
                     <div class="top_info_box_wrap m0">
                         <div class="top_info_box gradiant_boxlist p0">
-                            <div class="bill mt5">
+                            <div class="bill mt10">
                                 <!-- <span id="lnBac" class="num counter" :data-count="lnBac"></span>원 -->
                                 <span id="lnBac" class="num counter">{{lnBac | numberFilter}}</span>원
                             </div>
@@ -278,7 +278,7 @@
                             <div class="select_date">
                                 {{inqMm | numberFilter}}월 카드 이용현황
                             </div>
-                            <div class="bill">
+                            <div class="bill mt10">
                                 <!-- <span id="totUsAm" class="num counter" :data-count="totUsAm"></span>원 -->
                                 <span id="totUsAm" class="num counter">{{totUsAm | numberFilter}}</span>원
                             </div>

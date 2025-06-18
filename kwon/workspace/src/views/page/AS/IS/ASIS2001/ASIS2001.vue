@@ -292,11 +292,11 @@ import AsCategoryV2 from '@/components/category/AsCategoryV2.vue'
 import AsSubCategoryV2 from '@/components/category/AsSubCategoryV2.vue'
 import CmmFinancialBanner from '@/components/CmmFinancialBanner.vue'
 
-import ASIS2002 from '@/views/page/AS/IS/ASIS2002/ASIS2002'
+import ASIS4002 from '@/views/page/AS/IS/ASIS4002/ASIS4002'
 import ASIS2006 from '@/views/page/AS/IS/ASIS2006/ASIS2006'
 import ASIS2010 from '@/views/page/AS/IS/ASIS2010/ASIS2010'
 import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
-import ASIS2016 from '@/views/page/AS/IS/ASIS2016/ASIS2016'
+import ASIS4016 from '@/views/page/AS/IS/ASIS4016/ASIS4016'
 import ASIS2018 from '@/views/page/AS/IS/ASIS2018/ASIS2018'
 import ASIS2021 from '@/views/page/AS/IS/ASIS2021/ASIS2021'
 import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'     // To-Be 자산등록 팝업
@@ -405,7 +405,7 @@ export default {
             //주계약자
             if(type == 'main') {
                 if(this.insuIsrKdDsc.indexOf(insuInfo.isrKdDsc) > -1) {
-                    compName = ASIS2002; // 상세내역(인보험 상세 납입정보탭)
+                    compName = ASIS4002; // 상세내역(인보험 상세 납입정보탭)
 
                 } else if(this.pensionIsrKdDsc.indexOf(insuInfo.isrKdDsc) > -1) {
                     compName = ASIS2012; // 상세내역(연금저축보험 상세 납입정보탭)
@@ -420,10 +420,10 @@ export default {
             //피보험계약자
             } else if(type == 'anti') {
                 if(this.insuIsrKdDsc.indexOf(insuInfo.isrKdDsc) > -1) {
-                    compName = ASIS2016; // 상세내역(피보험자 인보험 상세)
+                    compName = ASIS4016; // 상세내역(피보험자 인보험 상세)
 
                 } else if(this.pensionIsrKdDsc.indexOf(insuInfo.isrKdDsc) > -1) {
-                    compName = ASIS2016; // 상세내역(피보험자 연금저축보험 상세)
+                    compName = ASIS4016; // 상세내역(피보험자 연금저축보험 상세)
 
                 } else if(this.tngIsrKdDsc.indexOf(insuInfo.isrKdDsc) > -1) {
                     compName = ASIS2018; // 상세내역(피보험자 물보험 상세)

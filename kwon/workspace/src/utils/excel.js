@@ -62,7 +62,12 @@ function setCellText(worksheet, txt, row){
 function getDateHangul(){
     const yyyymmdd = dateFormat(new Date(),'YYYY.MM.DD');
     const dayName = getDayDowCName(new Date());
-    const hh24miss = dateFormat(new Date(),'hh:mm:ss');
+    let date = new Date();
+    let hh = date.getHours()   < 10 ? "0" + date.getHours()   : date.getHours();
+    let mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    let ss = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    //const hh24miss = dateFormat(new Date(),'hh:mm:ss');
+    const hh24miss = hh + ":" + mm + ":" + ss;
     return yyyymmdd + "(" + dayName + ") " + hh24miss;
 }
 

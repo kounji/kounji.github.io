@@ -1,14 +1,14 @@
 <!--
 /*************************************************************************
 * @ 서비스경로 : 지출 > 금융달력
-* @ 페이지설명 : 지출 > 금융달력 > 금융달력 검색 슬라이드팝업
+* @ 페이지설명 : 지출 > 금융달력 > 금융달력 거래내역 내려받기
 * @ 파일명     : src\views\page\LC\FD\LCFD4009\LCFD4009.vue
 * @ 작성자     : CS540687
 * @ 작성일     : 2025-01-02
 ************************** 수정이력 ****************************************
 * 날짜                    작업자                 변경내용
 *_________________________________________________________________________
-* 2023-07-18              CS540687                 최초작성
+* 2025-01-02              CS540687                 최초작성
 *************************************************************************/
 -->
 <template>
@@ -23,7 +23,7 @@
             <div class="popup_content">
                 <div class="com_inner">
                     <!--25-02-10 텍스트 수정 -->
-                    <strong class="titH1">내려받을 거래내역 조건을 설정해 주세요.</strong>
+                    <strong class="titH1">내려받을 거래내역 조건을 <br>설정해 주세요.</strong>
                     <!--//25-02-10 텍스트 수정 -->
 
                     <div class="btn_radio_wrap">
@@ -154,14 +154,18 @@
                             </li>
                         </ul>
                     </div>
-
-                    <p class="stdMsg star mt15">거래내역 저장 서비스는 고객 편의를 위해 제공되는 서비스로 다운로드한 자료를 법적 자료로 사용하실 수 없습니다.</p>
+                    <!-- 25-03-14 박스타입으로 변경 -->
+                    <!--<p class="stdMsg star mt15">거래내역 저장 서비스는 고객 편의를 위해 제공되는 서비스로 다운로드한 자료를 법적 자료로 사용하실 수 없습니다.</p>-->
+                    <div class="list_gray_box type02">
+                        <p class="stdMsg">거래내역 저장 서비스는 고객 편의를 위해 제공되는 서비스로 다운로드한 자료를 법적 자료로 사용하실 수 없습니다.</p>
+                    </div>
+                    <!-- //25-03-14 박스타입으로 변경 -->
                 </div>
             </div>
             <div class="popup_footer fixed">
                 <div class="btn_full_box">
                     <!--25-02-10 텍스트 수정 -->
-                    <a href="#nolink" @click.prevent="excelBrkSearchFn" class="btn btn_mint" role="button">내려받기</a>
+                    <a href="javascript:void(0);" @click.prevent="excelBrkSearchFn" class="btn btn_mint" role="button">내려받기</a>
                     <!--//25-02-10 텍스트 수정 -->
                 </div>
             </div>
@@ -200,6 +204,10 @@ export default {
             trbrkTerm       : "",         // 거래기간
             trbrkCn         : 0,
             basDtm          : '',
+            toDate          : "", 
+            toYmd           : "",
+            toHour          : "",
+            toMinute        : "",
         }
     },
     mixins: [
@@ -209,24 +217,22 @@ export default {
     mounted() {
         this.initComponent(this.params)
     },
+    created() {
+        
+        this.toDate         = new Date();
+        this.toYmd          = dateFormat(this.toDate, "YYYYMMDD");
+        this.toHour         = this.toDate.getHours() < 10   ? "0" + this.toDate.getHours()   : this.toDate.getHours();
+        this.toMinute       = this.toDate.getMinutes() < 10 ? "0" + this.toDate.getMinutes() : this.toDate.getMinutes();
+        this.basDtm         = this.toYmd + "" + this.toHour + "" + this.toMinute;
+        
+    },
+
     methods: {
         initComponent(param) {
-
-            this.basDtm         = dateFormat(new Date(), "YYYYMMDDhhmm")
-
-
+            
             this.mydtCusno      = param.mydtCusno
             this.inqStrDt       = param.inqStrDt             
             this.inqEndDt       = param.inqEndDt
-            // this.xpsMnsCnd      = ""
-            // this.trDtCnd        = "desc"
-            // this.xpsBrkExpsYn   = false
-
-			// if(param.xpsBrkExpsYn === "1") {
-			// 	this.xpsBrkExpsYn = true
-			// }else{
-			// 	this.xpsBrkExpsYn = false
-			// }
 
             this.$nextTick(() => {
                 $(function(){
@@ -236,13 +242,6 @@ export default {
         }, 
         // 조건검색
         excelBrkSearchFn() {
-
-            console.log("mydtCusno => ", this.mydtCusno)
-            console.log("inqStrDt =>  ", this.inqStrDt)
-            console.log("inqEndDt =>  ", this.inqEndDt)
-            console.log("xpsMnsCnd => ", this.xpsMnsCnd)
-            console.log("trDtCnd =>   ", this.trDtCnd)
-            console.log("xpsBrkExpsYn => ", this.xpsBrkExpsYn)
 
             let strDt = monthAdd(-3, this.inqEndDt.split(".").join(""), 'YYYYMMDD')
 
@@ -260,13 +259,14 @@ export default {
 					xpsMnsCnd		: this.xpsMnsCnd ,	// 지출결제수단
 					trDtCnd		    : this.trDtCnd ,	// 내역정렬
                     xpsBrkExpsYn    : this.xpsBrkExpsYn == true ? '0' : '1',    // 숨김지출내역
-                }
+                },
+                disableLoading : true,
             }	
             apiService.call(config).then(response =>{
                 console.log('response', JSON.parse(JSON.stringify(response)))   
                 this.trbrkCn   = response.trbrkCn
                 this.trbrkList = response.trbrkList || []
-
+            }).then(()=>{
                 this.trbrkTerm = this.inqStrDt + "~" + this.inqEndDt
                 switch(this.xpsMnsCnd) {
                     case '': 
@@ -291,7 +291,14 @@ export default {
                         break;
                 }
 
-                this.basDtm  = dateFormat(new Date(), "YYYYMMDDhhmm")
+                //this.basDtm  = dateFormat(new Date(), "YYYYMMDDhhmm")
+
+                this.toDate         = new Date();
+                this.toYmd          = dateFormat(this.toDate, "YYYYMMDD");
+                this.toHour         = this.toDate.getHours() < 10   ? "0" + this.toDate.getHours()   : this.toDate.getHours();
+                this.toMinute       = this.toDate.getMinutes() < 10 ? "0" + this.toDate.getMinutes() : this.toDate.getMinutes();
+                this.basDtm         = this.toYmd + "" + this.toHour + "" + this.toMinute;
+
 
                 //거래내역 출력 데이터
                 let data = {
@@ -304,17 +311,18 @@ export default {
                     data : this.trbrkList                    
                 }                  
                 
-                console.log("excel trbrkList=======================", this.trbrkList)
-                console.log("excel data=======================", data)
-                let rslt = this.excelExport("exec_lcfd4009", data)   
-                console.log("excel rslt=======================", rslt)
+                this.excelExport("exec_lcfd4009", data).then(rslt=>{
+                    console.log("excel rslt=======================", rslt)                    
+                })
+                
+                this.close();
             })
 
         },   
 		fn_flagClose(){
             this.close()
 			// if(this.reqFlag === ""){
-			// 	this.$parent.$parent.$children[this.$parent.$parent.$children.length-1].fn_setCurrentYm(this.trDtm.split('-').join('').substr(0,4), this.trDtm.split('-').join('').substr(4,2))
+			// 	this.$parent.$parent.$children[this.$parent.$parent.$children.length-1].fn_setCurrentYm(this.trDtm.split('.').join('').substr(0,4), this.trDtm.split('.').join('').substr(4,2))
 			// 	this.closeAll('complete')
 			// }else{
 			// 	this.close()

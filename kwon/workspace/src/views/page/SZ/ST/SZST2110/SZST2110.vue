@@ -15,13 +15,13 @@
 	<!-- wrap S -->
 	<div class="full_popup" id="full_popup_01"> 
         <!-- header S -->
-		<header id="header">
+		<header class="popup_header">
 			<h1>농기계 선택</h1>
 		</header>
 		<!--// header E -->
         <!-- content S -->
 		<!-- 20211201 한별 수정 S -->
-		<div id="content" class="com_sub">
+		<div class="popup_content">
 			<div class="com_inner com_top_type01">
                 <div class="com_tabmenu_type03">
                     <ul role="tablist">
@@ -86,21 +86,22 @@
             <!--// 20211201 한별 수정 E -->
 			<!--// content E -->
 
-			<!-- footer S -->
-			<div class="bottom_box">
-				<div class="btn_half_box">
-					<a href="javascript:void(0);" role="button" @click.prevent="closePopup" class="btn btn_grey">취소</a>
-					<template v-if="acWrs">
-						<a href="javascript:void(0);" role="button" @click.prevent="applyOne" class="btn btn_mint" v-show="acWrs">확인</a>
-					</template>
-					<template v-else> 	
-						<a href="javascript:void(0);" role="button" @click.prevent="fn_fmachDsnmChk" class="btn btn_mint" v-show="!acWrs">확인</a>
-					</template>
-				</div>
-			</div>
-			<!--// footer E -->
+			
 			<a href="javascript:void(0);" role="button" @click.prevent="close()" class="btn_close"><span class="blind">화면닫기</span></a>
 		</div>
+		<!-- footer S -->
+		<div class="popup_footer fixed">
+			<div class="btn_half_box">
+				<a href="javascript:void(0);" role="button" @click.prevent="closePopup" class="btn btn_grey">취소</a>
+				<template v-if="acWrs">
+					<a href="javascript:void(0);" role="button" @click.prevent="applyOne" class="btn btn_mint" v-show="acWrs">확인</a>
+				</template>
+				<template v-else> 	
+					<a href="javascript:void(0);" role="button" @click.prevent="fn_fmachDsnmChk" class="btn btn_mint" v-show="!acWrs">확인</a>
+				</template>
+			</div>
+		</div>
+		<!--// footer E -->
 	</div>
 	<!--// wrap E -->		
 </template>

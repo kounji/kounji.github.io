@@ -36,8 +36,20 @@
 						<div class="title">
 							<div class="text">
 								갚을 돈<br>
-								<!-- <span class="fs-27">총 </span><strong><span class="num">{{loanAmnt | numberFilter}}</span>원</strong>0908 counter 삭제 -->
-                                <div class="toggle_money">
+								
+                                <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                    <div class="sum">
+                                        <span class="hide">잔액숨김</span>
+                                        <span class="show">{{loanAmnt | numberFilter}}원</span>
+                                    </div>
+                                    <button type="button" class="btns" @click="fn_setHidden('EDUFD', !hideYn)">
+                                        <span class="blind">금액</span>
+                                        <span class="hide">보기</span>
+                                        <span class="show">숨김</span>
+                                    </button>
+                                </div>
+
+                                <!-- <div class="toggle_money">
                                     <input type="checkbox" title="금액노출" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('EDUFD', hideYn)">
                                     <label for="sum_view_01" class="btns">
                                         <span class="hide" aria-hidden="true">보기</span>
@@ -47,11 +59,11 @@
                                         <span class="hide">잔액숨김</span>
                                         <span class="show">총 <em>{{loanAmnt | numberFilter}}</em>원</span>
                                     </div>
-                                </div>
+                                </div> -->
 							</div>
 						</div>
 					</div>
-					<cmm-financial-banner asdbDsc="08"/>
+					<!-- <cmm-financial-banner asdbDsc="08"/> -->
 				</div>
 				<hr class="hr02">
 				<div class="com_inner">
@@ -60,15 +72,15 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>학자금 대출</span> <span class="com_icon_num custom">{{loanCnt}}</span></div>
+									<div class="tit"><span>학자금 대출</span> <span class="com_icon_num custom">{{loanCnt}}<i class="blind">건</i></span></div>
 									<span class="total_price">
-										<em class="num">{{loanAmnt | numberFilter}}</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>{{loanAmnt | numberFilter}}</em><em class="unit">원</em>
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
-							<a href="javascript:void(0);" class="btn_sort" @click="fn_sortPop()"><span>{{sortNm}}</span></a>
+							<a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_sortPop()"><span>{{sortNm}}</span></a>
 						</div>
 						<ul class="view_cont list_type_01">
 							<template v-for="(totalOut, index) in totalOut">
@@ -82,11 +94,11 @@
 												</div>
 											</dt>
                                             <dd>
-                                                <span class="prod_num">{{totalOut.mydtAcno}}</span>
+                                                <span class="prod_num"><span class="blind">계좌번호</span>{{totalOut.mydtAcno}}</span>
                                             </dd>
 											<dd>
 												<span class="com_price">
-													<em class="num">{{totalOut.bac | numberFilter}}</em>
+													<em class="num"><span class="blind">금액</span>{{totalOut.bac | numberFilter}}</em>
 													<em class="unit">원</em>
 												</span>
 											</dd>
@@ -103,11 +115,11 @@
                                                 </div>
                                             </dt>
                                             <dd>
-                                                <span class="prod_num">{{totalOut.mydtAcno}}</span>
+                                                <span class="prod_num"><span class="blind">계좌번호</span>{{totalOut.mydtAcno}}</span>
                                             </dd>
                                             <dd>
                                                 <span class="com_price">
-                                                    <em class="num">{{totalOut.bac | numberFilter}}</em>
+                                                    <em class="num"><span class="blind">금액</span>{{totalOut.bac | numberFilter}}</em>
                                                     <em class="unit">원</em>
                                                 </span>
                                             </dd>
@@ -124,11 +136,11 @@
                                                 </div>
                                             </dt>
                                             <dd>
-                                                <span class="prod_num">{{totalOut.mydtAcno}}</span>
+                                                <span class="prod_num"><span class="blind">계좌번호</span>{{totalOut.mydtAcno}}</span>
                                             </dd>
                                             <dd>
                                                 <span class="com_price">
-                                                    <em class="num">{{totalOut.bac | numberFilter}}</em>
+                                                    <em class="num"><span class="blind">금액</span>{{totalOut.bac | numberFilter}}</em>
                                                     <em class="unit">원</em>
                                                 </span>
                                             </dd>
@@ -140,7 +152,7 @@
 					</div>
 					<!-- //학자금 대출 -->
 				</div>
-		    <div class="new_add_register"><a href="#nolink" role="button" v-on:click.prevent="movePage()"><span>더 연결할 자산이 있으신가요?</span></a></div>
+		    <div class="new_add_register"><a href="javascript:void(0);" role="button" v-on:click.prevent="movePage()"><span>더 연결할 자산이 있으신가요?</span></a></div>
         </div>
         <!--// content E -->
         <div id="content" class="renewal insur" v-else>
@@ -319,6 +331,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
     },

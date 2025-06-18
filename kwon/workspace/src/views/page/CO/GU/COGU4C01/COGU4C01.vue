@@ -12,51 +12,40 @@
 *************************************************************************/
 -->
 <template>
-    <!-- full popup S -->
-	<div class="full_popup" id="full_popup_01"> 
-		<div class="popup_header">    
-			<h1></h1>
-		</div>
+    <page class="content-view">
+        <div id="content">
+            <div class="mydata_outline">
+                <div class="slick">
+                    <div class="item">
+                        <div class="card ty_01">
+                            <span>마이데이터</span>
+                            <strong>청소년을 위한<br>콕마이데이터(자산관리)<br>함께 하세요.</strong>
+                            <p>나만의 자산관리 플래너</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card ty_02">
+                            <span>자산이야기</span>
+                            <strong>자산 흐름을 한 눈에!<br>지금 바로<br>경험해 보세요.</strong>
+                            <p>내 손 안에 자산리포트</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card ty_03">
+                            <span>소비이야기</span>
+                            <strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
+                            <p>부자되는 지름길 함께해요.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-		<div class="popup_content">
-			<div class="mydata_outline">
-				<div class="slick">
-					<div class="item">
-						<div class="card ty_01">
-							<span>마이데이터</span>
-							<strong>청소년을 위한<br>콕마이데이터(자산관리)<br>함께 하세요.</strong>
-							<p>나만의 자산관리 플래너</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_02">
-							<span>자산이야기</span>
-							<strong>자산 흐름을 한 눈에!<br>지금 바로<br>경험해 보세요.</strong>
-							<p>내 손 안에 자산리포트</p>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card ty_03">
-							<span>소비이야기</span>
-							<strong>똑똑한 지출 관리로,<br>알뜰하게<br>돈 모으는 법</strong>
-							<p>부자되는 지름길 함께해요.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	
-		<div class="popup_footer fixed">
-			<div class="btn_full_box btns_wrap">
-				<button type="button" class="btns lg primary">가입하고 시작하기</button>
-				<button type="button" class="btns_txt">체험하기</button>
-			</div>
-		</div>
-		
-		<a href="#nolink" role="button" class="btn_close"><span class="blind">팝업닫기</span></a>
-		
-	</div>
-	<!--// full popup E -->
+            <div class="btns_wrap fixed">
+                <button type="button" class="btns lg primary" @click.prevent="fnOpenStart()">가입하고 시작하기</button>
+            </div>
+
+        </div>
+    </page>
 </template>
 
 <script>
@@ -86,13 +75,10 @@ export default {
     ],
     methods: {
         initComponent(params) {
+            this.param = params || {}
             this.slick()
             
-            if(Object.keys(params).length == 0) {
-                this.rcmCd = "DK38GKS95HB"
-            } else {
-                this.rcmCd = params.rcmCd
-            }
+			this.rcmCd = this.param.rcmCd
         },
         /**
          * 서비스 가입 팝업 호출
@@ -106,7 +92,13 @@ export default {
             }
             modalService.openPopup(config).then({})
         },
-
+        fnOpenNoRegisterStart() {
+			const config = {
+                component: MAMA4U01, 
+                params: {}
+            }
+            modalService.openPopup(config).then({})
+		},
         slick() {
             var $outline =  $('.mydata_outline .slick');
 
@@ -126,7 +118,7 @@ export default {
                 arrows : false,
                 cssEase : 'linear'
             });
-        }
-    }
+        },
+    },
 }
 </script>

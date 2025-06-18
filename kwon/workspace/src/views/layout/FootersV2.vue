@@ -52,24 +52,26 @@
 		<nav>
 			<!-- 큰글모드 -->
 			<ul v-if="getUserMode == 'S'">
-				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4S01')" title="선택됨">홈</a></li>
-				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4S01')">자산</a></li>
-				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4S01')">지출</a></li>
-				<li :class="{on:isActiveTab('pd')}"><a href="javascript:void(0);" @click.prevent="movePage('PDTA4S01')">연금/절세</a></li>
+				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4S01')" :title="isMainPage ? '선택됨' : ''">홈</a></li>
+				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4S01')" :title="isActiveTab('as') ? '선택됨' : ''">자산</a></li>
+				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4S01')" :title="isActiveTab('lc') ? '선택됨' : ''">지출</a></li>
+				<li :class="{on:isActiveTab('pd')}"><a href="javascript:void(0);" @click.prevent="movePage('PDTA4S01')" :title="isActiveTab('pd') ? '선택됨' : ''">연금/절세</a></li>
 			</ul>
 			<!-- 청소년모드 -->
 			<ul v-else-if="getUserMode == 'C'">
-				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4C01')" title="선택됨">홈</a></li>
-				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4C01')">자산</a></li>
-				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4C01')">지출</a></li>
+				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4C01')" :title="isMainPage ? '선택됨' : ''">홈</a></li>
+				<!-- <li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4C01')" :title="isActiveTab('as') ? '선택됨' : ''">자산</a></li>
+				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4C01')" :title="isActiveTab('lc') ? '선택됨' : ''">지출</a></li> -->
+				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="openModalPopup('ASTA4C02')" :title="isActiveTab('as') ? '선택됨' : ''">자산</a></li>
+				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="openModalPopup('LCTA4C02')" :title="isActiveTab('lc') ? '선택됨' : ''">지출</a></li>
 			</ul>
 			<!-- 일반모드 & 미가입자 -->
 			<ul v-else>
-				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4001')" title="선택됨">홈</a></li>
-				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4001')">자산</a></li>
-				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4001')">지출</a></li>
-				<li :class="{on:isActiveTab('pd')}"><a href="javascript:void(0);" @click.prevent="movePage('PDTA4001')">연금/절세</a></li>
-				<li :class="{on:isActiveTab('an')}"><a href="javascript:void(0);" @click.prevent="movePage('RETA4001')">추천</a></li>
+				<li :class="{on:isMainPage}"><a href="javascript:void(0);" @click.prevent="movePage('MAMA4001')" :title="isMainPage ? '선택됨' : ''">홈</a></li>
+				<li :class="{on:isActiveTab('as')}"><a href="javascript:void(0);" @click.prevent="movePage('ASTA4001')" :title="isActiveTab('as') ? '선택됨' : ''">자산</a></li>
+				<li :class="{on:isActiveTab('lc')}"><a href="javascript:void(0);" @click.prevent="movePage('LCTA4001')" :title="isActiveTab('lc') ? '선택됨' : ''">지출</a></li>
+				<li :class="{on:isActiveTab('pd')}"><a href="javascript:void(0);" @click.prevent="movePage('PDTA4001')" :title="isActiveTab('pd') ? '선택됨' : ''">연금/절세</a></li>
+				<li :class="{on:isActiveTab('an')}"><a href="javascript:void(0);" @click.prevent="movePage('RETA4001')" :title="isActiveTab('an') ? '선택됨' : ''">추천</a></li>
 			</ul>
 		</nav>
 	</aside>
@@ -275,7 +277,7 @@
 							pageId = 'PDTA4U01'
 							break
 						case 'RETA4001':
-							modalService.alert('UI-CO-TP-0004 서비스가입필요알럿 채번중')
+							this.openModalPopup('COTP0004') // 미가입자 가입필요 팝업
 							return
 							break
 						default:
@@ -345,8 +347,8 @@
 				console.log(pageId)
 				if(pageId === "COCO1104") {
 					compName = defineAsyncComponent(() => import('@/views/page/CO/CO/COCO1104/COCO1104'))	//새소식
-				} else if(pageId === "MRCA2001") { // COCO1102
-					// compName = MRCA2001 // COCO1102	// 서비스 해지
+				} else if(pageId === "MRCA4001") { // COCO1102
+					// compName = MRCA4001 // COCO1102	// 서비스 해지
 				} else if(pageId === "COCO1116") {
 					compName = defineAsyncComponent(() => import('@/views/page/CO/CO/COCO1116/COCO1116'))	//자주하는질문
 				} else if(pageId === "COCO2128") {
@@ -355,17 +357,23 @@
 					compName = defineAsyncComponent(() => import('@/views/page/CO/AT/COAT1103/COAT1103'))	//개인정보처리방침
 				} else if(pageId === "COAT1104") {
 					compName = defineAsyncComponent(() => import('@/views/page/CO/AT/COAT1104/COAT1104'))	//제3자제공동의
-				} else if(pageId === "MRAT1001") {
-					compName = defineAsyncComponent(() => import('@/views/page/MR/AT/MRAT1001/MRAT1001')) // 이용약관
-				} else if(pageId === "ASCR1101") {
-					compName = defineAsyncComponent(() => import('@/views/page/AS/CR/ASCR1101/ASCR1101'))	// 신용정보 조회
+				} else if(pageId === "MRAT4001") {
+					compName = defineAsyncComponent(() => import('@/views/page/MR/AT/MRAT4001/MRAT4001')) // 이용약관
+				} else if(pageId === "ASCR4101") {
+					compName = defineAsyncComponent(() => import('@/views/page/AS/CR/ASCR4101/ASCR4101'))	// 신용정보 조회
 				} else if(pageId === "COCO1130") {
 					compName = defineAsyncComponent(() => import('@/views/page/CO/CO/COCO1130/COCO1130'))	// 프로필
 				} else if(pageId === "MRCO1003") {
 					compName = defineAsyncComponent(() => import('@/views/page/MR/CO/MRCO1003/MRCO1003'))	// 마이데이터 서비스소개
 				} else if(pageId === "MRCO1001") {
 					compName = defineAsyncComponent(() => import('@/views/page/MR/CO/MRCO1001/MRCO1001'))   // 알림함(tobe)
-				} 
+				} else if(pageId == "COTP0004") {
+					compName = defineAsyncComponent(() => import("@/views/page/CO/TP/COTP0004/COTP0004"))	// 미가입자 가입필요 팝업		
+				} else if(pageId == "ASTA4C02") {
+					compName = defineAsyncComponent(() => import("@/views/page/AS/TA/ASTA4C02/ASTA4C02"))	// 청소년 나의자산 소개
+				} else if(pageId == "LCTA4C02") {
+					compName = defineAsyncComponent(() => import("@/views/page/LC/TA/LCTA4C02/LCTA4C02"))	// 청소년 나의지출 소개
+				}
 
 				const config = {
 					component: compName,

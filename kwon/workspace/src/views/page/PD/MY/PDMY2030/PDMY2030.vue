@@ -198,8 +198,8 @@ import modalService from '@/service/modalService'
 import appService from '@/service/appService'
 import {dateFormat, dayDiff} from '@/utils/date'
 import {round} from '@/utils/number'
-import PDMY2024 from '@/views/page/PD/MY/PDMY2024/PDMY2024'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4024 from '@/views/page/PD/MY/PDMY4024/PDMY4024'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 import PDPD1108 from '@/views/page/PD/PD/PDPD1108/PDPD1108'
 import _ from 'lodash'
 
@@ -405,7 +405,7 @@ export default {
             })
         },
         goExpensePerpose() {
-            var compName = PDMY2024
+            var compName = PDMY4024
 
             var param = {"fncObtDsc":this.fncObtDsc, "sqno": this.sqno, "prgStsCd":this.prgStsCd, "carGrdNo": this.carGrdNo, "carCtrimNoFlag":this.carCtrimNoFlag}
 
@@ -422,7 +422,7 @@ export default {
         },
         // 목표등록화면으로 이동
         goPerposePage() {
-            var compName = PDMY2005
+            var compName = PDMY4005
 
             var param = {}
 
@@ -440,11 +440,11 @@ export default {
             let config = {};
             
             if(linkDsc == "newCar") {
-                //window.open("https://nhcok.cardong.co.kr");
+                //window.open("https://nhcok.carnoon.co.kr");
                 if (this.getUserInfo('chnl') === '385') {
-                    appService.executeBrowser("https://nhcok.cardong.co.kr");
+                    appService.executeBrowser("https://nhcok.carnoon.co.kr");
                 } else {
-                    appService.cokBankOpenPopupWebBrowser("https://nhcok.cardong.co.kr");
+                    appService.cokBankOpenPopupWebBrowser("https://nhcok.carnoon.co.kr");
                 }
                 return;
             } else if(linkDsc == "loanLmt") {

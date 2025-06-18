@@ -40,7 +40,7 @@
                     <div class="outline">
                         <div class="board_box">
                             <h2><a href="#nolink">모은연금</a></h2>
-
+                            <!--[v4.0] #접근성# 마크업수정
                             <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01">
                                 <label for="sum_view_01" class="btns">
@@ -52,7 +52,19 @@
                                     <span class="show"><em>1,952,692,372</em>원</span>
                                 </div>
                             </div>
-
+                            -->
+                            <div class="toggle_money">
+                                <div class="sum">
+                                    <span class="hide">쉿! 비밀이에요.</span>
+                                    <span class="show"><em>1,952,692,372</em>원</span>
+                                </div>
+                                <button type="button" class="btns">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+                            <!--[v4.0] #접근성# 마크업수정 -->
                             
                             <div class="details up"><!--적게 쓴경우 down, 초과인 경우 up class 추가, 0원인 경우 no_spending class 추가--> 
                                 <!--25-02-25 문구수정 / 25-03-11 툴팁추가 -->
@@ -255,10 +267,10 @@
                     </div>
 
 
-                    <!--금융지식-->
+                    <!--세대별 절세 노하우-->
+                    <!--25-03-18 세대별 절세 노하우 삭제
                     <div class="finlit">
-                        <h2 class="h_tit01">세대별 절세 노하우</h2>
-                        <a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+                        <a href="#nolink" class="h_tit01" role="button">세대별 절세 노하우</a>
 
                         <div class="scroller">
                             <ul>
@@ -311,9 +323,10 @@
                                     </a>
                                 </li>
                             </ul>
-                            <!--//25-02-10 세대별 추가 -->
+                            !--//25-02-10 세대별 추가 --
                         </div>
                     </div>
+                     -->
 
                     <!--여러가지-->
                     <div class="move_banner">
@@ -323,7 +336,7 @@
                         </a>
 
                         <a href="#nolink" class="board_box rect tax">
-                            <em>세금납부 확인</em>
+                            <em>세금 납부 확인</em><!-- 25-05-29 띄어쓰기 수정 -->
                             내가 낸 세금,<br>
                             쉽게 확인하세요.
                         </a>

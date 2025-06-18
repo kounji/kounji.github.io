@@ -172,7 +172,7 @@ import commonMixin from '@/common/mixins/commonMixin'
 import modalService from '@/service/modalService'
 import {getTmmRmDds, dateFormat} from '@/utils/date'
 import {round} from '@/utils/number'
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032'
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032'
 
     export default {
         name : "PDMY2033",
@@ -410,7 +410,7 @@ import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032'
                 })
             },
             goExpensePerpose() {
-                let compName = PDMY2032
+                let compName = PDMY4032
                 
                 var param = {
                     modifyYn : this.modifyYn, 

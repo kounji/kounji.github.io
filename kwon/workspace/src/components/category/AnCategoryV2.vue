@@ -44,8 +44,8 @@
 			},
 			// 등록 버튼 눌러서 페이지 이동시 이동할 화면 이름 리턴
 			getMovePageName(type) {
-				if (type === 'ANCA') return 'ANCA2201' // 콕마이카
-				if (type === 'ANRE') return 'ANRE2201' // 콕부동산
+				if (type === 'ANCA') return 'ANCA4201' // 콕마이카
+				if (type === 'ANRE') return 'ANRE4201' // 콕부동산
 				if (type === 'ANFM') return 'ANFM2001' // 귀농귀촌
 				if (type === 'SZFC') return 'SZFC2101' // 마이농가
 				return ''

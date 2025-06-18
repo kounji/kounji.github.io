@@ -206,7 +206,7 @@
     import {infoToolipHandler} from '@/utils/jUtils'    
     import ASIP1002 from '@/views/page/AS/IP/ASIP1002/ASIP1002'
     // import ASIP1003 from '@/views/page/AS/IP/ASIP1003/ASIP1003'
-    import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+    import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
     import ASAC1003 from '@/views/page/AS/AC/ASAC1003/ASAC1003' 
 

@@ -25,7 +25,7 @@ export default {
         apiService.pfmLogSend(this.$options.name);
     },
     components: {
-        CmmInsuDetailTransactions: () => import('@/components/AS/IS/CMM/CmmInsuDetailTransactions')
+        CmmInsuDetailTransactions: () => import('@/components/AS/IS/CMM/CmmInsuDetailTransactionsV4')
     }
 }
 </script>

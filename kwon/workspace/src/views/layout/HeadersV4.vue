@@ -1,19 +1,30 @@
 <template>
-	<header id="header">
+	<header id="header" v-show="isOpenCheck">
 		<!-- 모드변경 토글 -->
-		<div class="mode_toggle" v-if="isMainPage && getUserMode != 'C'">
+		<div class="mode_toggle" v-if="isMainPage && getUserMode != 'C'" v-show="pageName != 'COGU4001' && pageName != 'COGU4C01'">
 			<input type="checkbox" title="모드선택" id="head_toggle" :checked="getUserMode == 'S'" @change="setChangeMode($event)">
 			<label for="head_toggle">큰글</label>
 		</div>
-		<!-- 미가입, 일반, 큰글 메인 타이틀 없음 -->
-		<h1>{{ !isMainPage || getUserMode == 'C'  ? pageTitle : '' }}</h1>
+		<!-- 미가입, 일반, 큰글 메인 타이틀 없음 // 청소년 메인 타이틀 별도 분기 -->
+		<h1 v-if="getUserMode == 'C' && isMainPage">부모님을 위한 청소년모드 <em class="point">미리보기</em></h1>
+		<h1 v-else>{{ !isMainPage ? pageTitle : '' }}</h1>
 		<button v-show="!isMainPage" type="button" class="prev" @click.prevent="movePrev"><span class="blind">이전</span></button>
-		<div class="option">
+		<div class="option" v-show="pageName != 'COGU4001' && pageName != 'COGU4C01'">
 			<!-- <a v-show="cbtType" style="color: red;">디지털 전환용</a> -->
-			<button v-show="isMainPage" type="button" class="bank"   @click.prevent="fn_moveHome()"><span class="blind">홈</span></button>
-			<!-- 청소년모드, 미가입자 돋보기 hide -->
-			<button v-show="!isMainPage && (getUserMode != 'C' && getUserMode != 'U')" type="button" class="search" @click.prevent="fn_openPopup('COCO4301')"><span class="blind">검색</span></button>
-			<button type="button" class="menu" @click.prevent="goAllMenu()"><span class="blind">전체메뉴</span></button>
+			<button v-show="isMainPage" type="button" class="bank" :class="userInfo.chnl === '385' ? 'sbank' : ''" @click.prevent="moveHome()">
+				<span class="blind">{{userInfo.chnl === '385' ? '스마트뱅크': '콕뱅크'}}</span>
+			</button>
+			<!-- 큰글모드, 청소년모드, 미가입자 돋보기 hide -->
+			<!-- 일반모드일 경우만 돋보기 show -->
+			<button v-show="!isMainPage && getUserMode == 'N'" type="button" class="search" @click.prevent="fn_openPopup('COCO4301')">
+				<span class="blind">검색</span>
+			</button>
+			<button v-show="isAllMenu && pageName == 'MRMR4001'" type="button" class="alert" :class="getNewAlarm == 'Y' ? 'new' : ''" @click.prevent="fn_openPopup('MRCO1001')">
+				<span class="blind">알림</span>
+			</button>
+			<button v-show="!isAllMenu" type="button" class="menu" @click.prevent="goAllMenu()">
+				<span class="blind">전체메뉴</span>
+			</button>
 		</div>
 	</header>
 </template>
@@ -21,6 +32,7 @@
 <script>
 	import {mapGetters} from 'vuex'
 	import {mapActions} from 'vuex'
+	import apiService from '@/service/apiService'
 	import appService from '@/service/appService'
 	import routerService from '@/service/routerService'
 	import commonService from '@/service/commonService'
@@ -40,14 +52,17 @@
 				'isLoginSuccess', // 로그인 성공 여부
 				'isSBank',        // 스뱅, 콕뱅 여부 
 				'userInfo',
-				'getUserMode'
+				'getUserMode',
+				'getNewAlarm'
 			]),
 			...mapGetters('layout', [
 				'pageTitle',
 				'pageName',
 				'isMainPage',
+				'isAllMenu',
 				'isFirstPage',
-				'pageList'
+				'pageList',
+				'pageInfo'
 			]),
 			...mapGetters('myassets', [
 				'nacfAccChg'
@@ -67,8 +82,9 @@
 
 				return list.includes(this.pageName)
 			},
-			isPageName() {
-				return this.pageName ? true : false
+			isOpenCheck() {
+				// 마이데이터 오픈 안내 페이지 진입 여부
+				return this.pageInfo?.name !== 'COCO4118' ? true : false
 			},
 			isExistPageList() {
 				return this.pageList.length > 0 ? true : false
@@ -80,11 +96,22 @@
 				return this.getUserInfo('tobeType')
 			},
 		},
+		watch: {
+			// 모드별 통합메인 진입 시 처리
+			isMainPage(value) {
+				if(this.getUserInfo('ltrmUnconn') === 'Y' && !!value) {
+					this.addLtrmUnconn()
+					delete this.userInfo.ltrmUnconn
+				}
+			},
+		},
 		mixins: [
 			commonMixin
 		],		
 		methods: {
-
+			...mapActions('modal', [
+				'addLtrmUnconn',
+			]),
 			...mapActions('layout', [
 				'setMainTabLastIdx'
 			]),
@@ -92,7 +119,8 @@
 				'getAllMyAssetInfo'
 			]),
 			...mapActions('user', [
-				'setUserMode'
+				'setUserMode',
+				'setNewAlarm'
 			]),
 			/**
 			 * 이전 클릭
@@ -108,7 +136,7 @@
 				}
 
 				if(this.nacfAccChg){
-					this.getAllMyAssetInfo()
+					//this.getAllMyAssetInfo() // v4 자동으로 자산수집 제외
 					this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
 				}
 				
@@ -124,7 +152,7 @@
 				this.setMainTabLastIdx(0) // 메인 첫번째 페이지로
 				
 				if(this.nacfAccChg){
-				this.getAllMyAssetInfo()
+				//this.getAllMyAssetInfo() // v4 자동으로 자산수집 제외
 				this.$store.dispatch('myassets/setNacfAccChg', false)  // 중앙회 자산 변경
 				}
 
@@ -247,6 +275,8 @@
 				const list = [
 					'COAS2001', // 서비스소개
 					'COAS2009', // 약관재동의화면
+					'COGU4001',	// v4 가입전 서비스소개
+					'COGU4C01',	// v4 (청소년)가입전 서비스소개
 				]
 				const hasCheck = list.includes(this.pageName)
 				return hasCheck || this.isFirstPage
@@ -264,7 +294,7 @@
 				let params = {}
 				
 				// if 신차중고차 및 내차관리
-				if (pageId == 'ANCA2201') {
+				if (pageId == 'ANCA4201') {
 					// if 내차관리 else 신차중고차
 					if (param) {
 						params = { viewSvc: 'CARCARE', vhcnoVal: param }
@@ -274,12 +304,12 @@
 				} else {
 					params = param
 				}
-				// 연금진단: PDRT2001
-				// 상품추천: PDPD1001
+				// 연금진단: PDRT4001
+				// 상품추천: PDPD4001
 				// 신용점수: ASCR1101
 				// 세금현황: PDTX2004
-				// 콕부동산: ANRE2201
-				// 콕마이카: ANCA2201
+				// 콕부동산: ANRE4201
+				// 콕마이카: ANCA4201
 				const config = {
 					name : pageId,
 					params : params
@@ -294,7 +324,7 @@
 				// 가입/미가입자 구분 분기처리
 				if(this.getUserMode == 'U') {
 					// 미가입자
-					modalService.alert('UI-CO-TP-0004 서비스가입필요알럿 채번중')
+					this.fn_openPopup('COTP0004')
 				} else {
 					// 가입자
 					if(this.getUserMode == 'S') {
@@ -315,24 +345,53 @@
 
 				if(compName == "COCO4301") {
 					compenent = defineAsyncComponent(() => import("@/views/page/CO/CO/COCO4301/COCO4301"))
+				} else if(compName == "COTP0004") {
+					compenent = defineAsyncComponent(() => import("@/views/page/CO/TP/COTP0004/COTP0004"))			
+				} else if(compName == 'MRCO1001') {
+					compenent = defineAsyncComponent(() => import("@/views/page/MR/CO/MRCO1001/MRCO1001"))
 				}
 
 				const config = {
 					component: compenent,
 				}
 				// this.close()
-				modalService.openPopup(config)
+				modalService.openPopup(config).then(() => {
+					if(compName == 'MRCO1001') {
+						this.fn_newAlarm()
+					}
+				})
 			}, 
 
+			/**
+             * 신규알람 체크
+             */
+            fn_newAlarm(){
+                const config = {
+                    url: '/co/co/00r06', // /co/co/00r02
+                    data: {
+                        "mydtCusno" : this.getUserInfo('mydtCusno'),
+                    },
+                    disableLoading : true,
+                }
+                apiService.call(config).then(response =>{
+                    this.anwAncYn = response.anwAncYn
+
+                    // 신규알람여부값 (1: 여, 0: 부) state 저장
+                    // 여 => Y, 부 => N
+                    this.setNewAlarm(this.anwAncYn == '1' ? 'Y' : 'N')
+                })
+            },
+
+			/**
+			 * 모드변경
+			 */
 			setChangeMode(e) {
 				console.log(e.target.checked)
 				const currMode = this.getScrmode()?.mode	// 현재 진입모드
 				
 				if(currMode == 'U') {
-					// 미가입자
-					modalService.alert('UI-CO-TP-0004 서비스가입필요알럿 채번중')
-					
-					// 이벤트 원복(미선택)
+					// 미가입자 가입필요 팝업
+					this.fn_openPopup('COTP0004')
 					e.target.checked = false
 				} else {
 					// 변경될 모드 설정
@@ -343,6 +402,9 @@
 
 					// state 변경적용
 					this.setUserMode(uptMode)
+
+					// 토스트팝업
+					modalService.toast((uptMode === 'S' ? '큰글' : '일반') + ' 모드로 설정했어요.')
 
 					// 변경 메인 이동
 					routerService.moveMain()

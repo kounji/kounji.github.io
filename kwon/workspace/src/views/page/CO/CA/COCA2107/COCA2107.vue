@@ -147,7 +147,7 @@ export default {
             })
         },
         fn_closePopup() {
-            if(this.popId === "COCA2101") this.closeAll()
+            if(this.popId === "COCA2101") this.close("false")
             else if(this.popId === "PDCG0001") {
                 this.close()
                 routerService.movePrev()

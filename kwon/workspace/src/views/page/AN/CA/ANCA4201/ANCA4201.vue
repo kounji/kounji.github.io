@@ -335,13 +335,6 @@
 							</div>
 						</div>						
 					</template>
-					<!--[v4.0] 배너 추가(콕뱅진입시) -->
-					<div class="car_inner" v-if="this.getUserInfo('chnl') === '386'">
-						<div class="inner_banner">
-							<a href="javascript:void(0);"><img src="@/assets_v40/images/banner/img_banner_car_market_price.png" alt="내 자동차 정보를 한번에! 내차 정보와 시세, 운전정보까지 한번에 확인해보아요!"></a>
-						</div>
-					</div>
-					<!--//[v4.0] 배너 추가-->
 				</div>	
 			</template>
 			<!-- 신차구매/중고차매매 화면 E -->
@@ -392,7 +385,7 @@
 									<div class="car_detail">
 										<div class="car_detail_info">
 											<div class="item no_data">
-												<strong class="tit">이달의 점검 항목이 없습니다.<br/>다가오는 일정을 확인해보세요!</strong>
+												<strong class="tit">이달의 점검 항목이 없습니다.<br/>다가오는 일정을 확인해 보세요!</strong>
 											</div>
 										</div>
 									</div>
@@ -587,7 +580,7 @@
 		</div>
 		<!--// content E -->
 
-		<footersV2 type="an" />
+		<footersV2 type="" />
 	</page>
 </template>
 
@@ -622,7 +615,7 @@ import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005' // 나의목표등�
 import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101' // 자산등록(자동차)
 
 export default {
-    name : "ANCA2201",
+    name : "ANCA4201",
     data: () => {
 		return {
 			// input
@@ -1148,21 +1141,22 @@ export default {
 			// openGbn에 따른 URL분기처리
             switch(openGbn) {
                 case "CARSELL" :		// 내차 판매하기(내차팔기)
-					url = "https://nhcok.cardong.co.kr/mycarsell"
+					url = "https://nhcok.carnoon.co.kr/mycarsell"
                     break
                 case "CERTUSEDCAR" :	// 인증중고차 구매(인증중고차)
-					url = "https://nhcok.cardong.co.kr/usedcar/list"
+					url = "https://nhcok.carnoon.co.kr/usedcar/list"
 					break
                 //case "LOAN" :			// 우대 금리 대출상품
 				//	url = "https://smartcenter.nonghyup.com/shbranch/el40000876_r.html"
 				//	break
                 case "USEDCAR" :		// 중고차(인증중고차)
-					url = "https://nhcok.cardong.co.kr" + cnctLkNm
-					//url = "https://nhcok.cardong.co.kr/usedcar/list"					
+					url = "https://nhcok.carnoon.co.kr" + cnctLkNm
+					//url = "https://nhcok.carnoon.co.kr/usedcar/list"					
 					break
-                // url = "https://nhcok.cardong.co.kr/estimate/start"
+				case "NEWCAR" :			// 신차 구매하기(견적내기)  
+                	// url = "https://nhcok.carnoon.co.kr/estimate/start"
           //2025.02.03 사업부서 요청 url 수정
-					url = "https://nhcok.cardong.co.kr/home"
+					url = "https://nhcok.carnoon.co.kr/home"
 					break
                 case "AGRIIS" :			// 아그리즈 쇼핑몰
 					url = "https://m.agriis.co.kr/m/mall/main_m.php"					
@@ -1311,7 +1305,8 @@ export default {
 		},
 		fn_setImgUrl(imgPathnm){
 			// 24.07.05, sungchul, 해당 기관 서버 느려서 도메인 변경
-			//return 'http://nhcok.cardong.co.kr/img/' + imgPathnm
+			// 25.03.28, sungchul, 유효한 도메인이며, 이미지는 이 도메인에서 가져온다함
+			//return 'http://nhcok.carnoon.co.kr/img/' + imgPathnm
 			return 'https://www.carpan.co.kr/img/' + imgPathnm;
 		},
 

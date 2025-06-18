@@ -115,7 +115,7 @@
             </template>
 		</div>
 
-		<a class="btn_close"><span class="blind">팝업닫기</span></a>		
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>		
 	</div>
 </template>
 

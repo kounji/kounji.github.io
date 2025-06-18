@@ -48,6 +48,8 @@ export default {
 			axios(config).then(
 				response => {
 					// remove loading
+					// console.log('>>> api loadingList >>> ', store.state.modal.loadingList)
+					// debugger;
 					this.removeLoading(userConfig)
 					// response check
 									
@@ -134,102 +136,6 @@ export default {
 	},
 
 	/**
-	 * NH콕마이데이터4.0 신규
-	 * ajax RSS 호출
-	 * @param {Object} userConfig : 사용자가 설정한 config
-	 * @return {Promise}
-	 */
-	callRSSAjax(userConfig) {
-		return new Promise((resolve, reject) => {
-			$.ajax({
-				url: userConfig.url,
-				type: "GET",
-				dataType: "xml",
-				success: function(response) {
-					console.log('success >> ', response)
-					resolve(this.xmlToJson(response))
-				},
-				fail: function(error){
-					console.log('error >> ', error)
-					reject(error)
-				}
-			})
-		})
-	},
-
-	/**
-	 * NH콕마이데이터4.0 신규
-	 * axios RSS 호출
-	 * @param {Object} userConfig : 사용자가 설정한 config
-	 * @return {Promise}
-	 */
-	callRSS(userConfig) {
-		return new Promise(async (resolve, reject) => {
-
-			// const config = this.mergeDefaultConfigOld(userConfig)
-			// // 무결성 체크를 위한 header 셋팅
-			// config.headers = this.getEncodingHeadersOld(config.data)
-			
-			// $.ajax({
-			// 	url : userConfig.url,
-			// 	type : userConfig.type,
-			// 	contentType : 'application/json;charset=UTF-8',
-			// 	dataType : "xml",
-			// 	// data : JSON.stringify(config.data),
-			// 	success: function(response){
-			// 		// response check
-			// 		//AJAX의 경우 바로 DATA로 처리됨
-			// 		if (this.checkResponseOld(response)) {
-			// 			resolve(response.body)
-			// 		} else {
-			// 			this.moveErrorPage(response)
-			// 			reject(response)
-			// 		}
-			// 	},
-			// 	fail: function(error){
-			// 		console.log("error" ,error)
-			// 		reject(error)
-			// 	},
-			// }) 
-			await axios.get(userConfig.url).then(
-			response => {
-				console.log('RSS original resonse >>> ', response)
-				resolve(this.xmlToJson(response))
-			},
-			error => {
-				console.log('error config >>> ', error)
-				reject(error)
-			}).catch(error => {
-				console.log('error catch!!')
-				if(error.response)
-				{
-					console.error("api call Response Error :",error.response.data)
-					console.error("api call Response Error :",error.response.status)
-					console.error("api call Response Error :",error.response.headers)
-					if(error.response.status === '404') {
-						routerService.moveServiceReadyError(error.response)
-						reject(error.response)
-					} else {
-						routerService.moveServiceError(error.response)
-						reject(error.response)
-					}
-				}
-				else if(error.request)
-				{
-					console.error("api call Request Error :",error.request)
-					routerService.moveServiceError(error.request)
-				}
-				else
-				{
-					console.log("api call Error ",error)
-					routerService.moveServiceError(error.response)
-					reject(error.response)
-				}
-			})
-		})
-	},
-
-	/**
 	 * ajax Mydata 서비스 호출
 	 * @param {Object} userConfig : 사용자가 설정한 config
 	 * @return {Promise}
@@ -260,7 +166,7 @@ export default {
 	 */
 	addLoading(userConfig) {
 		if(userConfig.flag !== 'main'){
-			userConfig.disableLoading !== true && store.dispatch('modal/addLoading')
+			userConfig.disableLoading !== true && store.dispatch('modal/addLoading', userConfig)
 		}
 		// userConfig.disableLoading !== true && store.dispatch('modal/addLoading')
 	},
@@ -484,11 +390,21 @@ export default {
 		}
 	},
 	assetGather(config){
+		console.log('>>> aset >>> ', config, import.meta.env.VITE_API_URL + import.meta.env.VITE_API_CONTEXT + config.url)
 		return new Promise((resolve, reject) => {
 			//비정기 자산 정보 수집처리
 			modalService.toast(constant.MESSAGE.START_GATHER_ASSETS) // 토스트 메세지 (자산 업데이트 진행중입니다.)
 			$.ajax({
 				url : import.meta.env.VITE_API_URL + import.meta.env.VITE_API_CONTEXT + config.url,
+				beforeSend : (xhr) => {
+					const reqHeader = this.getEncodingHeaders(config.data)
+
+					xhr.setRequestHeader("apiKey", reqHeader.apiKey)
+					xhr.setRequestHeader("timestamp", reqHeader.timestamp)
+					xhr.setRequestHeader("messageDigest", reqHeader.messageDigest)
+					xhr.setRequestHeader("usrId", reqHeader.usrId)
+					xhr.setRequestHeader("orgBsnDsC", reqHeader.orgBsnDsC)
+				},
 				type : "POST",
 				contentType : 'application/json;charset=UTF-8',
 				dataType : "json",
@@ -501,7 +417,7 @@ export default {
 				/////////////////////////////// CBT ////////////////////////////
 				let assetConfig = {}
 				assetConfig = {
-					url: '/ma/ma/01r02', // '/ma/ma/01ra1',
+					url: '/ma/ma/01r03', // v4 '/ma/ma/01r02',
 					data: {
 						"mydtCusno" : this.getUserInfo('mydtCusno'),
 						"basYm" : dateFormat(new Date(), "YYYYMM"),
@@ -512,20 +428,75 @@ export default {
 
 				this.call(assetConfig).then(response =>{
 					console.log('강제이후 확인용..', response)
+
+					// 자산수집처리 이후 수집일자 갱신
+					this.setAssetGatherDtm()
 				})
 				resolve(response.rsp_code)
 			})
 			.fail((error)=>{
-				console.log(error)
+				console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 ', error)
 				modalService.toast(constant.MESSAGE.ERROR_GATHER_ASSETS) // 토스트 메세지 (자산 업데이트시 오류가 발생하였습니다.)
 				reject(error)
 			})
 		})
 	},
+	/**
+	 * NH콕마이데이터4.0 신규
+	 * 로그인시 실행되는 assetGather
+	 */
+	loginAssetGather() {
+		return new Promise(() => {
+			/////////////////////////////// CBT ////////////////////////////
+			let assetConfig = {}
+			assetConfig = {
+				url: '/ma/ma/01r03', // v4 '/ma/ma/01r02',
+				data: {
+					"mydtCusno" : this.getUserInfo('mydtCusno'),
+					"basYm" : dateFormat(new Date(), "YYYYMM"),
+					"mainFlag" : '0'
+				},
+				flag : 'main'
+			}
+
+			this.call(assetConfig).then(response =>{
+				console.log('강제이후 확인용..', response)
+
+				// 자산수집처리 이후 수집일자 갱신
+				this.setAssetGatherDtm()
+			})
+		})
+	},
+	/**
+	 * NH콕마이데이터4.0 신규
+	 * 자산수집갱신일자 업데이트
+	 */
+	setAssetGatherDtm() {
+		const config = {
+			url: '/co/am/08r04',
+			data: {
+				"mydtCusno" : this.getUserInfo('mydtCusno'),
+			},
+			disableLoading : true,
+		}
+		this.call(config).then((response) =>{
+			console.log("fn_getAssetUpdateInfo : ", response)
+			let btwkEdDtm  = response.btwkEdDtm || new Date() 
+			console.log("fn_getAssetUpdateInfo : ", btwkEdDtm, dateFormat(btwkEdDtm, "YYYY.MM.DD HH:mm"))
+			let assetUpdateDtm = dateFormat(btwkEdDtm, "YYYY.MM.DD HH:mm");
+			
+			store.dispatch('myassets/setLastUpdateDtm', assetUpdateDtm)
+		});
+	},
+
 	pfmLogSend(psAmnScid){ //PFM로그 처리 화면접속이력 등록 POST
-		this.removeLoading("App")	
+		// 25.04.04) 앱 로딩 완료 시 로딩이미지 제거 (api실행로딩이미지 충돌방지)
+		const loadingList = store.state.modal.loadingList
+		if(loadingList.length > 0 && loadingList.some(d => d.data == 'App')) {
+			this.removeLoading("App")
+		}
+
 		const userInfo = store.state.user.userInfo || {}
-		//console.log('pfmLogSend', userInfo.mydtCusno, psAmnScid)
 
 		if (userInfo.mydtCusno !== undefined && userInfo.mydtCusno !== null && userInfo.mydtCusno !=='' &&
 			psAmnScid !== undefined && psAmnScid !== null && psAmnScid !=='' )
@@ -538,7 +509,7 @@ export default {
 									"psAmnScid" : psAmnScid
 								}								
 							}
-
+			
 			// config
 			const config = this.mergeDefaultConfig(userConfig)
 			// 무결성 체크를 위한 header 셋팅

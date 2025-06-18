@@ -34,8 +34,18 @@
                     <div class="title">
                         <div class="text">
                             흩어져 있는 돈<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="num">{{asetAmtt | numberFilter}}</span>원</strong> -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{asetAmtt | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('ETC', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('ETC', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -45,7 +55,7 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{asetAmtt | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정-->
                         </div>
                     </div>
@@ -57,9 +67,9 @@
             <div class="com_inner etc">
                 <div class="com_box_type01 toggle_list_box2 custom_list" v-if="cshAstCn > 0">
                     <div class="new_tit_area">
-                        <div class="tit"><span>현금</span> <span class="com_icon_num custom">{{cshAstCn}}</span></div>
+                        <div class="tit"><span>현금</span> <span class="com_icon_num custom">{{cshAstCn}}<i class="blind">건</i></span></div>
                         <span class="total_price">
-                            <em class="num">{{cshAsetAmtt | numberFilter}}</em><em class="unit">원</em>
+                            <em class="num"><span class="blind">금액</span>{{cshAsetAmtt | numberFilter}}</em><em class="unit">원</em>
                         </span>
                     </div>
                     
@@ -75,7 +85,7 @@
                                     </dt>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{cshAst.asetAm | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{cshAst.asetAm | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -86,9 +96,9 @@
             
                 <div class="com_box_type01 toggle_list_box2 custom_list" v-if="fcCshAstCn > 0">
                     <div class="new_tit_area">
-                        <div class="tit"><span>외화</span> <span class="com_icon_num custom">{{fcCshAstCn}}</span></div>
+                        <div class="tit"><span>외화</span> <span class="com_icon_num custom">{{fcCshAstCn}}<i class="blind">건</i></span></div>
                         <span class="total_price">
-                            <em class="num">{{fcAsetAmtt | numberFilter}}</em><em class="unit">원</em>
+                            <em class="num"><span class="blind">금액</span>{{fcAsetAmtt | numberFilter}}</em><em class="unit">원</em>
                         </span>
                     </div>
                     
@@ -104,7 +114,7 @@
                                     </dt>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{Math.floor(fcCshAst.krwAm) | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{Math.floor(fcCshAst.krwAm) | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -115,9 +125,9 @@
                 
                 <div class="com_box_type01 toggle_list_box2 custom_list" v-if="gldAstCn > 0">
                     <div class="new_tit_area">
-                        <div class="tit"><span>금</span> <span class="com_icon_num custom">{{gldAstCn}}</span></div>
+                        <div class="tit"><span>금</span> <span class="com_icon_num custom">{{gldAstCn}}<i class="blind">건</i></span></div>
                         <span class="total_price">
-                            <em class="num">{{goldAsetAmtt | numberFilter}}</em><em class="unit">원</em>
+                            <em class="num"><span class="blind">금액</span>{{goldAsetAmtt | numberFilter}}</em><em class="unit">원</em>
                         </span>
                     </div>
                     
@@ -134,7 +144,7 @@
                                     </dt>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{Math.floor(gldAst.goldAsetAm) | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{Math.floor(gldAst.goldAsetAm) | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -143,7 +153,7 @@
                             <div class="graybox_link">
                                 <a href="javascript:void(0);" role="button" class="data_status" @click.prevent="fn_openSlide(gldAst)">
                                     <em class="date">({{gldAst.goldMprBasDt | dateFilter("YYYY.MM.DD")}} 기준)</em>
-                                    <em class="price"><i class="blind">종가(원/g)</i><em> {{gldAst.goldPucAm | numberFilter}}원</em></em>
+                                    <em class="price"><i class="blind">종가</i><em> {{gldAst.goldPucAm | numberFilter}}원</em>(원/g)</em>
                                 </a>
                             </div>
                             <!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
@@ -163,7 +173,7 @@
                 
                 <div class="com_box_type01 toggle_list_box2 custom_list" v-if="fmachAstCn > 0">
                     <div class="new_tit_area">
-                        <div class="tit"><span>농기계</span> <span class="com_icon_num custom">{{fmachAstCn}}</span></div>
+                        <div class="tit"><span>농기계</span> <span class="com_icon_num custom">{{fmachAstCn}}<i class="blind">건</i></span></div>
                         <span class="total_price">
                             <em class="num">{{fmachAsetAmtt | numberFilter}}</em><em class="unit">원</em>
                         </span>
@@ -181,7 +191,7 @@
                                     </dt>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{fmachAst.asetAm | numberFilter}}</em><em class="unit">원</em>
+                                            <em class="num"><span class="blind">금액</span>{{fmachAst.asetAm | numberFilter}}</em><em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
@@ -401,6 +411,7 @@
                 숨김여부
             */
             fn_setHidden(flag, type) {
+                this.hideYn = type
 				this.setSecretAmInfo(flag, type)
 			},
         },

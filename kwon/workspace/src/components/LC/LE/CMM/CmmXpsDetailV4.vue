@@ -18,7 +18,7 @@
             <h1 v-if="type == TYPE_CARD">카드 지출내역</h1>
             <h1 v-else-if="type == TYPE_PAY">페이 지출내역</h1>
         </div>
-        <div class="popup_content com_no_bottom list_top_info_area com_bg_type00">
+        <div class="popup_content com_no_bottom list_top_info_area com_bg_type00"  :id="'content_area_'+subtype">
             <div class="com_inner">
                 <div v-if="type == TYPE_PAY" class="com_tabmenu_type03 switchType btn2">
                     <ul>
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="top_info_box_wrap" :class="{mt30: type == TYPE_PAY}">
-                    <div class="top_btn"><p class="depth"></p><a href="javascript:void(0);" @click.prevent="openSelectSlidePop()" ref="name"></a></div>
+                    <div class="top_btn"><p class="depth"></p><a href="javascript:void(0);" @click.prevent="openSelectSlidePop()" ref="name" title="카드 선택"></a></div>
                     <div class="shadow"></div>
                     <div class="top_info_box type02 noBG" :class="hasDetail">
                         <div v-if="type != TYPE_PAY" class="card_float_img">
@@ -50,23 +50,22 @@
 							<!--[v4.0] 지출목표 링크추가-->
 							<!--미설정시-->
                             <div v-if="infOfrmnOrgC !=''">
-							<div class="gray_box_m mt16" v-if="currYm===inqYm && (type == TYPE_CARD || (type == TYPE_PAY && subtype == SUBTYPE_PAYMONEY))">
-                                <div v-if="xpsEstAm == 0">
-                                    <button type="button" class="link_arrow icon_notice" @click.prevent="openXpsExtSlidePop()">지출 목표를 설정해 보세요</button>
-                                </div>                            
-                                <div v-else>
-                                    <!--설정 후, 초과나 남을경우-->
-                                    <button type="button" class="link_arrow icon_goal" @click.prevent="openXpsExtSlidePop()"> 목표 금액에서 {{xpsDifAm | numberFilter}}원 {{xpsDifLabel}}</button>
+                                <div class="gray_box_m mt16" v-if="currYm===inqYm && (type == TYPE_CARD || (type == TYPE_PAY && subtype == SUBTYPE_PAYMONEY))">
+                                    <div v-if="xpsEstAm === 0">
+                                        <button type="button" class="link_arrow icon_notice" @click.prevent="openXpsExtSlidePop()">지출 목표를 설정해 보세요</button>
+                                    </div>                            
+                                    <div v-else>
+                                        <!--설정 후, 초과나 남을경우-->
+                                        <button type="button" class="link_arrow icon_goal" @click.prevent="openXpsExtSlidePop()"> 목표 금액에서 {{xpsDifAm | numberFilter}}원 {{xpsDifLabel}}</button>
+                                    </div>
+                                </div>        
+                                <div class="gray_box_m mt16" v-if="currYm != inqYm && xpsEstAm != 0 && (type == TYPE_CARD || (type == TYPE_PAY && subtype == SUBTYPE_PAYMONEY))">
+                                    <div v-if="xpsEstAm != 0">                                        
+                                        <button type="button"  class="link_arrow icon_goal" disabled> 목표 금액에서 {{xpsDifAm | numberFilter}}원 {{xpsDifLabel}}</button>
+                                    </div>
                                 </div>
-							</div>        
-							<div class="gray_box_m mt16" v-if="currYm != inqYm && xpsEstAm != 0 && (type == TYPE_CARD || (type == TYPE_PAY && subtype == SUBTYPE_PAYMONEY))">
-                                <div v-if="xpsEstAm != 0">
-                                    <!--설정 후, 초과나 남을경우-->
-                                    <button type="button" > 목표 금액에서 {{xpsDifAm | numberFilter}}원 {{xpsDifLabel}}</button>
-                                </div>
-							</div>
                             </div>
-							<!--//[v4.0] 지출목표 링크추가-->                       
+							<!--//[v4.0] 지출목표 링크추가-->
                         </div>
 
                         <!-- 전체카드 선택하거나, 지출내역이 없으면 토글영역 비활성화 -->
@@ -112,7 +111,7 @@
                                                 <div class="num">{{isuDt | dateFilter('YYYY.MM.DD')}}</div>
                                             </div>
                                         </div>
-                                        <button type="button" class="view-btn" aria-expanded="false">
+                                        <button type="button" class="view-btn" aria-expanded="false" title="카드정보 상세보기">
                                             <em class="open">열기</em><em class="close">닫기</em>
                                         </button>
                                     </div>
@@ -126,7 +125,11 @@
             <!-- 230727 전체 필터 추가 -->
             <div class="com_inner">
                 <div class="all_filter">
-                    <a href="javascript:void(0);" role="button" @click.prevent="openSearchSlidePop()">{{srchCndStr}}</a>
+                    <a href="javascript:void(0);" role="button" @click.prevent="openSearchSlidePop()">
+                        <span class="date">{{srchCndDate}}</span>
+                        <em>{{srchCndStr}}</em>
+                        <em>{{srchCndMchtnm}}</em>
+                    </a>
                 </div>	
             </div>
             <!-- //230727 전체 필터 추가 -->
@@ -200,7 +203,7 @@
             </div>
         </div>
         <!--// 20210701 한별 클래스 com_space_bottom list_top_info_area com_bg_type00 더보기버튼 추가 리스트 수정 E -->
-        <a href="javascript:void(0);" @click="closeAll()" class="btn_close"><span class="blind">팝업닫기</span></a>
+        <a href="javascript:void(0);" @click.prevent="closePopup()" class="btn_close"><span class="blind">팝업닫기</span></a>
     </div>
     <!--// full popup E -->
 </template>
@@ -348,14 +351,14 @@ export default {
             }
         },
         noMoreList() {
-            return (this.nxDataYn == 'Y')?"":"display : none"
+            return (this.nxDataYn == 'Y') ? "" : "display : none"
         },
         disabledButton() {
             return this.currYm == this.inqYm ? 'disabled' : ''
         },
         // 전체선택 여부
         isAll() {
-            return (this.infOfrmnOrgC == '')?true:false
+            return (this.infOfrmnOrgC == '') ? true : false
         },
         fn_noShowNA() {
             return this.accIdVal && this.accIdVal !== 'NA' ? this.faceOnm + ' - ' + this.accIdVal : this.faceOnm
@@ -364,24 +367,13 @@ export default {
          * 검색조건을 화면에 출력하기 위한 문자열
          */
         srchCndStr() {
-            console.log("srchCndStr() Start===================")
-            if(   this.inqStrDt  == '' && this.inqEndDt == '' && this.prcMchtnmCnd == '' && this.cdTyCnd == '' 
-               && this.amCnd     == '' && this.stsCnd   == '' && this.trDtCnd == '') 
+            if( this.cdTyCnd == '' && this.amCnd == '' && this.stsCnd  == '' && this.trDtCnd == '')             
             {
-                return '전체'
+                return ''
 
             }else{
                 let strArr = []
 
-                if(this.inqStrDt) {
-                    strArr.push(this.inqStrDt)
-                }
-                if(this.inqEndDt) {
-                    strArr.push(this.inqEndDt)
-                }                                    
-                if(this.prcMchtnmCnd) {
-                    strArr.push(this.prcMchtnmCnd)
-                }
                 if(this.cdTyCnd) {
                     strArr.push(this.cdTyCndLabel)
                 }
@@ -394,7 +386,41 @@ export default {
                 if(this.trDtCnd) {
                     strArr.push(this.trDtCndLabel)
                 }
-                return strArr.join(' | ')
+                return strArr.join('ㆍ')
+            }
+        },
+        /**
+         * 검색조건을 화면에 출력하기 위한 문자열
+         */
+        srchCndMchtnm() {
+            if( this.prcMchtnmCnd == '')
+            {
+                return ''
+            } else {                  
+                return this.prcMchtnmCnd
+            }
+        },
+        /**
+         * 검색조건을 화면에 출력하기 위한 문자열
+         */
+        srchCndDate() {                
+            if( this.inqStrDt == '' && this.inqEndDt == '')
+            {
+                return '최신순ㆍ전체'
+
+            } else {
+                let strArr = []
+                if (this.isSrch) {
+                    if(this.inqStrDt) {
+                        strArr.push(this.inqStrDt)
+                    }
+                    if(this.inqEndDt) {
+                        strArr.push(this.inqEndDt)
+                    }        
+                } else {
+                    return '최신순ㆍ전체'
+                }
+                return strArr.join('~')
             }
         }
     },
@@ -419,7 +445,7 @@ export default {
             this.subtype      = this.subtypeProp
             this.isSrch       = this.isSrchProp
             
-            this.isXpsEst       = this.isXpsEstProp
+            this.isXpsEst     = this.isXpsEstProp
 
             this.currYm       = dateFormat(new Date(), 'YYYYMM')
             this.mydtCusno    = param.mydtCusno || ''
@@ -437,10 +463,10 @@ export default {
                 let tmpDate = this.inqYm + "" + "01"
                 this.lastDay = dateFormat(getLastDay(dateFormat(tmpDate, 'YYYYMMDD')), 'DD')
             }
-            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY-MM-DD')
-            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY-MM-DD')
+            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY.MM.DD')
+            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY.MM.DD')
             this.trDtCnd  = 'desc'
-            this.trDtCndLabel  = '최신순'
+            this.trDtCndLabel  = ''
            
             this.setCurrentMethod(param)
            
@@ -448,15 +474,19 @@ export default {
             // 탭 동작
             this.isTabPopup = param.isTabPopup || false
 
+            // 페이
             this.paymoneyTabInfOfrmnOrgC = param.paymoneyTabInfOfrmnOrgC || ''
-            this.paymoneyTabFaceNo = param.paymoneyTabFaceNo || ''
-            this.paymoneyTabFaceOnm = param.paymoneyTabFaceOnm || ''
-            this.paymoneyTabAccIdVal = param.paymoneyTabAccIdVal || ''
+            this.paymoneyTabFaceNo       = param.paymoneyTabFaceNo || ''
+            this.paymoneyTabFaceOnm      = param.paymoneyTabFaceOnm || ''
+            this.paymoneyTabAccIdVal     = param.paymoneyTabAccIdVal || ''
 
+            // 카드
             this.ppaycardTabInfOfrmnOrgC = param.ppaycardTabInfOfrmnOrgC || ''
-            this.ppaycardTabCdcoCdWrsnm = param.ppaycardTabCdcoCdWrsnm || ''
-            this.ppaycardTabMydtCdId = param.ppaycardTabMydtCdId || ''
+            this.ppaycardTabCdcoCdWrsnm  = param.ppaycardTabCdcoCdWrsnm || ''
+            this.ppaycardTabMydtCdId     = param.ppaycardTabMydtCdId || ''
 
+
+            console.log("initComponent() subtype===================", this.subtype, this.isSrch)
             this.getData();
         },
         setCurrentMethod(param) {
@@ -504,14 +534,18 @@ export default {
             // 최초조회
             const config = {
                 url : this.getDataUrl(),
-                data : this.getRequestData()
-            }
-
+                data : this.getRequestData(),
+                // v4
+                disableLoading : true
+            }              
             apiService.call(config).then(response => {
                 console.log("getData() response===================", response)
+                console.log("getData() subtype===================", this.subtype, this.isSrch)
                 this.assignData(response)
                 this.callJQueryFncExcute()
+
             })
+            
         },
 
         // 요청 파라미터
@@ -522,8 +556,8 @@ export default {
                 inqYm			: this.inqYm,
                 infOfrmnOrgC	: this.infOfrmnOrgC,
                 pageNo			: this.pageNo,
-                inqStrDt        : this.inqStrDt.split("-").join(""),
-                inqEndDt        : this.inqEndDt.split("-").join(""),
+                inqStrDt        : this.inqStrDt.split(".").join(""),
+                inqEndDt        : this.inqEndDt.split(".").join(""),
                 trDtCnd         : this.trDtCnd,
             }
 
@@ -592,23 +626,24 @@ export default {
          */
         assignData(obj) {
             console.log("assignData() obj===================", obj)
+            console.log("assignData()1 subtype===================", this.subtype, this.isSrch)
             this.mydtCusno		= obj.mydtCusno || ''
-            this.inqYm			= obj.inqYm || ''
-            this.nxDataYn		= obj.nxDataYn || 'N'
+            this.inqYm			= obj.inqYm     || ''
+            this.nxDataYn		= obj.nxDataYn  || 'N'
 
             // v4.0
-            this.xpsEstAm       = obj.xpsEstAm || 0
-            this.xpsEstDsc      = obj.xpsEstDsc || '01'
+            this.xpsEstAm       = obj.xpsEstAm  || 0
+            this.xpsEstDsc      = obj.xpsEstDsc || '02'
             
             // 종류별 변수할당
             switch(this.type) {
                 // 카드일 경우
                 case TYPE_CARD:
-                    this.mydtCdIdVal	= obj.mydtCdIdVal || ''
+                    this.mydtCdIdVal	= obj.mydtCdIdVal || this.mydtCdIdVal || ''
                     this.cdcoCdNo		= obj.cdcoCdNo || ''
                     this.cdcoCdWrsnm	= obj.cdcoCdWrsnm || ''
                     this.colCdDsc		= obj.colCdDsc || ''
-                    this.colCdDscNm		= obj.colCdDscNm || ''
+                    this.colCdDscNm     = obj.colCdDscNm || ''
                     this.trafFcltYn		= obj.trafFcltYn || ''
                     this.cshcdFcltYn	= obj.cshcdFcltYn || ''
                     this.stlBnkOrgC		= obj.stlBnkOrgC || ''
@@ -655,11 +690,18 @@ export default {
             } else {
                 this.xpsDifLabel  = "남았어요."
             }
-            console.log("assignData() xpsDifAm===================", this.xpsDifAm)
-            console.log("assignData() xpsEstAm===================", this.xpsEstAm)
-            console.log("assignData() sam===================", this.sam)
             
             this.modifiedList   = this.modifyList(this.list)
+
+            // v4 수정대상
+            if (this.isSrch && this.list.length > 0) {
+                setTimeout(() => {
+                    //const dLabel = this.$el.querySelectorAll('#l_'+this.currentDay)
+                    const parentdLabel = this.$el.querySelectorAll('.list_more_box') //리스트 상단의 DETAIL TAG ID  .list_more_box
+                    console.log("parentdLabelparentdLabelparentdLabelparentdLabelparentdLabel", this.subtype, parentdLabel[0].offsetTop)
+                    $('#content_area_'+this.subtype).animate({scrollTop : parentdLabel[0].offsetTop - 60})  // + dLabel[0].offsetTop 
+                }, 10);            
+            }
         },
 
         // 일자별 내림차순 정렬
@@ -742,7 +784,7 @@ export default {
             // this.inqStrDt       = ""         // 거래 시작일자 검색조건
             // this.inqEndDt       = ""         // 거래 종료일자 검색조건
             this.trDtCnd		= "desc"        // 정렬 검색조건
-            this.trDtCndLabel	= "최신순"       // 정렬 검색조건 라벨  
+            this.trDtCndLabel	= ""            // 정렬 검색조건 라벨  
 
             if (this.inqYm == this.currYm){
                 this.lastDay = this.currentDay
@@ -750,8 +792,8 @@ export default {
                 let tmpDate = this.inqYm + "" + "01"
                 this.lastDay = dateFormat(getLastDay(dateFormat(tmpDate, 'YYYYMMDD')), 'DD')
             }
-            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY-MM-DD')
-            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY-MM-DD')
+            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY.MM.DD')
+            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY.MM.DD')
 
         },
 
@@ -764,7 +806,7 @@ export default {
                 }
             } else if (this.type == TYPE_PAY && this.subtype == SUBTYPE_PAYMONEY) {
                 const cVal = item.eltFncPpayTrTpc
-                if(cVal == '5111' || cVal == '5112' || cVal == '5113' || cVal == '5114' 
+                if(    cVal == '5111' || cVal == '5112' || cVal == '5113' || cVal == '5114' 
                     || cVal == '5115' || cVal == '5119' || cVal == '5211' || cVal == '5212' 
                     || cVal == '5219' || cVal == '5302' || cVal == '5502') {
                     return true
@@ -784,8 +826,8 @@ export default {
             if(this.isTabPopup) {
                 this.close({
                     ppaycardTabInfOfrmnOrgC : this.infOfrmnOrgC,
-                    ppaycardTabCdcoCdWrsnm : this.cdcoCdWrsnm,
-                    ppaycardTabMydtCdId : this.mydtCdId
+                    ppaycardTabCdcoCdWrsnm  : this.cdcoCdWrsnm,
+                    ppaycardTabMydtCdId     : this.mydtCdId
                 })
                 return
             }
@@ -793,21 +835,21 @@ export default {
             const config = {
                 component : LCLE4003,
                 params : {
-                    mydtCusno : this.mydtCusno,
-                    inqYm : this.inqYm,
+                    mydtCusno    : this.mydtCusno,
+                    inqYm        : this.inqYm,
                     infOfrmnOrgC : this.paymoneyTabInfOfrmnOrgC ||'',
-                    faceNo : this.paymoneyTabFaceNo || '',
-                    faceOnm : this.paymoneyTabFaceOnm || '',
-                    accIdVal : this.paymoneyTabAccIdVal || '',
-                    isTabPopup: true
+                    faceNo       : this.paymoneyTabFaceNo || '',
+                    faceOnm      : this.paymoneyTabFaceOnm || '',
+                    accIdVal     : this.paymoneyTabAccIdVal || '',
+                    isTabPopup   : true
                 }
             }
             modalService.openPopup(config).then(response => {
             console.log("openPpayCdDetail() response===================", response)
                 this.paymoneyTabInfOfrmnOrgC = response.paymoneyTabInfOfrmnOrgC
-                this.paymoneyTabFaceNo = response.paymoneyTabFaceNo
-                this.paymoneyTabFaceOnm = response.paymoneyTabFaceOnm
-                this.paymoneyTabAccIdVal = response.paymoneyTabAccIdVal
+                this.paymoneyTabFaceNo       = response.paymoneyTabFaceNo
+                this.paymoneyTabFaceOnm      = response.paymoneyTabFaceOnm
+                this.paymoneyTabAccIdVal     = response.paymoneyTabAccIdVal
             })
         },
 
@@ -821,9 +863,9 @@ export default {
             if(this.isTabPopup) {
                 this.close({
                     paymoneyTabInfOfrmnOrgC : this.infOfrmnOrgC,
-                    paymoneyTabFaceNo : this.faceNo,
-                    paymoneyTabFaceOnm : this.faceOnm,
-                    paymoneyTabAccIdVal : this.accIdVal,
+                    paymoneyTabFaceNo       : this.faceNo,
+                    paymoneyTabFaceOnm      : this.faceOnm,
+                    paymoneyTabAccIdVal     : this.accIdVal,
                 })
                 return
             }
@@ -831,19 +873,19 @@ export default {
             const config = {
                 component : LCLE4004,
                 params : {
-                    mydtCusno : this.mydtCusno,
-                    inqYm : this.inqYm,
+                    mydtCusno    : this.mydtCusno,
+                    inqYm        : this.inqYm,
                     infOfrmnOrgC : this.ppaycardTabInfOfrmnOrgC || '',
-                    cdcoCdWrsnm : this.ppaycardTabCdcoCdWrsnm || '',
-                    mydtCdId : this.ppaycardTabMydtCdId || '',
-                    isTabPopup: true
+                    cdcoCdWrsnm  : this.ppaycardTabCdcoCdWrsnm || '',
+                    mydtCdId     : this.ppaycardTabMydtCdId || '',
+                    isTabPopup   : true
                 }
             }
             modalService.openPopup(config).then(response => {
                 console.log("openPpayCdDetail() response===================", response)
                 this.ppaycardTabInfOfrmnOrgC = response.ppaycardTabInfOfrmnOrgC
-                this.ppaycardTabCdcoCdWrsnm = response.ppaycardTabCdcoCdWrsnm
-                this.ppaycardTabMydtCdId = response.ppaycardTabMydtCdId
+                this.ppaycardTabCdcoCdWrsnm  = response.ppaycardTabCdcoCdWrsnm
+                this.ppaycardTabMydtCdId     = response.ppaycardTabMydtCdId
             })
         },
 
@@ -873,6 +915,7 @@ export default {
                 }
             }
             modalService.openSlidePagePopup(config).then(response => {
+            this.fn_initSrch() // 검색조건 초기화
             console.log("openSelectSlidePop() response===================", response)
                 //this.mydtCusno   	= response.mydtCusno  || ''
                 this.infOfrmnOrgC	= response.infOfrmnOrgC || ''
@@ -916,15 +959,15 @@ export default {
             let tmpEndDt  = ""
 
             if (this.inqStrDt == "") {
-                tmpStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY-MM-DD')
+                tmpStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY.MM.DD')
             } else {
-                tmpStrDt = dateFormat(this.inqStrDt, 'YYYY-MM-DD')
+                tmpStrDt = dateFormat(this.inqStrDt, 'YYYY.MM.DD')
             }
                 
             if (this.inqEndDt == "") {
-                tmpEndDt = dateFormat(this.inqYm + "" + this.currentDay, 'YYYY-MM-DD')
+                tmpEndDt = dateFormat(this.inqYm + "" + this.currentDay, 'YYYY.MM.DD')
             }else{
-                tmpEndDt = dateFormat(this.inqEndDt, 'YYYY-MM-DD')
+                tmpEndDt = dateFormat(this.inqEndDt, 'YYYY.MM.DD')
             }             
             console.log("tmpStrDt ~ tmpEndDt>>>",tmpStrDt + "~"+ tmpEndDt)     
 
@@ -971,7 +1014,23 @@ export default {
                     this.pageNo = 1
                     this.getData()
                     this.callJQueryFncExcute()
-                }
+                }            
+
+                this.$nextTick(() => {
+                    /*[v4.0] 스크롤이동*/
+                    //const gotoList = function(){
+                        const _top = $(".list_more_box").position().top - 10;
+
+                        setTimeout(function(){
+                            $('html, body').stop().animate({
+                                scrollTop : _top
+                            },300)
+                        }, 0)
+                    //}
+                    /*[v4.0] 스크롤이동*/  
+                })                    
+                console.log("openSearchSlidePop() end===================")
+
             })
         },
 
@@ -991,7 +1050,7 @@ export default {
             console.log("openXpsExtSlidePop() response===================", response)
                 if(response.isXpsEst !== undefined) {
                     this.isXpsEst    = response.isXpsEst   
-                    let tmpXpsEstAm = response.xpsEstAm.split(",").join("")
+                    let tmpXpsEstAm  = response.xpsEstAm.split(",").join("")
 
                     // 기존설정 금액과 주기와 동일한 경우는 skip
                     if (this.xpsEstAm != tmpXpsEstAm || this.xpsEstDsc  != response.xpsEstDsc) {
@@ -1034,9 +1093,7 @@ export default {
                     estAm		    : this.xpsEstAm,
                     estDsc   	    : this.xpsEstDsc,
                 },                
-
-            }
-            
+            }            
             console.log("setStlMnsXpsObtData() config===================", config)
             apiService.call(config).then(response => {
             console.log("setStlMnsXpsObtData() response===================", response)
@@ -1052,8 +1109,7 @@ export default {
                 } else {
                     this.xpsDifLabel  = "남았어요."                    
                 }
-
-
+                
                 this.callJQueryFncExcute()
             })
         }, 
@@ -1067,27 +1123,40 @@ export default {
                 mydtCusno		: this.mydtCusno,
                 inqYm			: this.inqYm,
                 infOfrmnOrgC	: this.infOfrmnOrgC,
-                mydtCdId		: this.mydtCdId,
+                //mydtCdId		: this.mydtCdId,
                 pageNo		    : this.pageNo,
+                inqStrDt        : this.inqStrDt.split(".").join(""),
+                inqEndDt        : this.inqEndDt.split(".").join(""),               
+                prcMchtnmCnd    : this.prcMchtnmCnd,
+                cdTyCnd         : this.cdTyCnd,
+                amCnd           : this.amCnd,
+                stsCnd          : this.stsCnd,
+                trDtCnd         : this.trDtCnd,            
             }
 
-            // 검색일 경우 요청데이터에 검색조건 추가
-            if(this.isSrch) {
-                Object.assign(data, {
-                    prcMchtnmCnd: this.prcMchtnmCnd
-                })
-                Object.assign(data, {
-                    cdTyCnd: this.cdTyCnd
-                })
-                Object.assign(data, {
-                    amCnd: this.amCnd
-                })
-                Object.assign(data, {
-                    stsCnd: this.stsCnd
-                })
-                Object.assign(data, {
-                    trDtCnd: this.trDtCnd
-                })
+            switch(this.type) {
+                case TYPE_CARD:
+                    data = Object.assign(data, {
+                        mydtCdId		: this.mydtCdId,
+                    })
+                    break
+
+                case TYPE_PAY:
+                    switch(this.subtype) {
+                        case SUBTYPE_PAYMONEY:
+                            data = Object.assign(data, {
+                                faceNo       : this.faceNo,
+                                accIdVal     : this.accIdVal2
+                            })
+                            break
+
+                        case SUBTYPE_PPAYCARD:
+                            Object.assign(data, {
+                                mydtCdId		: this.mydtCdId
+                            })
+                            break
+                    }
+                    break
             }
 
             const config = {
@@ -1095,6 +1164,7 @@ export default {
                 data
             }
 
+            console.log("showMoreList() config===================", config)
             apiService.call(config).then(response => {
             console.log("showMoreList() response===================", response)
                 var i = 0
@@ -1227,6 +1297,22 @@ export default {
             }
             
             return component
+        },
+
+        // 25.04.17) 모드 및 화면별 팝업닫기 분기
+        closePopup() {
+            const scrMode = this.getScrmode()?.mode || 'N'
+            const pageId = this.pageName || ''
+            
+            if(scrMode == 'S') {
+                if(this.isTabPopup) {
+                    pageId.startsWith('AS') ? this.closeAllLeftMain(true) : this.closeAll(true)
+                } else {
+                    this.close(true)
+                }
+            } else {
+                this.closeAll(true)
+            }
         }
     }
 }

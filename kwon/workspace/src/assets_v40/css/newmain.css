@@ -607,3 +607,53 @@ display:flex;justify-content:center;align-items:center;}
 .ev_rice .rice_notice .rice_notice_inner div ul li {padding-left:1.6rem;background:url('../images/event/ev_rice16.png') no-repeat 0.4rem 0.5rem;background-size:0.3em}
 .ev_rice .rice_notice .logo {text-align:right;margin-bottom:2rem}
 .ev_rice .rice_notice .logo img {width:6rem}
+
+/*초성퀴즈이벤트2 600만 달성했다콕*/
+.ev_coke .popup_content {top:5.5rem;padding-top:0!important;padding-bottom:2rem;color:#fff;background-color:#ffe45f!important}
+.ev_coke .popup_content .coke_wrap {width:90%;margin:0 auto;margin-top:1rem}
+.ev_coke .popup_content .coke_wrap .quiz {width:100%;height:29rem;text-align:center;background:url('../images/event/ev_coke06.png') no-repeat 0 100%;background-size:100%}
+
+.ev_coke .popup_content .coke_wrap .quiz .tit {width:14rem;height:3.2rem;padding-left:2rem;clear:both;font-size:1.2rem;line-height:3.2rem;font-weight:500;color:#7a4b00;margin:0 auto;background:url('../images/event/ev_coke02.png') no-repeat top center;background-size:contain}
+.ev_coke .popup_content .coke_wrap .quiz .tit.answer {padding-left:3rem;background:url('../images/event/ev_coke03.png') no-repeat top center;background-size:contain;margin-bottom:0.8rem}
+
+.ev_coke .popup_content .coke_wrap .quiz .txt {font-size:1.4rem;margin-top:0.5rem;overflow:hidden;line-height:2rem;color:#3d2e12;margin-bottom:0.8rem}
+.ev_coke .popup_content .coke_wrap .quiz .txt div {width:90%;overflow:hidden;line-height:4rem;font-size:2rem;margin:0 auto;margin-top:1rem;color:#5d4936}
+.ev_coke .popup_content .coke_wrap .quiz .txt div strong {width:13%;float:left;text-align:left;display:inline-block}
+.ev_coke .popup_content .coke_wrap .quiz .txt div span {width:87%;text-align:left;float:right;display:inline-block}
+.ev_coke .popup_content .coke_wrap .quiz .txt div span em {width:14%;height:4rem;margin-right:3.2%;font-weight:500;float:left;text-align:center;border-radius:0.8rem;display:inline-block;background-color:#fff2b0}
+.ev_coke .popup_content .coke_wrap .quiz .txt div span em:last-child {margin-right:0}
+
+.ev_coke .popup_content .coke_wrap .quiz .answer_w {width:90%;overflow:hidden;margin:0 auto;} 
+.ev_coke .popup_content .coke_wrap .quiz .answer_w p input[type="text"] {width:15%;height:5rem;font-size:2rem;margin-right:2%;color:#fff;box-shadow: inset 0.5rem 0.5rem 0.5rem -0.5rem #0c6f3b;border-radius:0.8rem;float:left;border:none;background-color:#159862;border:1px solid #0c6f3b;text-align:center}
+.ev_coke .popup_content .coke_wrap .quiz .answer_w p input[type="text"]::placeholder {font-size:2rem;text-align:center;color:#ffe45f;}
+.ev_coke .popup_content .coke_wrap .quiz .answer_w p input[type="text"]:last-child {margin-right:0}
+.ev_coke .popup_content .coke_wrap .quiz .answer_w a {width:100%;height:3.7rem;line-height:3.7rem;display:inline-block;margin-top:1rem;color:#fff;background-color:#ff8437;border-radius:1rem;}
+
+.ev_coke .popup_content .coke_wrap .detail_coke {width:100%;padding:4rem 0 2rem 0;margin-bottom:2rem;float:left;color:#4e3321;;margin-top:1.5rem;background:url('../images/event/ev_coke07.png') no-repeat top center #fffde9;background-size: contain;}
+.ev_coke .popup_content .coke_wrap .detail_coke div {width:90%;margin:0 auto;}
+.ev_coke .popup_content .coke_wrap .detail_coke div dl {clear:both}
+.ev_coke .popup_content .coke_wrap .detail_coke div dt {width:23%;height:3rem;text-align:center;line-height:2.8rem;padding-left:0.5rem;font-size:1.2rem;font-weight:500;float:left;color:#00493e;background:url('../images/event/ev_coke08.png') no-repeat top left;background-size: 100%;}
+.ev_coke .popup_content .coke_wrap .detail_coke div dd {width:77%;font-size:1.3rem;line-height:2.8rem;letter-spacing:-0.1rem;float:left;padding-left:0.8rem}
+.ev_coke .popup_content .coke_wrap .detail_coke div dd em {color:#ff8437}
+.ev_coke .popup_content .coke_wrap .detail_coke div dd img {width:1.5rem;height:1.5rem;vertical-align:middle;margin:-0.2rem 0.1rem 0 0} 
+.ev_coke .popup_content .coke_wrap .detail_coke .star {width:98%;clear:both;margin-top:3.2rem}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say {width:100%;height:6rem;text-align:center;background:url('../images/event/ev_coke09.png') no-repeat top center;background-size:100%;}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say p {width:100%;height:100%;}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say p span {height:100%;line-height:4.5rem;padding-left:2.2rem;font-size:1.3rem;display:inline-block}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say p span em {color:#ff8437}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say p span.new {background:url('../images/event/ev_coke12.png') no-repeat 50% 40%, url('../images/event/ev_coke10.png') no-repeat 0 1rem;background-size:1rem,2rem;background-position:100% 33%, 0% 30%;padding-right:1.5rem}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .say p span.old {background:url('../images/event/ev_coke11.png') no-repeat 0 1.2rem;background-size:2rem;margin-left:-0.2rem}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .coffee  {width:100%;height:8rem;background:url('../images/event/ev_coke13.png') no-repeat 0 0;background-size:100%;margin:0.5rem 0 1.6rem 0}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .coffee p {font-size:1.1rem;font-weight:500;float:right;margin:3.5rem 2.4rem 0 0;line-height:1.6rem;color:#4e3321}
+.ev_coke .popup_content .coke_wrap .detail_coke .star .coffee p em {font-size:1.4rem;color:#ff8437}
+.ev_coke .popup_content .coke_wrap .detail_coke a {width:100%;height:3.7rem;text-align:center;line-height:3.7rem;display:inline-block;margin-top:1rem;color:#fff;background-color:#269f59;border-radius:1rem;}
+
+.ev_coke .popup_content .coke_wrap .notice {width:100%;margin:0 auto;color:#83714b}
+.ev_coke .popup_content .coke_wrap .notice strong {font-size:1.2rem;padding:0 0 0.7rem 1.6rem;background:url('../images/event/ev_coke04.png') no-repeat 0 0.2rem;background-size:1.3rem}
+.ev_coke .popup_content .coke_wrap .notice div {padding-bottom:2rem;line-height:1.6rem;font-size:1.1rem;margin-top:0.5rem}
+.ev_coke .popup_content .coke_wrap .notice div ul li {padding-left:1.6rem;background:url('../images/event/ev_coke05.png') no-repeat 0.7rem 0.5rem;background-size:0.4rem}
+.ev_coke .popup_content .coke_wrap .logo {text-align:right}
+.ev_coke .popup_content .coke_wrap .logo img {width:6rem}
+
+.terms_sub_tit.coke {line-height:1.8rem;margin-top:1rem!important}
+.terms_sub_tit.coke span {width:3.4rem;height:4.1rem;margin-left:0.5rem;vertical-align:bottom;display:inline-block;background:url('../images/event/ev_coke16.png') no-repeat 0 0;background-size:contain;margin-right:0.5rem;}

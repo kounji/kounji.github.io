@@ -332,7 +332,7 @@ $(function(){
 	//	$('.slide_popup').animate({bottom:'0'});
 		$('body').addClass('scroll-off').on('scroll touchmove mousewheel', function(e) {e.preventDefault()});
 		$('#wrap').attr('aria-hidden', 'true').css('top', -scrollTop);
-		$(target).show().attr('aria-hidden', 'false').siblings('.slide_popup,.full_popup').attr('aria-hidden', 'true');
+		$(target).removeClass('close').attr('aria-hidden', 'false').siblings('.slide_popup,.full_popup').attr('aria-hidden', 'true');
 		self.addClass('layerPopupOpen');
 		$(target).find('.popup_header h1').attr('tabindex', 0).focus();
 		if(!$(target).find('div').hasClass('popup_header')){
@@ -348,7 +348,7 @@ $(function(){
 		$('body').removeAttr('style');
 		$('body').scrollTop(scrollTop);
 		$('#wrap').attr('aria-hidden', 'false');
-		self.parents('.slide_popup,.full_popup').hide().attr('aria-hidden', 'true');
+		self.parents('.slide_popup,.full_popup').addClass('close').attr('aria-hidden', 'true');
 		$('#wrap').find('.layerPopupOpen').focus().removeClass('layerPopupOpen');
 
 		//$('.dimmed').fadeOut(200); [v4.0] 삭제
@@ -658,14 +658,14 @@ $(function(){
 // 	 });	
 // 	}
 /* 라디오버튼 접근성 */
-$(function(){
-	$('.btn_radio input[type=radio]').attr('aria-hidden', true);
-	$('.btn_radio label').attr('aria-checked', false);
-	$('.btn_radio label').attr('role','radio');
-	$('.btn_radio label').on('click',function(){
-		$(this).attr('aria-checked', true).parents().siblings().find('label').attr('aria-checked', false);
-	});
-})
+// $(function(){
+// 	$('.btn_radio input[type=radio]').attr('aria-hidden', true);
+// 	$('.btn_radio label').attr('aria-checked', false);
+// 	$('.btn_radio label').attr('role','radio');
+// 	$('.btn_radio label').on('click',function(){
+// 		$(this).attr('aria-checked', true).parents().siblings().find('label').attr('aria-checked', false);
+// 	});
+// })
 /* 탭 접근성 */
 $(function(){
 	$('*[role="tablist"] a').attr('aria-selected', false);
@@ -1030,6 +1030,7 @@ $(function(){
 				}
 			});
 			$('.terms_view.slide').slick({
+				dots:true, // [v4.0] dot nav 추가
 				slidesToShow: 1,
 				infinite: false,
 				adaptiveHeight:true,
@@ -1430,29 +1431,86 @@ const observer_header = function(){
 	observer.observe(header);
 }
 
+var observerAllNavi = null
+var observerIo = null
 const observer_allNavi = function(){
 	const allNavi = document.querySelector('.allNavi nav .category_tab');
 
 	const stickyNav = function(entries){
-		console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ all navi: ' + entries[0].isIntersecting);
+		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ all navi: ' + entries[0].isIntersecting);
 
 		if(!entries[0].isIntersecting){
 			$(".allNavi nav .category_tab").addClass('fixed');
 		}else{
 			$(".allNavi nav .category_tab").removeClass('fixed');
-			$.each($(".allNavi .category_tab li"), function(i,obj){
-				$("> a", $(obj)).attr('aria-selected', false);
-			});
 		}
 	}
 
-	const observer = new IntersectionObserver(stickyNav, {
-		root:null,
-		rootMargin :'-51px 0px 0px 0px',
-		threshold:1
-	});
+	if(observerAllNavi) {
+		observerAllNavi.disconnect();
+		observerAllNavi = null
+	}
 
-	observer.observe(allNavi);
+	requestAnimationFrame(() => {
+		observerAllNavi = new IntersectionObserver(stickyNav, {
+			root:null,
+			rootMargin :'-51px 0px 0px 0px',
+			threshold:1
+		});
+	
+		observerAllNavi.observe(allNavi);
+	})
+
+	if(observerIo) {
+		observerIo.disconnect();
+		observerIo = null
+	}
+	
+	requestAnimationFrame(() => {
+		observerIo = new IntersectionObserver((entries) =>{
+			entries.forEach((entry)=>{
+				const $target = $(entry.target);
+	
+				if($(".allNavi nav .category_tab").hasClass('fixed')){
+					if(entry.isIntersecting){
+						$target.removeClass('through');
+					}else{
+						if($target.offset().top + $target.outerHeight() > $(window).outerHeight()){}else{
+							$target.addClass('through');
+						}
+					}
+				}
+	
+				const idx = $('.allNavi nav > ul > li.through').last().index();
+	
+				if(idx >= 0){
+					
+					$.each($(".allNavi .category_tab li"), function(i,obj){
+						$("> a", $(obj)).attr('aria-selected', false);
+					});
+	
+					$(">a", $(".allNavi .category_tab li").eq(idx)).attr('aria-selected', true);
+					scroll_allNavi(idx);
+				}else{
+					$.each($(".allNavi .category_tab li"), function(i,obj){
+						$("> a", $(obj)).attr('aria-selected', false);
+					});
+				}
+	
+			})
+		},{
+			root:null,
+			rootMargin :'-125px 0px 0px 0px',
+			threshold:1
+		})
+	
+	
+		const $items =  document.querySelectorAll('.allNavi nav > ul > li');
+		$items.forEach((item)=>{
+			observerIo.observe(item)
+		})
+	})
+	
 }
 
 const observer_content = function(){
@@ -1471,15 +1529,17 @@ const observer_content = function(){
 					const _left = $(this).offset().left;
 					const _curLeft = $("nav.navi .inner ul").scrollLeft();
 	
-					$("nav.navi .inner ul").stop().animate({
-						scrollLeft:_curLeft + _left -20
-					}, 400);
+					//$("nav.navi .inner ul").stop().animate({
+					//	scrollLeft:_curLeft + _left -20
+					//}, 400);
+
+					$("nav.navi .inner ul").scrollLeft(_curLeft + _left - 20 )
 				}
 			});
 		}
 		
 		//전체메뉴 감시 호출
-		if($(".allNavi").length > 0){
+		if($(".allNavi:not(.senior, .youth)").length > 0){
 			observer_allNavi();
 		}
 	}
@@ -1532,12 +1592,12 @@ $(document).ready(function(){
 
 		/*scrolling 상태체크 ************/
 		if(!scrolling){
-			console.log('start scrolling!');
+			//console.log('start scrolling!');
 		}
 		
 		clearTimeout(scrolling);
 		scrolling = setTimeout(()=>{
-			console.log('stop scrolling!');
+			//console.log('stop scrolling!');
 			$("aside.tabbar").addClass('block');
 			scrolling = undefined;
 		}, 250);
@@ -1549,29 +1609,16 @@ $(document).ready(function(){
 			scrollEnding = false;
 		}	
 		//console.log('★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★ scrollEnding : ' + scrollEnding);
-
-		/* 전체메뉴 ----------------------------*/
-		if($(".allNavi").length > 0){
-			$.each($(".allNavi nav > ul > li"), function(idx,item){
-				let _top = $(item).position().top - $(".allNavi nav .category_tab").outerHeight();
-				if(_top <= nowScroll){
-					$.each($(".allNavi .category_tab li"), function(i,obj){
-						$("> a", $(obj)).attr('aria-selected', false);
-					});
-
-					$(">a", $(".allNavi .category_tab li").eq(idx)).attr('aria-selected', true);
-					scroll_allNavi(idx);
-				}
-			});
-		}
 	});
 });
 
 $(document).off('click.dimmed').on('click.dimmed', '.btn_float', function(){
 	if($(".dimmed").css('display') == 'block' || $(".dimmed_float").css('display') == 'block' ){
 		enableScroll();
+		//$('.com_sub_type02').attr('aria-hidden',true); //0611접근성 추가
 	}else{
 		disableScroll();
+		//$('.com_sub_type02').attr('aria-hidden',false); //0611접근성 추가
 	}
 });
 
@@ -1582,7 +1629,7 @@ $(document).off('click.scrolltop').on('click.scrolltop', '.lnb a', function(){
 	lastScroll = 0;
 });
 
-/*팝업 닫을때 포커스 원점이동*/
+/*팝업 닫을때 포커스 원점이동
 $(document).off('click.call_Popup').on('click.call_Popup', '#content a, #content button', function(e){
 	//e.preventDefault();
 	let $content = $(this).parents("#content");
@@ -1591,6 +1638,7 @@ $(document).off('click.call_Popup').on('click.call_Popup', '#content a, #content
 	});
 	$(this).addClass('call_Popup');
 });
+*/
 
 /*전체메뉴*/
 var scroll_allNavi = function(idx){
@@ -1607,7 +1655,6 @@ $(document).off('click.allNavi').on('click.allNavi', '.allNavi nav .category_tab
 	const id = $(this).attr('href');
 	const _top = $(id).position().top - $(".allNavi nav .category_tab").outerHeight();
 	const $this = $(this);
-
 	$('html, body').stop().animate({
 		scrollTop : _top
 	},300, function(){
@@ -1619,7 +1666,21 @@ $(document).off('click.allNavi').on('click.allNavi', '.allNavi nav .category_tab
 			$this.attr('aria-selected', true);
 			scroll_allNavi($this.parent().index())
 		}
+		
 	});
+	//접근성 추가
+	$.each($(id), function(){
+		//$(id).find('> a:first-child').attr('tabindex','0')
+		//$(id).find('> span:first-child').attr('tabindex','0')
+		//$(id).siblings().find('> a').removeAttr('tabindex');
+		//$(id).siblings().find('> span').removeAttr('tabindex');
+		$(id).siblings().removeAttr('tabindex');
+		setTimeout(function(){
+			//$(id).find('> a:first-child').focus()
+			//$(id).find('> span:first-child').focus()
+			$(id).attr('tabindex','0').focus();
+		}, 20);
+	})
 });
 
 /*input*/
@@ -1659,10 +1720,10 @@ $(document).off('click.additional_util').on('click.additional_util', '.additiona
 	})
 });
 
-/*topbanner*/
-// $(document).off('click.topbanner').on('click.topbanner', '.top_banner .btn_x', function(){
-// 	$(this).parent().remove();
-// });
+/*topbanner-250310 개발 요청으로 삭제 */
+//$(document).off('click.topbanner').on('click.topbanner', '.top_banner .btn_x', function(){
+//	$(this).parent().remove();
+//});
 
 /*update*/
 $(document).off('click.update').on('click.update', '.update .btn_update', function(){
@@ -1673,6 +1734,9 @@ $(document).off('click.update').on('click.update', '.update .btn_update', functi
 /*category tab*/
 $(document).off('click.category_tab').on('click.category_tab', '.category_tab.has_btn .btn_fold', function() {
 	const $tabList = $(this).siblings('ul');
+	//const isExpanded = $tabList.hasClass('open');
+
+	//$(this).attr('aria-expanded', !isExpanded);
 	$tabList.toggleClass('open');
 });
 
@@ -1689,20 +1753,149 @@ $(document).off('click.service_intro_acco').on('click.service_intro_acco', '.ser
 	}
 });
 
-/****복붙시작영역 ****/
+//금액숨김
+/* 퍼블에서만 사용
+$(document).off('click.toggle_money_btn').on('click.toggle_money_btn', '.toggle_money button.btns', function(){
+	if($(this).closest('.toggle_money').hasClass('on')){
+		$(this).closest('.toggle_money').removeClass('on');
+	}else{
+		$(this).closest('.toggle_money').addClass('on');
+	}
+});
+*/
+/* 통합메인 */
+// 플로팅 배너
+$(function () {
+	setTimeout(function(){
+		$('.float_link').addClass('is_active');
+		setInterval(function(){floatRolling()},10000);
+	},1500);
+	
+	$(document).off('click.close').on('click.close', '.float_link button.close', function () {
+		$(this).closest('.float_link').remove();
+	});
 
-/*tooltip 다시정의[개발]*/
+	function floatRolling() {
+		$('.float_link').removeClass('is_active').find('ul li:first').fadeOut(function(){
+			$(this).appendTo($('.float_link ul')).fadeIn().closest('.float_link').addClass('is_active');
+		});
+	}
+});
+
+// 주요자산 변동내역
+$(function () {
+	function setAllBtnText ($button) {
+		let isExpanded = $button.attr('aria-expanded') === 'true';
+		$button.text(isExpanded ? '전체닫기' : '전체열기');
+	}
+
+	function checkAllOpen () {
+		let $list = $(".asset_sheet ul");
+		let $allBtn = $(".asset_sheet .toggle_btn");
+
+		if($list.find('li').not('.nodata').length === $list.find('li.open').not('.nodata').length){
+			console.log("같아요!");
+			$allBtn.attr('aria-expanded', true).text('전체닫기');
+			$list.addClass('all_open');
+		} else {
+			console.log("달라요!")
+			$allBtn.attr('aria-expanded', false).text('전체열기');
+			$list.removeClass('all_open');
+		}
+	}
+
+	$(document).off('click.toggle_btn').on('click.toggle_btn', '.asset_sheet .toggle_btn', function() { //전체 열기,닫기
+		let $list = $(".asset_sheet ul");
+		let $itemBtn = $(".asset_sheet .item_btn");
+		let isOpen = !$list.hasClass('all_open');
+
+		$list.toggleClass('all_open', isOpen);
+		$list.find('li').not('.nodata').each(function(){
+			$(this).toggleClass('open', isOpen);
+			if (isOpen) {
+				$(this).find('.cont').stop(true, true).slideDown(200);
+			} else {
+				$(this).find('.cont').stop(true, true).slideUp(200);
+			}
+		})
+		$(this).attr('aria-expanded', isOpen);
+		$itemBtn.attr('aria-expanded', isOpen);
+		setAllBtnText($(this));
+		checkAllOpen();
+	});
+
+	$(document).off('click.item_btn').on('click.item_btn', '.asset_sheet .item_btn', function() { //개별 열기,닫기
+		let $item = $(this).closest('li');
+		let isOpen = !$item.hasClass('open');
+		let $allBtn = $(".asset_sheet .toggle_btn");
+
+		$item.toggleClass('open', isOpen);
+		if (isOpen) {
+			$item.find('.cont').stop(true, true).slideDown(200);
+		} else {
+			$item.find('.cont').stop(true, true).slideUp(200);
+		}
+		$(this).attr('aria-expanded', isOpen);
+		setAllBtnText($allBtn);
+		checkAllOpen();
+	});
+
+	$(document).off('click.fold_btn').on('click.fold_btn', '.asset_sheet .fold_btn', function() { //개별 닫기
+		let $item = $(this).closest('li');
+		let isOpen = !$item.hasClass('open');
+		let $allBtn = $(".asset_sheet .toggle_btn");
+
+		$item.toggleClass('open', isOpen);
+		$item.find('.cont').slideUp(200);
+		$item.find('.item_btn').attr('aria-expanded', 'false');
+
+		setAllBtnText($allBtn);
+		checkAllOpen();
+		
+		// 닫기 후 포커스 이동
+		setTimeout(function(){
+			$(".item_btn", $item).focus();
+		}, 0)
+
+	});
+})
+
+// android 키패드 체크
+$(function () {
+	setTimeout(function(){
+		if($('body').hasClass('android') == true){
+			var originalSize = $(window).outerWidth() + $(window).outerHeight();
+			var wh = $(window).outerHeight();
+				
+			$(window).resize(function() {
+				if($(window).outerWidth() + $(window).outerHeight() != originalSize) {
+					// 키보드가 올라온 경우
+					//console.log('키보드가 올라온 경우',originalSize,wh)
+					$('aside.tabbar nav').css('position','absolute')
+				}else {
+					// 키보드가 내려간 경우
+					//console.log('키보드가 내려간 경우',originalSize,wh)
+					$('aside.tabbar nav').css('position','fixed')
+				}
+			});
+		}
+	},1500);
+})
+
+/**** 복붙시작영역 ****/
+
+/* [개발대응] tooltip 다시정의 */
 $(document).off('click.com_btn_info_tooltip').on('click.com_btn_info_tooltip', '.custom_tooltip .com_btn_info', function(){
 	$('.com_ballon_type01').hide();
 	$('.com_tooltip_type02 a > .arrow,.com_tooltip_type02 button > .arrow').hide();		
 	$(this).parent().next('.com_ballon_type01').show()	
 	$(this).next('.com_ballon_type01').show()			
-	$(this).children('.arrow').show();		
-});
-$(document).off('click.com_btn_close_tooltip').on('click.com_btn_close_tooltip', '.custom_tooltip .com_btn_close', function(){
+	$(this).children('.arrow').show();	
+})
+$(document).off('click.com_btn_close_tooltip').on('click.com_btn_close_tooltip', '.com_ballon_type01 .com_btn_close', function(){
 	$('.com_ballon_type01').hide();
-	$('.com_tooltip_type02 a > .arrow,.com_tooltip_type02 button > .arrow').hide();			
-});
+	$('.com_tooltip_type02 a > .arrow,.com_tooltip_type02 button > .arrow').hide();		
+})
 
 /*tooltip 닫기 후 focus 이동*/
 $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_tooltip .com_btn_close', function(){
@@ -1713,204 +1906,77 @@ $(document).off('click.close_tooltip').on('click.close_tooltip', '.custom_toolti
 	}, 0)
 })
 
-/* 약관 스크롤 애니 */
-$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani','.btn_agree_move', function(){
-	if (document.getElementsByClassName('.btn_agree_move') ) {
-		$(this).parent().closest('.full_popup').find('.pop_content').animate({
-			scrollTop: $(this).parent().closest('.full_popup').find('.pop_content')[0].scrollHeight
-		},500);
-		$(this).parent('.btn_agree_wrap').addClass('act');
-		//check toast
-		$(this).parent().closest('.full_popup').find('.error_message').addClass('on');
-		setTimeout(function(){
-			$('.btn_agree_move').parent().closest('.full_popup').find('.error_message').removeClass('on').addClass('off');
-		},2000)
-	}
-})
+//약관 스크롤 애니 - scroll
+/*
+$(document).ready(function(){
+	//let $termsCon = $('#terms_scroll');
+	let $termsCon = $('.terms_view');
+	let $fullPop = $termsCon.closest('.full_popup');
+	let $popCont = $('.popup_content',$fullPop);
+	
+	$popCont.off('scroll.full_popup_scroll').on('scroll.full_popup_scroll', function(){
+		let nowScroll = $popCont.scrollTop();
 
+		/*scroll ending check *
+		if($termsCon){
+			if((nowScroll + $popCont.height()) >= $termsCon.height()){
+				scrollEnding = true;
+				//console.log('pop_scroll ending');
 
-/* 약관 스크롤 애니 
-let _scrollT = 0;
-let _scrollT_start = false;
-let check_scrollBottom = function($grand){
-	$('.popup_content', $grand).scroll(function(){
+				if (document.getElementsByClassName('.btn_agree_move') ) {
+					$fullPop.find('.btn_agree_wrap').addClass('act');
 
-		if(($(this).scrollTop() + $(this).outerHeight()) >= $('.terms_wrap',$grand).outerHeight() + 50){
-			$('.btn_move_hide', $grand).hide();
-			$('.btn_move_hide', $grand).next().show();
-		}else{
-			$('.btn_move_hide', $grand).show();
-			$('.btn_move_hide', $grand).next().hide();
+					//check toast
+					$fullPop.find('.error_message').addClass('on');
+					setTimeout(function(){
+						$fullPop.find('.error_message').removeClass('on').addClass('off');
+					},2000)
+				}
+			}else{
+				scrollEnding = false;
+			}	
 		}
 	})
-}
-
-
-$(document).off('click.btn_move_hide').on('click.btn_move_hide','.last_move .btn_move_hide', function(){
-	const $grand = $(this).closest('.full_popup');
-
-	if(!_scorllT_start){
-		check_scrollBottom($grand)
-	}
-
-	_scrollT += $('.popup_content', $grand).height();
-	$('.popup_content',$grand).animate({'scrollTop':_scrollT});
-
-	_scrollT_start = true;
 });
-*/ 
-function drawdountChart(canvas){
-	this.x , this.y , this.radius , this.lineWidth , this.strockStyle , this.from , this.to, this.strockStyle, this.circle, this.bgdraw, this.dir = null;
 
-	this.set = function( x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir){
-		this.x = x;
-		this.y = y;
-		this.radius = radius;
-		this.counterclockwise = counterclockwise;
-		this.from=from;
-		this.to= to;
-		this.lineWidth = lineWidth;
-		this.strockStyle = strockStyle; 
-		this.circle = circle;   /*1 - HALF; 2 - fULL*/
-		if(dir == null){
-			this.dir = 1;
-		}else{
-			this.dir = dir;
-		}
-		//console.log(" 시작방향이 어디야 : " + this.dir);
-	}
+//약관 스크롤 애니 - click
+/*
+$(document).off('click.btn_agree_move_ani').on('click.btn_agree_move_ani', '.btn_agree_move', function(){
+	//let $btnTerms = $('#btn_terms_scroll');
+	let $btnTerms = $('.btn_agree_move');
+	let $fullPop = $btnTerms.closest('.full_popup');
+	let $popCont = $('.popup_content',$fullPop);
+	let $termsCont = $('.terms_view',$fullPop);
+	let nowScroll = $popCont.scrollTop();
+	var posScroll = 0;
 
-	/*bg 원 그리기*/
-	this.bgdraw = function(){
-		canvas.beginPath();
-		canvas.lineWidth = this.lineWidth;
-		canvas.strokeStyle = this.strockStyle;
-		canvas.lineJoin = "bevel";
-		canvas.lineCap = "round";
-
-		canvas.arc(this.x , this.y , this.radius , this.from , this.to, this.counterclockwise);
-		canvas.stroke();
-	}
-
-	/*데이타 원 그리기*/
-	this.draw = function(data){
-		this.bgdraw();
-
-		console.log(data);
+	if(!scrolling){
 		
-		var numberOfParts = data.numberOfParts;
-		var parts = data.parts.pt;
-		var df = Math.PI * this.dir;
-
-		for(var i = 0; i<numberOfParts; i++)
-		{
-			canvas.beginPath();
-			var colors = data.colors.cs[i];
-			var gradient = null;
-
-			gradient = canvas.createLinearGradient(this.x, this.y, df, df + (Math.PI * this.circle) * (parts[i] / 100));
-			//gradient = canvas.createRadialGradient(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100) - 0.1, this.radius + this.lineWidth + 5 );
-			
-			for(var j=0; j<colors.length; j++){
-			   gradient.addColorStop(colors[j][0], colors[j][1]);
-			   console.log(colors[j][0], colors[j][1]);
-			}
-			
-			canvas.strokeStyle = gradient;
-
-			canvas.arc(this.x, this.y, this.radius, df, df + (Math.PI * this.circle) * (parts[i] / 100), this.counterclockwise);
-			canvas.stroke();
-			
-			/*
-			console.log("시작점 " + i + " : " + df);
-			console.log("끝점 " + i + " : " + Math.PI*(1+ (parts[i] / 100))); 
-			*/
-
-			df += (Math.PI * 1) * (parts[i] / 100) ;
-		}
 	}
-}
+	$btnTerms.each(function(){
+		if((nowScroll + $popCont.height()) >= $termsCont.height()){
+			scrollEnding = true;
+			
+			$btnTerms.parent('.btn_agree_wrap').addClass('act');
 
-function drawlineChart(lineChart) {
-	this.canvas, this.dpr, this.width, this.height, this.name, this.last_x = null
-	this.set = function(canvas, width, height, x, y, x_gap){/*캔버스, 캔버스W, 캔버스H, 이름, startX, startY, x좌표 간격*/
-		this.canvas =  canvas;
-		//this.dpr = window.devicePixelRatio;
-		this.dpr = 2;
-		this.width = width;
-		this.height = height - 28;
-		this.x = x;
-		this.gap = x_gap;
-		this.y = y;
-	}
-
-	this.draw = function(data){
-		//lineChart.clearRect(0, 0, 300, 300);
-
-		lineChart.beginPath();
-		
-		lineChart.lineWidth = 2;
-		lineChart.setLineDash([3, 5]);
-		lineChart.lineJoin = "bevel";
-		lineChart.lineCap = "round";
-		lineChart.strokeStyle = "#FFB301";
-		//lineChart.scale(this.dpr, this.dpr);
-
-		if($(this.canvas).attr("id") == 'staple_spend'){
-			lineChart.moveTo(this.x * this.dpr, (this.height + 2 - (this.height * data[data.length - 1]) / 100) * this.dpr);
-			this.last_x = this.x; 
-
-			for(var i=0; i < data.length-1; i++){
-				lineChart.lineTo((this.last_x + this.gap) * this.dpr, (this.height + 2 - (this.height * data[i]) / 100)*this.dpr);
-				this.last_x = this.last_x + this.gap;
-			}
+			//check toast
+			$fullPop.find('.error_message').addClass('on');
+			setTimeout(function(){
+				$fullPop.find('.error_message').removeClass('on').addClass('off');
+			},2000)
 		}else{
-			lineChart.moveTo(this.x, (this.height - (this.height * data[0]) / 100) * 0.75);
-			this.last_x = this.x;
-			for(var i=1; i < data.length; i++){
-				lineChart.lineTo(this.last_x + this.gap, (this.height - (this.height * data[i]) / 100)* 0.75);
-				this.last_x = this.last_x + this.gap;
-			}
-		}
+			scrollEnding = false;
 
-		lineChart.stroke();
-
-		if($(this.canvas).attr("id") == 'staple_spend'){
-			lineChart.beginPath();
-			lineChart.setLineDash([3, 0]);
-			lineChart.lineWidth = 2;
-
-			if($(".up", $(this.canvas).prev()).index() == (data.length - 1)){
-				lineChart.strokeStyle = "#35CDA8";
+			if($btnTerms.hasClass('go_last')){
+				$popCont.animate({
+					scrollTop: $popCont[0].scrollHeight //맨아래로 바로
+				}, 400);
 			}else{
-				lineChart.strokeStyle = "#BCC2CA";
+				$popCont.animate({
+					scrollTop: nowScroll + $popCont.height() // 조금조금 이동
+				}, 400);
 			}
-
-			lineChart.fillStyle = "#fff";
-			lineChart.arc(this.x * this.dpr, (this.height + 2.5 - (this.height * data[data.length - 1]) / 100) * this.dpr, 4, 0, Math.PI*2);
-			lineChart.stroke();
-			lineChart.fill();
-			lineChart.closePath();
-
-			this.last_x = this.x + this.gap;
-
-			for(var i=0; i < data.length-1; i++){
-				lineChart.beginPath();
-				lineChart.setLineDash([3, 0]);
-				lineChart.lineWidth = 2;
-				if($(".up", $(this.canvas).prev()).index() == i){
-					lineChart.strokeStyle = "#35CDA8";
-				}else{
-					lineChart.strokeStyle = "#BCC2CA";
-				}
-				lineChart.fillStyle = "#fff";
-				lineChart.arc(this.last_x * this.dpr , (this.height + 2.5 - (this.height * data[i]) / 100)* this.dpr, 4, 0, Math.PI*2);
-				lineChart.stroke();
-				lineChart.fill();
-				lineChart.closePath();
-
-				this.last_x = this.last_x + this.gap;
-			}
-		}
-	}
-}  
+		}	
+	})
+});
+*/

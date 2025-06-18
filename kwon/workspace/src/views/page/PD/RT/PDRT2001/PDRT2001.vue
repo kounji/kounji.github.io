@@ -148,7 +148,7 @@
 						<p class="tag_wrap">안락한 노후를 위한 <br>자금 마련 준비가 되었나요?</p>
 					</div>
 					<div class="com_btn_area">
-						<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click.prevent="movePage('ASIP2001')"><span class="btn_plus">나의 재무 진단</span></a>
+						<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click.prevent="movePage('ASIP4001')"><span class="btn_plus">나의 재무 진단</span></a>
 					</div>
 				<!--// 연금 수령 대상 인 경우(출생년도 1962년생 이전)  -->
 			</div>	
@@ -223,7 +223,7 @@
 								<dd>{{sNtpsTotPrdCn}}개월</dd>
 							</dl>
 
-							<a href="javascript:void(0);" class="link_arrow txt_r" @click.prevent="movePage('PDSC2001')" >연금가입내역</a>
+							<a href="javascript:void(0);" class="link_arrow txt_r" @click.prevent="movePage('PDSC4001')" >연금가입내역</a>
 						</li>
 					</ul>
 				</div>
@@ -336,7 +336,7 @@
 					<strong v-else>이미 <em>월 {{mmPnsTts - sMmLfecs  | numberFilter}}</em>원 여유가 있어요</strong>
 
 					<div class="graybox_link">
-						<a href="javascript:void(0);" @click.prevent="movePage('PDPD1001')">꼭 맞는 상품을 추천해 드려요</a>
+						<a href="javascript:void(0);" @click.prevent="movePage('PDPD4001')">꼭 맞는 상품을 추천해 드려요</a>
 					</div>
 				</div>
 
@@ -345,7 +345,7 @@
 					<strong v-else>이미 <em>월 {{ mmPnsTts - smltMmAm | numberFilter}}</em>원 여유가 있어요</strong>
 
 					<div class="graybox_link">
-						<a href="javascript:void(0);" @click.prevent="movePage('PDPD1001')">꼭 맞는 상품을 추천해 드려요</a>
+						<a href="javascript:void(0);" @click.prevent="movePage('PDPD4001')">꼭 맞는 상품을 추천해 드려요</a>
 					</div>
 				</div>
 			</div>
@@ -363,7 +363,7 @@
 							</a>
 						</div>
 						<div class="com_box_type01 bannerCard taxf">
-							<a href="javascript:void(0);" @click.prevent="movePage('PDYT2002')">
+							<a href="javascript:void(0);" @click.prevent="movePage('PDYT4002')">
 								<p>내가 받을 수 있는</p>
 								<strong>세액공제액은 얼마?</strong>
 							</a>
@@ -756,20 +756,20 @@ export default {
 		
 		movePage(pageId) {
 			
-			if(pageId =="PDYT2002"){
+			if(pageId =="PDYT4002"){
 
 				const config = {
 					name: pageId
 				}
 				commonService.movePage(config)
 
-			}else if(pageId =="ASIP2001"){
+			}else if(pageId =="ASIP4001"){
 				const config = {
 					name: pageId
 				}
 				commonService.movePage(config)
 
-			}else if(pageId =="PDPD1001"){ //상품추천
+			}else if(pageId =="PDPD4001"){ //상품추천
 
 				const config = {
 					name: pageId

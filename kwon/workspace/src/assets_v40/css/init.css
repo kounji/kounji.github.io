@@ -1,8 +1,8 @@
 @charset "utf-8";
-body, html, .full_popup{
+/* [v4.0] ios 스크롤 이슈로 추가 */
+html, body, .full_popup {
 	overscroll-behavior: none;
 }
-
 /* [v4.0] Spoqa 폰트에서 Pretendard 폰트로 변경 - 배포 이슈로 기존 폰트명 유지 
 /*
 @font-face {
@@ -45,15 +45,18 @@ body, html, .full_popup{
 	url('../font/SpoqaHanSansNeo-Thin.woff') format('woff');
 }
 */
+/*
+폰트 용량이 너무 큰 관계로
+pretendardvariable-dynamic-subset
+파일로 대체
 @font-face {
 	font-family: 'Spoqa Han Sans Neo';
 	font-weight: 45 920;
 	font-style: normal;
 	font-display: swap;
 	src: url('../font/PretendardVariable.woff2') format('woff2-variations');
-}
+} */
 /*//[v4.0] Spoqa 폰트에서 Pretendard 폰트로 변경 - 배포 이슈로 기존 폰트명 유지 */
-
 *{box-sizing:border-box; }
 html, body, div, span, object, iframe, textarea,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -112,6 +115,7 @@ input, select{
 em, address{font-style:normal}
 textarea, input, button{-webkit-border-radius:0;-webkit-appearance:none;border-radius:0}
 h1, h2, h3, h4, h5, h6{font-weight:500;color:#111;}
+button {color:inherit;-webkit-appearance:none;}
 button:disabled {/* background-color:#d0d0d0 !important; */ opacity: 1 !important;}
 button:disabled > span {color:#717478;}
 /*skip css*/
@@ -187,5 +191,6 @@ body{
 	-moz-text-size-adjust:none;
 	-ms-text-size-adjust:none;
 	overflow:auto;
-	-webkit-user-select:none;user-select:none;
+	-webkit-user-select:none;
+	user-select:none;
 }

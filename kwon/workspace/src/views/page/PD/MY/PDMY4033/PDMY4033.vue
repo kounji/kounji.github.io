@@ -387,7 +387,7 @@ import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032'
 
                         // 지출목표 삭제
                         const config = {
-                            url: '/pd/my/33d01',        // /pd/my/02d01
+                            url: '/pd/my/33d02',        // /pd/my/02d01
                             //data: {"mydtCusno": this.getUserInfo('asetAmnCusno')} // 마이데이터고객번호
 
                             data: {"mydtCusno": this.getUserInfo('mydtCusno'),"stYm" : this.stYm}

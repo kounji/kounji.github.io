@@ -104,21 +104,21 @@
                             </div>
                             <div class="barChartInfo">
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2002')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4002')">
                                         <i style="background:#de7cc1"></i>
                                         <span>카드</span>
                                         <span class="right"><em>{{stlXpsOut.cardXpsAm | numberFilter}}</em><span class="won">원</span></span>
                                     </a>
                                 </div>
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2003')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4003')">
                                         <i style="background:#e33596"></i>
                                         <span>페이</span>
                                         <span class="right"><em>{{stlXpsOut.payXpsAm | numberFilter}}</em><span class="won">원</span></span>
                                     </a>
                                 </div>
                                 <div class="chart_txt">
-                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE2104')">
+                                    <a href="javascript:void(0);" @click.prevent="openPopLCLE('LCLE4104')">
                                         <i style="background:#edb0db"></i>
                                         <span>현금</span>
                                         <span class="right"><em>{{stlXpsOut.cshXpsAm | numberFilter}}</em><span class="won">원</span></span>
@@ -371,11 +371,11 @@ import LCIP2011 from '@/views/page/LC/IP/LCIP2011/LCIP2011' // 자주 이용하�
 import LCIP2012 from '@/views/page/LC/IP/LCIP2012/LCIP2012' // 또래 지출 비교
 import LCIP2002TAB from '@/components/category/LcIp2002Tab' // 유형별 지출
 // import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' // 목표등록
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 지출목표 등록
-import PDMY2033 from '@/views/page/PD/MY/PDMY2033/PDMY2033' // 지출목표(상세조회)
-import LCLE2002 from '@/views/page/LC/LE/LCLE2002/LCLE2002' // 카드 지출내역
-import LCLE2003 from '@/views/page/LC/LE/LCLE2003/LCLE2003' // 페이머니 지출내역
-import LCLE2104 from '@/views/page/LC/LE/LCLE2104/LCLE2104' // 현금 지출내역
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // 지출목표 등록
+import PDMY4033 from '@/views/page/PD/MY/PDMY4033/PDMY4033' // 지출목표(상세조회)
+import LCLE4002 from '@/views/page/LC/LE/LCLE4002/LCLE4002' // 카드 지출내역
+import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003' // 페이머니 지출내역
+import LCLE4104 from '@/views/page/LC/LE/LCLE4104/LCLE4104' // 현금 지출내역
 import COAR2002 from '@/views/page/CO/AR/COAR2002/COAR2002' // 자산연결
 
 export default {
@@ -724,7 +724,7 @@ export default {
             if (viewName == 'LCIP2007') compName = LCIP2007 // 정기지출          
             if (viewName == 'LCIP2002TAB') compName = LCIP2002TAB // 정기지출 리포트
             // if (viewName == 'PDMY2005') compName = PDMY2005 // 목표등록
-            if (viewName == 'PDMY2032') compName = PDMY2032 // 지출목표 등록
+            if (viewName == 'PDMY4032') compName = PDMY4032 // 지출목표 등록
 
             if (compName == null) {
                 modalService.alert("미적용")
@@ -739,7 +739,7 @@ export default {
             }
             modalService.openPopup(config).then(() => {
                 // if (viewName == 'PDMY2005') {
-                if (viewName == 'PDMY2032') {    
+                if (viewName == 'PDMY4032') {    
                     this.getData()
                 }
             })
@@ -763,7 +763,7 @@ export default {
         openPopTarget() {
             var param = { "stYm": this.basYm, "preXpsAm": this.xpsObt.xpsObtAm}
             const config = {
-                component: PDMY2033,
+                component: PDMY4033,
                 params : param
             }
             modalService.openPopup(config).then(() => {
@@ -784,7 +784,7 @@ export default {
         openPopPDMY() {
             const config = {
                 // component: PDMY2005
-                component: PDMY2032
+                component: PDMY4032
             }
             modalService.openPopup(config).then((response) => {
                 if (response == "reSelect") {
@@ -798,9 +798,9 @@ export default {
         openPopLCLE(viewName) {
             let compName;
 
-            if (viewName == 'LCLE2002') compName = LCLE2002 // 카드 
-            if (viewName == 'LCLE2003') compName = LCLE2003 // 페이
-            if (viewName == 'LCLE2104') compName = LCLE2104 // 현금
+            if (viewName == 'LCLE4002') compName = LCLE4002 // 카드 
+            if (viewName == 'LCLE4003') compName = LCLE4003 // 페이
+            if (viewName == 'LCLE4104') compName = LCLE4104 // 현금
 
             // selectList ALL 카드상세화면 호출시 전체카드로 표기용
             // inqDsc     ALL 기타상세화면 호출시 전체로 표기용

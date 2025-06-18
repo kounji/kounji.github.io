@@ -50,7 +50,7 @@
 					<div class="tab_wrap" v-if="vis_asetQt || isUpt">
                         <div v-for="(item, idx) in goldUntDscList" role="tabpanel" :id="'tab_0'+item.comnCVal" :class="'cmm-tab-panel' + (item.comnCVal===goldUntDsc ? ' on' : '')" :key="'goldDsc_'+idx">
                             <div class="com_input_type01 com_word1 necessary">
-                                <input type="tel" :id="'com_input0'+item.comnCVal" :class="asetQt.length > 0 && foc_asetQt? 'focusON focusforce':''" required="" placeholder="보유중량 입력" title="보유중량을 입력하세요." maxlength="13" v-model="asetQt" @focus="fn_focusOnOff('asetQt')" @keyup="calculateVal($event), moveNextTag($event)" ref="asetQt">
+                                <input type="tel" inputmode="decimal" :id="'com_input0'+item.comnCVal" :class="asetQt.length > 0 && foc_asetQt? 'focusON focusforce':''" required="" placeholder="보유중량 입력" title="보유중량을 입력하세요." maxlength="13" v-model="asetQt" @focus="fn_focusOnOff('asetQt')" @keyup="calculateVal($event), moveNextTag($event)" ref="asetQt">
 								<label :for="'com_input0'+item.comnCVal">
 									<em><span class="blind">필수입력</span></em>
 									<span class="txt_label_x">보유중량</span>
@@ -99,14 +99,14 @@
         
         <a href="javascript:void(0);" class="btn_close" @click.prevent="closePage"><span class="blind">팝업닫기</span></a>	
 	
-        <p class="dot_msg mt_auto">
+        <!-- <p class="dot_msg mt_auto">
             <template v-if="asetQt.length > 0">
                 {{goldMprBasDt}} 기준 시세 환산 금액 입니다.
             </template>
             <template v-else>
                 {{goldMprBasDt}} 기준 {{goldUntDsc == '1' ? '1g' : (goldUntDsc == '2' ? '3.75g' : '')}} 시세 입니다.
             </template>
-        </p>
+        </p> -->
 
         <!-- footer S -->
 		<div class="bottom_box">
@@ -405,7 +405,7 @@ export default {
             }
             modalService.confirm(config).then(text => {
                 if(text == "예") {
-                    if(!this.isUpt) this.closeAllData(true)
+                    if(!this.isUpt) this.close(true)
                     else this.close()
                 }
             })

@@ -361,12 +361,13 @@ export default {
                 } else {
                     this.subListIn = this.subList
                     const config = {
-                        url: '/pd/my/04s01',
-
+                        url:  'pd/my/40u01' , 
+    
                         data: {  "mydtCusno": financialInfo.mydtCusno // 마이데이터고객번호
                                 ,"fncObtDsc" : financialInfo.fncObtDsc
+                                ,"sqno" : financialInfo.sqno
                                 ,"subListIn" : this.subListIn
-                              }
+                              } 
                     };
                     apiService.call(config).then(response => {
                         if(response.rspCd == '0000'){
@@ -411,7 +412,8 @@ export default {
                     var prgStsCd = this.prgStsCd
 
                     this.getData(prgStsCd)
-                    this.fn_refreshApiCall() // 자산 업데이트
+                    // v4 사용자 요청이아닌 수집갱신 주석처리
+                    // this.fn_refreshApiCall() // 자산 업데이트
                 }
             })
         },

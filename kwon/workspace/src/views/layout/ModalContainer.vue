@@ -66,15 +66,16 @@
 				'toastMessage',
 				'hasToast'
 			]),
-			loadingImage() {
-				try {
-					return require('@/assets/images/common/loading.gif')
-				}
-				catch (e) {
-					console.error(e)
-					return ''
-				}
-			},
+			// 25.06.10, require 에러 제거
+			// loadingImage() {
+			// 	try {
+			// 		return require('@/assets/images/common/loading.gif')
+			// 	}
+			// 	catch (e) {
+			// 		console.error(e)
+			// 		return ''
+			// 	}
+			// },
 			loadingAriaHidden() {
 				return this.hasLoading && !this.hasToast
 					? 'false'

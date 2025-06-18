@@ -27,7 +27,7 @@
 						<input type="tel" id="com_input01" disabled v-model="mydtCusAge" title="현재나이">
 						<label for="com_input01"></label>
 						<div class="del_txt">
-							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
 							<span class="com_inputtxtright2">세</span>
 						</div>
 					</div>
@@ -36,7 +36,7 @@
 						<input type="tel" id="com_input02" required :class="retExpAge.length > 0 && foc_retAge ? 'focusON focusforce' : ''" maxlength="2" ref="retExpAge" v-model="retExpAge" @focus="fn_focusOnOff('retExpAge')" @keyup="fn_chkAge('retExpAge',retExpAge)" @input="fn_chkAge('retExpAge',retExpAge)" @keyup.enter="moveNextTag($event)" title="은퇴나이">
 						<label for="com_input02"></label>
 						<div class="del_txt">
-							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
 							<span class="com_inputtxtright2">세</span>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 						<input type="tel" id="com_input03" required :class="lifeExpAge.length > 0 && foc_lifeAge ? 'focusON focusforce' : ''" maxlength="3"  v-model="lifeExpAge" @focus="fn_focusOnOff('lifeExpAge')" @keyup="fn_chkAge('lifeExpAge',lifeExpAge)" @input="fn_chkAge('lifeExpAge',lifeExpAge)" title="기대수명">
 						<label for="com_input03"></label>
 						<div class="del_txt">
-							<a href="#nolink" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
+							<a href="javascript:void(0);" class="com_btn_delete2" style="display: none;"><span class="blind">삭제</span></a>
 							<span class="com_inputtxtright2">세</span>
 						</div>
 					</div>

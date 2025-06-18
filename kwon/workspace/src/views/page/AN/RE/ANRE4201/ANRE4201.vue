@@ -139,10 +139,10 @@
                                         </template>
                                     </template>
                                 </div>
-                                <div class="menu_btns">
+                                <!-- <div class="menu_btns">
                                     <button type="button" class="stdBtn innerType01" @click.prevent="openUpdRlestPop()">수정</button>
                                     <button type="button" class="stdBtn innerType01" @click.prevent="openDelRlestPop()">삭제</button>
-                                </div>  
+                                </div>   -->
                             </div>   
                         </div>
                         <div class="btn_option">
@@ -196,14 +196,14 @@
                     <div class="tit_area">
                         <div class="custom_tooltip">부동산 청약
                             <div class="com_tooltip_type02 com_tooltip_type03">
-                                <a href="#nolink" class="com_btn_info">
+                                <a href="javascript:void(0);" class="com_btn_info">
                                     <em class="com_icon_info"><span class="blind">툴팁열기</span></em>
                                 </a>
                                 <div class="com_ballon_type01 com_ballon_type02">
                                     <div>
                                         <p>선택하신 관심지역에 따라 한국부동산원 청약홈에 등록된 APT 1·2순위 청약 공고 및 신청일을 알려드립니다.
                                             (NH콕부동산에서는 공고일 기준 정보를 제공하여, 청약홈과 공고 내용이 다소 상이할 수 있습니다.)</p>
-                                        <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                        <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -213,12 +213,12 @@
 
                     <div class="push_noti">
                         <div class="btn_flex">
-                            <a href="#nolink" class="btn_txt" @click.prevent="openAreaPop()">{{inteText}}</a>
+                            <a href="javascript:void(0);" class="btn_txt" @click.prevent="openAreaPop()">{{inteText}}</a>
                             <div class="switch">
                                 <span class="txt">PUSH 알림</span>
-                                <span class="cmm-switch sm">
-                                    <input type="checkbox" id="check01" name="check01" role="switch">
-                                    <label for="check01"><em class="blind">금융자산 합계반영</em></label>
+                                <span class="cmm-switch sm" @change.prevent="onoffChg()">
+                                    <input type="checkbox" id="check01" name="check01" role="switch" :checked="isCheckedAnc">
+                                    <label for="check01"><em class="blind">청약 알림 지역 PUSH 알림</em></label>
                                 </span>
                             </div>
                         </div>
@@ -232,14 +232,14 @@
                         <div class="apart_slider" :key="'hse+'+refRcmKey">
                             <div class="tit_group">
                                 <p class="h_tit02">청약정보 <span class="num">{{pubRlestCnt}}</span>건</p>
-                                <a href="#nolink" role="button" class="btn_icon_arrow" v-if="rlestSbpList.length &gt; 0" @click.prevent="openPubRlestListPop()"><span>모두보기</span></a>
+                                <a href="javascript:void(0);" role="button" class="btn_icon_arrow" v-if="rlestSbpList.length &gt; 0" @click.prevent="openPubRlestListPop()"><span>모두보기</span></a>
                             </div>
                             <div class="btn_wrap">
                                 <button type="button" class="btn_wish_case" @click.prevent="openPubRlestTypePop()"><span class="blind">현재 선택된 공급유형</span> <em>{{localPubRlestText}}</em> <span class="blind">공급유형 선택</span></button>
                             </div>
                             <ul class="slick" v-if="rlestSbpList.length &gt; 0">
                                 <li v-for="(rlestSbp, idx) in rlestSbpList.slice(0, 5)" :key="'sbp_'+idx">
-                                    <div href="#nolink" class="item">
+                                    <div href="javascript:void(0);" class="item">
                                         <div class="top_info">
                                             <!-- badge 타입 구분
                                                 badge + type01 : 아파트, 무순위/잔여세대, 계약취소주택
@@ -247,21 +247,38 @@
                                                 badge + type03 : 임의공급
                                             -->
                                             <div class="cate">
-                                                <span :class="typeMap[rlestSbp.hseKdDsc]">{{typeText[rlestSbp.hseKdDsc]}}</span>
+                                                <span :class="typeMap[rlestSbp.hseKdDsc]">{{typeText[rlestSbp.hseKdDsc == '02' ? rlestSbp.hseKdDsc + rlestSbp.hseDtlKdDsc : rlestSbp.hseKdDsc]}}</span>
                                             </div>
                                             <span class="date">{{convertToDate(rlestSbp.rcrtNtfyDt)}} 공고</span>				
                                         </div>
                                         <p class="title">{{rlestSbp.hsenm}}</p>
-                                        <p class="price">분양가<strong>{{ numberToKorean(rlestSbp.minAm * 10000)}} ~ {{numberToKorean(rlestSbp.maxAm * 10000)}}</strong></p>
+                                        <template v-if="rlestSbp.hseKdDsc === '04' || rlestSbp.hseKdDsc === '06'">
+                                            <p class="price">분양가<strong>{{fn_hanValue(rlestSbp.maxAm)}}</strong></p>
+                                        </template>
+                                        <template v-else>
+                                            <p class="price">분양가<strong>{{ fn_hanValue(rlestSbp.minAm) }} ~ {{ fn_hanValue(rlestSbp.maxAm) }}</strong></p>
+                                        </template>
                                         <dl>
                                             <dt>청약 일정</dt>
                                             <dd>
-                                                <p>1순위 모집</p>
-                                                <p>{{convertToDate(rlestSbp.ord1CorRgnRcStDt)}} ~ {{convertToDate(rlestSbp.ord1CorRgnRcEdDt)}}</p>
+                                                <template v-if="rlestSbp.hseKdDsc === '01' ||  rlestSbp.hseKdDsc === '09' || rlestSbp.hseKdDsc === '10'">
+                                                    <p>1순위 모집</p>
+                                                    <p>{{convertToDate(rlestSbp.ord1CorRgnRcStDt)}} ~ {{convertToDate(rlestSbp.ord1CorRgnRcEdDt)}}</p>
+                                                </template>
+                                                <template v-else>
+                                                    <p>청약접수일</p>
+                                                    <p>{{convertToDate(rlestSbp.sbprcStDt)}} ~ {{convertToDate(rlestSbp.sbprcEdDt)}}</p>
+                                                </template>
                                             </dd>
                                             <dd>
-                                                <p>2순위 모집</p>
-                                                <p>{{convertToDate(rlestSbp.ord2CorRgnRcStDt)}} ~ {{convertToDate(rlestSbp.ord2CorRgnRcEdDt)}}</p>
+                                                <template v-if="rlestSbp.hseKdDsc === '01' ||  rlestSbp.hseKdDsc === '09' || rlestSbp.hseKdDsc === '10'">
+                                                    <p>2순위 모집</p>
+                                                    <p>{{convertToDate(rlestSbp.ord2CorRgnRcStDt)}} ~ {{convertToDate(rlestSbp.ord2CorRgnRcEdDt)}}</p>
+                                                </template>
+                                                <template v-else>
+                                                    <p>계약시작일</p>
+                                                    <p>{{convertToDate(rlestSbp.ctrStDt)}} ~ {{convertToDate(rlestSbp.ctrEdDt)}}</p>
+                                                </template>
                                             </dd>
                                         </dl>
                                     </div>
@@ -280,7 +297,7 @@
                     
 
                     <div class="inner_banner">
-                        <a href="#nolink" role="button">
+                        <a href="javascript:void(0)" role="button" @click="openWebBrowser('https://www.applyhome.co.kr/ai/aib/selectSubscrptCalenderView.do')">
                             <img src="@/assets_v40/images/banner/img_banner_house_info.png" alt="내 집 마련의 모든 것 청약홈에서 쉽게 확인하세요.">
                         </a>
                     </div>
@@ -361,11 +378,11 @@
                                         <p class="com_txtinfo_type01">최근 실거래가가 없습니다.</p>
                                     </template>
                                     <div class="btn_area">
-										<button type="button" class="btn_round_new btn_mid_round line_gray i_plus" @click.prevent="openInteInsRlestPop()">{{inteRlest.aptHcxnm}}을 나의 부동산으로 등록하기</button>
+										<button type="button" class="btn_round_new btn_mid_round line_gray i_plus" @click.prevent="openInteInsRlestPop()">관심부동산을 나의 부동산으로 등록하기</button>
 									</div>
                                 </div>
                                 <div class="menu_btns">
-									<button type="button" class="stdBtn innerType01" @click.prevent="openUpdInteRlestPop()">수정</button>
+									<!-- <button type="button" class="stdBtn innerType01" @click.prevent="openUpdInteRlestPop()">수정</button> -->
 									<button type="button" class="stdBtn innerType01" @click.prevent="delInteRlest()">삭제</button>
 								</div>
                             </div>
@@ -423,11 +440,17 @@
                             <span class="blue_arrow">서비스 받아보기</span>
                         </div>
                     </a>
+
+                    <!--[v4.0] 2025-05-29 배너 추가 -->
+                    <a href="javascript:void(0)" @click="openWebBrowser('https://www.hf.go.kr/ko/sub03/sub03_02_02.do')" role="button" title="새창열기"> <!--[v4.0] 25-04-14 title 추가 -->
+                        <img src="@/assets_v40/images/banner/img_banner_housing_mortgage.png" alt="주택연금 예상연금 조회. 한국주택금융공사에서 제공합니다.">
+                    </a>
+                    <!--//[v4.0] 2025-05-29 배너 추가 -->
                 </div>
             </div>
         </div>
 
-        <footersV2 type="an"/> <!-- asis 반영 시 as로 변경-->
+        <footersV2 type=""/> 
     </page>
 </template>
 
@@ -450,6 +473,7 @@ import ANRE2203 from '@/views/page/AN/RE/ANRE2203/ANRE2203'     // 부동산 상
 import ANRE2204 from '@/views/page/AN/RE/ANRE2204/ANRE2204'     // 지도검색(iframe)
 import ANRE2205 from '@/views/page/AN/RE/ANRE2205/ANRE2205'     // 부동산 추천(iframe)
 import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'     // 자산 > 부동산 등록
+import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'     // 자산 > 부동산 등록
 import ANRE4208 from '@/views/page/AN/RE/ANRE4208/ANRE4208' 	// 관심지역 설정 팝업
 import ANRE4209 from '@/views/page/AN/RE/ANRE4209/ANRE4209' 	// 부동산 청약리스트 조회 팝업
 import ANRE4207 from '@/views/page/AN/RE/ANRE4207/ANRE4207'     // 관심부동산 등록
@@ -505,6 +529,8 @@ export default {
             page			    : 1 ,		    // 페이지 번호
             pubRlestCnt         : 0,            // 청약 부동산 총갯수
 
+            isCheckedAnc        : '',           // 알림 on/off 버튼 체크여부
+
             regionMap: {
 				100 : "서울",
 				200 : "강원",
@@ -536,10 +562,13 @@ export default {
             typeText: {'01':'아파트',
 					'09':'아파트',
 					'10':'아파트',
-					'04':'아파트',
-					'06':'아파트',
-					'02':'도시형생활주택',
-					'03':'도시형생활주택',
+					'04':'무순위/잔여세대',
+					'06':'계약취소주택',
+					'0201':'도시형생활주택',
+                    '0202':'오피스텔',
+                    '0203':'민간임대',
+                    '0204':'생활형숙박시설',
+					'03':'공공지원민간임대',
 					'11':'임의공급',
             },
             mapping : {'1':[{'hseKdDsc':'01'},{'hseKdDsc':'09'},{'hseKdDsc':'10'}],
@@ -594,7 +623,7 @@ export default {
                 if(this.selectedCodeList.code.length > 1) this.localPubRlestText += "외 " + (this.selectedCodeList.code.length-1) + "개"
             }
 
-            this.sbpBasDt = dateFormat(new Date(), 'YYYY.MM.DD hh:mm')
+            // this.sbpBasDt = dateFormat(new Date(), 'YYYY.MM.DD HH:mm')
         },
 
         // 부동산 보유 기본 목록 조회
@@ -756,6 +785,7 @@ export default {
                 params : {
                     isUpt : false,          // 등록
                     popId : 'ANRE4201',     // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
+                    isData : true,
                     isTitleHide : true      // 부동산 등록 시 아파트/직접입력 타이틀 hide 여부(true:숨김, false:보임)
                 }
             }
@@ -829,7 +859,7 @@ export default {
         // 관심부동산 자산등록 팝업 오픈
         openInteInsRlestPop() {
             const config = {
-                component: CORE4201,        // 나의자산 > 부동산 등록
+                component: CORE2201,        // 나의자산 > 부동산 등록
                 params : {
                     isUpt               : false,                                                // 등록
                     isData              : true,                                                 // 넘겨주는 데이터 있는지 여부
@@ -838,7 +868,8 @@ export default {
                     newPytpAreaCntn     : this.inteRlestList[this.inteCurrIdx].newPytpAreaCntn, // 신평형면적내용
                     popId               : 'ANRE4201',                                           // 자산완료화면에서 추가 등록 시 팝업 다시 열기 위함
                     isTitleHide         : true,                                                 // 부동산 등록 시 아파트/직접입력 타이틀 hide 여부
-                    isInterest          : true                                                  // 관심부동산에서 자산등록하는지 여부
+                    isInterest          : true,                                                 // 관심부동산에서 자산등록하는지 여부
+                    rlestTngDsc         : "1",
                 }
                 
             };
@@ -1002,31 +1033,7 @@ export default {
                 }
             }
             
-            const config = {
-                url : "/an/re/01r01",
-                data : {
-                    mydtCusno       : this.getUserInfo("mydtCusno"),
-                    hseKdDsc        : this.localPubRlestList.length == 0 ? [] : this.localPubRlestList,
-                    pageCount       : this.pageCount,
-                    pageNo		    : this.page,	
-                    inqDsc          : "Y",
-                }
-            };
-            apiService.call(config).then(response =>{
-                console.log("========/an/re/01r01=======",response)
-                this.rlestSbpList = []
-                this.rlestSbpList = response.resultList || [];
-                this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
-                this.pubRlestCnt = response.totalCnt;
-                this.refRcmKey += 1;
-                
-                this.$nextTick(() => {
-                    this.callJQueryFncExcute();
-                    $('.apart_slider .slick').filter('.slick-initialized').slick('unslick');
-                    this.slick();
-                });
-            });
-
+            this.getRlestSbp();         // 관심지역 목록 조회
         },
         // 부동산청약 탭선택
         tabSbpList(code) {
@@ -1216,9 +1223,9 @@ export default {
         // 위티 랜딩페이지(제로 중개앱 다운로드 화면) 연결
         openBannerLink() {
             if (this.getUserInfo('chnl') === '385') {
-                appService.executeBrowser("https://btalk.me/download");
+                appService.executeBrowser("https://bootalk.co.kr/download");
             } else {
-                appService.cokBankOpenPopupWebBrowser("https://btalk.me/download");
+                appService.cokBankOpenPopupWebBrowser("https://bootalk.co.kr/download");
             }
             //window.open("https://smartcard.nonghyup.com");
             //return;
@@ -1303,7 +1310,7 @@ export default {
         convertToDate(dateStr) {
             if(!dateStr) return '';
             
-            const year = dateStr.slice(2, 4);
+            const year = dateStr.slice(0, 4);
 			const month = dateStr.slice(4, 6);
 			const day = dateStr.slice(6, 8);
 			
@@ -1392,7 +1399,8 @@ export default {
         },
         openAreaPop() {
             const config = {
-                component : ANRE4208
+                component : ANRE4208,
+                params : {isCheckedAnc : this.isCheckedAnc}
             }
             modalService.openPopup(config).then(response => {
                 if(response == 'refresh') {
@@ -1406,7 +1414,7 @@ export default {
         },
         openPubRlestTypePop() {
             const config = {
-                component : ANRE4211
+                component : ANRE4211,
             }
             modalService.openPopup(config).then(response => {
                 if(response == 'refresh') {
@@ -1448,40 +1456,8 @@ export default {
                             }
                         }
                     }
-                    const config = {
-                        url : "/an/re/01r01",
-                        data : {
-                            mydtCusno       : this.getUserInfo("mydtCusno"),
-                            hseKdDsc        : this.localPubRlestList.length == 0 ? [] : this.localPubRlestList,
-                            pageCount       : this.pageCount,
-                            pageNo		    : this.page,
-                            inqDsc          : "Y",	
-                        }
-                    };
-                    apiService.call(config).then(response =>{
-                        console.log("========/an/re/01r01=======",response)
-                        
-                        // this.rlestSbpList.splice(0, this.rlestSbpList.length);
-                        
-                        // if(Array.isArray(response.resultList)) {
-                        //     this.rlestSbpList.splice(0, this.rlestSbpList.length, ...response.resultList);
-                        // } else {
-                        //     this.rlestSbpList.splice(0, this.rlestSbpList.length);
-                        // }
-                        // this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
-                        this.rlestSbpList = []
-                        this.rlestSbpList = response.resultList || [];
-                        this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
-                        this.pubRlestCnt = response.totalCnt;
-                        this.refRcmKey += 1;
-                        
-                        this.$nextTick(() => {
-                            this.callJQueryFncExcute();
 
-                            $('.apart_slider .slick').filter('.slick-initialized').slick('unslick');
-                            this.slick();
-                        });
-                    });
+                    this.getRlestSbp();         // 관심지역 목록 조회
                 }
             })
         },
@@ -1494,6 +1470,8 @@ export default {
                 }
             }
             apiService.call(config).then(response => {
+                this.isCheckedAnc = response.ancYn == '1' ? 'checked' : '';
+                
 				if(response.inteList.length > 0) {
                     this.inteList = [];
 					response.inteList.forEach((el) => {
@@ -1533,63 +1511,60 @@ export default {
                             }
                         }
                     }
-                    // const config1 = {
-                    //     url : "/an/re/01r01",
-                    //     data : {
-                    //         mydtCusno       : this.getUserInfo("mydtCusno"),
-                    //         hseKdDsc        : this.localPubRlestList.length == 0 ? [] : this.localPubRlestList,
-                    //         pageCount       : this.pageCount,
-                    //         pageNo		    : this.page,	
-                    //         inqDsc          : "Y",
-                    //     }
-                    // };
-                    // apiService.call(config1).then(response =>{
-                    //     console.log("========/an/re/01r01=======",response)
-                        
-                    //     this.rlestSbpList = []
-                    //     this.rlestSbpList = response.resultList || [];
-                    //     this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
-                    //     this.pubRlestCnt = response.totalCnt;
-                    //     this.refRcmKey += 1;
-                        
-                    //     this.$nextTick(() => {
-                    //         this.callJQueryFncExcute();
-
-                    //         $('.apart_slider .slick').filter('.slick-initialized').slick('unslick');
-                    //         this.slick();
-                    //     });
-                    // });
 				} else {
 					this.inteList = []
                     this.inteNmList = []
 				}
-                const config1 = {
-                        url : "/an/re/01r01",
-                        data : {
-                            mydtCusno       : this.getUserInfo("mydtCusno"),
-                            hseKdDsc        : this.localPubRlestList.length == 0 ? [] : this.localPubRlestList,
-                            pageCount       : this.pageCount,
-                            pageNo		    : this.page,	
-                            inqDsc          : "Y",
-                        }
-                    };
-                    apiService.call(config1).then(response =>{
-                        console.log("========/an/re/01r01=======",response)
-                        
-                        this.rlestSbpList = []
-                        this.rlestSbpList = response.resultList || [];
-                        this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
-                        this.pubRlestCnt = response.totalCnt;
-                        this.refRcmKey += 1;
-                        
-                        this.$nextTick(() => {
-                            this.callJQueryFncExcute();
 
-                            $('.apart_slider .slick').filter('.slick-initialized').slick('unslick');
-                            this.slick();
-                        });
-                    });
+                this.getRlestSbp();         // 관심지역 목록 조회
             })
+        },
+        getRlestSbp() {
+            const config = {
+                url : "/an/re/01r01",
+                data : {
+                    mydtCusno       : this.getUserInfo("mydtCusno"),
+                    hseKdDsc        : this.localPubRlestList.length == 0 ? [] : this.localPubRlestList,
+                    // pageCount       : this.pageCount,
+                    // pageNo		    : this.page,	
+                    // inqDsc          : "Y",
+                }
+            };
+            apiService.call(config).then(response =>{
+                console.log("========/an/re/01r01=======",response)
+                this.rlestSbpList = []
+                this.rlestSbpList = response.resultList || [];
+                this.endIdx = this.rlestSbpList.length < 5 ? this.rlestSbpList.length : 5;
+                this.pubRlestCnt = response.totalCnt;
+                this.refRcmKey += 1;
+                this.sbpBasDt = dateFormat(new Date(), 'YYYY.MM.DD HH:mm')                      // 청약 업데이트 일자
+
+                this.$nextTick(() => {
+                    this.callJQueryFncExcute();
+                    $('.apart_slider .slick').filter('.slick-initialized').slick('unslick');
+                    this.slick();
+                });
+            });
+        },
+        onoffChg() {
+            if(this.isCheckedAnc == 'checked') {
+                this.isCheckedAnc = "";
+            } else {
+                this.isCheckedAnc = "checked"
+            }
+
+            const config = {
+                url : '/an/re/01s02',
+                data : {
+                    mydtCusno 		: this.getUserInfo("mydtCusno"),
+                    rgnDsc    		: '03',
+                    ancYn           : this.isCheckedAnc == 'checked' ? '1' : '0'
+                }
+            }
+            apiService.call(config).then(response =>{
+                console.log("========/an/re/01s02=======",response)
+                
+            });
         },
     },
     components: {

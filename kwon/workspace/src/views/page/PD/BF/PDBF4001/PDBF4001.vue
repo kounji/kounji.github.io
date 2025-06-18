@@ -22,7 +22,7 @@
         <div id="content" class="sub_main renewal">
             <div class="com_inner financial_briefing">
                 <!--[v4.0] 공공데이타-->
-                <div class="open_data">
+                <!-- <div class="open_data">
                     <div>
                         <div>
                             <a href="#">
@@ -51,7 +51,7 @@
                     </div>
                     <p class="paging"></p>
                     <button type="button" title="정지" class="btn_controls"></button>
-                </div>
+                </div> -->
 
                 <!--
                 [신문사/기관명] 원문 제목, 배포 일자
@@ -118,7 +118,8 @@
                 <!-- //정기지출 알림 -->
 
                 <!-- 가장 최근 고시 환율 정보 Slide -->
-                <div class="exchangerate_info" :class="themeList.length == 0 && financialList.length == 0 && rglrExpendList.length == 0 ? 'mt30' : ''" :key="'xcrt_'+refKey">
+                <!-- <div class="exchangerate_info" :class="themeList.length == 0 && financialList.length == 0 && rglrExpendList.length == 0 ? 'mt30' : ''" :key="'xcrt_'+refKey"> -->
+                <div class="exchangerate_info" :class="themeList.length == 0 && financialList.length == 0 && rglrExpendList.length == 0 ? 'mt30' : ''" :key="'xcrt_'+itemIndex2" ref='exchangeInfoBanner' tabindex='0'>
                     <div class="custom_box custom_box2 custom_box_info">
                         <div class="slide slick_refresh product">
                             <div class="item" v-for="(curcItem, idx) in xcrtList" :key="'curc_'+idx">
@@ -165,15 +166,15 @@
                                         </div>
 
                                         <!--[v4.0] 알림조건-->
-                                        <template v-if="curcItem.maxprAncYn == 'Y' || curcItem.lowprAncYn == 'Y'">
+                                        <template v-if="curcItem.maxpr > 0 || curcItem.lowpr > 0">
                                             <div class="exchange_noti">
                                                 <span class="change_rate up" v-if="curcItem.maxpr > 0">
                                                     <span class="blind">상한</span>
-                                                    <em>KRW {{curcItem.maxpr}}</em>
+                                                    <em>KRW {{addComma(Number(curcItem.maxpr))}}</em>
                                                 </span>
                                                 <span class="change_rate down" v-if="curcItem.lowpr > 0">
                                                     <span class="blind">하한</span>
-                                                    <em>KRW {{curcItem.lowpr}}</em>
+                                                    <em>KRW {{addComma(Number(curcItem.lowpr))}}</em>
                                                 </span>
                                             </div>
                                         </template>
@@ -205,16 +206,66 @@
                 </div>
                 <!--// 가장 최근 고시 환율 정보 Slide -->
 
+                <!-- [주가지수/주식 배너] 25-05-15 추가 -->
+                <div class="slick_exchange" :key="'key_'+itemIndex" ref='exchangeBanner' tabindex='0'> 
+                    <div class="inner">
+                        <!-- KOSPI 지수 배너 -->
+                        <dl class="exchange" v-for="(item, idx) in kosIdxList" :key="'kosIdx_'+idx">
+                            <dt>{{item.stprDsc}}</dt>
+                            <dd class="factor">
+                                <span class="num">{{addComma(item.stprIxEpr)}}</span>
+                                <span class="range" :class="upDown(item.bdCmprRnf)" :aria-label="markUpText(item.bdCmprRnf, 'Y')">{{Math.abs(Number(item.bdCmprRnf).toFixed(2))}}%&nbsp;(전일대비)</span>
+                            </dd>
+                            <dd class="basis">
+                                <span>{{item.basDt | dateFilter('YYYY.MM.DD')}} 기준</span>
+                            </dd>
+                        </dl>
+
+                        <!-- 관심 주식 배너  -->
+                        <template v-if="inteStockList.length > 0 && inteStockList">
+                            <dl class="exchange stock" v-for="(item, idx) in inteStockList" :key="'inteStock_'+idx"> 
+                                <dt>{{item.stkItmnm}}
+                                    <button type="button" class="btn_setting" @click.prevent="fn_stockList()"><span class="blind">주식종목 설정</span></button>
+                                </dt>
+                                <dd class="factor">
+                                    <span class="num">{{addComma(item.stkEpr)}}</span>
+                                    <span class="range" :class="upDown(item.bdCmprRnf)" :aria-label="markUpText(item.bdCmprRnf, 'Y')">{{Math.abs(Number(item.bdCmprRnf).toFixed(2))}}% (전일대비)</span>
+                                </dd>
+                                <dd class="basis">
+                                    <span>{{item.basDt | dateFilter('YYYY.MM.DD')}} 기준</span>
+                                </dd>
+                            </dl>
+                        </template>
+                        <template v-else>
+                            <div class="exchange"> 
+                                <a href="javascript:void(0);" class="select_empty"  @click.prevent="fn_stockList()">
+                                    <p>노출할 주식 종목을 선택해 주세요.</p>
+                                </a>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- 
+                    <div class="controls">
+                        <p class="paging"></p>
+                        <button type="button" class="prev"><span class="blind">이전</span></button>
+                        <button type="button" class="next"><span class="blind">다음</span></button>
+                        <button type="button" class="btn_play"><span class="blind">정지</span></button>
+                    </div> 
+                    -->
+                </div>
+
                 <template v-if="this.getUserInfo('chnl') === '386'">
                     <!--[v4.0] 25-02-25 배너추가--->
-                    <a href="#" class="mt20" @click="openWebBrowser(url)">
+                    <a href="javascript:void(0);" class="mt20" @click.prevent="moveCokBnk('CBFEP1000R')">
                         <img src="@/assets_v40/images/banner/img_banner_exchange_pocket.png" alt="환율 목표금액에 도달했나요? 목표금액으로 환전해 보세요.">
                     </a>
                     <!--//[v4.0] 25-02-25 배너추가--->
                 </template>
             
                 <!-- 고객별 추천상품 Slide -->
-                <div v-if="resultRcmList && resultRcmList.length > 0" class="custom_box_product01" :key="'rcm_'+refRcmKey">
+                <!-- <div v-if="resultRcmList && resultRcmList.length > 0" class="custom_box_product01" :key="'rcm_'+refRcmKey"> -->
+                <div v-if="resultRcmList && resultRcmList.length > 0" class="custom_box_product01">
                     <div class="slide slick_refresh product">
                         <div class="item" v-for="(rcmItem, idx) in resultRcmList" :key="'rcm'+idx">
                             <a href="javascript:void(0)" role="button" class="arrow" @click.prevent="movePage('PDPD4001')">
@@ -236,10 +287,6 @@
             </div>
 
             <!--스크롤이 짧게 생길경우 위로 쭉 드래그하면 떨리는 듯한 현상제거하기 위해 삽입-->
-            <br>
-            <br>
-            <br>
-            <br> 
         </div>
         <footersV2 type="pd" />
     </page>
@@ -251,6 +298,7 @@ import FootersV2 from '@/views/layout/FootersV2.vue'
 import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
+import appService from '@/service/appService'
 import commonMixin from '@/common/mixins/commonMixin'
 import {dateFormat} from '@/utils/date'
 import {fncSlick_briefing, fncSlick_briefing2} from '@/utils/slick'
@@ -267,6 +315,7 @@ import LCIP2012 from '@/views/page/LC/IP/LCIP2012/LCIP2012'   // 지출 또래 �
 import LCIP2007 from '@/views/page/LC/IP/LCIP2007/LCIP2007'   // 정기지출
 import PDBF4002 from '@/views/page/PD/BF/PDBF4002/PDBF4002'
 import PDBF4004 from '@/views/page/PD/BF/PDBF4004/PDBF4004'
+import RETA4002 from '@/views/page/RE/TA/RETA4002/RETA4002'  // 주식 선택 팝업
 
 export default {
     name : "PDBF4001",
@@ -285,7 +334,7 @@ export default {
             basYm		   : "",   // 정기지출리포트에 넘겨줄 기준년월
 
             refKey		   : 0,    // slick으로 인한 key 설정
-            refRcmKey	   : 0,    // slick으로 인한 key 설정
+            //refRcmKey	   : 0,    // slick으로 인한 key 설정
 
             inqMm		   : "",   // 테마이슈 현재월
             inqDd		   : "",   // 테마이슈 현재일
@@ -295,18 +344,27 @@ export default {
             themeLink      : '',   // 테마이슈 연결화면
 
             resultRcmList  : [],   // 추천상품 출력 목록
+
+            kosIdxList     : [],   // 코스피,코스닥 지수 목록
+            inteStockList  : [],   // 나의관심 주식 목록
         }
     },
     computed : {
+        itemIndex() {
+            return this.isNull(this.kosIdxList.length + this.inteStockList.length) ? 0 : this.kosIdxList.length + this.inteStockList.length 
+        },
+        itemIndex2() {
+            return this.isNull(this.xcrtList.length) ? 0 : this.xcrtList.length 
+        }
     },
     created() {
     },
     mounted() {
-        this.initComponent()
-
+        this.initComponent()      
         //PFM로그 처리 화면접속이력 등록 POST
         apiService.pfmLogSend(this.$options.name)
     },
+
     methods: {
         initComponent() {
             this.mydtCusno = this.getUserInfo('mydtCusno')
@@ -314,9 +372,12 @@ export default {
             this.basYm = dateFormat(new Date(), 'YYYYMM')
             this.inqMm = dateFormat(new Date(), 'MM')
             this.inqDd = dateFormat(new Date(), 'DD')
-            this.getRssCnt();
-            this.getData();
-            this.slick();
+            //this.getRssCnt();
+            this.getData();         
+            this.getKosIdxList()    // 코스피코스닥 지수 가져오기
+            this.fn_getInteStock()  // 관심 주식 목록   
+            // this.slick();
+        
         },
         getData() {
             this.resultRcmList  = []
@@ -349,7 +410,7 @@ export default {
                 }
 
                 this.refKey += 1  // slick refresh(통화의 개수가 줄어들면 unslick이 되지 않아 key를 지정하여 새로 그려지게 함)
-                this.refRcmKey += 1
+                //this.refRcmKey += 1
 
                 // for(let i=0; i<this.xcrtList.length; i++) {
                 //     if(this.xcrtList[i].curc === "JPY" || this.xcrtList[i].curc === "IDR" || this.xcrtList[i].curc === "VND") {
@@ -410,7 +471,7 @@ export default {
                 
                 this.$nextTick(() => {
                     //this.callJQueryFncExcute();
-
+                    /*
                     $('.custom_box_info .slide').filter('.slick-initialized').slick('unslick');	
                     setTimeout(()=>{
                         fncSlick_briefing();
@@ -420,7 +481,11 @@ export default {
                     setTimeout(()=>{
                         fncSlick_briefing2();
                     }, 30)
-                    
+                    */
+                   $('.custom_box_info .slide').filter('.slick-initialized').slick('unslick');	
+                    fncSlick_briefing();
+                    $('.custom_box_product01 .slide').filter('.slick-initialized').slick('unslick');	
+                    fncSlick_briefing2();
                 });
             });
             
@@ -574,20 +639,19 @@ export default {
                 }
             })
         },
-        movePage(url) {
+        movePage(url, param) {
+            let params = {};
+            params = param
             const config = {
-                name   : url
+                name   : url,
+                params : params
             }
 
             commonService.movePage(config);
         },
         // 배너 이동
-        openWebBrowser(url) {
-            if (this.getUserInfo('chnl') === '385') {
-                appService.executeBrowser(url);
-            } else {
-                appService.cokBankOpenPopupWebBrowser(url);
-            }
+        moveCokBnk(url) {
+            appService.cokBankGoMove(url)
         },
         slick() { //[v4.0] 퍼블 스크립트 추가
 			var $openData =  $('.open_data > div');
@@ -634,7 +698,104 @@ export default {
 				}
 				//slick-arrow
 			})
-        }
+
+            //25-05-15 스크립트 추가
+			$(".slick_exchange").each(function(){
+				let $this = $(this);
+
+				$(".inner", $this).on('init reInit afterChange', function(event, slick, currentSlide, nextSlide){
+					var i = (currentSlide ? currentSlide : 0 ) + 1 ;
+					$(".paging", $this).html('<em>'+i + '</em> / ' + slick.slideCount);  
+				});
+
+				$(".inner", $this).slick({
+					speed : 300,
+					dots : true,
+					adaptiveHeight: false,
+					autoplay:false,
+					infinite: true,
+					draggable: true,
+					accessibility:true,
+					arrows : true,
+					cssEase:'linear',
+					prevArrow:$(".controls .prev", $this),
+					nextArrow:$(".controls .next", $this),
+				});
+
+			});
+        },
+
+        // 코스피, 코스닥 지수목록 가져오기
+        getKosIdxList() {
+            const config = {
+                url: '/re/si/01r01', 
+                data: {
+                    "basDt" : this.curDt, //오늘 날짜   
+                },
+            }
+
+            apiService.call(config).then(response => {
+                console.log("getKosIdxList :: ", response)
+                this.kosIdxList = response.korStcIdxList;               
+                this.$nextTick(() => {
+                    //$('.slick_exchange').filter('.slick-initialized').slick('unslick');		
+                    $(this.$refs.exchangeBanner.querySelector('.slick-initialized')).slick('unslick');	
+                    this.slick();
+                })
+            })
+        },
+        
+        // 지수 상승하락 확인
+        upDown(index) {
+            return Number(index) > 0 ? 'up' : Number(index) == 0 ? '0' : 'down'
+        },
+
+        // 관심 주식 종목 선택 팝업 
+        fn_stockList() {
+            const config = {
+                component: RETA4002
+            }
+            modalService.openPopup(config).then((response) => {
+                if(response == 'success') { // RETA4002 화면에서 등록 버튼을 누른 경우
+                    this.fn_getInteStock()
+                }
+            })
+        },
+
+        // 관심 주식 종목 가져오기
+        fn_getInteStock() {
+			console.log("관심주식목록...")		
+			const config = {
+                url: '/re/si/02r02', 
+                data: {
+					"basDt"		: this.curDt,
+					"mydtCusno" : this.mydtCusno
+				}
+            }
+			
+            apiService.call(config).then(response => {          
+                this.inteStockList = response.myInteStkList;
+                this.$nextTick(() => {
+                    $(this.$refs.exchangeBanner.querySelector('.slick-initialized')).slick('unslick');	
+                    this.slick();
+                })           
+            })
+            
+		},
+
+        // v4 지수/통화 상승하락 텍스트(MARKUP)
+        markUpText(var1, var2) {
+            let markUpVal = Number(var1) > 0 ? '상승' : Number(var1) == 0 ? '동일' : "하락"
+            let percentYn = var2 == 'Y' ? '%' : ''
+
+            if (Number(var1) == 0) {
+                markUpVal = markUpVal + " " +" 전일대비"
+            } else {
+                markUpVal = markUpVal + " " + var1 + percentYn +" 전일대비"
+            }
+            
+            return markUpVal
+        },
     },
     mixins: [
         commonMixin

@@ -338,7 +338,9 @@ export default {
                                 subTxt      : "자동차",
                                 isAdd       : false,
                                 isRlAsset   : true,
-                                popId       : this.popId
+                                popId       : this.popId,
+                                assetId     : this.popId,
+                                stsDsc      : "I",
                             }
                         }
                         modalService.openPopup(config).then((response) => {

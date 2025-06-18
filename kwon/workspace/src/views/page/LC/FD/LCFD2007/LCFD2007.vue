@@ -131,7 +131,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 import modalService from '@/service/modalService'
 
 import {keyupNumFormat} from '@/utils/number'
-import {dateFormat} from '@/utils/date'
+import {dateFormat,monthAdd} from '@/utils/date'
 import {checkWord} from '@/utils/data'
 import apiService from '@/service/apiService'
 
@@ -167,7 +167,7 @@ export default {
 			vis_sec4 : false,
 			smTrplXpsCtgrChgYn : "0",	// 같은 지출 카테고리 적용 여부
 
-			today : dateFormat(new Date(), "YYYY-MM-DD"),
+			today : dateFormat(new Date(), "YYYY.MM.DD"),
         }
     },
     mounted() {
@@ -254,13 +254,26 @@ export default {
             }
 		},
         addComma() {
-            if(this.tram.length == 1 && this.tram == 0) {
-                this.tram = this.tram.slice(0, -1)
+
+			const tram = this.$refs.tram
+			const selectionStartPos = this.tram.selectionStart
+			const selectionEndPos = this.tram.selectionEnd
+			
+            if(tram.value.length == 1 && tram.value == 0) {
+                this.tram = tram.value.slice(0, -1)
             } else {
-                this.tram = this.tram.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
-                this.tram = this.tram.split(",").join("")
-                this.tram = keyupNumFormat(this.tram)
-            }
+                tram.value = tram.value.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+                tram.value = tram.value.split(",").join("")
+                tram.value = keyupNumFormat(tram.value)
+            }			
+
+            // if(this.tram.length == 1 && this.tram == 0) {
+            //     this.tram = this.tram.slice(0, -1)
+            // } else {
+            //     this.tram = this.tram.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+            //     this.tram = this.tram.split(",").join("")
+            //     this.tram = keyupNumFormat(this.tram)
+            // }
 		},
         addDate(item) {
             switch(item) {
@@ -356,7 +369,7 @@ export default {
 					tram			: this.tram.split(',').join('') ,		// 거래금액
 					asetAmnCtgrId	: this.asetAmnCtgrId ,					// 자산관리카테고리ID
 					trCntn			: this.trCntn ,							// 거래내용
-					trDtm			: this.trDtm.split('-').join('') ,		// 거래일시
+					trDtm			: this.trDtm.split('.').join('') ,		// 거래일시
 					memoCntn		: this.memoCntn ,						// 메모내용
 					myFhsRevAdtYn	: myNongInYn ,							// 마이농가수입추가여부
 					myFhsXpsAdtYn	: myNongOutYn ,							// 마이농가지출추가여부
@@ -380,9 +393,9 @@ export default {
 				if(response.totPrcCn > 0){
 					modalService.alert("등록 완료되었습니다.").then(() => {
 						//부모창 함수 call
-						this.$parent.$parent.$children[this.$parent.$parent.$children.length-1].fn_setCurrentYm(this.trDtm.split('-').join('').substr(0,4), this.trDtm.split('-').join('').substr(4,2))
-
-						this.closeAllData('complete')
+						this.$parent.$parent.$children[this.$parent.$parent.$children.length-1].fn_setCurrentYm(this.trDtm.split('.').join('').substr(0,4), this.trDtm.split('.').join('').substr(4,2))
+						this.close('complete')
+						//this.closeAllData('complete')
 					})
 					
 				}else{
@@ -392,7 +405,7 @@ export default {
 		},
 		myNongAdd(){
 			console.log('날짜확인 :: 선택날짜 :: ',this.trDtm, '오늘날짜 :: ', this.today)
-			if(this.trDtm.split('-').join('') > this.today.split('-').join('')){
+			if(this.trDtm.split('.').join('') > this.today.split('.').join('')){
 				let msg = ""
 				if(this.asetCtgrDsc === '1'){
 					msg = "당일 이후로 등록한 수입내역은 마이농가에 추가할 수 없습니다."
@@ -474,27 +487,35 @@ export default {
 		},
         fn_popupCalendar(evt) {
 			let tmpDt = ""
+            let minDate = ""
+            let maxDate = ""
+
 			if (this.trDtm !== null && this.trDtm !== '') 
 			{
 				tmpDt = this.trDtm
 			}else{
 				tmpDt = this.today
 			}
+
+			// v4 미래일자 입력 제어
+			minDate = dateFormat(monthAdd(-12), 'YYYY.MM.DD');
+			maxDate = dateFormat(new Date(), 'YYYY.MM.DD');
+			
 			const config = {
 								pDate   : tmpDt,
-								minDate : '',
-								maxDate : ''
+								minDate : minDate,
+								maxDate : maxDate
 							}            
             
             modalService.calendarPopup(config).then(response => {
                 
                 if(response !== undefined && response !== null && response !== '')
                 {
-                    evt.target.value = dateFormat(response, "YYYY-MM-DD")
+                    evt.target.value = dateFormat(response, "YYYY.MM.DD")
 					this.trDtm = evt.target.value
 					this.moveNextTag(evt)
 
-					if(this.trDtm.split('-').join('') > this.today.split('-').join('')){
+					if(this.trDtm.split('.').join('') > this.today.split('.').join('')){
 						if(this.$refs['my_check01'].checked){
 							let msg = ""
 							if(this.asetCtgrDsc === '1'){

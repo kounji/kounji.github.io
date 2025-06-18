@@ -44,7 +44,7 @@
 			</div>
 			<div class="popup_footer">
 				<div class="btn_full_box2">
-					<a href="javascript:void(0);" class="btn btn_mint" @click.prevent="fn_openModalPDYT2001($event)">확인</a>
+					<a href="javascript:void(0);" class="btn btn_mint" @click.prevent="fn_openModalPDYT4001($event)">확인</a>
 				</div>
 			</div>
 			<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
@@ -61,7 +61,7 @@ import modalService from '@/service/modalService'
 import {mapGetters} from 'vuex'
 import {keyupNumFormat} from '@/utils/number'
 
-import PDYT2001 from '@/views/page/PD/YT/PDYT2001/PDYT2001'
+import PDYT4001 from '@/views/page/PD/YT/PDYT4001/PDYT4001'
 
 export default {
     name : "PDYT2003",
@@ -132,12 +132,12 @@ export default {
             this.totSalAm = ""
         },
 
-        fn_openModalPDYT2001() {
+        fn_openModalPDYT4001() {
             if(!this.fn_chkInputAmt()) return false
 
             this.close()
             const config = {
-                component: PDYT2001,
+                component: PDYT4001,
                 params: { // 파라미터
                     totSalAm : this.totSalAm.split(",").join(""),
                 }

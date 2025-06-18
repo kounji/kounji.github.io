@@ -17,7 +17,7 @@
 	<div class="full_popup " id="full_popup_01">
 		<div class="popup_header">
 			<h1>서비스 소개</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<!-- [v4.0] 25-03-31 이전버튼 삭제 <button type="button" class="prev"><span class="blind">이전</span></button> -->
 		</div>
 
 		<div class="popup_content">
@@ -29,8 +29,8 @@
 				<div class="intro_list">
 					<div class="board_box intro_report">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
-								<strong>리포트</strong>
+							<a href="javascript:void(0);" class="btn_acco" role="button">
+								<strong>마이데이터 홈</strong>
 								<div class="blind">
 									<span class="show">열기</span>
 									<span class="hide">닫기</span>
@@ -46,7 +46,7 @@
 
 					<div class="board_box intro_asset">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>나의 자산</strong>
 								<div class="blind">
 									<span class="show">열기</span>
@@ -63,7 +63,7 @@
 
 					<div class="board_box intro_wallet">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>나의 지출</strong>
 								<div class="blind">
 									<span class="show">열기</span> 
@@ -80,7 +80,7 @@
 
 					<div class="board_box intro_pension">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>나의 연금/절세</strong>
 								<div class="blind">
 									<span class="show">열기</span> 
@@ -97,7 +97,7 @@
 
 					<div class="board_box intro_finance">
 						<div class="tit">
-							<a href="#nolink" class="btn_acco">
+							<a href="javascript:void(0);" class="btn_acco" role="button">
 								<strong>금융지식</strong>
 								<div class="blind">
 									<span class="show">열기</span> 
@@ -130,47 +130,23 @@
 <script>
 import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
-import $ from 'jquery'
 
 export default {
-    name : "MAGU4001",
+    name : "MAGU4S01",
     data: () => {
         return {
             
         }
     },
     mounted() {
-        this.slick();
+        
     },
     mixins: [
         popupMixin,
         commonMixin
     ],
     methods: {
-        slick() {
-            var $intro =  $('.service_intro .slick');
-			
-			$intro.on('afterChange', function(event, slick, currentSlide, nextSlide){
-				if (currentSlide === 0) {
-					$('.service_intro').addClass('theme');
-				} else {
-					$('.service_intro').removeClass('theme');
-				}
-				$(slick.$slides[currentSlide]).addClass('on');
-			});
-
-			$intro.slick({
-				speed : 400,
-				dots : true,
-				infinite: true,
-				slidesToShow: 1,
-				slidesToScroll: 1,		
-				draggable: true,
-				accessibility:true,
-				arrows : false,
-				cssEase:'linear'
-			});
-        }
+        
     },
 }
 </script>

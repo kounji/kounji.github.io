@@ -70,6 +70,8 @@ export default {
 			rgnList             : [],
 			btnShow             : false,        // 저장 버튼 활성화 여부
 			allChk              : false,		// 모두 체크 여부 확인
+
+			isCheckedAnc        : '',           // 알림 on/off 버튼 체크여부
 		}
 	},
 	mixins: [
@@ -78,19 +80,21 @@ export default {
     ],
 	mounted() {
 		//PFM로그 처리 화면접속이력 등록 POST
-		this.initComponents()
+		this.initComponents(this.params)
         apiService.pfmLogSend(this.$options.name)
 	},
 	computed: {
 		
 	},
     methods: {
-		initComponents() {
+		initComponents(param) {
+			this.isCheckedAnc = param.isCheckedAnc
+
 			const config = {
                 url: '/co/co/00r01',
                 data: {
-                    comnCId   : "HSE_SPYAA_STA_DSC",
-					delYn     : '0'                   // 삭제여부
+                    comnCId   : "HSE_SPYAA_STA_DSC",	// 알림 on/off 버튼 체크여부
+					delYn     : '0'                   	// 삭제여부
                 }
             }
 
@@ -110,12 +114,12 @@ export default {
             }
 
             apiService.call(config).then(response => {
-				if(response.inteList.length > 0) {
+				if(response.inteList.length > 0) {		// 저장된 관심지역 있는 경우
 					response.inteList.forEach((el) => {
 						this.inteList.push(el.hseSpyaaStaCntn)
 					})
-				} else {
-					this.rgnList.forEach(el => this.inteList.push(el.comnCVal))
+				} else {	// 저장된 관심지역 없는 경우 (최초 설정시 : 서울(100))
+					this.inteList.push("100")
 				}
 
 				this.fnSetAllChk()
@@ -136,10 +140,10 @@ export default {
 		},
 
 		fnSetAllChk() {
-			if(this.inteList.length > 0) this.btnShow = true
-			else this.btnShow = false
+			if(this.inteList.length > 0) this.btnShow = true	// 체크한 갯수가 1개 이상인 경우 저장 버튼 활성화
+			else this.btnShow = false							// 체크한 갯수가 없으면 저장 버튼 비활성화
 
-			if(this.rgnList.length == this.inteList.length) {
+			if(this.inteList.length) {	// 전체 선택 여부 확인
                 this.allChk = true
             } else {
                 this.allChk = false
@@ -148,13 +152,14 @@ export default {
 		saveInteRegions() {
 			let hseSpyaaStaC = []
 			this.inteList.forEach(el=>{hseSpyaaStaC.push({hseSpyaaStaC:el})})
-			
+
             const config = {
                 url : '/an/re/01s01/',
                 data : {
                     mydtCusno 		: this.getUserInfo("mydtCusno"),
                     rgnDsc    		: '03',
-					hseSpyaaStaC	: hseSpyaaStaC
+					hseSpyaaStaC	: hseSpyaaStaC,
+					ancYn           : this.isCheckedAnc == 'checked' ? '1' : '0'
                 }
             };
 

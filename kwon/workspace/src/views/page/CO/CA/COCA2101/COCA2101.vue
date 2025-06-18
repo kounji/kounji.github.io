@@ -166,6 +166,9 @@ export default {
                         if(response === "true") {
                             this.getData()
                         }
+                        else {
+                            this.close(true)
+                        }
                     })
                 } else {
                     this.getData()
@@ -270,7 +273,7 @@ export default {
                     this.closeAll()
     
                     const menu = {
-                        name: 'ASCA2001',
+                        name: 'ASCA4001',
                         params : {"vhcnoVal" : this.vhcnoVal}
                     }
                     const currentPage = store.getters['layout/pageInfo']
@@ -288,7 +291,7 @@ export default {
             }
             modalService.confirm(config).then(text => {
                 if(text == "예") {
-                    this.closeAllData(true)
+                    this.close(true)
                 }
             })
         },

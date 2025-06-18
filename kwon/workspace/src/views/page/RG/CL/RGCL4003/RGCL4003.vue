@@ -17,7 +17,7 @@
     <!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->
@@ -45,20 +45,28 @@
 					</dl>
 				</div>
 				
-				<!-- 
-					네이버맵 컴퍼넌트 파라미터 필수
-					mapMode : polyLine | retina | geocoder
-					mapInfoList : Y,X 좌표 리스트 | 위치정보
-				-->
-				<cmm-naverMap :mapInfoList.sync="mapInfoList" mapMode="geocoder"></cmm-naverMap>
-				<cmm-naverMap :mapInfoList.sync="mapInfoList1" mapMode="geocoder"></cmm-naverMap>
-
+				<div v-if="!mapError && mapInfoList.length > 0" class="board_box"> <!--[v4.0] 2025-04-08 지도 UI 변경 -->
+					<div class="head bg02">
+						<strong>지도</strong>
+						<p>지도를 확대/축소해서<br>더 상세한 위치를 확인해 보세요.</p>
+					</div>
+					<!-- 
+						네이버맵 컴퍼넌트 파라미터 필수
+						mapMode : polyLine | retina | geocoder
+						mapInfoList : Y,X 좌표 리스트 | 위치정보
+					-->
+					<cmm-naverMap 
+						:mapInfoList.sync="mapInfoList" 
+						mapMode="geocoder" 
+						@map-error="mapError = true"
+					></cmm-naverMap>
+				</div>
 				<!-- // -->
 			</section>
 
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="closeAll()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closeAll()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 
@@ -77,16 +85,14 @@ export default {
 	data: () => {
         return {
 			mapInfoList : [],
-			mapInfoList1 : [],
+			mapError: false,
 		}
 	},
 	created() {
-		this.mapInfoList.push(this.params.adr);
-		console.log("상세 페이지 mapinfoList >> ", this.mapInfoList);
+		this.mapInfoList.push(this.params);
 	},
     mounted() {
         // PFM로그 처리 화면접속이력 등록 POST
-		this.initComponent();
         apiService.pfmLogSend(this.$options.name);
     },
     mixins: [
@@ -94,12 +100,6 @@ export default {
 		,popupMixin 
     ],
     methods: {
-		initComponent() {
-			this.$nextTick(() => {
-				this.mapInfoList1.push(this.params.adr);
-				console.log("상세 페이지 mapinfoList1 >> ", this.mapInfoList1);
-			})
-		},
     },
     components: {
 		Page,

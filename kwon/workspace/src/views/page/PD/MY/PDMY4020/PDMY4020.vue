@@ -24,7 +24,7 @@
 
 				<div class="com_inputarea_type01">					
 					<div class="com_input_type01">
-						<input type="text" ref="obtnm" v-model="obtnm" required placeholder="목표 제목 입력" title="목표 제목">
+						<input type="text" ref="obtnm" v-model="obtnm" required placeholder="목표 제목 입력" title="목표 제목" @input="inputCtr($event)">
 						<label for="obtnm"><span class="txt_label_x">목표 제목</span></label>
 						<div class="del_txt">
 							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
@@ -449,10 +449,10 @@ export default {
         fn_checkWord(event, maxByte) {
             let rtnObj = checkWord(event.target.value, maxByte)
 
-            if(rtnObj.flag) {this.$refs.PDMY2023_srchKwrd.blur()}   // 알럿 중복 방지
+            if(rtnObj.flag) {this.$refs.PDMY4023_srchKwrd.blur()}   // 알럿 중복 방지
 
             event.target.value = rtnObj.value
-            this.PDMY2023_srchKwrd = event.target.value
+            this.PDMY4023_srchKwrd = event.target.value
 		},
 		addComma() {
 			this.bacAm = 0
@@ -890,6 +890,11 @@ export default {
 				division = Math.pow(unit, ++index)
 			}
 			return (answer + "원").replace(" 원", "원")
+		},
+		// 목표명 입력값 제어
+		inputCtr(e) {
+			const inputStr = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s_~!@#$%^&*()\-–—+=;,.<>\[\]{}|?\\/]/g
+			this.obtnm = e.target.value.replace(inputStr, '')
 		}
     },
 }

@@ -47,9 +47,9 @@
 				if (type === 'ALL') return 'ASTA2001' // 전체(ASAS0001 -> ASAC1001 변경) => ASTA2001 변경
 				if (type === 'AC')  return 'ASAC4001' // 자산(ASAC1101 -> ASAC2001 변경)
 				// :: S modify 21.07.20  부채메인변경 ( 대출 -> 카드)
-				if (type === 'LN')  return 'ASCD2001' // 부채(카드) (ASLN1103 -> ASCD2001 변경)
+				if (type === 'LN')  return 'ASCD4001' // 부채(카드) (ASLN1103 -> ASCD4001 변경)
 				// :: E modify 21.07.20  부채메인변경 ( 대출 -> 카드)
-				if (type === 'IP')  return 'ASIP2001' // 자산진단
+				if (type === 'IP')  return 'ASIP4001' // 자산진단
 				return ''
 			}
 		},

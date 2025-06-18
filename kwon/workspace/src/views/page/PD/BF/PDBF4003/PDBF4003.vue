@@ -140,7 +140,7 @@ export default {
 
             /* 선택 통화 저장 */
             const config = {
-                url: '/pd/bf/03sa1',
+                url: '/pd/bf/03s01',
 
                 data: {"mydtCusno"      : this.mydtCusno,    // 마이데이터고객번호
                        "selectCurList"  : rtnData            // 통화 선택 목록

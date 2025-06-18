@@ -286,7 +286,7 @@ export const isChildV4 = (value='') => {
  }
 
  /**
-  * 청소년(만14세 ~ 만18세) 여부 확인
+  * 청소년(만14세 ~ 만17세) 여부 확인
   */
  export const isTolda = (value='') => {
   // 값이 없으면 false (not 청소년)
@@ -297,7 +297,7 @@ export const isChildV4 = (value='') => {
   const mm = today.getMonth() < 9 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
   const dd = today.getDate() < 10 ? '0' + today.getDate() : today.getDate()
 
-  return (parseInt(yyyy + mm + dd) - parseInt(value)) >= 140000 && (parseInt(yyyy + mm + dd) - parseInt(value)) < 190000
+  return (parseInt(yyyy + mm + dd) - parseInt(value)) >= 140000 && (parseInt(yyyy + mm + dd) - parseInt(value)) < 180000
  }
 
  /**
@@ -356,8 +356,8 @@ export const checkMaintenanceTime = () => {
  */
 export const granOpenDateCheck = () => {
     const currentTimeStamp            = moment().valueOf()
-    const grandOpenTimeFromTimeStamp  = moment('2022-11-14 00:00:00').valueOf()
-    const grandOpenTimeToTimeStamp    = moment('2022-11-14 06:00:00').valueOf()
+    const grandOpenTimeFromTimeStamp  = moment('2024-06-19 00:00:00').valueOf()
+    const grandOpenTimeToTimeStamp    = moment('2024-06-19 09:00:00').valueOf()
     if (currentTimeStamp >= grandOpenTimeFromTimeStamp && currentTimeStamp <= grandOpenTimeToTimeStamp)
     {
       return true

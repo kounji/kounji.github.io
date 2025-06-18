@@ -28,10 +28,10 @@
 				<strong class="titH1"><span>{{ getUserInfo("cusnm") }}</span>님 안녕하세요!</strong>
 				<a href="javascript:void(0);" class="link_arrow" @click.prevent="fn_openPopup('COCO1130')">내 프로필 보기</a>
 				<div class="svcLinkBox">
-					<a href="javascript:void(0);" class="svcItem fina" @click.prevent="fn_movePage('ASIP2001')">
+					<a href="javascript:void(0);" class="svcItem fina" @click.prevent="fn_movePage('ASIP4001')">
 						<span>재무진단</span>
 					</a>
-					<a href="javascript:void(0);" class="svcItem cons" @click.prevent="fn_movePage('LCIP2001')">
+					<a href="javascript:void(0);" class="svcItem cons" @click.prevent="fn_movePage('LCIP4001')">
 						<span>소비분석</span>
 					</a>
 					<a href="javascript:void(0);" class="svcItem agen" @click.prevent="fn_movePage('MRAM2001')">
@@ -41,7 +41,7 @@
 				<ul class="layoutBox wAuto rBtn creditPoint">
 					<li class="left"><strong>신용점수</strong></li>
 					<li class="right">
-						<a href="javascript:void(0);" class="link_arrow" @click.prevent="fn_openPopup('ASCR1101')">{{ getMyCreditInfo.psnCrdevlScrVal }}점</a>
+						<a href="javascript:void(0);" class="link_arrow" @click.prevent="fn_openPopup('ASCR4101')">{{ getMyCreditInfo.psnCrdevlScrVal }}점</a>
 					</li>
 				</ul>
 			</div>
@@ -49,32 +49,32 @@
 			<div class="com_inner menuListArea">
 				<dl class="menuList asset">
 					<dt>자산</dt>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASTA2001')">내 전체 자산</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASAC2001')">자산 보유현황</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASCD2001')">부채 관리</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASIP2001')">금융자산 진단</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASTA4001')">내 전체 자산</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASAC4001')">자산 보유현황</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASCD4001')">부채 관리</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ASIP4001')">금융자산 진단</a></dd>
 				</dl>
 				<dl class="menuList expen">
 					<dt>지출</dt>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD2001')">금융 달력</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCLE2001')">월 별 지출내역</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP2001')">이번 달 지출분석</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCFD4001')">금융 달력</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCLE4001')">월 별 지출내역</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('LCIP4001')">이번 달 지출분석</a></dd>
 					<dd><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO2128')">숨긴 지출 내역</a></dd>
 				</dl>
 				<dl class="menuList fincLife">
 					<dt>금융생활</dt>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY2001')">도전 목표 챌린지</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDPD1001')">맞춤 상품 추천</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDRT2001')">나의 노후 준비</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDYT2002')">연말정산 공제 금액</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY4001')">도전 목표 챌린지</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDPD4001')">맞춤 상품 추천</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDRT4001')">나의 노후 준비</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDYT4002')">연말정산 공제 금액</a></dd>
 					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDTX2004')">세금 납부 확인</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDSC2001')">사회보험료 가입 내역</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDBF2001')">데일리 금융브리핑</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDSC4001')">사회보험료 가입 내역</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('PDBF4001')">데일리 금융브리핑</a></dd>
 				</dl>
 				<dl class="menuList alliSvc">
 					<dt>제휴서비스</dt>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ANCA2201')">NH콕자동차</a></dd>
-					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ANRE2201')">NH콕부동산</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ANCA4201')">NH콕자동차</a></dd>
+					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ANRE4201')">NH콕부동산</a></dd>
 					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('ANFM2001')">귀농귀촌의 꿈</a></dd>
 					<dd><a href="javascript:void(0);" @click.prevent="fn_movePage('SZFC2101')">슬기로운 영농생활</a></dd>
 				</dl>
@@ -113,7 +113,7 @@
     import COCO1116 from '@/views/page/CO/CO/COCO1116/COCO1116' // 자주하는 질문
     import MREV2000 from '@/views/page/MR/EV/MREV2000/MREV2000' // 이벤트
 
-    import ASCR1101 from '@/views/page/AS/CR/ASCR1101/ASCR1101'
+    import ASCR4101 from '@/views/page/AS/CR/ASCR4101/ASCR4101'
     import COAT1104 from '@/views/page/CO/AT/COAT1104/COAT1104'
     import MRAT1001 from '@/views/page/MR/AT/MRAT1001/MRAT1001'
     import MRCA2001 from '@/views/page/MR/CA/MRCA2001/MRCA2001'
@@ -192,8 +192,8 @@
                 let compName = ''
                 if(pageId === "COCO1130") {
 					compName = COCO1130	// 프로필
-                }else if(pageId === 'ASCR1101') {
-                    compName = ASCR1101	//
+                }else if(pageId === 'ASCR4101') {
+                    compName = ASCR4101	//
                 }else if(pageId === 'COAT1104') {
                     compName = COAT1104	//
                 }else if(pageId === 'MRCA2001') {

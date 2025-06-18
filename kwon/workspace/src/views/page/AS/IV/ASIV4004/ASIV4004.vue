@@ -41,11 +41,11 @@
                 </div>
                 <div class="popup_footer">
                     <div class="btn_full_box2">
-                        <a href="#nolink" role="button" class="btn btn_mint"  @click.prevent="fn_search()">확인</a>
+                        <a href="javascript:void(0);" role="button" class="btn btn_mint"  @click.prevent="fn_search()">확인</a>
                     </div>
                 </div>
                 
-                <a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
+                <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
             </div>
         </div>
         <!--// slide popup E -->

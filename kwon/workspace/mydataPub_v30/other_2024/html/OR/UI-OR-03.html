@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" class=""><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<head>
+	<title>제3자 정보제공 조회 및 관리</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>팝업</h1>
+			<script src="../../../@pub_include/header.js"></script><!-- html용 header.js 개발팀 별도 적용 -->
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<div class="full_popup renewal mydata2023 other_mydata" id="full_popup_01"><!-- 0803 .mydata2023 클래스 이동--><!-- 2024-11 : 타기관마이데이터 other_mydata 추가 -->
+		<div class="popup_content"><!-- 하단 버튼 없을때 com_no_bottom -->
+			<div class="renewal_loading">
+				<div class="dataLoadingArea">
+					<img src="../../../../src/assets_v40/images/new/bg_loading_temp.png" class="tempImg">
+				</div>
+				<div class="loading_num">
+					<strong class="counter_num txt_mint">90</strong><span>초</span>
+				</div>
+				<p class="loading_txt">데이터를 불러오는 중입니다.</p>
+				<p class="loading_txt mt5">잠시만 기다려주세요 <span class="loading_dot"></span></p>
+			</div>
+		</div>
+		<!-- <a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a> -->
+	</div>
+	<!--// 전체 팝업 종료 -->
+<script type="text/javascript">
+//2024-11 counter down
+$(function() {
+	timer();
+});
+function timer(){
+	var num = 90;
+	setInterval(function(){
+		num--;
+		if(num <0){
+			num = 90;
+			$('.loading_num .counter_num').text(num);
+		}else{
+			$('.loading_num .counter_num').text(num);
+		}
+	},1000)
+}
+</script>
+</body>
+</html>

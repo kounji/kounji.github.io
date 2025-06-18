@@ -29,11 +29,11 @@
                 </div>
                 <div class="popup_footer fixed">
                     <div class="btns_wrap">
-                        <button type="button" class="btns lg primary" @click.prevent="moveMainPage()">확인</button>
+                        <button type="button" class="btns lg primary" @click.prevent="moveSetAssetPage()">자산연결</button>
                     </div>
                 </div>
                 
-                <a href="#nolink" role="button" class="btn_close" @click.prevent="moveMainPage()"><span class="">닫기</span></a>
+                <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="moveMainPage()"><span class="">닫기</span></a>
             </div>
         </div>
         <!--// slide popup E -->
@@ -46,6 +46,7 @@ import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
 import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
+import {defineAsyncComponent} from 'vue'
 
 export default {
     name: 'COAS4010',
@@ -64,37 +65,56 @@ export default {
     created() {
     },
     mounted() {
-        console.log("@@@@@@@=>>>>",this.params)
         this.initComponent(this.params)
     },
     methods: { 
         initComponent(param = {}) {
-            console.log('@@@@=>',param)
             this.param = param
             this.getData()
         },
 
         getData() {
-            /*
-            if(this.param.rcmFlag) {
-                modalService.alert("@@@추천인 등록 경우","","확인")
-            } else {
-                modalService.alert("@@@추천인 미등록 경우","","확인")
-            }
-            */
+            
         },
         
         moveMainPage() {
-            // 가입 완료 후 메인 진입 시 디폴트 일반모드 설정
-            this.setScrmode('N')
+            // 선택약관 팝업 호출
+            const compName = defineAsyncComponent(() => import("@/views/page/CO/AS/COAS4003/COAS4003"))
 
-            this.closeAll()
-
-            const menu = {
-                name : "MAMA4001",
-                params : {"addAssetYn" : "N"}
+            const config = {
+                component: compName
             }
+
+            modalService.openPopup(config).then((response) => {
+                if(response == "home") {
+                    this.setScrmode('N')
+
+                    this.closeAll()
+                    
+                    const menu = {
+                        name : "MAMA4001",
+                        params : {"addAssetYn" : "N"}
+                    }
+                    commonService.movePage(menu)
+                }
+            })
+            
+        },
+
+        moveSetAssetPage() {
+            /*
+            const menu = {
+                //name : "MAMA2001",
+                //상호금융 NH콕마이데이터 4.0 추진 개발
+                name : "MAMA4001", 
+                params : {"addAssetYn" : "Y"}
+            }
+
             commonService.movePage(menu)
+            */
+
+            this.close({"addAssetYn" : "Y"})
+            
         }
 
     },

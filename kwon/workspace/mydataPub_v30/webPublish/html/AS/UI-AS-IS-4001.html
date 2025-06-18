@@ -84,6 +84,7 @@
 								</div>
 								<br>
 								<!-- 25-02-10 금액숨김 수정-->
+								<!--[v4.0] #접근성# 마크업수정
 								<div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -95,16 +96,31 @@
 										<span class="show">총 <em>1,025,286,300</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								<!-- //25-02-10 금액숨김 수정-->
 							</div>
 							<!-- //[v4.0] 25-02-07 잔액숨김 기능추가, 툴팁이동 -->
 						</div>
 					</div>
+					<!--[v4.0] 25-04-30 배너 삭제 
 					<div class="link_banner">
 						<a href="#nolink" role="button">
 							<img src="../../../../src/assets_v40/images/banner/link_banner_03.png" alt="신한세배드림적금을 복리식정기예탁금에 예치하고 높은이자 받기">
 						</a>
 					</div>
+					-->
 				</div>
 				
 				<hr class="hr02">
@@ -116,16 +132,16 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>인보험</span> <span class="com_icon_num custom">2</span></div>
+									<div class="tit"><span>인보험</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
 							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
+							<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
 							<!-- //[v4.0] 정렬 버튼 추가 -->
 						</div>
 						<ul class="view_cont list_type_01">
@@ -139,11 +155,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em><em class="int">매월</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><em class="int">매월</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -165,11 +181,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em><em class="int">매월</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><em class="int">매월</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -183,16 +199,16 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>물보험</span> <span class="com_icon_num custom">2</span></div>
+									<div class="tit"><span>물보험</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
 								<em class="close">닫기</em>
 							</button>
 							<!-- [v4.0] 정렬 버튼 추가 -->
-							<a href="#nolink" class="btn_sort"><span>기본</span></a>
+							<a href="#nolink" class="btn_sort" role="button"><span>기본</span></a><!--[v4.0] #접근성# role="button" 추가 -->
 							<!-- //[v4.0] 정렬 버튼 추가 -->
 						</div>
 						<ul class="view_cont list_type_01">
@@ -206,11 +222,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em><em class="int">일시납</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><em class="int">일시납</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -227,11 +243,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -241,22 +257,22 @@
 						</ul>
 					</div>
 					<!--// 물보험 -->
-					<div class="inner_banner">
+					<!-- <div class="inner_banner">
 						<div>
 							<a href="javascript:void(0)" role="button">
 								<img src="../../../../src/assets_v40/images/banner/img_benner_21_2023.png" alt="안정적인 투자 전략 적절한 투자 목표 세우기!">
 							</a>
 						</div>
-					</div>
+					</div> -->
 					<strong class="com_pop_tit01 mt30">피보험 계약자</strong><!-- 08/28 .mt30 추가 -->
 					<!-- 인보험 -->
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>인보험</span> <span class="com_icon_num custom">2</span></div>
+									<div class="tit"><span>인보험</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
@@ -274,11 +290,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em><em class="int">일시납</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><em class="int">일시납</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -294,11 +310,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em><em class="int">6개월</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><em class="int">6개월</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -312,9 +328,9 @@
 						<div data-ui-toggle="box" class="toggle_box_area open">
 							<button type="button" class="view_btn" aria-expanded="true">
 								<div class="new_tit_area">
-									<div class="tit"><span>물보험</span> <span class="com_icon_num custom">2</span></div>
+									<div class="tit"><span>물보험</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 									<span class="total_price">
-										<em class="num">850,000</em><em class="unit">원</em>
+										<em class="num"><span class="blind">금액</span>850,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 									</span>
 								</div>
 								<em class="open">열기</em>
@@ -332,11 +348,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em><em class="int">일시납</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><em class="int">일시납</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -353,11 +369,11 @@
 											</div>
 										</dt>
 										<dd>
-											<span class="prod_num">352210808651</span>
+											<span class="prod_num"><span class="blind">계좌번호</span>352210808651</span><!--[v4.0] #접근성# 대체텍스트 -->
 										</dd>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>

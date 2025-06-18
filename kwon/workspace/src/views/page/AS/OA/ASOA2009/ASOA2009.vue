@@ -154,9 +154,11 @@
 		</div>
 		
 		<div class="popup_footer fixed">
-			<div class="com_btnhalfbox_type02">
-				<a href="javascript:void(0);" role="button" class="btn btn_grey" @click="fn_delBtn()" aria-disabled="false">삭제</a>
-				<a href="javascript:void(0);" role="button" class="btn btn_mint" @click="fn_editSaveDprcInfo('save')" aria-disabled="false">저장</a>
+			<div class="btns_wrap">
+				<!-- <a href="javascript:void(0);" role="button" class="btn btn_grey" @click="fn_delBtn()" aria-disabled="false">삭제</a>
+				<a href="javascript:void(0);" role="button" class="btn btn_mint" @click="fn_editSaveDprcInfo('save')" aria-disabled="false">저장</a> -->
+                <button type="button" class="btns lg" @click="fn_delBtn()">삭제</button>
+				<button type="button" class="btns lg primary" @click="fn_editSaveDprcInfo('save')">저장</button>
 				<!-- btn_off 제거시 활성화 -->
 			</div>
 		</div>

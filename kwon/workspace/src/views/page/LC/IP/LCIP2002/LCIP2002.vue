@@ -30,7 +30,7 @@
                         <span>정기지출 포함</span>
                         <span class="cmm-switch sm">
                             <input type="checkbox" id="check02" name="check02" role="switch" checked @change="includeFxtmXps($event)">
-                            <label for="check02"></label>
+                            <label for="check02">정기지출 포함</label>
                         </span>
                     </div>
                 </div>
@@ -128,8 +128,9 @@ export default {
             psttTop5ListView : [],	// 카테고리별지출목록(상위5개+이외) - 파이차트
             unClfCnt: 0,            // 카테고리별상세지출목록건수
             psttList : [], 	        // 카테고리별상세지출목록
-            unCnfXpsList: []        // 미확인 지출 연결변경필요기관목록
+            unCnfXpsList: [],        // 미확인 지출 연결변경필요기관목록
 
+            checkedYn : "true"
         }
     },
     computed : {
@@ -264,9 +265,11 @@ export default {
         },
         includeFxtmXps(e) {
             if(e.target.checked) {
+                this.checkedYn = "true"
                 this.inqGbnCd = "Y"
             }else{
                 this.inqGbnCd = "N"
+                this.checkedYn = "false"
             }
             this.getData();
         },

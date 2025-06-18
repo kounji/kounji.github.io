@@ -313,8 +313,8 @@ import modalService from '@/service/modalService'
 import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import PdSubCategoryV2 from '@/components/category/PdSubCategoryV2.vue'
 
-import PDSC2003 from '@/views/page/PD/SC/PDSC2003/PDSC2003' // 조회기간 선택(년도)
-import PDSC2004 from '@/views/page/PD/SC/PDSC2004/PDSC2004' // 건강보험가입구분코드 선택
+import PDSC4003 from '@/views/page/PD/SC/PDSC4003/PDSC4003' // 조회기간 선택(년도)
+import PDSC4004 from '@/views/page/PD/SC/PDSC4004/PDSC4004' // 건강보험가입구분코드 선택
 import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정보제공동의
 
 import {dateFormat} from '@/utils/date'
@@ -543,7 +543,7 @@ export default {
 					"toYear": toYear,
 					},
                 renderer: {
-					component: PDSC2003
+					component: PDSC4003
                 }
             };
             
@@ -565,7 +565,7 @@ export default {
 					"hlthIsrEntDsc":this.hlthIsrEntDsc
                 },
                 renderer: {
-                    component: PDSC2004
+                    component: PDSC4004
                 }
             };
             

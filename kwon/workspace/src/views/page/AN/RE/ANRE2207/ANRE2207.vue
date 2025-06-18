@@ -61,8 +61,8 @@ import modalService from '@/service/modalService'
 import apiService from '@/service/apiService'
 import {numberFormat} from '@/utils/number'
 
-import CORE1202 from '@/views/page/CO/RE/CORE1202/CORE1202'     // 아파트 검색 팝업
-import CORE1203 from '@/views/page/CO/RE/CORE1203/CORE1203'     // 면적 선택 슬라이드 팝업
+import CORE4202 from '@/views/page/CO/RE/CORE4202/CORE4202'     // 아파트 검색 팝업
+import CORE4203 from '@/views/page/CO/RE/CORE4203/CORE4203'     // 면적 선택 슬라이드 팝업
 import ANRE2203 from '@/views/page/AN/RE/ANRE2203/ANRE2203'     // 부동산 상세(iframe)
 import COET1002 from '@/views/page/CO/ET/COET1002/COET1002'     // 부동산 이벤트 슬라이드
 import COET1003 from '@/views/page/CO/ET/COET1003/COET1003'     // 부동산 이벤트 응모팝업
@@ -185,7 +185,7 @@ export default {
                 srchKwrd : this.aptNm,
             }
             const config = {
-                component: CORE1202,
+                component: CORE4202,
                 params : param
             }
             modalService.openPopup(config).then(response => {
@@ -224,7 +224,7 @@ export default {
                         selArea : this.newPytpAreaCntn,
                     },
                     renderer : {
-                        component : CORE1203
+                        component : CORE4203
                     }
                 }
                 modalService.openSlidePagePopup(config1).then(response => {

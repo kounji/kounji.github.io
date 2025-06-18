@@ -150,16 +150,16 @@ import commonMixin from '@/common/mixins/commonMixin'
 import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
 import {fncSlick} from '@/utils/slick'
-import PDMY2023 from '@/views/page/PD/MY/PDMY2023/PDMY2023' // 버킷리스트(내집사기 등록)
-import PDMY2024 from '@/views/page/PD/MY/PDMY2024/PDMY2024' // 버킷리스트(내차사기 등록)
-import PDMY2025 from '@/views/page/PD/MY/PDMY2025/PDMY2025' // 버킷리스트(여행목표 등록)
-import PDMY2006 from '@/views/page/PD/MY/PDMY2006/PDMY2006' // 버킷리스트(여가생활 등록)
-import PDMY2015 from '@/views/page/PD/MY/PDMY2015/PDMY2015' // 버킷리스트(자기계발 등록)
-import PDMY2020 from '@/views/page/PD/MY/PDMY2020/PDMY2020' // 버킷리스트(반려동물 등록)
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 금융목표(지출목표 등록)
+import PDMY4023 from '@/views/page/PD/MY/PDMY4023/PDMY4023' // 버킷리스트(내집사기 등록)
+import PDMY4024 from '@/views/page/PD/MY/PDMY4024/PDMY4024' // 버킷리스트(내차사기 등록)
+import PDMY4025 from '@/views/page/PD/MY/PDMY4025/PDMY4025' // 버킷리스트(여행목표 등록)
+import PDMY4006 from '@/views/page/PD/MY/PDMY4006/PDMY4006' // 버킷리스트(여가생활 등록)
+import PDMY4015 from '@/views/page/PD/MY/PDMY4015/PDMY4015' // 버킷리스트(자기계발 등록)
+import PDMY4020 from '@/views/page/PD/MY/PDMY4020/PDMY4020' // 버킷리스트(반려동물 등록)
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // 금융목표(지출목표 등록)
 import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038' // 금융목표(돈모으기 등록)
 import PDMY2040 from '@/views/page/PD/MY/PDMY2040/PDMY2040' // 금융목표(투자목표 등록)
-import PDPD1001 from '@/views/page/PD/PD/PDPD1001/PDPD1001' // 상품추천 페이지
+import PDPD4001 from '@/views/page/PD/PD/PDPD4001/PDPD4001' // 상품추천 페이지
 
 import {dateFormat} from '@/utils/date'
 
@@ -194,7 +194,7 @@ import {dateFormat} from '@/utils/date'
 
 								// 수정화면으로 이동
 
-								var compName = PDMY2032
+								var compName = PDMY4032
 
 								// modifyYn 상세조회(수정) 여부
 								var param = {
@@ -217,7 +217,7 @@ import {dateFormat} from '@/utils/date'
 
 						})
 					} else {
-						compName = PDMY2032 // 지출목표
+						compName = PDMY4032 // 지출목표
 
 						const config = {
 							component: compName,
@@ -228,10 +228,10 @@ import {dateFormat} from '@/utils/date'
 						})
 					}
 				} else if(gubn == '10') {
-					compName = PDPD1001;
+					compName = PDPD4001;
 
 					const config = {
-						name: 'PDPD1001',
+						name: 'PDPD4001',
 					}
 					commonService.movePage(config)
 					this.closeAll()
@@ -242,17 +242,17 @@ import {dateFormat} from '@/utils/date'
 					} else if(gubn == '02') {
 						compName = PDMY2040 // 금융목표(투자목표)
 					} else if(gubn == '03') {
-						compName = PDMY2023 // 버킷리스트(내집사기)
+						compName = PDMY4023 // 버킷리스트(내집사기)
 					} else if(gubn == '04') {
-						compName = PDMY2024 // 버킷리스트(내차사기)
+						compName = PDMY4024 // 버킷리스트(내차사기)
 					} else if(gubn == '05') {
-						compName = PDMY2025 // 버킷리스트(여행목표)
+						compName = PDMY4025 // 버킷리스트(여행목표)
 					} else if(gubn == '06') {
-						compName = PDMY2006 // 버킷리스트(여가생활)
+						compName = PDMY4006 // 버킷리스트(여가생활)
 					} else if(gubn == '07') {
-						compName = PDMY2015 // 버킷리스트(자기계발)
+						compName = PDMY4015 // 버킷리스트(자기계발)
 					} else if(gubn == '08') {
-						compName = PDMY2020 // 버킷리스트(반려동물)
+						compName = PDMY4020 // 버킷리스트(반려동물)
 					}
 
 					var param1 = {}

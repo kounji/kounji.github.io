@@ -61,6 +61,7 @@
 import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
 import routerService from '@/service/routerService'
+import modalService from '@/service/modalService'
 import {mapActions} from 'vuex'
 
 export default {
@@ -81,7 +82,7 @@ export default {
     },
     computed: {
         chkIsDisable() {
-            return this.getUserInfo('tolda') && (this.ntSelMode == 'N' || this.ntSelMode == 'S')
+            return (this.getUserInfo('tolda') && (this.ntSelMode == 'N' || this.ntSelMode == 'S')) || this.ntSelMode == 'C'
         }
     },
     methods: {
@@ -107,8 +108,8 @@ export default {
             // 선택 모드 저장
             this.setScrmode(this.ntSelMode)
 
-            // 히스토리 내 페이지 정보 삭제
-            this.removeAllPage()
+            let modeStr = this.ntSelMode === 'N' ? '일반' : this.ntSelMode === 'S' ? '큰글' : '청소년'
+            modalService.toast(modeStr + ' 모드로 설정했어요.')
             
             // 팝업 닫기
             this.closeAll()

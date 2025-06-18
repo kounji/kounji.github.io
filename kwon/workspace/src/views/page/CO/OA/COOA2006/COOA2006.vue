@@ -167,7 +167,7 @@
 				<!-- btn_off 제거시 활성화 -->
 			</div>
 		</div>
-		<a href="javascript:void(0);" class="btn_close" @click.prevent="closeAllData(true)"><span class="blind">팝업닫기</span></a>		
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close(true)"><span class="blind">팝업닫기</span></a>		
 	</div>
 	<!--// full popup E -->
 </template>

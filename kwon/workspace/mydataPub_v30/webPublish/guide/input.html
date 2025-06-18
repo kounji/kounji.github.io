@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" class="mydata2023"><!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<html lang="ko">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -21,7 +21,7 @@
 		<section class="view">
 			<!-- item -->
 			<div class="item">
-				<h3>01. Default</h3>
+				<h3>01.default</h3>
 				<section class="source">
 					<div class="input">
 						<input type="text" name="" id="input01" required title="이름" placeholder="이름을 입력해주세요."/>
@@ -48,85 +48,7 @@
 
 			<!-- item -->
 			<div class="item">
-				<h3>02. 조합</h3>
-				<section class="source">
-					<div class="formItem">
-						<label for="loan_cal_01">희망대출금액</label>
-						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_01" required="" placeholder="희망대출금액을 입력해 주세요.">
-							<span class="unit">만원</span>
-						</div>
-						<div class="btns_wrap">
-							<button type="button" class="btns">+100만</button>
-							<button type="button" class="btns">+500만</button>
-							<button type="button" class="btns">+1000만</button>
-							<button type="button" class="btns">+1억</button>
-						</div>
-						<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
-						<span class="error_txt">100만원이상 입력해 주세요.</span>
-					</div>
-
-					<div class="formItem">
-						<label for="loan_cal_02">대출기간</label>
-						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_02" required="" placeholder="대출기간을 입력해 주세요.">
-							<span class="unit">개월</span>
-						</div>
-						
-						<div class="btns_wrap">
-							<button type="button" class="btns">+1년</button>
-							<button type="button" class="btns">+2년</button>
-							<button type="button" class="btns">+3년</button>
-							<button type="button" class="btns">+10년</button> 
-						</div>
-						<span class="error_txt">6개월 이상 입력해 주세요.</span>
-					</div>
-
-					
-				</section>
-			</div>
-			<!-- //item -->
-
-			<!-- item -->
-			<div class="item">
-				<h3>02. 버튼형</h3>
-				<section class="source">
-					<div class="input">
-						<input type="text" name="" id="input04_33" required placeholder="이름을 입력해주세요."/>
-						<button type="button" class="btn_search"><span class="blind">검색</span></button>
-					</div>
-					<br><br>
-					<div class="input">
-						<input type="text" name="" id="input04_333" required placeholder="이름을 입력해주세요."/>
-						<button type="button" class="btns">검색</button>
-					</div>
-					<br><br>
-					<div class="formItem">
-						<div class="input">
-							<label for="input04_334">거래 지점을 선택해 주세요.</label>
-							<input type="text" name="" id="input04_334" title="거래 지점" placeholder="직원명을 입력해 주세요.">
-							<button type="button" class="btns">검색</button>
-						</div>
-					</div>
-					<br><br>
-					<div class="formItem flex">
-                        <label for="phone_id">주민등록번호</label>
-                        <div class="input">
-                            <input type="text" name="" id="phone_id" value="" placeholder="앞 6자리" > 
-                        </div>
-                        <span class="space">-</span>
-                        <div class="input">
-                            <input type="text" name="" id="phone_id_02" value="" placeholder="뒤 7자리"> 
-                        </div>
-                    </div>
-				</section>
-			</div>
-			<!-- //item -->
-			<!-- item -->
-			<div class="item">
-				<h3>03. Error</h3>
+				<h3>02.error</h3>
 				<section class="source">
 					<div class="input error">
 						<input type="text" name="" id="input01_3454" required title="이름" value="잘못적음" placeholder="이름을 입력해주세요."/>
@@ -169,7 +91,7 @@
 			<!-- //item -->
 			<!-- item -->
 			<div class="item">
-				<h3>04. Readonly</h3>
+				<h3>03.readonly</h3>
 				<section class="source">
 					<div class="input">
 						<input type="text" name="" id="input01_233" required title="이름" value="홍길동" readonly placeholder="이름을 입력해주세요."/>
@@ -187,7 +109,7 @@
 			<!-- //item -->
 			<!-- item -->
 			<div class="item">
-				<h3>05. Disabled</h3>
+				<h3>04.disabled</h3>
 				<section class="source">
 					<div class="input disabled">
 						<input type="text" name="" id="input01_22" required title="이름" value="홍길동" disabled placeholder="이름을 입력해주세요."/>
@@ -204,110 +126,161 @@
 			</div>
 			<!-- //item -->
 
-
 			<!-- item -->
 			<div class="item">
-				<h3>대출계산기</h3>
+				<h3>05.조합(+button)</h3>
 				<section class="source">
-					<div class="loan_cal">
-						<div class="formItem">
-							<label for="loan_cal_01_1">희망대출금액</label>
-							<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
-							<div class="input">
-								<input type="text" name="" id="loan_cal_01_1" required="" placeholder="희망대출금액을 입력해 주세요.">
-								<span class="unit">만원</span>
-							</div>
-							<div class="btns_wrap">
-								<button type="button" class="btns">+100만</button>
-								<button type="button" class="btns">+500만</button>
-								<button type="button" class="btns">+1000만</button>
-								<button type="button" class="btns">+1억</button>
-							</div>
-							<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
-							<span class="error_txt">100만원이상 입력해 주세요.</span>
-						</div>
-	
-						<div class="formItem error">
-							<label for="loan_cal_03_1">대출이자율</label>
-							<span class="info_txt">대출이자율 범위 : 1~30%</span>
-							<div class="input">
-								<input type="text" name="" id="loan_cal_03_1" required="" placeholder="대출이자율을 입력해 주세요.">
-								<span class="unit">%</span>
-							</div>
-							<div class="btns_wrap">
-								<button type="button" class="btns">+0.5%</button>
-								<button type="button" class="btns">+1.0%</button>
-								<button type="button" class="btns">+2.0%</button>
-								<button type="button" class="btns">+4.0%</button>
-							</div>
-							<span class="error_txt">1% 이상 입력해 주세요.</span>
-						</div>
-	
+					<div class="input">
+						<input type="text" name="" id="input04_33" required placeholder="이름을 입력해주세요."/>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
 					</div>
-
-					
+					<br><br>
+					<div class="input">
+						<input type="text" name="" id="input04_333" required placeholder="이름을 입력해주세요."/>
+						<button type="button" class="btns">검색</button>
+					</div>
+					<br><br>
+					<div class="formItem">
+						<div class="input">
+							<label for="input04_334">거래 지점을 선택해 주세요.</label>
+							<input type="text" name="" id="input04_334" title="거래 지점" placeholder="직원명을 입력해 주세요.">
+							<button type="button" class="btns">검색</button>
+						</div>
+					</div>
+					<br><br>
+					<div class="formItem flex">
+                        <label for="phone_id">주민등록번호</label>
+                        <div class="input">
+                            <input type="text" name="" id="phone_id" value="" placeholder="앞 6자리" > 
+                        </div>
+                        <span class="space">-</span>
+                        <div class="input">
+                            <input type="text" name="" id="phone_id_02" value="" placeholder="뒤 7자리"> 
+                        </div>
+                    </div>
 				</section>
 			</div>
 			<!-- //item -->
 
-
-
 			<!-- item -->
-			<!-- <div class="item">
-				<h3>06. Textfield</h3>
+			<div class="item">
+				<h3>06.대출계산기(+clear 버튼)</h3>
 				<section class="source">
-					<div class="com_textarea_type01">
-						<textarea name="" id="txt00" class="com_txtarea_type01" cols="10" rows="5" required placeholder="메모를 입력하세요.">메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모메모</textarea>
-						<label for="txt00"><span class="txt_label_x">메모</span></label>
+					<div class="formItem">
+						<label for="loan_cal_01">희망대출금액</label>
+						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_01" required="" placeholder="희망대출금액을 입력해 주세요.">
+							<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+							<span class="unit">만원</span>
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns">+100만</button>
+							<button type="button" class="btns">+500만</button>
+							<button type="button" class="btns">+1000만</button>
+							<button type="button" class="btns">+1억</button>
+						</div>
+						<span class="han"><span class="blind">입력금액확인</span>일천만원</span>
+						<span class="error_txt">100만원이상 입력해 주세요.</span>
+					</div>
+
+					<div class="formItem">
+						<label for="loan_cal_02">대출기간</label>
+						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
+						<div class="input">
+							<input type="text" name="" id="loan_cal_02" required="" placeholder="대출기간을 입력해 주세요.">
+							<button type="button" class="clear_btn"><span class="blind">삭제</span></button>
+							<span class="unit">개월</span>
+						</div>
+						
+						<div class="btns_wrap">
+							<button type="button" class="btns">+1년</button>
+							<button type="button" class="btns">+2년</button>
+							<button type="button" class="btns">+3년</button>
+							<button type="button" class="btns">+10년</button> 
+						</div>
+						<span class="error_txt">6개월 이상 입력해 주세요.</span>
 					</div>
 				</section>
-			</div> -->
+			</div>
 			<!-- //item -->
+
+		</section>
+
+		<h2>Box type</h2>
+		<section class="view">
 			<!-- item -->
-			<!-- <div class="item">
-				<h3>07. 검색</h3>
+			<div class="item">
+				<h3>01.통합검색</h3>
 				<section class="source">
-					<div class="com_input_type01">
-						<label for="com_input01"></label>
-						<input type="search" id="com_input01" class="" name="" value="" placeholder="동/단지 명으로 아파트 찾기" title="동/단지 명으로 아파트 찾기">
-						<a href="javascript:void(0);" class="com_btn_delete"><span class="blind">삭제</span></a>
-						<a href="javascript:void(0);" class="com_btn_search"><span class="blind">검색</span></a>
-					</div>
-					<br>
-					<br>
-					<div class="com_input_type02">
-						<label for="com_input01"></label>
-						<input type="search" id="com_input01" class="" name="" value="" placeholder="동/단지 명으로 아파트 찾기" title="동/단지 명으로 아파트 찾기">
-						<a href="javascript:void(0);" class="com_btn_delete"><span class="blind">삭제</span></a>
-						<a href="javascript:void(0);" class="com_btn_search"><span class="blind">검색</span></a>
-					</div>
-				</section>
-			</div> -->
-			<!-- //item -->
-			<!-- item -->
-			<!-- <div class="item">
-				<h3>08. any 라벨(버튼)</h3>
-				<section class="source">
-					<div class="com_inputarea_type00">
-						<div class="com_input_type01 com_word2">
-							<input type="text" id="com_input01" class="com_txtright_type02" name="" value="" required="" placeholder="" title="이메일확인">
-							<label for="com_input01"><span class="txt_label_o">이메일 확인</span></label>
-							<a href="javascript:void(0);" class="com_btnwrite"></a>
-							<div class="del_txt">
-								<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
-								<span class="com_inputtxtright2 type02"></span>
+					<div class="search_all flex_cont" style="height:auto">
+						<div class="search_input">
+							<div class="search">
+								<label for="search_01"></label>
+								<input type="search" id="search_01" class="inputClear" name="" value="" placeholder="검색어를 입력하세요." title="검색어를 입력하세요.">
+								<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+								<button type="button" class="btn_search"><span class="blind">검색</span></button>
 							</div>
+							<button type="button" class="btn_mike"><span class="blind">음성검색</span></button>
 						</div>
 					</div>
 				</section>
-			</div> -->
+			</div>
+			<!-- //item -->
+
+			<!-- item -->
+			<div class="item">
+				<h3>02.지역축제</h3>
+				<section class="source">
+					<div class="local_search">
+						<input type="search" id="local_search_01" class="inputClear" name="" value="" placeholder="축제명으로 검색하세요($서울$ 축제)" title="검색어"> <!--[v4.0] 2025-02-18 title 수정 -->
+						<button type="button" class="com_btn_delete"><span class="blind">삭제</span></button>
+						<button type="button" class="btn_search"><span class="blind">검색</span></button>
+					</div>
+				</section>
+			</div>
+			<!-- //item -->
+			
 		</section>
 	</article>
 	
 </div>
 <script type="text/javascript">
 	fnGuide.guide();
+	//[v4.0] 인풋 삭제 버튼
+	$(function() {
+		var _inputBox = $('.formItem input'); // Input Box
+		var _clearBtn = $('.clear_btn'); // X Btn
+
+		_inputBox.keyup(function(){
+			var searchVal = $(this).val()
+			searchLen = searchVal.length;
+			$(this).next(_clearBtn).addClass('show');
+			_clearBtn.on('click', function() {
+				$(this).removeClass('show');
+				$(this).closest('.input').find('input').val(''); 
+			});
+		});
+	});
+
+	$(function() {
+			var _inputBox = $('.inputClear'); // Input Box
+			var _clearBtn = $('.com_btn_delete'); // X Btn
+	
+			_inputBox.keyup(function(){
+				var searchVal = $(this).val()
+				searchLen = searchVal.length;
+				$(this).next(_clearBtn).addClass('btnDeleteShow');
+				_clearBtn.on('click', function() {
+					$(this).removeClass('btnDeleteShow');
+					_inputBox.val(''); 
+				});
+			});
+	
+		});
+	</script>
 </script>
+
 </body>
 
 </html>

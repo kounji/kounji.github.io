@@ -32,7 +32,7 @@
 			<nav class="navi">
 				<div class="inner">
 					<ul role="navigation" aria-label="숨은자산" class="depth1-4">
-						<li><a href="#"><span>휴면계좌</span></a></li>
+						<li><a href="#"><span>휴면예금</span></a></li><!--25-03-21 문구수정-->
 						<li><a href="#" aria-current="page"><span>휴면보험금</span></a></li>
 					</ul>
 				</div>
@@ -53,11 +53,18 @@
                                 <em class="tooltip_icon_gray"><span class="blind">툴팁열기</span></em>
                             </a>
                         </div>
-                        <div class="com_ballon_type01 com_ballon_type02" style="display: none;">
+                        <div class="com_ballon_type01 com_ballon_type02">
                             <div>
+                                <!--25-03-21 문구수정  
                                 <p>소멸시효가 경과되어 서민금융진흥원으로 출연 예정에 있으나, 아직 출연되지 않아 *금융기관에서 보유 중인 예금, 보험금 계좌입니다.</p><br>
                                 <p>소멸시효는 반기 또는 연에 1번 소멸시효가 완성된 계좌를 출연하므로, 최대 1년 이내로 금융기관에서 보유한 상태를 의미합니다.</p>
-    
+                                -->
+                                <ul class="bl_dot_list">
+                                    <li>휴면보험금은 조회만 가능합니다.</li>
+                                    <li>소멸시효가 경과되어 서민금융진흥원으로 출연 예정에 있으나, 아직 출연되지 않아, 금융기관에서 보유중인 보험금 계좌입니다.</li>
+                                    <li>소멸시효는 반기 또는 연에 1번 소멸시효가 완성된 계좌를 출연하므로, 최대 1년 이내로 금융 기관에서 보유한 상태를 의미합니다. </li>
+                                </ul>
+                                <!--25-03-21 문구수정 -->
                                 <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                             </div> 
                         </div>
@@ -66,37 +73,42 @@
                     <!--계좌가 있을경우-->
                     <div class="board_box">
                         <!-- 25-03-11 삭제 <h3 class="title">휴면보험금</h3> -->
+                        <!-- 25-03-21 버튼 추가 -->
+                        <div class="btn_wrap">
+                            <button type="button" class="btns line md"><span class="ico_search_green">최신 숨은 자산 조회 하기</span></button>
+                        </div>
+                        <!-- //25-03-21 버튼 추가 -->
                         <ul class="assets_list">
                             <li>
-                                <a href="#nolink">
-                                    <i class="ico_bank D1AAJB0000"></i>
+                                <a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
+                                    <i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                                     <div>
                                         <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크K뱅크</strong>
-                                        <div class="account">352222302032522<span>휴면보험금</span></div><!--  25-03-11 문구변경 -->
-                                        <strong class="num">3,758,000원</strong>
+                                        <div class="account"><span class="blind">계좌번호</span>352222302032522<span>휴면보험금</span></div><!--  25-03-11 문구변경 --> <!--[v4.0] #접근성# 대체텍스트 추가 -->
+                                        <strong class="num"><span class="blind">금액</span>3,758,000원</strong> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                                     </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="#nolink">
-                                    <i class="ico_bank D1AAJB0000"></i>
+                                <a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
+                                    <i class="ico_bank D1AAJB0000"><span class="blind">K뱅크</span></i> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                                     <div>
                                         <strong class="org">K뱅크K뱅크K뱅크K뱅크K뱅</strong>
-                                        <div class="account">352222302032522 </div>
-                                        <strong class="num">3,758,000원</strong>
+                                        <div class="account"><span class="blind">계좌번호</span>352222302032522 </div> <!--[v4.0] #접근성# 대체텍스트 추가 -->
+                                        <strong class="num"><span class="blind">금액</span>3,758,000원</strong> <!--[v4.0] #접근성# 대체텍스트 추가 -->
                                     </div>
                                 </a>
                             </li>
                         </ul>
-                        <!-- 25-03-11 자산 연결 추가 버튼 추가  -->
+                        <!-- 25-03-11 자산 연결 추가 버튼 하단으로 이동 / 25-03-21 상단으로 이동 
                         <div class="btn_wrap">
                             <button type="button" class="btns gray md"><span class="icon_line_right">자산연결 추가</span></button>
                         </div>
-                        <!-- //25-03-11 자산 연결 추가 버튼 추가  -->
+                        //25-03-11 자산 연결 추가 버튼 하단으로 이동  -->
                     </div>
-    
+                    <!--25-03-21 삭제
                     <div class="board_box">
-                        <!-- 25-03-11 삭제  <h3 class="title">미청구보험금</h3> -->
+                        !-- 25-03-11 삭제  <h3 class="title">미청구보험금</h3> --
                         <ul class="assets_list">
                             <li>
                                 <a href="#nolink">
@@ -119,12 +131,19 @@
                                 </a>
                             </li>
                         </ul>
-                        <!-- 25-03-11 자산 연결 추가 버튼 추가  -->
+                        !-- 25-03-11 자산 연결 추가 버튼 하단으로 이동 / 25-03-21 상단으로 이동 
                         <div class="btn_wrap">
                             <button type="button" class="btns gray md"><span class="icon_line_right">자산연결 추가</span></button>
                         </div>
-                        <!-- //25-03-11 자산 연결 추가 버튼 추가  -->
+                        //25-03-11 자산 연결 추가 버튼 하단으로 이동  --
                     </div>
+                    -->
+
+                    <!--25-03-27 박스 추가 -->
+                    <div class="gray_box">
+                        <p class="dotted_list">휴면보험금은 조회만 가능합니다.</p>
+                    </div>
+                    <!--//25-03-27 박스 추가 -->
                 </section>
 			</div>
 

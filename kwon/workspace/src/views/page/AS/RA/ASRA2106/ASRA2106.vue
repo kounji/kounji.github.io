@@ -49,9 +49,9 @@
             </div>
         </div>
         <div class="popup_footer fixed">
-            <div class="btn_half_box">
-                <a href="javascript:void(0);" class="btn btn_grey" v-on:click.prevent="fn_delBtn()">삭제</a>
-                <a href="javascript:void(0);" class="btn btn_mint" v-on:click.prevent="movePage()" >수정</a>
+            <div class="btns_wrap">
+                <a href="javascript:void(0);" class="btns lg" v-on:click.prevent="fn_delBtn()">삭제</a>
+                <a href="javascript:void(0);" class="btns lg primary" v-on:click.prevent="movePage()" >수정</a>
             </div>
         </div>
         <a href="javascript:void(0);" @click.prevent="close(true)" class="btn_close"><span class="blind">팝업닫기</span></a>

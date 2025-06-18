@@ -112,7 +112,7 @@
 					</div>
 
 					<div class="com_input_type01 com_word1" v-show="vis_sec3 || isUpt">
-						<input type="tel" id="com_input06" class="com_txtright_type01" required="" placeholder="연 이자율(선택)" title="연 이자율" maxlength="5" 
+						<input type="number" inputmode="decimal" id="com_input06" class="com_txtright_type01" required="" placeholder="연 이자율(선택)" title="연 이자율" maxlength="5" 
                             v-model="debtIntrt" @keyup="chkInstRate()" @input="chkInstRate()" @focus="fn_focusOnOff('debtIntrt')" @blur="fn_chkDebtIntrt()">
 						<label for="com_input06"><span class="txt_label_x">연 이자율</span></label>
 						<div class="del_txt">
@@ -137,13 +137,12 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="popup_footer fixed">
-				<div class="btn_full_box">
-					<a href="javascript:void(0);" class="btn btn_mint" :class="btnOnOff" @click.prevent="resistLnAm($event)" role="button" aria-disabled="btnOnOff ? 'true' : 'false'">{{!isUpt?"등록":"수정"}}</a>
-				</div>
-			</div> 
 		</div>
+        <div class="popup_footer fixed">
+            <div class="btn_full_box">
+                <a href="javascript:void(0);" class="btn btn_mint" :class="btnOnOff" @click.prevent="resistLnAm($event)" role="button" aria-disabled="btnOnOff ? 'true' : 'false'">{{!isUpt?"등록":"수정"}}</a>
+            </div>
+        </div> 
 		<a href="javascript:void(0);" class="btn_close" @click.prevent="closePage"><span class="blind">팝업닫기</span></a>		
 	</div>
 </template>

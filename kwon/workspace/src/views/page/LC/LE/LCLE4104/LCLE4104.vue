@@ -19,7 +19,7 @@
 		<div class="popup_header">    
 			<h1>기타 지출내역</h1>
 		</div>
-		<div class="popup_content com_no_bottom list_top_info_area com_bg_type00">
+		<div class="popup_content com_no_bottom list_top_info_area com_bg_type00" id="content_area">
 			<div class="com_inner">
                 <div class="top_info_box_wrap">
                     <div class="top_btn"><p class="depth"></p><a href="javascript:void(0);" @click.prevent="openCashSelectSlidePop()" ref="chsvKdnm"></a></div>
@@ -34,7 +34,7 @@
 									<button class="cal_btn cal_next" :class="disabledButton" aria-label="한달 후 이동" @click.prevent="moveMonth('NEXT')" :disabled="currYm===inqYm"></button>
 									<!-- 20211109 한별 접근성 추가, UX개선 일괄 변경 E -->
 								</div>
-								<div class="bill" v-if="cashCn > 0">
+								<div class="bill" >
                                     <span class="num counter" id="schXpsSam" data-count="">{{schXpsSam | numberFilter}}</span>원
                                 </div>
 							</div>
@@ -47,7 +47,11 @@
 			<div class="com_inner">
 				<div class="all_filter">
 					<!--[v4.0] 조건결과 항목 추가-->
-					<a href="javascript:void(0);" role="button" @click.prevent="openSearchSlidePop()">{{srchCndStr}}</a>
+					<a href="javascript:void(0);" role="button" @click.prevent="openSearchSlidePop()">
+                        <span class="date">{{srchCndDate}}</span>
+                        <em>{{srchCndStr}}</em>
+                        <em>{{srchCndMchtnm}}</em>
+                    </a>
 					<!--//[v4.0] 조건결과 항목 추가-->
 				</div>	
 			</div>                    
@@ -112,9 +116,9 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import {dateFormat, monthAdd} from '@/utils/date'
 import {getDayDowCName, getLastDay} from '@/utils/date'
-import LCFD2003 from '@/views/page/LC/FD/LCFD2003/LCFD2003'
-import LCLE2116 from '@/views/page/LC/LE/LCLE2116/LCLE2116'
-import LCLE4201 from '@/views/page/LC/LE/LCLE4201/LCLE4201'
+import LCFD2003 from '@/views/page/LC/FD/LCFD2003/LCFD2003' // 수입/지출 상세내역
+import LCLE2116 from '@/views/page/LC/LE/LCLE2116/LCLE2116' // 기타목록 선택 슬라이드팝업
+import LCLE4201 from '@/views/page/LC/LE/LCLE4201/LCLE4201' // v4 조건검색 슬라이드 팝업
 import _ from 'lodash'
 
 export default {
@@ -172,32 +176,56 @@ export default {
          * 검색조건을 화면에 출력하기 위한 문자열
          */
         srchCndStr() {
-            if(   this.inqStrDt  == '' && this.inqEndDt == '' && this.prcMchtnmCnd == ''
-               && this.amCnd     == '' && this.trDtCnd == '') 
+            if( this.amCnd == '' && this.trDtCnd == '')                
             {
-                return '전체'
+                return ''
 
             } else {
                 let strArr = []
-
-                if(this.inqStrDt) {
-                    strArr.push(this.inqStrDt)
-                }
-                if(this.inqEndDt) {
-                    strArr.push(this.inqEndDt)
-                }                                    
-                if(this.prcMchtnmCnd) {
-                    strArr.push(this.prcMchtnmCnd)
-                }
+                 
                 if(this.amCnd) {
                     strArr.push(this.amCndLabel)
                 }
                 if(this.trDtCnd) {
                     strArr.push(this.trDtCndLabel)
                 }
-                return strArr.join(' | ')
+                return strArr.join('ㆍ')
             }
-        }
+        },
+        /**
+         * 검색조건을 화면에 출력하기 위한 문자열
+         */
+        srchCndMchtnm() {
+            if( this.prcMchtnmCnd == '')             
+            {
+                return ''
+            } else {                  
+                return this.prcMchtnmCnd
+            }
+        },
+        /**
+         * 검색조건을 화면에 출력하기 위한 문자열
+         */
+        srchCndDate() {
+            if( this.inqStrDt == '' && this.inqEndDt == '')
+            {
+                return '최신순ㆍ전체'
+
+            } else {
+                let strArr = []
+                if (this.isSrch) {
+                    if(this.inqStrDt) {
+                        strArr.push(this.inqStrDt)
+                    }
+                    if(this.inqEndDt) {
+                        strArr.push(this.inqEndDt)
+                    }        
+                } else {
+                    return '최신순ㆍ전체'
+                }
+                return strArr.join('~')
+            }
+        },
 	},
 
     mixins: [
@@ -206,7 +234,6 @@ export default {
     ],
 
     mounted() {
-console.log("mounted() Start===================")
         this.initComponent(this.params)
         dateFormat()
         //PFM로그 처리 화면접속이력 등록 POST
@@ -215,7 +242,6 @@ console.log("mounted() Start===================")
 
     methods: {
         initComponent(param) {
-console.log("initComponent() param===================",param)
             this.mydtCusno      = param.mydtCusno || ''
             this.inqYm          = param.inqYm || ''
             this.inqDsc         = param.inqDsc || ''
@@ -228,13 +254,9 @@ console.log("initComponent() param===================",param)
                 this.$refs.chsvKdnm.innerText = '현금'
 
             const date        = new Date()
-            this.currentDay   = ("0" + (date.getDate())).slice(-2) //date.getDate()
+            this.currentDay   = ("0" + (date.getDate())).slice(-2)
             this.currentYear  = date.getFullYear()   //현재년
             this.currentMonth = ("0" + (date.getMonth() +1)).slice(-2)  //현재월 00   
-            
-            console.log("initComponent() currentDay   ===================", this.currentDay)
-            console.log("initComponent() currentMonth ===================", this.currentMonth)
-            console.log("initComponent() currentYear  ===================", this.currentYear)
 
             if (this.inqYm == this.currYm){
                 this.lastDay = this.currentDay
@@ -242,15 +264,14 @@ console.log("initComponent() param===================",param)
                 let tmpDate = this.inqYm + "" + "01"
                 this.lastDay = dateFormat(getLastDay(dateFormat(tmpDate, 'YYYYMMDD')), 'DD')
             }
-            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY-MM-DD')
-            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY-MM-DD')
+            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY.MM.DD')
+            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY.MM.DD')
             this.trDtCnd  = 'desc'
-            this.trDtCndLabel  = '최신순'
+            this.trDtCndLabel  = ''
 
             this.getData();
         },       
         getData() {
-console.log("getData() start===================")
             // 실제구현
             const config = {
                 url : '/lc/le/04r05',
@@ -259,15 +280,15 @@ console.log("getData() start===================")
                     inqYm        : this.inqYm,
                     inqDsc       : this.inqDsc,                    
                     pageNo       : this.pageNo,
-                    inqStrDt     : this.inqStrDt.split("-").join(""),
-                    inqEndDt     : this.inqEndDt.split("-").join(""),
+                    inqStrDt     : this.inqStrDt.split(".").join(""),
+                    inqEndDt     : this.inqEndDt.split(".").join(""),
                     prcMchtnmCnd : this.prcMchtnmCnd,
                     amCnd        : this.amCnd,
                     trDtCnd      : this.trDtCnd,
                 }
             }
             apiService.call(config).then(response => {
-console.log("getData() response===================", response)
+                console.log("----------getData getData--------------", response)
                 this.mydtCusno       = response.mydtCusno || ''
                 this.inqYm           = response.inqYm || ''
                 this.schXpsSam       = response.schXpsSam || 0
@@ -279,13 +300,21 @@ console.log("getData() response===================", response)
                 this.cashList        = response.cashList || []
                 this.modifiedCashList = this.modifyCashList(this.cashList)
                 console.log("modifiedCashList : ",this. modifiedCashList)
-            })
 
+                // v4 수정대상
+                if (this.isSrch && this.cashList.length > 0) {
+                    setTimeout(() => {
+                        //const dLabel = this.$el.querySelectorAll('#l_'+this.currentDay)
+                        const parentdLabel = this.$el.querySelectorAll('.list_more_box') //리스트 상단의 DETAIL TAG ID  .list_more_box
+                        console.log("parentdLabelparentdLabelparentdLabelparentdLabelparentdLabel", parentdLabel[0].offsetTop)
+                        $('#content_area').animate({scrollTop : parentdLabel[0].offsetTop - 50})  // + dLabel[0].offsetTop 
+                    }, 10);            
+                }
+            })
         },
 
         // 현금목록 결제일자별 내림차순 정렬
         modifyCashList(objArray){
-console.log("modifyCashList() objArray===================", objArray)
             let list = objArray || []
             let result = _.chain(list)
                 .uniqBy('trDt')
@@ -302,7 +331,6 @@ console.log("modifyCashList() objArray===================", objArray)
         },
 
         openCashSelectSlidePop() {
-console.log("openCashSelectSlidePop() start ===================")
             const config = {
 				params : {
 					mydtCusno : this.mydtCusno,
@@ -313,7 +341,8 @@ console.log("openCashSelectSlidePop() start ===================")
                 }
 			}
             modalService.openSlidePagePopup(config).then(response => {
-console.log("openCashSelectSlidePop() response ===================", response)
+                this.fn_initSrch(); // 조건 검색 초기화
+
                 this.mydtCusno  = response.mydtCusno || ''
                 this.inqDsc     = response.inqDsc || ''
 
@@ -329,7 +358,6 @@ console.log("openCashSelectSlidePop() response ===================", response)
         },
         
         selectMonth(){
-console.log("selectMonth() start ===================")
 			const config = {
 				params: {
 					title  : '조회년월 선택',
@@ -338,7 +366,6 @@ console.log("selectMonth() start ===================")
 				},
 			}
 			modalService.openSlideSelectMonth(config).then(response => {
-console.log("selectMonth() response ===================", response)
 				this.inqYm = dateFormat(response, 'YYYYMM')
 				this.pageNo = 1
                 this.fn_initSrch()
@@ -348,7 +375,6 @@ console.log("selectMonth() response ===================", response)
 
         // 년월선택
         moveMonth(flag){
-console.log("moveMonth() flag ===================", flag)
 			let add = (flag == 'PREV') ? -1 : 1
 			this.inqYm = monthAdd(add, this.inqYm, "YYYYMM")
             this.pageNo = 1
@@ -366,10 +392,9 @@ console.log("moveMonth() flag ===================", flag)
             this.prcMchtnmCnd	= ""       // 가맹점명 검색조건
             this.amCnd			= ""       // 결제금액 검색조건
             this.amCndLabel		= ""       // 결제금액 검색조건 라벨
-            // this.inqStrDt       = ""       // 거래 시작일자 검색조건
-            // this.inqEndDt       = ""       // 거래 종료일자 검색조건
+            this.pageNo         = 1
             this.trDtCnd		= "desc"   // 정렬 검색조건
-            this.trDtCndLabel	= "최신순"       // 정렬 검색조건 라벨  
+            this.trDtCndLabel	= ""       // 정렬 검색조건 라벨  
             
             if (this.inqYm == this.currYm){
                 this.lastDay = this.currentDay
@@ -377,13 +402,13 @@ console.log("moveMonth() flag ===================", flag)
                 let tmpDate = this.inqYm + "" + "01"
                 this.lastDay = dateFormat(getLastDay(dateFormat(tmpDate, 'YYYYMMDD')), 'DD')
             }
-            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY-MM-DD')
-            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY-MM-DD')
+            // 거래 시작일자/종료일자 검색조건
+            this.inqStrDt = dateFormat(this.inqYm + "" + "01", 'YYYY.MM.DD')
+            this.inqEndDt = dateFormat(this.inqYm + "" + this.lastDay, 'YYYY.MM.DD')
         },
 
         // 상세내역(지출) 화면(LCFD2003) 오픈
         openDetailPop(obj) {
-console.log("openDetailPop() obj ===================", obj)
             // obj.asetCtgrDsc     = (obj.inqDsc == 'C')?'2':'3'   // 자산카테고리구분코드, 2:지출(C), 3:이체(F)
             obj.asetCtgrDsc = '2'
             obj.dataSrcDsc  = (obj.inqDsc == 'C')?'05':'01'     // 데이터원천구분코드 01:계좌(F), 05:수기(C))
@@ -396,7 +421,6 @@ console.log("openDetailPop() obj ===================", obj)
                 param : param,
             }
             modalService.openPopup(config).then(response => {
-console.log("openDetailPop() response ===================", response)
                 if(response === 'complete') {
                     this.getData();
                 }
@@ -409,51 +433,63 @@ console.log("openDetailPop() response ===================", response)
 
         // 더보기
 		showMoreList() {
-console.log("showMoreList() start ===================")
-			const config = {
-				url : '/lc/le/04r03',
-				data : {
-					mydtCusno    : this.mydtCusno,
-                    inqYm        : this.inqYm,
-                    inqDsc       : this.inqDsc,
-                    pageNo       : this.pageNo,
-				}
-			}
 
-			apiService.call(config).then(response => {
-console.log("showMoreList() response ===================", response)
-				this.nxDataYn	= response.nxDataYn || ''
-				for(let i=0;i<response.cashList.length;i++) {
-					this.cashList.push(response.cashList[i])
-				}
-				this.pageNo		+= 1
+            // 실제구현
+            const config = {
+                url : '/lc/le/04r05',
+                data : {
+                    mydtCusno    : this.mydtCusno,
+                    inqYm        : this.inqYm,
+                    inqDsc       : this.inqDsc,                    
+                    pageNo       : this.pageNo,
+                    inqStrDt     : this.inqStrDt.split(".").join(""),
+                    inqEndDt     : this.inqEndDt.split(".").join(""),
+                    prcMchtnmCnd : this.prcMchtnmCnd,
+                    amCnd        : this.amCnd,
+                    trDtCnd      : this.trDtCnd,
+                }
+            }
+            apiService.call(config).then(response => {
+                console.log("----------getData getData--------------", response)
+                this.mydtCusno       = response.mydtCusno || ''
+                this.inqYm           = response.inqYm || ''
+                this.schXpsSam       = response.schXpsSam || 0
+                this.cashCn          = response.cashCn || 0
+                this.nxDataYn        = response.nxDataYn || 'N'
+                if(this.nxDataYn == 'Y') 
+                    this.pageNo += 1
+                    
+                for(let i=0;i<response.cashList.length;i++) {
+                    this.cashList.push(response.cashList[i])
+                }
                 this.modifiedCashList = this.modifyCashList(this.cashList)
-			})
+                console.log("modifiedCashList : ",this. modifiedCashList)
+
+            })            
 		},
 
         // 조건검색 슬라이드 팝업
         openSearchSlidePop() {
-console.log("openSearchSlidePop() start ===================")
 
             let tmpStrDt  = ""      
             let tmpEndDt  = ""
 
             if (this.inqStrDt == "") {
-                tmpStrDt = this.currentYear + '-' + this.currentMonth + '-' + '01'
+                tmpStrDt = this.currentYear + '.' + this.currentMonth + '.' + '01'
             } else {
-                tmpStrDt = dateFormat(this.inqStrDt, 'YYYY-MM-DD')
+                tmpStrDt = dateFormat(this.inqStrDt, 'YYYY.MM.DD')
             }
                 
             if (this.inqEndDt == "") {
-                tmpEndDt = this.currentYear + '-' + this.currentMonth + '-' + this.currentDay
+                tmpEndDt = this.currentYear + '.' + this.currentMonth + '.' + this.currentDay
             }else{
-                tmpEndDt = dateFormat(this.inqEndDt, 'YYYY-MM-DD')
+                tmpEndDt = dateFormat(this.inqEndDt, 'YYYY.MM.DD')
             }             
             console.log("tmpStrDt ~ tmpEndDt>>>",tmpStrDt + "~"+ tmpEndDt)     
 
             const config = {
                 component : LCLE4201,
-                params : {
+                params : {                    
                     mydtCusno		: this.mydtCusno,
                     inqYm 			: this.inqYm,
                     prcMchtnmCnd	: this.prcMchtnmCnd,
@@ -467,9 +503,9 @@ console.log("openSearchSlidePop() start ===================")
                 //     component : this.getSearchComponent(),
                 // }
             }
-            //modalService.openSlidePagePopup(config).then((response) => {
+
             modalService.openPopup(config).then((response) => {
-console.log("openSearchSlidePop() response ===================", response)
+
                 if(response.isSrch !== undefined){
                     this.isSrch         = response.isSrch
                     this.prcMchtnmCnd   = response.prcMchtnmCnd

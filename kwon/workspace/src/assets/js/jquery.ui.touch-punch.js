@@ -82,7 +82,7 @@ import jQuery from 'jquery'
     touchHandled = true;
 
     // Track movement to determine if interaction was a click
-    self._touchMoved = false;
+    self._touchMoved = true;
 
     // Simulate the mouseover event
     simulateMouseEvent(event, 'mouseover');

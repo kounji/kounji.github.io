@@ -128,7 +128,7 @@
 				<ul class="com_slide_check_type04">
 					<li>
 						<div class="btn_radio">
-							<input type="radio" name="one_direct" id="radio01" aria-hidden="true" @click="openRlAssetPop('CORE2201', $event)">
+							<input type="radio" name="one_direct" id="radio01" aria-hidden="true" @click="openRlAssetPop('CORE4201', $event)">
 							<label for="radio01" role="radio" >
 								<i class="one_direct_01"><span class="blind">부동산</span></i>
 								<span>부동산</span>				
@@ -164,7 +164,7 @@
 					</li>
 					<li>
 						<div class="btn_radio">
-							<input type="radio" name="one_direct" id="radio05" aria-hidden="true" @click="openRlAssetPop('COOA2105', $event)">
+							<input type="radio" name="one_direct" id="radio05" aria-hidden="true" @click="openRlAssetPop('COOA4105', $event)">
 							<label for="radio05" role="radio" >
 								<i class="one_direct_05"><span class="blind">금</span></i>
 								<span>금</span>								
@@ -224,11 +224,11 @@ import COCA2101 from '@/views/page/CO/CA/COCA2101/COCA2101'
 import {mapGetters} from 'vuex'
 import COAR2019 from '@/views/page/CO/AR/COAR2019/COAR2019'
 
-import CORE2201 from '@/views/page/CO/RE/CORE2201/CORE2201'
+import CORE4201 from '@/views/page/CO/RE/CORE4201/CORE4201'
 import COOA2001 from '@/views/page/CO/OA/COOA2001/COOA2001'
 import COOA2103 from '@/views/page/CO/OA/COOA2103/COOA2103'
 import COOA2003 from '@/views/page/CO/OA/COOA2003/COOA2003'
-import COOA2105 from '@/views/page/CO/OA/COOA2105/COOA2105'
+import COOA4105 from '@/views/page/CO/OA/COOA4105/COOA4105'
 import COOA2005 from '@/views/page/CO/OA/COOA2005/COOA2005'
 import COOA2006 from '@/views/page/CO/OA/COOA2006/COOA2006'
 import COAR2007 from '@/views/page/CO/AR/COAR2007/COAR2007'
@@ -346,7 +346,7 @@ export default {
 
 			switch(popId) {
 				case 'Rlest':
-					popName = CORE2201	// 부동산
+					popName = CORE4201	// 부동산
 					break
 				case 'Car':
 					popName = COCA2101	// 자동차
@@ -361,7 +361,7 @@ export default {
 					popName = COOA2003	// 빌린돈
 					break
 				case 'Gold':
-					popName = COOA2105	// 금
+					popName = COOA4105	// 금
 					break
 				case 'Etc':
 					popName = COOA2005	// 기타

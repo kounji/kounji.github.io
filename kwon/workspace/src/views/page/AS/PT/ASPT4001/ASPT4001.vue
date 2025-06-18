@@ -34,8 +34,19 @@
                     <div class="title">
                         <div class="text">
                             숨겨져 있는 돈<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="totPayAcAm">{{totPayAcAm | numberFilter}}</span>원</strong> -->
-                            <div class="toggle_money">
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{totPayAcAm | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('PNT', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액숨김" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('PNT', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -45,7 +56,8 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{totPayAcAm | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
+
                         </div>
                     </div>
                 </div>
@@ -64,15 +76,15 @@
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
                                 <div class="tit">
-                                    <span>페이</span><span class="com_icon_num custom">{{paySumCn}}</span></div>
+                                    <span>페이</span><span class="com_icon_num custom">{{paySumCn}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{paySumAcAm | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{paySumAcAm | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_paySortPop()"><span>{{paySortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_paySortPop()"><span>{{paySortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(item, idx) in payTotalList" :key="idx">
@@ -88,7 +100,7 @@
                                         </dt>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.eltfncTotBac | numberFilter}}</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.eltfncTotBac | numberFilter}}</em>
                                                 <em class="unit">{{item.curc === "KRW" ? '원' : item.curnm}}</em>
                                             </span>
                                         </dd>
@@ -107,7 +119,7 @@
                                         </dt>
                                         <dd>
                                             <span class="com_price">
-                                                <em class="num">{{item.ppaycdTotBac | numberFilter}}</em>
+                                                <em class="num"><span class="blind">금액</span>{{item.ppaycdTotBac | numberFilter}}</em>
                                                 <em class="unit">원</em>
                                             </span>
                                         </dd>
@@ -125,10 +137,10 @@
                             <div class="new_tit_area">
                                 <div class="tit">
                                     <span>금융포인트</span>
-                                    <span class="com_icon_num custom">{{cardPntcn}}</span>
+                                    <span class="com_icon_num custom">{{cardPntcn}}<i class="blind">건</i></span>
                                 </div>
                                 <span class="total_price">
-                                    <em class="num">{{cardPntBaltt | numberFilter}}</em>
+                                    <em class="num"><span class="blind">금액</span>{{cardPntBaltt | numberFilter}}</em>
                                     <em class="unit">원</em>
                                 </span>
                             </div>
@@ -136,21 +148,21 @@
                             <em class="close">닫기</em>
                         </button>
                         <!-- [v4.0] 툴팁 추가 -->
-                        <div class="custom_tooltip up">
+                        <div v-if="tooltipYn" class="custom_tooltip up">
                             <div class="com_tooltip_type02 com_tooltip_type03">
-                                <a href="#nolink" class="com_btn_info" role="button">
+                                <a href="javascript:void(0);" class="com_btn_info" role="button">
                                     <em class="com_icon_info"><span class="blind">금융포인트 툴팁열기</span></em>
                                 </a>
                                 <div class="com_ballon_type01 com_ballon_type02" style="display:none;">
                                     <div>
                                         <p>입금 신청시 포인트 전환 가능한 카드사와 NH콕에서 보이는 금융포인트는 상이할 수 있어요.</p>
-                                        <a href="#nolink" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
+                                        <a href="javascript:void(0);" class="com_btn_close"><span class="blind">툴팁닫기</span></a>
                                     </div> 
                                 </div>
                             </div>
                         </div>
                         <!-- //[v4.0] 툴팁 추가 -->
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_cardPntSortPop()"><span>{{cardPntlSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort"  role="button" @click="fn_cardPntSortPop()"><span>{{cardPntlSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01"><!-- 클릭 없음.-->
                         <li v-for="(item, idx) in cardPntList" :key="`2_${idx}`">
@@ -164,15 +176,16 @@
                                     </dt>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{item.rmPnt | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{item.rmPnt | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
                                 </dl>
                                 <!-- [v4.0] 입금신청 버튼 추가 -->
-								<div v-if="item.rmPnt > 0 && orgcSome(item.infOfrmnOrgC)" class="exe_btns">
+								<!-- 20250410 요건삭제
+                                <div v-if="item.rmPnt > 0 && orgcSome(item.infOfrmnOrgC)" class="exe_btns">
 									<button type="button" class="stdBtn innerType01"  @click="fn_rrqr()">입금신청</button>
-								</div>
+								</div> -->
 								<!-- //[v4.0] 입금신청 버튼 추가 -->
                         </li>
                     </ul>
@@ -231,7 +244,7 @@
 
                 payTotalList      : [],     // 총페이목록
                 payTotalListOrg   : [],     // 총페이목록org
-                paySortVal    : 1,      //페이 정렬기준
+                paySortVal    : "1",      //페이 정렬기준
                 paySortNm    : "기본", //페이 정렬이름
 
                 cardPntcn     : 0,  // 금융포인트 수
@@ -239,14 +252,15 @@
                 cardPntList   : [], // 금융포인트 목록
 
                 cardPntListOrg   : [],     // 총 금융포인트목록org
-                cardPntSortVal   : 1,      //금융포인트 정렬기준
+                cardPntSortVal   : "1",      //금융포인트 정렬기준
                 cardPntlSortNm   : "기본", //금융포인트 정렬이름
                 /* 롯데카드 비씨카드  삼성카드 신한카드 하나카드 
                 현대카드 국민카드 농협카드 시티카드 우리카드 우정사업본부 */
                 orgc             : ["D1AADO0000","D1AAFQ0000","D1AAEV0000","D1AAEX0000"
                                     ,"D1AABJ0000","D1AAFO0000","D1AAAF0000","D1AABG0000"
                                     ,"D1AAQE0000","D1AAAH0000","D1AAKA0000"],
-                hideYn		: false,  // 숨김 여부
+                hideYn		    : false,  // 숨김 여부
+                tooltipYn       : false, //툴팁 숨김 여부
             }
         },
         mixins: [
@@ -438,15 +452,20 @@
                 alert("이동 url 확정 시 추가 작업 예정")
             },
             orgcSome(infOfrmnOrgC){
-                let btnType = false
+                let btnType = true
                 btnType = this.orgc.some((item) => item === infOfrmnOrgC)
-                if(this.getUserInfo('chnl') === "385")btnType = false
+                if(this.getUserInfo('chnl') === "385"){
+                    btnType = false
+                }else{
+                    this.tooltipYn = true
+                }
                 return btnType
             },
             /*
                 숨김여부
             */
             fn_setHidden(flag, type) {
+                this.hideYn = type
 				this.setSecretAmInfo(flag, type)
 			},
         },

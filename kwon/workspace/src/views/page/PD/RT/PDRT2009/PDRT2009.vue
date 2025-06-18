@@ -52,17 +52,17 @@
 			</div>
 		</div>
 
-		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// 전체 팝업 종료 -->
 </template>
 
 <script>
 import commonMixin from '@/common/mixins/commonMixin'
+import popupMixin from '@/common/mixins/popupMixin'
 import apiService from '@/service/apiService'
 import commonService from '@/service/commonService'
 import modalService from '@/service/modalService'
-
 
 import PDRT2014 from '@/views/page/PD/RT/PDRT2014/PDRT2014'
 
@@ -97,7 +97,7 @@ export default {
             modalService.openPopup(config).then((response) => {
                 if (response == "PDPD1101_tab1") {
                     // this.$refs.PDPD1101Tab1.click();
-                    this.fn_movePage('PDPD1001') // 상품추천 화면으로 이동
+                    this.fn_movePage('PDPD4001') // 상품추천 화면으로 이동
                 }
             });
         },
@@ -114,7 +114,8 @@ export default {
         }
     },
     mixins: [
-        commonMixin
+        commonMixin,
+        popupMixin
     ],
     components: {
     },

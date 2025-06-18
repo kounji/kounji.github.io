@@ -348,7 +348,7 @@
                     content: ['입력중인 정보는 저장되지 않습니다','정말로 취소하시겠습니까?'],
                     title  : "",
                 }
-                (config).then(text => {
+                modalService.confirm(config).then(text => {
                     if(text == "예") {
                         // if(!this.isUpt) this.closeAllData(true)
                         // else this.close()

@@ -172,8 +172,63 @@ export default {
           ]
       ]
 
+      const colors_zero =[
+          [
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+              ],
+          ],
+          [
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+              ],
+          ],
+          [
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+                  
+              ], 
+              [
+                  [0, 'transparent'],
+                  [1, 'transparent']
+              ],
+          ],
+      ]
+
       this.conText.clearRect(0, 0, 300, 300);
-      this.cycledata.colors.cs = colors[this.cycleIdx || 0];
+      if(this.cycledata.parts.pt[this.cycleIdx] === 0) {
+        this.cycledata.colors.cs = colors_zero[this.cycleIdx || 0];
+      } else {
+        this.cycledata.colors.cs = colors[this.cycleIdx || 0];
+      }
       this.drawDount.draw(this.cycledata);
     },
 

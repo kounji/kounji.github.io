@@ -53,7 +53,7 @@ import apiService from '@/service/apiService'
 import popupMixin from '@/common/mixins/popupMixin'
 // import modalService from '@/service/modalService'
 
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 지출목표 등록
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // 지출목표 등록
 import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038' // 돈모으기 등록
 import PDMY2040 from '@/views/page/PD/MY/PDMY2040/PDMY2040' // 투자목표 등록
 
@@ -88,7 +88,7 @@ export default {
         openFinancePop(fncObtDsc) {
 			var compName
 
-			if(fncObtDsc == '00') compName = PDMY2032 // 지출목표 등록
+			if(fncObtDsc == '00') compName = PDMY4032 // 지출목표 등록
             if(fncObtDsc == '01') compName = PDMY2038 // 돈모으기 등록
             if(fncObtDsc == '02') compName = PDMY2040 // 투자목표 등록
 

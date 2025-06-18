@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>이벤트 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<script src="../../../@pub_include/head.js"></script><!-- html용 head.js 개발팀 별도 적용 -->
+</head>
+<!-- .mydata2023 신규 or 수정 화면에 적용 일부 반영이 필요한 경우 컨텐츠 영역이나 부모계체에 사용 -->
+<body>
+	<!-- 팝업용 wrap 시작 -->
+	<div id="wrap" class="sticky-scroll">
+		<!-- header S -->
+		<header id="header">
+			<h1>공통</h1>
+
+			<button type="button" class="prev"><span class="blind">이전</span></button>
+
+			<div class="option">
+				<button type="button" class="search"><span class="blind">검색</span></button>
+				<a href="#nolink" class="menu"><span class="blind">전체메뉴</span></a>
+			</div>
+		</header>
+		<!--// header E -->
+		<!-- content-view S -->
+		<div class="content-view">
+			<!-- content -->
+			<div id="content" class="renewal com_sub_type02">
+			</div>
+			<!--// content -->
+			<script src="../../../@pub_include/footer.js"></script><!-- html용 footer.js 개발팀 별도 적용 -->
+		</div>
+		<!--// content-view S -->
+	</div>
+	<!--// 팝업용 wrap 종료 -->
+
+	<!-- 전체 팝업 시작 -->
+	<!-- slide popup S -->
+	<div class="dimmed" style="display: block;"></div>
+	<div class="popup_box">
+		<div aria-hidden="false" class="slide_popup">
+			
+			<div class="popup_content event_pop">
+				<!-- slick -->
+				<div class="event_slick">
+					<div class="cont">
+						<a href="#nolink">
+							<img src="../../../../src/assets_v40/images/banner/img_event_slide_01.png" alt="언제 어디서나 간편하게 콕 자산관리 버킷리스트 등록 인증하고 아메리카노 5잔 받으세요."> <!--[v4.0] 2025-02-18 alt값 추가 -->
+						</a>
+						<a href="#nolink">
+							<img src="../../../../src/assets_v40/images/banner/img_event_slide_02.png" alt="언제 어디서나 간편하게 콕 자산관리 버킷리스트 등록 인증하고 아메리카노 5잔 받으세요."> <!--[v4.0] 2025-02-18 alt값 추가 -->
+						</a>
+					</div>
+
+					<div class="controls">
+						<div class="remote">
+							<p class="paging"></p>
+							<button type="button" class="prev"><span class="blind">이전</span></button>
+							<button type="button" class="next"><span class="blind">다음</span></button>
+						</div>
+						<button type="button" title="정지" class="btn_play"></button>
+					</div>
+				</div>
+				<!-- //slick -->
+
+				<div class="event_bottom"> <!--[v4.0] 2025-04-10 하단 버튼 추가 -->
+					<button type="button" class="day_close">오늘 하루 닫기</button> <!--[v4.0] #접근성# input > button으로 변경 -->
+					<button type="button" class="close_btn">닫기</button>
+				</div>
+			</div>
+
+			<!-- <a href="#nolink" class="btn_close"><span class="">닫기</span></a> --> <!--[v4.0] 2025-04-10 버튼 삭제 -->
+		</div>
+	</div>
+	<!--// 전체 팝업 종료 -->
+
+	<script type="text/javascript">
+		$(function() {
+			slick (); //슬릭
+		});
+	
+		function slick () {
+			var $event =  $(".event_slick .cont");
+
+			$event.on('init reInit afterChange', function(event, slick, currentSlide){
+				var i = (currentSlide ? currentSlide : 0) + 1;
+				$(".event_slick .paging").html('<em>' + i + '</em> / ' + slick.slideCount);
+			});
+
+			$event.slick({
+				draggable: true,
+				adaptiveHeight: true,
+				accessibility:true,
+				infinite: true,
+				cssEase:'linear',
+				autoplay:true,
+				speed : 300,
+				dots : false,
+				arrows : true,
+				prevArrow:$(".remote .prev"),
+				nextArrow:$(".remote .next")
+			});
+			
+			const constrols  = $(".event_slick .btn_play");
+			
+			constrols.click(function(){
+				if($(this).hasClass('paused')){//정지상태
+					$event.slick('slickPlay');
+					$(this).removeClass('paused');
+					$(this).attr('title', '정지');
+				}else{//자동재생 중
+					$event.slick('slickPause');
+					$(this).addClass('paused');
+					$(this).attr('title', '재생');
+				}
+			});
+
+		}
+	</script>
+</body>
+</html>

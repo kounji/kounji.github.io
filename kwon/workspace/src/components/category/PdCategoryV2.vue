@@ -61,12 +61,12 @@
 			},
 			// 등록 버튼 눌러서 페이지 이동시 이동할 화면 이름 리턴
 			getMovePageName(type) {
-				if (type === 'PDMY') return 'PDMY2001' // 나의목표
+				if (type === 'PDMY') return 'PDMY4001' // 나의목표
 				if (type === 'PDMY_') return 'PDMY4001' // 버킷임시
-				if (type === 'PDPD') return 'PDPD1001' // 상품추천
-				if (type === 'PDRT') return 'PDRT2001' // 노후준비
+				if (type === 'PDPD') return 'PDPD4001' // 상품추천
+				if (type === 'PDRT') return 'PDRT4001' // 노후준비
 				if (type === 'PDCA') return 'PDCA1101' // 자동차관리
-				if (type === 'ANRE') return 'ANRE2201' // 부동산서비스
+				if (type === 'ANRE') return 'ANRE4201' // 부동산서비스
 				if (type === 'PDBF') return 'PDBF4001' // 금융브리핑
 				return ''
 			}

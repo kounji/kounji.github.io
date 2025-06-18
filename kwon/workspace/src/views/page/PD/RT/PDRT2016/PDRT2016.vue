@@ -239,7 +239,7 @@
     import modalService from '@/service/modalService'
     import commonService from '@/service/commonService'
 
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
     export default {
         name : "PDRT2016",
@@ -407,7 +407,7 @@
 			},
             fn_openExpensePop() {
                 const config = {
-                    component : PDMY2005
+                    component : PDMY4005
                 };
 
                 modalService.openPopup(config).then(response => {
@@ -419,7 +419,7 @@
                         this.closeAll()
 
                         const menu = {
-                            name: 'PDMY2001',
+                            name: 'PDMY4001',
                             params : {}
                         }
                         commonService.movePage(menu)

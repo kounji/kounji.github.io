@@ -26,7 +26,7 @@
                     <div class="exchange_target">
                         아래 설정하신 환율보다 높아졌을 때
                         <span class="com_btn_switch sm">
-                            <input type="checkbox" name="check01" v-model="maxprAncYn" id="check01" title="상한가" :disabled="fn_focusOff('disableM')">
+                            <input type="checkbox" name="check01" v-model="maxprAncYn" id="check01" title="상한가" :disabled="removeComma(maxprSt + maxprEd) > 0 ? false : true">
                             <label for="check01" aria-hidden="true">
                                 <span class="txt">선택</span>
                                 <span class="on">선택</span>
@@ -37,12 +37,12 @@
                         <div class="exchange_krw">
                             <div class="com_input_type01">
                                 <label for="txt01"></label>
-                                <input type="number" id="txt01" class="com_txtright_type01" ref="maxprSt" v-model="maxprSt" name="" value="" placeholder="희망환율" title="상한가 원 단위" @blur="fn_focusOff('max')">
+                                <input type="tel" inputmode="decimal" id="txt01" class="com_txtright_type01" ref="maxprSt" v-model="maxprSt" name="" value="" placeholder="희망환율" title="상한가 원 단위" @focusout="fn_focusOff('max')" @beforeinput="fn_dot($event, 'st')" @input="fn_inputDot($event)" @keyup="addComma('maxprSt', $event)">
                             </div>
                             <span>.</span>
                             <div class="com_input_type01">
                                 <label for="txt02"></label>
-                                <input type="number" id="txt02" class="com_txtright_type01" ref="maxprEd" v-model="maxprEd" name="" value="" placeholder="" title="상한가 전 단위">
+                                <input type="tel" inputmode="decimal" id="txt02" class="com_txtright_type01" ref="maxprEd" v-model="maxprEd" name="" value="" placeholder="" maxlength="2" title="상한가 전 단위" @focusout="fn_focusOff('max')" @beforeinput="fn_dot($event, 'ed')" @input="fn_inputDot($event)">
                             </div>
                             <span>KRW</span>
                         </div>
@@ -53,7 +53,7 @@
                         아래 설정하신 환율보다 낮아졌을 때
 
                         <span class="com_btn_switch sm">
-                            <input type="checkbox" name="check02" id="check02" title="하한가" v-model="lowprAncYn" :disabled="lowprSt > 0 ? false : true">
+                            <input type="checkbox" name="check02" id="check02" title="하한가" v-model="lowprAncYn" :disabled="removeComma(lowprSt + lowprEd) > 0 ? false : true">
                             <label for="check02" aria-hidden="true">
                                 <span class="txt">선택</span>
                                 <span class="on">선택</span>
@@ -64,12 +64,12 @@
                         <div class="exchange_krw">
                             <div class="com_input_type01">
                                 <label for="txt01"></label>
-                                <input type="number" id="txt03" class="com_txtright_type01" ref="lowprSt" v-model="lowprSt" name="" value="" placeholder="희망환율" title="하한가 원 단위" @blur="fn_focusOff('low')">
+                                <input type="tel" inputmode="decimal" id="txt03" class="com_txtright_type01" ref="lowprSt" v-model="lowprSt" name="" value="" placeholder="희망환율" title="하한가 원 단위" @focusout="fn_focusOff('low')" @beforeinput="fn_dot($event, 'st')" @input="fn_inputDot($event)" @keyup="addComma('lowprSt', $event)">
                             </div>
                             <span>.</span>
                             <div class="com_input_type01">
                                 <label for="txt01"></label>
-                                <input type="number" id="txt03" class="com_txtright_type01" ref="lowprEd" v-model="lowprEd" name="" value="" placeholder="" title="하한가 전 단위">
+                                <input type="tel" inputmode="decimal" id="txt03" class="com_txtright_type01" ref="lowprEd" v-model="lowprEd" name="" value="" placeholder="" maxlength="2" title="하한가 전 단위" @focusout="fn_focusOff('low')" @beforeinput="fn_dot($event, 'ed')" @input="fn_inputDot($event)">
                             </div>
                             <span>KRW</span>
                         </div>
@@ -78,7 +78,7 @@
 
                 <div class="popup_footer">
                     <div class="btn_group">
-                        <button type="button" class="btn btn_mint" @click.prevent="!saveChk ? fn_save() : false" :class="saveChk ? 'btn_off' : ''">저장</button>
+                        <button type="button" class="btn btn_mint" @click.prevent="btnOff ? '' : fn_save()" :class="btnOff ? 'btn_off' : ''">저장</button>
                     </div>
                 </div>
                 
@@ -94,6 +94,7 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
+import {keyupNumFormat, numberFormat} from '@/utils/number'
 
 export default {
     name : "PDBF4004",
@@ -110,6 +111,7 @@ export default {
             maxprAncYn : false,
             lowprAncYn : false,
             curcCont : '',
+            btnOff   : false,
         }
     },
     mixins: [
@@ -140,28 +142,31 @@ export default {
             apiService.call(config).then(response => {
                 this.curAncList = response.curAncList || []
                 for(let i=0; i<this.curAncList.length; i++){
-                    this.maxprAncYn = this.curAncList[i].maxprAncYn == 'Y' ? true : false
-                    this.lowprAncYn = this.curAncList[i].lowprAncYn == 'Y' ? true : false
-                    this.maxprSt = Math.floor(Number(this.curAncList[i].maxpr))
-                    this.maxprEd = Math.round((Number(this.curAncList[i].maxpr) - this.maxprSt) * 100)
-                    this.lowprSt = Math.floor(Number(this.curAncList[i].lowpr))
-                    this.lowprEd = Math.round((Number(this.curAncList[i].lowpr) - this.lowprSt) * 100)
+                    this.maxprAncYn = this.curAncList[i].maxprAncYn == '1' ? true : false
+                    this.lowprAncYn = this.curAncList[i].lowprAncYn == '1' ? true : false
+                    this.maxprSt = Math.floor(Number(this.curAncList[i].maxpr)) || ''
+                    this.maxprEd = Math.round((Number(this.curAncList[i].maxpr) - this.maxprSt) * 100) || ''
+                    this.lowprSt = Math.floor(Number(this.curAncList[i].lowpr)) || ''
+                    this.lowprEd = Math.round((Number(this.curAncList[i].lowpr) - this.lowprSt) * 100) || ''
                 }
+                this.maxprSt != '' ? this.maxprSt = numberFormat(this.maxprSt) : this.maxprSt = ''
+                this.lowprSt != '' ? this.lowprSt = numberFormat(this.lowprSt) : this.lowprSt = ''
+                this.saveChk();
                 
             })
 		},
         fn_save() {
-            let lowprAncYn = this.lowprAncYn ? 'Y' : 'N';
-            let maxprAncYn = this.maxprAncYn ? 'Y' : 'N';
+            let lowprAncYn = this.lowprAncYn ? '1' : '0';
+            let maxprAncYn = this.maxprAncYn ? '1' : '0';
             
-            if(lowprAncYn == 'Y') {
-                this.lowpr = Number(this.lowprSt + "." + this.lowprEd)
+            if(lowprAncYn == '1') {
+                this.lowpr = Number(this.removeComma(this.lowprSt) + "." + this.lowprEd)
             } else {
                 this.lowpr = '';
             }
 
-            if(maxprAncYn == 'Y') {
-                this.maxpr = Number(this.maxprSt + "." + this.maxprEd)
+            if(maxprAncYn == '1') {
+                this.maxpr = Number(this.removeComma(this.maxprSt) + "." + this.maxprEd)
             } else {
                 this.maxpr = '';
             }
@@ -190,12 +195,17 @@ export default {
         },
         fn_focusOff(str){
             
-            let maxpr = Number(this.maxprSt + "." + this.maxprEd)
-            let lowpr = Number(this.lowprSt + "." + this.lowprEd)
+            let maxpr = Number(this.removeComma(this.maxprSt) + "." + this.maxprEd)
+            let lowpr = Number(this.removeComma(this.lowprSt) + "." + this.lowprEd)
             switch(str) {
                 case 'max' :
                     if(maxpr > 0){
                         this.maxprAncYn = true
+                        this.saveChk()
+                        if(maxpr < lowpr){
+                            modalService.alert("높아졌을 때 희망환율은 낮아졌을 때 희망환율보다 같거나 작을 수 없습니다.<br>입력한 값을 다시 확인해 주세요.").then(() => {
+                            });
+                        }
                     } else {
                         this.maxprAncYn = false
                     }
@@ -203,38 +213,138 @@ export default {
                 case 'low' :
                     if(lowpr > 0){
                         this.lowprAncYn = true
+                        this.saveChk()
+                        if(maxpr < lowpr){
+                            modalService.alert("낮아졌을 때 희망환율은 높아졌을 때 희망환율보다 같거나 클 수 없습니다.<br>입력한 값을 다시 확인해 주세요.").then(() => {
+                            });
+                        }
                     } else {
                         this.lowprAncYn = false
                     }
                     break;
-                case 'disableM' :
-                    if(maxpr > 0){
-                        return false
-                    } else {
-                        return true
-                    }
-                case 'disableL' :
-                    if(lowpr > 0){
-                        return false
-                    } else {
-                        return true
-                    }
             }
-
         },
-    },
-    computed : {
         saveChk() {
             let maxyn = this.maxprAncYn
             let lowyn = this.lowprAncYn
-            let maxpr = Number(this.maxprSt + "." + this.maxprEd)
-            let lowpr = Number(this.lowprSt + "." + this.lowprEd)
-			if( (maxyn == true && (maxpr != 0 && !isNaN(maxpr))) || (lowyn == true && (lowpr != 0 && !isNaN(lowpr))) ){
-				return false;
-			} else {
-				return true;
+            let maxpr = Number(this.removeComma(this.maxprSt) + "." + this.maxprEd)
+            let lowpr = Number(this.removeComma(this.lowprSt) + "." + this.lowprEd)
+
+            if (isNaN(maxpr)) {
+                maxpr = 0;
+            } else if(isNaN(lowpr)){
+                lowpr = 0;
+            }
+            
+            if( maxpr != 0 && lowpr != 0 ) { //둘다입력했을경우
+                maxpr > lowpr ? this.btnOff = false : this.btnOff = true;
+            } else if ( maxpr != 0 || lowpr != 0 ) {  // 한개만 입력했을경우
+                this.btnOff = false;    
+            } else {
+				this.btnOff = true;
 			}
 		},
+        fn_dot(e, tg) {
+            const val = e.data;
+            if(val === '.'){
+                if(tg === 'st'){
+                    e.preventDefault();
+                    this.$nextTick(() => {
+                        const inputs  = e.target.closest('.exchange_krw').querySelectorAll('input');
+                        const index   = Array.from(inputs).indexOf(e.target);
+                        
+                        if(index !== -1 && index < inputs.length -1) {
+                            inputs[index + 1].focus();
+                        }
+                    })
+                } else {
+                    e.preventDefault();
+                }
+            }
+        },
+        fn_inputDot(e) {
+            const val = e.target.value;
+            if(val.includes('.')) {
+                e.target.value = val.replace('.', '');
+            }
+        },
+        removeComma(value) {
+            return (typeof value === "string") ? value.split(",").join("") : value
+        },
+        addComma(str, e="") {
+			if(e.keyCode === 13) return false
+
+			let selectionStartPos
+			let selectionEndPos
+
+            switch(str) {
+                case "maxprSt" :
+
+					selectionStartPos = this.$refs.maxprSt.selectionStart
+					selectionEndPos = this.$refs.maxprSt.selectionEnd
+
+                    if(this.maxprSt.length == 1 && this.maxprSt == 0) {
+                        this.maxprSt = this.maxprSt.slice(0, -1)
+                    } else {
+                        this.maxprSt = this.maxprSt.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+                        this.maxprSt = this.maxprSt.split(",").join("")
+                        this.$nextTick(()=>{
+                            this.maxprSt = keyupNumFormat(this.maxprSt)
+                        });
+					}
+					
+					if(e.keyCode === 8) {
+						this.$nextTick(()=>{
+							this.$refs.maxprSt.focus()
+							this.$refs.maxprSt.setSelectionRange(selectionStartPos,selectionEndPos)
+						})
+					}
+
+					break
+
+                case "lowprSt" :
+
+					selectionStartPos = this.$refs.lowprSt.selectionStart
+					selectionEndPos = this.$refs.lowprSt.selectionEnd
+
+                    if(this.lowprSt.length == 1 && this.lowprSt == 0) {
+                        this.lowprSt = this.lowprSt.slice(0, -1)
+                    } else {
+                        this.lowprSt = this.lowprSt.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+                        this.lowprSt = this.lowprSt.split(",").join("")
+                        this.$nextTick(()=>{
+                            this.lowprSt = keyupNumFormat(this.lowprSt)
+                        });
+					}
+					
+					if(e.keyCode === 8) {
+						this.$nextTick(()=>{
+							this.$refs.lowprSt.focus()
+							this.$refs.lowprSt.setSelectionRange(selectionStartPos,selectionEndPos)
+						})
+					}
+
+					break
+
+            }
+			
+		},
+    },
+    computed : {
+        
+    },
+    watch: {
+        maxprAncYn: function() {
+            setTimeout(() => {
+                this.saveChk();   
+            }, 300);
+        },
+        lowprAncYn: function() {
+            setTimeout(() => {
+                this.saveChk();    
+            }, 300);
+            
+        }
     }
 }
 </script>

@@ -99,7 +99,8 @@ export default {
 
                 ** 수정일 경우 반드시 popId가 값을 가지고있어야함
             */
-            this.getAllMyAssetInfo() // vuex 수집갱신 처리
+            // v4 사용자 업데이트 외 자동수집 금지
+            // this.getAllMyAssetInfo() // vuex 수집갱신 처리
 
             setTimeout(() => {
                 this.titlTxt    = param.titlTxt || ""
@@ -113,10 +114,9 @@ export default {
         },
         // 해당 자산 추가 버튼 클릭 이벤트
         addAset(popId, assetId) {
-            
-            if(popId === "") {
+            if((this.assetId === "Rlest" && this.popId === "Rlest") || this.assetId === "Car" || this.assetId === "Cash" || this.assetId === "Curr" || this.assetId === "Gold" || this.assetId === "Agri") {
                 // 자산등록 메인만 남기고 모든 팝업 close, 해당 자산 팝업 재오픈 방식 (COAR2001을 통해 넘어올 경우)
-                this.closeAllLeftMain(assetId)
+                this.closeAllLeftN({assetId : this.assetId, dsc : "add"}, 1)
             } else {
                 // 해당 자산 메뉴를 통해 직접 오픈하였을 경우
                 this.closeAll(popId)
@@ -136,7 +136,11 @@ export default {
             if(isSZST2108) {
                 this.closeAllLeftMain('refresh')
             } else {
-                this.closeAllData('refresh')
+                if((this.assetId === "Rlest" && this.popId === "Rlest") || this.assetId === "Car" || this.assetId === "Cash" || this.assetId === "Curr" || this.assetId === "Gold" || this.assetId === "Agri") {
+                    this.closeAllLeftN({assetId : this.assetId, dsc : "subMain"}, 1)
+                } else {
+                    this.closeAllData('refresh')
+                }
             }
         },
     },

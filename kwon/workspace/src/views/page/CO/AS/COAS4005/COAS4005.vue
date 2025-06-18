@@ -18,15 +18,14 @@
 		<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
 			<div class="popup_header">
 				<h1>거래농축협</h1>
-				<!-- <a href="#nolink" class="btn_back"><span class="blind">이전화면</span></a> -->
+				<!-- <a href="javascript:void(0);" class="btn_back"><span class="blind">이전화면</span></a> -->
 			</div>
 			<div class="popup_content">
 				<div class="radio_shadow_group">
-                    <!--
 					<div class="top_desc">
-						<button type="button" class="btns">직접찾기</button>
+						<button type="button" class="btns" @click.prevent="fnSrch()">직접찾기</button>
 					</div>
-                    -->
+
 					<div class="radio border" v-for="(item, idx) in brList" :key="idx">
 						<input type="radio" name="position_chk" :id="'position_chk'+idx" :checked="item.checked" :value="item.brc" v-model="chkBrc">
 						<label :for="'position_chk'+idx">
@@ -42,7 +41,7 @@
 				</div>
 			</div>
 			
-			<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
+			<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
 		</div>
 	</div>
 	<!--// slide popup E -->
@@ -54,6 +53,7 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import commonMixin from '@/common/mixins/commonMixin'
 import popupMixin from '@/common/mixins/popupMixin'
+import COAS4006 from '@/views/page/CO/AS/COAS4006/COAS4006' // 거래 지점 직접찾기
 
 import {mapGetters} from 'vuex'
 import _ from 'lodash'
@@ -106,6 +106,18 @@ export default {
                 for(let i=0; i < this.brList.length; i++) {
                     this.brList[i].checked = false
                 }
+            })
+        },
+        // 거래지점 직접 찾기
+        fnSrch() {
+            const config = {
+                component : COAS4006,
+            }
+            // 슬라이드팝업 -> 풀 팝업 호출 시 필수 코드
+            config.renderer = this.modalConfig.renderer
+
+            modalService.openPopup(config).then(response => {
+                this.close({brcObj : response.brcObj})
             })
         },
         // 선택한 거래지점 리턴

@@ -71,8 +71,9 @@
 						<strong class="titH1">
 							내 예상 연금 <span class="pointColor green">월 135만원</span>
 						</strong>
-						<button class="tooltipBtn"></button>
-
+						<!--[v4.0] #접근성# 대체텍스트 추가 -->
+						<button type="button" class="tooltipBtn"><span class="blind">예상 연금 수령액 도움말 보기</span></button>
+						<!--//[v4.0] #접근성# 대체텍스트 추가 -->
 						<div class="setting">
 							<a href="#nolink" class="btnSet" role="button" title="연금맞춤설정 이동">연금맞춤설정</a>
 						</div>
@@ -88,10 +89,12 @@
 										<div class="bar_wrap">
 											<div class="bars">
 												<div class="bar bar_sd" style="height:100%;">
+													<!--[v4.0] #접근성# 순서변경 -->
+													<div class="inner_text">적정</div>
 													<div class="chart_tooltip_wrap">
 														<span class="chart_tooltip"><em class="num">177</em>만원</span>
 													</div>
-													<div class="inner_text">적정</div>
+													<!--//[v4.0] #접근성# 순서변경 -->
 												</div>
 												<div class="bar bar_me">
 													<div class="inner_text">나</div>
@@ -116,10 +119,12 @@
 										<div class="bar_wrap">
 											<div class="bars">
 												<div class="bar bar_sd" style="height:100%;">
+													<!--[v4.0] #접근성# 순서변경 -->
+													<div class="inner_text">적정</div>
 													<div class="chart_tooltip_wrap">
 														<span class="chart_tooltip"><em class="num">177</em>만원</span>
 													</div>
-													<div class="inner_text">적정</div>
+													<!--//[v4.0] #접근성# 순서변경 -->
 												</div>
 												<div class="bar bar_me true">
 													<div class="inner_text">나</div>
@@ -229,7 +234,7 @@
 					<!-- 퇴직연금 -->
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div data-ui-toggle="box" class="toggle_box_area open">
-							<button type="button" class="view_btn" aria-expanded="false">
+							<button type="button" class="view_btn" aria-expanded="true"><!--[v4.0] #접근성# 열림일경우는 true -->
 								<div class="new_tit_area">
 									<div class="tit"><span>퇴직연금</span></div>
 									<span class="total_price">
@@ -246,7 +251,7 @@
 									<dl>
 										<dt>
 											<div>
-												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<i class="A1AAER0000"><span class="blind">신한은행</span></i>
 												<em class="prod_name">개인형IPR</em>
 											</div>
 										</dt>
@@ -263,7 +268,7 @@
 								<dl>
 									<dt>
 										<div>
-											<i class="H1AAPL0000"><span class="blind">농협</span></i>
+											<i class="H1AAPL0000"><span class="blind">농협은행</span></i>
 											<em class="prod_name">NH 퇴직연금 DC형</em>
 										</div>
 									</dt>
@@ -302,7 +307,7 @@
 									<dl>
 										<dt>
 											<div>
-												<i class="H1AAPL0000"><span class="blind">농협</span></i>
+												<i class="H1AAPL0000"><span class="blind">농협은행</span></i>
 												<em class="prod_name">신한 미래설계 연금저축</em>
 											</div>
 										</dt>
@@ -324,7 +329,7 @@
 									<dl>
 										<dt>
 											<div>
-												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<i class="A1AAER0000"><span class="blind">신한은행</span></i>
 												<em class="prod_name">연금저축신탁</em>
 											</div>
 										</dt>
@@ -341,7 +346,7 @@
 									<dl>
 										<dt>
 											<div>
-												<i class="A1AAER0000"><span class="blind">신한</span></i>
+												<i class="A1AAER0000"><span class="blind">신한은행</span></i>
 												<em class="prod_name">삼성생명 연금보험</em>
 											</div>
 										</dt>
@@ -381,9 +386,11 @@
 					</div>
 
 					<!--[v4.0] 주택연금 조회 버튼 추가-->
-					<a href="https://www.hf.go.kr/ko/sub03/sub03_02_02.do" target="_blank">
-						<img src="../../../../src/assets_v40/images/banner/img_banner_housing_mortgage.png" alt="주택연금 예상연금 조회. 한국주택금융공사에서 제공합니다.">
-					</a>
+					<div class="inner_banner"> <!--[v4.0] 25-05-30 inner_banner 마크업 추가 -->
+						<a href="https://www.hf.go.kr/ko/sub03/sub03_02_02.do" target="_blank" title="새창열기"> <!--[v4.0] 25-04-14 title 추가 -->
+							<img src="../../../../src/assets_v40/images/banner/img_banner_housing_mortgage.png" alt="주택연금 예상연금 조회. 한국주택금융공사에서 제공합니다.">
+						</a>
+					</div>
 					<!--//[v4.0] 주택연금 조회 버튼 추가-->
 				</div>
 

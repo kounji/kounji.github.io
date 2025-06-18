@@ -101,7 +101,7 @@ export default {
             modalService.openPopup(config).then((response) => {
                 if (response == "PDPD1101_tab1") {
                     // this.$refs.PDPD1101Tab1.click();
-                    this.fn_movePage('PDPD1001') // 상품추천 화면으로 이동
+                    this.fn_movePage('PDPD4001') // 상품추천 화면으로 이동
                 }
             });
         },

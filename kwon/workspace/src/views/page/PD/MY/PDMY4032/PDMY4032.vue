@@ -29,7 +29,7 @@
 				<div class="mygoal_top">
 					<h1 class="pointColor green">{{currMm}}월 지출목표</h1>
 					<div class="com_input_type01 com_won01">
-						<input type="tel" id="com_input01" class="input_right" ref="xpsObtAm" v-model="xpsObtAm" @keyup="addComma('xpsObtAm', '', $event)" placeholder="이번달 예산 입력" title="한달 예산">
+						<input type="tel" id="com_input01" class="input_right" ref="xpsObtAm" v-model="xpsObtAm" maxlength="19" @input="addComma('xpsObtAm', '', $event)" placeholder="이번달 예산 입력" title="한달 예산">
 						<!-- <p class="mygoal_price"><span class="num">{{xpsObtAm | numberFilter}}</span>만원</p> -->
 						<label for="com_input01"><span class="txt_label_x">한달 예산</span></label>
 						<div class="del_txt">
@@ -88,15 +88,11 @@
 					<p class="sub_title" :class="ctrgInfo.asetAmnCtgrId">{{ctrgInfo.asetAmnCtgrNm}}</p>
 					
 					<!--!!사용시  .hide 를 삭제하고 text 를 넣어주세요. 사라질때는 hide class 추가 default 상태가 hide 있는 상태입니다. 초과시 .red-->
-					<template v-if="setXpsObtAm >= 0">
-						<p class="reckoning" role="alert" v-if="focusIndex === index" aria-live="assertive">설정 가능 예산 {{setXpsObtAm | numberFilter}}만원</p>
-					</template>
-					<template v-else>
-						<p class="reckoning red" role="alert" v-if="focusIndex === index" aria-live="assertive">설정 가능 예산을 초과했어요</p>
-					</template>
+					<p class="reckoning" role="alert" v-if="focusIndex === index && !isTotalExceeded" aria-live="assertive">설정 가능 예산 {{setXpsObtAm | numberFilter}}만원</p>
+					<p class="reckoning red" role="alert" v-if="isTotalExceeded && ctrgInfo.ctgrVarXpsAm > 0" aria-live="assertive">설정 가능 예산을 초과했어요</p>
 					<div class="com_input_type01 input_title_type" :class="setXpsObtAm >= 0 ? '' : 'error'">					
 						<label for="varXpsAm"></label>
-						<input type="tel" id="varXpsAm" ref="varXpsAm" class="com_txtright_type01" v-model="ctrgInfo.ctgrVarXpsAm" placeholder="이번 달 예산 입력" title="이번 달 예산 입력 입력" @keyup="addComma('varXpsAm', index, $event)" @focus="fn_focusOnOff(index, 'on')" @blur="fn_focusOnOff(index, 'off')">
+						<input type="tel" id="varXpsAm" ref="varXpsAm" class="com_txtright_type01" v-model="ctrgInfo.ctgrVarXpsAm" placeholder="이번 달 예산 입력" title="이번 달 예산 입력 입력" maxlength="15" @keyup="addComma('varXpsAm', index, $event)" @focus="focusIndex = index;" @blur="focusIndex = null;">
 						<div class="del_txt type01"><!-- 추후 사용을 위해 삭제하지 않음 신규코드에도 삽입 jlee -->
 							<a href="javascript:void(0);" class="com_btn_delete2 blur"><span class="blind">삭제</span></a>
 							<span class="com_inputtxtright2">만원</span>
@@ -217,9 +213,6 @@ export default {
         popupMixin,
 		commonMixin
 	],
-	computed : {
-
-    },
     mounted() {		
 		this.initComponent(this.params)
 		
@@ -303,23 +296,23 @@ export default {
 						var inputObj = {};
 						inputObj.asetAmnCtgrId  = result[i].asetAmnCtgrId		    // 카테고리ID
 						inputObj.asetAmnCtgrNm  = result[i].ctgrnm		            // 카테고리명
-						inputObj.ctgrFxtmXpsAm	= Math.round(Number(result[i].ctgrFxtmAm) / 10000)		   // 정기지출금액
-						inputObj.ctgrVarXpsAm	= Math.round(Number(result[i].ctgrVarAm) / 10000)	       // 변동지출금액
-						inputObj.ctgrXpsObtAm	= Math.round(Number(result[i].ctgrXpsObtAm) / 10000)	   // 목표금액(정기지출금액+변동지출금액)
-						inputObj.ctgrPreXpsAm   = Math.round(Number(result[i].ctgrPreXpsAm) / 10000)	   // 당월지출금액
-						inputObj.ctgrBefXpsAm   = Math.round(Number(result[i].ctgrBefXpsAm) / 10000)	   // 전월지출금액
+						inputObj.ctgrFxtmXpsAm	= Math.round(Number(result[i].ctgrFxtmAm) / 10000) || ''		   // 정기지출금액
+						inputObj.ctgrVarXpsAm	= Math.round(Number(result[i].ctgrVarAm) / 10000) || ''	       // 변동지출금액
+						inputObj.ctgrXpsObtAm	= Math.round(Number(result[i].ctgrXpsObtAm) / 10000) || ''	   // 목표금액(정기지출금액+변동지출금액)
+						inputObj.ctgrPreXpsAm   = Math.round(Number(result[i].ctgrPreXpsAm) / 10000) || ''	   // 당월지출금액
+						inputObj.ctgrBefXpsAm   = Math.round(Number(result[i].ctgrBefXpsAm) / 10000) || ''	   // 전월지출금액
 
 						this.categoryList.push(inputObj)
 					}
 					this.xpsBf1mAm += result[i].ctgrBefXpsAm  // 지난달 지출금액
 				}
 				this.avgXpsObtAm	= Number(response.avgXpsTotAmt)		// 지출목표금액(미분류 포함)
-				this.xpsObtAm = numberFormat(this.xpsObtAm);
+				this.xpsObtAm = this.xpsObtAm > 0 ? numberFormat(this.xpsObtAm) : ''
 				this.edYm = response.edYm;
 
-				console.log(">>>>>>>>>>>>>>>>>>>>>edYm",this.edYm)
-				console.log("this.categoryList")
-				console.log(this.categoryList)
+				this.$nextTick(() => {
+                     this.callJQueryFncExcute()
+                })
 			});
 		},
 		// 카테고리별지출목표 등록
@@ -412,21 +405,24 @@ export default {
 					break
 
                 case "xpsObtAm" :
-					selectionStartPos = this.$refs.xpsObtAm.selectionStart
-					selectionEndPos = this.$refs.xpsObtAm.selectionEnd
+					const xpsObtAm = this.$refs.xpsObtAm;
+					selectionStartPos = this.xpsObtAm.selectionStart
+					selectionEndPos = this.xpsObtAm.selectionEnd
 
-                    if(this.xpsObtAm.length == 1 && this.xpsObtAm == 0) {
-                        this.xpsObtAm = this.xpsObtAm.slice(0, -1)
+                    if(xpsObtAm.value.length == 1 && xpsObtAm.value == 0) {
+                        xpsObtAm.value = xpsObtAm.value.slice(0, -1)
                     } else {
-                        this.xpsObtAm = this.xpsObtAm.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
-                        this.xpsObtAm = this.xpsObtAm.split(",").join("")
-                        this.xpsObtAm = keyupNumFormat(this.xpsObtAm)
+                        xpsObtAm.value = xpsObtAm.value.replace(/[^0-9]/g,'').replace(/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g,'')
+                        xpsObtAm.value = xpsObtAm.value.split(",").join("")
+						this.$nextTick(()=>{
+                        	xpsObtAm.value = keyupNumFormat(xpsObtAm.value)
+						})
 					}
 					
 					if(e.keyCode === 8) {
 						this.$nextTick(()=>{
-							this.$refs.xpsObtAm.focus()
-							this.$refs.xpsObtAm.setSelectionRange(selectionStartPos,selectionEndPos)
+							xpsObtAm.focus()
+							xpsObtAm.setSelectionRange(selectionStartPos,selectionEndPos)
 						})
 					}
 					break
@@ -457,18 +453,6 @@ export default {
                     this.getCategoryList()
                 }
             })
-		},
-		fn_focusOnOff(index, str) {
-			switch(str) {
-				case 'on' :
-						this.focusIndex = index;
-					break
-				case 'off' :
-					if(this.focusIndex === index){
-						this.focusIndex = null;
-					}
-					break
-			}
 		},
 		setBf1mAm() {
 			this.xpsObtAm = '';
@@ -505,6 +489,10 @@ export default {
 				return false;
 			}
 		},
+
+		isTotalExceeded(){
+			return this.setXpsObtAm < 0
+		}
 	}
 }
 </script>

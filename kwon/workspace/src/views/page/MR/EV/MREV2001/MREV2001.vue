@@ -21,7 +21,8 @@
                 <div class="tab_cont">
                     <div role="tabpanel" class="cmm-tab-panel" v-for="(evt, idx) in evtList" :key="idx" :id="'event_'+(idx+1)">
                         <a href="javascript:void(0)" @click="fn_openEventPop(evt)" role="button">
-                            <img :src="`/assets/images/event/main/${evt.evtBnnrImgnm}`" @error="emptyImg" :alt="evt.evtTinm">
+                            <img :src="`/assets/images/event/main/${evt.evtBnnrImgnm}.png`" v-if="evt.evtStsc == '1'" @error="emptyImg" :alt="evt.evtTinm">
+                            <img :src="`/assets/images/event/main/${evt.evtBnnrImgnm}_win.png`" v-if="evt.evtStsc == '0'" @error="emptyImg" :alt="evt.evtTinm">
                         </a>
                     </div>
                 </div>
@@ -54,8 +55,12 @@ import {fncSlick} from '@/utils/slick'
 import MREV2010 from '@/views/page/MR/EV/MREV2010/MREV2010'
 import MREV2011 from '@/views/page/MR/EV/MREV2011/MREV2011'
 // import MREV2020 from '@/views/page/MR/EV/MREV2020/MREV2020'
+import MREV2012 from '@/views/page/MR/EV/MREV2012/MREV2012'
+// import MREV2020 from '@/views/page/MR/EV/MREV2020/MREV2020'
 import MREV2030 from '@/views/page/MR/EV/MREV2030/MREV2030'
+import MREV2031 from '@/views/page/MR/EV/MREV2031/MREV2031'
 // import MREV2040 from '@/views/page/MR/EV/MREV2040/MREV2040'
+import MREV2008 from '@/views/page/MR/EV/MREV2008/MREV2008'
 
 export default {
     name: 'MREV2001',
@@ -98,38 +103,59 @@ export default {
         },
 
         fn_openEventPop(evtInfo) {
-            let component = ''
-            let evtComponent;
+            if(evtInfo.evtStsc == '1'){
+                let component = ''
+                let evtComponent;
+                    
+                if(import.meta.env.VITE_ENV === 'R'){
+                    evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
+                                    , '4' : 'MREV2030'    //퀴즈(콕마이데이터)
+                                    , '10' : 'MREV2011'   //일반(추석 소원)
+                                    , '11' : 'MREV2012'   //일반(발렌타인)
+                                    , '12' : 'MREV2031'   //퀴즈(600만)
+                    }
+                }else{
+                    evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
+                                    , '49' : 'MREV2030'    //퀴즈(콕마이데이터)
+                                    , '50' : 'MREV2011'   //일반(추석 소원)
+                                    , '51' : 'MREV2012'   //일반(발렌타인)
+                                    , '60' : 'MREV2031'   //퀴즈(600만)
+                    }
+                }
                 
-            if(import.meta.env.VITE_ENV === 'R'){
-                evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
-                                , '4' : 'MREV2030'    //퀴즈(콕마이데이터)
-                                , '10' : 'MREV2011'   //일반(추석 소원)
+                if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2010'){
+                    component = MREV2010
+                }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2030'){
+                    component = MREV2030
+                }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2011'){
+                    component = MREV2011
+                }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2012'){
+                    component = MREV2012
+                }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2031'){
+                    component = MREV2031
+                }else{
+                    if(this.getUserInfo('mydtCusno') == "2000006853" && import.meta.env.VITE_ENV != 'R') { // 이벤트 팝업 노출 테스트 케이스: 조하천
+                        component = MREV2010
+                    } else {
+                        modalService.alert('이벤트 준비중')
+                        return;
+                    }   
                 }
-            }else{
-                evtComponent = { '1' : 'MREV2010'      //일반(신규가입)
-                                , '49' : 'MREV2030'    //퀴즈(콕마이데이터)
-                                , '50' : 'MREV2011'   //일반(추석 소원)
-                }
-            }
-            
-            if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2010'){
-                component = MREV2010
-            }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2030'){
-                component = MREV2030
-            }else if(evtComponent[evtInfo.mydtEvtSqno] === 'MREV2011'){
-                component = MREV2011
-            }else{
-                modalService.alert('이벤트 준비중')
-                return;
-            }
 
-            let config = {
-                component : component,
+                let config = {
+                    component : component,
+                    params : {'mydtEvtSqno' : evtInfo.mydtEvtSqno}
+                }
+                
+                modalService.openPopup(config).then(() => {});
+            }else if(evtInfo.evtStsc == '0'){
+              const config = {
+                component : MREV2008, // 당첨자 조회
                 params : {'mydtEvtSqno' : evtInfo.mydtEvtSqno}
+              }
+
+              modalService.openPopup(config).then(() => {});
             }
-            
-            modalService.openPopup(config).then(() => {});
         },
         emptyImg(e) {
             e.target.src = new URL("@/assets_v40/images/event/ev_noimg.png", import.meta.url).href

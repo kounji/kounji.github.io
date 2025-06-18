@@ -16,7 +16,7 @@ routes.push({
 // 자산현황 > 자산 2024 상호금융 NH콕마이데이터 4.0 추진 개발
 ///////////////////////////////////////////////////////////////////////
 routes.push({
-  title: "나의자산",
+  title: "나의 자산",
   desc : "나의자산 > 자산 > 자산서브메인",
   name: "ASTA4001",
   path: "/ASTA4001",
@@ -171,7 +171,7 @@ routes.push({
 // 자산진단 상호금융 NH콕마이데이터 4.0 추진 개발
 ///////////////////////////////////////////////////////////////////////
 routes.push({
-  title: "자산현황",
+  title: "자산진단",
   desc : "나의자산 > 자산진단",
   name: "ASIP4001",
   path: "/ASIP4001",
@@ -179,12 +179,25 @@ routes.push({
   component : () => import("@/views/page/AS/IP/ASIP4001/ASIP4001.vue")
 })
 
+///////////////////////////////////////////////////////////////////////
+// 자산 > 숨은자산 상호금융 NH콕마이데이터 4.0 추진 개발
+///////////////////////////////////////////////////////////////////////
+
+routes.push({
+  title: "숨은자산",
+  name: "ASTN4001",
+  path: "/ASTN4001",
+  desc : "자산 > 숨은자산",
+  disableHistory: false,
+  component : () => import("@/views/page/AS/TN/ASTN4001/ASTN4001.vue")
+})
+
 
 ///////////////////////////////////////////////////////////////////////
 // 지출 상호금융 NH콕마이데이터 4.0 추진 개발
 ///////////////////////////////////////////////////////////////////////
 routes.push({
-  title: "지출",
+  title: "나의 지출",
   desc : "지출 > 서브메인",
   name: "LCTA4001",
   path: "/LCTA4001",
@@ -269,8 +282,8 @@ routes.push({
 })
 
 routes.push({
-  title: "데일리 금융 브리핑",
-  desc : "연금절세 > 금융브리핑",
+  title: "데일리 금융브리핑",
+  desc : "연금절세 > 데일리 금융브리핑",
   name: "PDBF4001",
   path: "/PDBF4001",
   disableHistory: false,
@@ -319,8 +332,8 @@ routes.push({
 ///////////////////////////////////////////////////////////////////////
 /* 버킷리스트&금융목표 */
 routes.push({
-  title: "버킷리스트",
-  desc : "전체메뉴 > 도전목표챌린지",
+  title: "도전 목표 챌린지",
+  desc : "전체메뉴 > 도전 목표 챌린지",
   name: "PDMY4001",
   path: "/PDMY4001",
   disableHistory: false,
@@ -404,6 +417,16 @@ routes.push({
   path: "/RGBM4001",
   disableHistory: false,
   component : () => import("@/views/page/RG/BM/RGBM4001/RGBM4001.vue")
+})
+
+/* 지역문화 */
+routes.push({
+  title: "자전거길 국토종주",
+  desc : "전체메뉴 >  NH지역정보 > 국토종주 자전거길 > 자전거길 국토종주",
+  name: "RGBM4004",
+  path: "/RGBM4004",
+  disableHistory: false,
+  component : () => import("@/views/page/RG/BM/RGBM4004/RGBM4004.vue")
 })
 
 /* 전국 둘레길 */
@@ -491,6 +514,16 @@ routes.push({
 routes.push({
   title: "슬기로운영농생활",
   desc : "전체메뉴 > NH지역정보 > 슬기로운영농생활 > 조합원",
+  name: "SZUM4101",
+  path: "/SZUM4101",
+  disableHistory: false,
+  component : () => import("@/views/page/SZ/UM/SZUM4101/SZUM4101.vue")
+})
+
+/* 마이농가(슬기로운영농생활) */
+routes.push({
+  title: "슬기로운영농생활",
+  desc : "전체메뉴 > NH지역정보 > 슬기로운영농생활 > 설정",
   name: "SZST4101",
   path: "/SZST4101",
   disableHistory: false,
@@ -704,6 +737,66 @@ routes.push({
 })
 
 ///////////////////////////////////////////////////////////////////////
+// 서비스 가이드 > 자산 2024 상호금융 NH콕마이데이터 4.0 추진 개발
+///////////////////////////////////////////////////////////////////////
+/* 서비스 가이드  */
+routes.push({
+  title:"서비스 가이드",
+  desc:"서비스 가이드",
+  name:"COGU4001",
+  path:"/COGU4001",
+  disableHistory: false,
+  component : () => import("@/views/page/CO/GU/COGU4001/COGU4001.vue")
+})
+/* 청소년 서비스 가이드  */
+routes.push({
+  title:"청소년 서비스 가이드",
+  desc:"청소년 서비스 가이드",
+  name:"COGU4C01",
+  path:"/COGU4C01",
+  disableHistory: false,
+  component : () => import("@/views/page/CO/GU/COGU4C01/COGU4C01.vue")
+})
+
+routes.push({
+  title:"샘플",
+  desc:"샘플페이지",
+  name:"Sample",
+  path:"/Sample",
+  disableHistory: false,
+  component : () => import("@/views/page/XX/sample/Sample.vue")
+})
+///////////////////////////////////////////////////////////////////////
+// 일회성 동의 - 상호금융 NH콕마이데이터 4.0 추진 개발
+///////////////////////////////////////////////////////////////////////
+/* 일회성 동의 안내  */
+routes.push({
+  title:"대면상담 일회성동의 안내",
+  desc:"대면상담 일회성동의 안내",
+  name:"COOR4201",
+  path:"/COOR4201",
+  disableHistory: false,
+  component : () => import("@/views/page/CO/OR/COOR4201/COOR4201.vue")
+})
+/* 대면상담 일회성동의 완료  */
+routes.push({
+  title:"대면상담 일회성동의 완료",
+  desc:"대면상담 일회성동의 완료",
+  name:"COOR4206",
+  path:"/COOR4206",
+  disableHistory: false,
+  component : () => import("@/views/page/CO/OR/COOR4206/COOR4206.vue")
+})
+///////////////////////////////////////////////////////////////////////
+/* 오픈안내 */
+routes.push({
+  title:"",
+  desc:"오픈안내",
+  name:"COCO4118",
+  path:"/COCO4118",
+  disableHistory: false,
+  component : () => import("@/views/page/CO/CO/COCO4118/COCO4118.vue")
+})
 
 
 export default routes

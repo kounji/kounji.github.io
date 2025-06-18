@@ -48,7 +48,7 @@
                         </div>
                         <div class="bg">
                             <lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_dsr_result_down.json')" 
-                                         :loop="true"
+                                         :loop="false"
                                          :auto-play="true" 
                                          aria-hidden="true" 
                                          class="bg_dsr_result" 
@@ -67,7 +67,7 @@
                         <div class="bg">
                             <!-- <lottie-player src="../../../../src/assets_v40/images/lottie/bg_dsr_result.json" loop="" autoplay="" aria-hidden="true" class="bg_dsr_result" background="transparent"></lottie-player> -->
                             <lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_dsr_result.json')" 
-                                         :loop="true"
+                                         :loop="false"
                                          :auto-play="true" 
                                          aria-hidden="true" 
                                          class="bg_dsr_result" 
@@ -86,7 +86,7 @@
                         <div class="bg">
                             <!-- <lottie-player src="../../../../src/assets_v40/images/lottie/bg_dsr_result_up.json" loop="" autoplay="" aria-hidden="true" class="bg_dsr_result" background="transparent"></lottie-player> -->
                             <lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_dsr_result_up.json')" 
-                                         :loop="true"
+                                         :loop="false"
                                          :auto-play="true" 
                                          aria-hidden="true" 
                                          class="bg_dsr_result" 
@@ -101,14 +101,14 @@
                 <div class="board_box condition">
                     <p class="h_tit02">내 희망대출 조건은?</p>
                     <div class="detail">
-                        <p class="income"><span class="tit">연소득</span><br><strong class="price">{{income}}</strong><span class="unit">만원</span></p>
-                        <p class="rate"><span class="tit">금리</span><strong class="percent">{{lnInt * 0.01}}%</strong></p>
+                        <p class="income"><span class="tit">연소득</span><br><strong class="price">{{fn_hanValue(income)}}</strong></p>
+                        <p class="rate"><span class="tit">금리</span><strong class="percent">{{lnInt}}%</strong></p>
                     </div>
                     <div class="gray_box">
                         <ul>
                             <li>
                                 <span class="key">희망대출금액</span>
-                                <span class="val">{{lnAm}}만원</span>
+                                <span class="val">{{fn_hanValue(lnAm)}}</span>
                             </li>
                             <li>
                                 <span class="key">대출기간</span>
@@ -134,7 +134,7 @@
                 .ico_loan08 : 신용대출
                 .ico_loan09 : 기타대출
                 -->
-                <div class="board_box board_wrap" v-if="creditOut.length &gt; 0 || Object.keys(localLoan).length &gt; 0">
+                <div class="board_box board_wrap" v-if="creditOut.length &gt; 0 || (Object.keys(localLoan).length &gt; 0 && localLoan.lnList.length &gt; 0)">
                     <div class="tit_area">
                         <strong class="h_tit02">내가 보유하고 있는 대출은?</strong>
                     </div>
@@ -146,12 +146,12 @@
                             <i :class="classTypeInput(creditOutObj.acTpDsc)"></i>
                             <p class="prod">{{creditOutObj.wrsnm}}</p>
                             <strong class="price">{{creditOutObj.bac | numberFilter}} 원</strong>
-                            <p class="info"><span class="interest">연 {{creditOutObj.aplItr}} %</span><span class="period">({{getMonthsDifference(creditOutObj.lnDt, creditOutObj.dueDt)}}개월)</span></p>
+                            <p class="info"><span class="interest">연 {{creditOutObj.aplItr}} %</span><span class="period">({{creditOutObj.lnTerm}}개월)</span></p>
                         </div>
                         <p class="info_txt">보유한 대출 중 보험대출의 경우 마지막 납부한 월의 이자율로 반영되므로 금액이 다를 수 있습니다.</p>
                     </div>
 
-                    <div class="board_sec" v-if="Object.keys(localLoan).length &gt; 0">
+                    <div class="board_sec" v-if="Object.keys(localLoan).length &gt; 0 && localLoan.lnList.length &gt; 0">
                         <p class="sum">내가 등록한 보유대출</p>
                         <div class="cont" v-for="(item, index) in localLoan.lnList" :key="index">
                             <i :class="mapping[item.acTpDsc]"></i>
@@ -173,10 +173,10 @@
                 </div>
 
                 <div class="banner_area">
-                    <a href="#nolink" class="link_banner" @click.prevent="fn_movePage('PDPD1001')"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
+                    <a href="javascript:void(0);" class="link_banner" @click.prevent="fn_movePage('PDPD4001')"><span>나에게 꼭 맞는 <br>대출 상품을 추천드려요</span></a>
                 </div>
 
-                <details class="ico_detail_noti">
+                <details class="ico_detail_noti" open>
                     <summary><strong>알아두세요</strong></summary>
                     <div class="cont">
                         <ul class="dotted_list">
@@ -193,6 +193,7 @@
 
         </div>
         <!--// content -->
+        <footersV2 type="pd" />
     </page>
 </template>
 
@@ -204,6 +205,7 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import commonService from '@/service/commonService'
 import routerService from '@/service/routerService'
+import {dayDiff, dateFormat} from '@/utils/date'
 
 import LottieAnimation from 'lottie-web-vue' // import lottie-web-vue
 
@@ -308,7 +310,27 @@ export default {
                 this.loanCnt            = response.loanCnt || 0
                 this.loanAmnt           = response.loanAmnt || 0
                 
-                this.creditOut          = response.loanListOut || []
+                let tmpCredit          = response.loanListOut || []
+                let tmpTerm = {'3100':60, '3150':12, '3210':96, '3230':96, '3240':96, '3250':96, '3260':96, '3271':48, '3290':120}
+
+                //lnTerm
+				let nowDay = new Date();
+				let yyyy = nowDay.getFullYear()
+				let mm   = Number(nowDay.getMonth() + 1) < 10 ? "0" + Number(nowDay.getMonth() + 1) : "" + Number(nowDay.getMonth() + 1)
+				let dd   = Number(nowDay.getDate())  < 10 ? "0" + Number(nowDay.getDate())  : "" + Number(nowDay.getDate())
+
+                tmpCredit.forEach((el) => {
+					let ischecked = false;
+					
+                    if (el.acTpDsc == '3220' || Object.keys(tmpTerm).includes(el.acTpDsc) && el.bac) {
+                        el.lnTerm = this.getMonthsDifference(yyyy+""+mm+""+dd, el.dueDt)
+
+                        this.creditOut.push(el)
+                    }
+					//if(ischecked) this.creditOut.push(tmpCredit[idx])
+				})
+
+                // this.creditOut          = response.loanListOut || []
                 
                 this.callJQueryFncExcute()
             });	
@@ -392,6 +414,25 @@ export default {
         },
         movePrev() {
             routerService.movePrev()
+        },
+        // 한글금액표시
+        fn_hanValue(amount) {
+            const koreanUnits = ['', '만', '억', '조']
+            let han_amount = parseInt((String(amount).replace(/[,]/g, '')) || 0) * 10000 // 만원 단위 화면
+            let answer     = ''
+            let unit       = 10000
+            let index      = 0
+            let division   = Math.pow(unit, index)
+
+            while (Math.floor(han_amount / division) > 0) {
+                const mod = Math.floor(han_amount % (division * unit) / division)
+                if (mod) {
+                    const modToString = mod.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',')
+                    answer = `${modToString}${koreanUnits[index]} ` + answer
+                }
+                division = Math.pow(unit, ++index)
+            }
+            return (answer + "원").replace(" 원", "원")
         },
     },
     components: {

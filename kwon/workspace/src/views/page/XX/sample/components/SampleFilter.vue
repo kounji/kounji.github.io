@@ -1,5 +1,5 @@
 <template>
-  <div id="page-area">
+  <div>
 		<h2>filter</h2>
 		<p>number: {{number}}</p>
 		<p>date: {{date}}</p>
@@ -49,7 +49,6 @@ import {numberFormat} from '@/utils/number'
 import {dateFormat} from '@/utils/date'
 import {maskingformat} from '@/utils/data'
 import {amountCountAnimate} from '@/utils/jUtils'
-import '@/assets/css/mydata.css'
 
   export default {
     name: 'SampleFilter',

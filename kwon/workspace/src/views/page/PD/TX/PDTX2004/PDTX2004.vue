@@ -39,15 +39,15 @@
 						</ul>
 					</div>
 					<!-- 지방세 -->
-					<PDTX2001 v-if="lctxAssetYn =='Y' && selectedTab === '01'" @getLctxList="getLctxList"/>
+					<PDTX4001 v-if="lctxAssetYn =='Y' && selectedTab === '01'" @getLctxList="getLctxList"/>
 					<!-- //지방세 -->
 					
 					<!-- 국세 -->
-					<PDTX2002 v-if="natxAssetYn =='Y' && selectedTab === '02'" @getNatxPrtoDsc="getNatxPrtoDsc"/>
+					<PDTX4002 v-if="natxAssetYn =='Y' && selectedTab === '02'" @getNatxPrtoDsc="getNatxPrtoDsc"/>
 					<!-- //국세 -->
 
 					<!-- 관세 -->
-					<PDTX2003 v-if="cdtyAssetYn =='Y' && selectedTab === '03'" @getCdtyDlqYn="getCdtyDlqYn"  />
+					<PDTX4003 v-if="cdtyAssetYn =='Y' && selectedTab === '03'" @getCdtyDlqYn="getCdtyDlqYn"  />
 					<!-- //관세 -->
 				</div>	
 
@@ -151,9 +151,9 @@ import FootersV2 from '@/views/layout/FootersV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 // import popupMixin from '@/common/mixins/popupMixin'
-import PDTX2001 from '@/views/page/PD/TX/PDTX2001/PDTX2001'
-import PDTX2002 from '@/views/page/PD/TX/PDTX2002/PDTX2002'
-import PDTX2003 from '@/views/page/PD/TX/PDTX2003/PDTX2003'
+import PDTX4001 from '@/views/page/PD/TX/PDTX4001/PDTX4001'
+import PDTX4002 from '@/views/page/PD/TX/PDTX4002/PDTX4002'
+import PDTX4003 from '@/views/page/PD/TX/PDTX4003/PDTX4003'
 //import COAR2003 from '@/views/page/CO/AR/COAR2003/COAR2003'
 import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정보제공동의
 import commonService from '@/service/commonService'
@@ -362,9 +362,9 @@ export default {
 		PdCategoryV2,
 		PdSubCategoryV2,
 		FootersV2,
-		PDTX2001,
-		PDTX2002,
-		PDTX2003,
+		PDTX4001,
+		PDTX4002,
+		PDTX4003,
     }
 }
 </script>

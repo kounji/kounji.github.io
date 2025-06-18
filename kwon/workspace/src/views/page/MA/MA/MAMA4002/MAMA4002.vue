@@ -12,37 +12,27 @@
 ***************************************************************************/
 -->
 <template>
-    <div class="mydata2023">
+    <div>
         <!-- slide popup S -->
         <div class="dimmed" style="display: block;"></div>
-        <div class="popup_box renewal">
-            <div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
-                <div class="popup_content com_btn_bottom">
-                    <div class="imgInfoBox">
-                        <!-- <div class="secede_box"> -->
-                            <p class="com_box_tit">연결하지 않은 자산이 있나요?</p>
-                            <p class="com_txt_sub">자산, 카드, 대출은 물론 연금, 건강보험, 세금까지<br>한 곳에서 관리하세요.</p>
-                        <!-- </div> -->
+        <div class="popup_box">
+            <div aria-hidden="false" class="slide_popup">
+                <div class="popup_content">
+                    <div class="hidden_asset_connection">
+                        <strong class="tit">흩어져있는 내 자산 연결해 보세요.</strong>
+                        <p class="gray_box">은행계좌, 연금, 건강보험 연결할수록 보다 정확한 자산 리포트를 받을 수 있어요.</p>
                     </div>
                 </div>
+
                 <div class="popup_footer">
-                    <div class="btn_full_box">
-                        <a href="javascript:void(0);" class="btn btn_mint" @click.prevent="fn_goAssets()">자산 연결</a>
+                    <div class="btns_wrap">
+                        <button type="button" class="btns lg" @click.prevent="fn_noSeeAssets()">오늘 닫기</button>
+                        <button type="button" class="btns lg primary" @click.prevent="fn_goAssets()">자산연결</button>
                     </div>
                 </div>
-                <p class="noview">
-                    <span class="btn_checkbox02">
-                        <input type="checkbox" name="chk_MAMA2002" id="chk_MAMA2002" v-model="chkNoSeeAssets" ref="chk_MAMA2002">
-                        <label for="chk_MAMA2002">
-                            <span>오늘하루 닫기</span>
-                        </label>
-                    </span>
-                </p>
-                
-                <a href="javascript:void(0);" role="button" class="btn_close event" @click.prevent="fn_noSeeAssets()"><span class="">닫기</span></a>
+                <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="fn_close()"><span class="">닫기</span></a>
             </div>
         </div>
-        <!--// slide popup E -->
     </div>
 </template>
 <script>
@@ -72,11 +62,15 @@
                
             },
             fn_noSeeAssets(){
-                if (!this.chkNoSeeAssets) {
-                    this.close()
-                } else {
-                    this.close('noSeeAssets')
-                }
+                // if (!this.chkNoSeeAssets) {
+                //     this.close()
+                // } else {
+                //     this.close('noSeeAssets')
+                // }
+                this.close('noSeeAssets')
+            },
+            fn_close(){
+                this.close()
             },
             fn_goAssets(){
                 this.close('goAssets')

@@ -10,7 +10,7 @@
 *_________________________________________________________________________
 * 2021-08-19              CS516033              최초작성
 * 2022-09-21              CS528061              고도화 개발
-* 2023-08-04              CS533453              고도화 파일명, UI 변경 및 고도화 개발(PDMY1114.vue -> PDMY2024.vue)
+* 2023-08-04              CS533453              고도화 파일명, UI 변경 및 고도화 개발(PDMY1114.vue -> PDMY4024.vue)
 * 2025-01-10              CS541015              고도화 파일명, UI변경 및 고도화개발(PDMY2015.vue -> PDMY4015.vue)
 *************************************************************************/
 -->
@@ -25,7 +25,7 @@
 
 				<div class="com_inputarea_type01">					
 					<div class="com_input_type01">
-						<input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목">
+						<input type="text" ref="obtnm" v-model="obtnm" placeholder="목표 제목 입력" title="목표 제목" @input="inputCtr($event)">
 						<label for="obtnm"><span class="txt_label_x">목표 제목</span></label>
 						<div class="del_txt">
 							<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind">삭제</span></a>
@@ -34,9 +34,9 @@
 
                     <!-- 차량 검색 -->
 					<div class="com_input_type01">
-						<label for="PDMY2024_txt01"></label>
-						<input type="search" id="PDMY2024_txt01" :value="PDMY2024_srchKwrd" ref="PDMY2024_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openCarSrch" @keyup.delete="fn_infoClear" placeholder="차량 검색" title="차량 검색">
-                        <a v-show="PDMY2024_srchKwrd.length>0" @click.prevent="del('PDMY2024_srchKwrd')" class="com_btn_delete" href="javascript:void(0);"><span class="blind">삭제</span></a>
+						<label for="PDMY4024_txt01"></label>
+						<input type="search" id="PDMY4024_txt01" :value="PDMY4024_srchKwrd" ref="PDMY4024_srchKwrd" @keyup="fn_checkWord($event, 40)" @keyup.enter="fn_openCarSrch" @keyup.delete="fn_infoClear" placeholder="차량 검색" title="차량 검색">
+                        <a v-show="PDMY4024_srchKwrd.length>0" @click.prevent="del('PDMY4024_srchKwrd')" class="com_btn_delete" href="javascript:void(0);"><span class="blind">삭제</span></a>
                         <a @click.prevent="fn_openCarSrch" class="com_btn_search" ref="openCarSrch" href="javascript:void(0);"><span class="blind">검색</span></a>
 					</div>
 					<!-- //차량 검색 -->
@@ -172,7 +172,7 @@
                 fncObtAm          : "" ,
                 obtDt             : "" ,
                 fncObtAchvYn      : "" , // 목표달성여부
-                PDMY2024_srchKwrd : "" , // 검색어
+                PDMY4024_srchKwrd : "" , // 검색어
                 carBrannm         : "" , // 자동차브랜드명
                 carSrisNo         : "" , // 자동차시리즈번호
                 carSrisNm         : "" , // 자동차시리즈명
@@ -365,7 +365,7 @@
                     this.obtnm              = this.respInfo.obtnm
 
                     if(this.carCtrimNo != null && this.carCtrimNo != '') {
-                        this.PDMY2024_srchKwrd = this.carBrannm.concat(' ', this.vhcModlnm)
+                        this.PDMY4024_srchKwrd = this.carBrannm.concat(' ', this.vhcModlnm)
                     }
 
                     this.acNowBacTotAm = _.sumBy(this.subList, item => {return item.acNowBac }) // 계좌현재잔액총액
@@ -393,7 +393,7 @@
                     this.basmm              = response.basmm            // 기준월
                     this.bacAm              = this.carCtrimSelAm - this.acNowBacTotAm
                     this.fncObtAm           = keyupNumFormat(this.carCtrimSelAm / 10000)
-                    this.PDMY2024_srchKwrd  = this.carBrannm.concat(" ", this.vhcModlnm)
+                    this.PDMY4024_srchKwrd  = this.carBrannm.concat(" ", this.vhcModlnm)
                 });
             },
             
@@ -557,7 +557,7 @@
                 // 수정
                 let alertMsg
                 if(this.insYn == "U") {
-                    alertMsg = '내집마련 목표를 수정하시겠습니까?'
+                    alertMsg = '내차구입 목표를 수정하시겠습니까?'
                 }
                 const configConfirm = {
                     content: [alertMsg],
@@ -682,10 +682,10 @@
             fn_checkWord(event, maxByte) {
                 let rtnObj = checkWord(event.target.value, maxByte)
 
-                if(rtnObj.flag) {this.$refs.PDMY2024_srchKwrd.blur()}   // 알럿 중복 방지
+                if(rtnObj.flag) {this.$refs.PDMY4024_srchKwrd.blur()}   // 알럿 중복 방지
 
                 event.target.value = rtnObj.value
-                this.PDMY2024_srchKwrd = event.target.value
+                this.PDMY4024_srchKwrd = event.target.value
             },
             addComma() {
 
@@ -719,7 +719,7 @@
             // 검색 텍스트 삭제
             del(type) {
 
-                if(type === 'PDMY2024_srchKwrd') {
+                if(type === 'PDMY4024_srchKwrd') {
 
                     this.carBrannm          = "" // 자동차브랜드명
                     this.carSrisNo          = "" // 자동차시리즈번호
@@ -730,7 +730,7 @@
                     this.carModlNo          = "" // 자동차모델번호
                     this.carCtrimNm         = "" // 자동차트림명
                     this.carCtrimSelAm      = 0  // 자동차판매가격
-                    this.PDMY2024_srchKwrd  = ''
+                    this.PDMY4024_srchKwrd  = ''
                     this.fncObtAm           = ''
                     this.bacAm              = 0
                     this.dis_fncObtAm       = true
@@ -771,7 +771,7 @@
             fn_searchGradeList() {
                 if(this.carModlNo.length < 1) {
                     modalService.alert("차량을 검색해주세요")
-                    this.$refs.PDMY2024_srchKwrd.blur()
+                    this.$refs.PDMY4024_srchKwrd.blur()
                     return false
                 }
 
@@ -885,6 +885,11 @@
                     division = Math.pow(unit, ++index)
                 }
                 return (answer + "원").replace(" 원", "원")
+            },
+            // 목표명 입력값 제어
+            inputCtr(e) {
+                const inputStr = /[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9\s_~!@#$%^&*()\-–—+=;,.<>\[\]{}|?\\/]/g
+			    this.obtnm = e.target.value.replace(inputStr, '')
             }
         }
     }

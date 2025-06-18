@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		
-		<a href="#nolink" class="btn_close"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" class="btn_close"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// 전체 팝업 종료 -->
 </template>

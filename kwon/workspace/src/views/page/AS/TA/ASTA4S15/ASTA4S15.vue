@@ -49,15 +49,15 @@
 					</details>
 				</div>
 
-                <div class="board_box" v-if="atisrinsuCn > 0">
-                    <details class="asset_toggle" open="">
+                <div class="board_box" v-if="atisrInsuCn > 0">
+                    <details class="assets_toggle" open="">
                         <summary>
-                            <span class="item"><span>피보험계약자</span><span>인보험</span><em>{{atisrinsuCn | numberFilter}}</em></span>
+                            <span class="item"><span>피보험계약자</span><span>인보험</span><em>{{atisrInsuCn | numberFilter}}</em></span>
                             <span class="num"><em>{{atMnTotPymIsrfe | numberFilter}}</em>원</span>
                         </summary>
                         <div class="cont">
                             <ul class="assets_list">
-                                <li v-for="(item, idx) in atisrinsuList" :key="item.insuDsc + '_' + idx">
+                                <li v-for="(item, idx) in atisrInsuList" :key="item.insuDsc + '_' + idx">
                                     <a href="javascript:void(0);" @click.prevent="fn_openDtlPop(item)">
                                         <i class="ico_bank" :class="item.infOfrmnOrgC"><span class="blind">{{item.infOfrmnOrgnm}}</span></i>
                                         <div>
@@ -72,7 +72,7 @@
                                 </li>
                             </ul>
 
-                            <div class="btns_wrap" v-if="(atisrinsuCn > 3) && !isMoreAtInsuYn">
+                            <div class="btns_wrap" v-if="(atisrInsuCn > 3) && !isMoreAtInsuYn">
 								<button type="button" class="btn_more_txt" @click.prevent="fn_showMore('ATISR')">인보험 더보기</button>
 							</div>
                         </div>
@@ -98,7 +98,7 @@ import {dateFormat} from '@/utils/date'
 import ASIS4002 from '@/views/page/AS/IS/ASIS4002/ASIS4002'
 import ASIS2006 from '@/views/page/AS/IS/ASIS2006/ASIS2006'
 import ASIS2010 from '@/views/page/AS/IS/ASIS2010/ASIS2010'
-import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
+import ASIS4012 from '@/views/page/AS/IS/ASIS4012/ASIS4012'
 import ASIS4016 from '@/views/page/AS/IS/ASIS4016/ASIS4016'
 import ASIS2018 from '@/views/page/AS/IS/ASIS2018/ASIS2018'
 import ASIS2021 from '@/views/page/AS/IS/ASIS2021/ASIS2021'
@@ -114,8 +114,8 @@ export default {
             insuList        : [],   // 인보험리스트
 
             atMnTotPymIsrfe : 0,    // 피보험자 인보험월납입총보험료
-            atisrinsuCn     : 0,    // 피보험자 보험목록건수
-            atisrinsuList   : [],   // 피보험자 인보험리스트
+            atisrInsuCn     : 0,    // 피보험자 보험목록건수
+            atisrInsuList   : [],   // 피보험자 인보험리스트
 
             isMoreInsuYn    : false,// 주계약자 인보험 리스트 더보기 여부
             isMoreAtInsuYn  : false,// 피보험계약자 인보험 리스트 더보기 여부
@@ -171,13 +171,13 @@ export default {
                 this.respInfo.insuList?.forEach(d => d.insuDsc = 'MCTR')
 
                 // 피보험자 인보험
-                this.atisrinsuCn        = this.respInfo?.atisrinsuCn || 0
+                this.atisrInsuCn        = this.respInfo?.atisrInsuCn || 0
                 this.atMnTotPymIsrfe    = this.respInfo?.atMnTotPymIsrfe || 0
-                this.atisrinsuList      = this.respInfo?.atisrinsuList || []
-                this.respInfo.atisrinsuList?.forEach(d => d.insuDsc = 'ATISR')
+                this.atisrInsuList      = this.respInfo?.atisrInsuList || []
+                this.respInfo.atisrInsuList?.forEach(d => d.insuDsc = 'ATISR')
 
                 this.insuList = this.insuCn > 3 ? this.insuList.slice(0, 3) : this.insuList
-                this.atisrinsuList = this.atisrinsuCn > 3 ? this.atisrinsuList.slice(0, 3) : this.atisrinsuList
+                this.atisrInsuList = this.atisrInsuCn > 3 ? this.atisrInsuList.slice(0, 3) : this.atisrInsuList
             })
         },
 
@@ -198,13 +198,13 @@ export default {
             if(isrCtrStsc == '02') {
                 return ['pin', 'green']
             }else if(isrCtrStsc == '04') {
-                return ['pin', 'orange']
+                return ['pin', 'yellow']
             // 만기
             }else if(isrCtrStsc == '05') {
                 return ['pin', 'red']
             // 소멸
             }else if(isrCtrStsc == '06') {
-                return ['pin', 'gray']
+                return ['pin', '']
             }
             return ''
         },
@@ -218,7 +218,7 @@ export default {
                 this.insuList = this.respInfo.insuList || []
             } else {
                 this.isMoreAtInsuYn = true
-                this.atisrinsuList = this.respInfo.atisrinsuList || []
+                this.atisrInsuList = this.respInfo.atisrInsuList || []
             }
         },
 
@@ -230,10 +230,19 @@ export default {
             const type = insuInfo.insuDsc   // MCTR : 주계약자, ATISR : 피보험계약자
             if(type == 'MCTR') {
                 if(this.insuIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
-                    insuInfo.btnType = (insuInfo.infOfrmnOrgC == 'B1AABF0000' && this.getUserInfo('chnl') != '385') ? true : false
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
                     compName = ASIS4002 // 상세내역(인보험 상세 납입정보탭)
                 } else if(this.pensionIsrKdDsc.some(d => d == insuInfo.isrKdDsc)){
-                    compName = ASIS2012 // 상세내역(연금저축보험 상세 납입정보탭)
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
+                    compName = ASIS4012 // 상세내역(연금저축보험 상세 납입정보탭)
                 } else if(this.tngIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
                     compName = ASIS2006 // 상세내역(물보험 상세 납입정보탭)
                 } else {
@@ -241,9 +250,18 @@ export default {
                 }
             } else {
                 if(this.insuIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
-                    insuInfo.btnType = (insuInfo.infOfrmnOrgC == 'B1AABF0000' && this.getUserInfo('chnl') != '385') ? true : false
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+
                     compName = ASIS4016 // 상세내역(피보험자 인보험 상세)
                 } else if(this.pensionIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
+                    insuInfo.btnType = ((insuInfo.isrCtrStsc === "02" || insuInfo.isrCtrStsc === "04") && 
+                                        insuInfo.infOfrmnOrgC == 'B1AABF0000' && 
+                                        this.getUserInfo('chnl') === '386') 
+                                    ? true : false
+                                    
                     compName = ASIS4016 // 상세내역(피보험자 연금저축보험 상세)
                 } else if(this.tngIsrKdDsc.some(d => d == insuInfo.isrKdDsc)) {
                     compName = ASIS2018 // 상세내역(피보험자 물보험 상세)
@@ -256,9 +274,7 @@ export default {
                 component: compName,
                 params: insuInfo
             }
-            modalService.openPopup(config).then(() => {
-                this.getData()
-            })
+            modalService.openPopup(config)
         }
 
         

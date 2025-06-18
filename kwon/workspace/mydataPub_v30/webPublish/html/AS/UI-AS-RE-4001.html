@@ -49,6 +49,7 @@
 								우리 집 시세<br>
 								<!-- [v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
 								<!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
+								<!--[v4.0] #접근성# 마크업수정
 								<div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -60,6 +61,19 @@
 										<span class="show">총 <em>911,025,286,300</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								<!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정 -->
 							</div>
 						</div>
@@ -71,7 +85,7 @@
 				<div class="com_inner">
 					<!-- 보유한 부동산 정보 영역 -->
 					<div class="hold_info">
-						<div class="house_slide slide slick_refresh">
+						<div class="house_slide slide house_slick"><!--[v4.0] 개발현행화 클래스 변경 slick_refresh ->house_slick-->
 							<div class="item">
 								<div class="label_list">
 									<span class="mint_badge">아파트</span>
@@ -89,6 +103,8 @@
 										</p>
 									</div>
 								</a>
+								<!-- [v4.0] 25-04-07 시세정보 없는 케이스 추가 -->
+								<!--
 								<div class="price_area">
 									<p class="price">3억 1,157만원<span>(한국부동산원)</span></p>
 									<div class="change_rate up">
@@ -98,7 +114,12 @@
 								<div class="graybox_link">
 									<a href="#nolink" role="button">내 아파트 주변 시세를 알려 드릴께요</a>
 								</div>
-
+								-->
+								<div class="price_area">
+									<p class="price">1억원<span>(매매금액)</span></p>
+								</div>
+								<p class="com_txtinfo_type01">최근 실거래가가 없습니다.</p>
+								<!-- //[v4.0] 25-04-07 시세정보 없는 케이스 추가 -->
 								<button class="menu_open"><span class="blind">메뉴열기</span></button>
 								<div class="menu_list_wrap">
 									<ul class="menu_list">
@@ -181,6 +202,57 @@
 									<button class="menu_close"><span class="blind">닫기</span></button>
 								</div>
 							</div>
+							<!-- [v4.0] 25-04-07 케이스별 추가 -->
+							<!--주택-->
+							<div class="item">
+								<div class="label_list">
+									<span class="mint_badge">주택</span>
+									<span class="badge_2023 soft_gray">자가</span>
+									<span class="badge_2023 soft_red">임대중</span>
+								</div>
+								<a href="#nolink" role="button">
+									<div class="title_area">										
+										<p class="nickname">잠실 푸르지오 월드마크 아파트</p>
+									</div>
+								</a>
+								<div class="price_area">
+									<p class="price">3억 1,157만원<span>(한국부동산원)</span></p>
+								</div>
+								<button class="menu_open"><span class="blind">메뉴열기</span></button>
+								<div class="menu_list_wrap">
+									<ul class="menu_list">
+										<li><a href="#nolink">부동산 수정</a></li>
+										<li><a href="#nolink">부동산 삭제</a></li>
+									</ul>
+									<button class="menu_close"><span class="blind">닫기</span></button>
+								</div>
+							</div>
+							<!--토지/농지-->
+							<div class="item">
+								<div class="label_list">
+									<span class="mint_badge">토지/농지</span>
+									<span class="badge_2023 soft_gray">자가</span>
+									<span class="badge_2023 soft_red">임대중</span>
+								</div>
+								<a href="#nolink" role="button">
+									<div class="title_area">										
+										<p class="nickname">내농지내농지</p>
+										<p class="addr">서울특별시 서초구 내곡동</p>
+									</div>
+								</a>
+								<div class="price_area">
+									<p class="price">3억 1,157만원<span>(매매금액)</span></p>
+								</div>
+								<button class="menu_open"><span class="blind">메뉴열기</span></button>
+								<div class="menu_list_wrap">
+									<ul class="menu_list">
+										<li><a href="#nolink">부동산 수정</a></li>
+										<li><a href="#nolink">부동산 삭제</a></li>
+									</ul>
+									<button class="menu_close"><span class="blind">닫기</span></button>
+								</div>
+							</div>
+							<!-- //[v4.0] 25-04-07 케이스별 추가 -->
 						</div>
 					</div>
 					<!-- 보유한 부동산 정보 영역 -->
@@ -296,6 +368,21 @@
 			});
 			jQuery('.menu_list_wrap .menu_close').on('click', function(){
 				jQuery('.menu_list_wrap').removeClass('open').addClass('close');
+			});
+		});
+		//[v4.0] 공통에서 페이지로 가져욤
+		$(function(){
+			$('.house_slick').not('.slick-initialized').slick({
+				speed : 500,
+				dots : true,
+				arrows : false,
+				vertical : false,
+				adaptiveHeight: true,
+				infinite: true,
+				initialSlide: 0, // slide 시작 index 옵션
+				customPaging:function(slider,i){
+					return '<button type="button">총'+slider.$slides.length+'개의 슬라이드중 '+ (i+1) +'번째 슬라이드</button>';
+				}
 			});
 		});
 	</script>

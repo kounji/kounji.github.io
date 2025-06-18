@@ -32,9 +32,14 @@
 
 				<section class="allNavi youth"><!-- 청소년일때 youth 클래스 추가 -->
 					<div class="personal saving">
+						<!--[v4.0] #접근성# 캐릭터 영역 추가 -->
+						<span role="img" aria-label="저축왕 캐릭터" class="char"></span>
+						<!--//[v4.0] #접근성# 캐릭터 영역 추가 -->
 						<a href="#nolink">김농협님 안녕하세요!</a>
 					</div>
 					<!--
+						금융멘토 : mentor
+						디지털금융달일 : master
 						저축왕 : saving
 						투자천재 :invest
 						절약마스터 : economist
@@ -42,37 +47,49 @@
 						신용지킴이 : credit
 						대출코치 : loan
 					-->
-
-
 					<nav>
 						<ul>
-							<li id="navi01"><a href="#nolink">나의 자산<span class="pin purple">NEW</span></a></li>
+							<li id="navi01"><a href="#nolink" role="button">나의 자산<span class="pin purple">NEW</span></a></li>
 
-							<li id="navi02"><a href="#nolink">나의 지출<span class="pin purple">NEW</span></a></li>
+							<li id="navi02"><a href="#nolink" role="button">나의 지출<span class="pin purple">NEW</span></a></li>
+							
+							<!--25-06-02 금융지식, OX퀴즈, 지역정보 메뉴 추가 , [v4.0] #접근성# 전체적으로 a태그에 role="button"추가 -->
+							<li id="navi05"><a href="#nolink" role="button">금융지식<span class="pin purple">NEW</span></a></li>
 
-							<!--<li id="navi05"><a href="#nolink">금융지식<span class="pin purple">NEW</span></a></li>-->
+							<li id="navi17"><a href="#nolink" role="button">OX퀴즈<span class="pin purple">NEW</span><!--<span class="pin gray">준비중</span><span class="pin green">진행중</span>--></a></li>
+							
+							<li id="navi09" class=""><a href="#nolink" role="button">NH지역정보<span class="pin red">HOT</span></a>
+								<ul>
+									<li><a href="#nolink" role="button">지역축제<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">지역문화시설<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">농촌여행<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">자전거길 국토종주<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">전국 둘레길<span class="pin purple">NEW</span></a></li>
+								</ul>
+							</li>
+							<!--//25-06-02 금융지식, OX퀴즈, 지역정보 메뉴 추가-->
 
 							<li id="navi13"><span>이용안내</span>
 								<ul>
-									<li><a href="#nolink">새소식</a></li>
-									<li><a href="#nolink">자주하는 질문</a></li>
-									<li><a href="#nolink">청소년 서비스 소개<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">새소식</a></li>
+									<li><a href="#nolink" role="button">자주하는 질문</a></li>
+									<li><a href="#nolink" role="button">청소년 서비스 소개<span class="pin purple">NEW</span></a></li>
 								</ul>
 							</li>
 
 							<li id="navi14"><span>콕마이데이터관리</span>
 								<ul>
-									<li><a href="#nolink">연결기관 관리</a></li>
-									<li><a href="#nolink">약관 및 동의서</a></li>
-									<li><a href="#nolink">제3자 정보제공동의 설정</a></li>
-									<li><a href="#nolink">서비스 해지</a></li>
+									<li><a href="#nolink" role="button">연결기관 관리</a></li>
+									<li><a href="#nolink" role="button">약관 및 동의서</a></li>
+									<li><a href="#nolink" role="button">제3자 정보제공동의 설정</a></li>
+									<li><a href="#nolink" role="button">서비스 해지</a></li>
 								</ul>
 							</li>
 
 							<li id="navi16"><span>설정&middot;관리</span><!-- 25-03-17 middot추가-->
 								<ul>
-									<li><a href="#nolink">모드 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">캐릭터 설정<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">모드 설정<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">캐릭터 설정<span class="pin purple">NEW</span></a></li>
 								</ul>
 							</li>
 						</ul>

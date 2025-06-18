@@ -16,7 +16,7 @@
     <!-- wrap S -->
 	<div id="wrap" class="sticky-scroll">
 		<div>
-			<a href="#nolink" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
+			<a href="javascript:void(0);" class="btn_pop_view" data-popup="full_popup_01">팝업보기</a>
 		</div>    
 	</div>
 	<!--// wrap E -->
@@ -41,9 +41,9 @@
 				<span v-else><p class="desc"></p></span>
 				
 				<!-- 이미지 영역 (관리자) -->
-				<div class="detail_img">
-					<img src="@/assets_v40/images/img/img_bike_detail_01.png" alt="">
-					<img src="@/assets_v40/images/img/img_bike_detail_02.png" alt="">
+				<div class="detail_img small">
+					<img :src="`/assets/images/local_bike/${roadInfo.bkphNo1Imgnm}.png`" alt="" v-if="!!roadInfo.bkphNo1Imgnm">
+					<img :src="`/assets/images/local_bike/${roadInfo.bkphNo2Imgnm}.png`" alt="" v-if="!!roadInfo.bkphNo2Imgnm">
 				</div>
 				<!-- // -->
 
@@ -132,7 +132,7 @@
 
 		</div>
 
-		<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
+		<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>
 	</div>
 	<!--// full popup E -->
 
@@ -207,7 +207,7 @@ export default {
 			}
 
 			return []
-		}
+		},
 
 	},
     components: {

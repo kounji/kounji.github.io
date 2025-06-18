@@ -22,7 +22,7 @@
                 <div class="popup_header">
                     <h1>{{cardApvInfo.prcMchtnm}}<span>{{trDtm | dateFilter(trDtmStr)}}</span></h1>          
                 </div>
-                <div class="popup_content">
+                <div class="popup_content"> <!-- v4 popup_content h1_type02 -->
                     <div class="com_txt_type01">
                         <dl>
                             <dt>이용금액</dt>

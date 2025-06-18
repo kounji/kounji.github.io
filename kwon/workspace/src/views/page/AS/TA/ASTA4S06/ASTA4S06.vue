@@ -13,55 +13,45 @@
 -->
 <template>
     <!-- 전체 팝업 시작 -->
-	<div class="full_popup" id="full_popup_01">
+	<div class="full_popup mydata2023" id="full_popup_01">
 		<div class="popup_header">
 			<h1>부동산</h1>
 		</div>	
 		<div class="popup_content">
 			<div class="assets_senior">
-                <div class="board_box house" v-for="(item, idx) in rlestList" :key="'rlEst_'+idx">
-                    <div class="cate">
-                        <span>{{getComCodeNm('RLEST_TNG_DSC', item.rlestTngDsc)}}</span>
-                        <template v-if="!isNull(item.rlestRsdFormDsc)">
-                            <span>/{{getComCodeNm('RLEST_RSD_FORM_DSC', item.rlestRsdFormDsc)}}</span>
-                        </template>
-                        <template v-if="item.revnMnEn === '1'">
-                            <span>/임대중</span>
-                        </template>
-                        <!-- 25-03-17 ico_bubble 아이콘 종류
-                            apt : home 1
-                            오피스텔 : officetel 2
-                            상가 : downtown 3, 7
-                            단독주택 : single_home 4, 5
-                            농지나 토지일때 : ground 6
-                            기타 : etc 9
-                        -->
-                        <!-- <i class="ico_bubble" :class="item.rlestTngDsc === '6' ? 'ground' : 'home'"></i> -->
-                        <i class="ico_bubble" :class="fn_setIconBubble(item.rlestTngDsc)"></i>
-                    </div>
-                    <p class="name">
-                        <!-- 아파트 -->
-                        <template v-if="item.mmoInpYn != '1'">
+                <template v-for="(item, idx) in rlestList">
+                    <a v-if="item.rlestTngDsc == '1'" href="javascript:void(0);" class="board_box house" :key="'rlEst_'+idx" @click.prevent="openRlestFullPop(item)">
+                        <div class="cate">
+                            <span>{{getComCodeNm('RLEST_TNG_DSC', item.rlestTngDsc)}}</span>
+                            <template v-if="!isNull(item.rlestRsdFormDsc)">
+                                <span>/{{getComCodeNm('RLEST_RSD_FORM_DSC', item.rlestRsdFormDsc)}}</span>
+                            </template>
+                            <template v-if="item.revnMnEn === '1'">
+                                <span>/임대중</span>
+                            </template>
+                            <!-- 25-03-17 ico_bubble 아이콘 종류
+                                apt : home 1
+                                오피스텔 : officetel 2
+                                상가 : downtown 3, 7
+                                단독주택 : single_home 4, 5
+                                농지나 토지일때 : ground 6
+                                기타 : etc 9
+                            -->
+                            <i class="ico_bubble" :class="fn_setIconBubble(item.rlestTngDsc)"></i>
+                        </div>
+                        <p class="name">
+                            <!-- 아파트 -->
                             <strong v-if="!isNull(item.aptHcxnm)">{{item.aptHcxnm}}</strong>
                             <strong v-if="!isNull(item.rlestNm)" class="nickname">{{item.rlestNm}}</strong>
-                        </template>
-                        <!-- // 아파트 -->
-                        <!-- 그 외 -->
-                        <template v-else>
-                            <strong v-if="!isNull(item.rlestNm)">{{item.rlestNm}}</strong>
-                            <!-- 토지/농지일 경우 주소지 표기 -->
-                            <strong v-if="item.rlestTngDsc === '6'" class="nickname">{{item.provnm}} {{item.ccwnm}} {{item.ttvnm}}</strong>
-                        </template>
-                        <!-- // 그 외 -->
-                    </p>
-                    <!-- 면적은 아파트만 표기 -->
-                    <p class="size" v-if="item.mmoInpYn != '1'">
-                        <em class="num">{{item.newPytpAreaCntn}}</em>m<sup class="sup_text">2</sup>
-                    </p>
+                            <!-- // 아파트 -->
+                        </p>
+                        <!-- 면적은 아파트만 표기 -->
+                        <p class="size" v-if="item.rlestTngDsc == '1'">
+                            <em class="num">{{item.newPytpAreaCntn}}</em>m<sup class="sup_text">2</sup>
+                        </p>
 
-                    <!-- 시세정보 Start -->
-                    <!-- 아파트 -->
-                    <template v-if="item.rlestTngDsc == '1'">
+                        <!-- 시세정보 Start -->
+                        <!-- 아파트 -->
                         <template v-if="item.rlestRsdFormDsc == '1'">
                             <!-- 자가 -->
                             <p v-if="item.genDlAm > 0" class="price" v-html="fn_hanValue_classDiff(item.genDlAm, '', 'won', '1', '1')"></p>
@@ -71,9 +61,52 @@
                             <!-- 전세/월세 -->
                             <p v-if="!!item.grmy" class="price" v-html="fn_hanValue_classDiff(item.grmy, '', 'won', '2')"></p>
                         </template>
-                    </template>
-                    <!-- 오피스텔, 주택 -->
-                    <template v-else-if="item.rlestTngDsc == '2' || item.rlestTngDsc == '5'">
+                        <!-- // 시세정보 End -->
+
+                        <!-- 아파트, 자가, 시세정보 있을경우만 증감액 표기 -->
+                        <template v-if="item.rlestTngDsc == '1' && item.rlestRsdFormDsc == '1' && item.genDlAm > 0">
+                            <p class="latter up" v-if="getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr) > 0">
+                                {{fn_hanValue_classDiff(Math.abs(getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr)), 'num', 'txt_won')}}
+                            </p>
+                            <p class="latter down" v-else-if="getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr) < 0">
+                                {{fn_hanValue_classDiff(Math.abs(getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr)), 'num', 'txt_won')}}
+                            </p>
+                            <p class="latter" v-else>
+                                <em class="num">0</em>만원
+                            </p>
+                        </template>
+                        <template v-else-if="item.rlestTngDsc == '1' && item.rlestRsdFormDsc == '1' && !item.genDlAm">
+                            <p class="txt_info">
+                                최근 시세정보가 없습니다.
+                            </p>
+                        </template>
+                    </a>
+
+                    <div v-else class="board_box house" :key="'rlEst_'+idx">
+                        <div class="cate">
+                            <span>{{getComCodeNm('RLEST_TNG_DSC', item.rlestTngDsc)}}</span>
+                            <template v-if="!isNull(item.rlestRsdFormDsc)">
+                                <span>/{{getComCodeNm('RLEST_RSD_FORM_DSC', item.rlestRsdFormDsc)}}</span>
+                            </template>
+                            <template v-if="item.revnMnEn === '1'">
+                                <span>/임대중</span>
+                            </template>
+                            <!-- 25-03-17 ico_bubble 아이콘 종류
+                                apt : home 1
+                                오피스텔 : officetel 2
+                                상가 : downtown 3, 7
+                                단독주택 : single_home 4, 5
+                                농지나 토지일때 : ground 6
+                                기타 : etc 9
+                            -->
+                            <i class="ico_bubble" :class="fn_setIconBubble(item.rlestTngDsc)"></i>
+                        </div>
+                        <p class="name">
+                            <strong v-if="!isNull(item.rlestNm)">{{item.rlestNm}}</strong>
+                            <!-- 토지/농지일 경우 주소지 표기 -->
+                            <strong v-if="item.rlestTngDsc === '6'" class="nickname">{{item.provnm}} {{item.ccwnm}} {{item.ttvnm}}</strong>
+                        </p>
+                        
                         <template v-if="item.rlestRsdFormDsc == '1'">
                             <!-- 자가 -->
                             <p v-if="!!item.rlestTrPr" class="price" v-html="fn_hanValue_classDiff(item.rlestTrPr, '', 'won', '1', '2')"></p>
@@ -82,39 +115,10 @@
                             <!-- 전세/월세 -->
                             <p v-if="!!item.grmy" class="price" v-html="fn_hanValue_classDiff(item.grmy, '', 'won', '2')"></p>
                         </template>
-                    </template>
-                    <!-- 토지/농지 -->
-                    <template v-else-if="item.rlestTngDsc == '6'">
-                        <p v-if="!!item.rlestTrPr" class="price" v-html="fn_hanValue_classDiff(item.rlestTrPr, '', 'won', '1', '2')"></p>
-                    </template>
-                    <!-- 상가 -->
-                    <template v-else-if="item.rlestTngDsc == '7'">
-                        <p v-if="!!item.rlestTrPr" class="price" v-html="fn_hanValue_classDiff(item.rlestTrPr, '', 'won', '1', '2')"></p>
-                    </template>
-                    <!-- 기타 -->
-                    <template v-else>
-                        <p v-if="!!item.rlestTrPr" class="price" v-html="fn_hanValue_classDiff(item.rlestTrPr, '', 'won', '1', '2')"></p>
-                    </template>
-                    <!-- // 시세정보 End -->
+                    </div>
+                </template>
 
-                    <!-- 아파트, 자가, 시세정보 있을경우만 증감액 표기 -->
-                    <template v-if="item.rlestTngDsc == '1' && item.rlestRsdFormDsc == '1' && item.genDlAm > 0">
-                        <p class="latter up" v-if="getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr) > 0">
-                            {{fn_hanValue_classDiff(Math.abs(getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr)), 'num', 'txt_won')}}
-                        </p>
-                        <p class="latter down" v-else-if="getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr) < 0">
-                            {{fn_hanValue_classDiff(Math.abs(getProfitCalc(item.genDlAm, item.commQtart, item.rlestTrPr)), 'num', 'txt_won')}}
-                        </p>
-                        <p class="latter" v-else>
-                            <em class="num">0</em>만원
-                        </p>
-                    </template>
-                    <template v-else-if="item.rlestTngDsc == '1' && item.rlestRsdFormDsc == '1' && !item.genDlAm">
-                        <p class="txt_info">
-                            최근 시세정보가 없습니다.
-                        </p>
-                    </template>
-                </div>
+                
 			</div>
 		</div>
 
@@ -133,6 +137,8 @@ import {dayDiff} from '@/utils/date'
 import {numberFormat} from '@/utils/number'
 import _ from 'lodash'
 import {mapActions} from 'vuex'
+
+import ANRE2203 from '@/views/page/AN/RE/ANRE2203/ANRE2203'
 
 export default {
     name : "ASTA4S06",
@@ -279,6 +285,31 @@ export default {
 
             return rtnClass
         },
+        /**
+         * 아파트 상세팝업 오픈
+         */
+        openRlestFullPop(item) {
+            // 아파트 아닐경우 리턴
+            if(item.rlestTngDsc != '1') return
+            console.log(item)
+
+            let tradeType = ''
+            if(item.rlestRsdFormDsc == '1') tradeType = 'deal'
+            else tradeType = 'lease'
+
+            const config = {
+                component: ANRE2203,
+                params: {
+                    id:         item.aptHscxIdvdc || '',// 아파트단지개별코드
+                    tradetype:  tradeType,              // 부동산거주형태구분(위티 전달용)
+                    space:      item.aptHfisArea,       // 아파트분양면적
+                }
+            }
+            console.log('부동산 상세 파라미터 >> ', config)
+            modalService.openPopup(config).then(() => {
+                this.getData()
+            })
+        }
     }
 }
 </script>

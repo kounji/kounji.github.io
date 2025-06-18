@@ -1,5 +1,10 @@
 <template>
   <div>
+		<h2>콕마이데이터 4.0</h2>
+		<p>===========================================</p>
+		<p><button @click="getCbAppCheck">콕뱅 앱체크</button></p>
+		<p><button @click="getSbAppCheck">스뱅 앱체크</button></p>
+		<p>===========================================</p>
 		<p><button @click="getCertList">공인인증서 목록</button></p>
 		<p><button @click="getCertPassConfirm">공인인증서 비밀번호 확인</button></p>
 		<p><button @click="showKeyboard">보안키패드 보이기</button></p>
@@ -30,6 +35,18 @@
 		},
     methods: {
 			call() {
+			},
+			// 콕뱅 앱체크
+			getCbAppCheck() {
+				appService.cokBankGetAppVersion().then(response => {
+					console.log('콕뱅 앱체크 >>> ', response)
+				})
+			},
+			// 스뱅 앱체크
+			getSbAppCheck() {
+				appService.getAppVersion().then(response => {
+					console.log('스뱅 앱체크 >>> ', response)
+				})
 			},
 			// 공인인증서 목록
 			getCertList() {

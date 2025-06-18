@@ -55,7 +55,7 @@
                             </li>
                         </ul>
                         <div class="com_input_type01 com_word1">
-                            <input type="tel" id="com_input01" class="tar " value="3.75" required="" placeholder="중량을 입력하세요" title="중량을 입력" maxlength="13" @focus="fn_focusOnOff()" v-model="inputQt" @keyup="calculateVal($event)" ref="inputQt">
+                            <input type="text" inputmode="decimal" id="com_input01" class="tar " value="3.75" required="" placeholder="중량을 입력하세요" title="중량을 입력" maxlength="13" @focus="fn_focusOnOff()" v-model="inputQt" @keyup="calculateVal($event)" ref="inputQt">
                             <label for="com_input01">
                                 <span class="txt_label_x font_b">중량</span>
                             </label>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="flex_gray_wrap">
                         <div class="re_flex">
-                            <strong class="text_info list_name">예상금액</strong>
+                            <strong class="text_info list_name">예상금액(10%포함)</strong>
                             <span class="list_price">
                                 <em>{{calQt | numberFilter}}</em>원
                             </span>
@@ -105,16 +105,17 @@ export default {
     name : "ASOA4007",
     data: () => {
         return {
-            goldMprList         : [],   // 골드별시세정보
-            selectedMprType       : 0,  // 선택된 골드시세타입.     0 : 살 때 시세, 1 : 팔 때 시세
-            selectedGoldMpr     : "",   // 선택된 골드시세정보
-            selectedUnt         : 0,    // 선택된 골드 단위.        0 : 그램, 1 : 돈
-            inputQt             : "",   // 입력된 중량값
+            goldKdc         : '',
+            goldMprList     : [],   // 골드별시세정보
+            selectedMprType : 0,  // 선택된 골드시세타입.     0 : 살 때 시세, 1 : 팔 때 시세
+            selectedGoldMpr : "",   // 선택된 골드시세정보
+            selectedUnt     : 0,    // 선택된 골드 단위.        0 : 그램, 1 : 돈
+            inputQt         : "",   // 입력된 중량값
 
-            calQt               : 0,    // 예상 금액
+            calQt           : 0,    // 예상 금액
 
             foc_byulching   : false,
-            foc_inputQt      : false,
+            foc_inputQt     : false,
         }
     },
     mixins: [
@@ -134,7 +135,9 @@ export default {
             this.selectedMprType = 0          // 초기값 살 때 시세
             this.selectedUnt = 0            // 초기값 그램
             this.inputQt = "3.75"           // 초기값 3.75그램 (한돈)
-            this.changeMpr(this.goldMprList[0])
+            this.goldKdc = params.goldKdc
+
+            this.changeMpr(this.goldMprList.filter(tg=>tg.goldKdc === this.goldKdc)[0])
         },
         getDiffCss(diff) {
             if (diff > 0)

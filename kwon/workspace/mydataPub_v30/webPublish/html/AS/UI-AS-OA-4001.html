@@ -74,6 +74,7 @@
 								흩어져 있는 돈<br>
 								<!-- [v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정-->
 								<!--<span class="fs-27">총 </span><strong><span class="num">25,286,300</span>원</strong>!-- 0908 counter 삭제 -->
+								<!--[v4.0] #접근성# 마크업수정
 								<div class="toggle_money">
 									<input type="checkbox" title="금액숨김" name="" id="sum_view_01">
 									<label for="sum_view_01" class="btns">
@@ -85,6 +86,19 @@
 										<span class="show">총 <em>911,025,286,300</em>원</span>
 									</div>
 								</div>
+								-->
+								<div class="toggle_money">
+									<div class="sum">
+										<span class="hide">잔액숨김</span>
+										<span class="show">총 <em>1,025,286,300</em>원</span>
+									</div>
+									<button type="button" class="btns">
+										<span class="blind">금액</span>
+										<span class="hide">보기</span>
+										<span class="show">숨김</span>
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 마크업수정 -->
 								<!-- //[v4.0] 25-02-07 잔액숨김 기능추가 / 25-02-10 금액숨김 수정-->
 							</div>
 						</div>
@@ -96,9 +110,9 @@
 				<div class="com_inner etc"><!-- 0908 etc클래스 이동 -->
 					<div class="com_box_type01 toggle_list_box2 custom_list"><!-- 0908 etc클래스 삭제 -->
 						<div class="new_tit_area">
-							<div class="tit"><span>현금</span> <span class="com_icon_num custom">2</span></div>
+							<div class="tit"><span>현금</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 							<span class="total_price">
-								<em class="num">5,000,000</em><em class="unit">원</em>
+								<em class="num"><span class="blind">금액</span>5,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 							</span>
 						</div>
 						
@@ -114,7 +128,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -125,9 +139,9 @@
 				
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div class="new_tit_area">
-							<div class="tit"><span>외화</span> <span class="com_icon_num custom">1</span></div>
+							<div class="tit"><span>외화</span> <span class="com_icon_num custom">1<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 							<span class="total_price">
-								<em class="num">5,000,000</em><em class="unit">원</em>
+								<em class="num">5,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 							</span>
 						</div>
 						
@@ -143,7 +157,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -154,9 +168,9 @@
 					
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div class="new_tit_area">
-							<div class="tit"><span>금</span> <span class="com_icon_num custom">2</span></div>
+							<div class="tit"><span>금</span> <span class="com_icon_num custom">2<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 							<span class="total_price">
-								<em class="num">5,000,000</em><em class="unit">원</em>
+								<em class="num"><span class="blind">금액</span>5,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 							</span>
 						</div>
 						
@@ -172,7 +186,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 										<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
@@ -190,14 +204,14 @@
 										<!-- // [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경-->
 									</dl>
 								</a>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 / 25-04-07 단위추가-->
 								<div class="graybox_link">
 									<a href="#nolink" role="button" class="data_status">
 										<em class="date">(2024.04.09 기준)</em>
-										<em class="price"><i class="blind">종가(원/g)</i><em>888,888원</em></em>
+										<em class="price"><i class="blind">종가</i><em>88,888원</em>(원/g)</em>
 									</a>
 								</div>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 / 25-04-07 단위추가-->
 							</li>
 							<li>
 								<a href="#nolink" role="button">
@@ -210,7 +224,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 										<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
@@ -228,14 +242,14 @@
 										<!-- // [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경-->
 									</dl>
 								</a>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 / 25-04-07 단위추가-->
 								<div class="graybox_link">
 									<a href="#nolink" role="button" class="data_status">
 										<em class="date">(2024.04.09 기준)</em>
-										<em class="price"><i class="blind">종가(원/g)</i><em>888,888원</em></em>
+										<em class="price"><i class="blind">종가</i><em>888,888원</em>(원/g)</em>
 									</a>
 								</div>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 / 25-04-07 단위추가-->
 							</li>
 							<!-- [v4.0] 증감 case를 보여주기 위한 소스 추가 -->
 							<li>
@@ -249,7 +263,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">550,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>550,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 										<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
@@ -267,14 +281,14 @@
 										<!-- // [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경-->
 									</dl>
 								</a>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경/ 25-04-07 단위추가 -->
 								<div class="graybox_link">
 									<a href="#nolink" role="button" class="data_status">
 										<em class="date">(2024.04.09 기준)</em>
-										<em class="price"><i class="blind">종가(원/g)</i><em>888,888원</em></em>
+										<em class="price"><i class="blind">종가</i><em>888,888원</em>(원/g)</em>
 									</a>
 								</div>
-								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 -->
+								<!-- [v4.0] API 데이터 추가 / 25-02-03 링크형태로 변경, 위치변경 / 25-04-07 단위추가-->
 							</li>
 							<!-- //[v4.0] 증감 case를 보여주기 위한 소스 추가 -->
 						</ul>
@@ -292,9 +306,9 @@
 					
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div class="new_tit_area">
-							<div class="tit"><span>농기계</span> <span class="com_icon_num custom">1</span></div>
+							<div class="tit"><span>농기계</span> <span class="com_icon_num custom">1<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 							<span class="total_price">
-								<em class="num">5,000,000</em><em class="unit">원</em>
+								<em class="num"><span class="blind">금액</span>5,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 							</span>
 						</div>
 						
@@ -310,7 +324,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>
@@ -321,9 +335,9 @@
 					
 					<div class="com_box_type01 toggle_list_box2 custom_list">
 						<div class="new_tit_area">
-							<div class="tit"><span>기타</span> <span class="com_icon_num custom">1</span></div>
+							<div class="tit"><span>기타</span> <span class="com_icon_num custom">1<i class="blind">건</i></span></div><!--[v4.0] #접근성# 대체텍스트 -->
 							<span class="total_price">
-								<em class="num">5,000,000</em><em class="unit">원</em>
+								<em class="num"><span class="blind">금액</span>5,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 							</span>
 						</div>
 						
@@ -339,7 +353,7 @@
 										</dt>
 										<dd>
 											<span class="com_price">
-												<em class="num">3,000,000</em><em class="unit">원</em>
+												<em class="num"><span class="blind">금액</span>3,000,000</em><em class="unit">원</em><!--[v4.0] #접근성# 대체텍스트 -->
 											</span>
 										</dd>
 									</dl>

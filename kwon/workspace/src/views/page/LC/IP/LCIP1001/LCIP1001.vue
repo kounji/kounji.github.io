@@ -150,7 +150,7 @@
                         <div class="householdBook pt15">
                             <div class="cal_pop_info_wrap com_box_type01 custom_box_com_box_type08 custom_box13 mb0">
                                 <div class="new_tit_area custom_box12">
-                                    <a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY2001')">
+                                    <a href="javascript:void(0);" @click.prevent="fn_movePage('PDMY4001')">
                                         <strong class="com_box_tit arrow">목표대비 지출</strong>
                                     </a>
                                 </div>
@@ -568,7 +568,7 @@ import LCIP1008 from '@/views/page/LC/IP/LCIP1008/LCIP1008' // 지출 금액 TOP
 import LCIP1009 from '@/views/page/LC/IP/LCIP1009/LCIP1009' // 지출 횟수 TOP3
 import LCIP1010TAB from '@/components/category/LcIp1010Tab' // 정기지출 리포트
 
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' // 목표등록
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005' // 목표등록
 
 import LCLE1102 from '@/views/page/LC/LE/LCLE1102/LCLE1102' // 카드 지출내역
 import LCLE1104 from '@/views/page/LC/LE/LCLE1104/LCLE1104' // 기타 지출내역
@@ -904,7 +904,7 @@ export default {
             if (viewName == 'LCIP1009') compName = LCIP1009 // 지출 횟수 TOP3
             if (viewName == 'LCIP1010TAB') compName = LCIP1010TAB // 정기지출 리포트
 
-            if (viewName == 'PDMY2005') compName = PDMY2005 // 목표등록
+            if (viewName == 'PDMY4005') compName = PDMY4005 // 목표등록
 
             if (compName == null) {
                 modalService.alert("미적용")
@@ -923,7 +923,7 @@ export default {
                 params : param
             }
             modalService.openPopup(config).then(() => {
-                if (viewName == 'PDMY2005') {
+                if (viewName == 'PDMY4005') {
                     this.getData()
                 }
             })
@@ -933,7 +933,7 @@ export default {
          */
         openPopPDMY() {
             const config = {
-                component: PDMY2005
+                component: PDMY4005
             }
             modalService.openPopup(config).then((response) => {
                 if (response == "reSelect") {

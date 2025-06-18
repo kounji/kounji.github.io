@@ -342,7 +342,7 @@
 						</div>
 						<div class="com_box_type01 com_box_list01 custom_box_link">
 							<div class="list_type_box">
-								<a href="javascript:void(0);" role="button" @click.prevent="connectLink('PDMY2005')">
+								<a href="javascript:void(0);" role="button" @click.prevent="connectLink('PDMY4005')">
 									<div class="new_tit_area">
 										<div class="tit"><span>내집마련 목표세우기</span></div>
 									</div>
@@ -365,7 +365,7 @@
 					</div>
 					<div>
 						<div class="com_btn_area mt37">
-							<a href="javascript:void(0);" class="com_btn_round" @click.prevent="connectLink('ASTA2001')"><!-- asis ASAS0001 => ASAC1001 => ASTA2001-->
+							<a href="javascript:void(0);" class="com_btn_round" @click.prevent="connectLink('ASTA4001')"><!-- asis ASAS0001 => ASAC1001 => ASTA2001-->
 								<span class="btn_plus black">나의 자산 조회	&middot; 연결하기</span>
 							</a>
 						</div>
@@ -387,7 +387,7 @@ import apiService from '@/service/apiService'
 import {numberFormat} from '@/utils/number' // keyupNumFormat,
 
 import PDPD1107 from '@/views/page/PD/PD/PDPD1107/PDPD1107'     // 대출한도조회 팝업
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'     // 나의목표 > 목표등록 팝업
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'     // 나의목표 > 목표등록 팝업
 //import PDMY1102 from '@/views/page/PD/MY/PDMY1102/PDMY1102'     // 나의목표 > 목표등록 팝업(AS-IS)
 
 export default {
@@ -545,7 +545,7 @@ export default {
 			} else if(pageId == 'cokLink') {	// 콕뱅크 URL 연결
 				// 임시로 URL 변경
 				const config = {
-					name : 'PDPD1001'
+					name : 'PDPD4001'
 					//name: 'PDPD1101'	// asis 반영시
 				}
 				commonService.movePage(config);
@@ -553,16 +553,16 @@ export default {
 				//modalService.alert("콕뱅크 URL 전달받은 후 링크 연결 예정입니다");
 				//window.open("https://smartcard.nonghyup.com");
 				return;
-			} else if(pageId == 'PDMY2005') {	// 금융생활 > 목표관리 > 목표등록 > 버킷리스트로 이동
+			} else if(pageId == 'PDMY4005') {	// 금융생활 > 목표관리 > 목표등록 > 버킷리스트로 이동
 				const config = {
-					component: PDMY2005,
+					component: PDMY4005,
 					//component : PDMY1102,	// AS-IS 이관 시 AS-IS 소스로 연결
                     params : {}
 				};
 				modalService.openPopup(config).then(() => {
 
 				});
-			} else if(pageId == 'ASTA2001') {	// 나의자산 > 전체 탭 화면 연결 (asis 시 ASAS0001 => ASAC1001 => ASTA2001)
+			} else if(pageId == 'ASTA4001') {	// 나의자산 > 전체 탭 화면 연결 (asis 시 ASAS0001 => ASAC1001 => ASTA2001 => ASTA4001)
 				const config = {
 					name: pageId
 				}

@@ -1,0 +1,87 @@
+<html lang="ko" class="">
+<head>
+	<title>이벤트 팝업</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<style>
+		@font-face {
+			font-family: 'Spoqa Han Sans Neo';
+			font-weight: 500;
+			font-display: swap;
+			src:url('/error/assets/font/SpoqaHanSansNeo-Medium.woff2') format('woff2'),
+			url('/error/assets/font/SpoqaHanSansNeo-Medium.woff') format('woff');
+		}
+
+		@font-face {
+			font-family: 'Spoqa Han Sans Neo';
+			font-weight: 400;
+			font-display: swap;
+			src:url('/error/assets/font/SpoqaHanSansNeo-Regular.woff2') format('woff2'),
+			url('/error/assets/font/SpoqaHanSansNeo-Regular.woff') format('woff');
+		}
+		body {margin:0;background-color:#f2f4f6;}
+		.open_info2023 {
+			font-family:"Spoqa Han Sans Neo";font-weight:400;position:relative;text-align:left;padding:100px 30px 300px;color:#111;
+			background:url('/error/assets/images/common/open_info_bg.png') no-repeat right 30px bottom 60px / 195px 180px;
+		}
+		.open_info2023 strong {font-size:31px;line-height:38px;font-weight:500;}
+		.open_info2023 strong em {color:#0a9ba0;font-style:normal;}
+		.open_info2023 p {font-size:17px;color:#666;line-height:23px;margin-top:30px;}
+		.open_info2023 p a {text-decoration:none;color:#666;cursor:none;}
+		.open_info2023 b {font-style:normal;font-size:18px;color:#333;line-height:24px;margin-top:50px;display:block;font-weight:400;}
+		.open_info2023 span {font-size:16px;color:#333;line-height:24px;font-weight:500;background-color:#fff;padding:25px;border-radius:6px;margin-top:15px;display:block;}
+		.open_info2023 .btn_close {
+			width:32px;height:32px;font-size:6px;color:transparent;overflow: hidden;right:12px;top:11px;display:block;position:fixed;z-index:900;
+			background:url('/error/assets/images/common/full_popup_close.png') no-repeat center center / 16px 16px;
+		}
+
+	</style>
+	<script src="/error/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/error/assets/js/common_ofa_2025.js"></script>
+	<script src="/error/assets/js/common_cokbank.js"></script>
+	<script language='javascript'>
+		$(document).ready(function() {
+			$('#goHome').on('click', function() {
+				let cnt = $('#clickCnt').val();
+				if (cnt < 4) {
+					$('#clickCnt').val(Number(cnt) + 1)
+				} else {
+					goTobe()
+				}
+			})
+			$('.btn_close').on('click', function() {
+				try {
+					window.$SMNATIVE.goHome();
+				} catch(e) {
+                    console.log('error :', e)
+				} finally{
+                    window.fg.of.exec(function(r) {}, 'SBView', 'navigateFromGNB', ['goHome()']);
+                }
+
+
+			})
+		})
+		function goTobe () {
+			const protocol	= location.protocol
+			const hostname	= location.hostname
+			const port		= '9090'
+			let url = protocol + '//' + hostname + ':' + port + '/'
+			window.location.href = url
+		}
+	</script>
+</head>
+<body>
+	<div class="open_info2023">
+		<strong><em>보다 새로워진<br>NH콕마이데이터</em>를<br>만나보세요<i>!</i></strong>
+		<p>더 나은 서비스 제공을 위해<br>NH콕마이데이터 서비스가 아래와 같이<br>중단되오니 이용에 참고 바랍니다<a href="javascript:void(0);" id="goHome">.</a></p>
+		<b>서비스 중단일시</b>
+		<span>2024년 11월 18일(월) 00시 ~ 04시</span>
+		<a href="javascript:void(0);" class="btn_close">팝업닫기</a>
+		<input type="hidden" id="clickCnt" value="0"/>
+	</div>
+</body>
+</html>

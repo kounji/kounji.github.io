@@ -478,13 +478,13 @@ export default {
 		},
 		// 등록 버튼 눌러서 페이지 이동시 이동할 화면 이름 리턴
 		getMovePageName(type) {
-			// if (type === 'PDMY') return 'PDMY2001' // 나의목표
-			if (type === 'PDMY') return 'PDMY2001' // 나의목표
+			// if (type === 'PDMY') return 'PDMY4001' // 나의목표
+			if (type === 'PDMY') return 'PDMY4001' // 나의목표
 			// if (type === 'PDPD') return 'PDPD1101' // 상품추천
-			if (type === 'PDPD') return 'PDPD1001' // 상품추천
+			if (type === 'PDPD') return 'PDPD4001' // 상품추천
 			if (type === 'PDCA') return 'PDCA1101' // 자동차
 			// if (type === 'AC')  return 'ASAC1101' // 자산
-			if (type === 'AC')  return 'ASAC2001' // 자산
+			if (type === 'AC')  return 'ASAC4001' // 자산
 			return ''
 		},
         //[이전/이후 꺽쇠]선택시

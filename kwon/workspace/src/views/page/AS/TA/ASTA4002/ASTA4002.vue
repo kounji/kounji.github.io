@@ -16,7 +16,7 @@
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">
 			<h1>순서 변경</h1>
-			<button type="button" class="prev" @click="close()"><span class="blind">이전</span></button>
+			<!-- <button type="button" class="prev" @click="close()"><span class="blind">이전</span></button> -->
 		</div>
 
         <div class="popup_content">

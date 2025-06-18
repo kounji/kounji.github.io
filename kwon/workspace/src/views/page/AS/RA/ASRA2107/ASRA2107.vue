@@ -80,12 +80,12 @@
             </ul>
         </div>
         <div class="popup_footer fixed">
-            <div class="btn_full_box" v-if="fcCshAstCn > 1">
-                <a href="javascript:void(0);" class="btn btn_mint" v-on:click.prevent="fn_allDelBtn()">자산모두 삭제</a>
+            <div class="btns_wrap" v-if="fcCshAstCn > 1">
+                <button type="button" class="btns lg primary" v-on:click.prevent="fn_allDelBtn()">자산 모두 삭제</button>
             </div>
-            <div class="btn_half_box" v-else>
-                <a href="javascript:void(0);" class="btn btn_grey" v-on:click.prevent="fn_allDelBtn()">삭제</a>
-                <a href="javascript:void(0);" class="btn btn_mint" v-on:click.prevent="movePage(0)"   >수정</a>
+            <div class="btns_wrap" v-else>
+                <button type="button" class="btns lg" v-on:click.prevent="fn_allDelBtn()">삭제</button>
+				<button type="button" class="btns lg primary" v-on:click.prevent="movePage(0)">수정</button>
             </div>
         </div>
         <a href="javascript:void(0);" @click.prevent="close(true)" class="btn_close"><span class="blind">팝업닫기</span></a>

@@ -30,10 +30,15 @@
 			<div id="content">
 
 				<section class="allNavi">
-					<div class="personal saving">
+					<div class="personal credit">
+						<!--[v4.0] #접근성# 캐릭터 영역 추가 -->
+						<span role="img" aria-label="신용지킴이 캐릭터" class="char"></span>
+						<!--//[v4.0] #접근성# 캐릭터 영역 추가 -->
 						<a href="#nolink">김농협님 안녕하세요!</a>
 					</div>
-					<!--
+					<!-- 25-03-24 금융멘토,디지털금융달일 추가
+						금융멘토 : mentor
+						디지털금융달일 : master
 						저축왕 : saving
 						투자천재 :invest
 						절약마스터 : economist
@@ -48,7 +53,7 @@
 						<li><a href="#nolink"><span>연결기관관리</span></a></li>
 					</ul>
 
-					<div class="credit">
+					<div class="credit_score"><!--25-03-28 클래스 네임 변경 -->
 						<a href="#nolink">신용점수 987</a>
 						<a href="#nolink" class="arrow">신용점수 올리기</a>
 					</div>
@@ -65,9 +70,9 @@
 									<!-- <li><a href="#navi06" role="tab" aria-selected="false">놀이터</a></li> -->
 									<li><a href="#navi07" role="tab" aria-selected="false">도전 목표 챌린지</a></li>
 									<li><a href="#navi08" role="tab" aria-selected="false">나의 신용점수 올리기</a></li>
-									<li><a href="#navi09" role="tab" aria-selected="false">HN지역정보</a></li>
-									<li><a href="#navi10" role="tab" aria-selected="false">HN콕마이카</a></li>
-									<li><a href="#navi11" role="tab" aria-selected="false">HN콕부동산</a></li>
+									<li><a href="#navi09" role="tab" aria-selected="false">NH지역정보</a></li><!-- 25-03-18 오타수정 -->
+									<li><a href="#navi10" role="tab" aria-selected="false">NH콕마이카</a></li><!-- 25-03-18 오타수정 -->
+									<li><a href="#navi11" role="tab" aria-selected="false">NH콕부동산</a></li><!-- 25-03-18 오타수정 -->
 									<li><a href="#navi12" role="tab" aria-selected="false">이벤트/혜택</a></li>
 									<li><a href="#navi13" role="tab" aria-selected="false">이용안내</a></li>
 									<li><a href="#navi14" role="tab" aria-selected="false">콕마이데이터관리</a></li>
@@ -80,14 +85,17 @@
 							<h2 class="h_tit03">나의 관심서비스</h2>
 							<button type="button" class="btn_add">관심서비스 담기</button>
 
-							<!--25-02-05 개별 아이콘 적용위한 서비스 class 적용-->
+							<!--25-02-05 개별 아이콘 적용위한 서비스 class 적용 / 25-04-01 메뉴아이디 수정-->
 							<ul class="attention_list">
-								<li class="AS100000"><a href="#nolink">나의 자산</a></li>
-								<li class="PD107000"><a href="#nolink">대출이자 계산기</a></li>
-								<li class="RG101000"><a href="#nolink">지역축제</a></li>
-								<li class="RG103000"><a href="#nolink">농촌여행</a></li>
-								<li class="RG104000"><a href="#nolink">자전거길 국토종주</a></li>
-								<li class="MR104000"><a href="#nolink">로또복권  번호만들기</a></li>
+								<li class="AB100000"><a href="#nolink">나의 자산</a></li>
+								<li class="TB107000"><a href="#nolink">대출이자 계산기</a></li>
+								<li class="RB101000"><a href="#nolink">지역축제</a></li>
+								<li class="RB103000"><a href="#nolink">농촌여행</a></li>
+								<!--<li class="RB104000"><a href="#nolink">자전거길 국토종주</a></li> -->
+								<!--<li class="EV102000"><a href="#nolink">로또복권  번호만들기</a></li> -->
+								<!--<li class="RB108000"><a href="#nolink">슬기로운 영농생활</a></li> -->
+								<li class="EV104000"><a href="#nolink">OX퀴즈</a></li>
+								<li class="GA100000"><a href="#nolink">도전 목표 챌린지</a></li><!-- 25-04-10 도전목표챌린지 추가 -->
 							</ul>
 							<!--//25-02-05 개별 아이콘 적용위한 서비스 class 적용-->
 
@@ -97,118 +105,123 @@
 
 						<ul>
 							<!--25-02-14 메뉴명 수정 /추가-->
-							<li id="navi01"><a href="#nolink">나의 자산<span class="pin purple">NEW</span></a>
+							<li id="navi01"><a href="#nolink" role="button">나의 자산<span class="pin purple">NEW</span></a><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								<ul>
-									<li><a href="#nolink">자산현황</a></li>
-									<li><a href="#nolink">부채관리</a></li>
-									<li><a href="#nolink">자산진단<span class="pin red">HOT</span></a></li><!--25-03-06 orange클래스 red로 변경-->
-									<li><a href="#nolink">숨은자산<span class="pin purple">NEW</span></a></li><!--25-03-06 문구수정-->
+									<li><a href="#nolink" role="button">자산현황</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">부채관리</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">자산진단<span class="pin red">HOT</span></a></li><!--25-03-06 orange클래스 red로 변경--><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">숨은자산<span class="pin purple">NEW</span></a></li><!--25-03-06 문구수정--><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
-							<li id="navi02"><a href="#nolink">나의 지출<span class="pin purple">NEW</span></a>
+							<li id="navi02"><a href="#nolink" role="button">나의 지출<span class="pin purple">NEW</span></a><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								<ul>
-									<li><a href="#nolink">금융달력</a></li>
-									<li><a href="#nolink">지출내역</a></li>
-									<li><a href="#nolink">지출분석<span class="pin red">HOT</span></a></li><!--25-03-06 orange클래스 red로 변경-->
-									<li><a href="#nolink">숨긴 지출내역</a></li>
+									<li><a href="#nolink" role="button">금융달력</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">지출내역</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">지출분석<span class="pin red">HOT</span></a></li><!--25-03-06 orange클래스 red로 변경--><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">숨긴 지출내역</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
-							<li id="navi03"><a href="#nolink">나의 연금/절세<span class="pin purple">NEW</span></a>
+							<li id="navi03"><a href="#nolink" role="button">나의 연금/절세<span class="pin purple">NEW</span></a><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								<ul>
-									<li><a href="#nolink">나의 노후준비</a></li>
-									<li><a href="#nolink">연말정산 공제금액</a></li>
-									<li><a href="#nolink">세금 납부 확인</a></li>
-									<li><a href="#nolink">건강보험 가입내역</a></li>
-									<li><a href="#nolink">데일리 금융브리핑</a></li>
-									<li><a href="#nolink">맞춤 상품추천</a></li>
-									<li><a href="#nolink">대출이자 계산기<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">대출한도 계산기</a></li>
+									<li><a href="#nolink" role="button">나의 노후준비</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">연말정산 공제금액</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">세금 납부 확인</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">건강보험 가입내역</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">데일리 금융브리핑</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">맞춤 상품추천</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">대출이자 계산기<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">대출한도 계산기</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<!--//25-02-14 메뉴명 수정 /추가-->
 
-							<li id="navi04"><a href="#nolink">추천<span class="pin purple">NEW</span></a></li>
+							<li id="navi04"><a href="#nolink">추천<span class="pin purple" role="button">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 
-							<!-- <li id="navi05"><a href="#nolink">금융지식<span class="pin purple">NEW</span></a></li> [v4.0] 2025-03-17 금융지식 메뉴 삭제 -->
+							<!-- <li id="navi05"><a href="#nolink" role="button">금융지식<span class="pin purple">NEW</span></a></li> [v4.0] 2025-03-17 금융지식 메뉴 삭제 -->
 
-							<!-- <li id="navi06"><a href="#nolink">놀이터<span class="pin purple">NEW</span></a></li> -->
+							<!-- <li id="navi06"><a href="#nolink" role="button">놀이터<span class="pin purple">NEW</span></a></li> -->
 
+							<!-- 25-04-10 하위메뉴 삭제 
 							<li id="navi07"><span>도전 목표 챌린지</span>
 								<ul>
-									<li><a href="#nolink">버킷리스트</a></li>
-									<li><a href="#nolink">금융목표</a></li>
+									<li><a href="#nolink" role="button">버킷리스트</a></li>
+									<li><a href="#nolink" role="button">금융목표</a></li>
 								</ul>
 							</li>
-							<li id="navi08"><a href="#nolink">나의 신용점수 올리기</a>
+							-->
+							<li id="navi07"><a href="#nolink" role="button">도전 목표 챌린지</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+
+							<!-- 25-04-10 하위메뉴 삭제  -->
+							<li id="navi08"><a href="#nolink" role="button">나의 신용점수 올리기</a><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								<div class="credit_txt">
 									신용점수를 조회해도 신용점수는<br>떨어지지 않아요.
 								</div>								
 							</li>
-							<li id="navi09"><a href="#nolink">NH지역정보<span class="pin red">HOT</span></a><!--25-03-06 orange클래스 red로 변경-->
+							<li id="navi09"><a href="#nolink" role="button">NH지역정보<span class="pin red">HOT</span></a><!--25-03-06 orange클래스 red로 변경--><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								<ul>
-									<li><a href="#nolink">지역축제<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">지역문화시설<span class="pin purple">NEW</span></a></li><!--25-03-06 문구수정-->
-									<li><a href="#nolink">농촌여행<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">자전거길 국토종주<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">전국 둘레길<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">군장병 TMO 안내<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">귀농귀촌의 꿈</a></li>
-									<li><a href="#nolink">슬기로운 영농생활</a></li>
+									<li><a href="#nolink" role="button">지역축제<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">지역문화시설<span class="pin purple">NEW</span></a></li><!--25-03-06 문구수정--><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">농촌여행<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">자전거길 국토종주<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">전국 둘레길<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">군장병 TMO 안내<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">귀농귀촌의 꿈</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">슬기로운 영농생활</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
-							<li id="navi10"><a href="#nolink">NH콕마이카</a></li>
-							<li id="navi11"><a href="#nolink">HN콕부동산</a></li>
+							<li id="navi10"><a href="#nolink" role="button">NH콕마이카</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+							<li id="navi11"><a href="#nolink" role="button">HN콕부동산</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 							<!--25-03-06 이벤트/이용안내 => 이벤트/혜택과 이용안내로 분리
 							<li id="navi12"><span>이벤트/이용안내</span>
 								<ul>
-									<li><a href="#nolink">새소식</a></li>
-									<li><a href="#nolink">이벤트<span class="pin red">HOT</span></a></li>
-									<li><a href="#nolink">자주하는 질문</a></li>
-									<li><a href="#nolink">로또복권 번호만들기<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">친구초대<span class="pin purple">NEW</span><span class="pin red">HOT</span></a></li>
+									<li><a href="#nolink" role="button">새소식</a></li>
+									<li><a href="#nolink" role="button">이벤트<span class="pin red">HOT</span></a></li>
+									<li><a href="#nolink" role="button">자주하는 질문</a></li>
+									<li><a href="#nolink" role="button">로또복권 번호만들기<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">친구초대<span class="pin purple">NEW</span><span class="pin red">HOT</span></a></li>
 								</ul>
 							</li>
 							-->
 							<li id="navi12"><span>이벤트/혜택</span>
 								<ul>
-									<li><a href="#nolink">이벤트<span class="pin red">HOT</span></a></li>
-									<li><a href="#nolink">로또복권 번호만들기<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">친구초대<span class="pin purple">NEW</span><span class="pin red">HOT</span></a></li>
-									<li><a href="#nolink">OX퀴즈<span class="pin purple">NEW</span><span class="pin gray">준비중</span><span class="pin green">진행중</span></a></li><!-- 25-03-13 OX퀴즈 상태태그 추가 -->
+									<li><a href="#nolink" role="button">이벤트<span class="pin red">HOT</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">로또복권 번호만들기<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">친구초대<span class="pin purple">NEW</span><span class="pin red">HOT</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">OX퀴즈<span class="pin purple">NEW</span><span class="pin gray">준비중</span><span class="pin green">진행중</span></a></li><!-- 25-03-13 OX퀴즈 상태태그 추가 --><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<li id="navi13"><span>이용안내</span>
 								<ul>
-									<li><a href="#nolink">새소식</a></li>
-									<li><a href="#nolink">자주하는 질문</a></li>
-									<li><a href="#nolink">서비스 소개<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">큰글 서비스 소개<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">청소년 서비스 소개<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">새소식</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">자주하는 질문</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">서비스 소개<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">큰글 서비스 소개<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">청소년 서비스 소개<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<!--//25-03-06 이벤트/이용안내 => 이벤트/혜택과 이용안내로 분리 -->
 							<li id="navi14"><span>콕마이데이터관리</span><!--25-03-06 id 수정 -->
 								<ul>
-									<li><a href="#nolink">연결기관 관리</a></li>
-									<li><a href="#nolink">약관 및 동의서</a></li>
-									<li><a href="#nolink">제3자 정보제공동의 설정</a></li>
-									<li><a href="#nolink">서비스 해지</a></li>
-									<li><a href="#nolink">대면상담 일회성 동의<span class="pin purple">NEW</span></a></li><!--25-03-12 메뉴추가 -->
+									<li><a href="#nolink" role="button">연결기관 관리</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">약관 및 동의서</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">제3자 정보제공동의 설정</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">서비스 해지</a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">대면상담 일회성 동의<span class="pin purple">NEW</span></a></li><!--25-03-12 메뉴추가 --><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<li id="navi15"><span>타기관 마이데이터관리</span><!--25-03-06 id 수정 -->
 								<ul>
-									<li><a href="#nolink">마이데이터 가입 조회 및 관리<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">제3자 정보제공 조회 및 관리<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">마이데이터 가입 조회 및 관리<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">제3자 정보제공 조회 및 관리<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<!--25-03-06 메뉴 추가 -->
 							<li id="navi16"><span>설정&middot;관리</span><!-- 25-03-17 middot추가-->
 								<ul>
-									<li><a href="#nolink">모드 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">캐릭터 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">나의관심서비스 설정<span class="pin purple">NEW</span></a></li>
-									<li><a href="#nolink">홈화면 편집<span class="pin purple">NEW</span></a></li>
+									<li><a href="#nolink" role="button">모드 설정<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">캐릭터 설정<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">나의관심서비스 설정<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
+									<li><a href="#nolink" role="button">홈화면 편집<span class="pin purple">NEW</span></a></li><!--[v4.0] #접근성# role="button" 속성 추가 -->
 								</ul>
 							</li>
 							<!--//25-03-06 메뉴 추가 -->

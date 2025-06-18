@@ -13,23 +13,38 @@
 -->
 <template>
     <div class="full_popup renewal" id="full_popup_01">
-        <div class="popup_header">    
-			<h1>부동산 등록/수정</h1>
-            <a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>	
-        </div>
-        <div class="popup_content com_no_bottom">
+        <div class="popup_header">
+			<!-- [v4.0] 텍스트 수정 -->
+			<!--<h1>아파트 검색</h1>-->
+			<h1>부동산 검색</h1><!-- [v4.0] 25-04-07 문구 수정 -->
+			<!-- //[v4.0] 텍스트 수정 -->
+			<!-- 이전화면 버튼 추가 -->
+			<a href="javascript:void(0);" class="btn_back" role="button" @click.prevent="close()"><span class="blind">이전화면</span></a>
+		</div>
+		
+        <div class="popup_content com_no_bottom"><!-- 하단 버튼 없을때 com_no_bottom -->
+
+			<!-- 검색 영역 S -->
 			<div class="com_inner com_line_type01 com_top_type02">
 				<div class="com_input_type02">
-					<!-- <label for="txt01"></label> -->
-					<input type="search" id="txt01" placeholder="아파트를 검색하세요" title="아파트를 검색하세요" :value="srchKwrd" ref="srchKwrd" @input="fn_checkWord($event, 20)" @keyup.enter="getData">
-					<a href="javascript:void(0);" class="com_btn_delete" :class="srchKwrd != '' && srchKwrd != null ? 'btnDeleteShow' : ''" v-show="srchKwrd.length>0" @click.prevent="del('srchKwrd')"><span class="blind">삭제</span></a>
-					<a href="javascript:void(0);" class="com_btn_search" @click.prevent="getData"><span class="blind">검색</span></a>
+					<!-- [v4.0] placeholder 수정 / 25-04-07 placeholder , title수정
+					<input type="search" id="txt01" class="inputClear" name="" value="" placeholder="아파트을 검색하세요" title="아파트을 검색">
+					 -->
+					<input type="search" id="txt01" class="inputClear" name="" placeholder="부동산을 검색해 주세요." title="부동산 검색" :value="srchKwrd" ref="srchKwrd" @input="fn_checkWord($event, 20)" @keyup.enter="getData">
+					<!-- //[v4.0] placeholder 수정 /25-04-07 placeholder , title수정 -->
+
+					<a href="javascript:void(0);" role="button" class="com_btn_delete" :class="srchKwrd != '' && srchKwrd != null ? 'btnDeleteShow' : ''" v-show="srchKwrd.length &gt; 0" @click.prevent="del('srchKwrd')"><span class="blind">삭제</span></a>
+					<a href="javascript:void(0);" role="button" class="com_btn_search" @click.prevent="getData"><span class="blind">검색</span></a>
 				</div>
 			</div>
-			<template v-if="aptList.length > 0">
+			<!-- 검색 영역 E -->
+
+			<template v-if="aptList.length &gt; 0">
+				<!-- 결과 영역 S -->
 				<div>
 					<ul class="search_list">
 						<li v-for="(list, idx) in aptList" :key="'aptData_'+idx" @click.prevent.stop="selRadio(idx)">
+							<a href="javascript:void(0);"></a>
 							<input type="radio" name="area" :id="'CO-CO-10-'+idx" :value="idx" v-model="selRadioIdx" @click="selRadio(idx)">
 							<label :for="'CO-CO-10-'+idx">
 								<dl>
@@ -43,11 +58,14 @@
 			</template>
 			<div class="com_btn_area02" v-if="nxDataYn === 'Y'"><a href="javascript:void(0);" @click.prevent="moreList()" class="com_btn_more"><span>더보기</span></a></div>
 			<template v-if="isSrch && aptList.length == 0 && nxDataYn != 'Y'">
+				<!-- 결과 영역 E -->
+				<!-- [v4.0] 검색 결과 없는 케이스 추가 -->
 				<div class="no_data_box mt150">
 					<div class="no_data_list">
-						<p>검색결과가 없어요.</p>		<!-- v4.0 문구 변경 start-->
+						<p>검색결과가 없어요.</p>
 					</div>
 				</div>
+				<!-- //[v4.0] 검색 결과 없는 케이스 추가 -->
 			</template>
 			
 		</div>
@@ -56,6 +74,8 @@
 				<a class="btn btn_mint" :class="btnOnOff" @click.prevent="selComplete">선택 완료</a>
 			</div>
 		</div> -->
+
+		<a href="javascript:void(0);" class="btn_close" @click.prevent="close()"><span class="blind">팝업닫기</span></a>	
     </div>
 </template>
 
@@ -66,13 +86,14 @@ import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
 import {checkWord} from '@/utils/data'
 
-import CORE1203 from '@/views/page/CO/RE/CORE1203/CORE1203'
 import CORE4203 from '@/views/page/CO/RE/CORE4203/CORE4203'
+import CORE1204 from '@/views/page/CO/RE/CORE4203/CORE4203'
 export default {
     name : "CORE4202",
     data: () => {
         return {
 			isApt			: true,
+			isInteApt		: false,
 
 			srchKwrd 		: "",		// 검색키워드
 			arrSrchKwrd		: "",		// 검색키워드(split)
@@ -130,14 +151,14 @@ export default {
 				return false
 			}
 
-			this.arrSrchKwrd =this.srchKwrd.split(' ')
+			//this.arrSrchKwrd =this.srchKwrd.split(' ')
 			// console.log('fstSrchKwrd', this.arrSrchKwrd)
 
 			this.pageNo = 1
 			const config = {
-				url : "/co/re/02r01",
+				url : "/co/re/02r02",
 				data: {
-					srchKwrd 	: this.arrSrchKwrd[0],
+					srchKwrd 	: this.srchKwrd,
 					pageNo		: this.pageNo,
 				}
 			}
@@ -146,7 +167,7 @@ export default {
 				this.isSrch = true
 				this.nxDataYn 	= response.nxDataYn
 				let aptList 	= response.aptList || []
-
+				/*
 				for (let i = 1; i < this.arrSrchKwrd.length; i++) {
 					let searchKey = this.arrSrchKwrd[i] || ''
 					searchKey = searchKey.trim().toUpperCase()
@@ -158,6 +179,7 @@ export default {
 						return aptHcxnm.indexOf(searchKey) > -1 || dgnm.indexOf(searchKey) > -1
 					})
 				}
+				*/
 
 				this.aptList = aptList
 
@@ -181,9 +203,9 @@ export default {
 			this.pageNo = this.pageNo + 1
 			
 			const config = {
-				url : "/co/re/02r01",
+				url : "/co/re/02r02",
 				data: {
-					srchKwrd 	: this.arrSrchKwrd[0],
+					srchKwrd 	: this.srchKwrd,
 					pageNo		: this.pageNo,
 				}
 			}
@@ -192,6 +214,7 @@ export default {
 				this.nxDataYn 	= response.nxDataYn
 				let tmpList 	= response.aptList || []
 
+				/*
 				for (let i = 1; i < this.arrSrchKwrd.length; i++) {
 					let searchKey = this.arrSrchKwrd[i] || ''
 					searchKey = searchKey.trim().toUpperCase()
@@ -203,6 +226,7 @@ export default {
 						return aptHcxnm.indexOf(searchKey) > -1 || dgnm.indexOf(searchKey) > -1
 					})
 				}
+				*/
 
 				if(this.aptList.length === 0) {
 					this.aptList = tmpList

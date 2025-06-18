@@ -17,27 +17,29 @@
 	<nav class="navi">
 		<div class="inner">
 			<!--자산현황 3depth-->
-			<ul role="navigation" aria-label="자산현황" class="depth1-1">
 			<template v-if="type != 'LN'">
-				<li><a href="javascript:void(0);" :aria-current="type === 'AC'  ? 'page' : ''" v-on:click.prevent="movePage('AC')">예금</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'IV'  ? 'page' : ''" v-on:click.prevent="movePage('IV')">투자</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'PS'  ? 'page' : ''" v-on:click.prevent="movePage('PS')">연금</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'PAY' ? 'page' : ''" v-on:click.prevent="movePage('PAY')">페이/포인트</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'IS'  ? 'page' : ''" v-on:click.prevent="movePage('IS')">보험</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'RA1' ? 'page' : ''" v-on:click.prevent="movePage('RA1')">부동산</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'RA2' ? 'page' : ''" v-on:click.prevent="movePage('RA2')">자동차</a></li>
-				<li><a href="javascript:void(0);" :aria-current="type === 'RA3' ? 'page' : ''" v-on:click.prevent="movePage('RA3')">기타</a></li>
+				<ul role="navigation" aria-label="자산현황" class="depth1-1">
+					<li><a href="javascript:void(0);" :aria-current="type === 'AC'  ? 'page' : ''" v-on:click.prevent="movePage('AC')">예금</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'IV'  ? 'page' : ''" v-on:click.prevent="movePage('IV')">투자</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'PS'  ? 'page' : ''" v-on:click.prevent="movePage('PS')">연금</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'PAY' ? 'page' : ''" v-on:click.prevent="movePage('PAY')">페이/포인트</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'IS'  ? 'page' : ''" v-on:click.prevent="movePage('IS')">보험</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'RA1' ? 'page' : ''" v-on:click.prevent="movePage('RA1')">부동산</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'RA2' ? 'page' : ''" v-on:click.prevent="movePage('RA2')">자동차</a></li>
+					<li><a href="javascript:void(0);" :aria-current="type === 'RA3' ? 'page' : ''" v-on:click.prevent="movePage('RA3')">기타</a></li>
+				</ul>
 			</template>
 			<template v-else-if="type == 'LN'">
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '03' ? 'page' : ''" v-on:click.prevent="movePage('03')">카드</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '01' ? 'page' : ''" v-on:click.prevent="movePage('01')">대출</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '05' ? 'page' : ''" v-on:click.prevent="movePage('05')">할부금융</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '02' ? 'page' : ''" v-on:click.prevent="movePage('02')">자동차할부</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '08' ? 'page' : ''" v-on:click.prevent="movePage('08')">학자금대출</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '06' ? 'page' : ''" v-on:click.prevent="movePage('06')">리스</a></li>
-				<li><a href="javascript:void(0);" :aria-current="typeDtl === '07' ? 'page' : ''" v-on:click.prevent="movePage('07')">빌린돈</a></li>
+				<ul role="navigation" aria-label="부채관리" class="depth1-2">
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '03' ? 'page' : ''" v-on:click.prevent="movePage('03')">카드</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '01' ? 'page' : ''" v-on:click.prevent="movePage('01')">대출</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '05' ? 'page' : ''" v-on:click.prevent="movePage('05')">할부금융</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '02' ? 'page' : ''" v-on:click.prevent="movePage('02')">자동차할부</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '08' ? 'page' : ''" v-on:click.prevent="movePage('08')">학자금대출</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '06' ? 'page' : ''" v-on:click.prevent="movePage('06')">리스</a></li>
+					<li><a href="javascript:void(0);" :aria-current="typeDtl === '07' ? 'page' : ''" v-on:click.prevent="movePage('07')">빌린돈</a></li>
+				</ul>
 			</template>
-			</ul>
 		</div>
 	</nav>
 </template>
@@ -79,7 +81,7 @@
 				if (type === 'RA3') return 'ASOA4001' // 기타
 
 				///////////// 부채 //////////////////////
-				if (type === '01') return 'ASLN4001'	// 대출 // ASIS - ASLN1101 - ASLN2001
+				if (type === '01') return 'ASLN4001'	// 대출 // ASIS - ASLN1101 - ASLN2001 - ASLN4001
 				if (type === '02') return 'ASCL4001'	// 자동차
 				if (type === '03') return 'ASCD4001'	// 카드(ASLN1103-> ASCD2001 -> ASCD4001로 변경)
 				if (type === '05') return 'ASIT4001'	// ASIT2001 -> ASIT4001할부금융

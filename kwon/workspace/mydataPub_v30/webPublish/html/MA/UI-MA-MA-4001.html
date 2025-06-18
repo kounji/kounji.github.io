@@ -49,7 +49,7 @@
 							<button type="button" class="btn_update"><span class="blind">업데이트</span></button>
 						</div>
 						
-						<a href="#nolink" class="char_set"> <!--[v4.0] 2025-03-17 a구조로 변경 -->
+						<a href="#nolink" class="char_set" role="button" title="금융멘토 캐릭터 선택됨"> <!--[v4.0] #접근성# role, title 추가 -->
 							<lottie-player src="../../../../src/assets_v40/images/lottie/icon_united_mento.json" loop autoplay aria-hidden="true" class="icon_united_me"></lottie-player>
 							<!-- 140 x 130
 								금융멘토 icon_united_mento.json
@@ -74,23 +74,35 @@
 
 							<!-- Tab 01 나의 재무진단 -->
 							<div class="analysis">
+								<!-- CASE0 0% : 클래스 없음
+
+									CASE1 적정
+									1-1. 34%  : li에 "up_01" 클래스 추가
+									1-2. 67%  : li에 "up_02" 클래스 추가
+									1-3. 100% : li에 "up" 클래스 추가
+
+									CASE2 개선
+									2-1. 34%  : li에 "down_01" 클래스 추가
+									2-2. 67%  : li에 "down_02" 클래스 추가
+									2-3. 100% : li에 "down" 클래스 추가
+								-->
 								<ul>
 									<li>
-										<a href="#nolink">
+										<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 											<div class="graph"></div>
 											<strong>가계재무</strong>
 											<span class="bubble"></span>
 										</a>
 									</li>
 									<li class="up_01">
-										<a href="#nolink">
+										<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 											<div class="graph"></div>
 											<strong>미래준비</strong>
 											<span class="bubble"></span>
 										</a>
 									</li>
 									<li class="down_02">
-										<a href="#nolink">
+										<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 											<div class="graph"></div>
 											<strong>부채관리</strong>
 											<span class="bubble"></span>
@@ -101,7 +113,7 @@
 
 							<!-- Tab 02 나의 금융스타일 -->
 							<div class="style">
-								<a href="#nolink">
+								<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 									<p class="name">분산관리성향</p>
 									<div class="info">
 										<p>저축 및 투자 상품을 최소 1개씩 보유한</p>
@@ -131,7 +143,7 @@
 									var chart = canvas.getContext("2d");									
 									var drawDount = new drawdountChart(chart);
 							
-									drawDount.set(50, 50, 40, false, Math.PI*0.5, Math.PI*2.5, 16, "#ebf1f9", 2, 1.5, "round");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
+									drawDount.set(45, 50, 35, false, Math.PI*0.5, Math.PI*2.5, 16, "#ebf1f9", 2, 1.5, "round");/*x, y, radius, counterclockwise, from, to, lineWidth, strockStyle, circle, dir, lineCap*/
 								
 									chart.clearRect(0, 0, 100, 100);
 									drawDount.draw(data);
@@ -163,7 +175,7 @@
 
 							<div class="cont">
 								<p class="sum_tit">총 자산</p>
-								<a href="#nolink" class="sum_select">1,952,692,372<span>원</span></a>
+								<a href="#nolink" class="sum_select" role="button">1,952,692,372<span>원</span></a> <!--[v4.0] #접근성# role="button" 추가 -->
 
 								<div class="tooltip">
 									<!-- CASE1 증가 -->
@@ -192,7 +204,6 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</details>
 					</div>
@@ -205,7 +216,7 @@
 									<dt>KOSPI</dt>
 									<dd class="factor">
 										<span class="num">2,620.01</span>
-										<span class="range up">8.64%(전일대비)</span>
+										<span class="range up" role="img" aria-label="상승 8.64%(전일대비)"><i class="blind">상승</i>8.64%(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -216,7 +227,7 @@
 									<dt>KOSDAQ</dt>
 									<dd class="factor">
 										<span class="num">2,620.01</span>
-										<span class="range down">8.64(전일대비)</span>
+										<span class="range down" role="img" aria-label="하락 8.64%(전일대비)"><i class="blind">하락</i>8.64(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -232,7 +243,7 @@
 									<dd class="factor">
 										<span class="unit">KRW</span>
 										<span class="num">727.26</span>
-										<span class="range">0.00(전일대비)</span>
+										<span class="range" role="img" aria-label="동일 0.00(전일대비)"><i class="blind">동일</i>0.00(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -248,7 +259,7 @@
 									<dd class="factor">
 										<span class="unit">KRW</span>
 										<span class="num">727.26</span>
-										<span class="range">0.00(전일대비)</span>
+										<span class="range" role="img" aria-label="동일 0.00(전일대비)"><i class="blind">동일</i>0.00(전일대비)</span> <!--[v4.0] #접근성# 마크업 추가 -->
 									</dd>
 									<dd class="basis">
 										<span>2025.02.04</span>
@@ -272,25 +283,25 @@
 						<div class="scroller">
 							<ul>
 								<li>
-									<a href="#nolink">
-										<span>콕 자산관리서비스</span>
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
+										<span>NH콕마이데이터(자산관리)</span> <!--[v4.0] 2025-04-07 서비스명 변경 -->
 										<strong>사용방법을 알려드려요</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>신나는 축제 한가득!</span>
 										<strong>지역별 특별한<br>문화 체험 소개</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>하루 다섯 번!</span>
 										<strong>로또복권 번호만들기</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#nolink">
+									<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 										<span>숨은 돈 찾기</span>
 										<strong>숨은예금,보험금<br>찾아볼까요?</strong> <!--[v4.0] 2025-03-17 br 추가 -->
 									</a>
@@ -314,58 +325,101 @@
 								"menu11" 할부금융, "menu12" 자동차할부, "menu13" 학자금대출, "menu14" 리스, "menu15" 빌린돈 -->
 
 							<!-- CASE 미등록 : li에 "nodata" 클래스 추가 -->
-							<li class="menu02">
-								<a href="#nolink" class="head">
-									<strong>부동산<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont down">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
+							<li class="menu02"> <!--[v4.0] 2025-04-01 하나씩 열리게 구조 수정 -->
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" aria-expanded="false">
+											<strong>부동산<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt">
+											<span class="blind">상세</span> <!--[v4.0] 2025-04-02 텍스트 추가 -->
+										</a>
+									</div>
+									<div class="cont down">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>줄었어요.</em></p>
+										<button type="button" class="fold_btn">닫기</button>
+									</div>
 								</div>
 							</li>
-							<li class="menu03">
-								<a href="#nolink" class="head">
-									<strong>투자<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+							<li class="menu08"> <!--[v4.0] 2025-04-25 대출 안내문구 추가 -->
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn">
+											<strong>대출<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt">
+											<span class="blind">상세</span>
+										</a>
+									</div>
+									<div class="cont up">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em><br>(마이너스 통장 거래금액 포함)</p>
+										<button type="button" class="fold_btn">닫기</button>
+									</div>
 								</div>
 							</li>
 							<li class="menu04">
-								<a href="#nolink" class="head">
-									<strong>연금<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>동일해요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" aria-expanded="false">
+											<strong>연금<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt">
+											<span class="blind">상세</span> <!--[v4.0] 2025-04-02 텍스트 추가 -->
+										</a>
+									</div>
+									<div class="cont">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+										<button type="button" class="fold_btn">닫기</button>
+									</div>
 								</div>
 							</li>
-							<li class="menu08">
-								<a href="#nolink" class="head">
-									<strong>대출<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+							<li class="menu06">
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" aria-expanded="false">
+											<strong>보험<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt">
+											<span class="blind">상세</span> <!--[v4.0] 2025-04-02 텍스트 추가 -->
+										</a>
+									</div>
+									<div class="cont">
+										<p class="price"><span>월 납입 보험료는?</span></p>
+										<p class="latter"><em>300,000원</em></p>
+										<button type="button" class="fold_btn">닫기</button>
+									</div>
 								</div>
 							</li>
 							<li class="menu09 nodata">
-								<a href="#nolink" class="head">
-									<strong>자동차<span class="num">1</span></strong>
-									<span class="txt"></span>
-								</a>
-								<div class="cont up">
-									<p class="price"><span>1,595,800,000</span>원</p>
-									<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+								<div>
+									<div class="head">
+										<button type="button" class="item_btn" disabled>
+											<strong>자동차<span class="num">1</span></strong>
+										</button>
+										<a href="#nolink" class="txt">
+											<span class="blind">상세</span> <!--[v4.0] 2025-04-02 텍스트 추가 -->
+										</a>
+									</div>
+									<div class="cont up">
+										<p class="price"><span>1,595,800,000</span>원</p>
+										<p class="latter">지난달보다 <span>1,000</span>원 <em>늘었어요.</em></p>
+										<button type="button" class="fold_btn">닫기</button>
+									</div>
 								</div>
 							</li>
 						</ul>
 					</div>
+
+					<!--[v4.0] 2025-06-02 컨텐츠 추가 -->
+					<!-- [홈편집/자산연결] -->
+					<div class="setting">
+						<button type="button">홈편집</button>
+						<button type="button">자산연결</button>
+					</div>
+					<!--//[v4.0] 2025-06-02 컨텐츠 추가 -->
 					
 					<!-- [자산분석을 통한 제안] -->
 					<div class="suggest_sheet"> <!--[v4.0] 2025-03-13 분류별 클래스 정리 -->
@@ -401,7 +455,7 @@
 									<p class="txt">내 예상 연금은<br>월 <strong>161</strong>만원이예요.</p>
 								</dd>
 								<dd>
-									<a href="#nolink" class="link">나의 노후준비</a>
+									<a href="#nolink" class="link" role="button">나의 노후준비</a> <!--[v4.0] 25-05-30 role="button" 추가 -->
 								</dd>
 							</dl>
 							<dl class="item02">
@@ -415,7 +469,7 @@
 									</p>
 								</dd>
 								<dd>
-									<a href="#nolink" class="link">나의 노후준비</a>
+									<a href="#nolink" class="link" role="button">나의 노후준비</a> <!--[v4.0] 25-05-30 role="button" 추가 -->
 								</dd>
 							</dl>
 							<dl class="item03 AS20000004">
@@ -427,7 +481,7 @@
 									<p class="txt">지출내역을 확인하고<br>예산에 맞는 소비를 계획하세요.</p>
 								</dd>
 								<dd>
-									<a href="#nolink" class="link">지출분석</a>
+									<a href="#nolink" class="link" role="button">지출분석</a> <!--[v4.0] 25-05-30 role="button" 추가 -->
 								</dd>
 							</dl>
 						</div>
@@ -437,7 +491,7 @@
 					<div class="credit_sheet">
 						<strong class="h_tit01">신용과 건강</strong>
 						<div class="board">
-							<a href="#nolink">
+							<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 								<strong>신용점수</strong>
 
 								<!-- CASE1 신용점수 데이터 있을 경우 -->
@@ -453,13 +507,20 @@
 								</div> -->
 
 							</a>
-							<a href="#nolink">
+							<a href="#nolink" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 								<strong>건강정보</strong>
 								<div class="cont">
 									<p>매일의 건강한 습관<br>함께 만들어가요.</p>
 								</div>
 							</a>
 						</div>
+
+						<a href="#nolink" class="banner" role="button"> <!--[v4.0] 25-05-29 보험금 배너 추가 -->
+							<p>
+								<span>청구할 보험금 있다면 지금 청구해 보세요</span>
+								<strong>NH생명보험 보험금 청구하기</strong>
+							</p>
+						</a>
 					</div>
 					
 					<!-- [건강, 연금/절세] -->
@@ -468,42 +529,54 @@
 							<!-- dl에 메뉴별 클래스 추가
 								"item01" 건강, "item02" 연말정산, "item03" 세금
 							-->
-							<dl class="item01">
-								<dt>
-									<span>건강에 대한 이야기</span>
-									<strong>건강보험료 납부내역을<br>확인하실 수 있어요.</strong>
-								</dt>
-								<dd>
-									<p class="txt">연도별 건강보험료 납부<br>금액을 확인해보세요.</p> <!--[v4.0] 2025-03-13 문구수정 -->
-								</dd>
-								<dd>
-									<a href="#nolink" class="link">건강보험료 납부내역보기</a>
-								</dd>
-							</dl>
-							<dl class="item02">
-								<dt>
-									<span>연말정산 이야기</span>
-									<strong>13월의 급여<br>나도 받을 수 있을까요?</strong>
-								</dt>
-								<dd>
-									<p class="txt">세금도 아끼고<br>소득공제까지</p>
-								</dd>
-								<dd>
-									<a href="#nolink" class="link">내가 받는 공제 알아보기</a>
-								</dd>
-							</dl>
-							<dl class="item03">
-								<dt>
-									<span>세금 현황 알아보기</span>
-									<strong>지방세, 국세, 관세<br>납부현황을 확인해 보세요.</strong>
-								</dt>
-								<dd>
-									<p class="txt">세목별 납세증명을<br>확인할 수 있어요.</p>
-								</dd>
-								<dd>
-									<a href="#nolink" class="link">세금 납부 확인하기</a>
-								</dd>
-							</dl>
+							<div>
+								<a href="#nolink" role="button"> <!--[v4.0] 25-05-30 a 추가 -->
+									<dl class="item01">
+										<dt>
+											<span>건강에 대한 이야기</span>
+											<strong>건강보험료 납부내역을<br>확인하실 수 있어요.</strong>
+										</dt>
+										<dd>
+											<p class="txt">연도별 건강보험료 납부<br>금액을 확인해 보세요.</p> <!--[v4.0] 25-05-29 띄어쓰기 수정 -->
+										</dd>
+										<dd>
+											<span class="link">건강보험료 납부내역보기</span> <!--[v4.0] 25-05-29 a 삭제 -->
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button"> <!--[v4.0] 25-05-30 a 추가 -->
+									<dl class="item02">
+										<dt>
+											<span>연말정산 이야기</span>
+											<strong>13월의 급여<br>나도 받을 수 있을까요?</strong>
+										</dt>
+										<dd>
+											<p class="txt">세금도 아끼고<br>소득공제까지</p>
+										</dd>
+										<dd>
+											<span class="link">내가 받는 공제 알아보기</span> <!--[v4.0] 25-05-29 a 삭제 -->
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button"> <!--[v4.0] 25-05-30 a 추가 -->
+									<dl class="item03">
+										<dt>
+											<span>세금 현황 알아보기</span>
+											<strong>지방세, 국세, 관세<br>납부현황을 확인해 보세요.</strong>
+										</dt>
+										<dd>
+											<p class="txt">세목별 납세증명을<br>확인할 수 있어요.</p>
+										</dd>
+										<dd>
+											<span class="link">세금 납부 확인하기</span> <!--[v4.0] 25-05-29 a 삭제 -->
+										</dd>
+									</dl>
+								</a>
+							</div>
 						</div>
 					</div>
 
@@ -516,23 +589,31 @@
 								<li>
 									<div class="tit_area">
 										<strong class="tit">은행</strong>
-										<strong class="status">1</strong>
+										<strong class="status">5</strong>
 									</div>
-									<div class="organ"><!-- 기관 2개까지 노출 -->
+									<!--[v4.0] 2025-05-22 기관 마크업 수정 -->
+									<div class="organ" role="img" aria-label="연결된 기관 카카오뱅크, 토스뱅크, 국민은행, 우리은행, 이 외 기관 더있음">
+										<!-- 기관 4개까지 노출 -->
 										<span class="item"><i class="A1AAHJ0000"></i><span class="blind">카카오뱅크</span></span>
 										<span class="item"><i class="A1AAPF0000"></i><span class="blind">토스뱅크</span></span>
-										<!-- <span class="item nodata"><span class="blind">기관없음</span></span> -->
+										<span class="item"><i class="A1AAEO0000"></i><span class="blind">국민은행</span></span>
+										<span class="item"><i class="A1AAEM0000"></i><span class="blind">우리은행</span></span>
+										<span class="item etc"><span class="blind">이 외 기관 더있음</span></span>
 									</div>
+									<!--//[v4.0] 2025-05-22 기관 마크업 수정 -->
 								</li>
 								<li>
 									<div class="tit_area">
 										<strong class="tit">카드</strong>
 										<strong class="status">2</strong>
 									</div>
-									<div class="organ"> <!-- 기관 2개까지 노출 -->
+									<!--[v4.0] 2025-05-22 기관 마크업 수정 -->
+									<div class="organ" role="img" aria-label="연결된 기관 하나카드, 국민카드">
+										<!-- 기관 4개까지 노출 -->
 										<span class="item"><i class="E1AABJ0000"></i><span class="blind">하나카드</span></span>
 										<span class="item"><i class="ZVAAAF0000"></i><span class="blind">국민카드</span></span>
 									</div>
+									<!--//[v4.0] 2025-05-22 기관 마크업 수정 -->
 								</li>
 							</ul>
 							<button type="button" class="btns md"><span class="icon_line_right">연결 기관 전체보기</span></button>
@@ -541,7 +622,7 @@
 					
 					<!-- [자산진단] -->
 					<div class="diagnosis_sheet">
-						<a href="#nolink" class="banner">
+						<a href="#nolink" class="banner" role="button"> <!--[v4.0] #접근성# role="button" 추가 -->
 							<p>한눈에 모아보는<br>자산 흐름 분석과 나의 자산진단</p>
 							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_united_banner_01.json"loop autoplay aria-hidden="true" class="lottie_bg"></lottie-player>
 						</a>
@@ -551,19 +632,119 @@
 					<div class="favorite">
 						<h2 class="h_tit03">나의 관심서비스</h2>
 						<button type="button" class="btn_add">관심서비스 담기</button>
-
+						<!--[v4.0] 2025-04-01 메뉴아이디 수정-->
 						<ul class="attention_list">
-							<li class="AS100000"><a href="#nolink">나의 자산</a></li>
-							<li class="PD107000"><a href="#nolink">대출이자 계산기</a></li>
-							<li class="RG101000"><a href="#nolink">지역축제</a></li>
-							<li class="RG103000"><a href="#nolink">농촌여행</a></li>
-							<li class="RG104000"><a href="#nolink">자전거길 국토종주</a></li>
-							<li class="MR104000"><a href="#nolink">로또복권  번호만들기</a></li>
+							<li class="AB100000"><a href="#nolink">나의 자산</a></li>
+							<li class="TB107000"><a href="#nolink">대출이자 계산기</a></li>
+							<li class="RB101000"><a href="#nolink">지역축제</a></li>
+							<li class="RB103000"><a href="#nolink">농촌여행</a></li>
+							<li class="RB104000"><a href="#nolink">자전거길 국토종주</a></li>
+							<li class="EV102000"><a href="#nolink">로또복권  번호만들기</a></li>
 						</ul>
-
+						<!--//[v4.0] 2025-04-01 메뉴아이디 수정-->
 						<!--등록된 관심서비스가 없을 경우-->
 						<p class="h_tit01">나의 관심서비스로<br>담아 놓고<br>빠르게 이동하세요.</p>
 					</div>
+
+					<!--[v4.0] 2025-06-02 컨텐츠 추가 -->
+					<!-- [NH지역정보] -->
+					<div class="local_sheet">
+						<div class="sheet">
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item01">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>우리동네에는 어떤 축제가<br>열리고 있을까요?</strong>
+										</dt>
+										<dd>
+											<p class="txt">지역별 축제를 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">지역축제</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item02">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>가까운 자전거길부터<br>천천히 도전해봐요.</strong>
+										</dt>
+										<dd>
+											<p class="txt">강과 산을 따라 달리는<br>자전거길을 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">자전거길 국토종주</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item03">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>몸과 마음을 쉬게하는<br>전국 둘레길</strong>
+										</dt>
+										<dd>
+											<p class="txt">최고의 여행길,<br>전국 둘레길을 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">전국 둘레길</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- [로또복권 번호 만들기] -->
+					<div class="lotto_sheet">
+						<a href="#nolink" class="board_box menu_lotto" role="button">
+							<div class="box_tit">
+								<span>로또복권 번호 만들기</span>
+								<strong>로또번호 추천해 드릴게요.</strong>
+								<p>하루 다섯번 받을 수 있어요.</p>
+							</div>
+							<div class="btns md"><span class="icon_line_right">로또복권 번호 만들기</span></div>
+						</a>
+					</div>
+
+					<!-- [나만의 캐릭터 설정하기] -->
+					<div class="char_sheet">
+						<a href="#nolink" class="board_box menu_char" role="button">
+							<div class="box_tit">
+								<span>설정하기</span>
+								<strong>나만의 캐릭터 만들기</strong>
+							</div>
+							<div class="btns md"><span class="icon_line_right">나만의 캐릭터 설정하기</span></div>
+						</a>
+					</div>
+					
+					<!-- [금융지식과 OX퀴즈] -->
+					<div class="fin_sheet">
+						<a href="#nolink" class="board_box menu_fin" role="button">
+							<div class="box_tit">
+								<span>금융지식</span>
+								<strong>현명한 소비와 알뜰한<br>재테크의 시작</strong>
+								<p>미래 계획에 한걸음 내딛어 보세요.</p>
+							</div>
+							<div class="btns md"><span class="icon_line_right">금융지식 바로가기</span></div>
+						</a>
+
+						<a href="#nolink" class="board_box menu_ox" role="button">
+							<div class="box_tit">
+								<span>OX퀴즈</span>
+								<strong>누구나 참여할 수 있는<br>OX퀴즈!</strong>
+								<p>일상 속 금융지식을 쉽고 재미있게 풀어보세요.</p>
+							</div>
+							<div class="btns md"><span class="icon_line_right">OX퀴즈 도전하기</span></div>
+						</a>
+					</div>
+					<!--//[v4.0] 2025-06-02 컨텐츠 추가 -->
 
 					<!-- [홈편집/자산연결] -->
 					<div class="setting">
@@ -628,6 +809,20 @@
 				});
 			});
 
+			// NH지역정보 //[v4.0] 2025-06-02 컨텐츠 추가
+			var $local =  $('.main_united .local_sheet');
+			$local.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+
 			// 주가지수
 			var $exchange =  $('.main_united .slick_exchange');
 			$exchange.each(function(){
@@ -676,6 +871,6 @@
 			});
 			
 		};
-</script>
+	</script>
 </body>
 </html>

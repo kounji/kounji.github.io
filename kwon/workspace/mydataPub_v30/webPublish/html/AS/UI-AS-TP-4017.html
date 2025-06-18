@@ -23,21 +23,32 @@
 	<!-- full popup S -->
 	<div class="full_popup" id="full_popup_01"> 
 		<div class="popup_header">    
-			<h1>해지계좌조회</h1>
-			<button type="button" class="prev"><span class="blind">이전</span></button>
+			<h1>해지계좌목록</h1><!-- 25-03-21 문구수정 -->
+			<!-- 25-03-21 삭제 <button type="button" class="prev"><span class="blind">이전</span></button>  -->
 		</div>
 
 		<div class="popup_content">
             <section class="sleep_account">
                 <p class="total">총 <em>0</em>건</p>
 
-                  <!--계좌가 없을경우-->
-                  <div class="no_result">
+				<!--계좌가 없을경우-->
+				<!-- 25-03-21 디자인 변경
+				<div class="no_result">
                     <p class="text">조회 결과가 없어요.</p>
                     <div class="bg">
                         <lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
                     </div>
-                </div>      
+                </div>
+				-->
+				<div class="board_box">
+					<div class="no_result">
+						<p class="text">조회 결과가 없어요.</p>
+						<div class="bg">
+							<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+						</div>
+					</div>
+				</div>
+				<!-- 25-03-21 디자인 변경 -->
 
             </section>
 		</div>

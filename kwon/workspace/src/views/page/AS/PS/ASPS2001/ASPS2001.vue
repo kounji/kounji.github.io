@@ -64,7 +64,7 @@
 								<dt>가입기간</dt>
                                 <dd>{{ntpsTotEntPrd | numberFilter}}개월</dd>
 							</dl>
-                            <a href="#nolink" class="link_arrow txt_r"  @click.prevent="movePage('PDSC2001')" >연금가입내역</a>
+                            <a href="#nolink" class="link_arrow txt_r"  @click.prevent="movePage('PDSC4001')" >연금가입내역</a>
 						</li>
 					</ul>
 				</div>

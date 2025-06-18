@@ -65,12 +65,12 @@
 import popupMixin from '@/common/mixins/popupMixin'
 import apiService from '@/service/apiService'
 
-import PDMY2023 from '@/views/page/PD/MY/PDMY2023/PDMY2023' // 내집마련 등록
-import PDMY2025 from '@/views/page/PD/MY/PDMY2025/PDMY2025' // 여행목표 등록
-import PDMY2024 from '@/views/page/PD/MY/PDMY2024/PDMY2024' // 내차사기 등록
-import PDMY2006 from '@/views/page/PD/MY/PDMY2006/PDMY2006' // 여가생활 등록
-import PDMY2015 from '@/views/page/PD/MY/PDMY2015/PDMY2015' // 자기계발 등록
-import PDMY2020 from '@/views/page/PD/MY/PDMY2020/PDMY2020' // 반려동물 등록
+import PDMY4023 from '@/views/page/PD/MY/PDMY4023/PDMY4023' // 내집마련 등록
+import PDMY4025 from '@/views/page/PD/MY/PDMY4025/PDMY4025' // 여행목표 등록
+import PDMY4024 from '@/views/page/PD/MY/PDMY4024/PDMY4024' // 내차사기 등록
+import PDMY4006 from '@/views/page/PD/MY/PDMY4006/PDMY4006' // 여가생활 등록
+import PDMY4015 from '@/views/page/PD/MY/PDMY4015/PDMY4015' // 자기계발 등록
+import PDMY4020 from '@/views/page/PD/MY/PDMY4020/PDMY4020' // 반려동물 등록
 
 export default {
     name : "PDMY2002",
@@ -98,12 +98,12 @@ export default {
 		openBckPop(fncObtDsc) {
 			var compName
 
-			if(fncObtDsc == '03') compName = PDMY2023 // 버킷-내집마련
-            if(fncObtDsc == '04') compName = PDMY2025 // 버킷-여행목표
-            if(fncObtDsc == '05') compName = PDMY2024 // 버킷-내차사기
-            if(fncObtDsc == '06') compName = PDMY2006 // 버킷-여가생활
-            if(fncObtDsc == '07') compName = PDMY2015 // 버킷-자기계발
-            if(fncObtDsc == '08') compName = PDMY2020 // 버킷-반려동물
+			if(fncObtDsc == '03') compName = PDMY4023 // 버킷-내집마련
+            if(fncObtDsc == '04') compName = PDMY4025 // 버킷-여행목표
+            if(fncObtDsc == '05') compName = PDMY4024 // 버킷-내차사기
+            if(fncObtDsc == '06') compName = PDMY4006 // 버킷-여가생활
+            if(fncObtDsc == '07') compName = PDMY4015 // 버킷-자기계발
+            if(fncObtDsc == '08') compName = PDMY4020 // 버킷-반려동물
 
             var param = {}
             const config = {

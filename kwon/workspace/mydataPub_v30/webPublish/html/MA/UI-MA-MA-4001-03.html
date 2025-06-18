@@ -67,10 +67,74 @@
 						</li>
 					</ul>
 
+					<!--[v4.0] 2025-06-02 컨텐츠 추가 -->
+					<!-- [NH지역정보] -->
+					<div class="local_sheet">
+						<div class="sheet">
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item01">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>우리동네에는 어떤 축제가<br>열리고 있을까요?</strong>
+										</dt>
+										<dd>
+											<p class="txt">지역별 축제를 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">지역축제</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item02">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>가까운 자전거길부터<br>천천히 도전해봐요.</strong>
+										</dt>
+										<dd>
+											<p class="txt">강과 산을 따라 달리는<br>자전거길을 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">자전거길 국토종주</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+							<div>
+								<a href="#nolink" role="button">
+									<dl class="item03">
+										<dt>
+											<span>NH지역정보</span>
+											<strong>몸과 마음을 쉬게하는<br>전국 둘레길</strong>
+										</dt>
+										<dd>
+											<p class="txt">최고의 여행길,<br>전국 둘레길을 확인해보세요.</p>
+										</dd>
+										<dd>
+											<span class="link">전국 둘레길</span>
+										</dd>
+									</dl>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- [로또복권 번호 만들기] -->
+					<a href="#nolink" class="board_box menu_lotto" role="button">
+						<div class="box_tit">
+							<span>NH콕마이데이터(자산관리)</span>
+							<strong>가입하면 로또번호<br>추천 받을 수 있어요.</strong>
+						</div>
+						<div class="btns md"><span class="icon_line_right">NH콕마이데이터(자산관리) 가입</span></div>
+					</a>
+					<!--//[v4.0] 2025-06-02 컨텐츠 추가 -->
+
 					<!-- [금융지식] -->
 					<div class="finlit">
-						<h2 class="h_tit01">금융지식</h2>
-						<a href="#nolink" class="btn_lots"><span class="blind">더보기</span></a>
+						<a href="#nolink" class="h_tit01" role="button">금융지식</a> <!--[v4.0] 2025-05-27 타이틀 링크 영역 수정 -->
 
 						<div class="scroller">
 							<ul>
@@ -120,12 +184,12 @@
 						</div>
 					</div>
 
-					<div class="current_banner">
+					<div class="current_banner"> <!--[v4.0] 2025-04-30 배너 문구 수정 -->
 						<div class="title">
-							<span>이용하지 않는 마이데이터<br>서비스는 탈퇴하는게</span>
-							<p>내 소중한 개인정보를<br>지킬 수 있어요.</p>
+							<span>고객님의 소중한 개인정보,<br>안전하게 보호됩니다.</span>
+							<p>내 자산 안전하게 관리하는<br>NH콕마이데이터</p>
 						</div>
-						<button type="button" class="btns md">나의 마이데이터 가입 현황</button>
+						<button type="button" class="btns md">지금 가입하기</button>
 					</div>
 
 				</section>
@@ -136,5 +200,26 @@
 		</div>        
 	</div>
 
+	<script type="text/javascript">
+		$(function() {
+			slick (); //슬릭
+		});
+
+		function slick () {
+			// NH지역정보 //[v4.0] 2025-06-02 컨텐츠 추가
+			var $local =  $('.main_united .local_sheet');
+			$local.each(function(){
+				let $this = $(this);
+
+				$(".sheet", $this).slick({
+					infinite: true,
+					speed: 300,
+					arrows:false,
+					dots:true,
+					centerPadding: '40px',
+				});
+			});
+		}
+	</script>
 </body>
 </html>

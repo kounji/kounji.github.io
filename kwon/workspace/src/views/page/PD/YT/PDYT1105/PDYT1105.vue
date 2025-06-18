@@ -77,7 +77,7 @@
 			</div>
 			
 			<div class="com_inner">
-				<a href="javascript:void(0);" @click.prevent="fn_openPDMY2005()">
+				<a href="javascript:void(0);" @click.prevent="fn_openPDMY4005()">
 					<div class="com_box_type03 mt25 bg03">
 						<div class="text">내 집 마련의 꿈<br> <span class="color">목표를 시작으로 현실로! </span></div>
 					</div>
@@ -104,7 +104,7 @@ import modalService from '@/service/modalService'
 import {numberFormat} from '@/utils/number'
 import commonService from '@/service/commonService'
 
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
 export default {
     name : "PDYT1105",
@@ -218,9 +218,9 @@ export default {
 
             return resultString
 		},
-		fn_openPDMY2005() {
+		fn_openPDMY4005() {
 			const config = {
-				component : PDMY2005,
+				component : PDMY4005,
 				params : {}
 			}
 			modalService.openPopup(config).then(response => {
@@ -231,7 +231,7 @@ export default {
 					this.closeAll()
 
 					const menu = {
-						name: 'PDMY2001',
+						name: 'PDMY4001',
 						params : {}
 					}
 					commonService.movePage(menu)

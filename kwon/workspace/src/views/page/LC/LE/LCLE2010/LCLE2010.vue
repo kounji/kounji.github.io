@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import CmmXpsDetailInfo from '@/components/LC/LE/CMM/CmmXpsDetailInfo'
+import CmmXpsDetailInfo from '@/components/LC/LE/CMM/CmmXpsDetailInfoV4'
 import apiService from '@/service/apiService'
 
 export default {

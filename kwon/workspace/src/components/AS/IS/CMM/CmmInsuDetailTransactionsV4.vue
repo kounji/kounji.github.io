@@ -277,7 +277,7 @@
             </template>
 
         </div>
-        <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closeAll(true)"><span class="blind">팝업닫기</span></a>
+        <a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="closePopup()"><span class="blind">팝업닫기</span></a>
     </div>
     <!--// 전체 팝업 종료 -->
 </template>
@@ -287,8 +287,8 @@ import popupMixin from '@/common/mixins/popupMixin'
 import commonMixin from '@/common/mixins/commonMixin'
 import apiService from '@/service/apiService'
 import modalService from '@/service/modalService'
+import {mapGetters} from 'vuex'
 
-import ASIS2003 from '@/views/page/AS/IS/ASIS2003/ASIS2003' // 인보험 보장정보 팝업
 import ASIS4003 from '@/views/page/AS/IS/ASIS4003/ASIS4003' // 인보험 보장정보 팝업
 import ASIS2004 from '@/views/page/AS/IS/ASIS2004/ASIS2004' // 인보험 특약정보 슬라이드 팝업
 import ASIS2005 from '@/views/page/AS/IS/ASIS2005/ASIS2005' // 인보험 대출정보 팝업
@@ -300,6 +300,7 @@ import ASIS2013 from '@/views/page/AS/IS/ASIS2013/ASIS2013' // 연금저축보�
 import ASIS2014 from '@/views/page/AS/IS/ASIS2014/ASIS2014' // 연금저축보험 특약정보 슬라이드 팝업
 import ASIS2015 from '@/views/page/AS/IS/ASIS2015/ASIS2015' // 연금저축보험 대출정보 팝업
 import ASIS2025 from '@/views/page/AS/IS/ASIS2025/ASIS2025' // 물보험 목적물 팝업
+import appService from '@/service/appService'
 
 //보험종류
 const TYPE_PERSON = 'PERSON'          // 인보험
@@ -388,6 +389,9 @@ export default {
         }
     },
     computed: {
+        ...mapGetters('layout', [
+            'pageName',
+        ]),
         agSctrCntnLabel() {
             if(this.agSctrCntn == '99'){
                 return '전 연령'
@@ -819,7 +823,25 @@ export default {
         청구하기 콕뱅크>콕혜택>생활금융>농협생명 TODO 경로 확인
         */
         fn_rqs(){
-            alert("이동 url 확정 시 추가 작업 예정")
+            //콕 농협생명 이동
+            let url = 'CBCFP0000R^life^mdMenu'
+            appService.cokBankGoMove( url )
+        },
+
+        // 25.04.04) 모드 및 화면별 팝업닫기 분기
+        closePopup() {
+            const scrMode = this.getScrmode()?.mode || 'N'
+            const pageId = this.pageName || ''
+            
+            if(scrMode == 'S') {
+                if(this.isTabPopup) {
+                    pageId.startsWith('AS') ? this.closeAllLeftMain(true) : this.closeAll(true)
+                } else {
+                    this.close(true)
+                }
+            } else {
+                this.closeAll(true)
+            }
         }
     }
 }

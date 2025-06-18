@@ -338,7 +338,7 @@ import ASLN2008 from '@/views/page/AS/LN/ASLN2008/ASLN2008'
 import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
 import ASLN2002 from '@/views/page/AS/LN/ASLN2002/ASLN2002'
 import ASLN2003 from '@/views/page/AS/LN/ASLN2003/ASLN2003'
-import ASLN2004 from '@/views/page/AS/LN/ASLN2004/ASLN2004'
+import ASLN4004 from '@/views/page/AS/LN/ASLN4004/ASLN4004'
 import ASIV2003 from '@/views/page/AS/IV/ASIV2003/ASIV2003'
 
 
@@ -530,7 +530,7 @@ export default {
          // 마이너스 통장 상세조회 팝업 오픈
         openCreditMinusPop(obj) {
             const config = {
-                component : ASLN2004,
+                component : ASLN4004,
                 params : {
                     mydtCusno       : this.mydtCusno,
                     infOfrmnOrgC    : obj.infOfrmnOrgC,

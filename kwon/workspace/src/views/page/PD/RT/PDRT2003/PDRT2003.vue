@@ -89,7 +89,7 @@
 					@focus="fn_focusOnOff()" @keyup="fn_chkAm()" @input="fn_chkAm()">
 
 					<div class="del_txt">
-						<a href="#nolink" class="com_btn_delete2"><span class="blind" v-if="retMmLivAmInp.length > 0" @click.prevent="fn_delAm()">삭제</span></a>
+						<a href="javascript:void(0);" class="com_btn_delete2"><span class="blind" v-if="retMmLivAmInp.length > 0" @click.prevent="fn_delAm()">삭제</span></a>
 						<span class="com_inputtxtright2">만원</span>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 					<a href="javascript:void(0);" class="btn btn_mint" :class="flag_show ? '' : 'btn_off'" @click.prevent="flag_show ? fn_insert() : ''">저장</a>
 				</div>
 			</div>
-			<a href="#nolink" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
+			<a href="javascript:void(0);" role="button" class="btn_close" @click.prevent="close()"><span class="">닫기</span></a>
 		</div>
 	</div>
 	<!--// 슬라이드 팝업 종료 -->

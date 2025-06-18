@@ -190,16 +190,16 @@ import popupMixin from '@/common/mixins/popupMixin'
 import modalService from '@/service/modalService'
 import {dateFormat, monthAdd} from '@/utils/date'
 import {getDayDowCName} from '@/utils/date'
-import LCLE2112 from '@/views/page/LC/LE/LCLE2112/LCLE2112'
+import LCLE4112 from '@/views/page/LC/LE/LCLE4112/LCLE4112'
 import LCLE2119 from '@/views/page/LC/LE/LCLE2119/LCLE2119'
-import LCLE2003 from '@/views/page/LC/LE/LCLE2003/LCLE2003'
-import LCLE2004 from '@/views/page/LC/LE/LCLE2004/LCLE2004'
-import LCLE2007 from '@/views/page/LC/LE/LCLE2007/LCLE2007'
-import LCLE2008 from '@/views/page/LC/LE/LCLE2008/LCLE2008'
-import LCLE2009 from '@/views/page/LC/LE/LCLE2009/LCLE2009'
-import LCLE2010 from '@/views/page/LC/LE/LCLE2010/LCLE2010'
-import LCLE2011 from '@/views/page/LC/LE/LCLE2011/LCLE2011'
-import LCLE2012 from '@/views/page/LC/LE/LCLE2012/LCLE2012'
+import LCLE4003 from '@/views/page/LC/LE/LCLE4003/LCLE4003'
+import LCLE4004 from '@/views/page/LC/LE/LCLE4004/LCLE4004'
+import LCLE4007 from '@/views/page/LC/LE/LCLE4007/LCLE4007'
+import LCLE4008 from '@/views/page/LC/LE/LCLE4008/LCLE4008'
+import LCLE4009 from '@/views/page/LC/LE/LCLE4009/LCLE4009'
+import LCLE4010 from '@/views/page/LC/LE/LCLE4010/LCLE4010'
+import LCLE4011 from '@/views/page/LC/LE/LCLE4011/LCLE4011'
+import LCLE4012 from '@/views/page/LC/LE/LCLE4012/LCLE4012'
 import _ from 'lodash'
 
 const TYPE_CARD = 'CARD'                // 카드 지출내역
@@ -626,7 +626,7 @@ export default {
             }
 
             const config = {
-                component : LCLE2003,
+                component : LCLE4003,
                 params : {
                     mydtCusno : this.mydtCusno,
                     inqYm : this.inqYm,
@@ -662,7 +662,7 @@ export default {
             }
 
             const config = {
-                component : LCLE2004,
+                component : LCLE4004,
                 params : {
                     mydtCusno : this.mydtCusno,
                     inqYm : this.inqYm,
@@ -685,7 +685,7 @@ export default {
             let selectVal = ''
             if(this.type == TYPE_PAY && this.subtype == SUBTYPE_PAYMONEY) {
                 selectVal = this.faceOnm + this.accIdVal
-                calledId = 'LCLE2003'
+                calledId = 'LCLE4003'
             }else{
                 selectVal = this.infOfrmnOrgC + this.mydtCdId
             }
@@ -883,15 +883,15 @@ export default {
             let component = '';
             switch(this.type) {
                 case TYPE_CARD:
-                    component = LCLE2012
+                    component = LCLE4012
                     break
                 case TYPE_PAY:
                     switch(this.subtype) {
                         case SUBTYPE_PAYMONEY:
-                            component = LCLE2009
+                            component = LCLE4009
                             break
                         case SUBTYPE_PPAYCARD:
-                            component = LCLE2011
+                            component = LCLE4011
                             break
                     }
                     break
@@ -905,10 +905,10 @@ export default {
             let component = '';
             switch(this.type) {
                 case TYPE_CARD:
-                    component = LCLE2007
+                    component = LCLE4007
                     break
                 case TYPE_PAY:
-                    component = LCLE2008
+                    component = LCLE4008
                     break
             }
             
@@ -920,12 +920,12 @@ export default {
             let component = '';
             switch(this.type) {
                 case TYPE_CARD:
-                    component = LCLE2112
+                    component = LCLE4112
                     break
                 case TYPE_PAY:
                     switch(this.subtype) {
                         case SUBTYPE_PAYMONEY:
-                            component = LCLE2010
+                            component = LCLE4010
                             break
                         case SUBTYPE_PPAYCARD:
                             component = LCLE2119

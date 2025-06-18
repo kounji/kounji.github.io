@@ -33,8 +33,20 @@
                     <div class="title">
                         <div class="text">
                             갚을 돈<br>
-                            <!-- <span class="fs-27">총 </span><strong><span class="num counter" data-count="loanAmnt">{{loanAmnt | numberFilter}}</span>원</strong> -->
-                            <div class="toggle_money">
+                            
+                            <div class="toggle_money" :class="hideYn === true ? 'on' : ''">
+                                <div class="sum">
+                                    <span class="hide">잔액숨김</span>
+                                    <span class="show">{{loanAmnt | numberFilter}}원</span>
+                                </div>
+                                <button type="button" class="btns" @click="fn_setHidden('LN', !hideYn)">
+                                    <span class="blind">금액</span>
+                                    <span class="hide">보기</span>
+                                    <span class="show">숨김</span>
+                                </button>
+                            </div>
+
+                            <!-- <div class="toggle_money">
                                 <input type="checkbox" title="금액노출" name="" id="sum_view_01" v-model="hideYn" @change="fn_setHidden('LN', hideYn)">
                                 <label for="sum_view_01" class="btns">
                                     <span class="hide" aria-hidden="true">보기</span>
@@ -44,7 +56,8 @@
                                     <span class="hide">잔액숨김</span>
                                     <span class="show">총 <em>{{loanAmnt | numberFilter}}</em>원</span>
                                 </div>
-                            </div>
+                            </div> -->
+
                         </div>
                     </div>
                 </div>
@@ -57,15 +70,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>신용대출</span> <span class="com_icon_num custom">{{creditCnt}}</span></div>
+                                <div class="tit"><span>신용대출</span> <span class="com_icon_num custom">{{creditCnt}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{creditAmnt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{creditAmnt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_creditSortPop()"><span>{{creditSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_creditSortPop()"><span>{{creditSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                     <template v-for="(creditOutObj, index) in creditOut">
@@ -80,11 +93,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{creditOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{creditOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{creditOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{creditOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -101,11 +114,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{creditOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{creditOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{creditOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{creditOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -123,11 +136,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{creditOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{creditOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{creditOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{creditOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -145,11 +158,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{creditOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{creditOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{creditOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{creditOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -167,15 +180,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>담보대출</span> <span class="com_icon_num custom">{{mortagageOut.length}}</span></div>
+                                <div class="tit"><span>담보대출</span> <span class="com_icon_num custom">{{mortagageOut.length}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{mortagageOutAmnt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{mortagageOutAmnt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_mortagageSortPop()"><span>{{mortagageSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_mortagageSortPop()"><span>{{mortagageSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                     <template v-for="(mortagageOutObj, index) in mortagageOut">
@@ -189,11 +202,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{mortagageOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{mortagageOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{mortagageOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{mortagageOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -211,11 +224,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{mortagageOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{mortagageOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{mortagageOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{mortagageOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -233,11 +246,11 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{mortagageOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{mortagageOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
-                                            <em class="num">{{mortagageOutObj.bac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{mortagageOutObj.bac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -255,15 +268,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>P2P 대출</span> <span class="com_icon_num custom">{{loanP2POut.length}}</span></div>
+                                <div class="tit"><span>P2P 대출</span> <span class="com_icon_num custom">{{loanP2POut.length}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{loanP2POutAmnt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{loanP2POutAmnt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_loanP2PSortPop()"><span>{{loanP2PSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_loanP2PSortPop()"><span>{{loanP2PSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(loanP2POutObj, index) in loanP2POut" :key="index">
@@ -277,12 +290,12 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{loanP2POutObj.lnCtrNo}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{loanP2POutObj.lnCtrNo}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
                                             <!-- 대출계약금액 -->
-                                            <em class="num">{{loanP2POutObj.p2PLnBac | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{loanP2POutObj.p2PLnBac | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -298,15 +311,15 @@
                     <div data-ui-toggle="box" class="toggle_box_area open">
                         <button type="button" class="view_btn" aria-expanded="true">
                             <div class="new_tit_area">
-                                <div class="tit"><span>대부</span> <span class="com_icon_num custom">{{bondOut.length}}</span></div>
+                                <div class="tit"><span>대부</span> <span class="com_icon_num custom">{{bondOut.length}}<i class="blind">건</i></span></div>
                                 <span class="total_price">
-                                    <em class="num">{{bondOutAmnt | numberFilter}}</em><em class="unit">원</em>
+                                    <em class="num"><span class="blind">금액</span>{{bondOutAmnt | numberFilter}}</em><em class="unit">원</em>
                                 </span>
                             </div>
                             <em class="open">열기</em>
                             <em class="close">닫기</em>
                         </button>
-                        <a href="javascript:void(0);" class="btn_sort" @click="fn_bondSortPop()"><span>{{bondSortNm}}</span></a>
+                        <a href="javascript:void(0);" class="btn_sort" role="button" @click="fn_bondSortPop()"><span>{{bondSortNm}}</span></a>
                     </div>
                     <ul class="view_cont list_type_01">
                         <li v-for="(bondOutObj, index) in bondOut" :key="index">
@@ -320,12 +333,12 @@
                                         </div>
                                     </dt>
                                     <dd>
-                                        <span class="prod_num">{{bondOutObj.mydtAcno}}</span>
+                                        <span class="prod_num"><span class="blind">계좌번호</span>{{bondOutObj.mydtAcno}}</span>
                                     </dd>
                                     <dd>
                                         <span class="com_price">
                                             <!-- 채권대출잔액 -->
-                                            <em class="num">{{bondOutObj.mydtBndNo | numberFilter}}</em>
+                                            <em class="num"><span class="blind">금액</span>{{bondOutObj.mydtBndNo | numberFilter}}</em>
                                             <em class="unit">원</em>
                                         </span>
                                     </dd>
@@ -699,6 +712,7 @@ export default {
             숨김여부
         */
         fn_setHidden(flag, type) {
+            this.hideYn = type
             this.setSecretAmInfo(flag, type)
         },
     },

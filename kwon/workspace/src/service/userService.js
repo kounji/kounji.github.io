@@ -6,7 +6,8 @@ import configService from '@/service/configService'
 import commonService from '@/service/commonService'
 import store from '@/store'
 import {makeErrorMessage} from '@/utils/data' 
-import {isTolda} from '@/utils/date' 
+import {isTolda, monthAdd, dayDiff} from '@/utils/date' 
+import { dateFormat } from '../utils/date'
 
 export default {
   
@@ -58,6 +59,18 @@ export default {
                 userInfo.firEntDt       = res.firEntDt      // 최초가입일자
                 userInfo.crmCusno       = res.crmCusno      // CRM 고객번호
                 userInfo.svcClientId    = res.svcClientId
+                
+                // res.lsConnDtm = '202410101010'
+                // 현재일자기준 사용자 최종접속일자 6개월 ~ 1년 미만 확인 (6개월이상 미접속 안내 알럿 호출용도)
+                const lsConnDtm = dateFormat(res?.lsConnDtm, 'YYYYMMDD') || dateFormat(new Date(), 'YYYYMMDD')
+                const toDate = monthAdd(-6, dateFormat(new Date(), 'YYYYMMDD'), 'YYYYMMDD')   // 현재일자기준 6개월 전
+                const fromDate = monthAdd(-12, dateFormat(new Date(), 'YYYYMMDD'), 'YYYYMMDD')// 현재일자기준 12개월 전
+                
+                if(dayDiff(lsConnDtm, fromDate) > 0 && dayDiff(lsConnDtm, toDate) <= 0) {
+                  userInfo.ltrmUnconn   = 'Y'
+                } else {
+                  userInfo.ltrmUnconn   = 'N'
+                }
 
                 // 임시 우회
                 // userInfo.mydtCusno = '200 0003756'
@@ -65,7 +78,11 @@ export default {
                 // userInfo.mydtCsuStsc = '1'
 
                 // 마데가입 조회시 미성년자(14세 미만)일때 강제 exception 발생. add 2021.12.03
-                if(res.rsp_code === "30102") {
+                // if(res.rsp_code === "30102") {
+                //     throw("IS_CHILD")
+                // }
+                if(res.rsp_code === "30102" || userInfo.mydtCusno == '2010508518' || userInfo.mydtCusno == '1000128636') {
+                    // 홍헌니, 조효랑 14세미만 테스트
                     throw("IS_CHILD")
                 } 
 
@@ -76,8 +93,11 @@ export default {
                 // 3 : 기존고객, 일부약관동의필요 고객 (=> 재동의 하였으나 추가약관 동의 필요 고객)
                 // 4 : 기존고객, 약관동의완료 고객. (정상)
                 //////////////////////////////////////////////////////
-                // 청소년모드 진입 테스트
-                //res.birth = '20110101'
+                // 청소년모드 진입 테스트 (황인성-미가입, 탁하천-가입)
+                if(userInfo.mydtCusno == '2013887001' || userInfo.mydtCusno == '2000006854') {
+                  res.birth = '20110101'
+                }
+                // res.cusTpc = '1'
 
                 userInfo.cusTpc       = res.cusTpc  //고객구분코드
                 userInfo.macoYn       = res.macoYn  //조합원여부 "0":일반, "1":조합원
@@ -89,12 +109,18 @@ export default {
                 //API KEY 추가
                 userInfo.apiKey       = res.pwizeKeyVal // apiKey
                 
-                userInfo.tolda        = isTolda(res.birth) || false // 청소년(만14~만18세 여부)
+                // 25.06.10) 청소년 진입 케이스 없음
+                // userInfo.tolda        = isTolda(res.birth) || false // 청소년(만14~만18세 여부)
+                userInfo.tolda        = false
+
+                const localKey = 'usrInfoSet' + userInfo.chnl + userInfo.mydtCusno + 'V4'
+                const scrMode = commonService.getStorage(localKey)?.scrMode
                 if(userInfo.tolda) {
-                  // 청소년 모드 기본 설정
-                  const localKey = 'scrmode' + userInfo.chnl + userInfo.mydtCusno + 'V4'
-      
-                  commonService.setStorage(localKey, {mode: 'C'})
+                  // 청소년 모드 기본 설정 (미가입자인 경우 미가입자모드)
+                  commonService.setStorage(localKey, {scrMode: {mode: userInfo.cusTpc != '1' ? 'C' : 'U'}})
+                } else if(typeof scrMode == "undefined" || scrMode == null || JSON.stringify(scrMode) == '{}') {
+                  // 모드 기본설정 (미가입자인 경우 미가입자모드)
+                  commonService.setStorage(localKey, {scrMode: {mode: userInfo.cusTpc != '1' ? 'N' : 'U'}})
                 }
             } else {
 
@@ -287,7 +313,10 @@ export default {
 
           //API KEY 추가
           userInfo.apiKey  = res.pwizeKeyVal // apiKey
-                                                  
+                                                
+          // NH콕마이데이터4.0) 가입직후 장기미접속자 구분코드 'N' 설정
+          userInfo.ltrmUnconn   = 'N'
+
           // session storage에 사용자 정보 저장
           this.setLoginSession(userInfo)
   

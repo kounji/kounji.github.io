@@ -14,87 +14,47 @@
 <template>
     <div class="full_popup renewal" id="full_popup_01"> 
 		<div class="popup_header">
-			<h1>부동산 등록/수정</h1>
-			<a href="javascript:void(0);" @click.prevent="close()" class="btn_back" role="button"><span class="blind">이전화면</span></a>
+			<h1>부동산 등록</h1>
+			<a href="javascript:void(0);" class="btn_back" role="button" @click.prevent="close()"><span class="blind">이전화면</span></a>
 		</div>
 
-        
-		
-		<div class="popup_content">
+        <div class="popup_content">
 			<div class="com_inner" v-if="isApt">
-                <div>
-                    <h1>면적 선택</h1>          
-                </div>
-                <div class="com_txt_type02">
-                    <ul class="com_radio_type01">
-                        <li v-for="(rlestItem, idx) in rlestInfo" :key="idx">
-                            <span class="btn_radio">
-                                <input type="radio" :id="rlestItem.aptHscxIdvdc + '_' + idx" :name="rlestItem.aptHscxIdvdc" :value="rlestItem.newPytpAreaCntn" v-model="selArea" @change="setRlestAreaInfo(rlestItem.aptHscxIdvdc, rlestItem.newPytpAreaCntn, rlestItem.aptHfisArea)" />
-                                <label :for="rlestItem.aptHscxIdvdc + '_' + idx">{{rlestItem.newPytpAreaCntn}}㎡</label>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- v4.0 추가 start -->
-            <div class="com_inner">      
-                <div>
-                    <h1>소유형태 선택</h1>          
-                </div>
-                <div class="com_txt_type02">
-                    <ul class="com_radio_type01">
-                        <li v-for="(rlestItem, idx) in rlestFormInfo" :key="idx">
-                            <span class="btn_radio">
-                                <input type="radio" :id="rlestItem.comnCVal + '_' + idx" name="rlestRadio" :value="rlestItem.comnCVal" v-model="selItem" @change="setRlestFormInfo(rlestItem.comnCVal, rlestItem.comnCExpl)" />
-                                <label :for="rlestItem.comnCVal + '_' + idx">{{rlestItem.comnCExpl}}</label>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-			</div>
-            <!-- v4.0 추가 end -->
-
-			<!-- <div class="com_inner">
 				<div class="com_txt_type02">
-					<strong class="com_pop_tit01">소유형태 선택</strong>
+					<strong class="com_pop_tit01">면적 선택</strong>
 					<ul class="com_radio_type01 mt10">
-						<li>
+						<li v-for="(rlestItem, idx) in rlestInfo" :key="idx">
 							<span class="btn_radio">
-								<input type="radio" name="com_check02" id="com_check02_1" checked="checked">
-								<label for="com_check02_1">
-									<span>자가</span>
-								</label>
-							</span>
-						</li>
-						<li>
-							<span class="btn_radio">
-								<input type="radio" name="com_check02" id="com_check02_2">
-								<label for="com_check02_2">
-									<span>전세</span>
-								</label>
-							</span>
-						</li>
-						<li>
-							<span class="btn_radio">
-								<input type="radio" name="com_check02" id="com_check02_3">
-								<label for="com_check02_3">
-									<span>월세</span>
-								</label>
+								<input type="radio" :id="rlestItem.aptHscxIdvdc + '_' + idx" :name="rlestItem.aptHscxIdvdc" :value="rlestItem.newPytpAreaCntn" v-model="selArea" @change="setRlestAreaInfo(rlestItem.aptHscxIdvdc, rlestItem.newPytpAreaCntn, rlestItem.aptHfisArea)" />
+								<label :for="rlestItem.aptHscxIdvdc + '_' + idx">{{rlestItem.newPytpAreaCntn}}㎡</label>
 							</span>
 						</li>
 					</ul>
 				</div>
-			</div> -->
+			</div>
+
+			<div class="com_inner">
+				<div class="com_txt_type02">
+					<strong class="com_pop_tit01">소유형태 선택</strong>
+					<ul class="com_radio_type01 mt10">
+						<li v-for="(rlestItem, idx) in rlestFormInfo" :key="idx">
+							<span class="btn_radio">
+                                <input type="radio" :id="rlestItem.comnCVal + '_' + idx" name="rlestRadio" :value="rlestItem.comnCVal" v-model="selItem" @change="setRlestFormInfo(rlestItem.comnCVal, rlestItem.comnCExpl)" />
+                                <label :for="rlestItem.comnCVal + '_' + idx">{{rlestItem.comnCExpl}}</label>
+                            </span>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 
 		<div class="popup_footer fixed">
             <div class="btn_full_box" v-if="isApt">
-                <!-- <a href="javascript:void(0);" role="button" class="btn btn_mint" :class="btnOnOff" @click.prevent="setRlestAreaFormInfoBtn" :aria-disabled="btnOnOff == 'btn_off' ? true : false">다음</a> -->
-				<a href="javascript:void(0);" role="button" class="btn btn_mint" @click.prevent="setRlestAreaFormInfoBtn">다음</a>
+                <a href="javascript:void(0);" role="button" class="btn btn_mint" :class="btnOnOff" @click.prevent="setRlestAreaFormInfoBtn" :aria-disabled="btnOnOff == 'btn_off' ? true : false">다음</a>
+				<!-- <a href="javascript:void(0);" role="button" class="btn btn_mint" @click.prevent="setRlestAreaFormInfoBtn">다음</a> -->
 			</div>
 			<div class="btn_full_box" v-else>
-				<a href="javascript:void(0);" role="button" class="btn btn_mint" @click.prevent="setRlestAreaFormInfoBtn">다음</a>
+				<a href="javascript:void(0);" role="button" class="btn btn_mint" :class="btnOnOff" @click.prevent="setRlestAreaFormInfoBtn" :aria-disabled="btnOnOff == 'btn_off' ? true : false">다음</a>
 			</div>
 		</div>
 
@@ -109,32 +69,34 @@ import apiService from '@/service/apiService'
 import popupMixin from '@/common/mixins/popupMixin'
 import modalService from '@/service/modalService'
 
-import CORE2206 from '@/views/page/CO/RE/CORE2206/CORE2206' // 다음 넘어가서 아파트 시세 및 구입가격입력 단계
+import CORE4206 from '@/views/page/CO/RE/CORE4206/CORE4206' // 다음 넘어가서 아파트 시세 및 구입가격입력 단계
 
 export default {
     name : "CORE4203",
     data: () => {
         return {
-            isApt : true,
-            rlestInfo : [],
-            selArea : "",   // 면적 목록에서 기선택된 아이템
-            rlestFormInfo : [],
-            selItem : "",   // 주거형태 목록에서 기선택된 아이템
+            isApt           : true,
+            rlestInfo       : [],
+            selArea         : "",           // 면적 목록에서 기선택된 아이템
+            rlestFormInfo   : [],
+            selItem         : "",           // 주거형태 목록에서 기선택된 아이템
 
-            closeAllParams : []     // v4.0 부모창으로 넘겨줄 파라미터(면적, 소유형태) 추가
+            closeAllParams  : []            // v4.0 부모창으로 넘겨줄 파라미터(면적, 소유형태) 추가
         }
     },
-    // computed: {
-    //     btnOnOff() {
-    //         return (this.selArea === "" && this.selItem === "") ? "btn_off" : ""
-    //     }
-    // },
+    computed: {
+        btnOnOff() {
+            if(this.isApt) return (this.selArea === "" || this.selItem === "") ? "btn_off" : ""
+            else return this.selItem === "" ? "btn_off" : ""
+        },
+    },
     mixins: [
         popupMixin
     ],
     methods: {
         // 팝업화면 초기화
         popInit(popupParams) {
+            console.log("@@@@@-> ", popupParams);
             // v4.0 추가 start
             // 아파트 확인 초기화
             this.isApt              = popupParams.isApt
@@ -142,12 +104,12 @@ export default {
 
             // 소유형태 초기화
             this.rlestFormInfo  = popupParams.list
-            this.selItem    = popupParams.selectVal
+            this.selItem    = popupParams.selectVal || ""
             // v4.0 추가 end
 
             // 면적 초기화
             this.rlestInfo = popupParams.rlestInfo
-            this.selArea = popupParams.selArea
+            this.selArea = popupParams.selArea || ""
 
             // 부모창으로 넘겨줄 파라미터 초기화
             this.closeAllParams = {

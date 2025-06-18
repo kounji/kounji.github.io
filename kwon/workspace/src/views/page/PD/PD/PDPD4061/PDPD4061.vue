@@ -14,199 +14,205 @@
 <template>
     <page class="content-view">
         <!-- content -->
-			<div id="content">
-				<div class="loan_cal dsr">
-					<div class="tit_area">
-						<p class="sub_txt">대출계획이 필요하신가요?</p>
-						<h2 class="headline"><strong>대출한도를<br>간편하게 확인해보세요.</strong></h2>
-					</div>
-					<div class="btn_wrap">
-						<button type="button" class="btns gray" @click="openDsrInfoPopup">DSR이란?</button>
-					</div>
-					<div class="img_area">
-						<img src="@/assets_v40/images/img/img_dsr_cal.png" alt="">
-					</div>
-					<details class="ico_detail_noti">
-						<summary><strong>알아두세요</strong></summary>
-						<div class="cont">
-							<ul class="dotted_list">
-								<li>해당 계산결과는 실제대출로 상이할 수 있는 참고용 자료이므로, 정확한 대출 가능여부 및 한도 확인은 농축협 영업점과 NH콕뱅크에서 실제 대출심사를 통해 확인하실 수 있습니다.</li>
-								<li>본 대출한도(DSR) 계산기는 고객님의 자금운영을 돕기 위한 모의 계산서비스로, 사용 사실이 고객님의 신용정보에 영향을 주지 않으니 안심하시고 사용하셔도 됩니다.</li>
-							</ul>
-						</div>
-					</details>
+		<div id="content">
+			<div class="loan_cal dsr">
+				<div class="tit_area">
+					<p class="sub_txt">대출계획이 필요하신가요?</p>
+					<h2 class="headline"><strong>대출한도를<br>간편하게 확인해 보세요.</strong></h2>
 				</div>
-
-				<div class="loan_cal section">
-					<div class="tit_area">
-						<h3 class="headline sm"><strong>DSR 계산을 위한 소득 및<br>희망하는 대출정보가 필요해요.</strong></h3>
-					</div>
-
-					<div :class="incomeErrorText ? 'formItem error' : 'formItem'">
-						<label for="loan_cal_01">연소득</label>
-						<span class="info_txt">연소득입력범위 : 100만원 ~ 1000억원</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_01" v-model="income" ref="income" required="" placeholder="연소득을 입력해 주세요." @input="onIncomeInput">
-							<span class="unit">만원</span>
-						</div>
-						<div class="btns_wrap">
-							<button type="button" class="btns" @click.prevent="btnIncomeEvt(100)">+100만</button>
-							<button type="button" class="btns" @click.prevent="btnIncomeEvt(500)">+500만</button>
-							<button type="button" class="btns" @click.prevent="btnIncomeEvt(1000)">+1000만</button>
-							<button type="button" class="btns" @click.prevent="btnIncomeEvt(10000)">+1억</button>
-						</div>
-						<span class="han"><span class="blind">입력금액확인</span> 
-							<div v-if="incomeInKorean"> {{ incomeInKorean }} </div>
-						</span>
-						<span class="error_txt" v-if="incomeErrorText">100만원이상 입력해 주세요.</span>
-					</div>
-
-					<div class="formItem">
-						<span class="label">희망대출선택</span>
-						<!-- 3100 : 신용대출   3220 : 주택담보대출 -->
-						<div class="radio_box_group">
-							<div class="radio">
-								<input type="radio" name="loan_agree" id="loan_agree1" v-model="acTpDsc" value="3100">
-								<label for="loan_agree1">신용대출</label>
-							</div>
-							<div class="radio">
-								<input type="radio" name="loan_agree" id="loan_agree2" v-model="acTpDsc" value="3220">
-								<label for="loan_agree2">주택담보대출</label>
-							</div>
-						</div>
-					</div>
-
-					<div :class="lnAmErrorText ? 'formItem error' : 'formItem'">
-						<label for="loan_cal_02">희망대출금액</label>
-						<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_02" v-model="lnAm" ref="lnAm" required="" placeholder="희망대출금액을 입력해주세요." @input="onLnAmInput">
-							<span class="unit">만원</span>
-						</div>
-						<div class="btns_wrap">
-							<button type="button" class="btns" @click.prevent="btnLnAmEvt(100)">+100만</button>
-							<button type="button" class="btns" @click.prevent="btnLnAmEvt(500)">+500만</button>
-							<button type="button" class="btns" @click.prevent="btnLnAmEvt(1000)">+1000만</button>
-							<button type="button" class="btns" @click.prevent="btnLnAmEvt(10000)">+1억</button>
-						</div>
-						<span class="han"><span class="blind">입력금액확인</span> 
-							<div v-if="lnAmInKorean"> {{ lnAmInKorean }} </div>
-						</span>
-						<span class="error_txt" v-if="lnAmErrorText">100만원이상 입력해 주세요.</span>
-					</div>
-
-					<div :class="lnDtErrorText ? 'formItem error' : 'formItem'">
-						<label for="loan_cal_03">대출기간</label>
-						<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_03" v-model="lnDt" ref="lnDt" required="" placeholder="대출기간을 입력해주세요." @input="onLnDtInput">
-							<span class="unit">개월</span>
-						</div>
-						<div class="btns_wrap">
-							<button type="button" class="btns" @click.prevent="btnLnDtEvt(12)">+1년</button>
-							<button type="button" class="btns" @click.prevent="btnLnDtEvt(24)">+2년</button>
-							<button type="button" class="btns" @click.prevent="btnLnDtEvt(36)">+3년</button>
-							<button type="button" class="btns" @click.prevent="btnLnDtEvt(120)">+10년</button>
-						</div>
-						<span class="error_txt">6개월 이상 입력해 주세요.</span>
-					</div>
-
-					<div :class="lnIntErrorText ? 'formItem error' : 'formItem'">
-						<label for="loan_cal_04">대출이자율</label>
-						<span class="info_txt">대출이자율범위 : 1% ~ 30%</span>
-						<div class="input">
-							<input type="text" name="" id="loan_cal_04" v-model="lnInt" ref="lnInt" required="" placeholder="대출이자율을 입력해주세요." @input="onLnIntInput">
-							<span class="unit">%</span>
-						</div>
-						<div class="btns_wrap">
-							<button type="button" class="btns" @click.prevent="btnLnIntEvt(0.5)">+0.5%</button>
-							<button type="button" class="btns" @click.prevent="btnLnIntEvt(1.0)">+1.0%</button>
-							<button type="button" class="btns" @click.prevent="btnLnIntEvt(2.0)">+2.0%</button>
-							<button type="button" class="btns" @click.prevent="btnLnIntEvt(4.0)">+4.0%</button>
-						</div>
-						<span class="error_txt">1% 이상 입력해 주세요.</span>
-					</div>
+				<div class="btn_wrap">
+					<button type="button" class="btns gray" @click="openDsrInfoPopup">DSR이란?</button>
 				</div>
-
-				<div class="loan_cal section">
-					<div class="tit_area">
-						<h3 class="headline sm"><strong>보유중인 대출이에요.</strong></h3>
-					</div>
-					<!-- case1. 보유대출 있는 경우 
-					[아이콘]
-					.ico_loan01 : 전세보증금 담보대출
-					.ico_loan02 : 주택 담보대출
-					.ico_loan03 : 비주택 담보대출
-					.ico_loan04 : 기타 담보대출
-					.ico_loan05 : 유가증권 담보대출
-					.ico_loan06 : 장기 카드대출
-					.ico_loan07 : 학자금 대출
-					.ico_loan08 : 신용대출
-					.ico_loan09 : 기타대출
-					-->
-					<div class="board_box">
-						<template v-if="creditOut.length &gt; 0">
-							<p class="sum">확인된 보유대출</p>
-
-							<!-- 신용대출 -->
-							<div class="cont" v-for="(creditOutObj, index) in creditOut" :key="'credit-' + index">
-								<i :class="mapping[creditOutObj.acTpDsc]"></i>
-								<p class="prod">{{creditOutObj.wrsnm}}</p>
-								<strong class="price">{{creditOutObj.bac | numberFilter}} 원</strong>
-								<p class="info"><span class="interest">연 {{creditOutObj.aplItr}} %</span><span class="period">({{getMonthsDifference(creditOutObj.lnDt, creditOutObj.dueDt)}}개월)</span></p>
-							</div>
-							<p class="info_txt">보유한 대출 중 보험대출의 경우 마지막 납부한 월의 이자율로 반영되므로 금액이 다를 수 있습니다.</p>
-							<div class="btns_wrap">
-								<button type="button" class="btns md gray"><span class="icon_line_right sm" @click.prevent="fnRegisterAsset">자산 연결하기</span></button>
-							</div>
-						</template>
-
-						<template v-else>
-							<p class="sum black">확인된 보유대출이 없어요.</p>
-							<div class="btns_wrap">
-								<button type="button" class="btn_add_dot" @click.prevent="fnRegisterAsset">자산 연결하기</button>
-							</div>
-						</template>
-					</div>
-
-					<div class="board_box">
-						<template v-if="localLoan.lnList.length &gt; 0">
-							<p class="sum">내가 등록한 보유대출</p>
-							<div class="cont" v-for="(item, index) in localLoan.lnList" :key="index">
-								<i :class="mapping[item.acTpDsc]"></i>
-								<p class="prod">{{item.acTpDsnm}}</p>
-								<strong class="price">{{item.bac | numberFilter}}원</strong>
-								<p class="info"><span class="interest">연 {{item.aplItr}}%</span><span class="period">({{item.lnTerm}}개월)</span></p>
-								<!-- item.date -->
-								<div class="btns_wrap">
-									<button type="button" class="btns" @click.prevent="fnLocalRegister(item.sqno)">수정</button>
-									<button type="button" class="btns" @click.prevent="fnLocalDelete(item.sqno)">삭제</button>
-								</div>
-								<!-- [v4.0] 25-02-25 마지막저장일자 추가 -->
-								<p class="last_date">마지막 저장일자 : <span>{{fnChgFormat(item.date)}}</span></p>
-								<!-- //[v4.0] 25-02-25 마지막저장일자 추가 -->
-							</div>
-							<div class="btns_wrap">
-								<button type="button" class="btns md gray" @click.prevent="fnLocalRegister()"><span class="icon_line_right sm">보유대출 등록하기</span></button>
-							</div>
-						</template>
-
-						<template v-else>
-							<p class="sum black">내가 등록한 대출이 없어요.</p>
-							<div class="btns_wrap">
-								<button type="button" class="btn_add_dot" @click.prevent="fnLocalRegister()">보유대출 등록하기</button>
-							</div>
-						</template>
-					</div>
-					<!-- //case1. 보유대출 있는 경우 -->
-
-					<div class="btns_wrap">
-						<button type="button" class="btns lg primary" @click.prevent="openResult('PDPD4063')" :disabled="btnOnOff == 'btn_off' ? true : false">DSR 계산하기</button>
-					</div> 
+				<div class="img_area">
+					<img src="@/assets_v40/images/img/img_dsr_cal.png" alt="">
 				</div>
-
+				<details class="ico_detail_noti" open>
+					<summary><strong>알아두세요</strong></summary>
+					<div class="cont">
+						<ul class="dotted_list">
+							<li>해당 계산결과는 실제대출로 상이할 수 있는 참고용 자료이므로, 정확한 대출 가능여부 및 한도 확인은 농축협 영업점과 NH콕뱅크에서 실제 대출심사를 통해 확인하실 수 있습니다.</li>
+							<li>본 대출한도(DSR) 계산기는 고객님의 자금운영을 돕기 위한 모의 계산서비스로, 사용 사실이 고객님의 신용정보에 영향을 주지 않으니 안심하시고 사용하셔도 됩니다.</li>
+						</ul>
+					</div>
+				</details>
 			</div>
-			<!--// content -->
+
+			<div class="loan_cal section">
+				<div class="tit_area">
+					<h3 class="headline sm"><strong>DSR 계산을 위한 소득 및<br>희망하는 대출정보가 필요해요.</strong></h3>
+				</div>
+
+				<div :class="incomeErrorText ? 'formItem error' : 'formItem'">
+					<label for="loan_cal_01">연소득</label>
+					<span class="info_txt">연소득입력범위 : 100만원 ~ 1000억원</span>
+					<div class="input">
+						<input type="text" pattern="[0-9]*" inputmode="numeric" id="loan_cal_01" v-model="income" ref="income" required="" placeholder="연소득을 입력해 주세요." @input="onIncomeInput">
+						<button type="button" class="clear_btn" :class="income != '' && income != null ? 'show' : ''" v-show="income.length &gt; 0" @click.prevent="del('income')"><span class="blind">삭제</span></button>
+						<span class="unit">만원</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns" @click.prevent="btnIncomeEvt(100)">+100만</button>
+						<button type="button" class="btns" @click.prevent="btnIncomeEvt(500)">+500만</button>
+						<button type="button" class="btns" @click.prevent="btnIncomeEvt(1000)">+1000만</button>
+						<button type="button" class="btns" @click.prevent="btnIncomeEvt(10000)">+1억</button>
+					</div>
+					<span class="han"><span class="blind">입력금액확인</span> 
+						<div v-if="incomeInKorean"> {{ incomeInKorean }} </div>
+					</span>
+					<span class="error_txt" v-if="incomeErrorText">100만 원 이상 입력해 주세요.</span>
+				</div>
+
+				<div class="formItem">
+					<span class="label">희망대출선택</span>
+					<!-- 3100 : 신용대출   3220 : 주택담보대출 -->
+					<div class="radio_box_group">
+						<div class="radio">
+							<input type="radio" name="loan_agree" id="loan_agree1" v-model="acTpDsc" value="3100">
+							<label for="loan_agree1">신용대출</label>
+						</div>
+						<div class="radio">
+							<input type="radio" name="loan_agree" id="loan_agree2" v-model="acTpDsc" value="3220">
+							<label for="loan_agree2">주택담보대출</label>
+						</div>
+					</div>
+				</div>
+
+				<div :class="lnAmErrorText ? 'formItem error' : 'formItem'">
+					<label for="loan_cal_02">희망대출금액</label>
+					<span class="info_txt">대출금액범위 : 100만원 ~ 1000억원</span>
+					<div class="input">
+						<input type="text" inputmode="numeric" name="" id="loan_cal_02" v-model="lnAm" ref="lnAm" required="" placeholder="희망대출금액을 입력해 주세요." @input="onLnAmInput">
+						<button type="button" class="clear_btn" :class="lnAm != '' && lnAm != null ? 'show' : ''" v-show="lnAm.length &gt; 0" @click.prevent="del('lnAm')"><span class="blind">삭제</span></button>
+						<span class="unit">만원</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns" @click.prevent="btnLnAmEvt(100)">+100만</button>
+						<button type="button" class="btns" @click.prevent="btnLnAmEvt(500)">+500만</button>
+						<button type="button" class="btns" @click.prevent="btnLnAmEvt(1000)">+1000만</button>
+						<button type="button" class="btns" @click.prevent="btnLnAmEvt(10000)">+1억</button>
+					</div>
+					<span class="han"><span class="blind">입력금액확인</span> 
+						<div v-if="lnAmInKorean"> {{ lnAmInKorean }} </div>
+					</span>
+					<span class="error_txt" v-if="lnAmErrorText">100만 원 이상 입력해 주세요.</span>
+				</div>
+
+				<div :class="lnDtErrorText ? 'formItem error' : 'formItem'">
+					<label for="loan_cal_03">대출기간</label>
+					<span class="info_txt">대출기간범위 : 6개월 ~ 600개월</span>
+					<div class="input">
+						<input type="number" inputmode="numeric" name="" id="loan_cal_03" v-model="lnDt" ref="lnDt" required="" placeholder="대출기간을 입력해 주세요." @input="onLnDtInput">
+						<button type="button" class="clear_btn" :class="lnDt != '' && lnDt != null ? 'show' : ''" v-show="lnDt.length &gt; 0" @click.prevent="del('lnDt')"><span class="blind">삭제</span></button>
+						<span class="unit">개월</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns" @click.prevent="btnLnDtEvt(12)">+1년</button>
+						<button type="button" class="btns" @click.prevent="btnLnDtEvt(24)">+2년</button>
+						<button type="button" class="btns" @click.prevent="btnLnDtEvt(36)">+3년</button>
+						<button type="button" class="btns" @click.prevent="btnLnDtEvt(120)">+10년</button>
+					</div>
+					<span class="error_txt">6개월 이상 입력해 주세요.</span>
+				</div>
+
+				<div :class="lnIntErrorText ? 'formItem error' : 'formItem'">
+					<label for="loan_cal_04">대출이자율</label>
+					<span class="info_txt">대출이자율범위 : 1% ~ 30%</span>
+					<div class="input">
+						<input type="text" inputmode="decimal" name="" id="loan_cal_04" v-model="lnInt" ref="lnInt" required="" placeholder="대출이자율을 입력해 주세요." @input="onLnIntInput">
+						<button type="button" class="clear_btn" :class="lnInt != '' && lnInt != null ? 'show' : ''" v-show="lnInt.length &gt; 0" @click.prevent="del('lnInt')"><span class="blind">삭제</span></button>
+						<span class="unit">%</span>
+					</div>
+					<div class="btns_wrap">
+						<button type="button" class="btns" @click.prevent="btnLnIntEvt(0.5)">+0.5%</button>
+						<button type="button" class="btns" @click.prevent="btnLnIntEvt(1.0)">+1.0%</button>
+						<button type="button" class="btns" @click.prevent="btnLnIntEvt(2.0)">+2.0%</button>
+						<button type="button" class="btns" @click.prevent="btnLnIntEvt(4.0)">+4.0%</button>
+					</div>
+					<span class="error_txt">1% 이상 입력해 주세요.</span>
+				</div>
+			</div>
+
+			<div class="loan_cal section">
+				<div class="tit_area">
+					<h3 class="headline sm"><strong>보유중인 대출이에요.</strong></h3>
+				</div>
+				<!-- case1. 보유대출 있는 경우 
+				[아이콘]
+				.ico_loan01 : 전세보증금 담보대출
+				.ico_loan02 : 주택 담보대출
+				.ico_loan03 : 비주택 담보대출
+				.ico_loan04 : 기타 담보대출
+				.ico_loan05 : 유가증권 담보대출
+				.ico_loan06 : 장기 카드대출
+				.ico_loan07 : 학자금 대출
+				.ico_loan08 : 신용대출
+				.ico_loan09 : 기타대출
+				-->
+				<div class="board_box">
+					<template v-if="creditOut.length &gt; 0">
+						<p class="sum">확인된 보유대출</p>
+
+						<!-- 신용대출 -->
+						<div class="cont" v-for="(creditOutObj, index) in creditOut" :key="'credit-' + index">
+							<i :class="mapping[creditOutObj.acTpDsc]"></i>
+							<p class="prod">{{creditOutObj.wrsnm}}</p>
+							<strong class="price">{{creditOutObj.bac | numberFilter}} 원</strong>
+							<p class="info"><span class="interest">연 {{creditOutObj.aplItr}} %</span><span class="period">({{creditOutObj.lnTerm}}개월)</span></p>
+						</div>
+						<p class="info_txt">보유한 대출 중 보험대출의 경우 마지막 납부한 월의 이자율로 반영되므로 금액이 다를 수 있습니다.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btns md gray"><span class="icon_line_right sm" @click.prevent="fnRegisterAsset">자산 연결하기</span></button>
+						</div>
+					</template>
+
+					<template v-else>
+						<p class="sum black">확인된 보유대출이 없어요.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btn_add_dot" @click.prevent="fnRegisterAsset">자산 연결하기</button>
+						</div>
+					</template>
+				</div>
+
+				<div class="board_box">
+					<template v-if="localLoan.lnList.length &gt; 0">
+						<p class="sum">내가 등록한 보유대출</p>
+						<div class="cont" v-for="(item, index) in localLoan.lnList" :key="index">
+							<i :class="mapping[item.acTpDsc]"></i>
+							<p class="prod">{{item.acTpDsnm}}</p>
+							<strong class="price">{{item.bac | numberFilter}}원</strong>
+							<p class="info"><span class="interest">연 {{item.aplItr}}%</span><span class="period">({{item.lnTerm}}개월)</span></p>
+							<!-- item.date -->
+							<div class="btns_wrap">
+								<button type="button" class="btns" @click.prevent="fnLocalRegister(item.sqno)">수정</button>
+								<button type="button" class="btns" @click.prevent="fnLocalDelete(item.sqno)">삭제</button>
+							</div>
+							<!-- [v4.0] 25-02-25 마지막저장일자 추가 -->
+							<p class="last_date">마지막 저장일자 : <span>{{fnChgFormat(item.date)}}</span></p>
+							<!-- //[v4.0] 25-02-25 마지막저장일자 추가 -->
+						</div>
+						<div class="btns_wrap">
+							<button type="button" class="btns md gray" @click.prevent="fnLocalRegister()"><span class="icon_line_right sm">보유대출 등록하기</span></button>
+						</div>
+					</template>
+
+					<template v-else>
+						<p class="sum black">내가 등록한 대출이 없어요.</p>
+						<div class="btns_wrap">
+							<button type="button" class="btn_add_dot" @click.prevent="fnLocalRegister()">보유대출 등록하기</button>
+						</div>
+					</template>
+				</div>
+				<!-- //case1. 보유대출 있는 경우 -->
+
+				<div class="btns_wrap">
+					<button type="button" class="btns lg primary" @click.prevent="openResult('PDPD4063')" :disabled="btnOnOff == 'btn_off' ? true : false">DSR 계산하기</button>
+				</div> 
+			</div>
+
+		</div>
+		<!--// content -->
+		<footersV2 type="pd" />
+
     </page>
 </template>
 
@@ -221,7 +227,7 @@ import modalService from '@/service/modalService'
 import {keyupNumFormat} from '@/utils/number'
 import {dayDiff, dateFormat} from '@/utils/date'
 
-// import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002' 	// 자산 연결 popup
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002' 	// 자산 연결 popup
 import PDPD4062 from '@/views/page/PD/PD/PDPD4062/PDPD4062' 	// 보유 대출 등록/수정
 import PDPD4064 from '@/views/page/PD/PD/PDPD4064/PDPD4064' 	// dsr_info popup
 
@@ -333,7 +339,7 @@ export default {
                 //this.creditOut          = response.loanListOut || []
 				let tmpCredit          = response.loanListOut || []
 
-				let tmpTerm = {'3100':60, '3150':12, '3210':96, '3230':96, '3240':96, '3050':96, '3260':96, '3271':48, '3290':120}
+				let tmpTerm = {'3100':60, '3150':12, '3210':96, '3230':96, '3240':96, '3250':96, '3260':96, '3271':48, '3290':120}
 				//lnTerm
 				let nowDay = new Date();
 				let yyyy = nowDay.getFullYear()
@@ -341,15 +347,19 @@ export default {
 				let dd   = Number(nowDay.getDate())  < 10 ? "0" + Number(nowDay.getDate())  : "" + Number(nowDay.getDate())
 
 				tmpCredit.forEach((el, idx) => {
-					if(el.acTpDsc == '3220') {
-						tmpCredit[idx].lnTerm = this.getMonthsDifference(yyyy+""+mm+""+dd, el.dueDt)
-					} else {
-						tmpCredit[idx].lnTerm = tmpTerm[this.creditOut.acTpDsc]
-					}
+					let ischecked = false;
+					
+					if((el.acTpDsc == '3220' || Object.keys(tmpTerm).includes(el.acTpDsc)) && el.bac) {
+						el.lnTerm = this.getMonthsDifference(yyyy+""+mm+""+dd, el.dueDt)
+						
+						ischecked = true;
+					} 
 					tmpCredit[idx].dsc    = '1' // 1:확인대출, 2:보유대출
+
+					if(ischecked) this.creditOut.push(tmpCredit[idx])
 				})
 
-				this.creditOut = tmpCredit
+				// this.creditOut = tmpCredit
 
                 this.callJQueryFncExcute()
             });
@@ -475,7 +485,7 @@ export default {
 			}
 
 			if(parseInt(this.income) < 100) {
-				this.incomeErrorText = '100만원이상 입력해 주세요.';
+				this.incomeErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.incomeErrorText = '';
 			}
@@ -501,7 +511,7 @@ export default {
 			}
 
 			if(parseInt(this.lnAm) < 100) {
-				this.lnAmErrorText = '100만원이상 입력해 주세요.';
+				this.lnAmErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.lnAmErrorText = '';
 			}
@@ -537,6 +547,8 @@ export default {
 			if(parseInt(this.lnDt) > 600){
 				this.lnDt = 600;
 			}
+
+			this.lnDt = this.addComma(this.lnDt);
 		},
 		onLnIntInput() {
 			this.lnInt = this.checkInputNum(this.lnInt, 'lnInt');
@@ -551,6 +563,8 @@ export default {
 			if(parseFloat(this.lnInt) > 30){
 				this.lnInt = 30;
 			}
+
+			this.lnInt = String(this.lnInt);
 		},
 		// 연소득 버튼 이벤트
 		btnIncomeEvt(amount) {
@@ -559,7 +573,7 @@ export default {
 			curIncome += amount;
 
 			if(parseInt(curIncome) < 100) {
-				this.incomeErrorText = '100만원이상 입력해 주세요.';
+				this.incomeErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.incomeErrorText = '';
 			}
@@ -581,7 +595,7 @@ export default {
             curAm += amount;
 
 			if(parseInt(curAm) < 100) {
-				this.lnAmErrorText = '100만원이상 입력해 주세요.';
+				this.lnAmErrorText = '100만 원 이상 입력해 주세요.';
 			} else {
 				this.lnAmErrorText = '';
 			}
@@ -722,27 +736,39 @@ export default {
 
 			console.log("mergeList", mergeList);
 			mergeList.forEach((row, idx)=>{
-				if(row.acTpDsc == "3100" || row.acTpDsc == "3150") {
-					this.creditLoanResult += Number(row.bac) / Number(row.lnTerm) / 12 + Number(row.bac)*Number(row.aplItr*0.01)
-				} else {
-					this.securedLoanResult += Number(row.bac) / Number(row.lnTerm) / 12 + Number(row.bac)*Number(row.aplItr*0.01)
+				if(Number(row.bac) == 0) {
+					console.log("@@@@@@@ -> ", row.bac)
 				}
-				this.totalLoanResult += Number(row.bac) / Number(row.lnTerm) / 12 + Number(row.bac)*Number(row.aplItr*0.01)
+				else if(row.acTpDsc == "3100" || row.acTpDsc == "3150") {
+					this.creditLoanResult += Number(row.bac) / (Number(row.lnTerm) / 12) + Number(row.bac)*Number(row.aplItr*0.01)
+					console.log("@@@@@@@ -> ", row.bac)
+					console.log("@@@@@@@ -> ", row)
+				} else {
+					this.securedLoanResult += Number(row.bac) / (Number(row.lnTerm) / 12) + Number(row.bac)*Number(row.aplItr*0.01)
+					console.log("@@@@@@@ -> ", row.bac)
+					console.log("@@@@@@@ -> ", row)
+				}
+				this.totalLoanResult += Number(row.bac) / (Number(row.lnTerm) / 12) + Number(row.bac)*Number(row.aplItr*0.01)
 
-				console.log("@@@ 현재 =>", this.securedLoanResult)
+				console.log("@@@ 현재 this.creditLoanResult =>", this.creditLoanResult)
+				console.log("@@@ 현재 this.securedLoanResult =>", this.securedLoanResult)
 			})
 
 			// 희망대출
 			const lnAm = parseFloat(this.removeComma(this.lnAm));
-            const lnDt = parseFloat(this.removeComma(this.lnDt));
-            const lnInt = parseFloat(this.removeComma(this.lnInt));
+            const lnDt = parseFloat((this.lnDt));
+            const lnInt = parseFloat((this.lnInt));
 
-			if(this.acTpDsc == "3100" || this.acTpDsc == "3150") {
-				this.creditLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / Number(lnDt) / 12 + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt * 0.01)
-			} else {
-				this.securedLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / Number(lnDt) / 12 + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt * 0.01)
+			if(this.acTpDsc == "3100") {	// 신용대출
+				this.creditLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / (Number(lnDt) / 12) + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt) * 0.01
+				this.totalLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / (Number(lnDt) / 12) + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt) * 0.01
+			} else if(this.acTpDsc == "3220") {
+				// this.securedLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / (Number(lnDt) / 12) + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt * 0.01)
+
+				this.securedLoanResult += (Number(parseFloat(this.removeComma(lnAm)) * 10000) * (Number(lnInt * 0.01) / 12) * Math.pow(1 + (Number(lnInt * 0.01) / 12), Number(lnDt)) / (Math.pow(1 + (Number(lnInt * 0.01) / 12), Number(lnDt)) - 1)) * 12
+				this.totalLoanResult += (Number(parseFloat(this.removeComma(lnAm)) * 10000) * (Number(lnInt * 0.01) / 12) * Math.pow(1 + (Number(lnInt * 0.01) / 12), Number(lnDt)) / (Math.pow(1 + (Number(lnInt * 0.01) / 12), Number(lnDt)) - 1)) * 12
 			}
-			this.totalLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / Number(lnDt) / 12 + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt * 0.01)
+			// this.totalLoanResult += Number(parseFloat(this.removeComma(lnAm)) * 10000) / (Number(lnDt) / 12) + Number(parseFloat(this.removeComma(lnAm)) * 10000) * Number(lnInt * 0.01)
 
 			this.creditLoanResult = (this.creditLoanResult / (this.removeComma(this.income) *10000) * 100).toFixed(2)
 			this.securedLoanResult = (this.securedLoanResult / (this.removeComma(this.income) *10000) * 100).toFixed(2)
@@ -753,7 +779,7 @@ export default {
 		openResult(pageId) {
 			// 대출금액, 대출기간, 대출이자율의 조건이 충족이 되지 않을 경우
 			if(this.income < 100 || this.lnAm < 100 || this.lnInt < 1 || (this.lnDt < 6)){
-				modalService.alert("계산할 수 없어요. <br>입력값을 확인해주세요.")
+				modalService.alert("계산할 수 없어요. <br>입력값을 확인해 주세요.")
 				return;
 			}
 
@@ -822,16 +848,23 @@ export default {
 		},
 		// 삭제
 		fnLocalDelete(sqno) {
-			// 삭제할 인덱스
-			// modalService.alert("삭제 중 오류가 발생하였습니다.").then(() => {});
-			let idx = this.localLoan.lnList.findIndex(function (item) {
-				return item.sqno == sqno
-			})
+			const config = {
+				content: ['등록한 대출을 삭제할까요?'],
+				title  : "",
+            }
 
-			this.localLoan.lnList.splice(idx, 1);	// 삭제할 인덱스 1개 삭제
+			modalService.confirm(config).then(text => {
+                if(text == "예") {
+					let idx = this.localLoan.lnList.findIndex(function (item) {
+						return item.sqno == sqno
+					})
 
-			 let localKey = "loan" + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + "V4";
-			commonService.setStorage(localKey, this.localLoan);
+					this.localLoan.lnList.splice(idx, 1);	// 삭제할 인덱스 1개 삭제
+
+					let localKey = "loan" + this.getUserInfo('chnl') + this.getUserInfo('mydtCusno') + "V4";
+					commonService.setStorage(localKey, this.localLoan);
+                }
+            });
 		},
 		fnRegisterAsset() {
 			const config = {
@@ -844,7 +877,27 @@ export default {
 		},
 		fnChgFormat(date) {
 			return dateFormat(date, 'YYYY.MM.DD')
-		}
+		},
+		del(type) {
+			if(type === 'income') {
+				this.income = ""
+				this.incomeErrorText = '';
+				this.incomeInKorean = '';
+			}
+			else if(type === 'lnAm') {
+				this.lnAm = ""
+				this.lnAmErrorText = '';
+				this.lnAmInKorean = '';
+			}
+			else if(type === 'lnDt') {
+				this.lnDt = ""
+				this.lnDtErrorText = '';
+			}
+			else if(type === 'lnInt') {
+				this.lnInt = ""
+				this.lnIntErrorText = '';
+			}
+		},
     },
     components: {
 		Page,

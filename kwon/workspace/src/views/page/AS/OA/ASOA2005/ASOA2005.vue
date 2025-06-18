@@ -130,9 +130,9 @@
     import commonMixin from '@/common/mixins/commonMixin'
     import apiService from '@/service/apiService'
     import modalService from '@/service/modalService'
-    import COOA2004 from '@/views/page/CO/OA/COOA2004/COOA2004'
-    import ASOA2006 from '@/views/page/AS/OA/ASOA2006/ASOA2006'
-    import ASOA2007 from '@/views/page/AS/OA/ASOA2007/ASOA2007'
+    import COOA4004 from '@/views/page/CO/OA/COOA4004/COOA4004'
+    import ASOA4006 from '@/views/page/AS/OA/ASOA4006/ASOA4006'
+    import ASOA4007 from '@/views/page/AS/OA/ASOA4007/ASOA4007'
 
     export default {
         name : "ASOA2005",
@@ -222,7 +222,7 @@
             },
             movePage(astIdx) {
                 const config = {
-                    component : COOA2004,
+                    component : COOA4004,
                     params    : {
                         isUpt      : true,
                         goldMprBasDt : this.goldMprBasDt,               // 골드시세적용날짜
@@ -296,9 +296,9 @@
                 var componentNm
 
                 if (mode === 'cal') { // 계산기
-                    componentNm = ASOA2007
+                    componentNm = ASOA4007
                 } else {// 시세 조회
-                    componentNm = ASOA2006
+                    componentNm = ASOA4006
                 }
                 
                 const config = { 

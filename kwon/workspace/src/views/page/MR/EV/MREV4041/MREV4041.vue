@@ -23,7 +23,7 @@
 			<section class="friend_intro">
 				<div class="intro">
 					<h2 class="title">우리 콕!<br>마이데이터 해요~</h2>
-					<p>콕!마이데이터를 많은 친구에게 소개해 주세요~</p>
+					<p>NH콕마이데이터를 많은 친구에게 소개해 주세요~</p>
 					<div class="code">
 						<p>초대 코드</p>
 						<button type="button" @click.prevent="copyRcmCd">{{rcmCd}}</button>
@@ -32,7 +32,7 @@
 
 				<div class="info">
 					<p>초대한 친구가 링크를 통해 초대아이디를 입력하여 NH콕마이데이터에 가입하면 흩어져있는 자산을 체계적으로 관리할 수 있습니다.</p>
-					<p class="dot">서비스기간 : 2025.06.01~2026.12.31</p>
+					<!-- <p class="dot">서비스기간 : 2025.06.01~2026.12.31</p> -->
 				</div>
 				
 				<div class="proc_list">
@@ -57,10 +57,10 @@
 					<summary><strong>알아두세요</strong></summary>
 					<div class="cont">
 						<ul class="dotted_list">
-							<li>친구초대하기로 친구에게 초대메시지를 전송하여 콕!마이데이터를 가입할 수 있습니다.</li>
+							<li>친구초대하기로 친구에게 초대메시지를 전송하여 NH콕마이데이터를 가입할 수 있습니다.</li>
 							<li>초대받은 친구가 마이데이터 탈퇴 후 1년이 초과되지 않은 상태에서 재가입할 경우, 혜택은 없습니다.</li>
 							<li>친구초대 서비스는 추후 변경될 수 있습니다.</li>
-							<li>콕!마이데이터 친구초대 관련 문의사항은 고객센터로 문의해 주세요.</li>
+							<li>NH콕마이데이터 친구초대 관련 문의사항은 고객센터로 문의해 주세요.</li>
 						</ul>
 					</div>
 				</details>
@@ -70,7 +70,7 @@
 
 		<div class="popup_footer fixed">
 			<div class="btn_full_box">
-				<button type="button" class="btns lg primary" @click.prevent="shareRcmCd">친구초대하기</button>
+				<button type="button" class="btns lg primary" @click.prevent="shareRcmCd()">친구초대하기</button>
 			</div>
 		</div>
 
@@ -131,23 +131,22 @@ export default {
 					})
 				}
             })
+
         },
 		shareRcmCd() {
-			let txt = "";
-
 			const config = {
-                params: { // 파라미터
-                    title : "공유하기",
-                    text  : txt
-                },
-            }
-            
-            modalService.webSharePopup(config).then(response => {
-
-            })
+				params: {
+					category: 2,          						// 친구 카테고리 번호 2 
+					inviteCd: this.rcmCd, 						// 초대코드
+					imgName : 'share_invite_friend.png',        // 대표 이미지 명 (.png 확장자 포함)
+					screenId: 'MAMA4001'  						// 앱 랜딩시 초기 화면으로 표시할 화면ID 
+				}, 
+			}         
+			modalService.webSharePopup(config).then(response => {})
 		},
 		copyRcmCd() {
 			navigator.clipboard.writeText(this.rcmCd)	// 초대코드 복사
+			modalService.toast('복사되었습니다')		 // 토스트 메세지
 		},
     },
 	mixins: [

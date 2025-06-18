@@ -43,14 +43,15 @@
 				<div class="tit_area">
 					<h2 class="headline"><strong>연결할 기관을 선택해 주세요.</strong></h2><!-- [v4.0] 25-03-17 코드 변경(폰트크기) -->
 					<!-- [v4.0] 25-03-17 progress 삭제 <span class="progress" role="progressbar" aria-valuetext="전체 4단계 중 1단계" aria-valuemax="4" aria-valuenow="1"><em class="now">01</em><span class="total">04</span></span> -->
-					<p class="txt">연결중 기관, 공공 기관은 자산 정보가 표시됩니다.</p><!-- [v4.0] 25-03-17 문구추가 -->
+					<!--<p class="txt">연결중 기관, 공공 기관은 자산 정보가 표시됩니다.</p>--><!-- [v4.0] 25-03-17 문구추가 / 25-03-25 문구삭제 -->
 				</div>
+
 				<div class="input">
-					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요.">
+					<input type="text" name="" id="input01" placeholder="기관명을 입력해 주세요." aria-label="기관명 검색"><!--[v4.0] #접근성# aira-label 추가 -->
 					<button type="button" class="btn_delete"><span class="blind">삭제</span></button><!-- [v4.0] 25-02-28 삭제버튼 추가 -->
 					<button type="button" class="btn_search"><span class="blind">검색</span></button>
 				</div>
-
+				
 				<div class="institu_wrap">
 					<div class="category_tab">
 						<div class="scroller">
@@ -66,29 +67,49 @@
 							</ul>
 						</div>
 					</div>
-
+					<!-- -->
 					<div class="top_desc">
+						<!-- [v4.0] 25-06-04 초기화 버튼 추가로 구조변경 -->
+						<!--
 						<div>
-							<!-- 
 							<div class="checkbox border checkFull">
 								<input type="checkbox" name="fullcheck" id="fullcheck" title="전체 동의">
 								<label for="fullcheck">전체</label>
 							</div>
 							<a href="#nolink" class="com_txtinfo_type01">만료 예정 기관이 있어요.</a>
-							-->
-							<!-- [v4.0] 25-02-27 문구삭제 <p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p> -->
+							
+							<!-- [v4.0] 25-02-27 문구삭제 <p class="com_txtinfo_type01">만료 예정 기관이 있어요.</p> 
 						</div>
+						-->
+						<a href="#nolink" class="btn_reset"><span>선택기관초기화</span></a>
 						<a href="#nolink" class="btn_recom" title="옵션 선택"><span class="ico_line_down"><span class="blind">현재옵션</span>추천기관</span></a>
+						
+						<!-- [v4.0] 25-06-04 초기화 버튼 추가로 구조변경 -->
 					</div>
+
+					<!--25-06-12 문구추가 --> 
+					<div class="gray_box">
+						<p class="dotted_list">연결 시도 기관이 점검중 또는 일시적 오류일 수 있으니 재시도 후에도 연결이 되지 않을 시 해당 기관에 문의해주세요.</p>
+					</div>
+					<!--//25-06-12 문구추가 --> 
 					
 					<div class="category_cont">
 						<div class="institu_group" id="institu01">
 							<div class="tit_area">
-								<strong class="institu_tit">은행 <em class="num">(<span>4</span>기관, <span>5</span>개 자산 선택)</em></strong>
+								<strong class="institu_tit">은행 <em class="num">(<span>4</span>)</em></strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree" id="checkall01" checked="checked">
 									<label for="checkall01"><span class="blind">전체</span>선택해제</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -97,7 +118,7 @@
 									<label for="checkbox_toggle_box1">
 										<i class="ico_bank A1AABG0000"></i>
 										<strong class="bank_name">농협은행</strong>
-										<span class="txt_status">연결중</span>
+										<span class="txt_status">연결됨</span>
 									</label>
 								</div>
 
@@ -119,7 +140,9 @@
 															<strong class="bank_name">농협 (연금)신탁상품ABC</strong>
 															<span class="txt_status">연결중</span>
 														</span>
-														<span class="bank_num">1324653454324</span>
+														<!--25-05-26 휴면 텍스트 추가-->
+														<span class="bank_num">1324653454324<span class="sleep_txt">휴면</span></span>
+														<!--//25-05-26 휴면 텍스트 추가-->
 													</label>
 												</div>
 											</li>
@@ -151,6 +174,82 @@
 									</div>
 								</details>
 							</div>
+
+							<!--25-04-01 조회실패케이스 추가 -->
+							<div class="sel_toggle_box">
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1" checked="checked">
+									<label for="checkbox_toggle_box1">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+
+								<details class="select_detail" open><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<div class="no_result">
+											<p class="text">선택 기관의 오류로 조회에 실패하였습니다.<br>
+												잠시 후 다시 시도해주세요.</p>
+											<div class="bg">
+												<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+											</div>
+										</div>
+									</div>
+								</details>
+							</div>
+							<!--//25-04-01 조회실패케이스 추가 -->
+
+							<!--25-04-07 조회실패2케이스 추가 -->
+							<div class="sel_toggle_box">
+								<!--
+								<div class="checkbox border">
+									<input type="checkbox" name="checkbox_toggle_box1" id="checkbox_toggle_box1_11111" checked="checked">
+									<label for="checkbox_toggle_box1_11111">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</label>
+								</div>
+								-->
+								<div class="top_status">
+									<div class="tit">
+										<i class="ico_bank A1AABG0000"></i>
+										<strong class="bank_name">농협은행</strong>
+										<span class="txt_status">연결중</span>
+									</div>
+									<div>
+										<a href="#nolink" class="btn_reconnect" role="button">실패<span class="blind">연결 재시도</span></a><!--[v4.0] #접근성# aira-label 추가 -->
+									</div>
+								</div>
+
+								<details class="select_detail" open><!-- open 속성들어가면 열림상태 -->
+									<summary>
+										<strong class="txt">자산 목록</strong>
+										<span class="arr">
+											<span class="show">보기</span>
+											<span class="hide">닫기</span>
+										</span>
+									</summary>
+									<div class="cont">
+										<div class="no_result">
+											<p class="text">선택 기관의 오류로 조회에 실패하였습니다.<br>
+												잠시 후 다시 시도해주세요.</p>
+											<div class="bg">
+												<lottie-player src="../../../../src/assets_v40/images/lottie/bg_no_result.json" loop="" autoplay="" aria-hidden="true" class="bg_no_result" background="transparent"></lottie-player>
+											</div>
+										</div>
+									</div>
+								</details>
+							</div>
+							<!--//25-04-07 조회실패2케이스 추가 -->
 
 							<div class="sel_toggle_box">
 								<div class="checkbox border">
@@ -236,10 +335,19 @@
 						<div class="institu_group" id="institu02">
 							<div class="tit_area">
 								<strong class="institu_tit">공공 <em class="num">1</em></strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree2" id="allagree2">
 									<label for="allagree2">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -405,10 +513,19 @@
 						<div class="institu_group" id="institu03">
 							<div class="tit_area">
 								<strong class="institu_tit">카드 <em class="num">1</em></strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree3" id="allagree3">
 									<label for="allagree3">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
@@ -475,7 +592,52 @@
 													</label>
 												</div>
 											</li>
+											<!--[v4.0] 25-03-27 카드상세정보 케이스 추가-->
+											<li class="formItem">
+												<div class="checkbox">
+													<input type="checkbox" name="checkbox_toggle_card2_1" id="checkbox_toggle_card2_1" checked>
+													<label for="checkbox_toggle_card2_1">
+														<span class="bank_wrap">
+															<strong class="bank_name">농협 체크카드</strong>
+															<span class="txt_status">연결중</span>
+														</span>
+														<span class="bank_num">1324653454324</span>
+													</label>
+												</div>
+											</li>
+											<!--//[v4.0] 25-03-27 카드상세정보 케이스 추가-->
 										</ul>
+										<!-- 25-04-01 이동 -->
+										<div class="detail_items">
+											<div class="checkbox">
+												<input type="checkbox" name="checkbox_toggle_card2_1" id="checkbox_toggle_card2_1_1" checked>
+												<label for="checkbox_toggle_card2_1_1">
+													<span class="bank_wrap">
+														<strong class="bank_name">포인트 정보</strong>
+														<!-- 25-04-01 삭제 <span class="txt_status">연결중</span> -->
+													</span>
+												</label>
+											</div>
+											<div class="checkbox">
+												<input type="checkbox" name="checkbox_toggle_card2_1" id="checkbox_toggle_card2_1_2" checked>
+												<label for="checkbox_toggle_card2_1_2">
+													<span class="bank_wrap">
+														<strong class="bank_name">청구 및 결제 정보</strong>
+														<!-- 25-04-01 삭제 <span class="txt_status">연결중</span> -->
+													</span>
+												</label>
+											</div>
+											<div class="checkbox">
+												<input type="checkbox" name="checkbox_toggle_card2_1" id="checkbox_toggle_card2_1_3" checked>
+												<label for="checkbox_toggle_card2_1_3">
+													<span class="bank_wrap">
+														<strong class="bank_name">대출상품 정보</strong>
+														<!-- 25-04-01 삭제 <span class="txt_status">연결중</span> -->
+													</span>
+												</label>
+											</div>
+										</div>
+										<!-- //25-04-01 이동 -->
 									</div>
 								</details>
 							</div>
@@ -485,10 +647,19 @@
 						<div class="institu_group" id="institu04">
 							<div class="tit_area">
 								<strong class="institu_tit">보험</strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree4" id="allagree4">
 									<label for="allagree4">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<!--
@@ -556,10 +727,19 @@
 						<div class="institu_group" id="institu05">
 							<div class="tit_area">
 								<strong class="institu_tit">통신</strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree5" id="allagree5">
 									<label for="allagree5">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -614,10 +794,19 @@
 						<div class="institu_group" id="institu06">
 							<div class="tit_area">
 								<strong class="institu_tit">증권</strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree6" id="allagree6">
 									<label for="allagree6">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -671,10 +860,19 @@
 						<div class="institu_group" id="institu07">
 							<div class="tit_area">
 								<strong class="institu_tit">전자금융</strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree7" id="allagree7">
 									<label for="allagree7">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -728,10 +926,19 @@
 						<div class="institu_group" id="institu08">
 							<div class="tit_area">
 								<strong class="institu_tit">기타금융</strong>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 
 								<div class="checkbox noicon checkGroup">
 									<input type="checkbox" name="allagree8" id="allagree8">
 									<label for="allagree8">전체선택</label>
 								</div>
+								-->
+								<div class="btn_area">
+									<button type="button" class="btn_all_chk">
+										<span>전체선택</span>
+										<!--<span>선택해제</span>-->
+									</button>
+								</div>
+								<!--[v4.0] #접근성# 접근성이슈로 마크업 변경 -->
 							</div>
 							<!-- [v4.0] 25-03-17 박스형태로 변경 -->
 							<div class="sel_toggle_box">
@@ -877,6 +1084,14 @@ $('.popup_content').each(function(){
 			},300, function(){
 				
 			});
+			//[v4.0] #접근성# 추가
+			$.each($(id), function(){
+				$(id).find('.institu_tit').attr('tabindex','0')
+				$(id).siblings().find('.institu_tit').removeAttr('tabindex');
+				setTimeout(function(){
+					$(id).find('.institu_tit').focus();
+				}, 20)
+			})
 		})
 	});
 

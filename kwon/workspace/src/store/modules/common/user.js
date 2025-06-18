@@ -39,7 +39,9 @@ const getters = {
 	*/
 	getMyCreditInfo : state => state.myCreditInfo || {},
 
+	////////////////////////
 	// NH콕마이데이터4.0 신규
+	////////////////////////
 	isChildV4: (state, getters) => { // 14세여부 (14세미만 체크)
 		const birth = getters.userInfo.usrBirth || ''
 		return isChildV4(birth)
@@ -48,7 +50,10 @@ const getters = {
 	 * 유저 모드 설정값
 	 */
 	getUserMode : state => state.userMode || 'N',
-	
+	/**
+	 * 신규알람여부
+	 */
+	getNewAlarm : state => state.newAlarm || 'N',
 }
 
 // actions
@@ -57,16 +62,16 @@ const actions = {
   	initUserConfig({commit}) {
 		return new Promise((resolve, reject) => {
 			userService.initUserInfo().then(
-					response => {
-						commit('setUserInfo', response)
-						resolve()
-					},
-					error => {
-						reject(error)
-						console.error(error)
-					}
-				)
-			})
+				response => {
+					commit('setUserInfo', response)
+					resolve()
+				},
+				error => {
+					reject(error)
+					console.error(error)
+				}
+			)
+		})
 	},
 	
 	//
@@ -96,14 +101,21 @@ const actions = {
 		commit('setMyCreditInfo', params)
 	},
 
+	////////////////////////
 	// NH콕마이데이터4.0 신규
+	////////////////////////
 	/**
 	 * 마이데이터 모드값 저장
 	 */
 	setUserMode({commit}, params) {
 		commit('setUserMode', params)
 	},
-
+	/**
+	 * 신규알람여부 저장
+	 */
+	setNewAlarm({commit}, params) {
+		commit('setNewAlarm', params)
+	}
 }
 
 // mutations
@@ -153,13 +165,21 @@ const mutations = {
 		state.myCreditInfo = data
 	},
 
+	////////////////////////
 	// NH콕마이데이터4.0 신규
+	////////////////////////
 	/**
 	 * 마이데이터 모드값 저장
 	 */
 	setUserMode(state, data) {
 		state.userMode = data
-	}
+	},
+	/**
+	 * 신규알람여부 저장
+	 */
+	setNewAlarm(state, data) {
+		state.newAlarm = data
+	},
 }
 
 // state
@@ -172,6 +192,7 @@ const state = {
 	userRecvInfo : {},	//정보수신동의정보
 	myCreditInfo : {},	//신용정보(신용점수,신용등급) add 2021.11.22
 	userMode : '',	// 마이데이터 모드
+	newAlarm : '',	// 신규알람여부
 }
 
 export default {

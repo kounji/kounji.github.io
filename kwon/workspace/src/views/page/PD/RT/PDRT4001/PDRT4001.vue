@@ -35,7 +35,7 @@
 					<strong class="titH1" v-else>
 						내 예상 연금 <span class="pointColor green">월 0만원</span>
 					</strong>
-					<button class="tooltipBtn" @click.prevent="fn_openSlide('PDRT2002')"></button>
+					<button type="button" class="tooltipBtn" @click.prevent="fn_openSlide('PDRT2002')"><span class="blind">예상 연금 수령액 도움말 보기</span></button>
 
 					<div class="setting">
 						<a href="javascript:void(0);" class="btnSet" role="button" title="연금맞춤설정 이동" @click.prevent="fn_openSlide('PDRT2003')">연금맞춤설정</a>
@@ -52,10 +52,10 @@
 									<div class="bar_wrap">
 										<div class="bars">
 											<div class="bar bar_sd" style="height:100%;">
+												<div class="inner_text">적정</div>
 												<div class="chart_tooltip_wrap">
 													<span class="chart_tooltip"><em class="num">{{fn_hanValue(String(sMmLfecs))}}</em></span>
 												</div>
-												<div class="inner_text">적정</div>
 											</div>
 											<div class="bar bar_me" style="height:60%;">
 												<div class="inner_text">나</div>
@@ -79,10 +79,10 @@
 									<div class="bar_wrap">
 										<div class="bars">
 											<div class="bar bar_sd" style="height:100%;">
+												<div class="inner_text">적정</div>
 												<div class="chart_tooltip_wrap">
 													<span class="chart_tooltip"><em class="num">{{fn_hanValue(String(sMmLfecs))}}</em></span>
 												</div>
-												<div class="inner_text">적정</div>
 											</div>
 											<div class="bar bar_me true">
 												<div class="inner_text">나</div>
@@ -216,7 +216,7 @@
 					<ul class="view_cont list_toggle">
 						<li>
 							<dl class="pensoin_period">
-								<dt>가입기간</dt>
+								<dt>총 개월수</dt>
 								<dd>{{sNtpsTotPrdCn}}개월</dd>
 							</dl>
 
@@ -229,7 +229,7 @@
 				<!-- 퇴직연금 -->
 				<div class="com_box_type01 toggle_list_box2 custom_list" v-if="sRtrpnsTotAcEvlam > 0">
 					<div data-ui-toggle="box" class="toggle_box_area open">
-						<button type="button" class="view_btn" aria-expanded="false">
+						<button type="button" class="view_btn" aria-expanded="true">
 							<div class="new_tit_area">
 								<div class="tit"><span>퇴직연금</span></div>
 								<span class="total_price">
@@ -348,10 +348,12 @@
 						<a href="javascript:void(0);" @click.prevent="movePage('PDPD4001')">꼭 맞는 상품을 추천해 드려요</a>
 					</div>
 				</div>
-
-				<a href="javascript:void(0)" @click="openWebBrowser('https://www.hf.go.kr/ko/sub03/sub03_02_02.do')">
-					<img src="@/assets_v40/images/banner/img_banner_housing_mortgage.png" alt="주택연금 예상연금 조회. 한국주택금융공사에서 제공합니다.">
-				</a>
+				
+				<div class="inner_banner">
+					<a href="javascript:void(0)" @click="openWebBrowser('https://www.hf.go.kr/ko/sub03/sub03_02_02.do')">
+						<img src="@/assets_v40/images/banner/img_banner_housing_mortgage.png" alt="주택연금 예상연금 조회. 한국주택금융공사에서 제공합니다.">
+					</a>
+				</div>
 			</div>
 			</template>
 
@@ -404,7 +406,7 @@ import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정�
 import PDSC4001 from '@/views/page/PD/SC/PDSC4001/PDSC4001'
 import ASPS2002 from '@/views/page/AS/PS/ASPS2002/ASPS2002'
 import ASPS2004 from '@/views/page/AS/PS/ASPS2004/ASPS2004'
-import ASIS2013 from '@/views/page/AS/IS/ASIS2013/ASIS2013'
+import ASIS2012 from '@/views/page/AS/IS/ASIS2012/ASIS2012'
 import ASIV2002 from '@/views/page/AS/IV/ASIV2002/ASIV2002'
 import ASIV2005 from '@/views/page/AS/IV/ASIV2005/ASIV2005'
 
@@ -842,7 +844,7 @@ export default {
 				}
 			} else if(type == "PSIS") {
 				config = {
-					component : ASIS2013, // 연금저축보험
+					component : ASIS2012, // 연금저축보험
 					params : {
 						infOfrmnOrgC: pension.infOfrmnOrgC,
 						isrSctsNo: pension.isrSctsNo,

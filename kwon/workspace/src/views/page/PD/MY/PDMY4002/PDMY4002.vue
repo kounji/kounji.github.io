@@ -15,7 +15,7 @@
 
 <template>
 	<div class="mydata2023">
-		<div class="dimmed" style="display: block;" @click="close()"></div>
+		<div class="dimmed" style="display: block;"></div>
 		<div class="popup_box renewal">
 			<div aria-hidden="false" class="slide_popup" id="slide_popup_01" style="display: block;">
 				<div class="popup_header">

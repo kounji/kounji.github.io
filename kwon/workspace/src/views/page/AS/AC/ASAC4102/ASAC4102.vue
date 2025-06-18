@@ -35,10 +35,22 @@
 								<i :class="respInfo.infOfrmnOrgC"><span class="blind">{{respInfo.infOfrmnOrgnm}}</span></i>
 							</div>
 						</div>
-
-						<div class="asset_price">
+						
+						<!-- <div class="asset_price">
 							<span class="num counter" :data-count="respInfo.acNowBac"> {{ respInfo.acNowBac | numberFilter }}</span>원
+						</div> -->
+
+						<div class="layoutBox between">
+							<div class="left">
+								<div class="asset_price"><!-- 0908 counter 삭제 -->
+									<span class="num"> {{ respInfo.acNowBac | numberFilter }}</span>원
+								</div>
+							</div>
+							<!-- <div class="right" v-if="btnType"> 요건 삭제
+								<button type="button" class="stdBtn innerType01" @click="fn_moveRmt()">송금</button>
+							</div> -->
 						</div>
+
 					</div>
 
 					<div class="asset_detail">
@@ -109,7 +121,7 @@
 			<div class="com_inner">
 				<div class="new_period_box">
 					<div class="tit_area">
-						<a href="javascript:void(0);" title="팝업열기" role="button" @click.prevent="fn_openPeriodPop()" class="num">{{startDay}} ~ {{endDay}}</a>
+						<a href="javascript:void(0);" title="기간 선택 팝업열기" role="button" @click.prevent="fn_openPeriodPop()" class="num">{{startDay}} ~ {{endDay}}</a>
 					</div>
 					<!-- <div class="scroll_wrap">
 						<div class="checkbox_box">
@@ -129,9 +141,9 @@
 
 					<div class="choice_wrap">
 						<div class="choice_option">
-							<button type="button" title="선택됨" :class="srchFrag === '' ? 'active' : ''" @click="() => srchFrag = ''">전체</button>
-							<button type="button" title="선택안됨" :class="srchFrag === '1' ? 'active' : ''" @click="() => srchFrag = '1'">입금</button>
-							<button type="button" title="선택안됨" :class="srchFrag === '2' ? 'active' : ''" @click="() => srchFrag = '2'">출금</button>
+							<button type="button" :title="srchFrag === '' ? '선택됨' : '선택안됨'" :class="srchFrag === '' ? 'active' : ''" @click="() => srchFrag = ''">전체</button>
+							<button type="button" :title="srchFrag === '1' ? '선택됨' : '선택안됨'" :class="srchFrag === '1' ? 'active' : ''" @click="() => srchFrag = '1'">입금</button>
+							<button type="button" :title="srchFrag === '2' ? '선택됨' : '선택안됨'" :class="srchFrag === '2' ? 'active' : ''" @click="() => srchFrag = '2'">출금</button>
 						</div>
 					</div>
 				</div>
@@ -189,6 +201,7 @@
     import modalService from '@/service/modalService'
     import apiService from '@/service/apiService'
     import {dateFormat} from '@/utils/date'
+	import appService from '@/service/appService'
 	import _ from 'lodash'
 	
 	import ASAC2003 from '@/views/page/AS/AC/ASAC2003/ASAC2003'  
@@ -210,7 +223,8 @@
 				auttrCn     : 0,      // 자동이체건수
 
                 tranList    : [],     // 임시 리스트
-                accTrList   : []      // 월별 리스트
+                accTrList   : [],      // 월별 리스트
+				btnType     : false, //콕뱅 여부
             }	
         },
         mixins: [
@@ -246,6 +260,7 @@
         },
         methods: {
             initComponent() {
+				if(this.getUserInfo('chnl') === "386")this.btnType = true
 				this.getData();
 			},
 			initEvent() {
@@ -420,7 +435,19 @@
 				
                 modalService.openSlidePagePopup(config).then(() => {
                 })
-            },			
+            },	
+			/*
+                송금버튼
+            */
+           fn_moveRmt(){                
+				modalService.alert("콕뱅크 송금 메뉴로 이동할게요.<BR><BR>출금계좌 확인 후 송금해 주세요. 계좌가 조회되지 않는 경우 콕뱅크에 계좌를 등록해 주세요.").then(text => {
+                    if(text == "확인"){
+                        //콕 송금으로 이동
+                        let url = 'CBTRP0001R'
+                        appService.cokBankGoMove( url )
+                    }
+                })
+           },		
         }
     }
 

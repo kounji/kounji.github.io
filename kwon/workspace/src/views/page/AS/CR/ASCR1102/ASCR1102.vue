@@ -16,7 +16,7 @@
         <div class="popup_header">
             <h1>신용정보</h1>
             <a href="javascript:void(0);" class="btn_back"  @click.prevent="fn_moveBack()" ><span class="blind">이전화면</span></a>
-            <a href="javascript:void(0);" class="btn_close" @click.prevent="closeAll(true)"><span class="blind">화면닫기</span></a>
+            <a href="javascript:void(0);" class="btn_close" @click.prevent="close(true)"><span class="blind">화면닫기</span></a>
         </div>
         <div class="com_tabmenu_type01 menunum02">
             <ul role="tablist">

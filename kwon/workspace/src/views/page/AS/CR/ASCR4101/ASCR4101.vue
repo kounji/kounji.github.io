@@ -32,12 +32,12 @@
             </div>
             <div class="">
                 <div class="lh_wrap gauge_chart_wrap">
-                    <img class="bg"    src="@/assets/images/light_house_bg.png" alt="등대배경">
-                    <img class="stars" src="@/assets/images/stars.png"          alt="별">
-                    <img class="ocean" src="@/assets/images/ocean.png"          alt="바다">
-                    <img class="bird"  src="@/assets/images/bird.png"           alt="새">
+                    <img class="bg"    src="@/assets/images/light_house_bg.png" alt="">
+                    <img class="stars" src="@/assets/images/stars.png"          alt="">
+                    <img class="ocean" src="@/assets/images/ocean.png"          alt="">
+                    <img class="bird"  src="@/assets/images/bird.png"           alt="">
                     <div class="chartHolder">
-                        <img class="light" src="@/assets/images/light.png" alt="빛">
+                        <img class="light" src="@/assets/images/light.png" alt="">
                         <div class="containerr">
                             <div class="circle_wrap">
                                 <div class="scaler">
@@ -47,7 +47,7 @@
                                     <div class="circle" :style="'transform: rotate(' + 180/1000*Number(psnCrdevlScrVal) + 'deg);'"></div>
                                 </div>
                             </div>
-                            <img src="@/assets/images/trans_01.png">
+                            <img src="@/assets/images/trans_01.png" alt="">
                         </div>
                         <div class="intro_container">
                             <div class="intro_scaler">
@@ -206,14 +206,14 @@
                 <!--[v4.0] 링크추가-->
 				<div class="com_box_type01">
 					<ul class="list_type_01">
-						<li><a href="#nolink" @click.prevent="fn_openPopup('COCO1116')">신용점수 올리기를 해도 신용점수가 떨어지지 않아요.</a></li>
-						<li><a href="#nolink">NICE와 KCB의 신용점수가 다른 까닭은?</a></li>
-						<li><a href="#nolink">나의 신용점수가 떨어지는 이유는?</a></li>
+						<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO4116', 1)">신용점수 올리기를 해도 신용점수가 떨어지지 않아요.</a></li>
+						<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO4116', 2)">NICE와 KCB의 신용점수가 다른 이유는?</a></li>
+						<li><a href="javascript:void(0);" @click.prevent="fn_openPopup('COCO4116', 3)">나의 신용점수가 떨어지는 이유는?</a></li>
 					</ul>
 				</div>
 				<!--//[v4.0] 링크추가-->
 
-                <div class="com_box_type03 credit_style mt25" v-on:click.prevent="fn_openCrinfTipPop()">
+                <div class="com_box_type03 credit_style mt25" v-on:click.prevent="fn_openCrinfTipPop()" role="button">
                     <p class="txt_info"><span>신용점수 관리</span>는 이렇게~</p>
                 </div>
                 <p class="com_txtinfo_type01 mt18">코리아크레딧뷰로(KCB)에서 제공하는 정보이며,
@@ -240,7 +240,7 @@
     import ASCR1114 from '@/views/page/AS/CR/ASCR1114/ASCR1114'
     import ASCR4107 from '@/views/page/AS/CR/ASCR4107/ASCR4107'
 
-    import COCO1116 from '@/views/page/CO/CO/COCO1116/COCO1116' // 자주하는 질문
+    import COCO4116 from '@/views/page/CO/CO/COCO4116/COCO4116' // 자주하는 질문
 
     export default {
         name : "ASCR4101",
@@ -472,14 +472,18 @@
                     }
                 })
             },
-            fn_openPopup(pageId) {
+            fn_openPopup(pageId, idx) {
                 let compName = ''
-                if(pageId === "COCO1116"){
-                    compName = COCO1116	// 자주하는 질문
+                if(pageId === "COCO4116"){
+                    compName = COCO4116	// 자주하는 질문
                 }
 
                 const config = {
 					component: compName,
+                    params : {
+                        faqDsc  : '08',       // 신용정보 질문 코드번호
+                        faqSqno : idx,        // 신용점수 FAQ 구분 idx
+                    }
                 }
                 // this.close()
 				modalService.openPopup(config).then(() => {})

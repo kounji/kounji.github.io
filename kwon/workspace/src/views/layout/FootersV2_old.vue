@@ -12,13 +12,13 @@
 						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('as')}" :title="isActiveTab('as') ? '선택됨' : ''" @click.prevent="movePage('ASTA2001')">자산</a>
 					</li><!-- [개발자 전달] 기본값 active -->
 					<li class="item2" :class="{active:isActiveTab('lc')}">
-						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('lc')}" :title="isActiveTab('lc') ? '선택됨' : ''" @click.prevent="movePage('LCFD2001')">지출</a>
+						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('lc')}" :title="isActiveTab('lc') ? '선택됨' : ''" @click.prevent="movePage('LCFD4001')">지출</a>
 					</li>
 					<li class="item3" :class="{active:isActiveTab('pd')}">
-						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('pd')}" :title="isActiveTab('pd') ? '선택됨' : ''" @click.prevent="movePage('PDMY2001')">금융생활</a>
+						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('pd')}" :title="isActiveTab('pd') ? '선택됨' : ''" @click.prevent="movePage('PDMY4001')">금융생활</a>
 					</li>
 					<li class="item4" :class="{active:isActiveTab('an', 'sz')}">
-						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('an', 'sz')}" :title="isActiveTab('an', 'sz') ? '선택됨' : ''" @click.prevent="movePage('ANCA2201')">제휴서비스</a>
+						<a href="javascript:void(0);" role="button" :class="{active:isActiveTab('an', 'sz')}" :title="isActiveTab('an', 'sz') ? '선택됨' : ''" @click.prevent="movePage('ANCA4201')">제휴서비스</a>
 					</li>
 					<li class="item5 allmenu">
 						<a href="javascript:void(0);" role="button" @click.prevent="movePage('MRMR2001')">더보기</a>
@@ -275,8 +275,8 @@
 					compName = defineAsyncComponent(() => import('@/views/page/CO/AT/COAT1104/COAT1104'))	//제3자제공동의
 				} else if(pageId === "MRAT1001") {
 					compName = defineAsyncComponent(() => import('@/views/page/MR/AT/MRAT1001/MRAT1001')) // 이용약관
-				} else if(pageId === "ASCR1101") {
-					compName = defineAsyncComponent(() => import('@/views/page/AS/CR/ASCR1101/ASCR1101'))	// 신용정보 조회
+				} else if(pageId === "ASCR4101") {
+					compName = defineAsyncComponent(() => import('@/views/page/AS/CR/ASCR4101/ASCR4101'))	// 신용정보 조회
 				} else if(pageId === "COCO1130") {
 					compName = defineAsyncComponent(() => import('@/views/page/CO/CO/COCO1130/COCO1130'))	// 프로필
 				} else if(pageId === "MRCO1003") {

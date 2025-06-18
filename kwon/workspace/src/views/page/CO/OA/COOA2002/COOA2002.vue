@@ -264,7 +264,7 @@ export default {
             }
             modalService.confirm(config).then(text => {
                 if(text == "예") {
-                    if(!this.isUpt) this.closeAllData(true)
+                    if(!this.isUpt) this.close(true)
                     else this.close()
                 }
             })

@@ -174,7 +174,7 @@
 
     import ASIV1002 from '@/views/page/AS/IV/ASIV1002/ASIV1002'
     import ASIV1103 from '@/views/page/AS/IV/ASIV1103/ASIV1103'
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
     import COAR2001 from '@/views/page/CO/AR/COAR2001/COAR2001'
 
     export default {
@@ -269,7 +269,7 @@
             },
             fn_openExpensePop() {
                 const config = {
-                    component : PDMY2005
+                    component : PDMY4005
                 };
 
                 modalService.openPopup(config).then((response) => {
@@ -277,7 +277,7 @@
                         // 배너이미지를 통하여 목표등록을 하였을 경우
                         // 나의목표로 이동
                         const menu = {
-                            name: 'PDMY2005',
+                            name: 'PDMY4005',
                             params : {}
                         }
                         commonService.movePage(menu)

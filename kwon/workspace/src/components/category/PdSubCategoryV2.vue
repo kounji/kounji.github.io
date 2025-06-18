@@ -50,11 +50,11 @@
 			// 등록 버튼 눌러서 페이지 이동시 이동할 화면 이름 리턴
 			getMovePageName(type) {
 				if(type === 'CG') return 'PDCG0001'
-				if(type === 'YT') return 'PDYT2002' //(PDYT1101 -> PDYT2002변경)
+				if(type === 'YT') return 'PDYT4002' //(PDYT1101 -> PDYT4002변경)
 				//if(type === 'RT') return 'PDRT1012' // 은퇴준비진단 페이지 -> 팝업으로 변경되어 수정
-				if(type === 'RT_') return 'PDRT2001' // (PDRT1001 -> PDRT2001변경)
+				if(type === 'RT_') return 'PDRT4001' // (PDRT1001 -> PDRT4001변경)
 				if(type === 'TX') return 'PDTX2004' // 세금 현황 PDTX1001
-				if(type === 'SC') return 'PDSC2001' // 사회보험
+				if(type === 'SC') return 'PDSC4001' // 사회보험
 				if(type === 'NT') return 'PDRT4001' // 국민연금 임시
 				if(type === 'HL') return 'PDSC4004' // 건강보험
 				return ''

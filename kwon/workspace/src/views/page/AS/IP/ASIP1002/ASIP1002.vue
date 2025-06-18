@@ -10,7 +10,7 @@
 *_________________________________________________________________________
 * 2021-06-19              CS515729              최초작성
 * 2021-08-20              CS516033              2차개발
-* 2022-09-15              CS529599              PDMY2005 -> PDMY2005, PDMY1001 -> PDMY2001
+* 2022-09-15              CS529599              PDMY4005 -> PDMY4005, PDMY1001 -> PDMY4001
 *************************************************************************/
 -->
 <template>
@@ -392,7 +392,7 @@
     import modalService from '@/service/modalService'
     import commonService from '@/service/commonService'
 
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
     import '@/assets/js/rMateChartH5/JS/rMateFunction.js'
 
@@ -921,7 +921,7 @@
             },
             fn_openPDPD1101() {
                 const config = {
-                    name   : "PDPD1001" // 상품추천
+                    name   : "PDPD4001" // 상품추천
                 }
 
                 commonService.movePage(config);
@@ -930,7 +930,7 @@
             },
             fn_openExpensePop() {
                 const config = {
-                    component : PDMY2005
+                    component : PDMY4005
                 };
 
                 modalService.openPopup(config).then(response => {
@@ -941,7 +941,7 @@
                         this.closeAll()
 
                         const menu = {
-                            name: 'PDMY2001',
+                            name: 'PDMY4001',
                             params : {}
                         }
                         commonService.movePage(menu)

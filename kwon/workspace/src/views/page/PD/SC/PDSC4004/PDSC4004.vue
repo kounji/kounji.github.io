@@ -18,7 +18,7 @@
 		<pd-sub-category-v2 type="HL"></pd-sub-category-v2> -->
 
 		<div id="content" class="renewal financial_life">
-			<div class="com_inner tax_status">
+			<div class="com_inner tax_status" v-if="hlthAssetYn == 'Y'">
 				<div class="top_area">
 					<!--[v4.0] 25-02-10 텍스트 수정-->
 					<strong class="titH1">
@@ -51,7 +51,7 @@
 						</ul>
 						<!--//[v4.0] 조회조건 수정-->
 						<div class="com_btn_area">
-							<a href="#nolink" class="com_btnround_type02" role="button" @click="getData()">조회</a>
+							<a href="javascript:void(0);" class="com_btnround_type02" role="button" @click="getData()">조회</a>
 						</div>
 					</div>
 
@@ -64,7 +64,7 @@
 						<div class="shor_term mt20">
 							<div class="com_box_type01 toggle_list_box2 custom_list" v-for="(hlthInfo, index) in hlthList" :key="index">
 								<div data-ui-toggle="box" class="toggle_box_area"><!--//[v4.0] default 상태 변경 open 삭제-->
-									<button type="button" class="view_btn" aria-expanded="true">
+									<button type="button" class="view_btn" aria-expanded="false">
 										<div class="new_tit_area">
 											<div class="tit"><span>{{hlthInfo.inqYy}}년 {{hlthInfo.ntfyMm | numberFilter}}월</span></div>
 										</div>
@@ -72,9 +72,10 @@
 										<em class="close">닫기</em>
 									</button>
 								</div>
-								<div class="view_cont list_type_01">
+
+								<div v-if="srchHlthIsrEntDsc == '01'" class="view_cont list_type_01">
 									<dl>
-										<dt>사업자 명칭</dt>
+										<dt>사업자명칭</dt>
 										<dd>{{hlthInfo.bzplnm}}</dd>
 									</dl>
 									<dl>
@@ -90,10 +91,41 @@
 										<dd><span class="num">{{hlthInfo.hlthPayAm01 + hlthInfo.ltrmCnvlsPayAm01 | numberFilter}}</span>원</dd>
 									</dl>
 								</div>
+
+								<div v-if="srchHlthIsrEntDsc == '01'&& hlthInfo.hlthPayAm02 > 0" class="view_cont list_type_01">	
+									<dl>
+										<dt>(소득)건강보험</dt>
+										<dd><span class="num">{{hlthInfo.hlthPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+									<dl>
+										<dt>(소득)장기요양보험</dt>
+										<dd><span class="num">{{hlthInfo.ltrmCnvlsPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+
+									<dl>
+										<dt>(소득)납부한 보험료 합계</dt>
+										<dd><span class="num">{{hlthInfo.hlthPayAm02 + hlthInfo.ltrmCnvlsPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+								</div>
+
+								<div v-if="srchHlthIsrEntDsc == '02'" class="view_cont list_type_01">
+									<dl>
+										<dt>건강보험</dt>
+										<dd><span class="num">{{hlthInfo.hlthPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+									<dl>
+										<dt>장기요양보험</dt>
+										<dd><span class="num">{{hlthInfo.ltrmCnvlsPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+
+									<dl>
+										<dt>납부한 보험료 합계</dt>
+										<dd><span class="num">{{hlthInfo.hlthPayAm02 + hlthInfo.ltrmCnvlsPayAm02 | numberFilter}}</span>원</dd>
+									</dl>
+								</div>
 							</div>
 						</div>
 					</template>
-
 					<template v-else>
 					<!--납부내역이 없을 경우-->
 					<div class="no_data_box no_data_box01 grayExclamationType">
@@ -107,6 +139,29 @@
 					</template>
 				</div>
 			</div>
+
+			
+			<!--case. 건강보험 미연결시-->
+			<div class="health_no_connect" v-else>
+				<div class="cont">
+					<div class="bg">
+						<lottie-animation :animationData="require('@/assets_v40/images/lottie/bg_connect_fail.json')" 
+										ref="anim"
+										:loop="false"
+										:auto-play="true" 
+										:speed="1"
+										aria-hidden="true" 
+										class="bg_connect_fail"
+										background="transparent" >
+						</lottie-animation>
+					</div>
+					<p class="txt"><strong>자산을 연결하면</strong> 건강보험료 납부내역을 확인하실 수 있어요.</p>
+				</div>
+				<div class="btns_wrap">
+					<button type="button" class="btns line md" @click.prevent="fn_COAR4002()">자산 연결하기</button>
+				</div>
+			</div>
+			<!--//case. 건강보험 미연결시-->
 		</div>
 
 		<footersV2 type="pd" />
@@ -125,7 +180,10 @@ import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import PdSubCategoryV2 from '@/components/category/PdSubCategoryV2.vue'
 
 import PDSC4003 from '@/views/page/PD/SC/PDSC4003/PDSC4003' // 조회기간 선택(년도)
+import COAR4002 from '@/views/page/CO/AR/COAR4002/COAR4002'
 import COAR2005 from '@/views/page/CO/AR/COAR2005/COAR2005' // 개인신용정보제공동의
+
+import LottieAnimation from 'lottie-web-vue'
 
 import {dateFormat} from '@/utils/date'
 import {mapGetters} from 'vuex'
@@ -170,7 +228,12 @@ export default {
 				if(publicAsset.length > 0) {
 					let publicAssetList = this.myAssetsBzrgList.find(item => item.comnCVal === 'public').orgList || []
 					if(publicAssetList.length > 0){
-						this.hlthAssetYn = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVN0000') ? 'Y' : 'N'		// 건강보험
+						let tmpPublicAssetList = publicAssetList.find(item => item.infOfrmnOrgC === 'PBAAVN0000')
+                        if(tmpPublicAssetList?.acsTokenDusDtm == '0') {
+                            this.hlthAssetYn = 'Y'
+                        } else {
+                            this.hlthAssetYn = 'N'
+                        }
 					}
 				}
 			} else {
@@ -253,7 +316,21 @@ export default {
 				if(response != null) {
 					this.inqYy = response.toYear
 				}	
+				this.getData();
 			})
+		},
+		fn_COAR4002() {
+			// 자산연결
+			const config = {
+				component : COAR4002,
+                params : {
+                    isExternal : true,
+                    orgDsc : 'public'
+                }
+			}
+
+			modalService.openPopup(config).then(() => {
+			});
 		},
 		fnGetEntDsc() {
 			const config = {
@@ -270,6 +347,8 @@ export default {
 		fnSetEntDsc(comnCExpl, comnCVal) {
 			this.hlthIsrEntDscNm = comnCExpl
 			this.hlthIsrEntDsc	 = comnCVal
+
+			this.getData();
 		},
     },
     mounted() {
@@ -286,6 +365,7 @@ export default {
         FootersV2,
         PdCategoryV2,
         PdSubCategoryV2,
+		LottieAnimation,
     }
 }
 

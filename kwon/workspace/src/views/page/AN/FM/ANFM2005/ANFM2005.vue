@@ -130,7 +130,7 @@
 
 				<!-- banner -->
 				<div class="inner_banner">
-					<a href="javascript:void(0);" role="button" @click="openPDMY2005Popup()">
+					<a href="javascript:void(0);" role="button" @click="openPDMY4005Popup()">
 						<div class="com_box_type03 bg26">
 							<div class="text">
 								행복한 인생2막을 위한<span>목돈마련 목표를 세워볼까요?</span>
@@ -150,7 +150,7 @@
 	import appService from '@/service/appService'
 	import modalService from '@/service/modalService'
 	
-    import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+    import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
 	import popupMixin from '@/common/mixins/popupMixin'
     import commonMixin from '@/common/mixins/commonMixin'
@@ -183,9 +183,9 @@
 			/**
 			 * 나의 목표 열기
 			 */
-			openPDMY2005Popup() {
+			openPDMY4005Popup() {
                 const config = {
-                    component: PDMY2005,
+                    component: PDMY4005,
                     params : {}
                 }
 

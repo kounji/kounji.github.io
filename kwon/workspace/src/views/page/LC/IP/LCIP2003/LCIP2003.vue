@@ -86,7 +86,7 @@ export default {
                 url: '/lc/ip/03r02', 
                 data: {
                     "mydtCusno": this.cusNb,
-                    "basDt": '20241231' //this.basDt
+                    "basDt": this.basDt
                 }
             }			
             apiService.call(config).then(response =>{

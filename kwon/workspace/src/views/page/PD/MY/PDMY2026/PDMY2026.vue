@@ -168,8 +168,8 @@ import {round} from '@/utils/number'
 import {fncSlick_travel_simple} from '@/utils/slick'
 import _ from 'lodash'
 
-import PDMY2006 from '@/views/page/PD/MY/PDMY2006/PDMY2006'
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005'
+import PDMY4006 from '@/views/page/PD/MY/PDMY4006/PDMY4006'
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005'
 
 export default {
     name : "PDMY2026",
@@ -364,7 +364,7 @@ export default {
             })
         },
         goExpensePerpose() {
-            var compName = PDMY2006
+            var compName = PDMY4006
 
             var param = {"fncObtDsc":this.fncObtDsc, "sqno": this.sqno, "prgStsCd":this.prgStsCd}
 
@@ -381,7 +381,7 @@ export default {
         },
         // 목표등록화면으로 이동
         goPerposePage() {
-            var compName = PDMY2005
+            var compName = PDMY4005
 
             var param = {}
 

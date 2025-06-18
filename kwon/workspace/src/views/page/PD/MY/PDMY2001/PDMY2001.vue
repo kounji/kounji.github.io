@@ -209,22 +209,22 @@ import FootersV2 from '@/views/layout/FootersV2.vue'
 import commonMixin from '@/common/mixins/commonMixin'
 import PdCategoryV2 from '@/components/category/PdCategoryV2.vue'
 import modalService from '@/service/modalService'
-import PDMY2034 from '@/views/page/PD/MY/PDMY2034/PDMY2034' // 지출목표 수정 안내 팝업
-import PDMY2002 from '@/views/page/PD/MY/PDMY2002/PDMY2002' // 버킷리스트 만들기
-import PDMY2003 from '@/views/page/PD/MY/PDMY2003/PDMY2003' // 금융목표 만들기
-import PDMY2004 from '@/views/page/PD/MY/PDMY2004/PDMY2004' // 나의 목표 계좌 연결
-import PDMY2005 from '@/views/page/PD/MY/PDMY2005/PDMY2005' // 목표등록 메인
-import PDMY2033 from '@/views/page/PD/MY/PDMY2033/PDMY2033' // 지출목표 상세
-import PDMY2039 from '@/views/page/PD/MY/PDMY2039/PDMY2039' // 돈모으기 상세
-import PDMY2041 from '@/views/page/PD/MY/PDMY2041/PDMY2041' // 투자목표 상세
-import PDMY2029 from '@/views/page/PD/MY/PDMY2029/PDMY2029' // 내집마련 상세
-import PDMY2030 from '@/views/page/PD/MY/PDMY2030/PDMY2030' // 내차사기 상세
-import PDMY2031 from '@/views/page/PD/MY/PDMY2031/PDMY2031' // 여행목표 상세
-import PDMY2026 from '@/views/page/PD/MY/PDMY2026/PDMY2026' // 여가생활 상세
-import PDMY2027 from '@/views/page/PD/MY/PDMY2027/PDMY2027' // 자기계발 상세
-import PDMY2028 from '@/views/page/PD/MY/PDMY2028/PDMY2028' // 반려동물 상세
+import PDMY4034 from '@/views/page/PD/MY/PDMY4034/PDMY4034' // 지출목표 수정 안내 팝업
+import PDMY4002 from '@/views/page/PD/MY/PDMY4002/PDMY4002' // 버킷리스트 만들기
+import PDMY4003 from '@/views/page/PD/MY/PDMY4003/PDMY4003' // 금융목표 만들기
+import PDMY4004 from '@/views/page/PD/MY/PDMY4004/PDMY4004' // 나의 목표 계좌 연결
+import PDMY4005 from '@/views/page/PD/MY/PDMY4005/PDMY4005' // 목표등록 메인
+import PDMY4033 from '@/views/page/PD/MY/PDMY4033/PDMY4033' // 지출목표 상세
+import PDMY4039 from '@/views/page/PD/MY/PDMY4039/PDMY4039' // 돈모으기 상세
+import PDMY4041 from '@/views/page/PD/MY/PDMY4041/PDMY4041' // 투자목표 상세
+import PDMY4029 from '@/views/page/PD/MY/PDMY4029/PDMY4029' // 내집마련 상세
+import PDMY4030 from '@/views/page/PD/MY/PDMY4030/PDMY4030' // 내차사기 상세
+import PDMY4031 from '@/views/page/PD/MY/PDMY4031/PDMY4031' // 여행목표 상세
+import PDMY4026 from '@/views/page/PD/MY/PDMY4026/PDMY4026' // 여가생활 상세
+import PDMY4027 from '@/views/page/PD/MY/PDMY4027/PDMY4027' // 자기계발 상세
+import PDMY4028 from '@/views/page/PD/MY/PDMY4028/PDMY4028' // 반려동물 상세
 
-import PDMY2032 from '@/views/page/PD/MY/PDMY2032/PDMY2032' // 지출목표 등록
+import PDMY4032 from '@/views/page/PD/MY/PDMY4032/PDMY4032' // 지출목표 등록
 import PDMY2038 from '@/views/page/PD/MY/PDMY2038/PDMY2038' // 돈모으기
 import PDMY2040 from '@/views/page/PD/MY/PDMY2040/PDMY2040' // 투자목표
 
@@ -639,7 +639,7 @@ export default {
                         }
                     }
 					const config = {
-						component: PDMY2032,
+						component: PDMY4032,
 						params : params
 					}
 					modalService.openPopup(config).then(res => {
@@ -675,7 +675,7 @@ export default {
                     xpsObtAm: xpsObtAm
                 },
                 renderer: {
-                    component: PDMY2034
+                    component: PDMY4034
                 }
             };
 
@@ -775,7 +775,7 @@ export default {
         },
         // 계좌 미연결 목록 팝업
         openAcountListPop() {
-            let compName = PDMY2004;
+            let compName = PDMY4004;
 
             let param = {}
             const config = {
@@ -796,7 +796,7 @@ export default {
                     title: '버킷리스트 만들기'
                 },
                 renderer: {
-                    component: PDMY2002
+                    component: PDMY4002
                 }
             };
 
@@ -823,13 +823,13 @@ export default {
                     expenseYn: expYn
                 },
                 renderer: {
-                    component: PDMY2003
+                    component: PDMY4003
                 }
             };
             
 
             modalService.openSlidePagePopup(config).then(response => {
-                if(response.component.name != 'undefined' && response.component.name == "PDMY2032") {
+                if(response.component.name != 'undefined' && response.component.name == "PDMY4032") {
                     if(this.xpsAm !== null && this.expenseList.length) {
 
 						const configConfirm = {
@@ -884,7 +884,7 @@ export default {
         },
         // 목표등록 화면
         openPurposePop() {
-            let compName = PDMY2005;
+            let compName = PDMY4005;
 
             let param = {}
             const config = {
@@ -903,7 +903,7 @@ export default {
         // 지출목표 상세이동
         detailMove1(stYm) {
 
-            let compName = PDMY2033
+            let compName = PDMY4033
 
             let asetAmnCtgrId = this.expenseList[0].asetAmnCtgrId || ''
             let flag
@@ -933,14 +933,14 @@ export default {
             // 금융목표 상세화면으로
             let compName
 
-            if(fncObtDsc == '01') compName = PDMY2039 /* 돈모으기 */
-            if(fncObtDsc == '02') compName = PDMY2041 /* 투자목표 */
-            if(fncObtDsc == '03') compName = PDMY2029 /* 버킷-내집마련 */
-            if(fncObtDsc == '04') compName = PDMY2031 /* 버킷-여행 */
-            if(fncObtDsc == '05') compName = PDMY2030 /* 버킷-자동차 */
-            if(fncObtDsc == '06') compName = PDMY2026 /* 버킷-여가생활 */
-            if(fncObtDsc == '07') compName = PDMY2027 /* 버킷-자기계발 */
-            if(fncObtDsc == '08') compName = PDMY2028 /* 버킷-반려동물 */
+            if(fncObtDsc == '01') compName = PDMY4039 /* 돈모으기 */
+            if(fncObtDsc == '02') compName = PDMY4041 /* 투자목표 */
+            if(fncObtDsc == '03') compName = PDMY4029 /* 버킷-내집마련 */
+            if(fncObtDsc == '04') compName = PDMY4031 /* 버킷-여행 */
+            if(fncObtDsc == '05') compName = PDMY4030 /* 버킷-자동차 */
+            if(fncObtDsc == '06') compName = PDMY4026 /* 버킷-여가생활 */
+            if(fncObtDsc == '07') compName = PDMY4027 /* 버킷-자기계발 */
+            if(fncObtDsc == '08') compName = PDMY4028 /* 버킷-반려동물 */
 
             let param = {"fncObtDsc":fncObtDsc, "sqno": sqno, "prgStsCd":prgStsCd, "carGrdNo":carGrdNo, "carCtrimNo":carCtrimNo, "basyy":basyy, "basmm":basmm}
             const config = {
